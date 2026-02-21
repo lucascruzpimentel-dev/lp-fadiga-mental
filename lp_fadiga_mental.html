@@ -849,13 +849,20 @@
         <!-- Top separator glow -->
         <div style="position:absolute;top:0;left:0;width:100%;height:1px;
             background:linear-gradient(90deg,transparent,rgba(37,99,235,0.25),transparent);
-            pointer-events:none;"></div>
-        <!-- Ambient glow blob -->
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-            width:900px;height:500px;background:rgba(37,99,235,0.04);
-            border-radius:50%;filter:blur(100px);pointer-events:none;"></div>
+            pointer-events:none;z-index:2;"></div>
+            
+        <!-- Subtle Animated Neuron Network Canvas for Section 03 -->
+        <canvas id="certNeuronCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0.08;pointer-events:none;"></canvas>
 
-        <div style="max-width:1400px;margin:0 auto;padding:0 24px;">
+        <!-- Ambient glow blobs -->
+        <div style="position:absolute;top:50%;left:20%;transform:translate(-50%,-50%);
+            width:600px;height:600px;background:rgba(37,99,235,0.03);
+            border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;"></div>
+        <div style="position:absolute;bottom:-10%;right:-10%;
+            width:500px;height:500px;background:rgba(29,78,216,0.03);
+            border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;"></div>
+
+        <div style="max-width:1400px;margin:0 auto;padding:0 24px;position:relative;z-index:1;">
 
             <!-- Two-column flex layout -->
             <div id="cert-layout" style="
@@ -1129,6 +1136,79 @@
                 yoyo: true
             });
         });
+
+        // ─── Section 03 — Neuron Network Canvas ──────────────────────────────
+        (function () {
+            const canvas = document.getElementById('certNeuronCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let W, H, nodes = [];
+            const NODE_COUNT = 40; // Menos densidade que o hero
+            const MAX_DIST = 150;
+
+            function resize() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                W = canvas.width = rect.width;
+                H = canvas.height = rect.height;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            // Create neurons
+            for (let i = 0; i < NODE_COUNT; i++) {
+                nodes.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    vx: (Math.random() - 0.5) * 0.2, // Movimento mais lento e sutil
+                    vy: (Math.random() - 0.5) * 0.2,
+                    r: Math.random() * 1.5 + 1,
+                    pulse: Math.random() * Math.PI * 2,
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+
+                // Update positions
+                nodes.forEach(n => {
+                    n.x += n.vx;
+                    n.y += n.vy;
+                    n.pulse += 0.01;
+                    if (n.x < 0 || n.x > W) n.vx *= -1;
+                    if (n.y < 0 || n.y > H) n.vy *= -1;
+                });
+
+                // Draw connections
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[j].x - nodes[i].x;
+                        const dy = nodes[j].y - nodes[i].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < MAX_DIST) {
+                            const alpha = (1 - dist / MAX_DIST) * 0.3; // Mais transparente
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // Draw nodes
+                nodes.forEach(n => {
+                    const glow = 0.5 + Math.sin(n.pulse) * 0.3;
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.r * glow, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(96, 165, 250, ${glow * 0.6})`;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
 
         // ─── Section 03 — Certificate scroll reveal ──────────────────────────────
         (function () {
