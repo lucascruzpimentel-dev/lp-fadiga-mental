@@ -1,0 +1,214 @@
+Vamos criar a secção 03. Acima envie uma imagem de ferência. no canto esquerdo, gostaria de acrescentar em detaque o certificado do curso: @beautifulMention 
+
+Quero um efeito de borda igual ao iPhone Dynamic Island ou aos cards de carregamento do Apple Intelligence — um ponto de luz que percorre a borda do elemento em loop contínuo, desbotando nas pontas. É o mesmo estilo que aparece em interfaces premium da Apple como indicador de atividade.
+
+A seção deve seguir rigorosamente o design system já aplicado por isso pense com calma, revise, respire fundo antes de começar o seu trabalho.
+
+---
+
+## CONTEÚDO TEXTUAL
+
+Não altere nenhum texto. Use exatamente o que está abaixo.
+
+**Label:**
+CERTIFICAÇÃO
+
+**Headline:**
+Neurociência da Fadiga no Esporte
+
+**Descrição:**
+Um documento formal que registra sua qualificação numa das 
+áreas mais específicas e menos exploradas da ciência do esporte 
+no Brasil — emitido pelo Atleta Campeão e assinado pelo 
+Prof. Dr. Leonardo Fortes.
+
+**Três bullets laterais:**
+
+01
+Emissão 24h após a conclusão
+O certificado é gerado digitalmente assim que você finaliza 
+o treinamento — disponível para download em PDF, sem burocracia.
+
+02
+Assinado pelo Prof. Dr. Leonardo Fortes, um dos principais 
+pesquisadores do tema no Brasil. Docente do Mestrado e Doutorado 
+em Neurociência Cognitiva da UFPB.
+
+03
+Carga horária registrada: 6 horas
+Documento com carga horária explícita — o padrão exigido quando 
+você precisa comprovar qualificação em processos seletivos, 
+clubes e federações.
+
+---
+
+## LAYOUT
+
+Desktop: duas colunas lado a lado com gap de 80px.
+  Coluna esquerda (45%): card com borda animada
+  Coluna direita (55%): label, headline, descrição e três bullets
+
+Mobile: coluna única. Card aparece primeiro, texto abaixo.
+Padding vertical: 100px desktop, 64px mobile.
+Padding lateral: máximo 1400px centralizado, 24px nas bordas.
+
+---
+
+## CARD COM BORDA ANIMADA (coluna esquerda)
+
+Essa é a parte mais importante da seção. 
+Implemente com precisão.
+
+O card representa um certificado. 
+Use proporção aproximada de A4 paisagem (aspect-ratio: 1.41 / 1).
+
+**Estrutura do efeito de borda girante:**
+
+Crie um elemento wrapper com position: relative e padding: 2px. 
+Esse wrapper recebe um pseudo-elemento ::before que ocupa todo 
+o espaço (inset: 0) e exibe um conic-gradient que gira 
+continuamente, criando a ilusão de uma luz percorrendo a borda.
+
+Declare a propriedade customizada no CSS:
+
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+O ::before deve ter:
+
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0deg,
+    transparent 290deg,
+    rgba(37, 99, 235, 0.0) 300deg,
+    rgba(59, 130, 246, 0.7) 328deg,
+    rgba(255, 255, 255, 1.0) 343deg,
+    rgba(59, 130, 246, 0.7) 357deg,
+    transparent 360deg
+  );
+  animation: border-spin 4s linear infinite;
+
+  @keyframes border-spin {
+    to { --angle: 360deg; }
+  }
+
+O ponto de luz branca ocupa apenas ~15 graus — 
+deve ser sutil, não chamativo. O restante da borda 
+é transparente, não azul contínuo.
+
+O card interno (filho do wrapper) deve ter:
+  - background: rgba(13, 16, 32, 0.97)
+  - border-radius: 14px (wrapper com 16px)
+  - padding: 40px
+  - display flex, coluna, justify-content center, align center
+  - gap entre elementos internos: 16px
+
+Conteúdo interno do card (placeholder elegante do certificado):
+  - Logo raw_files/logo.png com height 28px, centralizada
+  - Divisória horizontal: 1px solid rgba(255,255,255,0.07)
+  - Texto "CERTIFICADO DE QUALIFICAÇÃO" 
+    (9px, Inter, uppercase, tracking 0.25em, cor #2563eb)
+  - Texto "Neurociência da Fadiga no Esporte" 
+    (17px, Manrope bold, branco)
+  - Texto "Prof. Dr. Leonardo Fortes · UFPB" 
+    (12px, Inter, #64748b)
+  - Texto "Carga horária: 6 horas" 
+    (11px, Inter, #475569)
+  - Divisória horizontal novamente
+  - Linha inferior com dois elementos lado a lado:
+      "Instituto Atleta Campeão" (10px, #475569, esquerda)
+      Ícone de selo/check decorativo (16px, cor azul, direita)
+
+Glow permanente no wrapper:
+  box-shadow: 0 0 70px -15px rgba(37, 99, 235, 0.18)
+
+**Hover no card:**
+  - Velocidade da borda aumenta: animation-duration muda de 
+    4s para 1.8s via CSS transition na propriedade duration
+  - Card interno aplica transform: scale(1.012)
+  - box-shadow intensifica para rgba(37,99,235,0.28)
+  - transition de 0.4s ease em todos os valores
+
+Abaixo do wrapper, centralizado, adicionar:
+  "✦ Emitido digitalmente após a conclusão do módulo"
+  (11px, Inter, #475569, letter-spacing 0.12em, margin-top 20px)
+
+---
+
+## COLUNA DIREITA — TEXTO E BULLETS
+
+**Label:**
+  "CERTIFICAÇÃO" em 11px, Inter, uppercase, 
+  tracking 0.2em, cor #2563eb, margin-bottom 16px
+
+**Headline:**
+  "Neurociência da Fadiga no Esporte"
+  Manrope, weight 700, clamp(28px, 3.5vw, 44px),
+  line-height 1.1, letter-spacing -0.03em, cor branco
+
+**Descrição:**
+  Inter, 15px, cor #94a3b8, line-height 1.65, 
+  max-width 440px, margin-top 14px, margin-bottom 44px
+
+**Três bullets no estilo da imagem de referência:**
+
+Cada bullet tem:
+  - Número (01, 02, 03) em círculo:
+      width e height 44px, border-radius 50%
+      background: rgba(255,255,255,0.04)
+      border: 1px solid rgba(255,255,255,0.08)
+      font-family Inter, font-size 12px, font-weight 600
+      cor #64748b, display flex, align center, justify center
+      flex-shrink: 0
+
+  - Bloco de texto à direita do número:
+      Título em branco, Inter, 15px, font-weight 600
+      Descrição em #64748b, Inter, 13.5px, 
+      line-height 1.55, margin-top 4px
+
+  - Separador entre bullets:
+      1px solid rgba(255,255,255,0.05), margin 20px 0
+
+Gap entre número e texto: 16px
+Cada bullet usa display flex, align-items flex-start
+
+---
+
+## ANIMAÇÕES DE ENTRADA (Scroll Reveal)
+
+Usar IntersectionObserver com threshold: 0.15.
+Iniciar todos os elementos com opacity: 0.
+
+Quando a seção entrar no viewport, disparar em sequência:
+
+1. Card wrapper:
+   opacity 0 → 1, translateX(-28px) → 0
+   transition: 0.85s ease, delay 0s
+
+2. Label + headline + descrição (coluna direita):
+   opacity 0 → 1, translateX(28px) → 0
+   transition: 0.85s ease, delay: 0.15s
+
+3. Bullets individualmente com stagger:
+   opacity 0 → 1, translateY(12px) → 0
+   transition: 0.5s ease
+   delay: bullet 01 = 0.3s, 02 = 0.42s, 03 = 0.54s
+
+Adicionar o IntersectionObserver ao bloco de scripts 
+já existente no final do body. Não criar script separado.
+
+---
+
+## RESTRIÇÕES
+
+- Não modificar nenhuma seção já existente no arquivo
+- Não adicionar bibliotecas externas novas
+- Inserir o CSS novo dentro da tag style já existente no head
+- Inserir o HTML após o fechamento da section id="ementa"
+- O efeito @property com conic-gradient funciona em Chrome, 
+  Edge e Safari modernos — implementar exatamente como descrito
+- Não inventar cores, fontes ou espaçamentos fora do 
+  design system já presente no arquivo
