@@ -1,0 +1,28 @@
+Faça uma revisão crítica completa do arquivo [nome_do_arquivo] 
+sob a perspectiva de UX e UI. Não faça alterações ainda.
+
+Antes de qualquer mudança, percorra toda a página 
+mentalmente como se fosse um visitante chegando pela 
+primeira vez. Depois percorra uma segunda vez como um 
+designer sênior avaliando consistência visual.
+
+Na primeira leitura pergunte-se:
+- O visitante entende em 3 segundos o que é esse curso?
+- A hierarquia de informação guia o olhar naturalmente?
+- Os CTAs estão nos momentos certos da página?
+- Existe alguma seção que confunde ou quebra o ritmo?
+
+Na segunda leitura pergunte-se:
+- As seções claras e escuras alternam de forma harmônica?
+- Tipografia, espaçamentos e tamanhos são consistentes 
+  entre seções?
+- As animações e efeitos visuais têm a mesma linguagem 
+  ou parecem colados de projetos diferentes?
+- Existe algo que parece fora do design system?
+
+Após essa análise, liste os problemas encontrados em ordem 
+de prioridade — do mais crítico ao mais cosmético — com uma 
+breve justificativa para cada um.
+
+Só depois de listar todos os problemas, pergunte se pode 
+fazer as correções. Não altere nada sem aprovação.

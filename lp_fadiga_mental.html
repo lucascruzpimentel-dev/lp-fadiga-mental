@@ -532,19 +532,54 @@
         <div class="floating-blob w-[600px] h-[600px] bg-blue-800 bottom-[-20%] right-[-10%] opacity-20"></div>
     </div>
 
-    <!-- NAVBAR -->
-    <nav
-        class="relative z-50 w-full px-6 lg:px-12 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 max-w-[1400px] mx-auto">
-        <img src="raw_files/logo.png" alt="Logo" class="h-20 object-contain">
+    <!-- =======================================================================
+         HEADER / NAVBAR
+    ======================================================================= -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#01030b]/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
+        <nav class="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex-shrink-0">
+                <img src="raw_files/logo.png" alt="Instituto Atleta Campeão" class="h-10 sm:h-12 lg:h-[50px] object-contain">
+            </a>
 
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#ementa" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">Conteúdo</a>
+                <a href="#quem-esta-por-tras" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">Professor</a>
+                <a href="#publico-alvo" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">Para quem é</a>
+                <a href="#faq" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">FAQ</a>
+            </div>
 
-    </nav>
+            <!-- CTA / Mobile Menu Button -->
+            <div class="flex items-center gap-4">
+                <a href="#oferta-especial" class="hidden sm:flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white font-inter font-bold text-sm px-7 py-2.5 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                    Garantir Vaga
+                </a>
+                
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobileMenu" class="md:hidden hidden bg-[#0f172a] border-t border-white/10 shadow-2xl">
+            <div class="flex flex-col px-6 py-6 space-y-5">
+                <a href="#ementa" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">Conteúdo</a>
+                <a href="#quem-esta-por-tras" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">Professor</a>
+                <a href="#publico-alvo" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">Para quem é</a>
+                <a href="#faq" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">FAQ</a>
+                <a href="#oferta-especial" class="mobile-link bg-blue-600 text-white font-bold text-base text-center py-3.5 rounded-full mt-2">Garantir Vaga</a>
+            </div>
+        </div>
+    </header>
 
     <!-- =======================================================================
          SECTION 01: HERO / BANNER PRINCIPAL
     ======================================================================= -->
-    <main
-        class="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-12 max-w-[1400px] mx-auto w-full pt-8 lg:pt-16 pb-20">
+    <main id="hero"
+        class="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-12 max-w-[1400px] mx-auto w-full pt-32 lg:pt-40 pb-20">
         <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
             <!-- LEFT COLUMN: COPMY/TYPOGRAPHY (Order 1) -->
@@ -1629,21 +1664,20 @@
     <!-- =======================================================================
          SECTION 07: PERGUNTAS FREQUENTES (FAQ)
     ======================================================================= -->
-    <section id="faq" class="relative bg-slate-50 py-24 lg:py-32 overflow-hidden">
+    <section id="faq" class="relative py-24 lg:py-32 overflow-hidden" style="background-color: #01030b;">
         
-        <!-- Fundo claro com sutis gradientes e acentos azuis -->
-        <div class="absolute inset-0 bg-gradient-to-b from-[#f8fafc] to-[#eff6ff] pointer-events-none"></div>
-        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200/50 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-100/50 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
+        <!-- Acentos sutis no escuro (mesmo tom da seção Uma chance única) -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
 
         <div class="relative z-10 max-w-[800px] mx-auto px-6 lg:px-12">
             
             <!-- Cabeçalho do FAQ -->
             <div class="text-center mb-16">
-                <p class="font-inter text-sm font-bold tracking-[0.2em] text-blue-600 uppercase mb-4">
+                <p class="font-inter text-sm font-bold tracking-[0.2em] text-blue-400 uppercase mb-4">
                     Tire suas dúvidas
                 </p>
-                <h2 class="font-manrope text-3xl md:text-4xl lg:text-[44px] font-bold text-slate-900 leading-[1.1]">
+                <h2 class="font-manrope text-3xl md:text-4xl lg:text-[44px] font-bold text-white leading-[1.1]">
                     Perguntas Frequentes
                 </h2>
             </div>
@@ -1777,6 +1811,113 @@
         </div>
     </section>
     <!-- ── END SECTION 07 ── -->
+
+    <!-- =======================================================================
+         FOOTER / RODAPÉ
+    ======================================================================= -->
+    <footer class="relative bg-[#01030b] border-t border-blue-500/10 pt-16 pb-8 overflow-hidden">
+        
+        <!-- Fundo sutil para manter o tema tecnológico -->
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-5 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-blue-600/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-12">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+                
+                <!-- Coluna 1: Logo e Descrição -->
+                <div class="flex flex-col gap-6 lg:pr-4">
+                    <img src="raw_files/logo.png" alt="Instituto Atleta Campeão" class="h-10 object-contain w-fit">
+                    <p class="font-inter text-sm text-slate-400 leading-relaxed">
+                        A maior referência nacional em treinamento mental e emocional para atletas. Transformando dados da neurociência em resultados reais no esporte desde 2016.
+                    </p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/atletacampeao" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/atletacampeao" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-600 hover:border-red-500 transition-all duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Contato e Suporte -->
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-manrope text-lg font-bold text-white mb-2">Suporte ao Aluno</h4>
+                    
+                    <a href="mailto:suporte@atletacampeao.com.br" class="group flex items-start gap-3 text-slate-400 hover:text-blue-400 transition-colors">
+                        <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span class="font-inter text-sm break-words">suporte@atletacampeao.com.br</span>
+                    </a>
+                    
+                    <a href="https://wa.me/5588998091290" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-3 text-slate-400 hover:text-emerald-400 transition-colors">
+                        <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                        <span class="font-inter text-sm">(88) 9 9809-1290</span>
+                    </a>
+
+                    <div class="flex items-start gap-3 text-slate-400 mt-2">
+                        <svg class="w-5 h-5 mt-0.5 flex-shrink-0 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span class="font-inter text-sm leading-relaxed">
+                            Av. Copacabana, 268 - Alphaville<br>
+                            Barueri - SP, 06472-001
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Coluna 3: Links Úteis -->
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-manrope text-lg font-bold text-white mb-2">Links Úteis</h4>
+                    <ul class="space-y-3 font-inter text-sm text-slate-400">
+                        <li><a href="#hero" class="hover:text-blue-400 transition-colors">Início</a></li>
+                        <li><a href="#ementa" class="hover:text-blue-400 transition-colors">O que vou aprender?</a></li>
+                        <li><a href="#quem-esta-por-tras" class="hover:text-blue-400 transition-colors">O Professor</a></li>
+                        <li><a href="#oferta-especial" class="hover:text-blue-400 transition-colors">Inscreva-se Agora</a></li>
+                        <li><a href="#faq" class="hover:text-blue-400 transition-colors">Dúvidas Frequentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Segurança e Selos -->
+                <div class="flex flex-col gap-4">
+                    <h4 class="font-manrope text-lg font-bold text-white mb-2">Compra 100% Segura</h4>
+                    <p class="font-inter text-sm text-slate-400 leading-relaxed mb-2">
+                        Seus dados estão protegidos. Transação criptografada com alta segurança.
+                    </p>
+                    
+                    <div class="flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-lg p-3 w-fit">
+                        <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        <div>
+                            <p class="font-inter text-xs font-bold text-white uppercase tracking-wider">Site Seguro</p>
+                            <p class="font-inter text-[10px] text-emerald-400">Proteção SSL 256-bit</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-lg p-3 w-fit">
+                        <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <div>
+                            <p class="font-inter text-xs font-bold text-white uppercase tracking-wider">Garantia 7 Dias</p>
+                            <p class="font-inter text-[10px] text-blue-400">Risco Zero na sua compra</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Divisor e Copyright -->
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <p class="font-inter text-[13px] text-slate-500">
+                    &copy; <span id="year">2026</span> Instituto Atleta Campeão. Todos os direitos reservados.
+                </p>
+                <div class="flex gap-6 font-inter text-[13px] text-slate-500">
+                    <a href="#" class="hover:text-white transition-colors">Termos de Uso</a>
+                    <a href="#" class="hover:text-white transition-colors">Política de Privacidade</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
     <!-- =======================================================================
          SCRIPTS DA PÁGINA
@@ -2249,6 +2390,26 @@
                     }
                 });
             });
+        })();
+
+        // ─── Mobile Menu Toggle ───────────────────────────────────────────────
+        (function () {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            const links = document.querySelectorAll('.mobile-link');
+            
+            if(btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+                
+                // Fecha o menu ao clicar em algum link
+                links.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.add('hidden');
+                    });
+                });
+            }
         })();
 
         // ─── Section 07 — FAQ Neuron Network Canvas ──────────────────────────────
