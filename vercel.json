@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+      { "source": "/", "destination": "/lp_fadiga_mental.html" }
+    ]
+  }
+  
