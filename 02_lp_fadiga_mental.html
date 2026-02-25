@@ -240,17 +240,17 @@
 
         /* ─── Section 04 — Quem Está Por Trás ──────────────────── */
         .instructor-card {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.02);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.35);
             transition: all 0.35s ease;
         }
 
         .instructor-card:hover {
-            border-color: rgba(37, 99, 235, 0.4);
-            box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15), 0 0 0 1px rgba(37, 99, 235, 0.1);
+            border-color: rgba(59, 130, 246, 0.35);
+            box-shadow: 0 20px 50px -10px rgba(37, 99, 235, 0.2), 0 0 0 1px rgba(59, 130, 246, 0.1);
             transform: translateY(-4px);
         }
 
@@ -264,13 +264,13 @@
             font-family: 'Manrope', sans-serif;
             font-weight: 800;
             font-size: 28px;
-            color: #0f172a;
+            color: #ffffff;
         }
 
         .metric-desc {
             font-family: 'Inter', sans-serif;
             font-size: 13px;
-            color: #475569;
+            color: #94a3b8;
             margin-left: 12px;
             display: flex;
             align-items: center;
@@ -280,7 +280,7 @@
             display: flex;
             align-items: center;
             padding: 16px 0;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .metric-item:last-child {
@@ -298,7 +298,7 @@
             font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #2563eb;
+            color: #93c5fd;
             margin-bottom: 12px;
             display: block;
         }
@@ -311,7 +311,7 @@
         .instructor-logos {
             font-family: 'Inter', sans-serif;
             font-size: 11px;
-            color: #475569;
+            color: #94a3b8;
             letter-spacing: 0.08em;
             margin-top: 20px;
             text-align: center;
@@ -581,7 +581,7 @@
         <nav class="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
             <!-- Logo branca sobre fundo escuro -->
             <a href="#" class="flex-shrink-0">
-                <img src="raw_files/logo.png" alt="Instituto Atleta Campeão" class="header-logo-white h-10 sm:h-12 lg:h-[50px] object-contain">
+                <img src="assets/images/logo.png" alt="Instituto Atleta Campeão" class="header-logo-white h-10 sm:h-12 lg:h-[50px] object-contain">
             </a>
 
             <!-- Desktop Menu -->
@@ -710,7 +710,7 @@
                 <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                     <!-- Primary CTA -->
                     <button
-                        onclick="window.location.href='https://pay.novapulse.com.br/checkout/681917?product_id=130771&utm_source=landingpage&utm_medium=cta_principal&utm_campaign=lp_fadiga_mental_2026'"
+                        onclick="window.location.href='https://chk.eduzz.com/7WXQEP2D9A'"
                         class="primary-btn w-full sm:w-auto px-8 py-3.5 rounded-full text-white font-semibold flex items-center justify-center gap-2 text-sm sm:text-base">
                         Garantir Minha Vaga
                     </button>
@@ -731,13 +731,13 @@
                 <div class="gsap-credibility flex items-center gap-3 mt-8 pt-8 border-t border-slate-200">
                     <div
                         class="w-14 h-14 rounded-full overflow-hidden border-2 border-slate-300 bg-slate-100 flex-shrink-0 shadow-md">
-                        <img src="raw_files/professor_leonardo.png" alt="Prof. Dr. Leonardo Fortes"
+                        <img src="assets/images/professor_leonardo.png" alt="Prof. Dr. Leonardo Fortes"
                             class="w-full h-full object-cover object-top">
                     </div>
                     <div class="flex flex-col">
                         <span class="text-sm font-manrope font-semibold text-slate-900 leading-tight">Prof. Dr. Leonardo
                             Fortes</span>
-                        <span class="text-xs text-slate-600 font-medium">Doutor em Neurociência & Esporte, um dos
+                        <span class="text-xs text-slate-600 font-medium">Dr em Psicologia, um dos
                             principais pesquisadores do Brasil</span>
                     </div>
                 </div>
@@ -756,7 +756,7 @@
                     </div>
 
                     <!-- Product Mockup -->
-                    <img src="raw_files/mkp01.png" alt="Mockup Curso"
+                    <img src="assets/images/mkp01.png" alt="Mockup Curso"
                         class="gsap-mockup relative z-10 w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]">
 
                     <!-- Floating UI Badges (Inspired by the Reference Image) -->
@@ -831,7 +831,7 @@
                 <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-slate-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-100 ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default">
                     <!-- Banner Image -->
                     <div class="w-full h-[200px] overflow-hidden relative bg-slate-900">
-                        <img class="card-img w-full h-full object-cover transition-transform duration-[600ms] ease-out opacity-90 group-hover:scale-[1.06]" src="raw_files/mod01.png" alt="Fundamentos da Fadiga Mental">
+                        <img class="card-img w-full h-full object-cover transition-transform duration-[600ms] ease-out opacity-90 group-hover:scale-[1.06]" src="assets/images/mod01.png" alt="Fundamentos da Fadiga Mental">
                         <!-- Gradient overlay so text reads over image -->
                         <div class="absolute bottom-0 left-0 right-0 h-[70px] bg-gradient-to-t from-white/95 to-transparent"></div>
                         <!-- Module pill floating over image -->
@@ -896,7 +896,7 @@
                 <!-- ─ CARD 02 ─ -->
                 <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-slate-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-[220ms] ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default">
                     <div class="w-full h-[200px] overflow-hidden relative bg-slate-900">
-                        <img class="card-img w-full h-full object-cover transition-transform duration-[600ms] ease-out opacity-90 group-hover:scale-[1.06]" src="raw_files/mod02.png" alt="Avaliação e Monitoramento">
+                        <img class="card-img w-full h-full object-cover transition-transform duration-[600ms] ease-out opacity-90 group-hover:scale-[1.06]" src="assets/images/mod02.png" alt="Avaliação e Monitoramento">
                         <div class="absolute bottom-0 left-0 right-0 h-[70px] bg-gradient-to-t from-white/95 to-transparent"></div>
                         <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
                             <span class="w-[18px] h-[18px] bg-blue-700 rounded-full flex items-center justify-center text-[9px] font-extrabold text-white font-inter">02</span>
@@ -948,7 +948,7 @@
                 <!-- ─ CARD 03 ─ -->
                 <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-slate-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-[350ms] ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default">
                     <div class="w-full h-[200px] overflow-hidden relative bg-slate-900">
-                        <img class="card-img w-full h-full object-cover transition-transform duration-[600ms] ease-out opacity-90 group-hover:scale-[1.06]" src="raw_files/mod03.png" alt="Prescrição e Intervenção">
+                        <img class="card-img w-full h-full object-cover transition-transform duration-[600ms] ease-out opacity-90 group-hover:scale-[1.06]" src="assets/images/mod03.png" alt="Prescrição e Intervenção">
                         <div class="absolute bottom-0 left-0 right-0 h-[70px] bg-gradient-to-t from-white/95 to-transparent"></div>
                         <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
                             <span class="w-[18px] h-[18px] bg-blue-800 rounded-full flex items-center justify-center text-[9px] font-extrabold text-blue-200 font-inter">03</span>
@@ -1051,7 +1051,7 @@
                     <div class="cert-wrapper" id="cert-card" onmouseenter="this.style.setProperty('--spin-dur','1.8s')"
                         onmouseleave="this.style.setProperty('--spin-dur','4s')">
                         <div class="cert-inner">
-                            <img src="raw_files/certificado.png" alt="Certificado Neurociência da Fadiga no Esporte"
+                            <img src="assets/images/certificado.png" alt="Certificado Neurociência da Fadiga no Esporte"
                                 style="width:100%;height:100%;object-fit:cover;display:block;">
                         </div>
                     </div>
@@ -1198,7 +1198,7 @@
                 <!-- CARD ESQUERDO — O PROFESSOR -->
                 <div class="instructor-card reveal-left" style="width:100%;">
                     <div style="margin-bottom:24px;">
-                        <img src="raw_files/professor_leonardo.png" alt="Prof. Dr. Leonardo Fortes"
+                        <img src="assets/images/professor_leonardo.png" alt="Prof. Dr. Leonardo Fortes"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                             style="width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid rgba(59,130,246,0.3);margin-bottom:20px;display:block;">
                         <div
@@ -1212,25 +1212,19 @@
 
                         <span class="instructor-label">O PROFESSOR</span>
                         <h3
-                            style="font-family:'Manrope',sans-serif;font-size:24px;font-weight:700;color:#0f172a;margin:0 0 8px;">
+                            style="font-family:'Manrope',sans-serif;font-size:24px;font-weight:700;color:#ffffff;margin:0 0 8px;">
                             Prof. Dr. Leonardo Fortes</h3>
                         <p
-                            style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#2563eb;margin:0 0 20px;">
-                            Professor Adjunto da UFPB · Pós-Doutor pela Universidade do Porto</p>
+                            style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#93c5fd;margin:0 0 20px;">
+                            Professor Associado da UFMG · Pós-doutorado pela University of Bologna, Italy</p>
                         <p
-                            style="font-family:'Inter',sans-serif;font-size:14.5px;color:#475569;line-height:1.6;margin:0 0 32px;">
-                            Doutor em Psicologia com período de pesquisa na Norwegian School of Sport Sciences, na
-                            Noruega, e Pós-Doutor pela Universidade do Porto, em Portugal, Leonardo Fortes é o principal
-                            pesquisador do Brasil quando o tema é fadiga mental e desempenho esportivo. Acumula 202
-                            artigos científicos publicados, lidera dois grupos de pesquisa registrados no CNPq e é
-                            professor permanente do Mestrado e Doutorado em Neurociência Cognitiva e Comportamento da
-                            UFPB. Em 2023, foi indicado como Pesquisador Destaque no Prêmio Confap de CT&I — o maior
-                            reconhecimento científico estadual do país.
+                            style="font-family:'Inter',sans-serif;font-size:14.5px;color:#94a3b8;line-height:1.6;margin:0 0 32px;">
+                            Doutor em Psicologia pela Universidade Federal de Juiz de Fora, com período sanduíche na Norwegian School of Sport Sciences, Noruega. Pós-Doutorado em Sport Science na Università di Bologna, Itália. Líder do grupo de pesquisa em ''Neurociência, Exercício Físico e Desempenho Esportivo'' (GENEXDES-CNPq), vinculado ao Centro de Estudos em Psicobiologia e Exercício (CEPE) na EEFFTO-UFMG. É bolsista de produtividade em Pesquisa do CNPq. Professor permanente do Programa de Pós-Graduação em Ciências do Esporte da EEFFTO-UFMG. Leonardo é o principal pesquisador sobre fadiga mental e desempenho esportivo no Brasil e está entre os três principais pesquisadores nessa temática a nível mundial. Foi indicado como Pesquisador Destaque do Estado da Paraíba para concorrer ao Prêmio Confap de Ciência, Tecnologia Inovação Johanna Döbereiner no ano de 2024, considerado o maior reconhecimento acadêmico-científico no Estado.
                         </p>
 
                         <div>
                             <div class="metric-item reveal-metric-left">
-                                <span class="metric-value"><span data-val="202">0</span></span>
+                                <span class="metric-value"><span data-val="273">0</span></span>
                                 <span class="metric-desc">artigos científicos publicados</span>
                             </div>
                             <div class="metric-item reveal-metric-left">
@@ -1245,7 +1239,7 @@
                     </div>
 
                     <button
-                        onclick="window.location.href='https://pay.novapulse.com.br/checkout/681917?product_id=130771&utm_source=landingpage&utm_medium=cta_principal&utm_campaign=lp_fadiga_mental_2026'"
+                        onclick="window.location.href='https://chk.eduzz.com/7WXQEP2D9A'"
                         class="primary-btn w-full px-8 py-3.5 rounded-full text-white font-semibold flex items-center justify-center gap-2 text-sm mt-8">
                         Garantir Minha Vaga
                     </button>
@@ -1266,19 +1260,19 @@
 
                     <div style="margin-bottom:24px;">
                         <div style="width:120px;height:120px;border-radius:50%;background:#ffffff;border:2px solid rgba(59,130,246,0.3);margin-bottom:20px;display:flex;align-items:center;justify-content:center;padding:14px;">
-                            <img src="raw_files/logo_dourada_ac.png" alt="Instituto Atleta Campeão"
+                            <img src="assets/images/logo_dourada_ac.png" alt="Instituto Atleta Campeão"
                                 style="width:100%;height:100%;object-fit:contain;display:block;">
                         </div>
 
                         <span class="instructor-label">A INSTITUIÇÃO</span>
                         <h3
-                            style="font-family:'Manrope',sans-serif;font-size:24px;font-weight:700;color:#0f172a;margin:0 0 8px;">
+                            style="font-family:'Manrope',sans-serif;font-size:24px;font-weight:700;color:#ffffff;margin:0 0 8px;">
                             Instituto Atleta Campeão</h3>
                         <p
-                            style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#2563eb;margin:0 0 20px;">
+                            style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#93c5fd;margin:0 0 20px;">
                             Referência em neurociência e treinamento mental para o esporte desde 2016</p>
                         <p
-                            style="font-family:'Inter',sans-serif;font-size:14.5px;color:#475569;line-height:1.6;margin:0 0 32px;">
+                            style="font-family:'Inter',sans-serif;font-size:14.5px;color:#94a3b8;line-height:1.6;margin:0 0 32px;">
                             Fundado em 2016 nos Estados Unidos e expandido para o Brasil em 2017, o Atleta Campeão se
                             tornou a maior referência nacional em treinamento mental e emocional para atletas. Em 2018,
                             foi reconhecido pelo Comitê Olímpico do Brasil e convidado para o Prêmio Brasil Olímpico. Em
@@ -1289,22 +1283,22 @@
 
                         <div>
                             <div class="metric-item reveal-metric-right">
-                                <span class="metric-value"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#0f172a;">+</span><span data-val="30">0</span><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#0f172a;"> mil</span></span>
+                                <span class="metric-value"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#ffffff;">+</span><span data-val="30">0</span><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#ffffff;"> mil</span></span>
                                 <span class="metric-desc">atletas impactados desde 2016</span>
                             </div>
                             <div class="metric-item reveal-metric-right">
-                                <span class="metric-value"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#0f172a;">+</span><span data-val="400">0</span></span>
+                                <span class="metric-value"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#ffffff;">+</span><span data-val="400">0</span></span>
                                 <span class="metric-desc">alunos inscritos na pós-graduação</span>
                             </div>
                             <div class="metric-item reveal-metric-right">
-                                <span class="metric-value"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#0f172a;">+</span><span data-val="20">0</span></span>
+                                <span class="metric-value"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#ffffff;">+</span><span data-val="20">0</span></span>
                                 <span class="metric-desc">Anos de experiência no mercado esportivo</span>
                             </div>
                         </div>
                     </div>
 
                     <button
-                        onclick="window.location.href='https://pay.novapulse.com.br/checkout/681917?product_id=130771&utm_source=landingpage&utm_medium=cta_principal&utm_campaign=lp_fadiga_mental_2026'"
+                        onclick="window.location.href='https://chk.eduzz.com/7WXQEP2D9A'"
                         class="primary-btn w-full px-8 py-3.5 rounded-full text-white font-semibold flex items-center justify-center gap-2 text-sm mt-8">
                         Garantir Minha Vaga
                     </button>
@@ -1441,7 +1435,7 @@
                         <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
                             <div class="w-[80%] h-[80%] rounded-full border border-blue-500/10 bg-blue-100/30 blur-2xl"></div>
                         </div>
-                        <img src="raw_files/mkp01.png" alt="Mockup do curso"
+                        <img src="assets/images/mkp01.png" alt="Mockup do curso"
                             class="relative z-10 w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] hover:scale-[1.02] transition-transform duration-500">
                     </div>
                 </div>
@@ -1507,7 +1501,7 @@
 
                             <!-- Buttons -->
                             <div class="flex flex-col gap-4">
-                                <a href="https://pay.novapulse.com.br/checkout/681917?product_id=130771&utm_source=landingpage&utm_medium=cta_principal&utm_campaign=lp_fadiga_mental_2026"
+                                <a href="https://chk.eduzz.com/7WXQEP2D9A"
                                     class="primary-btn w-full px-8 py-4 rounded-xl text-white font-bold flex items-center justify-center text-center text-lg sm:text-xl shadow-lg shadow-blue-500/30">
                                     GARANTIR MINHA VAGA
                                 </a>
@@ -1692,7 +1686,7 @@
                 
                 <!-- Coluna 1: Logo e Descrição -->
                 <div class="flex flex-col gap-6 lg:pr-4">
-                    <img src="raw_files/logo.png" alt="Instituto Atleta Campeão" class="h-10 object-contain w-fit">
+                    <img src="assets/images/logo.png" alt="Instituto Atleta Campeão" class="h-10 object-contain w-fit">
                     <p class="font-inter text-sm text-slate-400 leading-relaxed">
                         A maior referência nacional em treinamento mental e emocional para atletas. Transformando dados da neurociência em resultados reais no esporte desde 2016.
                     </p>

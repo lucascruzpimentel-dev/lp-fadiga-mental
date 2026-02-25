@@ -1,0 +1,166 @@
+
+
+
+Você é um especialista em UI/UX e desenvolvimento front-end focado em 
+landing pages de alta conversão. Sua tarefa é criar um arquivo lp_fadiga_mental.html 
+completo contendo APENAS a seção hero de uma página de vendas.
+
+
+# CONTEXTO DO PRODUTO
+
+
+Nome do curso: Neurociência da Fadiga no Esporte
+Público-alvo: Treinadores, preparadores físicos, psicólogos do esporte 
+e educadores físicos
+Posicionamento: Treinamento Online e Ao vivo, ministrado por um dos principais 
+pesquisadores do tema no Brasil
+Data: 11 de abril de 2026 (ao vivo)
+Garantir Minha Vaga:
+Ementa do Curso:
+
+
+# ARQUIVOS DISPONÍVEIS
+
+
+- design_system.html → LEIA PRIMEIRO. Contém paleta de cores, 
+  tipografia, espaçamentos e componentes. Siga fielmente.
+  Não invente nenhuma cor ou fonte que não esteja aqui.
+- logo.png → Logotipo. Usar no topo esquerdo da navbar.
+- mkp01.png → Mockup do curso. Usar no lado esquerdo do hero 
+  conforme layout descrito abaixo.
+
+
+# BIBLIOTECAS VIA CDN (use exatamente essas)
+
+
+Google Fonts (fontes do design_system.html)
+GSAP 3.12.5:
+  https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+
+
+# LAYOUT — ESTRUTURA GERAL
+
+
+O hero é dividido em 3 camadas verticais:
+
+1. NAVBAR
+2. HERO PRINCIPAL (dois blocos lado a lado)
+3. BARRA DE CREDIBILIDADE DO PROFESSOR
+
+
+# 1. NAVBAR
+
+
+- Fundo: transparente, sem borda
+- Esquerda: logo.png com altura de 36px
+- Direita: badge com texto "⚡ MÓDULO LIVRE · 11 DE ABRIL"
+  Estilo: borda sutil na cor de destaque do @design_system.html, 
+  fundo com opacidade baixa (glass effect)
+- Padding: 20px lateral no desktop, 16px no mobile
+
+
+# 2. HERO PRINCIPAL
+
+
+Layout desktop: dois blocos lado a lado com gap generoso
+Layout mobile: bloco direito (card) aparece PRIMEIRO, 
+depois a imagem embaixo — pois no mobile o card é a prioridade 
+de conversão
+
+BLOCO ESQUERDO — MOCKUP (40% da largura no desktop)
+
+  Exibir mkp01.png com os seguintes tratamentos visuais:
+  - Fundo do bloco: gradiente radial sutil na cor de destaque 
+    do @design_system.html, opacidade 10%
+  - A imagem deve ter leve sombra profunda para dar profundidade
+  - Animação GSAP infinita de flutuação vertical:
+    y: -14px, duration: 3.5s, repeat: -1, yoyo: true, 
+    ease: "sine.inOut"
+  - No mobile: largura máxima 80vw, centralizada, 
+    margin-top de 24px abaixo do card
+
+# BLOCO DIREITO — CARD DE CONVERSÃO (60% da largura no desktop)
+
+  Este é o coração do hero. Usar card com fundo claro 
+  (branco ou cor clara do @design_system.html), bordas arredondadas 
+  generosas (16–20px), sombra suave.
+
+  Conteúdo do card, nesta ordem exata:
+
+  [A] BADGE TOPO DO CARD
+      Texto: "VAGAS ABERTAS"
+      Estilo: pequeno, centralizado, cor de destaque, 
+      background suave, letras maiúsculas
+
+  [B] TÍTULO DO CURSO
+      "NEUROCIÊNCIA DA
+      FADIGA NO ESPORTE"
+      Tipografia: fonte de display do @design_system.html, 
+      peso máximo (800), centralizado
+      Cor: cor escura principal do @design_system.html
+      Tamanho: grande e impactante
+
+  [C] BLOCO INFORMATIVO (3 linhas)
+      "O QUE É:" Módulo livre online sobre cérebro, fadiga 
+      mental e desempenho esportivo.
+      "PARA QUEM:" Treinadores, preparadores físicos, 
+      psicólogos do esporte e educadores físicos.
+      "COMO:" 100% online, ao vivo com gravação disponível.
+
+      Estilo: label em negrito + texto normal na mesma linha.
+      Cor do texto: escura. Tamanho: 15–16px.
+
+  [D] BULLETS DE HABILIDADES (3 itens com ícone de check)
+      ✔ Leia o cérebro do atleta em treino e competição 
+        — e tome decisões com base nisso
+      ✔ Detecte a fadiga mental antes, durante e após 
+        o treino com ferramentas científicas validadas
+      ✔ Ajuste intensidade, volume e descanso com precisão 
+        para atletas mentalmente fadigados
+
+      Ícone check: cor de destaque do @design_system.html
+      Texto: fonte corpo, 14–15px, cor escura
+
+  [E] BLOCO DE PREÇO
+      Linha superior (menor, riscada, cor neutra):
+        "DE R$ 497"
+      Linha principal (grande, negrito, cor de destaque):
+        "POR R$ 297,00"
+      Observação abaixo (pequena, cor neutra):
+        "Acesso vitalício + certificado"
+
+      A linha de preço principal deve ser o maior elemento 
+      tipográfico do card após o título.
+
+  [F] BOTÃO PRIMÁRIO — CTA PRINCIPAL
+      Texto: "GARANTIR MINHA VAGA →"
+      Estilo: largura 100%, altura generosa (52–56px), 
+      cor de fundo de destaque do @design_system.html, 
+      texto branco, negrito, letras maiúsculas
+      Hover: leve escurecimento + scale(1.02) com transition
+
+  [G] BOTÃO SECUNDÁRIO — WHATSAPP
+      Link: https://wa.me/5588998091290
+      Texto: "FALAR COM A EQUIPE"
+      Subtexto (menor, abaixo): "Tem dúvidas? Fale com nosso time"
+      Cor de fundo: verde (#16a34a)
+      Texto: branco, negrito
+      Largura: 100%, altura 48px
+      Hover: leve escurecimento
+
+
+# 3. BARRA DE CREDIBILIDADE
+
+
+Abaixo do hero principal, fora do card:
+- Foto circular do professor (placeholder: 44px, borda 
+  na cor de destaque)
+- Nome: "Prof. Dr. Leonardo Fortes"
+- Subtítulo: "Principal pesquisador em Neurociência & Esporte 
+  no Brasil"
+- Alinhamento: centralizado no mobile, esquerda no desktop
+- Fundo: sem card, apenas texto sobre o fundo da página
+
+
+ANIMAÇÕES DE ENTRADA (GSAP)
+
