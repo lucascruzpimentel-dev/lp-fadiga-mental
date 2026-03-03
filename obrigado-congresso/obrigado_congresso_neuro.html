@@ -280,28 +280,27 @@
       margin-top: 0.15rem;
     }
 
-    .offer-card__note {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      font-style: italic;
-      color: var(--color-subhead);
-      line-height: 1.45;
-      text-align: center;
-    }
+    /* Nota abaixo do contador removida para não confundir (gravações/certificado) */
+    .offer-card__note { display: none !important; }
 
-    /* ========== Seção: Escolha seu nível de acesso ========== */
+    /* ========== Seção: Escolha seu nível de acesso (fundo azul design system) ========== */
     .niveis {
       width: 100%;
+      margin: clamp(2rem, 5vw, 3rem) 0 0;
+      padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem);
+      background: #eff6ff;
+      box-sizing: border-box;
+    }
+    .niveis__wrap {
       max-width: 1000px;
       margin: 0 auto;
-      padding: clamp(2rem, 5vw, 3rem) 0 0;
     }
     .niveis__title {
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: clamp(1.4rem, 3.5vw, 1.85rem);
       line-height: 1.25;
-      color: var(--color-hero-text);
+      color: #0f172a;
       margin: 0 0 clamp(1.5rem, 4vw, 2rem);
       text-align: center;
     }
@@ -325,9 +324,38 @@
       display: flex;
       flex-direction: column;
     }
+    .niveis__card--gratuito {
+      border: 1px dashed #94a3b8;
+      background: #fff;
+    }
     .niveis__card--pro {
-      border-color: rgba(37, 99, 235, 0.3);
-      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+      border: 2px solid #2563eb;
+      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.18), 0 0 0 1px rgba(37, 99, 235, 0.06);
+      position: relative;
+      padding-top: 1.75rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, #fff 30%);
+      background-color: #fff;
+    }
+    .niveis__card--pro::before {
+      content: 'Recomendado';
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      white-space: nowrap;
+      box-shadow: 0 3px 12px rgba(37, 99, 235, 0.4);
+    }
+    .niveis__card--pro .niveis__card-title {
+      font-size: clamp(1.2rem, 2.8vw, 1.4rem);
+      color: #1e40af;
     }
     .niveis__card-title {
       font-family: var(--font-heading);
@@ -394,9 +422,29 @@
       transform: translateY(-1px);
     }
 
+    /* Botão gratuito: visível mas pouco convidativo (incomoda sem ser agressivo) */
+    .niveis__cta--secondary {
+      background: #f8fafc;
+      color: #64748b;
+      border: 1px dashed #94a3b8;
+      box-shadow: none;
+      margin-top: auto;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.65rem 1rem;
+      opacity: 0.92;
+    }
+    .niveis__cta--secondary:hover {
+      background: #f1f5f9;
+      color: #475569;
+      border-color: #94a3b8;
+      transform: none;
+      opacity: 1;
+    }
+
     .skip-link {
-      margin-top: 1.5rem;
-      font-size: 0.95rem;
+      margin-top: 1rem;
+      font-size: 0.875rem;
       text-align: center;
     }
     .skip-link a {
@@ -405,6 +453,77 @@
     }
     .skip-link a:hover {
       color: var(--color-hero-text);
+    }
+
+    /* Footer — estrutura completa */
+    .page-footer {
+      margin-top: clamp(3rem, 8vw, 5rem);
+      padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem);
+      background: #0f172a;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .page-footer__inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .page-footer__top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(1rem, 3vw, 1.5rem);
+      padding-bottom: clamp(1.25rem, 3vw, 1.75rem);
+      margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .page-footer__brand {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      color: #f1f5f9;
+    }
+    .page-footer__sep {
+      width: 1px;
+      height: 1.25rem;
+      background: rgba(255, 255, 255, 0.2);
+      flex-shrink: 0;
+    }
+    .page-footer__event {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin: 0;
+      text-align: center;
+    }
+    .page-footer__links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.25rem 1.75rem;
+      margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    .page-footer__links a {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s ease;
+    }
+    .page-footer__links a:hover {
+      color: #e2e8f0;
+    }
+    .page-footer__links iconify-icon {
+      font-size: 1rem;
+    }
+    .page-footer__copy {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin: 0;
+      text-align: center;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -466,7 +585,7 @@
           <span class="offer-card__price-note">Pagamento único · Acesso imediato</span>
         </div>
 
-        <a href="#" class="offer-card__cta" id="cta-upgrade">
+        <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="offer-card__cta" id="cta-upgrade" target="_blank" rel="noopener">
           Quero meu Passe Profissional por R$ 47
         </a>
 
@@ -491,45 +610,58 @@
             </div>
           </div>
         </div>
-
-        <p class="offer-card__note">
-          (Não pode assistir ao vivo? Você terá acesso às gravações e ao certificado.)
-        </p>
       </div>
     </div>
 
     <!-- 3) Escolha seu nível de acesso -->
     <section class="niveis" id="niveis" aria-labelledby="niveis-title">
-      <h2 class="niveis__title" id="niveis-title">Escolha seu nível de acesso</h2>
-      <div class="niveis__grid">
-        <div class="niveis__card niveis__card--gratuito">
-          <h3 class="niveis__card-title">Acesso Gratuito</h3>
-          <p class="niveis__card-badge">Já incluso na sua inscrição</p>
-          <ul class="niveis__list niveis__list--gratuito" aria-label="Inclusos no acesso gratuito">
-            <li><iconify-icon icon="lucide:check"></iconify-icon> Aulas ao vivo no YouTube</li>
-            <li><iconify-icon icon="lucide:check"></iconify-icon> Apostilas do congresso</li>
-            <li class="niveis__item--sem"><iconify-icon icon="lucide:minus"></iconify-icon> Sem prioridade nas perguntas</li>
-            <li class="niveis__item--sem"><iconify-icon icon="lucide:minus"></iconify-icon> Sem certificado</li>
-            <li class="niveis__item--sem"><iconify-icon icon="lucide:minus"></iconify-icon> Sem gravações garantidas</li>
-          </ul>
-        </div>
-        <div class="niveis__card niveis__card--pro">
-          <h3 class="niveis__card-title">Passe Profissional</h3>
-          <p class="niveis__card-badge">Upgrade</p>
-          <ul class="niveis__list niveis__list--pro" aria-label="Inclusos no Passe Profissional">
-            <li><iconify-icon icon="lucide:check"></iconify-icon> Sala Profissional no Zoom (vagas limitadas)</li>
-            <li><iconify-icon icon="lucide:check"></iconify-icon> Prioridade nas perguntas</li>
-            <li><iconify-icon icon="lucide:check"></iconify-icon> Gravações por 30 dias</li>
-            <li><iconify-icon icon="lucide:check"></iconify-icon> Certificado com carga horária</li>
-          </ul>
-          <a href="#" class="niveis__cta" id="cta-niveis-pro">Sim, quero o Passe Profissional (R$ 47)</a>
+      <div class="niveis__wrap">
+        <h2 class="niveis__title" id="niveis-title">Escolha seu nível de acesso</h2>
+        <div class="niveis__grid">
+          <div class="niveis__card niveis__card--gratuito">
+            <h3 class="niveis__card-title">Acesso Gratuito</h3>
+            <p class="niveis__card-badge">Já incluso na sua inscrição</p>
+            <ul class="niveis__list niveis__list--gratuito" aria-label="Inclusos no acesso gratuito">
+              <li><iconify-icon icon="lucide:check"></iconify-icon> Aulas ao vivo no YouTube</li>
+              <li><iconify-icon icon="lucide:check"></iconify-icon> Apostilas do congresso</li>
+              <li class="niveis__item--sem"><iconify-icon icon="lucide:minus"></iconify-icon> Sem prioridade nas perguntas</li>
+              <li class="niveis__item--sem"><iconify-icon icon="lucide:minus"></iconify-icon> Sem certificado</li>
+              <li class="niveis__item--sem"><iconify-icon icon="lucide:minus"></iconify-icon> Sem gravações garantidas</li>
+            </ul>
+            <a href="https://meugrupo.vip/c/41603" class="niveis__cta niveis__cta--secondary" id="cta-gratuito" target="_blank" rel="noopener">Continuar só com o acesso gratuito</a>
+          </div>
+          <div class="niveis__card niveis__card--pro">
+            <h3 class="niveis__card-title">Passe Profissional</h3>
+            <p class="niveis__card-badge">Upgrade</p>
+            <ul class="niveis__list niveis__list--pro" aria-label="Inclusos no Passe Profissional">
+              <li><iconify-icon icon="lucide:check"></iconify-icon> Sala Profissional no Zoom (vagas limitadas)</li>
+              <li><iconify-icon icon="lucide:check"></iconify-icon> Prioridade nas perguntas</li>
+              <li><iconify-icon icon="lucide:check"></iconify-icon> Gravações por 30 dias</li>
+              <li><iconify-icon icon="lucide:check"></iconify-icon> Certificado com carga horária</li>
+            </ul>
+            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="niveis__cta" id="cta-niveis-pro" target="_blank" rel="noopener">Sim, quero o Passe Profissional (R$ 47)</a>
+          </div>
         </div>
       </div>
     </section>
 
     <p class="skip-link">
-      <a href="#">Continuar só com o acesso gratuito</a>
+      <a href="https://meugrupo.vip/c/41603" target="_blank" rel="noopener">Continuar só com o acesso gratuito</a>
     </p>
+
+    <footer class="page-footer" role="contentinfo">
+      <div class="page-footer__inner">
+        <div class="page-footer__top">
+          <span class="page-footer__brand">Atleta Campeão</span>
+          <span class="page-footer__sep" aria-hidden="true"></span>
+          <p class="page-footer__event">Congresso Internacional de Neurociência Aplicada ao Esporte · Ed. 2026</p>
+        </div>
+        <nav class="page-footer__links" aria-label="Links do rodapé">
+          <a href="https://meugrupo.vip/c/41603" target="_blank" rel="noopener"><iconify-icon icon="lucide:users"></iconify-icon> Entrar no grupo do congresso</a>
+        </nav>
+        <p class="page-footer__copy">&copy; 2026 Atleta Campeão. Todos os direitos reservados.</p>
+      </div>
+    </footer>
   </div>
 
   <script>
