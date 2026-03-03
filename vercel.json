@@ -1,7 +1,10 @@
 {
+  "redirects": [
+    { "source": "/inscricao-congresso-neurociencia-no-esporte", "destination": "/inscricao-congresso-neurociencia-no-esporte/", "permanent": false }
+  ],
   "rewrites": [
-    { "source": "/inscricao-congresso-neurociencia-no-esporte/assets/:path*", "destination": "/Congresso de Neuro/assets/:path*" },
-    { "source": "/inscricao-congresso-neurociencia-no-esporte", "destination": "/Congresso de Neuro/lp_congresso_neuro.html" },
-    { "source": "/inscricao-congresso-neurociencia-no-esporte/", "destination": "/Congresso de Neuro/lp_congresso_neuro.html" }
+    { "source": "/obrigado-congresso-neuro-upgrade/assets/:path*", "destination": "/obrigado-congresso/assets/:path*" },
+    { "source": "/obrigado-congresso-neuro-upgrade", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" },
+    { "source": "/obrigado-congresso-neuro-upgrade/", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" }
   ]
 }

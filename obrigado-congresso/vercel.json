@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/obrigado_congresso_neuro.html" },
+    { "source": "/obrigado-congresso-neuro", "destination": "/obrigado_congresso_neuro.html" }
+  ]
+}
