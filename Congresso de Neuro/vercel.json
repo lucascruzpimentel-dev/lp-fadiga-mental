@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/inscricao-congresso-neurociencia-no-esporte", "destination": "/lp_congresso_neuro.html" },
+    { "source": "/inscricao-congresso-neurociencia-no-esporte/", "destination": "/lp_congresso_neuro.html" },
     { "source": "/", "destination": "/lp_congresso_neuro.html" }
   ]
 }

@@ -12,19 +12,23 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
   <style>
+    /* Design System Atleta Campeão: azul marca & ação (blue-600, blue-700, blue-50) */
     :root {
-      --color-hero-bg: #ffffff;
+      --color-hero-bg: #f8fafc;
       --color-hero-text: #0f172a;
       --color-accent: #2563eb;
       --color-accent-hover: #1d4ed8;
-      --color-gold: #b8860b;
+      --color-cta: #2563eb;
+      --color-cta-hover: #1d4ed8;
       --color-subhead: #475569;
-      --color-success: #059669;
+      --color-success: #2563eb;
+      --color-price-old: #dc2626;
+      --color-blue-50: #eff6ff;
       --font-heading: 'Manrope', sans-serif;
       --font-body: 'Inter', sans-serif;
-      --radius-btn: 9999px;
-      --radius-box: 12px;
-      --container-max: 560px;
+      --radius-btn: 8px;
+      --radius-card: 16px;
+      --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -40,229 +44,397 @@
       overflow-x: hidden;
     }
 
-    .hero {
-      position: relative;
+    .page {
       min-height: 100vh;
-      padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 4vw, 2rem);
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2rem) clamp(2rem, 5vw, 3rem);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      background: linear-gradient(165deg, #f8fafc 0%, #eff6ff 30%, #e0e7ff 60%, #dbeafe 100%);
+      background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 40%, #dbeafe 100%);
     }
 
-    .hero__wrap {
-      position: relative;
-      z-index: 2;
+    /* ========== Bloco de confirmação (sempre no topo) ========== */
+    .confirm {
       width: 100%;
-      max-width: var(--container-max);
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      max-width: 640px;
+      margin: 0 auto clamp(2rem, 5vw, 3rem);
       text-align: center;
-      gap: clamp(1.25rem, 3vw, 2rem);
     }
 
-    .hero__logo-wrap {
-      flex-shrink: 0;
-      width: 100%;
-      max-width: min(200px, 50vw);
-    }
-    .hero__logo {
-      width: 100%;
-      height: auto;
+    .confirm__logo {
       display: block;
+      width: 100%;
+      max-width: min(180px, 45vw);
+      height: auto;
+      margin: 0 auto 1.25rem;
     }
 
-    .hero__badge {
+    .confirm__badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 1rem;
-      background: rgba(5, 150, 105, 0.12);
+      background: rgba(37, 99, 235, 0.12);
       color: var(--color-success);
-      font-weight: 600;
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-      border-radius: var(--radius-btn);
-      margin-bottom: 0.25rem;
+      font-weight: 700;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      border-radius: 9999px;
+      margin-bottom: 1rem;
     }
-    .hero__badge iconify-icon {
-      font-size: 1.35rem;
+    .confirm__badge iconify-icon {
+      font-size: 1.4rem;
       flex-shrink: 0;
     }
 
-    .hero__headline {
+    .confirm__headline {
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: clamp(1.5rem, 4vw, 2.25rem);
-      line-height: 1.2;
-      letter-spacing: -0.03em;
-      margin: 0;
+      font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem;
       color: var(--color-hero-text);
     }
 
-    .hero__subheadline {
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-      line-height: 1.6;
+    .confirm__sub {
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: 1.55;
       color: var(--color-subhead);
       margin: 0;
     }
 
-    .hero__divider {
+    .confirm__divider {
       font-family: var(--font-heading);
       font-weight: 600;
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
       color: var(--color-hero-text);
-      margin: 0.5rem 0 0;
+      margin: 1.5rem 0 0;
+      line-height: 1.4;
     }
 
-    .hero__upgrade-box {
+    /* ========== Área de upgrade: card à esquerda, imagem à direita ========== */
+    .upgrade {
       width: 100%;
-      padding: clamp(1.25rem, 3vw, 1.75rem);
-      background: #fff;
-      border-radius: var(--radius-box);
-      border: 2px solid rgba(37, 99, 235, 0.2);
-      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
-      text-align: left;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.5rem, 4vw, 2.5rem);
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .upgrade {
+        grid-template-columns: 1fr 420px;
+        align-items: stretch;
+      }
     }
 
-    .hero__upgrade-title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: clamp(1.15rem, 2.8vw, 1.4rem);
-      color: var(--color-hero-text);
-      margin: 0 0 0.75rem;
-    }
-
-    .hero__upgrade-list {
-      list-style: none;
-      margin: 0 0 1.25rem;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .hero__upgrade-list li {
+    /* Coluna direita: imagem da experiência VIP (inteira, centralizada) */
+    .upgrade__image-wrap {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      background: #0f172a;
+      min-height: 280px;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.95rem;
-      color: var(--color-subhead);
+      justify-content: center;
+      padding: 0;
     }
-    .hero__upgrade-list iconify-icon {
-      flex-shrink: 0;
-      color: var(--color-accent);
-      font-size: 1.2rem;
+    .upgrade__image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      vertical-align: middle;
     }
 
-    .hero__price {
+    /* Coluna esquerda: card de oferta (estilo da referência) */
+    .offer-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      padding: clamp(1.5rem, 4vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .offer-card__section {
+      margin-bottom: 1.25rem;
+      padding: 0.9rem 1rem 0.75rem 1rem;
+      background: var(--color-blue-50);
+      border-left: 4px solid var(--color-accent);
+      border-radius: 0 var(--radius-btn) var(--radius-btn) 0;
+    }
+    .offer-card__section:last-of-type {
+      margin-bottom: 1rem;
+    }
+
+    .offer-card__label {
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: clamp(1.5rem, 3.5vw, 2rem);
-      color: var(--color-hero-text);
-      margin: 0 0 0.25rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-accent);
+      margin: 0 0 0.4rem;
     }
-    .hero__price-note {
-      font-size: 0.9rem;
-      color: var(--color-subhead);
-      margin: 0 0 1rem;
+    .offer-card__desc {
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--color-hero-text);
+      margin: 0;
     }
 
-    .hero__cta {
+    .offer-card__price-wrap {
+      margin: 1rem 0 1.25rem;
+    }
+    .offer-card__price-old {
+      font-size: 1rem;
+      color: var(--color-price-old);
+      text-decoration: line-through;
+      margin-right: 0.5rem;
+    }
+    .offer-card__price-now {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      color: var(--color-accent);
+      display: block;
+      margin-top: 0.25rem;
+    }
+    .offer-card__price-note {
+      font-size: 0.85rem;
+      color: var(--color-subhead);
+      margin-top: 0.25rem;
+    }
+
+    .offer-card__cta {
       display: block;
       width: 100%;
       padding: 1rem 1.5rem;
       font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 1.1rem;
+      font-weight: 700;
+      font-size: 1.05rem;
       text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
       color: #fff;
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      background: var(--color-cta);
       border: none;
       border-radius: var(--radius-btn);
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
     }
-    .hero__cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+    .offer-card__cta:hover {
+      background: var(--color-cta-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
     }
 
-    .hero__skip {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
+    .offer-card__countdown {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #e2e8f0;
     }
-    .hero__skip a {
+    .offer-card__countdown-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-subhead);
+      margin-bottom: 0.6rem;
+      text-align: center;
+    }
+    .offer-card__countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .offer-card__countdown-item {
+      min-width: 3.5rem;
+      padding: 0.5rem 0.35rem;
+      background: var(--color-blue-50);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .offer-card__countdown-value {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: var(--color-hero-text);
+    }
+    .offer-card__countdown-unit {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-subhead);
+      margin-top: 0.15rem;
+    }
+
+    .offer-card__note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--color-subhead);
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .skip-link {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+    .skip-link a {
       color: var(--color-subhead);
       text-decoration: underline;
     }
-    .hero__skip a:hover {
+    .skip-link a:hover {
       color: var(--color-hero-text);
     }
   </style>
 </head>
 <body>
-  <main class="hero" id="hero">
-    <div class="hero__wrap">
-      <div class="hero__logo-wrap">
-        <img
-          src="../Congresso de Neuro/assets/logo_Congresso internacional.png"
-          alt="Congresso Internacional de Neurociência no Esporte"
-          class="hero__logo"
-          width="200"
-          height="200"
-        />
-      </div>
-
-      <p class="hero__badge" aria-hidden="true">
+  <div class="page">
+    <!-- 1) Mensagem de confirmação (sempre primeiro) -->
+    <section class="confirm" aria-label="Confirmação de inscrição">
+      <img
+        src="../Congresso de Neuro/assets/logo_Congresso internacional.png"
+        alt="Congresso Internacional de Neurociência no Esporte"
+        class="confirm__logo"
+        width="180"
+        height="180"
+      />
+      <p class="confirm__badge" aria-hidden="true">
         <iconify-icon icon="lucide:circle-check-big"></iconify-icon>
         Inscrição confirmada!
       </p>
-
-      <h1 class="hero__headline">
+      <h1 class="confirm__headline">
         Você já garantiu seu acesso gratuito ao Congresso Internacional de Neurociência Aplicada ao Esporte: YouTube ao vivo + apostilas.
       </h1>
-
-      <p class="hero__divider">
-        Antes de sair…<br>
-        Você quer participar como público… ou como <strong>PROFISSIONAL</strong>?
+      <p class="confirm__sub">
+        Confira seu e-mail para os detalhes. Enquanto isso…
       </p>
+      <p class="confirm__divider">
+        Você quer participar como <strong>público</strong>… ou como <strong>PROFISSIONAL</strong>?
+      </p>
+    </section>
 
-      <div class="hero__upgrade-box">
-        <h2 class="hero__upgrade-title">Passe Profissional</h2>
-        <p style="margin:0 0 0.75rem; font-size:0.95rem; color: var(--color-subhead);">
-          O upgrade oficial para quem quer a experiência completa:
-        </p>
-        <ul class="hero__upgrade-list" aria-label="Benefícios do Passe Profissional">
-          <li><iconify-icon icon="lucide:video"></iconify-icon> Sala no Zoom</li>
-          <li><iconify-icon icon="lucide:message-circle"></iconify-icon> Prioridade nas perguntas</li>
-          <li><iconify-icon icon="lucide:download"></iconify-icon> Gravações</li>
-          <li><iconify-icon icon="lucide:award"></iconify-icon> Certificado</li>
-        </ul>
-        <p class="hero__price">R$ 47</p>
-        <p class="hero__price-note">Pagamento único</p>
-        <a href="#" class="hero__cta" id="cta-upgrade">
+    <!-- 2) Área de upgrade: card à esquerda, imagem à direita -->
+    <div class="upgrade">
+      <div class="offer-card">
+        <div class="offer-card__section">
+          <p class="offer-card__label">O que é</p>
+          <p class="offer-card__desc">
+            <strong>Passe Profissional</strong> — o upgrade oficial para quem quer a experiência completa do congresso: sala no Zoom, prioridade nas perguntas, gravações e certificado.
+          </p>
+        </div>
+        <div class="offer-card__section">
+          <p class="offer-card__label">Quando</p>
+          <p class="offer-card__desc">
+            Congresso de 23 a 29 de março de 2026. O Passe Profissional vale para todos os dias.
+          </p>
+        </div>
+
+        <div class="offer-card__price-wrap">
+          <span class="offer-card__price-old">De R$ 97</span>
+          <span class="offer-card__price-now">Por R$ 47</span>
+          <span class="offer-card__price-note">Pagamento único · Acesso imediato</span>
+        </div>
+
+        <a href="#" class="offer-card__cta" id="cta-upgrade">
           Quero meu Passe Profissional por R$ 47
         </a>
+
+        <div class="offer-card__countdown" aria-live="polite">
+          <p class="offer-card__countdown-label">Oferta por tempo limitado</p>
+          <div class="offer-card__countdown-grid">
+            <div class="offer-card__countdown-item">
+              <span class="offer-card__countdown-value" id="countdown-days">--</span>
+              <span class="offer-card__countdown-unit">dia</span>
+            </div>
+            <div class="offer-card__countdown-item">
+              <span class="offer-card__countdown-value" id="countdown-hours">--</span>
+              <span class="offer-card__countdown-unit">hora</span>
+            </div>
+            <div class="offer-card__countdown-item">
+              <span class="offer-card__countdown-value" id="countdown-mins">--</span>
+              <span class="offer-card__countdown-unit">min</span>
+            </div>
+            <div class="offer-card__countdown-item">
+              <span class="offer-card__countdown-value" id="countdown-secs">--</span>
+              <span class="offer-card__countdown-unit">seg</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="offer-card__note">
+          (Não pode assistir ao vivo? Você terá acesso às gravações e ao certificado.)
+        </p>
       </div>
 
-      <p class="hero__skip">
-        <a href="#">Continuar só com o acesso gratuito</a>
-      </p>
+      <div class="upgrade__image-wrap">
+        <img
+          src="assets/mkp_experiencia_vip.png"
+          alt="Experiência VIP: certificado, cronograma, apostilas e gravações do Congresso de Neurociência Aplicada ao Esporte"
+          class="upgrade__image"
+          width="420"
+          height="400"
+        />
+      </div>
     </div>
-  </main>
+
+    <p class="skip-link">
+      <a href="#">Continuar só com o acesso gratuito</a>
+    </p>
+  </div>
 
   <script>
-    // Substitua # pelo link do checkout / Hotmart / Kiwify etc.
-    document.getElementById('cta-upgrade').addEventListener('click', function(e) {
-      var href = this.getAttribute('href');
-      if (href === '#') {
-        e.preventDefault();
-        // alert('Cole aqui o link do seu checkout.');
+    // Contagem regressiva até 23/03/2026 23:59 (fim do dia de abertura — ajuste a data se quiser “oferta por X dias”)
+    (function () {
+      var dataFim = new Date('2026-03-23T23:59:00-03:00');
+      var elDays = document.getElementById('countdown-days');
+      var elHours = document.getElementById('countdown-hours');
+      var elMins = document.getElementById('countdown-mins');
+      var elSecs = document.getElementById('countdown-secs');
+
+      function doisDigitos(n) { return n < 10 ? '0' + n : String(n); }
+
+      function atualizar() {
+        var agora = new Date();
+        var diff = dataFim - agora;
+
+        if (diff <= 0) {
+          if (elDays) elDays.textContent = '0';
+          if (elHours) elHours.textContent = '00';
+          if (elMins) elMins.textContent = '00';
+          if (elSecs) elSecs.textContent = '00';
+          return;
+        }
+
+        var dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var min = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var seg = Math.floor((diff % (1000 * 60)) / 1000);
+
+        if (elDays) elDays.textContent = String(dias);
+        if (elHours) elHours.textContent = doisDigitos(horas);
+        if (elMins) elMins.textContent = doisDigitos(min);
+        if (elSecs) elSecs.textContent = doisDigitos(seg);
       }
+
+      atualizar();
+      setInterval(atualizar, 1000);
+    })();
+
+    document.getElementById('cta-upgrade').addEventListener('click', function(e) {
+      if (this.getAttribute('href') === '#') e.preventDefault();
     });
   </script>
 </body>
