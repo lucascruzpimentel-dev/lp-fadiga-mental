@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscrição confirmada | Congresso de Neurociência | Atleta Campeão</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <style>
+    :root {
+      --color-hero-bg: #ffffff;
+      --color-hero-text: #0f172a;
+      --color-accent: #2563eb;
+      --color-accent-hover: #1d4ed8;
+      --color-gold: #b8860b;
+      --color-subhead: #475569;
+      --color-success: #059669;
+      --font-heading: 'Manrope', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --radius-btn: 9999px;
+      --radius-box: 12px;
+      --container-max: 560px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-hero-text);
+      background: var(--color-hero-bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 4vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(165deg, #f8fafc 0%, #eff6ff 30%, #e0e7ff 60%, #dbeafe 100%);
+    }
+
+    .hero__wrap {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    .hero__logo-wrap {
+      flex-shrink: 0;
+      width: 100%;
+      max-width: min(200px, 50vw);
+    }
+    .hero__logo {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(5, 150, 105, 0.12);
+      color: var(--color-success);
+      font-weight: 600;
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      border-radius: var(--radius-btn);
+      margin-bottom: 0.25rem;
+    }
+    .hero__badge iconify-icon {
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+
+    .hero__headline {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin: 0;
+      color: var(--color-hero-text);
+    }
+
+    .hero__subheadline {
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      line-height: 1.6;
+      color: var(--color-subhead);
+      margin: 0;
+    }
+
+    .hero__divider {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      color: var(--color-hero-text);
+      margin: 0.5rem 0 0;
+    }
+
+    .hero__upgrade-box {
+      width: 100%;
+      padding: clamp(1.25rem, 3vw, 1.75rem);
+      background: #fff;
+      border-radius: var(--radius-box);
+      border: 2px solid rgba(37, 99, 235, 0.2);
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+      text-align: left;
+    }
+
+    .hero__upgrade-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.15rem, 2.8vw, 1.4rem);
+      color: var(--color-hero-text);
+      margin: 0 0 0.75rem;
+    }
+
+    .hero__upgrade-list {
+      list-style: none;
+      margin: 0 0 1.25rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .hero__upgrade-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: var(--color-subhead);
+    }
+    .hero__upgrade-list iconify-icon {
+      flex-shrink: 0;
+      color: var(--color-accent);
+      font-size: 1.2rem;
+    }
+
+    .hero__price {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      color: var(--color-hero-text);
+      margin: 0 0 0.25rem;
+    }
+    .hero__price-note {
+      font-size: 0.9rem;
+      color: var(--color-subhead);
+      margin: 0 0 1rem;
+    }
+
+    .hero__cta {
+      display: block;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      border: none;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hero__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+    }
+
+    .hero__skip {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .hero__skip a {
+      color: var(--color-subhead);
+      text-decoration: underline;
+    }
+    .hero__skip a:hover {
+      color: var(--color-hero-text);
+    }
+  </style>
+</head>
+<body>
+  <main class="hero" id="hero">
+    <div class="hero__wrap">
+      <div class="hero__logo-wrap">
+        <img
+          src="../Congresso de Neuro/assets/logo_Congresso internacional.png"
+          alt="Congresso Internacional de Neurociência no Esporte"
+          class="hero__logo"
+          width="200"
+          height="200"
+        />
+      </div>
+
+      <p class="hero__badge" aria-hidden="true">
+        <iconify-icon icon="lucide:circle-check-big"></iconify-icon>
+        Inscrição confirmada!
+      </p>
+
+      <h1 class="hero__headline">
+        Você já garantiu seu acesso gratuito ao Congresso Internacional de Neurociência Aplicada ao Esporte: YouTube ao vivo + apostilas.
+      </h1>
+
+      <p class="hero__divider">
+        Antes de sair…<br>
+        Você quer participar como público… ou como <strong>PROFISSIONAL</strong>?
+      </p>
+
+      <div class="hero__upgrade-box">
+        <h2 class="hero__upgrade-title">Passe Profissional</h2>
+        <p style="margin:0 0 0.75rem; font-size:0.95rem; color: var(--color-subhead);">
+          O upgrade oficial para quem quer a experiência completa:
+        </p>
+        <ul class="hero__upgrade-list" aria-label="Benefícios do Passe Profissional">
+          <li><iconify-icon icon="lucide:video"></iconify-icon> Sala no Zoom</li>
+          <li><iconify-icon icon="lucide:message-circle"></iconify-icon> Prioridade nas perguntas</li>
+          <li><iconify-icon icon="lucide:download"></iconify-icon> Gravações</li>
+          <li><iconify-icon icon="lucide:award"></iconify-icon> Certificado</li>
+        </ul>
+        <p class="hero__price">R$ 47</p>
+        <p class="hero__price-note">Pagamento único</p>
+        <a href="#" class="hero__cta" id="cta-upgrade">
+          Quero meu Passe Profissional por R$ 47
+        </a>
+      </div>
+
+      <p class="hero__skip">
+        <a href="#">Continuar só com o acesso gratuito</a>
+      </p>
+    </div>
+  </main>
+
+  <script>
+    // Substitua # pelo link do checkout / Hotmart / Kiwify etc.
+    document.getElementById('cta-upgrade').addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#') {
+        e.preventDefault();
+        // alert('Cole aqui o link do seu checkout.');
+      }
+    });
+  </script>
+</body>
+</html>
