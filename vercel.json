@@ -1,6 +1,7 @@
 {
   "redirects": [
-    { "source": "/inscricao-congresso-neurociencia-no-esporte", "destination": "/inscricao-congresso-neurociencia-no-esporte/", "permanent": false }
+    { "source": "/inscricao-congresso-neurociencia-no-esporte", "destination": "/inscricao-congresso-neurociencia-no-esporte/", "permanent": false },
+    { "source": "/fadiga-mental", "destination": "/fadiga-mental/", "permanent": false }
   ],
   "rewrites": [
     { "source": "/obrigado-congresso-neuro-upgrade/assets/:path*", "destination": "/obrigado-congresso/assets/:path*" },
