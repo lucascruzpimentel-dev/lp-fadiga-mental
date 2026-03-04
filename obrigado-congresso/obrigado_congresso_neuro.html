@@ -30,6 +30,73 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
 
+  <script>
+  (function () {
+    function parseParams(source) {
+      try {
+        const out = {};
+        const usp = new URLSearchParams(source || "");
+        usp.forEach((v, k) => { out[k.toLowerCase()] = v; });
+        return out;
+      } catch { return {}; }
+    }
+    function setCookie(n, v, days){
+      if (!v) return;
+      const t = new Date(); t.setTime(t.getTime() + days*24*60*60*1000);
+      document.cookie = n + "=" + encodeURIComponent(v) + ";expires=" + t.toUTCString() + ";path=/;SameSite=Lax";
+    }
+    function getCookie(n){
+      return document.cookie.split("; ").reduce((acc, pair)=>{
+        const [k, ...rest] = pair.split("=");
+        return k === n ? decodeURIComponent(rest.join("=")) : acc;
+      }, "");
+    }
+    const q = parseParams(window.location.search);
+    const h = parseParams(window.location.hash ? window.location.hash.replace(/^#/, "?") : "");
+    const params = Object.assign({}, q, h);
+    const current = {
+      utm_source:   params.utm_source   || "",
+      utm_medium:   params.utm_medium   || "",
+      utm_campaign: params.utm_campaign || "",
+      utm_content:  params.utm_content  || ""
+    };
+    const hasCurrent = Object.values(current).some(Boolean);
+    if (hasCurrent) {
+      Object.entries(current).forEach(([k, v]) => setCookie(k, v, 90));
+    }
+    const utm = {
+      utm_source:   current.utm_source   || getCookie("utm_source")   || "",
+      utm_medium:   current.utm_medium   || getCookie("utm_medium")   || "",
+      utm_campaign: current.utm_campaign || getCookie("utm_campaign") || "",
+      utm_content:  current.utm_content  || getCookie("utm_content")  || ""
+    };
+    function setManyInScope(scope, names, value) {
+      if (!value) return;
+      names.forEach((n)=>{
+        const byName = scope.querySelectorAll(`[name="${n}"]`);
+        const byId   = scope.querySelectorAll(`#${CSS.escape ? CSS.escape(n) : n}`);
+        [...byName, ...byId].forEach(el => { if ("value" in el) el.value = value; });
+      });
+    }
+    function fillScope(scope){
+      setManyInScope(scope, ["utm_source","contact.utm_source"],     utm.utm_source);
+      setManyInScope(scope, ["utm_medium","contact.utm_medium"],     utm.utm_medium);
+      setManyInScope(scope, ["utm_campaign","contact.utm_campaign"], utm.utm_campaign);
+      setManyInScope(scope, ["utm_content","contact.utm_content"],   utm.utm_content);
+    }
+    function fillAll(){
+      fillScope(document);
+      document.querySelectorAll("form").forEach(fillScope);
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fillAll);
+    } else {
+      fillAll();
+    }
+    new MutationObserver(() => fillAll()).observe(document.documentElement, { childList: true, subtree: true });
+  })();
+  </script>
+
   <style>
     /* Design System Atleta Campeão: azul marca & ação (blue-600, blue-700, blue-50) */
     :root {
