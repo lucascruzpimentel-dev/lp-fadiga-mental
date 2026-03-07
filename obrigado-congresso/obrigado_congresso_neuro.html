@@ -148,6 +148,20 @@
       --color-success: #2563eb;
       --color-price-old: #dc2626;
       --color-blue-50: #eff6ff;
+      /* Design system fadiga-mental: slate-950/900/800, blue-600 ação */
+      --color-slate-950: #020617;
+      --color-slate-900: #0f172a;
+      --color-slate-800: #1e293b;
+      --color-blue-600: #2563eb;
+      --color-blue-500: #3b82f6;
+      --color-blue-400: #60a5fa;
+      --color-blue-100: #dbeafe;
+      --color-blue-200: #bfdbfe;
+      --color-slate-50: #f8fafc;
+      --color-slate-100: #f1f5f9;
+      --color-slate-200: #e2e8f0;
+      --color-slate-500: #64748b;
+      --color-slate-600: #475569;
       --font-heading: 'Manrope', sans-serif;
       --font-body: 'Inter', sans-serif;
       --radius-btn: 8px;
@@ -406,163 +420,539 @@
     /* Nota abaixo do contador removida para não confundir (gravações/certificado) */
     .offer-card__note { display: none !important; }
 
-    /* ========== Seção: Escolha seu nível de acesso (fundo azul design system) ========== */
+    /* ========== Seção: Compare seu acesso (tabela + CTA) — design system fadiga-mental ========== */
     .niveis {
       width: 100%;
-      margin: clamp(2rem, 5vw, 3rem) 0 0;
+      margin: clamp(2.5rem, 6vw, 4rem) 0 0;
       padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem);
-      background: #eff6ff;
+      background: var(--color-slate-900);
       box-sizing: border-box;
     }
     .niveis__wrap {
-      max-width: 1000px;
+      max-width: 720px;
       margin: 0 auto;
     }
     .niveis__title {
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: clamp(1.4rem, 3.5vw, 1.85rem);
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
       line-height: 1.25;
-      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e2e8f0;
+      text-align: center;
       margin: 0 0 clamp(1.5rem, 4vw, 2rem);
+    }
+    .niveis__table-wrap {
+      background: var(--color-slate-800);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: clamp(1.5rem, 4vw, 2rem);
+    }
+    .niveis__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .niveis__table th,
+    .niveis__table td {
+      padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.25rem);
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      color: #cbd5e1;
+    }
+    .niveis__table tr:last-child td,
+    .niveis__table tr:last-child th {
+      border-bottom: none;
+    }
+    .niveis__table th {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .niveis__table th:first-child {
+      width: 40%;
+    }
+    .niveis__table th.niveis__col--pro {
+      background: rgba(37, 99, 235, 0.25);
+      color: var(--color-blue-400);
       text-align: center;
     }
-    .niveis__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(1.25rem, 3vw, 1.75rem);
-      align-items: stretch;
+    .niveis__table th.niveis__col--gratuito {
+      text-align: center;
     }
-    @media (max-width: 700px) {
-      .niveis__grid {
-        grid-template-columns: 1fr;
-      }
+    .niveis__table td.niveis__col--gratuito,
+    .niveis__table td.niveis__col--pro {
+      text-align: center;
     }
-    .niveis__card {
-      background: #fff;
-      border-radius: var(--radius-card);
-      padding: clamp(1.25rem, 3vw, 1.75rem);
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-      display: flex;
-      flex-direction: column;
+    .niveis__table td.niveis__col--pro {
+      color: var(--color-blue-400);
     }
-    .niveis__card--gratuito {
-      border: 1px dashed #94a3b8;
-      background: #fff;
-    }
-    .niveis__card--pro {
-      border: 2px solid #2563eb;
-      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.18), 0 0 0 1px rgba(37, 99, 235, 0.06);
-      position: relative;
-      padding-top: 1.75rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, #fff 30%);
-      background-color: #fff;
-    }
-    .niveis__card--pro::before {
-      content: 'Recomendado';
-      position: absolute;
-      top: -11px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-      color: #fff;
-      font-size: 0.7rem;
+    .niveis__check {
+      color: var(--color-blue-400);
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.4rem 0.85rem;
-      border-radius: 9999px;
-      white-space: nowrap;
-      box-shadow: 0 3px 12px rgba(37, 99, 235, 0.4);
     }
-    .niveis__card--pro .niveis__card-title {
-      font-size: clamp(1.2rem, 2.8vw, 1.4rem);
-      color: #1e40af;
+    .niveis__cross {
+      color: #64748b;
     }
-    .niveis__card-title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-      color: var(--color-hero-text);
-      margin: 0 0 0.5rem;
-    }
-    .niveis__card-badge {
-      font-size: 0.8rem;
-      color: var(--color-subhead);
-      margin-bottom: 1rem;
-    }
-    .niveis__list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .niveis__list li {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      color: var(--color-hero-text);
-    }
-    .niveis__list iconify-icon {
-      flex-shrink: 0;
-      font-size: 1.1rem;
-    }
-    .niveis__list--gratuito .niveis__item--sem iconify-icon {
-      color: #94a3b8;
-    }
-    .niveis__list--gratuito .niveis__item--sem {
-      color: var(--color-subhead);
-    }
-    .niveis__list--pro iconify-icon {
-      color: var(--color-accent);
+    .niveis__cta-wrap {
+      text-align: center;
+      margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
     }
     .niveis__cta {
-      display: block;
-      width: 100%;
-      margin-top: 1.25rem;
-      padding: 0.9rem 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
       font-family: var(--font-heading);
       font-weight: 600;
       font-size: 1rem;
-      text-align: center;
       color: #fff;
-      background: var(--color-cta);
+      background: var(--color-blue-600);
       border: none;
-      border-radius: var(--radius-btn);
+      border-radius: 9999px;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      box-shadow: 0 0 25px rgba(37, 99, 235, 0.4);
       transition: background 0.2s ease, transform 0.15s ease;
     }
     .niveis__cta:hover {
-      background: var(--color-cta-hover);
+      background: #3b82f6;
       transform: translateY(-1px);
     }
-
-    /* Botão gratuito: visível mas pouco convidativo (incomoda sem ser agressivo) */
-    .niveis__cta--secondary {
-      background: #f8fafc;
-      color: #64748b;
-      border: 1px dashed #94a3b8;
-      box-shadow: none;
-      margin-top: auto;
-      font-size: 0.85rem;
-      font-weight: 500;
-      padding: 0.65rem 1rem;
-      opacity: 0.92;
+    .niveis__cta-secondary-wrap {
+      text-align: center;
     }
-    .niveis__cta--secondary:hover {
-      background: #f1f5f9;
-      color: #475569;
-      border-color: #94a3b8;
-      transform: none;
-      opacity: 1;
+    .niveis__cta-secondary-text {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin: 0 0 0.5rem;
+    }
+    .niveis__cta-secondary-link {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-blue-400);
+      text-decoration: underline;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .niveis__cta-secondary-link:hover {
+      color: #93c5fd;
+    }
+
+    /* ========== Seção: Certificado (vender o certificado) — mesmo estilo fadiga-mental ========== */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes border-spin {
+      to { --angle: 360deg; }
+    }
+    .cert-wrapper {
+      position: relative;
+      padding: 2px;
+      border-radius: 16px;
+      box-shadow: 0 0 70px -15px rgba(37, 99, 235, 0.18);
+      cursor: default;
+      opacity: 0;
+      transform: translateX(-28px);
+      transition: box-shadow 0.4s ease, opacity 0.85s ease, transform 0.85s ease;
+    }
+    .cert-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: conic-gradient(from var(--angle),
+        transparent 0deg, transparent 290deg,
+        rgba(37, 99, 235, 0) 300deg,
+        rgba(59, 130, 246, 0.4) 328deg,
+        rgba(37, 99, 235, 1) 343deg,
+        rgba(59, 130, 246, 0.6) 357deg,
+        transparent 360deg);
+      animation: border-spin var(--spin-dur, 4s) linear infinite;
+      z-index: 0;
+    }
+    .cert-inner {
+      position: relative;
+      z-index: 1;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      aspect-ratio: 1.41 / 1;
+      transition: transform 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e2e8f0;
+    }
+    .cert-wrapper:hover .cert-inner { transform: scale(1.012); }
+    .cert-wrapper:hover { box-shadow: 0 0 70px -15px rgba(37, 99, 235, 0.28); }
+    .cert-col-right {
+      opacity: 0;
+      transform: translateX(28px);
+      transition: opacity 0.85s ease 0.15s, transform 0.85s ease 0.15s;
+    }
+    .cert-bullet-item {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    @media (min-width: 900px) {
+      #cert-layout {
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 80px !important;
+      }
+      #cert-layout > div:first-child {
+        width: 45% !important;
+        max-width: none !important;
+      }
+      .cert-col-right {
+        width: 55% !important;
+        max-width: none !important;
+      }
+    }
+    @media (max-width: 899px) {
+      section#certificacao {
+        padding: 64px 0 !important;
+      }
+    }
+
+    /* Mobile: tabela rolável, botão full-width, espaçamentos reduzidos */
+    @media (max-width: 600px) {
+      .niveis {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-top: clamp(1.5rem, 5vw, 2.5rem);
+      }
+      .niveis__wrap {
+        padding: 0;
+      }
+      .niveis__title {
+        font-size: 1rem;
+        letter-spacing: 0.06em;
+        margin-bottom: 1.25rem;
+      }
+      .niveis__table-wrap {
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+        border-radius: 12px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* sombra sutil à direita indica scroll em telas estreitas */
+        box-shadow: inset -8px 0 12px -8px rgba(0, 0, 0, 0.25);
+      }
+      .niveis__table {
+        min-width: 280px;
+        font-size: 0.875rem;
+      }
+      .niveis__table th,
+      .niveis__table td {
+        padding: 0.65rem 0.75rem;
+      }
+      .niveis__table th:first-child {
+        min-width: 7rem;
+      }
+      .niveis__cta-wrap {
+        margin-bottom: 1.25rem;
+      }
+      .niveis__cta {
+        width: 100%;
+        max-width: 100%;
+        padding: 1rem 1.25rem;
+        font-size: 0.95rem;
+        border-radius: 12px;
+      }
+      .niveis__cta-secondary-text {
+        font-size: 0.875rem;
+      }
+      .niveis__cta-secondary-link {
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* ========== Seção Palestrantes (design system: slate-50, cards white, Manrope, blue-600) ========== */
+    #palestrantes {
+      background: var(--color-slate-50);
+      padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 4vw, 1.5rem);
+      font-family: var(--font-heading);
+    }
+    .palestrantes__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .palestrantes__title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: var(--color-slate-900);
+      margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
+      text-align: center;
+    }
+    .palestrantes__grid {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1.5rem, 4vw, 2rem);
+    }
+    @media (min-width: 768px) {
+      .palestrantes__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(1.5rem, 4vw, 2rem);
+      }
+    }
+    .palestrante-card {
+      background: #fff;
+      border: 1px solid var(--color-slate-200);
+      border-radius: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .palestrante-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -12px rgba(37, 99, 235, 0.15), 0 8px 20px -8px rgba(0, 0, 0, 0.08);
+      border-color: var(--color-blue-100);
+    }
+    .palestrante-card__tag {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--color-blue-600);
+      background: var(--color-blue-50);
+      border: 1px solid var(--color-blue-100);
+      border-radius: 9999px;
+      padding: 0.35rem 0.75rem;
+      margin-bottom: 1rem;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    .palestrante-card:hover .palestrante-card__tag {
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--color-blue-600);
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+    .palestrante-card__tag--dia02 { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .palestrante-card__tag--dia03 { background: #dbeafe; color: #2563eb; border-color: #93c5fd; }
+    .palestrante-card__tag--dia04 { background: #e0e7ff; color: #4338ca; border-color: #c7d2fe; }
+    .palestrante-card__photo-wrap {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 2px solid var(--color-blue-100);
+      overflow: hidden;
+      background: var(--color-slate-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+      transition: border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .palestrante-card:hover .palestrante-card__photo-wrap {
+      border-color: var(--color-blue-400);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+    .palestrante-card__photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .palestrante-card:hover .palestrante-card__photo-wrap img {
+      transform: scale(1.04);
+    }
+    .palestrante-card__name {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: var(--color-slate-900);
+      margin: 0 0 0.35rem;
+    }
+    .palestrante-card__bio {
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+      line-height: 1.45;
+      color: var(--color-slate-500);
+      margin: 0 0 1rem;
+    }
+    .palestrante-card__divider {
+      border: none;
+      border-top: 1px solid var(--color-slate-100);
+      margin: 0 0 1rem;
+    }
+    .palestrante-card__talk-title {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.95rem;
+      line-height: 1.35;
+      color: var(--color-slate-900);
+      margin: 0 0 0.75rem;
+    }
+    .palestrante-card__bullets {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .palestrante-card__bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+      line-height: 1.45;
+      color: var(--color-slate-600);
+      margin-bottom: 0.4rem;
+    }
+    .palestrante-card__bullets li:last-child { margin-bottom: 0; }
+    .palestrante-card__bullets iconify-icon {
+      flex-shrink: 0;
+      color: var(--color-blue-500);
+      margin-top: 0.2rem;
+    }
+
+    /* ========== Seção FAQ (accordion, responsivo e separado) ========== */
+    #faq {
+      font-family: var(--font-heading);
+      background: var(--color-slate-50);
+      padding-top: clamp(3rem, 8vw, 5rem);
+      padding-bottom: clamp(3rem, 8vw, 5rem);
+      padding-left: clamp(1rem, 4vw, 1.5rem);
+      padding-right: clamp(1rem, 4vw, 1.5rem);
+      margin-top: 0;
+      border-top: 1px solid var(--color-slate-200);
+    }
+    .faq__inner {
+      max-width: 680px;
+      margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .faq__title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.35rem, 3.5vw, 2rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--color-slate-900);
+      margin: 0 0 clamp(1.75rem, 4vw, 2.5rem);
+      text-align: center;
+    }
+    .faq__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq__list > li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .faq__item {
+      background: #fff;
+      border: 1px solid var(--color-slate-200);
+      border-radius: 1rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .faq__item:hover {
+      border-color: var(--color-slate-300);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+    .faq__item[open] {
+      border-color: var(--color-blue-200);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+    }
+    .faq__question-wrap {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      min-height: 3.5rem;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(0.9rem, 2.2vw, 1rem);
+      line-height: 1.4;
+      color: var(--color-slate-900);
+      list-style: none;
+      transition: color 0.2s ease, background 0.2s ease;
+      text-align: left;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .faq__item[open] .faq__question-wrap {
+      color: var(--color-blue-600);
+    }
+    .faq__question-wrap::-webkit-details-marker,
+    .faq__question-wrap::marker {
+      display: none;
+    }
+    .faq__question-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .faq__icon {
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      color: var(--color-slate-500);
+      transition: transform 0.25s ease, color 0.2s ease;
+    }
+    .faq__item[open] .faq__icon {
+      transform: rotate(180deg);
+      color: var(--color-blue-600);
+    }
+    .faq__answer {
+      padding: 0 1.25rem 1.25rem 1.25rem;
+      padding-top: 0;
+      font-family: var(--font-heading);
+      font-size: clamp(0.875rem, 2vw, 0.9375rem);
+      line-height: 1.65;
+      color: var(--color-slate-600);
+      border-top: 1px solid var(--color-slate-100);
+      margin: 0 1.25rem;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .faq__answer p {
+      margin: 0;
+    }
+    @media (max-width: 480px) {
+      #faq {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .faq__question-wrap {
+        padding: 1rem 1rem;
+        min-height: 3.25rem;
+      }
+      .faq__answer {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding-bottom: 1rem;
+      }
     }
 
     .skip-link {
@@ -753,11 +1143,8 @@
         Inscrição confirmada!
       </p>
       <h1 class="confirm__headline">
-        Você já garantiu seu acesso gratuito ao Congresso Internacional de Neurociência Aplicada ao Esporte: YouTube ao vivo + apostilas.
+        Sua vaga no Congresso Internacional de Neurociência Aplicada ao Esporte está garantida — de 23 a 29 de março, ao vivo. Mas há duas formas de viver esse congresso.
       </h1>
-      <p class="confirm__sub">
-        Confira seu e-mail para os detalhes. Enquanto isso…
-      </p>
       <p class="confirm__divider">
         Você quer participar como <strong>público</strong>… ou como <strong>PROFISSIONAL</strong>?
       </p>
@@ -823,35 +1210,241 @@
       </div>
     </div>
 
-    <!-- 3) Escolha seu nível de acesso -->
+    <!-- Compare seu acesso (tabela + botão de compra) — design system fadiga-mental -->
     <section class="niveis" id="niveis" aria-labelledby="niveis-title">
       <div class="niveis__wrap">
-        <h2 class="niveis__title" id="niveis-title">Escolha seu nível de acesso</h2>
-        <div class="niveis__grid">
-          <div class="niveis__card niveis__card--gratuito">
-            <h3 class="niveis__card-title">Acesso Gratuito</h3>
-            <p class="niveis__card-badge">Já incluso na sua inscrição</p>
-            <ul class="niveis__list niveis__list--gratuito" aria-label="Inclusos no acesso gratuito">
-              <li><iconify-icon icon="lucide:check"></iconify-icon> Aulas ao vivo no YouTube</li>
-              <li><iconify-icon icon="lucide:check"></iconify-icon> Apostilas do congresso</li>
-              <li class="niveis__item--sem"><iconify-icon icon="lucide:minus"></iconify-icon> Sem prioridade nas perguntas</li>
-              <li class="niveis__item--sem"><iconify-icon icon="lucide:minus"></iconify-icon> Sem certificado</li>
-              <li class="niveis__item--sem"><iconify-icon icon="lucide:minus"></iconify-icon> Sem gravações garantidas</li>
-            </ul>
-            <a href="https://meugrupo.vip/c/41603" class="niveis__cta niveis__cta--secondary" id="cta-gratuito" target="_blank" rel="noopener">Continuar só com o acesso gratuito</a>
-          </div>
-          <div class="niveis__card niveis__card--pro">
-            <h3 class="niveis__card-title">Passe Profissional</h3>
-            <p class="niveis__card-badge">Upgrade</p>
-            <ul class="niveis__list niveis__list--pro" aria-label="Inclusos no Passe Profissional">
-              <li><iconify-icon icon="lucide:check"></iconify-icon> Sala Profissional no Zoom (vagas limitadas)</li>
-              <li><iconify-icon icon="lucide:check"></iconify-icon> Prioridade nas perguntas</li>
-              <li><iconify-icon icon="lucide:check"></iconify-icon> Gravações por 30 dias</li>
-              <li><iconify-icon icon="lucide:check"></iconify-icon> Certificado com carga horária</li>
-            </ul>
-            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="niveis__cta" id="cta-niveis-pro" target="_blank" rel="noopener">Sim, quero o Passe Profissional (R$ 47)</a>
-          </div>
+        <h2 class="niveis__title" id="niveis-title">Compare seu acesso</h2>
+        <div class="niveis__table-wrap">
+          <table class="niveis__table" role="presentation">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col" class="niveis__col--gratuito">Gratuito</th>
+                <th scope="col" class="niveis__col--pro">Passe Profissional</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Aulas ao vivo</td>
+                <td class="niveis__col--gratuito">YouTube</td>
+                <td class="niveis__col--pro"><span class="niveis__check">✓</span> Zoom exclusivo</td>
+              </tr>
+              <tr>
+                <td>Apostilas</td>
+                <td class="niveis__col--gratuito"><span class="niveis__check">✓</span></td>
+                <td class="niveis__col--pro"><span class="niveis__check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Prioridade nas perguntas</td>
+                <td class="niveis__col--gratuito"><span class="niveis__cross">✕</span></td>
+                <td class="niveis__col--pro"><span class="niveis__check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Gravações por tempo ilimitado</td>
+                <td class="niveis__col--gratuito"><span class="niveis__cross">✕</span></td>
+                <td class="niveis__col--pro"><span class="niveis__check">✓</span></td>
+              </tr>
+              <tr>
+                <td>Certificado oficial</td>
+                <td class="niveis__col--gratuito"><span class="niveis__cross">✕</span></td>
+                <td class="niveis__col--pro"><span class="niveis__check">✓</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+        <div class="niveis__cta-wrap">
+          <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="niveis__cta" id="cta-niveis-pro" target="_blank" rel="noopener">Sim, quero o Passe Profissional (R$ 47) <iconify-icon icon="lucide:arrow-right"></iconify-icon></a>
+        </div>
+        <div class="niveis__cta-secondary-wrap">
+          <p class="niveis__cta-secondary-text">Prefere continuar apenas com o acesso gratuito?</p>
+          <a href="https://meugrupo.vip/c/41603" class="niveis__cta-secondary-link" target="_blank" rel="noopener">Entrar no grupo e acessar pelo YouTube <iconify-icon icon="lucide:arrow-right"></iconify-icon></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Certificado: valorizar e vender o certificado -->
+    <section id="certificacao" style="background:#fff;padding:100px 0;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;width:100%;height:1px;background:rgba(226,232,240,1);pointer-events:none;z-index:2;"></div>
+      <canvas id="certNeuronCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0.5;pointer-events:none;"></canvas>
+      <div style="position:absolute;top:50%;left:20%;transform:translate(-50%,-50%);width:600px;height:600px;background:rgba(37,99,235,0.08);border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;"></div>
+      <div style="position:absolute;bottom:-10%;right:-10%;width:600px;height:600px;background:rgba(29,78,216,0.08);border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;"></div>
+
+      <div style="max-width:1400px;margin:0 auto;padding:0 24px;position:relative;z-index:1;">
+        <div id="cert-layout" style="display:flex;flex-direction:column;gap:60px;align-items:center;">
+
+          <div style="width:100%;max-width:520px;display:flex;flex-direction:column;align-items:center;">
+            <div class="cert-wrapper" id="cert-card" onmouseenter="this.style.setProperty('--spin-dur','1.8s')" onmouseleave="this.style.setProperty('--spin-dur','4s')">
+              <div class="cert-inner">
+                <img src="assets/certificado_congresso.png" alt="Certificado Congresso Internacional de Neurociência Aplicada ao Esporte" style="width:100%;height:100%;object-fit:cover;display:block;">
+              </div>
+            </div>
+            <p style="font-family:var(--font-body);font-size:11px;color:#475569;letter-spacing:0.12em;text-transform:uppercase;margin-top:20px;text-align:center;">✦ Emitido digitalmente após o congresso</p>
+          </div>
+
+          <div class="cert-col-right" style="width:100%;max-width:580px;">
+            <p style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#2563eb;margin:0 0 16px;">Certificação</p>
+            <h2 style="font-family:var(--font-heading);font-size:clamp(28px,3.5vw,44px);font-weight:700;line-height:1.1;letter-spacing:-0.03em;color:#0f172a;margin:0;">Comprove o que você aprendeu</h2>
+            <p style="font-family:var(--font-body);font-size:15px;color:#475569;line-height:1.65;max-width:440px;margin:14px 0 44px;">Um documento oficial que registra sua participação no Congresso Internacional de Neurociência Aplicada ao Esporte — emitido pelo Instituto Atleta Campeão.</p>
+
+            <div style="display:flex;flex-direction:column;">
+              <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
+                <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;background:#f1f5f9;border:1px solid #e2e8f0;font-family:var(--font-body);font-size:12px;font-weight:600;color:#64748b;display:flex;align-items:center;justify-content:center;">01</div>
+                <div>
+                  <p style="font-family:var(--font-body);font-size:15px;font-weight:600;color:#0f172a;margin:0;">Emissão logo após o congresso</p>
+                  <p style="font-family:var(--font-body);font-size:13.5px;color:#475569;line-height:1.55;margin:4px 0 0;">O certificado é gerado digitalmente assim que você conclui os dias de congresso — disponível para download em PDF, sem burocracia.</p>
+                </div>
+              </div>
+              <div style="height:1px;background:#e2e8f0;margin:20px 0;"></div>
+              <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
+                <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;background:#f1f5f9;border:1px solid #e2e8f0;font-family:var(--font-body);font-size:12px;font-weight:600;color:#64748b;display:flex;align-items:center;justify-content:center;">02</div>
+                <div>
+                  <p style="font-family:var(--font-body);font-size:15px;font-weight:600;color:#0f172a;margin:0;">Assinado pelo Atleta Campeão</p>
+                  <p style="font-family:var(--font-body);font-size:13.5px;color:#475569;line-height:1.55;margin:4px 0 0;">Emitido pelo Instituto Atleta Campeão, a maior referência nacional em treinamento mental e emocional para atletas.</p>
+                </div>
+              </div>
+              <div style="height:1px;background:#e2e8f0;margin:20px 0;"></div>
+              <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
+                <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;background:#f1f5f9;border:1px solid #e2e8f0;font-family:var(--font-body);font-size:12px;font-weight:600;color:#64748b;display:flex;align-items:center;justify-content:center;">03</div>
+                <div>
+                  <p style="font-family:var(--font-body);font-size:15px;font-weight:600;color:#0f172a;margin:0;">Carga horária registrada</p>
+                  <p style="font-family:var(--font-body);font-size:13.5px;color:#475569;line-height:1.55;margin:4px 0 0;">O padrão exigido quando você precisa comprovar participação — com a carga horária documentada para apresentar onde for necessário.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Palestrantes -->
+    <section id="palestrantes" aria-labelledby="palestrantes-title">
+      <div class="palestrantes__inner">
+        <h2 class="palestrantes__title" id="palestrantes-title">Palestrantes</h2>
+        <div class="palestrantes__grid">
+
+          <article class="palestrante-card">
+            <span class="palestrante-card__tag">DIA 01 · 24 MAR · TERÇA</span>
+            <div class="palestrante-card__photo-wrap">
+              <img src="assets/pf_Leonardo%20Fortes_circle.png" alt="Leonardo Fortes" width="88" height="88">
+            </div>
+            <h3 class="palestrante-card__name">Leonardo Fortes</h3>
+            <p class="palestrante-card__bio">Professor UFPB · Doutor em Psicologia · Pós-Doc Portugal e Noruega · Especialista em neurociência e desempenho humano</p>
+            <hr class="palestrante-card__divider">
+            <p class="palestrante-card__talk-title">O Cérebro do Atleta na Era Digital: Como as Telas Estão Sabotando a Performance</p>
+            <ul class="palestrante-card__bullets">
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Por que seus atletas perdem foco e o que está acontecendo neurologicamente</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Como proteger o cérebro do atleta do impacto do uso excessivo de telas</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Estratégias práticas para recuperar concentração e disciplina no treino</li>
+            </ul>
+          </article>
+
+          <article class="palestrante-card">
+            <span class="palestrante-card__tag palestrante-card__tag--dia02">DIA 02 · 26 MAR · QUINTA</span>
+            <div class="palestrante-card__photo-wrap">
+              <img src="assets/pf_Fl%C3%A1vio%20Marretti_circle.png" alt="Flávio Marretti" width="88" height="88">
+            </div>
+            <h3 class="palestrante-card__name">Flávio Marretti</h3>
+            <p class="palestrante-card__bio">Treinador de Tênis nos Estados Unidos</p>
+            <hr class="palestrante-card__divider">
+            <p class="palestrante-card__talk-title">Inovações em Treinamento Mental para Técnicos e Atletas</p>
+            <ul class="palestrante-card__bullets">
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> O que os treinadores americanos estão fazendo diferente no trabalho mental com atletas jovens</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Como aplicar essas técnicas independente da modalidade que você trabalha</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Uma visão prática vinda de quem está no campo todos os dias</li>
+            </ul>
+          </article>
+
+          <article class="palestrante-card">
+            <span class="palestrante-card__tag palestrante-card__tag--dia03">DIA 03 · 28 MAR · SÁBADO</span>
+            <div class="palestrante-card__photo-wrap">
+              <img src="assets/pf_Lucas%20cruz_circle.png" alt="Lucas Cruz" width="88" height="88">
+            </div>
+            <h3 class="palestrante-card__name">Lucas Cruz</h3>
+            <p class="palestrante-card__bio">Co-fundador do Atleta Campeão · Especialista em Marketing e Inteligência Artificial</p>
+            <hr class="palestrante-card__divider">
+            <p class="palestrante-card__talk-title">Como transformar seu conhecimento em autoridade e ser encontrado por atletas e clubes com Internet e IA</p>
+            <ul class="palestrante-card__bullets">
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Como parar de ser invisível mesmo tendo anos de experiência</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Estratégias reais de posicionamento digital para profissionais do esporte</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Como usar IA para atrair alunos e clubes sem precisar virar criador de conteúdo</li>
+            </ul>
+          </article>
+
+          <article class="palestrante-card">
+            <span class="palestrante-card__tag palestrante-card__tag--dia04">DIA 04 · 29 MAR · DOMINGO</span>
+            <div class="palestrante-card__photo-wrap">
+              <img src="assets/pf_Mayra%20Ramos_circle.png" alt="Mayra Ramos" width="88" height="88">
+            </div>
+            <h3 class="palestrante-card__name">Mayra Ramos</h3>
+            <p class="palestrante-card__bio">Fundadora do Atleta Campeão</p>
+            <hr class="palestrante-card__divider">
+            <p class="palestrante-card__talk-title">Ferramentas de Neurociência para Atletas</p>
+            <ul class="palestrante-card__bullets">
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> As técnicas práticas mais usadas no treinamento mental de atletas de elite</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Como implementar essas ferramentas no seu trabalho imediatamente</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> O que separa o profissional comum do especialista que atletas e clubes buscam</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção FAQ -->
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="faq__inner">
+        <h2 class="faq__title" id="faq-title">Perguntas frequentes</h2>
+        <ul class="faq__list">
+          <li>
+            <details class="faq__item">
+              <summary class="faq__question-wrap"><span class="faq__question-text">O congresso é realmente gratuito? Tem alguma pegadinha?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
+              <div class="faq__answer"><p>Sim, 100% gratuito. Você assiste ao vivo pelo YouTube sem pagar nada. O Passe Profissional é um upgrade opcional para quem quer a experiência completa — sala no Zoom, gravações e certificado.</p></div>
+            </details>
+          </li>
+          <li>
+            <details class="faq__item">
+              <summary class="faq__question-wrap"><span class="faq__question-text">Por que assistir pelo Zoom se posso ver pelo YouTube de graça?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
+              <div class="faq__answer"><p>No YouTube você assiste. No Zoom você participa — faz perguntas diretamente aos especialistas, interage com outros profissionais e tem prioridade nas respostas ao vivo. É a diferença entre sentar na plateia e estar na mesa.</p></div>
+            </details>
+          </li>
+          <li>
+            <details class="faq__item">
+              <summary class="faq__question-wrap"><span class="faq__question-text">O certificado tem validade profissional?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
+              <div class="faq__answer"><p>Sim. O certificado é emitido com seu CPF, o CNPJ do Instituto Atleta Campeão, a carga horária e, no verso, a descrição completa do conteúdo — nome das aulas e o que foi abordado em cada uma. Você tem um documento rastreável e detalhado, pronto para apresentar em processos seletivos, compor seu portfólio ou comprovar formação continuada em neurociência aplicada ao esporte.</p></div>
+            </details>
+          </li>
+          <li>
+            <details class="faq__item">
+              <summary class="faq__question-wrap"><span class="faq__question-text">Vale a pena para quem já tem experiência na área?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
+              <div class="faq__answer"><p>Especialmente para quem já atua. O congresso traz conteúdo aplicado, não introdutório. E o certificado posiciona você como especialista num nicho que ainda tem poucos profissionais formalmente qualificados.</p></div>
+            </details>
+          </li>
+          <li>
+            <details class="faq__item">
+              <summary class="faq__question-wrap"><span class="faq__question-text">E se eu não conseguir assistir todos os dias ao vivo?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
+              <div class="faq__answer"><p>Sem problema. Com o Passe Profissional você tem acesso às gravações — cada aula fica disponível logo após sua realização, para você assistir quando e quantas vezes quiser.</p></div>
+            </details>
+          </li>
+          <li>
+            <details class="faq__item">
+              <summary class="faq__question-wrap"><span class="faq__question-text">Como vou receber o acesso após a compra?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
+              <div class="faq__answer"><p>Imediatamente após a confirmação do pagamento, você recebe por e-mail o link de acesso à plataforma. Os materiais e gravações vão sendo liberados conforme o congresso acontece — cada aula fica disponível logo após sua realização. E o acesso é vitalício: mesmo depois que o congresso encerrar, tudo continua disponível para você revisar quando quiser.</p></div>
+            </details>
+          </li>
+          <li>
+            <details class="faq__item">
+              <summary class="faq__question-wrap"><span class="faq__question-text">R$ 47 é o preço definitivo?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
+              <div class="faq__answer"><p>Não. É um valor promocional válido por tempo limitado. Após o período, o valor volta para R$ 97.</p></div>
+            </details>
+          </li>
+          <li>
+            <details class="faq__item">
+              <summary class="faq__question-wrap"><span class="faq__question-text">Posso parcelar?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
+              <div class="faq__answer"><p>Sim — cartão de crédito, Pix ou boleto. Você escolhe na hora do pagamento.</p></div>
+            </details>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -957,6 +1550,88 @@
     if (ctaNiveis) ctaNiveis.addEventListener('click', function(e) {
       if (this.getAttribute('href') === '#') e.preventDefault();
     });
+
+    // Seção Certificado — neuron canvas (rede animada)
+    (function() {
+      var canvas = document.getElementById('certNeuronCanvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var W, H, nodes = [];
+      var NODE_COUNT = 60, MAX_DIST = 180;
+      var isVisible = true;
+      var section = document.getElementById('certificacao');
+      var observer = new IntersectionObserver(function(entries) { isVisible = entries[0].isIntersecting; }, { threshold: 0 });
+      if (section) observer.observe(section);
+
+      function resize() {
+        W = window.innerWidth;
+        H = section ? section.offsetHeight : window.innerHeight;
+        canvas.width = W;
+        canvas.height = H;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      for (var i = 0; i < NODE_COUNT; i++) {
+        nodes.push({
+          x: Math.random() * W, y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+          r: Math.random() * 2 + 1, pulse: Math.random() * Math.PI * 2
+        });
+      }
+
+      function draw() {
+        if (isVisible) {
+          ctx.clearRect(0, 0, W, H);
+          nodes.forEach(function(n) {
+            n.x += n.vx; n.y += n.vy; n.pulse += 0.015;
+            if (n.x < 0 || n.x > W) n.vx *= -1;
+            if (n.y < 0 || n.y > H) n.vy *= -1;
+          });
+          for (var i = 0; i < nodes.length; i++) {
+            for (var j = i + 1; j < nodes.length; j++) {
+              var dx = nodes[j].x - nodes[i].x, dy = nodes[j].y - nodes[i].y;
+              var dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < MAX_DIST) {
+                var alpha = (1 - dist / MAX_DIST) * 0.6;
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(37, 99, 235, ' + (alpha * 0.35) + ')';
+                ctx.lineWidth = 0.8;
+                ctx.moveTo(nodes[i].x, nodes[i].y);
+                ctx.lineTo(nodes[j].x, nodes[j].y);
+                ctx.stroke();
+              }
+            }
+          }
+          nodes.forEach(function(n) {
+            var glow = 0.5 + Math.sin(n.pulse) * 0.5;
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r * glow, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(37, 99, 235, ' + (glow * 0.35) + ')';
+            ctx.fill();
+          });
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // Seção Certificado — scroll reveal (card, coluna direita, bullets)
+    (function() {
+      var certCard = document.getElementById('cert-card');
+      var certRight = document.querySelector('.cert-col-right');
+      var bullets = document.querySelectorAll('.cert-bullet-item');
+      var delays = [0.3, 0.42, 0.54];
+      bullets.forEach(function(b, i) { b.style.transitionDelay = delays[i] + 's'; });
+      var io = new IntersectionObserver(function(entries) {
+        if (!entries.some(function(e) { return e.isIntersecting; })) return;
+        if (certCard) { certCard.style.opacity = '1'; certCard.style.transform = 'translateX(0)'; }
+        if (certRight) { certRight.style.opacity = '1'; certRight.style.transform = 'translateX(0)'; }
+        bullets.forEach(function(b) { b.style.opacity = '1'; b.style.transform = 'translateY(0)'; });
+        io.disconnect();
+      }, { threshold: 0.15 });
+      if (certCard) io.observe(certCard);
+    })();
   </script>
 </body>
 </html>
