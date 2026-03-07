@@ -6,6 +6,8 @@
   "rewrites": [
     { "source": "/obrigado-congresso-neuro-upgrade/assets/:path*", "destination": "/obrigado-congresso/assets/:path*" },
     { "source": "/obrigado-congresso-neuro-upgrade", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" },
-    { "source": "/obrigado-congresso-neuro-upgrade/", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" }
+    { "source": "/obrigado-congresso-neuro-upgrade/", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" },
+    { "source": "/congresso-neuro-vip-pass", "destination": "/congresso-neuro-vip-pass/congresso-neuro-vip-pass.html" },
+    { "source": "/congresso-neuro-vip-pass/", "destination": "/congresso-neuro-vip-pass/congresso-neuro-vip-pass.html" }
   ]
 }
