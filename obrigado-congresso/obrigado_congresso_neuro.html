@@ -421,7 +421,7 @@
     .offer-card__note { display: none !important; }
 
     /* ========== Seção Lotes: lote atual em evidência + uma contagem regressiva (urgência) ========== */
-    #lotes, .lotes {
+    #lotes, #lotes-2, .lotes {
       width: 100%;
       max-width: 1100px;
       margin: 0 auto;
@@ -1538,6 +1538,82 @@
           </article>
 
         </div>
+      </div>
+    </section>
+
+    <!-- Seção Lotes (2ª ocorrência): logo abaixo dos Palestrantes -->
+    <section id="lotes-2" class="lotes" aria-labelledby="lotes-title-2">
+      <h2 class="lotes__title" id="lotes-title-2">Garanta seu Passe no melhor preço</h2>
+      <div class="lotes__countdown js-lotes-countdown-wrap" aria-live="polite">
+        <p class="lotes__countdown-label js-lotes-countdown-label">O lote atual termina em</p>
+        <div class="lotes__countdown-grid">
+          <div class="lotes__countdown-item">
+            <span class="lotes__countdown-value js-lotes-countdown-days">--</span>
+            <span class="lotes__countdown-unit">dia</span>
+          </div>
+          <div class="lotes__countdown-item">
+            <span class="lotes__countdown-value js-lotes-countdown-hours">--</span>
+            <span class="lotes__countdown-unit">h</span>
+          </div>
+          <div class="lotes__countdown-item">
+            <span class="lotes__countdown-value js-lotes-countdown-mins">--</span>
+            <span class="lotes__countdown-unit">min</span>
+          </div>
+          <div class="lotes__countdown-item">
+            <span class="lotes__countdown-value js-lotes-countdown-secs">--</span>
+            <span class="lotes__countdown-unit">seg</span>
+          </div>
+        </div>
+      </div>
+      <div class="lotes__grid">
+        <article class="lote-card" id="lote-1-b" data-end="2026-03-15T23:59:00-03:00" data-price="47">
+          <span class="lote-card__badge">Lote 1</span>
+          <p class="lote-card__price">R$ 47</p>
+          <p class="lote-card__valid">Válido até 15 de março de 2026</p>
+          <ul class="lote-card__benefits">
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Certificado oficial</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Prioridade nas perguntas</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
+          </ul>
+          <div class="lote-card__cta-wrap">
+            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
+          </div>
+          <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
+        </article>
+        <article class="lote-card" id="lote-2-b" data-end="2026-03-23T23:59:00-03:00" data-price="67">
+          <span class="lote-card__badge">Lote 2</span>
+          <p class="lote-card__price">R$ 67</p>
+          <p class="lote-card__valid">Válido até 23 de março de 2026</p>
+          <ul class="lote-card__benefits">
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Certificado oficial</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Prioridade nas perguntas</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
+          </ul>
+          <div class="lote-card__cta-wrap">
+            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
+          </div>
+          <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
+        </article>
+        <article class="lote-card" id="lote-3-b" data-end="2026-03-31T23:59:00-03:00" data-price="97">
+          <span class="lote-card__badge">Lote 3</span>
+          <p class="lote-card__price">R$ 97</p>
+          <p class="lote-card__valid">Válido até 31 de março de 2026</p>
+          <ul class="lote-card__benefits">
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Certificado oficial</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Prioridade nas perguntas</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
+          </ul>
+          <div class="lote-card__cta-wrap">
+            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
+          </div>
+          <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
+        </article>
       </div>
     </section>
 
