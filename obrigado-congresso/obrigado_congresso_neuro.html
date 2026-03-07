@@ -58,7 +58,10 @@
       utm_source:   params.utm_source   || "",
       utm_medium:   params.utm_medium   || "",
       utm_campaign: params.utm_campaign || "",
-      utm_content:  params.utm_content  || ""
+      utm_content:  params.utm_content  || "",
+      gclid:        params.gclid        || "",
+      fbclid:       params.fbclid       || "",
+      ttclid:       params.ttclid       || ""
     };
     const hasCurrent = Object.values(current).some(Boolean);
     if (hasCurrent) {
@@ -68,13 +71,16 @@
       utm_source:   current.utm_source   || getCookie("utm_source")   || "",
       utm_medium:   current.utm_medium   || getCookie("utm_medium")   || "",
       utm_campaign: current.utm_campaign || getCookie("utm_campaign") || "",
-      utm_content:  current.utm_content  || getCookie("utm_content")  || ""
+      utm_content:  current.utm_content  || getCookie("utm_content")  || "",
+      gclid:        current.gclid        || getCookie("gclid")        || "",
+      fbclid:       current.fbclid       || getCookie("fbclid")       || "",
+      ttclid:       current.ttclid       || getCookie("ttclid")       || ""
     };
     function setManyInScope(scope, names, value) {
       if (!value) return;
       names.forEach((n)=>{
         const byName = scope.querySelectorAll(`[name="${n}"]`);
-        const byId   = scope.querySelectorAll(`#${CSS.escape ? CSS.escape(n) : n}`);
+        const byId   = scope.querySelectorAll(`#${(window.CSS && CSS.escape) ? CSS.escape(n) : n}`);
         [...byName, ...byId].forEach(el => { if ("value" in el) el.value = value; });
       });
     }
@@ -88,12 +94,44 @@
       fillScope(document);
       document.querySelectorAll("form").forEach(fillScope);
     }
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", fillAll);
-    } else {
-      fillAll();
+    function decorateEduzzLinks(){
+      const keys = ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"];
+      const anchors = Array.from(document.querySelectorAll('a[href]'));
+      anchors.forEach((a) => {
+        const href = a.getAttribute("href");
+        if (!href) return;
+        if (href.startsWith("#") || href.startsWith("javascript:")) return;
+        let url;
+        try {
+          url = new URL(href, window.location.origin);
+        } catch {
+          return;
+        }
+        const host = (url.hostname || "").toLowerCase();
+        const isEduzz =
+          host === "chk.eduzz.com" ||
+          host.endsWith(".eduzz.com") ||
+          host.includes("eduzz.com");
+        if (!isEduzz) return;
+        keys.forEach((k) => {
+          if (!url.searchParams.get(k) && utm[k]) {
+            url.searchParams.set(k, utm[k]);
+          }
+        });
+        a.setAttribute("href", url.toString());
+      });
     }
-    new MutationObserver(() => fillAll()).observe(document.documentElement, { childList: true, subtree: true });
+    function runAll(){
+      fillAll();
+      decorateEduzzLinks();
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", runAll);
+    } else {
+      runAll();
+    }
+    new MutationObserver(() => runAll())
+      .observe(document.documentElement, { childList: true, subtree: true });
   })();
   </script>
 
