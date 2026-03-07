@@ -420,6 +420,80 @@
     /* Nota abaixo do contador removida para não confundir (gravações/certificado) */
     .offer-card__note { display: none !important; }
 
+    /* ========== Seção Lotes: lote atual em evidência + uma contagem regressiva (urgência) ========== */
+    #lotes, .lotes {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      margin-top: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: clamp(2.5rem, 6vw, 4rem);
+      padding: 0 clamp(1rem, 4vw, 1.5rem);
+    }
+    .lotes__title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.35rem, 3.5vw, 1.85rem);
+      line-height: 1.2;
+      text-align: center;
+      color: var(--color-hero-text);
+      margin: 0 0 clamp(1.25rem, 3vw, 1.75rem);
+      letter-spacing: -0.02em;
+    }
+    .lotes__countdown {
+      text-align: center;
+      margin-bottom: clamp(1.5rem, 4vw, 2rem);
+      padding: 1rem 1.25rem;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.04) 100%);
+      border: 1px solid var(--color-blue-100);
+      border-radius: var(--radius-card);
+    }
+    .lotes__countdown-label { font-family: var(--font-heading); font-weight: 600; font-size: clamp(0.9rem, 2.2vw, 1.05rem); color: var(--color-hero-text); margin: 0 0 0.75rem; }
+    .lotes__countdown-grid { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+    .lotes__countdown-item { min-width: 3.25rem; padding: 0.5rem 0.4rem; background: #fff; border-radius: 8px; text-align: center; border: 1px solid var(--color-slate-200); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .lotes__countdown-value { display: block; font-family: var(--font-heading); font-weight: 700; font-size: 1.35rem; line-height: 1.2; color: var(--color-accent); }
+    .lotes__countdown-unit { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-subhead); margin-top: 0.15rem; }
+    .lotes__countdown--hidden { display: none; }
+    .lotes__grid { display: grid; grid-template-columns: 1fr; gap: clamp(1.25rem, 3vw, 1.5rem); }
+    @media (min-width: 768px) { .lotes__grid { grid-template-columns: repeat(3, 1fr); } }
+    .lote-card {
+      background: #fff; border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+      padding: clamp(1.25rem, 3vw, 1.5rem); border: 2px solid var(--color-slate-200);
+      display: flex; flex-direction: column; transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .lote-card:hover { border-color: var(--color-blue-200); box-shadow: 0 12px 48px rgba(0,0,0,0.1), 0 4px 16px rgba(37,99,235,0.08); }
+    @keyframes lote-current-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.4), 0 10px 40px rgba(37,99,235,0.2), 0 2px 8px rgba(0,0,0,0.04); transform: scale(1); }
+      50% { box-shadow: 0 0 0 6px rgba(37,99,235,0.15), 0 14px 48px rgba(37,99,235,0.28), 0 4px 12px rgba(0,0,0,0.06); transform: scale(1.02); }
+    }
+    .lote-card--current {
+      border-color: var(--color-accent); border-width: 3px;
+      box-shadow: 0 10px 40px rgba(37,99,235,0.25), 0 2px 8px rgba(0,0,0,0.04);
+      animation: lote-current-pulse 2.5s ease-in-out infinite; position: relative;
+    }
+    .lote-card--current::before {
+      content: 'Lote atual'; position: absolute; top: -1px; right: 1rem;
+      font-family: var(--font-heading); font-weight: 700; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #fff; background: linear-gradient(135deg, var(--color-accent) 0%, #1d4ed8 100%);
+      padding: 0.4rem 0.85rem; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(37,99,235,0.4);
+    }
+    .lote-card--current:hover { animation: none; box-shadow: 0 0 0 4px rgba(37,99,235,0.2), 0 14px 48px rgba(37,99,235,0.3), 0 4px 12px rgba(0,0,0,0.06); transform: scale(1.02); }
+    .lote-card--encerrado { opacity: 0.75; border-color: var(--color-slate-200); }
+    .lote-card__badge { display: inline-block; align-self: flex-start; font-family: var(--font-heading); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-blue-600); background: var(--color-blue-50); border: 1px solid var(--color-blue-100); border-radius: 9999px; padding: 0.35rem 0.75rem; margin-bottom: 1rem; }
+    .lote-card--current .lote-card__badge { background: rgba(37,99,235,0.15); border-color: var(--color-accent); color: var(--color-accent); }
+    .lote-card__price { font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.5rem, 3.5vw, 2rem); color: var(--color-accent); margin: 0 0 0.5rem; line-height: 1.2; }
+    .lote-card__valid { font-size: 0.8rem; color: var(--color-subhead); margin: 0 0 1rem; }
+    .lote-card__countdown { display: none; }
+    .lote-card__benefits { list-style: none; margin: 0; padding: 0; font-size: 0.875rem; line-height: 1.5; color: var(--color-slate-600); flex: 1; }
+    .lote-card__benefits li { display: flex; align-items: flex-start; gap: 0.4rem; margin-bottom: 0.5rem; }
+    .lote-card__benefits li:last-child { margin-bottom: 0; }
+    .lote-card__benefits iconify-icon { flex-shrink: 0; color: var(--color-blue-500); margin-top: 0.2rem; }
+    .lote-card__status { font-size: 0.8rem; font-weight: 600; color: var(--color-slate-500); margin-top: 0.75rem; text-align: center; }
+    .lote-card__cta-wrap { display: none; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--color-slate-200); }
+    .lote-card--current .lote-card__cta-wrap { display: block; }
+    .lote-card__cta { display: block; width: 100%; padding: 0.75rem 1.25rem; font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; text-align: center; text-transform: uppercase; letter-spacing: 0.03em; color: #fff; background: var(--color-cta); border: none; border-radius: var(--radius-btn); cursor: pointer; text-decoration: none; box-shadow: 0 4px 14px rgba(37,99,235,0.35); transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease; }
+    .lote-card__cta:hover { background: var(--color-cta-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.45); }
+    .lote-card--encerrado .lote-card__status { display: block; }
+
     /* ========== Seção: Compare seu acesso (tabela + CTA) — design system fadiga-mental ========== */
     .niveis {
       width: 100%;
@@ -1262,6 +1336,82 @@
       </div>
     </section>
 
+    <!-- Seção Lotes: lote atual em evidência + contagem regressiva (urgência para mudança de lote) -->
+    <section id="lotes" class="lotes" aria-labelledby="lotes-title">
+      <h2 class="lotes__title" id="lotes-title">Garanta seu Passe no melhor preço</h2>
+      <div class="lotes__countdown js-lotes-countdown-wrap" aria-live="polite">
+        <p class="lotes__countdown-label js-lotes-countdown-label">O lote atual termina em</p>
+        <div class="lotes__countdown-grid">
+          <div class="lotes__countdown-item">
+            <span class="lotes__countdown-value js-lotes-countdown-days">--</span>
+            <span class="lotes__countdown-unit">dia</span>
+          </div>
+          <div class="lotes__countdown-item">
+            <span class="lotes__countdown-value js-lotes-countdown-hours">--</span>
+            <span class="lotes__countdown-unit">h</span>
+          </div>
+          <div class="lotes__countdown-item">
+            <span class="lotes__countdown-value js-lotes-countdown-mins">--</span>
+            <span class="lotes__countdown-unit">min</span>
+          </div>
+          <div class="lotes__countdown-item">
+            <span class="lotes__countdown-value js-lotes-countdown-secs">--</span>
+            <span class="lotes__countdown-unit">seg</span>
+          </div>
+        </div>
+      </div>
+      <div class="lotes__grid">
+        <article class="lote-card" id="lote-1" data-end="2026-03-15T23:59:00-03:00" data-price="47">
+          <span class="lote-card__badge">Lote 1</span>
+          <p class="lote-card__price">R$ 47</p>
+          <p class="lote-card__valid">Válido até 15 de março de 2026</p>
+          <ul class="lote-card__benefits">
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Certificado oficial</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Prioridade nas perguntas</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
+          </ul>
+          <div class="lote-card__cta-wrap">
+            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
+          </div>
+          <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
+        </article>
+        <article class="lote-card" id="lote-2" data-end="2026-03-23T23:59:00-03:00" data-price="67">
+          <span class="lote-card__badge">Lote 2</span>
+          <p class="lote-card__price">R$ 67</p>
+          <p class="lote-card__valid">Válido até 23 de março de 2026</p>
+          <ul class="lote-card__benefits">
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Certificado oficial</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Prioridade nas perguntas</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
+          </ul>
+          <div class="lote-card__cta-wrap">
+            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
+          </div>
+          <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
+        </article>
+        <article class="lote-card" id="lote-3" data-end="2026-03-31T23:59:00-03:00" data-price="97">
+          <span class="lote-card__badge">Lote 3</span>
+          <p class="lote-card__price">R$ 97</p>
+          <p class="lote-card__valid">Válido até 31 de março de 2026</p>
+          <ul class="lote-card__benefits">
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Certificado oficial</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Prioridade nas perguntas</li>
+            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
+          </ul>
+          <div class="lote-card__cta-wrap">
+            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
+          </div>
+          <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
+        </article>
+      </div>
+    </section>
+
     <!-- Seção Certificado: valorizar e vender o certificado -->
     <section id="certificacao" style="background:#fff;padding:100px 0;position:relative;overflow:hidden;">
       <div style="position:absolute;top:0;left:0;width:100%;height:1px;background:rgba(226,232,240,1);pointer-events:none;z-index:2;"></div>
@@ -1550,6 +1700,89 @@
     if (ctaNiveis) ctaNiveis.addEventListener('click', function(e) {
       if (this.getAttribute('href') === '#') e.preventDefault();
     });
+
+    // Lotes: virada automática 23:59 + link do botão conforme lote atual
+    var LOTES_CHECKOUT = {
+      1: 'https://chk.eduzz.com/39ZQZRJZ9E',
+      2: 'https://chk.eduzz.com/39ZQZRJZ9E',
+      3: 'https://chk.eduzz.com/39ZQZRJZ9E'
+    };
+    (function () {
+      var cards = document.querySelectorAll('.lote-card');
+      var wraps = document.querySelectorAll('.js-lotes-countdown-wrap');
+      var labels = document.querySelectorAll('.js-lotes-countdown-label');
+      var elDaysAll = document.querySelectorAll('.js-lotes-countdown-days');
+      var elHoursAll = document.querySelectorAll('.js-lotes-countdown-hours');
+      var elMinsAll = document.querySelectorAll('.js-lotes-countdown-mins');
+      var elSecsAll = document.querySelectorAll('.js-lotes-countdown-secs');
+      var fimLote1 = new Date('2026-03-15T23:59:00-03:00');
+      var fimLote2 = new Date('2026-03-23T23:59:00-03:00');
+      var fimLote3 = new Date('2026-03-31T23:59:00-03:00');
+      function doisDigitos(n) { return n < 10 ? '0' + n : String(n); }
+      function qualLoteAtual(now) {
+        if (now < fimLote1) return 1;
+        if (now < fimLote2) return 2;
+        if (now < fimLote3) return 3;
+        return 0;
+      }
+      function setAllTextContent(els, text) {
+        if (!els || !els.length) return;
+        for (var e = 0; e < els.length; e++) if (els[e]) els[e].textContent = text;
+      }
+      function atualizar() {
+        var now = new Date();
+        var loteAtual = qualLoteAtual(now);
+        var dataFim = null;
+        var precoAtual = '';
+        cards.forEach(function(card, i) {
+          var num = (i % 3) + 1;
+          var endStr = card.getAttribute('data-end');
+          var dataFimCard = endStr ? new Date(endStr) : null;
+          var elStatus = card.querySelector('[data-lote-status]');
+          card.classList.remove('lote-card--current');
+          card.classList.remove('lote-card--encerrado');
+          if (dataFimCard && now >= dataFimCard) {
+            card.classList.add('lote-card--encerrado');
+            if (elStatus) { elStatus.style.display = 'block'; elStatus.textContent = 'Encerrado'; }
+          } else {
+            if (elStatus) elStatus.style.display = 'none';
+            if (num === loteAtual) {
+              card.classList.add('lote-card--current');
+              dataFim = dataFimCard;
+              precoAtual = card.getAttribute('data-price') || '';
+            }
+          }
+        });
+        if (loteAtual === 0 || !dataFim) {
+          wraps.forEach(function(w) { if (w) w.classList.add('lotes__countdown--hidden'); });
+          return;
+        }
+        wraps.forEach(function(w) { if (w) w.classList.remove('lotes__countdown--hidden'); });
+        labels.forEach(function(l) { if (l) l.textContent = 'O Lote ' + loteAtual + ' (R$ ' + precoAtual + ') termina em'; });
+        var linkAtual = LOTES_CHECKOUT[loteAtual] || LOTES_CHECKOUT[1];
+        document.querySelectorAll('.lote-card__cta').forEach(function(a) {
+          if (a && linkAtual) a.setAttribute('href', linkAtual);
+        });
+        var diff = dataFim - now;
+        if (diff <= 0) {
+          setAllTextContent(elDaysAll, '0');
+          setAllTextContent(elHoursAll, '00');
+          setAllTextContent(elMinsAll, '00');
+          setAllTextContent(elSecsAll, '00');
+          return;
+        }
+        var dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var min = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var seg = Math.floor((diff % (1000 * 60)) / 1000);
+        setAllTextContent(elDaysAll, String(dias));
+        setAllTextContent(elHoursAll, doisDigitos(horas));
+        setAllTextContent(elMinsAll, doisDigitos(min));
+        setAllTextContent(elSecsAll, doisDigitos(seg));
+      }
+      atualizar();
+      setInterval(atualizar, 1000);
+    })();
 
     // Seção Certificado — neuron canvas (rede animada)
     (function() {
