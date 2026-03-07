@@ -1,0 +1,60 @@
+================================================================================
+PROMPT DE INÍCIO DE PROJETO — NOVA LP
+================================================================================
+Cole este prompt no início do projeto e preencha os campos entre [ ].
+O assistente deve criar a estrutura, configs e preparar a LP para a URL de destino.
+
+--------------------------------------------------------------------------------
+INSTRUÇÕES PARA O ASSISTENTE
+--------------------------------------------------------------------------------
+Ao receber este prompt, siga o guia em docs/NOVA-LP-GUIA.txt e execute na ordem:
+
+1) CRIAR ESTRUTURA DA PASTA
+   - Criar a pasta da LP com nome em minúsculo e hífen: [NOME-DA-PASTA]
+   - Dentro dela:
+     - index.html (estrutura HTML5 mínima, sem conteúdo final ainda)
+     - assets/images/ (pasta vazia ou com placeholders mencionados)
+     - assets/video/ (opcional, só se a LP tiver vídeo)
+
+2) CONFIGURAÇÃO VERCEL (RAIZ DO REPO)
+   - No vercel.json da raiz, adicionar em redirects:
+     { "source": "/[NOME-DA-PASTA]", "destination": "/[NOME-DA-PASTA]/", "permanent": false }
+   - Não remover redirects/rewrites existentes.
+
+3) PADRÕES OBRIGATÓRIOS NO CÓDIGO
+   - Todas as imagens locais com path absoluto: src="/[NOME-DA-PASTA]/assets/images/nome.ext"
+   - Nomes de arquivo de imagem sem espaço (usar _ ou -).
+   - Referências a assets sempre sob assets/images/ ou assets/video/.
+
+4) URL DE DESTINO
+   - URL final desejada: [URL_DE_DESTINO]
+   - Exemplo: https://meusite.com/[NOME-DA-PASTA]/
+   - Garantir que links internos e src de mídia funcionem nessa URL (paths absolutos com /[NOME-DA-PASTA]/).
+
+5) ENTREGÁVEIS NO INÍCIO DO PROJETO
+   - Pasta [NOME-DA-PASTA]/ criada com index.html base e pastas assets/images (e video se aplicável).
+   - vercel.json da raiz atualizado com o redirect da nova LP.
+   - Lista clara de assets a serem adicionados depois (logo, mkp, módulos, certificado, etc.) com nomes sugeridos sem espaço.
+   - Lembrete: após adicionar imagens, usar no HTML sempre src="/[NOME-DA-PASTA]/assets/images/nome_do_arquivo.ext"
+
+--------------------------------------------------------------------------------
+CAMPOS A PREENCHER (substitua [ ] pelo valor)
+--------------------------------------------------------------------------------
+
+[NOME-DA-PASTA]    = nome da pasta da LP (ex: nova-lp-nome, curso-xyz)
+[URL_DE_DESTINO]   = URL final onde a LP ficará (ex: https://atletacampeaotreinamentos.com/nova-lp-nome/)
+
+--------------------------------------------------------------------------------
+EXEMPLO PREENCHIDO
+--------------------------------------------------------------------------------
+
+[NOME-DA-PASTA]    = curso-alta-performance
+[URL_DE_DESTINO]   = https://atletacampeaotreinamentos.com/curso-alta-performance/
+
+Com isso, o assistente deve:
+- Criar pasta curso-alta-performance/ com index.html e assets/images/
+- Adicionar redirect /curso-alta-performance → /curso-alta-performance/ no vercel.json
+- Usar em todo HTML src="/curso-alta-performance/assets/images/..." para imagens
+- Deixar a LP pronta para, após conteúdo e imagens, fazer deploy e a página ir para a URL de destino
+
+================================================================================
