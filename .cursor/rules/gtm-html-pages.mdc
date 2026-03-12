@@ -1,0 +1,45 @@
+---
+description: Incluir Google Tag Manager (GTM) em todas as páginas HTML do projeto
+globs: "**/*.html"
+alwaysApply: false
+---
+
+# Google Tag Manager (GTM) em páginas HTML
+
+Todas as páginas HTML do projeto devem incluir o código do **Google Tag Manager** para rastreamento (ID: `GTM-MXDTWRQ3`).
+
+## Onde inserir
+
+1. **No `<head>`** — o mais alto possível, logo após a abertura de `<head>`:
+   - Inserir o script do GTM (snippet principal).
+2. **No `<body>`** — imediatamente após a abertura da tag `<body>` (com ou sem atributos):
+   - Inserir o `<noscript>` com o iframe do GTM.
+
+## Códigos a usar
+
+### No head (logo após `<head>` ou `<head>` com atributos)
+
+```html
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MXDTWRQ3');</script>
+<!-- End Google Tag Manager -->
+```
+
+### No body (logo após `<body>` ou `<body ...>`)
+
+```html
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXDTWRQ3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+```
+
+## Ao criar ou editar páginas HTML
+
+- Se estiver **criando uma nova página HTML**, inclua os dois trechos acima nas posições indicadas.
+- Se estiver **editando uma página HTML** e ela ainda não tiver o GTM, adicione os trechos.
+- Não duplique o GTM se a página já contiver o comentário "Google Tag Manager".
