@@ -37,31 +37,61 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
 
+  <!-- Script UTM: AC (field[39-42]), cookies, decora links Eduzz + clique -->
   <script>
   (function () {
+
+    // ============================================================
+    // CONFIG: Mapa UTM → Field ID do ActiveCampaign
+    // ============================================================
+    var AC_FIELDS = {
+      utm_source:   39,
+      utm_medium:   40,
+      utm_campaign: 41,
+      utm_content:  42
+    };
+
+    // ---- Helpers
     function parseParams(source) {
       try {
-        const out = {};
-        const usp = new URLSearchParams(source || "");
-        usp.forEach((v, k) => { out[k.toLowerCase()] = v; });
+        var out = {};
+        new URLSearchParams(source || "").forEach(function(v, k) { out[k.toLowerCase()] = v; });
         return out;
-      } catch { return {}; }
+      } catch(e) { return {}; }
     }
-    function setCookie(n, v, days){
+
+    function setCookie(n, v, days) {
       if (!v) return;
-      const t = new Date(); t.setTime(t.getTime() + days*24*60*60*1000);
-      document.cookie = n + "=" + encodeURIComponent(v) + ";expires=" + t.toUTCString() + ";path=/;SameSite=Lax";
+      var t = new Date();
+      t.setTime(t.getTime() + days * 24 * 60 * 60 * 1000);
+      var domain = window.location.hostname.replace(/^www\./, "");
+      document.cookie = n + "=" + encodeURIComponent(v)
+        + ";expires=" + t.toUTCString()
+        + ";path=/"
+        + (domain ? ";domain=." + domain : "")
+        + ";SameSite=Lax";
     }
-    function getCookie(n){
-      return document.cookie.split("; ").reduce((acc, pair)=>{
-        const [k, ...rest] = pair.split("=");
-        return k === n ? decodeURIComponent(rest.join("=")) : acc;
+
+    function getCookie(n) {
+      return document.cookie.split("; ").reduce(function(acc, pair) {
+        var parts = pair.split("=");
+        var k = parts[0];
+        var rest = parts.slice(1).join("=");
+        return k === n ? decodeURIComponent(rest) : acc;
       }, "");
     }
-    const q = parseParams(window.location.search);
-    const h = parseParams(window.location.hash ? window.location.hash.replace(/^#/, "?") : "");
-    const params = Object.assign({}, q, h);
-    const current = {
+
+    // ---- Captura UTMs da URL atual
+    var q = parseParams(window.location.search);
+    var h = parseParams(window.location.hash ? window.location.hash.replace(/^#/, "?") : "");
+    var params = Object.assign({}, q, h);
+
+    var refSearch = document.referrer ? (document.referrer.split("?")[1] || "") : "";
+    var referrerParams = parseParams(refSearch);
+    var referrerHostname = "";
+    try { referrerHostname = document.referrer ? new URL(document.referrer).hostname : ""; } catch(e) {}
+
+    var current = {
       utm_source:   params.utm_source   || "",
       utm_medium:   params.utm_medium   || "",
       utm_campaign: params.utm_campaign || "",
@@ -70,11 +100,12 @@
       fbclid:       params.fbclid       || "",
       ttclid:       params.ttclid       || ""
     };
-    const hasCurrent = Object.values(current).some(Boolean);
-    if (hasCurrent) {
-      Object.entries(current).forEach(([k, v]) => setCookie(k, v, 90));
+
+    if (Object.values(current).some(Boolean)) {
+      Object.entries(current).forEach(function(entry) { setCookie(entry[0], entry[1], 90); });
     }
-    const utm = {
+
+    var utm = {
       utm_source:   current.utm_source   || getCookie("utm_source")   || "",
       utm_medium:   current.utm_medium   || getCookie("utm_medium")   || "",
       utm_campaign: current.utm_campaign || getCookie("utm_campaign") || "",
@@ -83,62 +114,88 @@
       fbclid:       current.fbclid       || getCookie("fbclid")       || "",
       ttclid:       current.ttclid       || getCookie("ttclid")       || ""
     };
-    function setManyInScope(scope, names, value) {
-      if (!value) return;
-      names.forEach((n)=>{
-        const byName = scope.querySelectorAll(`[name="${n}"]`);
-        const byId   = scope.querySelectorAll(`#${(window.CSS && CSS.escape) ? CSS.escape(n) : n}`);
-        [...byName, ...byId].forEach(el => { if ("value" in el) el.value = value; });
+
+    if (!utm.utm_source) {
+      utm.utm_source = referrerParams.utm_source || referrerHostname || "direto";
+      setCookie("utm_source", utm.utm_source, 90);
+    }
+
+    // ---- FORMULÁRIOS ACTIVECAMPAIGN: field[ID]
+    function fillACForms() {
+      document.querySelectorAll("form").forEach(function(form) {
+        Object.entries(AC_FIELDS).forEach(function(entry) {
+          var utmKey  = entry[0];
+          var fieldId = entry[1];
+          var fieldName = "field[" + fieldId + "]";
+          var existing = form.querySelector('input[name="' + fieldName + '"]');
+          if (existing) {
+            if (!existing.value && utm[utmKey]) existing.value = utm[utmKey];
+            return;
+          }
+          var input = document.createElement("input");
+          input.setAttribute("type", "hidden");
+          input.setAttribute("name", fieldName);
+          input.setAttribute("value", utm[utmKey] || "");
+          form.appendChild(input);
+        });
       });
     }
-    function fillScope(scope){
-      setManyInScope(scope, ["utm_source","contact.utm_source"],     utm.utm_source);
-      setManyInScope(scope, ["utm_medium","contact.utm_medium"],     utm.utm_medium);
-      setManyInScope(scope, ["utm_campaign","contact.utm_campaign"], utm.utm_campaign);
-      setManyInScope(scope, ["utm_content","contact.utm_content"],   utm.utm_content);
-    }
-    function fillAll(){
-      fillScope(document);
-      document.querySelectorAll("form").forEach(fillScope);
-    }
-    function decorateEduzzLinks(){
-      const keys = ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"];
-      const anchors = Array.from(document.querySelectorAll('a[href]'));
-      anchors.forEach((a) => {
-        const href = a.getAttribute("href");
-        if (!href) return;
-        if (href.startsWith("#") || href.startsWith("javascript:")) return;
-        let url;
-        try {
-          url = new URL(href, window.location.origin);
-        } catch {
-          return;
-        }
-        const host = (url.hostname || "").toLowerCase();
-        const isEduzz =
-          host === "chk.eduzz.com" ||
-          host.endsWith(".eduzz.com") ||
-          host.includes("eduzz.com");
+
+    // ---- EDUZZ: Decora links do checkout com UTMs
+    function decorateEduzzLinks() {
+      var keys = ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"];
+      document.querySelectorAll("a[href]").forEach(function(a) {
+        var href = a.getAttribute("href");
+        if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+        var url;
+        try { url = new URL(href, window.location.origin); } catch(e) { return; }
+        var host = (url.hostname || "").toLowerCase();
+        var isEduzz = host === "chk.eduzz.com" || host.endsWith(".eduzz.com");
         if (!isEduzz) return;
-        keys.forEach((k) => {
+        var changed = false;
+        keys.forEach(function(k) {
           if (!url.searchParams.get(k) && utm[k]) {
             url.searchParams.set(k, utm[k]);
+            changed = true;
           }
         });
-        a.setAttribute("href", url.toString());
+        if (changed) a.setAttribute("href", url.toString());
       });
     }
-    function runAll(){
-      fillAll();
+
+    // Decoração no clique (links re-renderizados)
+    document.addEventListener("click", function(e) {
+      var a = e.target.closest("a[href]");
+      if (!a) return;
+      var href = a.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+      var url;
+      try { url = new URL(href, window.location.origin); } catch(e) { return; }
+      var host = (url.hostname || "").toLowerCase();
+      if (!(host === "chk.eduzz.com" || host.endsWith(".eduzz.com"))) return;
+      ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"].forEach(function(k) {
+        if (!url.searchParams.get(k) && utm[k]) url.searchParams.set(k, utm[k]);
+      });
+      a.setAttribute("href", url.toString());
+    }, true);
+
+    function runAll() {
+      fillACForms();
       decorateEduzzLinks();
     }
+
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", runAll);
     } else {
       runAll();
     }
-    new MutationObserver(() => runAll())
-      .observe(document.documentElement, { childList: true, subtree: true });
+
+    var debounceTimer;
+    new MutationObserver(function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(runAll, 300);
+    }).observe(document.documentElement, { childList: true, subtree: true });
+
   })();
   </script>
 

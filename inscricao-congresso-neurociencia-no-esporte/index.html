@@ -45,6 +45,138 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
 
+  <!-- Script UTM: captura UTMs (URL/cookies), injeta field[ID] no form AC e repassa para obrigado -->
+  <script>
+  (function () {
+    var AC_FIELDS = { utm_source: 39, utm_medium: 40, utm_campaign: 41, utm_content: 42 };
+    function parseParams(source) {
+      try {
+        var out = {};
+        new URLSearchParams(source || "").forEach(function(v, k) { out[k.toLowerCase()] = v; });
+        return out;
+      } catch(e) { return {}; }
+    }
+    function setCookie(n, v, days) {
+      if (!v) return;
+      var t = new Date();
+      t.setTime(t.getTime() + days * 24 * 60 * 60 * 1000);
+      var domain = window.location.hostname.replace(/^www\./, "");
+      document.cookie = n + "=" + encodeURIComponent(v)
+        + ";expires=" + t.toUTCString()
+        + ";path=/"
+        + (domain ? ";domain=." + domain : "")
+        + ";SameSite=Lax";
+    }
+    function getCookie(n) {
+      return document.cookie.split("; ").reduce(function(acc, pair) {
+        var parts = pair.split("=");
+        var k = parts[0];
+        var rest = parts.slice(1).join("=");
+        return k === n ? decodeURIComponent(rest) : acc;
+      }, "");
+    }
+    var q = parseParams(window.location.search);
+    var h = parseParams(window.location.hash ? window.location.hash.replace(/^#/, "?") : "");
+    var params = Object.assign({}, q, h);
+    var refSearch = document.referrer ? (document.referrer.split("?")[1] || "") : "";
+    var referrerParams = parseParams(refSearch);
+    var referrerHostname = "";
+    try { referrerHostname = document.referrer ? new URL(document.referrer).hostname : ""; } catch(e) {}
+    var current = {
+      utm_source:   params.utm_source   || "",
+      utm_medium:   params.utm_medium   || "",
+      utm_campaign: params.utm_campaign || "",
+      utm_content:  params.utm_content  || "",
+      gclid:        params.gclid        || "",
+      fbclid:       params.fbclid       || "",
+      ttclid:       params.ttclid       || ""
+    };
+    if (Object.values(current).some(Boolean)) {
+      Object.entries(current).forEach(function(entry) { setCookie(entry[0], entry[1], 90); });
+    }
+    var utm = {
+      utm_source:   current.utm_source   || getCookie("utm_source")   || "",
+      utm_medium:   current.utm_medium   || getCookie("utm_medium")   || "",
+      utm_campaign: current.utm_campaign || getCookie("utm_campaign") || "",
+      utm_content:  current.utm_content  || getCookie("utm_content")  || "",
+      gclid:        current.gclid        || getCookie("gclid")        || "",
+      fbclid:       current.fbclid       || getCookie("fbclid")       || "",
+      ttclid:       current.ttclid       || getCookie("ttclid")       || ""
+    };
+    if (!utm.utm_source) {
+      utm.utm_source = referrerParams.utm_source || referrerHostname || "direto";
+      setCookie("utm_source", utm.utm_source, 90);
+    }
+    function fillACForms() {
+      document.querySelectorAll("form").forEach(function(form) {
+        Object.entries(AC_FIELDS).forEach(function(entry) {
+          var utmKey  = entry[0];
+          var fieldId = entry[1];
+          var fieldName = "field[" + fieldId + "]";
+          var existing = form.querySelector('input[name="' + fieldName + '"]');
+          if (existing) {
+            if (!existing.value && utm[utmKey]) existing.value = utm[utmKey];
+            return;
+          }
+          var input = document.createElement("input");
+          input.setAttribute("type", "hidden");
+          input.setAttribute("name", fieldName);
+          input.setAttribute("value", utm[utmKey] || "");
+          form.appendChild(input);
+        });
+      });
+    }
+    function decorateEduzzLinks() {
+      var keys = ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"];
+      document.querySelectorAll("a[href]").forEach(function(a) {
+        var href = a.getAttribute("href");
+        if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+        var url;
+        try { url = new URL(href, window.location.origin); } catch(e) { return; }
+        var host = (url.hostname || "").toLowerCase();
+        var isEduzz = host === "chk.eduzz.com" || host.endsWith(".eduzz.com");
+        if (!isEduzz) return;
+        var changed = false;
+        keys.forEach(function(k) {
+          if (!url.searchParams.get(k) && utm[k]) {
+            url.searchParams.set(k, utm[k]);
+            changed = true;
+          }
+        });
+        if (changed) a.setAttribute("href", url.toString());
+      });
+    }
+    document.addEventListener("click", function(e) {
+      var a = e.target.closest("a[href]");
+      if (!a) return;
+      var href = a.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+      var url;
+      try { url = new URL(href, window.location.origin); } catch(e) { return; }
+      var host = (url.hostname || "").toLowerCase();
+      if (!(host === "chk.eduzz.com" || host.endsWith(".eduzz.com"))) return;
+      ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"].forEach(function(k) {
+        if (!url.searchParams.get(k) && utm[k]) url.searchParams.set(k, utm[k]);
+      });
+      a.setAttribute("href", url.toString());
+    }, true);
+    function runAll() {
+      fillACForms();
+      decorateEduzzLinks();
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", runAll);
+    } else {
+      runAll();
+    }
+    var debounceTimer;
+    new MutationObserver(function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(runAll, 300);
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  })();
+  </script>
+
   <!-- =============================================
        FIM DO BLOCO DO PIXEL
        ============================================= -->
@@ -271,6 +403,74 @@
       border-radius: 8px;
       background: #fff;
       display: block;
+    }
+    /* Design system: form AC inline (card, inputs, botão) */
+    .hero__form-wrap #_form_97_ {
+      border-radius: var(--radius-box);
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .hero__form-wrap #_form_97_ ._form-content { display: block; }
+    .hero__form-wrap #_form_97_ ._form_element {
+      margin-bottom: 1rem;
+    }
+    .hero__form-wrap #_form_97_ ._form_label,
+    .hero__form-wrap #_form_97_ ._form_element ._form-label {
+      font-family: var(--font-body);
+      font-weight: 600;
+      color: var(--color-hero-text);
+      margin-bottom: 0.35rem;
+    }
+    .hero__form-wrap #_form_97_ .field-required { color: #dc2626; }
+    .hero__form-wrap #_form_97_ input[type="text"],
+    .hero__form-wrap #_form_97_ input[type="tel"] {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      color: var(--color-hero-text);
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .hero__form-wrap #_form_97_ input::placeholder {
+      color: #94a3b8;
+    }
+    .hero__form-wrap #_form_97_ input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .hero__form-wrap #_form_97_ ._button-wrapper {
+      margin-top: 1.1rem;
+    }
+    .hero__form-wrap #_form_97_ ._submit {
+      width: 100%;
+      padding: 0.85rem 1.25rem !important;
+      font-family: var(--font-body) !important;
+      font-weight: 600 !important;
+      font-size: 1rem !important;
+      border-radius: var(--radius-btn) !important;
+      background: var(--color-accent) !important;
+      color: #fff !important;
+      border: none !important;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.05s;
+    }
+    .hero__form-wrap #_form_97_ ._submit:hover:not(:disabled) {
+      background: var(--color-accent-hover) !important;
+    }
+    .hero__form-wrap #_form_97_ ._submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .hero__form-wrap #_form_97_ ._form-thank-you {
+      font-family: var(--font-body);
+      color: var(--color-hero-text);
+    }
+    @media (max-width: 767px) {
+      .hero__form-wrap #_form_97_ { padding: 1.5rem; }
     }
 
     .hero__micro {
@@ -999,8 +1199,7 @@
 
         <!-- Formulário de captura ActiveCampaign (ActiveHosted) -->
         <div class="hero__form-wrap" id="form-congresso">
-          <style>@import url(https://fonts.bunny.net/css?family=sans-serif:400);</style>
-             <style>
+          <style>
              #_form_97_{font-size:14px;line-height:1.6;font-family:arial, helvetica, sans-serif;margin:0;box-shadow:0px 1px 13px 0px rgba(0, 0, 0, 0.3)}._form_hide{display:none;visibility:hidden}._form_show{display:block;visibility:visible}#_form_97_._form-top{top:0}#_form_97_._form-bottom{bottom:0}#_form_97_._form-left{left:0}#_form_97_._form-right{right:0}#_form_97_ input[type="text"],#_form_97_ input[type="tel"],#_form_97_ input[type="date"],#_form_97_ textarea{padding:6px;height:auto;border:#979797 1px solid;border-radius:4px;color:#000 !important;font-size:14px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}#_form_97_ textarea{resize:none}#_form_97_ input::placeholder{color:#142341}#_form_97_ ._submit{cursor:pointer;font-family:arial, sans-serif;font-size:14px;text-align:center;background:#3d7997 !important;border:0 !important;-moz-border-radius:4px !important;-webkit-border-radius:4px !important;border-radius:4px !important;color:#ffffff !important;padding:12px !important}#_form_97_ ._submit:disabled{cursor:not-allowed;opacity:0.4}#_form_97_ ._submit.processing{position:relative}#_form_97_ ._submit.processing::before{content:"";width:1em;height:1em;position:absolute;z-index:1;top:50%;left:50%;border:double 3px transparent;border-radius:50%;background-image:linear-gradient(#3d7997, #3d7997), conic-gradient(#3d7997, #ffffff);background-origin:border-box;background-clip:content-box, border-box;animation:1200ms ease 0s infinite normal none running _spin}#_form_97_ ._submit.processing::after{content:"";position:absolute;top:0;bottom:0;left:0;right:0}@keyframes _spin{0%{transform:translate(-50%, -50%) rotate(90deg)}100%{transform:translate(-50%, -50%) rotate(450deg)}}#_form_97_ ._close-icon{cursor:pointer;background-image:url("https://d226aj4ao1t61q.cloudfront.net/esfkyjh1u_forms-close-dark.png");background-repeat:no-repeat;background-size:14.2px 14.2px;position:absolute;display:block;top:11px;right:9px;overflow:hidden;width:16.2px;height:16.2px}#_form_97_ ._close-icon:before{position:relative}#_form_97_ ._form-body{margin-bottom:30px}#_form_97_ ._form-image-left{width:150px;float:left}#_form_97_ ._form-content-right{margin-left:164px}#_form_97_ ._form-branding{color:#fff;font-size:10px;clear:both;text-align:left;margin-top:30px;font-weight:100}#_form_97_ ._form-branding ._logo{display:block;width:130px;height:14px;margin-top:6px;background-image:url("https://d226aj4ao1t61q.cloudfront.net/hh9ujqgv5_aclogo_li.png");background-size:130px auto;background-repeat:no-repeat}#_form_97_ .form-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);border:0}#_form_97_ ._form-label,#_form_97_ ._form_element ._form-label{font-weight:bold;margin-bottom:5px;display:block}#_form_97_._dark ._form-branding{color:#333}#_form_97_._dark ._form-branding ._logo{background-image:url("https://d226aj4ao1t61q.cloudfront.net/jftq2c8s_aclogo_dk.png")}#_form_97_ ._form_element{position:relative;margin-bottom:10px;font-size:0;max-width:100%}#_form_97_ ._form_element *{font-size:14px}#_form_97_ ._form_element._clear{clear:both;width:100%;float:none}#_form_97_ ._form_element._clear:after{clear:left}#_form_97_ ._form_element textarea,#_form_97_ ._form_element select,#_form_97_ ._form_element input[type="text"],#_form_97_ ._form_element input[type="date"],#_form_97_ ._form_element input[type="phone"],#_form_97_ ._form_element input[type="email"]{background:white;color:#142341 !important;border-top:1px solid #cccccc;border-left:1px solid #cccccc;border-right:1px solid #cccccc;border-bottom:1px solid #cccccc;border-radius:0px}#_form_97_ ._form_element input[type="text"],#_form_97_ ._form_element input[type="date"],#_form_97_ ._form_element select,#_form_97_ ._form_element textarea:not(.g-recaptcha-response){display:block;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit}#_form_97_ ._field-wrapper{position:relative}#_form_97_ ._inline-style{float:left}#_form_97_ ._inline-style input[type="text"]{width:150px}#_form_97_ ._inline-style:not(._clear){margin-right:20px}#_form_97_ ._form_element img._form-image{max-width:100%}#_form_97_ ._form_element ._form-fieldset{border:0;padding:0.01em 0 0 0;margin:0;min-width:0}#_form_97_ ._clear-element{clear:left}#_form_97_ ._full_width{width:100%}#_form_97_ ._form_full_field{display:block;width:100%;margin-bottom:10px}#_form_97_ input[type="text"]._has_error,#_form_97_ textarea._has_error{border:#F37C7B 1px solid}#_form_97_ input[type="checkbox"]._has_error{outline:#F37C7B 1px solid}#_form_97_ ._show_be_error{float:left}#_form_97_ ._error{display:block;position:absolute;font-size:14px;z-index:10000001}#_form_97_ ._error._above{padding-bottom:4px;bottom:39px;right:0}#_form_97_ ._error._below{padding-top:8px;top:100%;right:0}#_form_97_ ._error._above ._error-arrow{bottom:-4px;right:15px;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #FFDDDD}#_form_97_ ._error._below ._error-arrow{top:0;right:15px;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:8px solid #FFDDDD}#_form_97_ ._error-inner{padding:12px 12px 12px 36px;background-color:#FFDDDD;background-image:url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM9 3V9H7V3H9ZM9 13V11H7V13H9Z' fill='%23CA0000'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center;font-size:14px;font-family:arial, sans-serif;font-weight:600;line-height:16px;color:#000;text-align:center;text-decoration:none;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;box-shadow:0 1px 4px rgba(31, 33, 41, 0.298295)}@media only screen and (max-width:319px){#_form_97_ ._error-inner{padding:7px 7px 7px 25px;font-size:12px;line-height:12px;background-position:4px center;max-width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}#_form_97_ ._error-inner._form_error{margin-bottom:5px;text-align:left}#_form_97_ ._button-wrapper ._error-inner._form_error{position:static}#_form_97_ ._error-inner._no_arrow{margin-bottom:10px}#_form_97_ ._error-arrow{position:absolute;width:0;height:0}#_form_97_ ._error-html{margin-bottom:10px}.pika-single{z-index:10000001 !important}#_form_97_ input[type="text"].datetime_date{width:69%;display:inline}#_form_97_ select.datetime_time{width:29%;display:inline;height:32px}#_form_97_ input[type="date"].datetime_date{width:69%;display:inline-flex}#_form_97_ input[type="time"].datetime_time{width:29%;display:inline-flex}@media (min-width:320px) and (max-width:667px){::-webkit-scrollbar{display:none}#_form_97_{margin:0;width:100%;min-width:100%;max-width:100%;box-sizing:border-box}#_form_97_ *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-size:1em}#_form_97_ ._form-content{margin:0;width:100%}#_form_97_ ._form-inner{display:block;min-width:100%}#_form_97_ ._form-title,#_form_97_ ._inline-style{margin-top:0;margin-right:0;margin-left:0}#_form_97_ ._form-title{font-size:1.2em}#_form_97_ ._form_element{margin:0 0 20px;padding:0;width:100%}#_form_97_ ._form-element,#_form_97_ ._inline-style,#_form_97_ input[type="text"],#_form_97_ label,#_form_97_ p,#_form_97_ textarea:not(.g-recaptcha-response){float:none;display:block;width:100%}#_form_97_ ._row._checkbox-radio label{display:inline}#_form_97_ ._row,#_form_97_ p,#_form_97_ label{margin-bottom:0.7em;width:100%}#_form_97_ ._row input[type="checkbox"],#_form_97_ ._row input[type="radio"]{margin:0 !important;vertical-align:middle !important}#_form_97_ ._row input[type="checkbox"]+span label{display:inline}#_form_97_ ._row span label{margin:0 !important;width:initial !important;vertical-align:middle !important}#_form_97_ ._form-image{max-width:100%;height:auto !important}#_form_97_ input[type="text"]{padding-left:10px;padding-right:10px;font-size:16px;line-height:1.3em}#_form_97_ input[type="radio"],#_form_97_ input[type="checkbox"]{display:inline-block;width:1.3em;height:1.3em;font-size:1em;margin:0 0.3em 0 0;vertical-align:baseline}#_form_97_ button[type="submit"]{padding:20px;font-size:1.5em}#_form_97_ ._inline-style{margin:20px 0 0 !important}#_form_97_ ._inline-style input[type="text"]{width:100%}}#_form_97_ .sms_consent_checkbox{position:relative;width:100%;display:flex;align-items:flex-start;padding:20px 0}#_form_97_ .sms_consent_checkbox input[type="checkbox"]{float:left;margin:5px 10px 10px 0}#_form_97_ .sms_consent_checkbox .sms_consent_message{display:inline;float:left;text-align:left;margin-bottom:10px;font-size:14px;color:#7D8799}#_form_97_ .sms_consent_checkbox .sms_consent_message.sms_consent_mini{width:90%}#_form_97_ .sms_consent_checkbox ._error._above{right:auto;bottom:0}#_form_97_ .sms_consent_checkbox ._error._above ._error-arrow{right:auto;left:5px}@media (min-width:320px) and (max-width:667px){#_form_97_ .sms_consent_checkbox ._error._above{top:-30px;left:0;bottom:auto}}#_form_97_ .field-required{color:#FF0000}#_form_97_{position:relative;text-align:left;margin:25px auto 0;padding-top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;background:white !important;border-top:0px solid #b0b0b0 !important;border-right:0px solid #b0b0b0 !important;border-bottom:0px solid #b0b0b0 !important;border-left:0px solid #b0b0b0 !important;max-width:500px;-moz-border-radius:0px !important;-webkit-border-radius:0px !important;border-radius:0px !important;color:#000000}#_form_97_ ._show_be_error{min-width:100%}#_form_97_._inline-form,#_form_97_._inline-form ._form-content{font-family:sans-serif;font-size:14px;font-weight:400}#_form_97_._inline-form ._row span:not(.field-required),#_form_97_._inline-form ._row label{font-family:sans-serif;font-size:14px;font-weight:400;line-height:1.6em;color:black !important}#_form_97__inlineform input[type="text"],#_form_97__inlineform input[type="date"],#_form_97__inlineform input[type="tel"],#_form_97__inlineform select,#_form_97__inlineform textarea:not(.g-recaptcha-response){font-family:sans-serif;font-size:14px;font-weight:400;font-color:#000000;line-height:1.6em}#_form_97_._inline-form ._html-code *:not(h1, h2, h3, h4, h5, h6),#_form_97_._inline-form .sms_consent_message,#_form_97_._inline-form ._form-thank-you{font-family:sans-serif;font-size:14px;font-weight:400;color:black !important}#_form_97_._inline-form ._form-label,#_form_97_._inline-form ._form-emailidentifier,#_form_97_._inline-form ._form-checkbox-option-label{font-family:sans-serif;font-size:14px;font-weight:700;line-height:1.6em;color:black !important}#_form_97_._inline-form ._submit{margin-top:12px;font-family:sans-serif;font-size:14px;font-weight:400}#_form_97_._inline-form ._html-code h1,#_form_97_._inline-form ._html-code h2,#_form_97_._inline-form ._html-code h3,#_form_97_._inline-form ._html-code h4,#_form_97_._inline-form ._html-code h5,#_form_97_._inline-form ._html-code h6,#_form_97_._inline-form ._form-title{font-family:sans-serif;font-size:24px;line-height:normal;font-weight:400;color:black;margin-bottom:0;display:block}#_form_97_._inline-form ._form-branding{font-family:"IBM Plex Sans", Helvetica, sans-serif;font-size:13px;font-weight:100;font-style:normal;text-decoration:none}#_form_97_:before,#_form_97_:after{content:" ";display:table}#_form_97_:after{clear:both}#_form_97_._inline-style{width:auto;display:inline-block}#_form_97_._inline-style input[type="text"],#_form_97_._inline-style input[type="date"]{padding:10px 12px}#_form_97_._inline-style button._inline-style{position:relative;top:27px}#_form_97_._inline-style p{margin:0}#_form_97_._inline-style ._button-wrapper{position:relative;margin:16px 12.5px 0 20px}#_form_97_._inline-style ._button-wrapper:not(._clear){margin-left:0}#_form_97_ ._form-thank-you{position:relative;left:0;right:0;text-align:center;font-size:18px}#_form_97_ ._form-pc-confirmation ._submit{margin-top:16px}@media (min-width:320px) and (max-width:667px){#_form_97_._inline-form._inline-style ._inline-style._button-wrapper{margin-top:20px !important;margin-left:0 !important}}#_form_97_ .iti{width:100%}#_form_97_ .iti.iti--allow-dropdown.iti--separate-dial-code{width:100%}#_form_97_ .iti input{width:100%;border:#979797 1px solid;border-radius:4px}#_form_97_ .iti--separate-dial-code .iti__selected-flag{background-color:#FFFFFF;border-radius:4px}#_form_97_ .iti--separate-dial-code .iti__selected-flag:hover{background-color:rgba(0, 0, 0, 0.05)}#_form_97_ .iti__country-list{border-radius:4px;margin-top:4px;min-width:460px}#_form_97_ .iti__country-list--dropup{margin-bottom:4px}#_form_97_ .phone-error-hidden{display:none}#_form_97_ .phone-error{color:#E40E49}#_form_97_ .phone-input-error{border:1px solid #E40E49 !important}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field fieldset{margin:0;margin-bottom:1.1428571429em;border:none;padding:0}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field fieldset:last-child{margin-bottom:0}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field legend{margin-bottom:1.1428571429em}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field label{display:flex;align-items:flex-start;justify-content:flex-start;margin-bottom:0.8571428571em}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field label:last-child{margin-bottom:0}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field input{margin:0;margin-right:8px}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field ._form-checkbox-option-label{display:block;font-weight:400;margin-top:-4px}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field ._form-checkbox-option-label-with-description{display:block;font-weight:700;margin-top:-4px}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field ._form-checkbox-option-description{margin:0;font-size:0.8571428571em}#_form_97_._inline-form ._form-content ._form-list-subscriptions-field ._form-subscriptions-unsubscribe-all-description{line-height:normal;margin-top:-2px}</style>
              <form method="POST" action="https://atletacampeao.activehosted.com/proc.php" id="_form_97_" class="_form _form_97 _inline-form  _dark" novalidate data-styles-version="5">
                <input type="hidden" name="u" value="97" />
@@ -1050,7 +1249,29 @@
              </div>
              </form><script>
              window.cfields = [];
+             window.getThankYouUrlWithUtm = function() {
+                 var base = 'https://atletacampeaotreinamentos.com/obrigado-congresso/';
+                 var getC = function(name) {
+                     return document.cookie.split('; ').reduce(function(acc, pair) {
+                         var parts = pair.split('=');
+                         var k = parts[0];
+                         var v = parts.slice(1).join('=');
+                         return k === name ? decodeURIComponent(v) : acc;
+                     }, '');
+                 };
+                 var keys = ['utm_source','utm_medium','utm_campaign','utm_content','fbclid','gclid','ttclid'];
+                 var params = [];
+                 for (var i = 0; i < keys.length; i++) {
+                     var v = getC(keys[i]);
+                     if (v) params.push(encodeURIComponent(keys[i]) + '=' + encodeURIComponent(v));
+                 }
+                 return params.length ? base + '?' + params.join('&') : base;
+             };
              window._show_thank_you = function(id, message, trackcmp_url, email) {
+                 if (id == 97) {
+                     window.location.href = window.getThankYouUrlWithUtm ? window.getThankYouUrlWithUtm() : 'https://atletacampeaotreinamentos.com/obrigado-congresso/';
+                     return;
+                 }
                  var form = document.getElementById('_form_' + id + '_'), thank_you = form.querySelector('._form-thank-you');
                  form.querySelector('._form-content').style.display = 'none';
                  thank_you.innerHTML = message;
@@ -1061,7 +1282,6 @@
                      visitorObject('setEmail', email);
                      visitorObject('update');
                  } else if (typeof(trackcmp_url) != 'undefined' && trackcmp_url) {
-                     // Site tracking URL to use after inline form submission.
                      _load_script(trackcmp_url);
                  }
                  if (typeof window._form_callback !== 'undefined') window._form_callback(id);
@@ -1201,9 +1421,13 @@
                          };
                      }
                  }
-                 var _removed = false;
-                     var form_to_submit = document.getElementById('_form_97_');
-                 var allInputs = form_to_submit.querySelectorAll('input, select, textarea'), tooltips = [], submitted = false;
+var _removed = false;
+                    var form_to_submit = document.getElementById('_form_97_');
+                if (!form_to_submit) {
+                    console.error('Formulário _form_97_ não encontrado no DOM.');
+                    return;
+                }
+                var allInputs = form_to_submit.querySelectorAll('input, select, textarea'), tooltips = [], submitted = false;
              
                  var getUrlParam = function(name) {
                      if (name.toLowerCase() !== 'email') {
@@ -1574,15 +1798,42 @@
              
                              return response.json();
                          }
-                         if (formSupportsPost) {
-                             submitForm().then((data) => {
-                                 eval(data.js);
-                             }).catch(() => {
-                                 _show_error("97", "Desculpe, seu envio falhou. Tente novamente.");
-                             });
-                         } else {
-                             _load_script('https://atletacampeao.activehosted.com/proc.php?' + serialized + '&jsonp=true', null, true);
-                         }
+if (formSupportsPost) {
+                            submitForm().then((data) => {
+                                eval(data.js);
+                            }).catch(() => {
+                                _show_error("97", "Desculpe, seu envio falhou. Tente novamente.");
+                            });
+                        } else if (window.location.protocol === 'file:') {
+                            (function() {
+                                var params = new URLSearchParams(serialized);
+                                var form = document.createElement('form');
+                                form.method = 'POST';
+                                form.action = 'https://atletacampeao.activehosted.com/proc.php';
+                                form.style.display = 'none';
+                                params.forEach(function(value, key) {
+                                    var input = document.createElement('input');
+                                    input.type = 'hidden';
+                                    input.name = key;
+                                    input.value = value;
+                                    form.appendChild(input);
+                                });
+                                var iframe = document.createElement('iframe');
+                                iframe.name = '_ac_iframe_' + Date.now();
+                                iframe.style.display = 'none';
+                                document.body.appendChild(iframe);
+                                form.target = iframe.name;
+                                document.body.appendChild(form);
+                                form.submit();
+                                setTimeout(function() {
+                                    document.body.removeChild(form);
+                                    document.body.removeChild(iframe);
+                                    window.location.href = window.getThankYouUrlWithUtm ? window.getThankYouUrlWithUtm() : 'https://atletacampeaotreinamentos.com/obrigado-congresso/';
+                                }, 1500);
+                            })();
+                        } else {
+                            _load_script('https://atletacampeao.activehosted.com/proc.php?' + serialized + '&jsonp=true', null, true);
+                        }
                      }
                      return false;
                  };
