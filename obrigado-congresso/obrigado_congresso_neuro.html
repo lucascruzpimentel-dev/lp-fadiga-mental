@@ -474,8 +474,8 @@
     .lotes__countdown-value { display: block; font-family: var(--font-heading); font-weight: 700; font-size: 1.35rem; line-height: 1.2; color: var(--color-accent); }
     .lotes__countdown-unit { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-subhead); margin-top: 0.15rem; }
     .lotes__countdown--hidden { display: none; }
-    .lotes__grid { display: grid; grid-template-columns: 1fr; gap: clamp(1.25rem, 3vw, 1.5rem); }
-    @media (min-width: 768px) { .lotes__grid { grid-template-columns: repeat(3, 1fr); } }
+    .lotes__grid { display: grid; grid-template-columns: 1fr; gap: clamp(1.25rem, 3vw, 1.5rem); margin-left: auto; margin-right: auto; }
+    @media (min-width: 768px) { .lotes__grid { grid-template-columns: repeat(2, 1fr); max-width: 720px; } }
     .lote-card {
       background: #fff; border-radius: var(--radius-card); box-shadow: var(--shadow-card);
       padding: clamp(1.25rem, 3vw, 1.5rem); border: 2px solid var(--color-slate-200);
@@ -1389,10 +1389,10 @@
         </div>
       </div>
       <div class="lotes__grid">
-        <article class="lote-card" id="lote-1" data-end="2026-03-15T23:59:00-03:00" data-price="47">
+        <article class="lote-card" id="lote-1" data-end="2026-03-22T23:59:00-03:00" data-price="47">
           <span class="lote-card__badge">Lote 1</span>
           <p class="lote-card__price">R$ 47</p>
-          <p class="lote-card__valid">Válido até 15 de março de 2026</p>
+          <p class="lote-card__valid">Válido até 22 de março de 2026</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1405,26 +1405,10 @@
           </div>
           <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
         </article>
-        <article class="lote-card" id="lote-2" data-end="2026-03-23T23:59:00-03:00" data-price="67">
+        <article class="lote-card" id="lote-2" data-end="2026-03-31T23:59:00-03:00" data-price="97">
           <span class="lote-card__badge">Lote 2</span>
-          <p class="lote-card__price">R$ 67</p>
-          <p class="lote-card__valid">Válido até 23 de março de 2026</p>
-          <ul class="lote-card__benefits">
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Certificado oficial</li>
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Prioridade nas perguntas</li>
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
-          </ul>
-          <div class="lote-card__cta-wrap">
-            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
-          </div>
-          <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
-        </article>
-        <article class="lote-card" id="lote-3" data-end="2026-03-31T23:59:00-03:00" data-price="97">
-          <span class="lote-card__badge">Lote 3</span>
           <p class="lote-card__price">R$ 97</p>
-          <p class="lote-card__valid">Válido até 31 de março de 2026</p>
+          <p class="lote-card__valid">A partir da abertura do congresso (23 de março)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1594,10 +1578,10 @@
         </div>
       </div>
       <div class="lotes__grid">
-        <article class="lote-card" id="lote-1-b" data-end="2026-03-15T23:59:00-03:00" data-price="47">
+        <article class="lote-card" id="lote-1-b" data-end="2026-03-22T23:59:00-03:00" data-price="47">
           <span class="lote-card__badge">Lote 1</span>
           <p class="lote-card__price">R$ 47</p>
-          <p class="lote-card__valid">Válido até 15 de março de 2026</p>
+          <p class="lote-card__valid">Válido até 22 de março de 2026</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1610,26 +1594,10 @@
           </div>
           <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
         </article>
-        <article class="lote-card" id="lote-2-b" data-end="2026-03-23T23:59:00-03:00" data-price="67">
+        <article class="lote-card" id="lote-2-b" data-end="2026-03-31T23:59:00-03:00" data-price="97">
           <span class="lote-card__badge">Lote 2</span>
-          <p class="lote-card__price">R$ 67</p>
-          <p class="lote-card__valid">Válido até 23 de março de 2026</p>
-          <ul class="lote-card__benefits">
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Certificado oficial</li>
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Prioridade nas perguntas</li>
-            <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
-          </ul>
-          <div class="lote-card__cta-wrap">
-            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
-          </div>
-          <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
-        </article>
-        <article class="lote-card" id="lote-3-b" data-end="2026-03-31T23:59:00-03:00" data-price="97">
-          <span class="lote-card__badge">Lote 3</span>
           <p class="lote-card__price">R$ 97</p>
-          <p class="lote-card__valid">Válido até 31 de março de 2026</p>
+          <p class="lote-card__valid">A partir da abertura do congresso (23 de março)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1808,8 +1776,7 @@
     // Lotes: virada automática 23:59 + link do botão conforme lote atual
     var LOTES_CHECKOUT = {
       1: 'https://chk.eduzz.com/39ZQZRJZ9E',
-      2: 'https://chk.eduzz.com/39ZQZRJZ9E',
-      3: 'https://chk.eduzz.com/39ZQZRJZ9E'
+      2: 'https://chk.eduzz.com/39ZQZRJZ9E'
     };
     (function () {
       var cards = document.querySelectorAll('.lote-card');
@@ -1819,14 +1786,12 @@
       var elHoursAll = document.querySelectorAll('.js-lotes-countdown-hours');
       var elMinsAll = document.querySelectorAll('.js-lotes-countdown-mins');
       var elSecsAll = document.querySelectorAll('.js-lotes-countdown-secs');
-      var fimLote1 = new Date('2026-03-15T23:59:00-03:00');
-      var fimLote2 = new Date('2026-03-23T23:59:00-03:00');
-      var fimLote3 = new Date('2026-03-31T23:59:00-03:00');
+      var fimLote1 = new Date('2026-03-22T23:59:00-03:00');
+      var fimLote2 = new Date('2026-03-31T23:59:00-03:00');
       function doisDigitos(n) { return n < 10 ? '0' + n : String(n); }
       function qualLoteAtual(now) {
         if (now < fimLote1) return 1;
         if (now < fimLote2) return 2;
-        if (now < fimLote3) return 3;
         return 0;
       }
       function setAllTextContent(els, text) {
@@ -1838,8 +1803,9 @@
         var loteAtual = qualLoteAtual(now);
         var dataFim = null;
         var precoAtual = '';
-        cards.forEach(function(card, i) {
-          var num = (i % 3) + 1;
+        cards.forEach(function(card) {
+          var price = card.getAttribute('data-price');
+          var num = price === '97' ? 2 : 1;
           var endStr = card.getAttribute('data-end');
           var dataFimCard = endStr ? new Date(endStr) : null;
           var elStatus = card.querySelector('[data-lote-status]');
