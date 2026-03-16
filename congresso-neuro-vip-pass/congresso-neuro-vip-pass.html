@@ -42,15 +42,20 @@
     function parseParams(source) {
       try {
         const out = {};
-        const usp = new URLSearchParams(source || "");
-        usp.forEach((v, k) => { out[k.toLowerCase()] = v; });
+        new URLSearchParams(source || "").forEach((v, k) => { out[k.toLowerCase()] = v; });
         return out;
       } catch { return {}; }
     }
-    function setCookie(n, v, days){
+    function setCookie(n, v, days) {
       if (!v) return;
-      const t = new Date(); t.setTime(t.getTime() + days*24*60*60*1000);
-      document.cookie = n + "=" + encodeURIComponent(v) + ";expires=" + t.toUTCString() + ";path=/;SameSite=Lax";
+      const t = new Date();
+      t.setTime(t.getTime() + days * 24 * 60 * 60 * 1000);
+      const domain = window.location.hostname.replace(/^www\./, "");
+      document.cookie = n + "=" + encodeURIComponent(v)
+        + ";expires=" + t.toUTCString()
+        + ";path=/"
+        + (domain ? ";domain=." + domain : "")
+        + ";SameSite=Lax";
     }
     function getCookie(n){
       return document.cookie.split("; ").reduce((acc, pair)=>{
@@ -70,8 +75,7 @@
       fbclid:       params.fbclid       || "",
       ttclid:       params.ttclid       || ""
     };
-    const hasCurrent = Object.values(current).some(Boolean);
-    if (hasCurrent) {
+    if (Object.values(current).some(Boolean)) {
       Object.entries(current).forEach(([k, v]) => setCookie(k, v, 90));
     }
     const utm = {
@@ -85,10 +89,11 @@
     };
     function setManyInScope(scope, names, value) {
       if (!value) return;
-      names.forEach((n)=>{
-        const byName = scope.querySelectorAll(`[name="${n}"]`);
-        const byId   = scope.querySelectorAll(`#${(window.CSS && CSS.escape) ? CSS.escape(n) : n}`);
-        [...byName, ...byId].forEach(el => { if ("value" in el) el.value = value; });
+      names.forEach((n) => {
+        scope.querySelectorAll(`[name="${n}"]`).forEach(el => { if ("value" in el) el.value = value; });
+        try {
+          scope.querySelectorAll(`#${CSS.escape(n)}`).forEach(el => { if ("value" in el) el.value = value; });
+        } catch {}
       });
     }
     function fillScope(scope){
@@ -101,33 +106,44 @@
       fillScope(document);
       document.querySelectorAll("form").forEach(fillScope);
     }
-    function decorateEduzzLinks(){
-      const keys = ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"];
-      const anchors = Array.from(document.querySelectorAll('a[href]'));
-      anchors.forEach((a) => {
+    function decorateEduzzLinks() {
+      const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "gclid", "fbclid", "ttclid"];
+      document.querySelectorAll("a[href]").forEach((a) => {
         const href = a.getAttribute("href");
-        if (!href) return;
-        if (href.startsWith("#") || href.startsWith("javascript:")) return;
+        if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
         let url;
-        try {
-          url = new URL(href, window.location.origin);
-        } catch {
-          return;
-        }
+        try { url = new URL(href, window.location.origin); }
+        catch { return; }
         const host = (url.hostname || "").toLowerCase();
-        const isEduzz =
-          host === "chk.eduzz.com" ||
-          host.endsWith(".eduzz.com") ||
-          host.includes("eduzz.com");
+        const isEduzz = host === "chk.eduzz.com" || host.endsWith(".eduzz.com");
         if (!isEduzz) return;
+        let changed = false;
         keys.forEach((k) => {
           if (!url.searchParams.get(k) && utm[k]) {
             url.searchParams.set(k, utm[k]);
+            changed = true;
           }
         });
-        a.setAttribute("href", url.toString());
+        if (changed) a.setAttribute("href", url.toString());
       });
     }
+
+    document.addEventListener("click", function (e) {
+      const a = e.target.closest("a[href]");
+      if (!a) return;
+      const href = a.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+      let url;
+      try { url = new URL(href, window.location.origin); }
+      catch { return; }
+      const host = (url.hostname || "").toLowerCase();
+      if (!(host === "chk.eduzz.com" || host.endsWith(".eduzz.com"))) return;
+      const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "gclid", "fbclid", "ttclid"];
+      keys.forEach((k) => {
+        if (!url.searchParams.get(k) && utm[k]) url.searchParams.set(k, utm[k]);
+      });
+      a.setAttribute("href", url.toString());
+    }, true);
     function runAll(){
       fillAll();
       decorateEduzzLinks();
@@ -137,8 +153,11 @@
     } else {
       runAll();
     }
-    new MutationObserver(() => runAll())
-      .observe(document.documentElement, { childList: true, subtree: true });
+    let debounceTimer;
+    new MutationObserver(() => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(runAll, 300);
+    }).observe(document.documentElement, { childList: true, subtree: true });
   })();
   </script>
 
