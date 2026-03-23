@@ -1372,7 +1372,7 @@
 
         <div class="offer-card__price-wrap">
           <span class="offer-card__price-old">De R$ 97</span>
-          <span class="offer-card__price-now">Por R$ 47</span>
+          <span class="offer-card__price-now" id="js-offer-price-now">Por R$ 47</span>
           <span class="offer-card__price-note">Pagamento único · Acesso imediato</span>
         </div>
 
@@ -1477,10 +1477,10 @@
         </div>
       </div>
       <div class="lotes__grid">
-        <article class="lote-card" id="lote-1" data-end="2026-03-22T23:59:00-03:00" data-price="47">
+        <article class="lote-card" id="lote-1" data-end="2026-03-24T23:59:00-03:00" data-price="47">
           <span class="lote-card__badge">Lote 1</span>
           <p class="lote-card__price">R$ 47</p>
-          <p class="lote-card__valid">Válido até 22 de março de 2026</p>
+          <p class="lote-card__valid">Válido até 24 de março de 2026 (até 23h59)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1497,7 +1497,7 @@
         <article class="lote-card" id="lote-2" data-end="2026-03-31T23:59:00-03:00" data-price="97">
           <span class="lote-card__badge">Lote 2</span>
           <p class="lote-card__price">R$ 97</p>
-          <p class="lote-card__valid">A partir da abertura do congresso (23 de março)</p>
+          <p class="lote-card__valid">A partir de 24 de março de 2026, após 23h59 (virada do lote)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1506,7 +1506,7 @@
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
           </ul>
           <div class="lote-card__cta-wrap">
-            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
+            <a href="https://chk.eduzz.com/ej6ik63h" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
           </div>
           <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
         </article>
@@ -1667,10 +1667,10 @@
         </div>
       </div>
       <div class="lotes__grid">
-        <article class="lote-card" id="lote-1-b" data-end="2026-03-22T23:59:00-03:00" data-price="47">
+        <article class="lote-card" id="lote-1-b" data-end="2026-03-24T23:59:00-03:00" data-price="47">
           <span class="lote-card__badge">Lote 1</span>
           <p class="lote-card__price">R$ 47</p>
-          <p class="lote-card__valid">Válido até 22 de março de 2026</p>
+          <p class="lote-card__valid">Válido até 24 de março de 2026 (até 23h59)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1687,7 +1687,7 @@
         <article class="lote-card" id="lote-2-b" data-end="2026-03-31T23:59:00-03:00" data-price="97">
           <span class="lote-card__badge">Lote 2</span>
           <p class="lote-card__price">R$ 97</p>
-          <p class="lote-card__valid">A partir da abertura do congresso (23 de março)</p>
+          <p class="lote-card__valid">A partir de 24 de março de 2026, após 23h59 (virada do lote)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1696,7 +1696,7 @@
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Apostilas e materiais</li>
           </ul>
           <div class="lote-card__cta-wrap">
-            <a href="https://chk.eduzz.com/39ZQZRJZ9E" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
+            <a href="https://chk.eduzz.com/ej6ik63h" class="lote-card__cta" target="_blank" rel="noopener">Comprar agora</a>
           </div>
           <p class="lote-card__status" style="display:none;" data-lote-status>Encerrado</p>
         </article>
@@ -1781,7 +1781,7 @@
               <li><a href="#">Início</a></li>
               <li><a href="#niveis">Escolha seu nível</a></li>
               <li><a href="https://meugrupo.vip/c/41603" target="_blank" rel="noopener">Entrar no grupo</a></li>
-              <li><a href="https://chk.eduzz.com/39ZQZRJZ9E" target="_blank" rel="noopener">Fazer upgrade (R$ 47)</a></li>
+              <li><a href="https://chk.eduzz.com/39ZQZRJZ9E" id="cta-footer-upgrade" target="_blank" rel="noopener">Fazer upgrade (R$ 47)</a></li>
             </ul>
           </div>
           <div class="footer__col">
@@ -1814,9 +1814,9 @@
   </div>
 
   <script>
-    // Contagem regressiva até 23/03/2026 23:59 (fim do dia de abertura — ajuste a data se quiser “oferta por X dias”)
+    // Contagem regressiva até fim do Lote 1 (24/03/2026 23:59, horário de Brasília)
     (function () {
-      var dataFim = new Date('2026-03-23T23:59:00-03:00');
+      var dataFim = new Date('2026-03-24T23:59:00-03:00');
       var elDays = document.getElementById('countdown-days');
       var elHours = document.getElementById('countdown-hours');
       var elMins = document.getElementById('countdown-mins');
@@ -1851,11 +1851,10 @@
       setInterval(atualizar, 1000);
     })();
 
-    // Lotes: virada automática por data/hora (23:59) + link do botão conforme lote atual
-    // Links de checkout por lote — quando tiver os 3 links da Eduzz, substitua abaixo:
+    // Lotes: virada 24/03/2026 23:59 — Lote 1 R$47 | Lote 2 R$97 (link ej6ik63h)
     var LOTES_CHECKOUT = {
-      1: 'https://chk.eduzz.com/39ZQZRJZ9E',  // R$ 47 — Lote 1 (até 22/03)
-      2: 'https://chk.eduzz.com/39ZQZRJZ9E'   // R$ 97 — Lote 2 (a partir da abertura 23/03)
+      1: 'https://chk.eduzz.com/39ZQZRJZ9E',
+      2: 'https://chk.eduzz.com/ej6ik63h'
     };
 
     (function () {
@@ -1866,7 +1865,7 @@
       var elHoursAll = document.querySelectorAll('.js-lotes-countdown-hours');
       var elMinsAll = document.querySelectorAll('.js-lotes-countdown-mins');
       var elSecsAll = document.querySelectorAll('.js-lotes-countdown-secs');
-      var fimLote1 = new Date('2026-03-22T23:59:00-03:00');
+      var fimLote1 = new Date('2026-03-24T23:59:00-03:00');
       var fimLote2 = new Date('2026-03-31T23:59:00-03:00');
 
       function doisDigitos(n) { return n < 10 ? '0' + n : String(n); }
@@ -1920,6 +1919,27 @@
         document.querySelectorAll('.lote-card__cta').forEach(function(a) {
           if (a && linkAtual) a.setAttribute('href', linkAtual);
         });
+        var ctaUp = document.getElementById('cta-upgrade');
+        if (ctaUp && linkAtual) {
+          ctaUp.setAttribute('href', linkAtual);
+          ctaUp.textContent = loteAtual === 2 ? 'Quero meu Passe Profissional por R$ 97' : 'Quero meu Passe Profissional por R$ 47';
+        }
+        var ctaNv = document.getElementById('cta-niveis-pro');
+        if (ctaNv && linkAtual) {
+          ctaNv.setAttribute('href', linkAtual);
+          ctaNv.innerHTML = loteAtual === 2
+            ? 'Sim, quero o Passe Profissional (R$ 97) <iconify-icon icon="lucide:arrow-right"></iconify-icon>'
+            : 'Sim, quero o Passe Profissional (R$ 47) <iconify-icon icon="lucide:arrow-right"></iconify-icon>';
+        }
+        var ctaFt = document.getElementById('cta-footer-upgrade');
+        if (ctaFt && linkAtual) {
+          ctaFt.setAttribute('href', linkAtual);
+          ctaFt.textContent = loteAtual === 2 ? 'Fazer upgrade (R$ 97)' : 'Fazer upgrade (R$ 47)';
+        }
+        var priceNow = document.getElementById('js-offer-price-now');
+        var priceOld = document.querySelector('.offer-card__price-old');
+        if (priceNow) priceNow.textContent = loteAtual === 2 ? 'Por R$ 97' : 'Por R$ 47';
+        if (priceOld) priceOld.style.display = loteAtual === 2 ? 'none' : '';
 
         var diff = dataFim - now;
         if (diff <= 0) {
