@@ -14,7 +14,7 @@ git add \
   "Congresso de Neuro/" \
   "fadiga-mental/" \
   "inscricao-congresso-neurociencia-no-esporte/" \
-  "pos-graduação-neurociencia-no-esporte/" \
+  "pos-graduacao-neurociencia-no-esporte/" \
   vercel.json \
   deploy.sh \
   2>/dev/null || true

@@ -129,9 +129,13 @@
       --shadow: 0 10px 40px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04);
       --shadow-lg: 0 24px 64px rgba(37, 99, 235, 0.12), 0 8px 24px rgba(15, 23, 42, 0.08);
       --max: 1120px;
+      --site-nav-height: 4.625rem;
     }
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--site-nav-height) + 0.35rem);
+    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -146,10 +150,135 @@
     }
     .inner { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2rem); }
 
+    /* Barra superior fixa (âncoras + CTA) */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--site-nav-height);
+      display: flex;
+      align-items: center;
+      background: linear-gradient(92deg, rgba(11, 31, 64, 0.98) 0%, rgba(17, 36, 82, 0.97) 55%, rgba(11, 31, 64, 0.98) 100%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: 0 4px 24px rgba(2, 6, 23, 0.25);
+    }
+    .site-nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1rem;
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 2rem);
+      min-height: var(--site-nav-height);
+    }
+    .site-nav__brand {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      line-height: 0;
+    }
+    .site-nav__brand img {
+      height: clamp(1.85rem, 4vw, 2.35rem);
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+    }
+    .site-nav__mid {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .site-nav__links {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.2rem, 1.2vw, 1rem);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: nowrap;
+    }
+    @media (max-width: 720px) {
+      .site-nav__mid {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        mask-image: linear-gradient(to right, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+      }
+      .site-nav__mid::-webkit-scrollbar { display: none; }
+      .site-nav__links { padding: 0 0.25rem; }
+    }
+    .site-nav__links a {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: rgba(248, 250, 252, 0.92);
+      text-decoration: none;
+      padding: 0.4rem 0.55rem;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: color 0.2s, background 0.2s;
+    }
+    .site-nav__links a:hover { color: #fff; background: rgba(255, 255, 255, 0.07); }
+    .site-nav__links a:focus-visible {
+      outline: 2px solid #93c5fd;
+      outline-offset: 2px;
+    }
+    .site-nav__cta.btn {
+      flex-shrink: 0;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+    }
+    @media (max-width: 380px) {
+      .site-nav__cta.btn { padding: 0.45rem 0.75rem; font-size: 0.68rem; }
+    }
+    .skip-link {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .skip-link:focus {
+      position: fixed;
+      left: 1rem;
+      top: 1rem;
+      z-index: 200;
+      width: auto;
+      height: auto;
+      margin: 0;
+      padding: 0.65rem 1rem;
+      clip: auto;
+      overflow: visible;
+      background: #fff;
+      color: #0b1f40;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+    }
+
     /* Hero */
     .hero-wrap {
       position: relative;
       overflow: hidden;
+      padding-top: var(--site-nav-height);
       background: linear-gradient(155deg, var(--color-hero-ink) 0%, #0f1c46 46%, var(--color-hero-ink-soft) 100%);
     }
     .hero-wrap::before {
@@ -2049,6 +2178,25 @@
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXDTWRQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a class="skip-link" href="#topo">Ir para o conteúdo</a>
+
+  <nav class="site-nav" aria-label="Navegação principal">
+    <div class="site-nav__inner">
+      <a class="site-nav__brand" href="#topo">
+        <img src="assets/logo-atleta-campeao.png" width="180" height="40" alt="Instituto Atleta Campeão" decoding="async">
+      </a>
+      <div class="site-nav__mid">
+        <ul class="site-nav__links">
+          <li><a href="#modulos">Conteúdo</a></li>
+          <li><a href="#quem-esta-por-tras">Professor</a></li>
+          <li><a href="#para-quem">Para quem é</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <a class="btn btn--primary site-nav__cta" href="#matricula">Garantir vaga</a>
+    </div>
+  </nav>
 
   <header class="hero-wrap" id="topo">
     <div class="inner hero">
