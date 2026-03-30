@@ -14,7 +14,9 @@ git add \
   "Congresso de Neuro/" \
   "fadiga-mental/" \
   "inscricao-congresso-neurociencia-no-esporte/" \
+  "pos-graduação-neurociencia-no-esporte/" \
   vercel.json \
+  deploy.sh \
   2>/dev/null || true
 
 if git diff --staged --quiet; then
