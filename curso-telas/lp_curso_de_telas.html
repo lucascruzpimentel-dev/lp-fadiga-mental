@@ -12,7 +12,8 @@
     <link rel="icon" href="/favicon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neurociência da Fadiga no Esporte</title>
+    <title>O Cérebro do Atleta na Era Digital — Instituto Atleta Campeão</title>
+    <meta name="description" content="Curso ao vivo em 25/04/2026 (sábado): telas, cérebro e desempenho esportivo com o Prof. Dr. Leonardo Fortes (UFMG). Conteúdo com embasamento em pesquisa científica. Instituto Atleta Campeão.">
 
     <!-- Google Fonts: Inter and Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -330,9 +331,9 @@
         }
 
         /* Section 04 header on dark background */
-        #quem-esta-por-tras .reveal-header .instructor-label { color: #93c5fd; }
-        #quem-esta-por-tras .reveal-header h2 { color: #ffffff !important; }
-        #quem-esta-por-tras .reveal-header p { color: #cbd5e1 !important; }
+        #professor .reveal-header .instructor-label { color: #93c5fd; }
+        #professor .reveal-header h2 { color: #ffffff !important; }
+        #professor .reveal-header p { color: #cbd5e1 !important; }
 
         .instructor-logos {
             font-family: 'Inter', sans-serif;
@@ -397,6 +398,11 @@
         /* ─── Section 02 — Ementa ──────────────────── */
         @media(min-width:768px) {
             .ementa-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        @media(min-width:1280px) {
+            .ementa-grid {
                 grid-template-columns: repeat(3, 1fr) !important;
             }
         }
@@ -444,7 +450,7 @@
         }
 
         @media(max-width:899px) {
-            section#quem-esta-por-tras {
+            section#professor {
                 padding: 64px 0 !important;
             }
         }
@@ -610,13 +616,13 @@
         <nav class="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
             <!-- Logo branca sobre fundo escuro -->
             <a href="#" class="flex-shrink-0">
-                <img src="/fadiga-mental/assets/images/logo.png" alt="Instituto Atleta Campeão" class="header-logo-white h-10 sm:h-12 lg:h-[50px] object-contain">
+                <img src="assets/images/logo.png" alt="Instituto Atleta Campeão" class="header-logo-white h-10 sm:h-12 lg:h-[50px] object-contain">
             </a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-8">
-                <a href="#ementa" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">Conteúdo</a>
-                <a href="#quem-esta-por-tras" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">Professor</a>
+                <a href="#conteudo-programatico" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">Conteúdo</a>
+                <a href="#professor" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">Professor</a>
                 <a href="#publico-alvo" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">Para quem é</a>
                 <a href="#faq" class="font-inter text-sm font-medium text-slate-300 hover:text-white transition-colors">FAQ</a>
             </div>
@@ -637,8 +643,8 @@
         <!-- Mobile Menu (Hidden by default) -->
         <div id="mobileMenu" class="md:hidden hidden bg-slate-900 border-t border-white/10 shadow-2xl">
             <div class="flex flex-col px-6 py-6 space-y-5">
-                <a href="#ementa" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">Conteúdo</a>
-                <a href="#quem-esta-por-tras" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">Professor</a>
+                <a href="#conteudo-programatico" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">Conteúdo</a>
+                <a href="#professor" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">Professor</a>
                 <a href="#publico-alvo" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">Para quem é</a>
                 <a href="#faq" class="mobile-link font-inter text-base font-medium text-slate-300 hover:text-white">FAQ</a>
                 <a href="#oferta-especial" class="mobile-link bg-blue-600 text-white font-bold text-base text-center py-3.5 rounded-full mt-2">Garantir Vaga</a>
@@ -653,172 +659,239 @@
         class="relative z-10 flex-1 flex flex-col justify-center px-6 lg:px-12 max-w-[1400px] mx-auto w-full pt-32 lg:pt-40 pb-20">
         <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
-            <!-- LEFT COLUMN: COPMY/TYPOGRAPHY (Order 1) -->
-            <div class="gsap-left w-full lg:w-[40%] flex flex-col order-1">
+            <!-- LEFT COLUMN: copy — no mobile vem depois do mockup -->
+            <div class="gsap-left w-full lg:w-[40%] flex flex-col order-2 lg:order-1">
 
                 <div
-                    class="inline-flex items-center gap-2 pill-badge rounded-full px-3 py-1 mb-8 w-fit border border-blue-500/30">
-                    <div class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
-                    <span class="text-xs font-semibold text-blue-700 uppercase tracking-widest">Inscrições
-                        Abertas</span>
+                    class="inline-flex items-center gap-2 pill-badge rounded-full px-3 py-1.5 mb-8 w-fit border border-rose-200/90 bg-rose-50/90">
+                    <div class="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0 animate-pulse"></div>
+                    <span class="text-[11px] sm:text-xs font-semibold text-rose-900/90 uppercase tracking-[0.14em] leading-tight">Inscrições abertas e turma limitada</span>
                 </div>
 
-                <!-- Reference-style typography: Heavy mix, specific line breaks, highlighted text -->
                 <h1
-                    class="font-manrope font-[600] text-5xl sm:text-6xl md:text-7xl lg:text-[76px] leading-[1.05] tracking-tight text-slate-900 mb-6">
-                    Neurociência da <br>
-                    <span class="text-blue-700 font-[800]">Fadiga no Esporte</span>
+                    class="font-manrope font-[600] text-5xl sm:text-6xl md:text-7xl lg:text-[76px] leading-[1.05] tracking-tight text-slate-900 mb-4">
+                    O Cérebro do <br class="md:hidden" aria-hidden="true" />Atleta<br />
+                    <span class="text-blue-700 font-[800]">na Era Digital</span>
                 </h1>
 
-                <p class="text-lg sm:text-xl text-slate-700 font-sans leading-relaxed mb-8 max-w-xl">
-                    Curso online focado em trazer ferramentas científicas para prevenir a fadiga mental nos
-                    atletas de alto rendimento.
+                <p class="text-lg sm:text-xl text-slate-800 font-manrope font-semibold leading-snug mb-4 max-w-xl">
+                    Como as telas estão sabotando o desempenho dos seus atletas — e o que a ciência prova sobre isso
                 </p>
 
-                <!-- Quick-info bullets -->
+                <p class="text-base sm:text-[17px] text-slate-600 font-sans leading-relaxed mb-8 max-w-xl">
+                    30 minutos de Instagram antes do treino comprometem até 10% da tomada de decisão do atleta. Esse dado foi publicado no <em>Journal of Sports Sciences</em> e repercutiu no <em>The Guardian</em>. Agora ele chegou ao formato de curso prático para profissionais do esporte.
+                </p>
+
                 <ul class="flex flex-col gap-3 mb-10 max-w-xl">
-                    <li class="flex items-center gap-3 text-sm sm:text-[15px] text-slate-800 font-medium">
-                        <span
-                            class="w-5 h-5 flex-shrink-0 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center">
-                            <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                        </span>
-                        Leia o cérebro do atleta e decida com base em dados, não em intuição
+                    <li class="flex items-start gap-3 text-sm sm:text-[15px] text-slate-800 font-medium">
+                        <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                        <span>Por que o celular compromete o cérebro do atleta antes do treino</span>
                     </li>
-                    <li class="flex items-center gap-3 text-sm sm:text-[15px] text-slate-800 font-medium">
-                        <span
-                            class="w-5 h-5 flex-shrink-0 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center">
-                            <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                        </span>
-                        Detecte fadiga mental com ferramentas científicas validadas
+                    <li class="flex items-start gap-3 text-sm sm:text-[15px] text-slate-800 font-medium">
+                        <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                        <span>Quais telas causam mais dano: Instagram, videogame ou TV?</span>
                     </li>
-                    <li class="flex items-center gap-3 text-sm sm:text-[15px] text-slate-800 font-medium">
-                        <span
-                            class="w-5 h-5 flex-shrink-0 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center">
-                            <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                        </span>
-                        Ajuste carga, volume e descanso com precisão cirúrgica
+                    <li class="flex items-start gap-3 text-sm sm:text-[15px] text-slate-800 font-medium">
+                        <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                        <span>As áreas cerebrais que são desativadas pelas redes sociais</span>
                     </li>
-                    <li class="flex items-center gap-3 text-sm sm:text-[15px] text-slate-600">
-                        <span
-                            class="w-5 h-5 flex-shrink-0 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center">
-                            <svg class="w-3 h-3 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                stroke-width="2">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                <line x1="16" y1="2" x2="16" y2="6" />
-                                <line x1="8" y1="2" x2="8" y2="6" />
-                                <line x1="3" y1="10" x2="21" y2="10" />
-                            </svg>
-                        </span>
-                        <span><strong class="text-slate-900">Data:</strong> 11 de Abril de 2026</span>
+                    <li class="flex items-start gap-3 text-sm sm:text-[15px] text-slate-800 font-medium">
+                        <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                        <span>Como prescrever protocolos para diferentes modalidades</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm sm:text-[15px] text-slate-800 font-medium">
+                        <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                        <span>O guia prático fundamentado em evidências científicas</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-sm sm:text-[15px] text-slate-600 mt-2">
+                        <span class="w-5 h-5 flex-shrink-0 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center text-xs">📅</span>
+                        <span><strong class="text-slate-900">Data:</strong> 25/04/2026 (sábado)</span>
                     </li>
                     <li class="flex items-center gap-3 text-sm sm:text-[15px] text-slate-800">
-                        <span
-                            class="w-5 h-5 flex-shrink-0 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center">
-                            <svg class="w-3 h-3 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                stroke-width="2">
-                                <circle cx="12" cy="12" r="10" />
-                                <line x1="2" y1="12" x2="22" y2="12" />
-                                <path
-                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                            </svg>
-                        </span>
-                        <span><strong class="text-slate-900">Onde:</strong> 100% Online · Ao vivo com gravação</span>
+                        <span class="w-5 h-5 flex-shrink-0 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center text-xs">🌐</span>
+                        <span><strong class="text-slate-900">100% Online</strong> · Ao vivo com gravação disponível</span>
                     </li>
                 </ul>
 
-                <!-- Buttons matching reference -->
                 <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                    <!-- Primary CTA -->
-                    <button
-                        onclick="window.location.href='https://chk.eduzz.com/39YN7ZE4WO'"
-                        class="primary-btn w-full sm:w-auto px-8 py-3.5 rounded-full text-white font-semibold flex items-center justify-center gap-2 text-sm sm:text-base">
+                    <a href="#oferta-especial"
+                        class="primary-btn w-full sm:w-auto px-8 py-3.5 rounded-full text-white font-semibold flex items-center justify-center gap-2 text-sm sm:text-base text-center">
                         Garantir Minha Vaga
-                    </button>
-
-                    <!-- Secondary Demo/WhatsApp CTA -->
-                    <a href="https://wa.me/5588998091290" target="_blank"
+                    </a>
+                    <a href="https://wa.me/5588998091290" target="_blank" rel="noopener noreferrer"
                         class="whatsapp-btn w-full sm:w-auto px-8 py-3.5 rounded-full text-white font-medium flex items-center justify-center gap-2 text-sm sm:text-base">
                         Falar com a Equipe
                     </a>
                 </div>
 
                 <p class="text-xs text-slate-500 mt-5 tracking-wide">
-                    DE <span class="line-through">R$ 497</span> POR <strong class="text-slate-900">R$ 97,00</strong>.
-                    Certificado incluso.
+                    De <span class="line-through">R$ 497</span> por <strong class="text-slate-900">R$ 97,00</strong> · Certificado incluso
                 </p>
 
-                <!-- PROFESSOR CREDIBILITY (Left, below CTAs) -->
                 <div class="gsap-credibility flex items-center gap-3 mt-8 pt-8 border-t border-slate-200">
                     <div
                         class="w-14 h-14 rounded-full overflow-hidden border-2 border-slate-300 bg-slate-100 flex-shrink-0 shadow-md">
-                        <img src="/fadiga-mental/assets/images/professor_leonardo.png" alt="Prof. Dr. Leonardo Fortes"
+                        <img src="assets/images/professor_leonardo.png" alt="Prof. Dr. Leonardo Fortes"
                             class="w-full h-full object-cover object-top">
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-sm font-manrope font-semibold text-slate-900 leading-tight">Prof. Dr. Leonardo
-                            Fortes</span>
-                        <span class="text-xs text-slate-600 font-medium">Dr em Psicologia, um dos
-                            principais pesquisadores do Brasil</span>
+                        <span class="text-sm font-manrope font-semibold text-slate-900 leading-tight">Prof. Dr. Leonardo Fortes</span>
+                        <span class="text-xs text-slate-600 font-medium leading-snug">Um dos principais pesquisadores sobre o tema no Brasil e no mundo</span>
                     </div>
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN: VISUAL / PRODUCT (Order 2) -->
-            <div class="gsap-right w-full lg:w-[45%] order-2 flex justify-center relative mt-12 lg:mt-0">
+            <!-- RIGHT COLUMN: mockup + ficha — no mobile aparece primeiro -->
+            <div class="gsap-right w-full lg:w-[45%] order-1 lg:order-2 flex flex-col items-stretch max-w-lg mx-auto lg:max-w-none lg:mx-0 mb-2 lg:mb-0">
 
-                <!-- Sleek Glassmorphism Container framing the Mockup -->
-                <div
-                    class="glass-panel w-full max-w-2xl rounded-[2rem] p-8 lg:p-12 relative flex justify-center items-center">
-
-                    <!-- Inner glow ring similar to the reference's circle -->
-                    <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
-                        <div class="w-[80%] h-[80%] rounded-full border border-blue-500/10 bg-blue-600/5 blur-xl"></div>
+                <div class="hero-product-unified w-full rounded-[1.5rem] sm:rounded-[1.75rem] overflow-hidden bg-white border border-slate-200/90 shadow-[0_22px_48px_-16px_rgba(15,23,42,0.14)]">
+                    <!-- Área da imagem -->
+                    <div class="relative px-4 pt-5 pb-1 sm:px-8 sm:pt-8 sm:pb-2 bg-gradient-to-b from-slate-100/90 via-slate-50/50 to-white">
+                        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(59,130,246,0.08),transparent_55%)]"></div>
+                        <img src="assets/images/mkp_curso.png" alt="Curso O Cérebro do Atleta na Era Digital: gravações das aulas, certificado e apostilas"
+                            class="gsap-mockup relative z-10 mx-auto w-full max-w-[420px] sm:max-w-[460px] lg:max-w-none h-auto object-contain drop-shadow-[0_16px_40px_rgba(15,23,42,0.12)]">
+                        <div class="absolute top-4 left-2 sm:left-4 z-20 pill-badge bg-white/95 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-full flex items-center gap-1.5 shadow-lg border border-slate-200/80 max-w-[min(100%,200px)] sm:max-w-none">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            <span class="text-[10px] sm:text-xs text-slate-800 font-bold tracking-tight truncate">J. Sports Sciences</span>
+                        </div>
                     </div>
-
-                    <!-- Product Mockup -->
-                    <img src="/fadiga-mental/assets/images/mkp01.png" alt="Mockup Curso"
-                        class="gsap-mockup relative z-10 w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]">
-
-                    <!-- Floating UI Badges (Inspired by the Reference Image) -->
-                    <div
-                        class="absolute top-[10%] left-[-5%] pill-badge bg-white px-4 py-2 rounded-full flex items-center gap-2 shadow-2xl z-20 hidden md:flex border border-slate-200">
-                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
-                            </path>
-                        </svg>
-                        <span class="text-xs text-slate-800 font-bold tracking-tight">Análises de Desempenho</span>
+                    <!-- Ficha (estilo referência: título + linhas label / texto) -->
+                    <div class="px-4 py-4 sm:px-6 sm:py-5 lg:px-7 lg:py-6 border-t border-slate-100 bg-white">
+                        <p class="font-manrope text-[13px] sm:text-sm font-extrabold text-blue-800 uppercase tracking-[0.14em] text-center sm:text-left leading-snug mb-4 sm:mb-5">
+                            O Cérebro do Atleta na Era Digital
+                        </p>
+                        <ul class="list-none m-0 p-0 divide-y divide-slate-100 border border-slate-100 rounded-xl overflow-hidden bg-slate-50/40">
+                            <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 px-3 py-3 sm:px-4 sm:py-3.5 bg-white">
+                                <span class="font-inter text-[13px] sm:text-[15px] font-bold uppercase tracking-[0.1em] text-blue-600 shrink-0 sm:w-[6.75rem] sm:pt-0.5">O que é</span>
+                                <span class="font-inter text-[14px] sm:text-[15px] text-slate-800 leading-snug font-medium">Curso online com 10h</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 px-3 py-3 sm:px-4 sm:py-3.5 bg-white">
+                                <span class="font-inter text-[13px] sm:text-[15px] font-bold uppercase tracking-[0.1em] text-blue-600 shrink-0 sm:w-[6.75rem] sm:pt-0.5">Para quem</span>
+                                <span class="font-inter text-[14px] sm:text-[15px] text-slate-800 leading-snug font-medium">Profissionais que já atuam ou desejam atuar no meio esportivo, pais e mães de atletas.</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 px-3 py-3 sm:px-4 sm:py-3.5 bg-white">
+                                <span class="font-inter text-[13px] sm:text-[15px] font-bold uppercase tracking-[0.1em] text-blue-600 shrink-0 sm:w-[6.75rem] sm:pt-0.5">Onde</span>
+                                <span class="font-inter text-[14px] sm:text-[15px] text-slate-800 leading-snug font-medium">100% online</span>
+                            </li>
+                        </ul>
                     </div>
-
-                    <div
-                        class="absolute bottom-[20%] right-[-10%] pill-badge bg-white px-4 py-2 rounded-full flex items-center gap-2 shadow-2xl z-20 hidden md:flex border border-slate-200">
-                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                        <span class="text-xs text-slate-800 font-bold tracking-tight">Ferramentas Práticas</span>
-                    </div>
-
                 </div>
             </div>
 
         </div>
     </main>
 
+    <!-- Prova social / credibilidade -->
+    <section class="relative z-10 bg-gradient-to-b from-slate-100 to-white border-y border-slate-200/80 py-12 md:py-14 px-6">
+        <div class="max-w-[1100px] mx-auto">
+            <p class="font-inter text-center text-[11px] font-bold uppercase tracking-[0.22em] text-blue-600 mb-2">Evidência internacional</p>
+            <h2 class="font-manrope text-center text-lg md:text-xl font-bold text-slate-900 mb-8">Da publicação científica à prática nos grandes clubes</h2>
+            <div class="rounded-2xl border border-slate-200 bg-white shadow-[0_20px_50px_-24px_rgba(15,23,42,0.15)] overflow-hidden">
+                <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
+                    <div class="p-6 md:p-7 text-center md:text-left">
+                        <div class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-blue-50 text-blue-600 mb-3 mx-auto md:mx-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                        </div>
+                        <p class="font-inter text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-3">Pesquisa publicada em</p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-800 text-xs font-inter font-semibold leading-tight">Journal of Sports Sciences</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-800 text-xs font-inter font-semibold leading-tight">Perceptual and Motor Skills</span>
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-7 text-center md:text-left">
+                        <div class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 mb-3 mx-auto md:mx-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                        </div>
+                        <p class="font-inter text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-3">Repercutiu em</p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-800 text-xs font-inter font-semibold leading-tight">The Guardian</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-800 text-xs font-inter font-semibold leading-tight">Corriere dello Sport</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-800 text-xs font-inter font-semibold leading-tight">Wall Sport</span>
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-7 text-center md:text-left">
+                        <div class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 mb-3 mx-auto md:mx-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                        </div>
+                        <p class="font-inter text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 mb-3">Adotado por</p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-2">
+                            <span class="px-3 py-1.5 rounded-lg bg-blue-50 border border-blue-200/80 text-blue-900 text-xs font-inter font-semibold leading-tight">Premier League</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-blue-50 border border-blue-200/80 text-blue-900 text-xs font-inter font-semibold leading-tight">Série A (Itália)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O problema -->
+    <section id="o-problema" class="relative z-10 bg-white py-20 lg:py-28 px-6 border-b border-slate-200">
+        <div class="max-w-[1200px] mx-auto">
+            <h2 class="font-manrope text-3xl sm:text-4xl lg:text-[46px] font-bold text-slate-900 leading-tight text-center mb-4">
+                O que está acontecendo com o cérebro<br class="hidden sm:inline"> dos seus atletas antes de cada treino
+            </h2>
+            <p class="font-inter text-lg text-slate-600 text-center max-w-3xl mx-auto mb-14 leading-relaxed">
+                Pesquisas no Brasil e no exterior mostram o padrão: telas antes de competir pioram decisões e foco.<br class="hidden sm:inline"><strong class="text-slate-800">A pergunta é o que você faz com isso no dia a dia.</strong>
+            </p>
+            <div class="grid sm:grid-cols-2 gap-6 lg:gap-8 mb-12">
+                <article class="rounded-2xl border border-slate-200 bg-slate-50/80 p-8 shadow-sm hover:border-blue-300/60 transition-colors">
+                    <p class="font-manrope text-4xl sm:text-5xl lg:text-[52px] font-extrabold text-blue-600 mb-3 leading-[1.1] tracking-tight">-8 a -10%</p>
+                    <p class="font-inter text-slate-800 leading-relaxed mb-4">Essa é a queda na tomada de decisão de um jogador de futebol profissional após apenas 30 minutos de redes sociais antes da partida. O cérebro vê a jogada — mas processa tarde demais.</p>
+                    <p class="font-inter text-xs text-slate-500 leading-relaxed border-t border-slate-200 pt-4"><strong class="text-slate-600">Fonte:</strong> <em>Journal of Sports Sciences</em>, 2020 · 25 atletas profissionais</p>
+                </article>
+                <article class="rounded-2xl border border-slate-200 bg-slate-50/80 p-8 shadow-sm hover:border-amber-300/60 transition-colors">
+                    <p class="font-manrope text-4xl sm:text-5xl lg:text-[52px] font-extrabold text-amber-600 mb-3 leading-[1.1] tracking-tight">4 semanas</p>
+                    <p class="font-inter text-slate-800 leading-relaxed mb-4">Atletas de vôlei que usaram redes sociais antes dos treinos durante 4 semanas não melhoraram nada na tomada de decisão. O grupo sem telas avançou 9 pontos. Mesmo treino. Resultado oposto.</p>
+                    <p class="font-inter text-xs text-slate-500 leading-relaxed border-t border-slate-200 pt-4"><strong class="text-slate-600">Fonte:</strong> GENEXDES-CNPq · UFMG</p>
+                </article>
+                <article class="rounded-2xl border border-slate-200 bg-slate-50/80 p-8 shadow-sm hover:border-red-300/60 transition-colors">
+                    <p class="font-manrope text-4xl sm:text-5xl lg:text-[52px] font-extrabold text-red-600 mb-3 leading-[1.1] tracking-tight">30 min</p>
+                    <p class="font-inter text-slate-800 leading-relaxed mb-4">É o tempo mínimo de uso contínuo que já compromete o desempenho. Abaixo de 15 minutos, sem efeito. A partir de 30, o prejuízo aparece — e não aumenta mais com o tempo. O dano já está feito.</p>
+                    <p class="font-inter text-xs text-slate-500 leading-relaxed border-t border-slate-200 pt-4"><strong class="text-slate-600">Fonte:</strong> Psicologia do Esporte, PSE, 2019 · atletas de futebol</p>
+                </article>
+                <article class="rounded-2xl border border-slate-200 bg-slate-50/80 p-8 shadow-sm hover:border-emerald-300/60 transition-colors">
+                    <p class="font-inter text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-700 mb-4">Na prática</p>
+                    <p class="font-inter text-slate-800 leading-relaxed mb-4 text-[15px] sm:text-base">Uma equipe da Série A italiana venceu a Copa da Itália pela primeira vez após adotar o protocolo de restrição de telas no pré-jogo baseado nas pesquisas do Prof. Leonardo Fortes.</p>
+                    <p class="font-inter text-xs text-slate-500 leading-relaxed border-t border-slate-200 pt-4"><strong class="text-slate-600">Fonte:</strong> <em>Corriere dello Sport</em> · <em>Journal of Sports Sciences</em>, 2020</p>
+                </article>
+            </div>
+            <div class="max-w-3xl mx-auto font-inter text-slate-600 text-[15px] sm:text-base leading-relaxed space-y-4">
+                <p>Isso não é abstrato. Seus atletas chegam no treino hoje com o cérebro já comprometido. Não porque faltou sono ou hidratação — mas porque passaram 40 minutos no Instagram antes de entrar na quadra.</p>
+                <p>A pergunta não é &quot;será que isso está acontecendo?&quot;. A pergunta é: <strong class="text-slate-900">você tem as ferramentas para identificar, medir e intervir?</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Por que importa para você -->
+    <section id="por-que-importa" class="relative z-10 bg-slate-50 py-20 lg:py-28 px-6">
+        <div class="max-w-[1200px] mx-auto">
+            <h2 class="font-manrope text-3xl sm:text-4xl font-bold text-slate-900 text-center mb-12 leading-tight max-w-3xl mx-auto">
+                Se você trabalha com atletas, isso já está afetando seus resultados — mesmo sem saber
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <article class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+                    <p class="font-inter text-xs font-bold uppercase tracking-widest text-blue-600 mb-3">Cenário 01</p>
+                    <h3 class="font-manrope text-lg font-bold text-slate-900 mb-3">O atleta que não evolui</h3>
+                    <p class="font-inter text-[15px] text-slate-600 leading-relaxed">Você prescreve treino de qualidade. O atleta é dedicado. Mas depois de semanas, o salto cognitivo não vem. O que a ciência chama isso? Overtraining não funcional causado por fadiga mental acumulada. A causa: telas antes das sessões, todos os dias.</p>
+                </article>
+                <article class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+                    <p class="font-inter text-xs font-bold uppercase tracking-widest text-blue-600 mb-3">Cenário 02</p>
+                    <h3 class="font-manrope text-lg font-bold text-slate-900 mb-3">O aumento de lesões</h3>
+                    <p class="font-inter text-[15px] text-slate-600 leading-relaxed">Quando o atleta chega mentalmente fadigado, a carga interna de treinamento aumenta sem que o volume físico mude. O organismo fica vulnerável. Isso pode ser parte da explicação para a epidemia de lesões no futebol brasileiro — onde times chegam com mais de 50% do elenco no departamento médico.</p>
+                </article>
+                <article class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+                    <p class="font-inter text-xs font-bold uppercase tracking-widest text-blue-600 mb-3">Cenário 03</p>
+                    <h3 class="font-manrope text-lg font-bold text-slate-900 mb-3">A competição que não saiu como esperado</h3>
+                    <p class="font-inter text-[15px] text-slate-600 leading-relaxed">Seu atleta treinou bem. Fisicamente estava preparado. Mas no dia do jogo, chegou duas horas antes e ficou no celular no vestiário. O que aconteceu com o cérebro dele nesse período? Agora você vai ter a resposta.</p>
+                </article>
+            </div>
+        </div>
+    </section>
 
     <!-- =======================================================================
-         SECTION 02: CONTEÚDO PROGRAMÁTICO
+         CONTEÚDO PROGRAMÁTICO (5 módulos)
     ======================================================================= -->
-    <section id="ementa" style="
+    <section id="conteudo-programatico" style="
         background: #0f172a;
         padding: 100px 0 120px;
         position: relative;
@@ -844,189 +917,154 @@
                         font-weight:700;line-height:1.05;letter-spacing:-0.03em;
                         color:#ffffff;margin:0;">
                         O que você vai<br>
-                        <span style="color:#93c5fd;">dominar</span> no módulo
+                        <span style="color:#93c5fd;">dominar</span> neste curso
                     </h2>
                 </div>
                 <p style="font-family:'Inter',sans-serif;font-size:15px;color:#cbd5e1;
-                    line-height:1.6;margin:0;max-width:310px;">
-                    3 blocos temáticos com ciência aplicada diretamente ao esporte de alta performance.
+                    line-height:1.6;margin:0;max-width:340px;">
+                    5 blocos de conhecimento com ciência aplicada ao esporte de alto rendimento.
                 </p>
             </div>
 
-            <!-- ── 3-Column Card Grid ── -->
-            <div class="ementa-grid grid grid-cols-1 md:grid-cols-3 gap-7">
+            <!-- ── Módulos 1–3 (grade original) ── -->
+            <div class="ementa-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7">
 
-                <!-- ─ CARD 01 ─ -->
+                <!-- CARD 01 -->
                 <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-slate-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-100 ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default">
-                    <!-- Banner Image -->
-                    <div class="w-full h-[200px] overflow-hidden relative bg-slate-900">
-                        <img class="card-img w-full h-full object-cover transition-transform duration-[600ms] ease-out opacity-90 group-hover:scale-[1.06]" src="/fadiga-mental/assets/images/mod01.png" alt="Fundamentos da Fadiga Mental">
-                        <!-- Gradient overlay so text reads over image -->
-                        <div class="absolute bottom-0 left-0 right-0 h-[70px] bg-gradient-to-t from-white/95 to-transparent"></div>
-                        <!-- Module pill floating over image -->
-                        <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
+                    <div class="w-full h-[200px] overflow-hidden relative bg-slate-950">
+                        <img class="card-img absolute inset-0 z-0 w-full h-full object-cover object-center transition-transform duration-[600ms] ease-out group-hover:scale-[1.04]" src="assets/images/img%20modulos/O%20Universo%20Digital%20do%20Atleta.png" alt="Capa do módulo: O universo digital do atleta" loading="lazy" decoding="async">
+                        <div class="absolute bottom-0 left-0 right-0 z-[1] h-[56px] bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+                        <div class="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
                             <span class="w-[18px] h-[18px] bg-blue-600 rounded-full flex items-center justify-center text-[9px] font-extrabold text-white font-inter">01</span>
                             <span class="text-[10px] font-semibold text-blue-200 tracking-widest uppercase font-inter">Módulo</span>
                         </div>
                     </div>
-                    <!-- Card Body -->
                     <div class="py-8 px-7">
-                        <h3 class="font-manrope text-[22px] font-bold text-slate-900 tracking-tight m-0 mb-1.5">
-                            Fundamentos da Fadiga Mental
-                        </h3>
-                        <p class="font-inter text-[13px] text-slate-400 m-0 mb-6 leading-relaxed">
-                            A base científica por trás de toda a metodologia.
-                        </p>
+                        <h3 class="font-manrope text-[22px] font-bold text-slate-900 tracking-tight m-0 mb-1.5">As Telas que os Atletas Usam</h3>
+                        <p class="font-inter text-[13px] text-slate-400 m-0 mb-2 leading-relaxed">O mapa completo do ambiente digital do atleta moderno</p>
+                        <p class="font-inter text-[11px] font-semibold text-blue-600 uppercase tracking-wide mb-4">Pela primeira vez neste curso</p>
                         <ul class="list-none p-0 m-0 flex flex-col gap-2.5">
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    O que é fadiga mental e como difere da física
-                                </span>
-                            </li>
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    Mecanismos neurocognitivos do esgotamento em atletas
-                                </span>
-                            </li>
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    Como o cérebro regula esforço, motivação e desempenho
-                                </span>
-                            </li>
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    Evidências científicas recentes sobre fadiga e rendimento
-                                </span>
-                            </li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Smartphone, tablet e televisão: como cada tela afeta o cérebro de forma diferente</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Instagram, Facebook, X, WhatsApp: características e padrões de uso por atletas</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">PlayStation e Xbox: história, principais jogos e perfil de esforço cognitivo de cada um</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Por que jogos de guerra e RPG geram mais carga cognitiva que outros formatos</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">O que os dados mostram sobre o comportamento digital de atletas de elite (60–80% dos atletas sub-14 e sub-21 da Premier League usam redes sociais antes dos jogos)</span></li>
                         </ul>
                     </div>
                 </article>
 
-                <!-- ─ CARD 02 ─ -->
-                <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-slate-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-[220ms] ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default">
-                    <div class="w-full h-[200px] overflow-hidden relative bg-slate-900">
-                        <img class="card-img w-full h-full object-cover transition-transform duration-[600ms] ease-out opacity-90 group-hover:scale-[1.06]" src="/fadiga-mental/assets/images/mod02.png" alt="Avaliação e Monitoramento">
-                        <div class="absolute bottom-0 left-0 right-0 h-[70px] bg-gradient-to-t from-white/95 to-transparent"></div>
-                        <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
+                <!-- CARD 02 -->
+                <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-slate-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-[180ms] ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default">
+                    <div class="w-full h-[200px] overflow-hidden relative bg-slate-950">
+                        <img class="card-img absolute inset-0 z-0 w-full h-full object-cover object-center transition-transform duration-[600ms] ease-out group-hover:scale-[1.04]" src="assets/images/img%20modulos/A%20Neurobiologia%20do%20Uso%20de%20Telas.png" alt="Capa do módulo: A neurobiologia do uso de telas" loading="lazy" decoding="async">
+                        <div class="absolute bottom-0 left-0 right-0 z-[1] h-[56px] bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+                        <div class="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
                             <span class="w-[18px] h-[18px] bg-blue-700 rounded-full flex items-center justify-center text-[9px] font-extrabold text-white font-inter">02</span>
                             <span class="text-[10px] font-semibold text-blue-200 tracking-widest uppercase font-inter">Módulo</span>
                         </div>
                     </div>
                     <div class="py-8 px-7">
-                        <h3 class="font-manrope text-[22px] font-bold text-slate-900 tracking-tight m-0 mb-1.5">
-                            Avaliação e Monitoramento
-                        </h3>
-                        <p class="font-inter text-[13px] text-slate-400 m-0 mb-6 leading-relaxed">
-                            Ferramentas validadas para identificar e quantificar a fadiga.
-                        </p>
+                        <h3 class="font-manrope text-[22px] font-bold text-slate-900 tracking-tight m-0 mb-1.5">O Que Acontece no Cérebro</h3>
+                        <p class="font-inter text-[13px] text-slate-400 m-0 mb-6 leading-relaxed">Neuroanatomia e neurofisiologia do atleta digital</p>
                         <ul class="list-none p-0 m-0 flex flex-col gap-2.5">
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    Escalas e testes validados pré e pós-treino
-                                </span>
-                            </li>
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    Indicadores cognitivos e fisiológicos da fadiga cerebral
-                                </span>
-                            </li>
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    Protocolos de monitoramento contínuo durante a temporada
-                                </span>
-                            </li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Áreas cerebrais ativadas e desativadas pelo uso de redes sociais</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Áreas cerebrais ativadas e desativadas pelo uso de videogame</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">O sistema de recompensa cerebral e o mecanismo de vício em tecnologia</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Córtex pré-frontal, estriato, amígdala, ínsula e córtex cingular anterior: o que cada área faz e como é comprometida</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Luz azul de LED: o efeito na atividade neuroelétrica cerebral</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Por que usuários frequentes de redes sociais apresentam maior impulsividade e menor controle inibitório — e o que isso significa no campo</span></li>
                         </ul>
                     </div>
                 </article>
 
-                <!-- ─ CARD 03 ─ -->
-                <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-slate-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-[350ms] ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default">
-                    <div class="w-full h-[200px] overflow-hidden relative bg-slate-900">
-                        <img class="card-img w-full h-full object-cover transition-transform duration-[600ms] ease-out opacity-90 group-hover:scale-[1.06]" src="/fadiga-mental/assets/images/mod03.png" alt="Prescrição e Intervenção">
-                        <div class="absolute bottom-0 left-0 right-0 h-[70px] bg-gradient-to-t from-white/95 to-transparent"></div>
-                        <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
+                <!-- CARD 03 -->
+                <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-slate-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-[260ms] ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default">
+                    <div class="w-full h-[200px] overflow-hidden relative bg-slate-950">
+                        <img class="card-img absolute inset-0 z-0 w-full h-full object-cover object-center transition-transform duration-[600ms] ease-out group-hover:scale-[1.04]" src="assets/images/img%20modulos/Quanto%20as%20Telas%20Custam%20ao%20Atleta.png" alt="Capa do módulo: Quanto as telas custam ao atleta" loading="lazy" decoding="async">
+                        <div class="absolute bottom-0 left-0 right-0 z-[1] h-[56px] bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+                        <div class="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
                             <span class="w-[18px] h-[18px] bg-blue-800 rounded-full flex items-center justify-center text-[9px] font-extrabold text-blue-200 font-inter">03</span>
                             <span class="text-[10px] font-semibold text-blue-200 tracking-widest uppercase font-inter">Módulo</span>
                         </div>
                     </div>
                     <div class="py-8 px-7">
-                        <h3 class="font-manrope text-[22px] font-bold text-slate-900 tracking-tight m-0 mb-1.5">
-                            Prescrição e Intervenção
-                        </h3>
-                        <p class="font-inter text-[13px] text-slate-400 m-0 mb-6 leading-relaxed">
-                            Da detecção à periodização ajustada com base em dados.
-                        </p>
+                        <h3 class="font-manrope text-[22px] font-bold text-slate-900 tracking-tight m-0 mb-1.5">Efeitos Agudos e Crônicos no Desempenho</h3>
+                        <p class="font-inter text-[13px] text-slate-400 m-0 mb-4 leading-relaxed">Da tomada de decisão ao risco de lesão — o que a ciência mede</p>
                         <ul class="list-none p-0 m-0 flex flex-col gap-2.5">
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    Ajuste de intensidade, volume e descanso com base nos dados
-                                </span>
-                            </li>
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    Estratégias cognitivas para recuperação mental acelerada
-                                </span>
-                            </li>
-                            <li class="flex gap-2.5 items-start">
-                                <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                    <svg width="8" height="8" fill="none" stroke="#2563eb" viewBox="0 0 24 24" stroke-width="3.5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </span>
-                                <span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">
-                                    Casos reais: decisões táticas baseadas em fadiga mental
-                                </span>
-                            </li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Efeito agudo vs. crônico: como diferenciar e por que os dois importam</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Desempenho percepto-cognitivo: tomada de decisão, antecipação, tempo de reação</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Desempenho técnico: estudos com futebol, box, vôlei e natação</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Desempenho de endurance: efeito nas provas longas (100m e 400m natação comprometidos; 50m não afetado — e por quê isso muda tudo na periodização)</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Desempenho de força: o que acontece com as repetições no agachamento após rede social</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Sprint: por que a prova de 100m não é afetada, mas o tempo de reação de largada sim</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Carga interna de treinamento: como o uso diário de telas gera overtraining não funcional</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">A ligação entre fadiga mental, carga interna elevada e aumento de lesões osteoarticulares</span></li>
+                        </ul>
+                        <div class="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200/80">
+                            <p class="font-inter text-xs font-bold text-amber-800 uppercase tracking-wide mb-2">⚡ Dado de impacto</p>
+                            <p class="font-inter text-[13px] text-slate-800 leading-relaxed m-0">Atletas de vôlei que treinaram 4 semanas com uso de redes sociais antes das sessões: <strong>zero</strong> melhora na tomada de decisão. O grupo sem redes sociais: <strong>+9 pontos</strong> no mesmo período. <span class="text-slate-500 text-[12px]">Fonte: GENEXDES-CNPq · UFMG</span></p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- ── Módulos 4–5: mesma largura que um card da grade; centralizados só no xl (sem classe ementa-grid — evita conflito com o CSS !important) ── -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-7 mt-7">
+                <div class="hidden xl:block xl:col-span-1" aria-hidden="true"></div>
+
+                <!-- CARD 04 BÔNUS -->
+                <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-amber-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-[340ms] ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default ring-1 ring-amber-100 xl:col-span-2">
+                    <div class="w-full h-[200px] overflow-hidden relative bg-slate-950">
+                        <img class="card-img absolute inset-0 z-0 w-full h-full object-cover object-center transition-transform duration-[600ms] ease-out group-hover:scale-[1.04]" src="assets/images/img%20modulos/Fadiga%20Mental.png" alt="Capa do bônus: Fadiga mental e impacto no movimento" loading="lazy" decoding="async">
+                        <div class="absolute bottom-0 left-0 right-0 z-[1] h-[56px] bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+                        <div class="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 bg-amber-500/90 backdrop-blur-md border border-amber-200 rounded-full py-1 pr-3 pl-1.5">
+                            <span class="text-[10px] font-extrabold text-white font-inter tracking-wide">BÔNUS</span>
+                        </div>
+                        <div class="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
+                            <span class="w-[18px] h-[18px] bg-slate-700 rounded-full flex items-center justify-center text-[9px] font-extrabold text-white font-inter">04</span>
+                            <span class="text-[10px] font-semibold text-blue-200 tracking-widest uppercase font-inter">Extra</span>
+                        </div>
+                    </div>
+                    <div class="py-8 px-7">
+                        <p class="font-inter text-[10px] font-bold uppercase tracking-widest text-amber-700 mb-2">Bônus exclusivo · Inédito</p>
+                        <h3 class="font-manrope text-[22px] font-bold text-slate-900 tracking-tight m-0 mb-1.5">Biomecânica e Risco de Lesão</h3>
+                        <p class="font-inter text-[13px] text-slate-400 m-0 mb-6 leading-relaxed">O que as telas fazem com o movimento do atleta</p>
+                        <ul class="list-none p-0 m-0 flex flex-col gap-2.5">
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Alterações biomecânicas causadas pelo uso prolongado de telas antes das sessões</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Como a fadiga mental modifica padrões de movimento sem que o atleta perceba</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">O aumento mensurável no risco de lesão osteoarticular</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Por que esse dado é especialmente relevante para preparadores físicos e fisioterapeutas</span></li>
                         </ul>
                     </div>
                 </article>
 
-            </div><!-- /ementa-grid -->
+                <!-- CARD 05 -->
+                <article class="mod-card-v2 group bg-white rounded-[20px] overflow-hidden shadow-sm border border-slate-200/80 opacity-0 translate-y-10 transition-all duration-[800ms] delay-[420ms] ease-out hover:-translate-y-2 hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.2),0_0_0_1px_rgba(37,99,235,0.1)] hover:border-blue-400/40 cursor-default xl:col-span-2">
+                    <div class="w-full h-[200px] overflow-hidden relative bg-slate-950">
+                        <img class="card-img absolute inset-0 z-0 w-full h-full object-cover object-center transition-transform duration-[600ms] ease-out group-hover:scale-[1.04]" src="assets/images/img%20modulos/Menos%20Telas%2C%20Mais%20Performance_%20Estrate%CC%81gias%20Pra%CC%81ticas%20Baseadas%20em%20Evide%CC%82ncias.png" alt="Capa do módulo: Menos telas, mais performance — estratégias práticas baseadas em evidências" loading="lazy" decoding="async">
+                        <div class="absolute bottom-0 left-0 right-0 z-[1] h-[56px] bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+                        <div class="absolute top-4 left-4 z-10 inline-flex items-center gap-1.5 bg-slate-900/75 backdrop-blur-md border border-white/10 rounded-full py-1 pr-3 pl-1.5">
+                            <span class="w-[18px] h-[18px] bg-indigo-600 rounded-full flex items-center justify-center text-[9px] font-extrabold text-white font-inter">05</span>
+                            <span class="text-[10px] font-semibold text-blue-200 tracking-widest uppercase font-inter">Módulo</span>
+                        </div>
+                    </div>
+                    <div class="py-8 px-7">
+                        <h3 class="font-manrope text-[22px] font-bold text-slate-900 tracking-tight m-0 mb-1.5">Soluções e protocolos práticos</h3>
+                        <p class="font-inter text-[13px] text-slate-400 m-0 mb-6 leading-relaxed">Da identificação do problema ao protocolo de intervenção</p>
+                        <ul class="list-none p-0 m-0 flex flex-col gap-2.5">
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">O que cada profissional pode fazer: psicólogo, educador físico, nutricionista, preparador físico, treinador — indicações específicas por área</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Como abordar o atleta que já tem o hábito instalado sem gerar resistência</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Alternativas funcionais para substituir o uso de telas no pré-treino/pré-jogo</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Estratégias com base científica para mitigar e reduzir os efeitos negativos das telas</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Protocolos adotados por equipes da Premier League e Série A italiana</span></li>
+                            <li class="flex gap-2 items-start"><span class="text-blue-600 font-bold shrink-0">→</span><span class="font-inter text-[13.5px] text-slate-700 leading-relaxed">Como implementar na sua realidade: do time de alto rendimento ao atleta amador</span></li>
+                        </ul>
+                    </div>
+                </article>
+
+                <div class="hidden xl:block xl:col-span-1" aria-hidden="true"></div>
+            </div><!-- /módulos 4–5 -->
 
 
             <!-- ── Bottom CTA ── -->
@@ -1042,155 +1080,9 @@
          ═══════════════════════════════════════════════════════════════ -->
 
     <!-- =======================================================================
-         SECTION 03: CERTIFICAÇÃO
+         SECTION: PROFESSOR
     ======================================================================= -->
-    <section id="certificacao" style="
-        background: #ffffff;
-        padding: 100px 0;
-        position: relative;
-        overflow: hidden;
-    ">
-        <div style="position:absolute;top:0;left:0;width:100%;height:1px;background:rgba(226,232,240,1);pointer-events:none;z-index:2;"></div>
-            
-        <!-- Subtle Animated Neuron Network Canvas for Section 03 -->
-        <canvas id="certNeuronCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0.5;pointer-events:none;"></canvas>
-
-        <!-- Ambient glow blobs -->
-        <div style="position:absolute;top:50%;left:20%;transform:translate(-50%,-50%);
-            width:600px;height:600px;background:rgba(37,99,235,0.08);
-            border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;"></div>
-        <div style="position:absolute;bottom:-10%;right:-10%;
-            width:600px;height:600px;background:rgba(29,78,216,0.08);
-            border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;"></div>
-
-        <div style="max-width:1400px;margin:0 auto;padding:0 24px;position:relative;z-index:1;">
-
-            <!-- Two-column flex layout -->
-            <div id="cert-layout" style="
-                display:flex;
-                flex-direction:column;
-                gap:60px;
-                align-items:center;
-            ">
-
-                <!-- ── LEFT COLUMN: Certificate card with spinning border ── -->
-                <div style="width:100%;max-width:520px;display:flex;flex-direction:column;align-items:center;">
-
-                    <!-- Animated border wrapper -->
-                    <div class="cert-wrapper" id="cert-card" onmouseenter="this.style.setProperty('--spin-dur','1.8s')"
-                        onmouseleave="this.style.setProperty('--spin-dur','4s')">
-                        <div class="cert-inner">
-                            <img src="/fadiga-mental/assets/images/certificado.png" alt="Certificado Neurociência da Fadiga no Esporte"
-                                style="width:100%;height:100%;object-fit:cover;display:block;">
-                        </div>
-                    </div>
-
-                    <!-- Caption below card -->
-                    <p style="font-family:'Inter',sans-serif;font-size:11px;color:#475569;
-                        letter-spacing:0.12em;text-transform:uppercase;margin-top:20px;
-                        text-align:center;">
-                        ✦ Emitido digitalmente após a conclusão do módulo
-                    </p>
-                </div>
-
-                <!-- ── RIGHT COLUMN: Label, headline, desc, bullets ── -->
-                <div class="cert-col-right" style="width:100%;max-width:580px;">
-
-                    <!-- Label -->
-                    <p style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;
-                        letter-spacing:0.2em;text-transform:uppercase;color:#2563eb;margin:0 0 16px;">
-                        Certificação
-                    </p>
-
-                    <!-- Headline -->
-                    <h2 style="font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,44px);
-                        font-weight:700;line-height:1.1;letter-spacing:-0.03em;
-                        color:#0f172a;margin:0;">
-                        Neurociência da Fadiga no Esporte
-                    </h2>
-
-                    <!-- Description -->
-                    <p style="font-family:'Inter',sans-serif;font-size:15px;color:#475569;
-                        line-height:1.65;max-width:440px;margin:14px 0 44px;">
-                        Um documento formal que registra sua qualificação numa das
-                        áreas mais específicas e menos exploradas da ciência do esporte
-                        no Brasil — emitido pelo Atleta Campeão e assinado pelo
-                        Prof. Dr. Leonardo Fortes.
-                    </p>
-
-                    <!-- Bullets -->
-                    <div style="display:flex;flex-direction:column;">
-
-                        <!-- Bullet 01 -->
-                        <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
-                            <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;
-                                background:#f1f5f9;border:1px solid #e2e8f0;
-                                font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#64748b;
-                                display:flex;align-items:center;justify-content:center;">01</div>
-                            <div>
-                                <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
-                                    color:#0f172a;margin:0;">Emissão 24h após a conclusão</p>
-                                <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:#475569;
-                                    line-height:1.55;margin:4px 0 0;">O certificado é gerado digitalmente assim que
-                                    você finaliza
-                                    o treinamento — disponível para download em PDF, sem burocracia.</p>
-                            </div>
-                        </div>
-
-                        <!-- Divider -->
-                        <div style="height:1px;background:#e2e8f0;margin:20px 0;"></div>
-
-                        <!-- Bullet 02 -->
-                        <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
-                            <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;
-                                background:#f1f5f9;border:1px solid #e2e8f0;
-                                font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#64748b;
-                                display:flex;align-items:center;justify-content:center;">02</div>
-                            <div>
-                                <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
-                                    color:#0f172a;margin:0;">Assinado por referência nacional</p>
-                                <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:#475569;
-                                    line-height:1.55;margin:4px 0 0;">Assinado pelo Prof. Dr. Leonardo Fortes, um dos
-                                    principais
-                                    pesquisadores do tema no Brasil. Docente do Mestrado e Doutorado
-                                    em Neurociência Cognitiva da UFPB.</p>
-                            </div>
-                        </div>
-
-                        <!-- Divider -->
-                        <div style="height:1px;background:#e2e8f0;margin:20px 0;"></div>
-
-                        <!-- Bullet 03 -->
-                        <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
-                            <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;
-                                background:#f1f5f9;border:1px solid #e2e8f0;
-                                font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#64748b;
-                                display:flex;align-items:center;justify-content:center;">03</div>
-                            <div>
-                                <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
-                                    color:#0f172a;margin:0;">Carga horária registrada: 6 horas</p>
-                                <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:#475569;
-                                    line-height:1.55;margin:4px 0 0;">Documento com carga horária explícita — o padrão
-                                    exigido quando
-                                    você precisa comprovar qualificação em processos seletivos,
-                                    clubes e federações.</p>
-                            </div>
-                        </div>
-
-                    </div><!-- /bullets -->
-                </div><!-- /cert-col-right -->
-
-            </div><!-- /cert-layout -->
-        </div><!-- /container -->
-
-
-    </section>
-    <!-- ── END SECTION 03 ── -->
-
-    <!-- =======================================================================
-         SECTION 04: QUEM ESTÁ POR TRÁS
-    ======================================================================= -->
-    <section id="quem-esta-por-tras" style="
+    <section id="professor" style="
         background: #0f172a;
         padding: 100px 0;
         position: relative;
@@ -1205,29 +1097,24 @@
 
         <div style="max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1;">
 
-            <!-- Section Header -->
             <div class="reveal-header"
                 style="text-align:center;margin-bottom:64px;display:flex;flex-direction:column;align-items:center;">
-                <span class="instructor-label">QUEM ESTÁ POR TRÁS DESTE CURSO</span>
+                <span class="instructor-label">O Professor · A Instituição</span>
                 <h2
-                    style="font-family:'Manrope',sans-serif;font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-0.03em;margin:0 0 16px;">
-                    Ciência e experiência no mesmo lugar.
+                    style="font-family:'Manrope',sans-serif;font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-0.03em;margin:0 0 16px;color:#fff;">
+                    Estude com um dos principais pesquisadores do Brasil<br>sobre telas e desempenho esportivo
                 </h2>
-                <p
-                    style="font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;max-width:600px;margin:0;">
-                    Este módulo reúne um dos principais pesquisadores brasileiro em fadiga mental e neurociência do
-                    esporte com a instituição de referência em treinamento mental para atletas no Brasil — uma combinação
-                    que só o Atleta Campeão conseguiu trazer.
+                <p style="font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;max-width:640px;margin:0;color:#94a3b8;">
+                    A ciência do Prof. Fortes e a estrutura do Instituto Atleta Campeão — lado a lado.
                 </p>
             </div>
 
-            <!-- Layout 2 Colunas -->
             <div style="display:flex;flex-direction:column;gap:32px;" class="instructor-layout">
 
-                <!-- CARD ESQUERDO — O PROFESSOR -->
+                <!-- CARD — PROFESSOR -->
                 <div class="instructor-card reveal-left" style="width:100%;">
                     <div style="margin-bottom:24px;">
-                        <img src="/fadiga-mental/assets/images/professor_leonardo.png" alt="Prof. Dr. Leonardo Fortes"
+                        <img src="assets/images/professor_leonardo.png" alt="Prof. Dr. Leonardo Fortes"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                             style="width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid rgba(59,130,246,0.3);margin-bottom:20px;display:block;">
                         <div
@@ -1239,16 +1126,19 @@
                             </svg>
                         </div>
 
-                        <span class="instructor-label">O PROFESSOR</span>
+                        <span class="instructor-label">O Professor</span>
                         <h3
                             style="font-family:'Manrope',sans-serif;font-size:24px;font-weight:700;color:#ffffff;margin:0 0 8px;">
                             Prof. Dr. Leonardo Fortes</h3>
                         <p
                             style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#93c5fd;margin:0 0 20px;">
-                            Professor Associado da UFMG · Pós-doutorado pela University of Bologna, Italy</p>
+                            Professor Associado da UFMG<br>Pós-Doutorado · Università di Bologna, Itália</p>
                         <p
-                            style="font-family:'Inter',sans-serif;font-size:14.5px;color:#94a3b8;line-height:1.6;margin:0 0 32px;">
-                            Doutor em Psicologia pela Universidade Federal de Juiz de Fora, com período sanduíche na Norwegian School of Sport Sciences, Noruega. Pós-Doutorado em Sport Science na Università di Bologna, Itália. Líder do grupo de pesquisa em ''Neurociência, Exercício Físico e Desempenho Esportivo'' (GENEXDES-CNPq), vinculado ao Centro de Estudos em Psicobiologia e Exercício (CEPE) na EEFFTO-UFMG. É bolsista de produtividade em Pesquisa do CNPq. Professor permanente do Programa de Pós-Graduação em Ciências do Esporte da EEFFTO-UFMG. Leonardo é o principal pesquisador sobre fadiga mental e desempenho esportivo no Brasil e está entre os três principais pesquisadores nessa temática a nível mundial. Foi indicado como Pesquisador Destaque do Estado da Paraíba para concorrer ao Prêmio Confap de Ciência, Tecnologia Inovação Johanna Döbereiner no ano de 2024, considerado o maior reconhecimento acadêmico-científico no Estado.
+                            style="font-family:'Inter',sans-serif;font-size:14.5px;color:#94a3b8;line-height:1.65;margin:0 0 32px;">
+                            Doutor em Psicologia pela Universidade Federal de Juiz de Fora, com período sanduíche na Norwegian School of Sport Sciences (Noruega) e Pós-Doutorado em Sport Science na Università di Bologna (Itália).<br><br>
+                            Líder do GENEXDES (Grupo de Pesquisa em Neurociência, Exercício Físico e Desempenho Esportivo), vinculado ao CNPq e à UFMG. Bolsista de Produtividade em Pesquisa do CNPq. Professor permanente do Programa de Pós-Graduação em Ciências do Esporte da EEFFTO-UFMG.<br><br>
+                            É o principal pesquisador sobre fadiga mental e desempenho esportivo no Brasil e está entre os três principais do mundo nessa temática. Suas pesquisas foram divulgadas no <em style="color:#cbd5e1;">The Guardian</em>, no <em style="color:#cbd5e1;">Corriere dello Sport</em> e levaram times da Premier League e da Série A italiana a mudar seus protocolos de pré-jogo.<br><br>
+                            Indicado como Pesquisador Destaque do Estado da Paraíba para o Prêmio Confap Johanna Döbereiner 2024 — o maior reconhecimento acadêmico-científico do estado.
                         </p>
 
                         <div>
@@ -1261,39 +1151,31 @@
                                 <span class="metric-desc">grupos de pesquisa líderes no CNPq</span>
                             </div>
                             <div class="metric-item reveal-metric-left">
-                                <span class="metric-value"><span data-val="15">0</span>
+                                <span class="metric-value">15+</span>
                                 <span class="metric-desc">anos pesquisando neurociência aplicada ao esporte</span>
                             </div>
                         </div>
                     </div>
 
-                    <button
-                        onclick="window.location.href='https://chk.eduzz.com/39YN7ZE4WO'"
-                        class="primary-btn w-full px-8 py-3.5 rounded-full text-white font-semibold flex items-center justify-center gap-2 text-sm mt-8">
+                    <a href="#oferta-especial"
+                        class="primary-btn w-full px-8 py-3.5 rounded-full text-white font-semibold flex items-center justify-center gap-2 text-sm mt-8 text-center">
                         Garantir Minha Vaga
-                    </button>
+                    </a>
 
                     <div class="instructor-logos">
-                        UFMG · Universidade Federal de Minas Gerais · Norwegian School of Sport Sciences · CNPq
+                        UFMG · Norwegian School of Sport Sciences · Università di Bologna · CNPq
                     </div>
                 </div>
 
-                <!-- CARD DIREITO — A INSTITUIÇÃO -->
-                <div class="instructor-card reveal-right" style="width:100%;position:relative;">
-                    <div style="position:absolute;top:32px;right:32px;border:1px solid rgba(59,130,246,0.3);background:rgba(37,99,235,0.08);border-radius:99px;padding:6px 12px;display:none;@media(min-width:600px){display:inline-block;}"
-                        class="inst-badge">
-                        <span
-                            style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:0.1em;">Reconhecida
-                            internacionalmente desde · 2018</span>
-                    </div>
-
+                <!-- CARD — INSTITUIÇÃO (âncora #instituicao para o menu) -->
+                <div id="instituicao" class="instructor-card reveal-right" style="width:100%;position:relative;scroll-margin-top:6rem;">
                     <div style="margin-bottom:24px;">
                         <div style="width:120px;height:120px;border-radius:50%;background:#ffffff;border:2px solid rgba(59,130,246,0.3);margin-bottom:20px;display:flex;align-items:center;justify-content:center;padding:14px;">
-                            <img src="/fadiga-mental/assets/images/logo_dourada_ac.png" alt="Instituto Atleta Campeão"
+                            <img src="assets/images/logo_dourada_ac.png" alt="Instituto Atleta Campeão"
                                 style="width:100%;height:100%;object-fit:contain;display:block;">
                         </div>
 
-                        <span class="instructor-label">A INSTITUIÇÃO</span>
+                        <span class="instructor-label">A Instituição</span>
                         <h3
                             style="font-family:'Manrope',sans-serif;font-size:24px;font-weight:700;color:#ffffff;margin:0 0 8px;">
                             Instituto Atleta Campeão</h3>
@@ -1301,13 +1183,9 @@
                             style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#93c5fd;margin:0 0 20px;">
                             Referência em neurociência e treinamento mental para o esporte desde 2016</p>
                         <p
-                            style="font-family:'Inter',sans-serif;font-size:14.5px;color:#94a3b8;line-height:1.6;margin:0 0 32px;">
-                            Fundado em 2016 nos Estados Unidos e expandido para o Brasil em 2017, o Atleta Campeão se
-                            tornou a maior referência nacional em treinamento mental e emocional para atletas. Em 2018,
-                            foi reconhecido pelo Comitê Olímpico do Brasil e convidado para o Prêmio Brasil Olímpico. Em
-                            2023, lançou sua primeira pós-graduação em Neurociência e Treinamento Mental Aplicado ao
-                            Esporte — com mais de 300 alunos na primeira turma. Hoje, já impactou mais de 30 mil atletas
-                            de diferentes modalidades, do amador ao campeão mundial.
+                            style="font-family:'Inter',sans-serif;font-size:14.5px;color:#94a3b8;line-height:1.65;margin:0 0 32px;">
+                            Fundado em 2016 nos Estados Unidos e expandido para o Brasil em 2017, o Atleta Campeão se tornou a maior referência nacional em treinamento mental e emocional para atletas. Em 2018, foi reconhecido pelo Comitê Olímpico do Brasil e convidado para o Prêmio Brasil Olímpico.<br><br>
+                            Em 2023, lançou sua primeira pós-graduação em Neurociência e Treinamento Mental Aplicado ao Esporte — com mais de 400 alunos. Hoje, já impactou mais de 30 mil atletas de diferentes modalidades, do amador ao campeão mundial.
                         </p>
 
                         <div>
@@ -1320,24 +1198,74 @@
                                 <span class="metric-desc">alunos inscritos na pós-graduação</span>
                             </div>
                             <div class="metric-item reveal-metric-right">
-                                <span class="metric-value"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#ffffff;">+</span><span data-val="20">0</span></span>
-                                <span class="metric-desc">Anos de experiência no mercado esportivo</span>
+                                <span class="metric-value"><span style="font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:#ffffff;">+</span><span data-val="8">0</span></span>
+                                <span class="metric-desc">anos de referência no mercado esportivo</span>
                             </div>
                         </div>
                     </div>
 
-                    <button
-                        onclick="window.location.href='https://chk.eduzz.com/39YN7ZE4WO'"
-                        class="primary-btn w-full px-8 py-3.5 rounded-full text-white font-semibold flex items-center justify-center gap-2 text-sm mt-8">
+                    <a href="#oferta-especial"
+                        class="primary-btn w-full px-8 py-3.5 rounded-full text-white font-semibold flex items-center justify-center gap-2 text-sm mt-8 text-center">
                         Garantir Minha Vaga
-                    </button>
+                    </a>
                 </div>
 
             </div><!-- /layout 2 colunas -->
         </div><!-- /container -->
 
     </section>
-    <!-- ── END SECTION 04 ── -->
+    <!-- ── END PROFESSOR + INSTITUIÇÃO ── -->
+
+    <section id="certificacao" style="background:#ffffff;padding:100px 0;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:100%;height:1px;background:rgba(226,232,240,1);pointer-events:none;z-index:2;"></div>
+        <canvas id="certNeuronCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0.5;pointer-events:none;"></canvas>
+        <div style="position:absolute;top:50%;left:20%;transform:translate(-50%,-50%);width:600px;height:600px;background:rgba(37,99,235,0.08);border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;"></div>
+        <div style="position:absolute;bottom:-10%;right:-10%;width:600px;height:600px;background:rgba(29,78,216,0.08);border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;"></div>
+        <div style="max-width:1400px;margin:0 auto;padding:0 24px;position:relative;z-index:1;">
+            <div id="cert-layout" style="display:flex;flex-direction:column;gap:60px;align-items:center;">
+                <div style="width:100%;max-width:520px;display:flex;flex-direction:column;align-items:center;">
+                    <div class="cert-wrapper" id="cert-card" onmouseenter="this.style.setProperty('--spin-dur','1.8s')" onmouseleave="this.style.setProperty('--spin-dur','4s')">
+                        <div class="cert-inner">
+                            <img src="assets/images/certificado.png" alt="Certificado do curso O Cérebro do Atleta na Era Digital" style="width:100%;height:100%;object-fit:cover;display:block;">
+                        </div>
+                    </div>
+                    <p style="font-family:'Inter',sans-serif;font-size:11px;color:#475569;letter-spacing:0.12em;text-transform:uppercase;margin-top:20px;text-align:center;">✦ Certificado digital após a conclusão do curso</p>
+                </div>
+                <div class="cert-col-right" style="width:100%;max-width:580px;">
+                    <p style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#2563eb;margin:0 0 16px;">Certificação</p>
+                    <h2 style="font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,44px);font-weight:700;line-height:1.1;letter-spacing:-0.03em;color:#0f172a;margin:0;">Um diferencial que poucos profissionais do esporte têm</h2>
+                    <p style="font-family:'Inter',sans-serif;font-size:15px;color:#475569;line-height:1.65;max-width:440px;margin:14px 0 44px;">
+                        A maioria dos profissionais do esporte nunca teve formação específica em neurociência das telas e do desempenho. Este certificado registra formalmente que você é um dos poucos que tem — emitido pelo Atleta Campeão e assinado pelo Prof. Dr. Leonardo Fortes.
+                    </p>
+                    <div style="display:flex;flex-direction:column;">
+                        <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
+                            <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;background:#f1f5f9;border:1px solid #e2e8f0;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#64748b;display:flex;align-items:center;justify-content:center;">01</div>
+                            <div>
+                                <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:#0f172a;margin:0;">Emissão 24h após a conclusão</p>
+                                <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:#475569;line-height:1.55;margin:4px 0 0;">Certificado digital em PDF, sem burocracia.</p>
+                            </div>
+                        </div>
+                        <div style="height:1px;background:#e2e8f0;margin:20px 0;"></div>
+                        <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
+                            <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;background:#f1f5f9;border:1px solid #e2e8f0;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#64748b;display:flex;align-items:center;justify-content:center;">02</div>
+                            <div>
+                                <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:#0f172a;margin:0;">Assinado por referência científica nacional</p>
+                                <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:#475569;line-height:1.55;margin:4px 0 0;">Assinado pelo Prof. Dr. Leonardo Fortes (UFMG) — um dos três principais pesquisadores do mundo nessa temática.</p>
+                            </div>
+                        </div>
+                        <div style="height:1px;background:#e2e8f0;margin:20px 0;"></div>
+                        <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
+                            <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;background:#f1f5f9;border:1px solid #e2e8f0;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#64748b;display:flex;align-items:center;justify-content:center;">03</div>
+                            <div>
+                                <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:#0f172a;margin:0;">Carga horária registrada: 8 horas</p>
+                                <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:#475569;line-height:1.55;margin:4px 0 0;">Padrão exigido em processos seletivos, clubes e federações.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- =======================================================================
          SECTION 05: PÚBLICO ALVO
@@ -1356,11 +1284,11 @@
             <div class="pa-header" style="text-align:center;margin-bottom:64px;opacity:0;transform:translateY(20px);">
                 <p style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;
                     letter-spacing:0.2em;text-transform:uppercase;color:#2563eb;margin-bottom:14px;">
-                    Público-Alvo
+                    Para quem é este curso
                 </p>
                 <h2 style="font-family:'Manrope',sans-serif;font-size:clamp(32px,4vw,48px);
                     font-weight:700;line-height:1.1;letter-spacing:-0.03em;color:#0f172a;margin:0;">
-                    Para quem é este treinamento?
+                    Este curso foi desenvolvido para profissionais que trabalham com performance de atletas
                 </h2>
             </div>
 
@@ -1379,41 +1307,39 @@
                     </div>
                     <div class="pa-content">
                         <p class="pa-text">
-                            Para treinadores que desejam aprender sobre as emoções para melhor <strong class="pa-highlight">compreender o comportamento</strong> dos atletas dessa geração.
+                            Para treinadores que querem entender por que atletas dedicados estagnam — e descobrir que a causa pode estar no <strong class="pa-highlight">celular que eles usam no vestiário</strong> antes do treino.
                         </p>
                     </div>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="pa-card">
                     <div class="pa-img-container">
-                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop" alt="Profissionais">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600&auto=format&fit=crop" alt="Profissionais de saúde do esporte">
                         <div class="pa-img-overlay"></div>
                         <div class="pa-badge">
                             <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
-                            Profissionais
+                            Profissionais de Saúde
                         </div>
                     </div>
                     <div class="pa-content">
                         <p class="pa-text">
-                            Para profissionais que buscam ampliar seus serviços oferecendo o <strong class="pa-highlight">treinamento mental para alavancar</strong> os resultados dos seus alunos.
+                            Para preparadores, fisioterapeutas e nutricionistas que percebem que carga física, alimentação e recuperação estão ajustadas, mas o desempenho não responde — e querem <strong class="pa-highlight">a variável que faltava</strong>.
                         </p>
                     </div>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="pa-card">
                     <div class="pa-img-container">
-                        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=600&auto=format&fit=crop" alt="Atletas">
+                        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=600&auto=format&fit=crop" alt="Psicólogos e educadores físicos">
                         <div class="pa-img-overlay"></div>
                         <div class="pa-badge">
                             <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 100 20 10 10 0 000-20zM12 6v6l4 2" /></svg>
-                            Atletas
+                            Ciência do Comportamento
                         </div>
                     </div>
                     <div class="pa-content">
                         <p class="pa-text">
-                            Para todos que querem ajudar atletas com <strong class="pa-highlight">ferramentas específicas da neurociência</strong> voltadas para a performance nos treinos e nas competições.
+                            Para psicólogos e educadores físicos que querem <strong class="pa-highlight">protocolos científicos validados</strong> para intervir no comportamento digital dos atletas com base em neurociência, não em achismo.
                         </p>
                     </div>
                 </div>
@@ -1448,23 +1374,25 @@
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                         </div>
-                        <span class="font-inter text-[13px] font-bold text-slate-700">Módulo exclusivo · Único no Brasil</span>
+                        <span class="font-inter text-[13px] font-bold text-slate-700">Conteúdo inédito no Brasil neste formato</span>
                     </div>
 
-                    <!-- Title and Text -->
                     <h2 class="font-manrope text-4xl lg:text-[44px] font-bold text-slate-900 leading-[1.1] mb-6 self-center lg:self-start">
-                        Uma chance <span class="text-blue-600">ÚNICA!</span>
+                        Uma chance única de dominar<br><span class="text-blue-600">o que times europeus já aplicam</span>
                     </h2>
-                    <p class="font-inter text-base lg:text-[17px] text-slate-600 leading-relaxed mb-12 max-w-lg self-center lg:self-start text-center lg:text-left">
-                        Além de oferecer um conteúdo único com profissionais renomados diariamente envolvidos no meio esportivo também damos a oportunidade de fazer networking e novos negócios.
+                    <p class="font-inter text-base lg:text-[17px] text-slate-600 leading-relaxed mb-4 max-w-lg self-center lg:self-start text-center lg:text-left">
+                        Quando o <em>The Guardian</em> publicou a pesquisa do Prof. Fortes, times da Premier League mudaram seus protocolos de pré-jogo. Agora esse conhecimento está disponível em formato de curso para profissionais brasileiros — pela primeira vez em forma estruturada e aplicável.
+                    </p>
+                    <p class="font-inter text-sm text-slate-500 mb-10 max-w-lg self-center lg:self-start text-center lg:text-left leading-relaxed">
+                        Este é o primeiro curso estruturado sobre este tema no Brasil. Vagas para a turma inaugural são limitadas.
                     </p>
 
-                    <!-- Mockup with Dark/Cyber styling -->
-                    <div class="relative w-full max-w-[500px] mx-auto lg:ml-0">
+                    <!-- Mockup: o que está incluso no investimento -->
+                    <div class="relative w-full max-w-[520px] mx-auto lg:ml-0">
                         <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
                             <div class="w-[80%] h-[80%] rounded-full border border-blue-500/10 bg-blue-100/30 blur-2xl"></div>
                         </div>
-                        <img src="/fadiga-mental/assets/images/mkp01.png" alt="Mockup do curso"
+                        <img src="assets/images/mkp_curso.png" alt="Incluso no curso: gravações das aulas ao vivo, certificado e apostilas"
                             class="relative z-10 w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] hover:scale-[1.02] transition-transform duration-500">
                     </div>
                 </div>
@@ -1475,46 +1403,51 @@
                         <!-- Inner Card Body (Glassmorphism) -->
                         <div class="bg-white rounded-[23px] p-8 sm:p-10 lg:p-12 relative overflow-hidden h-full">
                             
-                            <h3 class="font-manrope text-3xl sm:text-4xl font-extrabold text-slate-800 mb-8 tracking-tight">
+                            <h3 class="font-manrope text-3xl sm:text-4xl font-extrabold text-slate-800 mb-6 tracking-tight">
                                 Garanta sua vaga:
                             </h3>
 
-                            <!-- Bullets -->
+                            <div class="mb-8 rounded-2xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-4 sm:p-5">
+                                <img src="assets/images/mkp_curso.png" alt="Pacote do curso: aulas gravadas, certificado e apostilas" width="640" height="360" loading="lazy" decoding="async" class="w-full h-auto max-h-[200px] sm:max-h-[240px] object-contain mx-auto">
+                                <p class="font-inter text-center text-xs text-slate-500 mt-3 leading-snug">Aulas gravadas · Certificado · Apostilas exclusivas — tudo incluído no acesso.</p>
+                            </div>
+
                             <div class="flex flex-col gap-5 mb-10">
-                            <!-- Bullet 1 -->
                             <div class="flex items-start gap-4">
                                 <div class="w-6 h-6 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                                 </div>
-                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Único módulo no Brasil sobre fadiga mental no esporte</span>
+                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Acesso ao curso completo com 5 módulos</span>
                             </div>
-                            <!-- Bullet 2 -->
                             <div class="flex items-start gap-4">
                                 <div class="w-6 h-6 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                                 </div>
-                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Ao vivo em 11 de Abril + gravação disponível</span>
+                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Módulo bônus: Biomecânica e Risco de Lesão (inédito)</span>
                             </div>
-                            <!-- Bullet 3 -->
                             <div class="flex items-start gap-4">
                                 <div class="w-6 h-6 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                                 </div>
-                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Ferramentas científicas prontas para usar com atletas</span>
+                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Ao vivo em <strong class="text-slate-900">25/04/2026 (sábado)</strong> + gravação disponível</span>
                             </div>
-                            <!-- Bullet 4 -->
                             <div class="flex items-start gap-4">
                                 <div class="w-6 h-6 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                                 </div>
-                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Certificado de qualificação de 6h incluso</span>
+                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Certificado de qualificação incluso</span>
                             </div>
-                            <!-- Bullet 5 -->
                             <div class="flex items-start gap-4">
                                 <div class="w-6 h-6 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                                 </div>
-                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Assinado pelo Prof. Dr. Leonardo Fortes — UFPB</span>
+                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Assinado pelo Prof. Dr. Leonardo Fortes (UFMG)</span>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                </div>
+                                <span class="font-inter text-[15px] sm:text-[16px] text-slate-800 leading-relaxed font-medium">Acesso vitalício ao material</span>
                             </div>
                             </div>
 
@@ -1528,17 +1461,20 @@
                                 <p class="font-inter text-[14px] text-slate-600 font-medium mt-3">Acesso vitalício · Certificado incluso</p>
                             </div>
 
-                            <!-- Buttons -->
                             <div class="flex flex-col gap-4">
                                 <a href="https://chk.eduzz.com/39YN7ZE4WO"
                                     class="primary-btn w-full px-8 py-4 rounded-xl text-white font-bold flex items-center justify-center text-center text-lg sm:text-xl shadow-lg shadow-blue-500/30">
                                     GARANTIR MINHA VAGA
                                 </a>
-                                <a href="https://wa.me/5588998091290" target="_blank"
+                                <a href="https://wa.me/5588998091290" target="_blank" rel="noopener noreferrer"
                                     class="whatsapp-btn w-full px-8 py-4 rounded-xl text-white font-bold flex items-center justify-center text-center text-lg transition-colors duration-300 shadow-lg shadow-emerald-500/30">
                                     Falar com a Equipe
                                 </a>
                             </div>
+                            <p class="font-inter text-sm text-slate-500 mt-6 text-center leading-relaxed">
+                                🔒 Pagamento 100% seguro · Cartão, Boleto ou PIX<br>
+                                ⏱ Garantia incondicional de 7 dias
+                            </p>
 
                         </div>
                     </div>
@@ -1577,14 +1513,14 @@
                 <div class="faq-item group relative p-[2px] rounded-[16px] bg-gradient-to-r from-blue-500/20 via-transparent to-blue-500/20 hover:from-blue-600/50 hover:via-blue-500/20 hover:to-blue-600/50 transition-all duration-500 shadow-sm hover:shadow-lg">
                     <div class="bg-white rounded-[14px] overflow-hidden relative z-10">
                         <button class="faq-btn w-full flex justify-between items-center p-6 sm:p-8 text-left focus:outline-none">
-                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Como será o cronograma do curso?</span>
+                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Preciso ter formação em neurociência para acompanhar o conteúdo?</span>
                             <div class="flex-shrink-0 text-blue-600 bg-blue-50 p-2 rounded-full border border-blue-100 group-hover:bg-blue-100 group-hover:border-blue-300 transition-all">
                                 <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                             </div>
                         </button>
                         <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0px;">
                             <div class="p-6 sm:p-8 pt-0 font-inter text-[15px] text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
-                                Você pode conferir o cronograma detalhado na seção "Conteúdo Programático" desta página. Lá mostramos todos os módulos abordados, os bônus e as ferramentas práticas.
+                                Não. O curso foi desenvolvido para profissionais do esporte de diferentes áreas — treinadores, preparadores físicos, nutricionistas, fisioterapeutas e psicólogos. A linguagem é científica, mas acessível. Os conceitos são explicados com exemplos práticos e aplicáveis ao campo.
                             </div>
                         </div>
                     </div>
@@ -1594,14 +1530,14 @@
                 <div class="faq-item group relative p-[2px] rounded-[16px] bg-gradient-to-r from-blue-500/20 via-transparent to-blue-500/20 hover:from-blue-600/50 hover:via-blue-500/20 hover:to-blue-600/50 transition-all duration-500 shadow-sm hover:shadow-lg">
                     <div class="bg-white rounded-[14px] overflow-hidden relative z-10">
                         <button class="faq-btn w-full flex justify-between items-center p-6 sm:p-8 text-left focus:outline-none">
-                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Como eu vou acessar o conteúdo?</span>
+                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Como vou acessar o conteúdo?</span>
                             <div class="flex-shrink-0 text-blue-600 bg-blue-50 p-2 rounded-full border border-blue-100 group-hover:bg-blue-100 group-hover:border-blue-300 transition-all">
                                 <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                             </div>
                         </button>
                         <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0px;">
                             <div class="p-6 sm:p-8 pt-0 font-inter text-[15px] text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
-                                Você receberá acesso logo após o investimento. O treinamento está hospedado na nossa plataforma exclusiva "NovaPulse" e você receberá os dados de acesso no seu e-mail assim que sua inscrição for confirmada.
+                                Você receberá acesso à plataforma assim que sua inscrição for confirmada. O curso acontece ao vivo em <strong class="text-slate-800">25 de abril de 2026 (sábado)</strong> e a gravação fica disponível para você assistir quantas vezes quiser, no seu próprio ritmo.
                             </div>
                         </div>
                     </div>
@@ -1611,14 +1547,14 @@
                 <div class="faq-item group relative p-[2px] rounded-[16px] bg-gradient-to-r from-blue-500/20 via-transparent to-blue-500/20 hover:from-blue-600/50 hover:via-blue-500/20 hover:to-blue-600/50 transition-all duration-500 shadow-sm hover:shadow-lg">
                     <div class="bg-white rounded-[14px] overflow-hidden relative z-10">
                         <button class="faq-btn w-full flex justify-between items-center p-6 sm:p-8 text-left focus:outline-none">
-                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Quanto custa e quais são as formas de pagamento?</span>
+                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Por quanto tempo terei acesso?</span>
                             <div class="flex-shrink-0 text-blue-600 bg-blue-50 p-2 rounded-full border border-blue-100 group-hover:bg-blue-100 group-hover:border-blue-300 transition-all">
                                 <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                             </div>
                         </button>
                         <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0px;">
                             <div class="p-6 sm:p-8 pt-0 font-inter text-[15px] text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
-                                O valor promocional do ticket de participação é de apenas <strong class="text-slate-800">R$ 97,00</strong>. Pode ser pago no cartão de crédito, boleto bancário ou PIX. O pagamento é processado de forma 100% segura e você possui garantia INCONDICIONAL de 7 dias para solicitar o estorno sem burocracias ou letras miúdas.
+                                Acesso vitalício. Sem prazo de expiração.
                             </div>
                         </div>
                     </div>
@@ -1628,17 +1564,14 @@
                 <div class="faq-item group relative p-[2px] rounded-[16px] bg-gradient-to-r from-blue-500/20 via-transparent to-blue-500/20 hover:from-blue-600/50 hover:via-blue-500/20 hover:to-blue-600/50 transition-all duration-500 shadow-sm hover:shadow-lg">
                     <div class="bg-white rounded-[14px] overflow-hidden relative z-10">
                         <button class="faq-btn w-full flex justify-between items-center p-6 sm:p-8 text-left focus:outline-none">
-                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Quais são os canais de suporte caso eu tenha algum problema?</span>
+                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Quanto custa e como posso pagar?</span>
                             <div class="flex-shrink-0 text-blue-600 bg-blue-50 p-2 rounded-full border border-blue-100 group-hover:bg-blue-100 group-hover:border-blue-300 transition-all">
                                 <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                             </div>
                         </button>
                         <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0px;">
                             <div class="p-6 sm:p-8 pt-0 font-inter text-[15px] text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
-                                Nossos canais de suporte oficiais são:<br><br>
-                                <strong>Email:</strong> suporte@atletacampeao.com.br<br>
-                                <strong>WhatsApp:</strong> +55 (88) 98091-290<br><br>
-                                Todas as solicitações são respondidas dentro do prazo de 24h. Não hesite em nos enviar uma mensagem em caso de dúvidas sobre o treinamento ou qualquer eventual problema de acesso.
+                                <strong class="text-slate-800">R$ 97,00</strong> — pagamento por cartão de crédito, boleto bancário ou PIX. Processamento 100% seguro. Garantia incondicional de 7 dias.
                             </div>
                         </div>
                     </div>
@@ -1655,7 +1588,7 @@
                         </button>
                         <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0px;">
                             <div class="p-6 sm:p-8 pt-0 font-inter text-[15px] text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
-                                Nós aceitamos ativamente membros de todo o mundo. A nossa plataforma de pagamento faz a conversão de moeda automaticamente e você pode realizar a compra utilizando o cartão de crédito do seu respectivo país.
+                                O curso é 100% online e aceita alunos de todo o mundo. O pagamento é feito na plataforma com conversão automática de moeda.
                             </div>
                         </div>
                     </div>
@@ -1665,14 +1598,14 @@
                 <div class="faq-item group relative p-[2px] rounded-[16px] bg-gradient-to-r from-blue-500/20 via-transparent to-blue-500/20 hover:from-blue-600/50 hover:via-blue-500/20 hover:to-blue-600/50 transition-all duration-500 shadow-sm hover:shadow-lg">
                     <div class="bg-white rounded-[14px] overflow-hidden relative z-10">
                         <button class="faq-btn w-full flex justify-between items-center p-6 sm:p-8 text-left focus:outline-none">
-                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Não sou psicólogo, este treinamento vai me servir?</span>
+                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Não sou psicólogo. O curso vai me servir?</span>
                             <div class="flex-shrink-0 text-blue-600 bg-blue-50 p-2 rounded-full border border-blue-100 group-hover:bg-blue-100 group-hover:border-blue-300 transition-all">
                                 <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                             </div>
                         </button>
                         <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0px;">
                             <div class="p-6 sm:p-8 pt-0 font-inter text-[15px] text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
-                                Com certeza! O conteúdo foi cuidadosamente elaborado não apenas para psicólogos, mas para treinadores, preparadores físicos, fisioterapeutas e os próprios atletas. A linguagem é acessível, científica, mas muito direta e focada em ferramentas que você pode aplicar imediatamente na prática esportiva.
+                                Sim. O curso foi especialmente desenvolvido para múltiplos perfis — treinadores, preparadores físicos, fisioterapeutas e educadores físicos. Cada módulo inclui indicações práticas para diferentes áreas profissionais.
                             </div>
                         </div>
                     </div>
@@ -1682,14 +1615,14 @@
                 <div class="faq-item group relative p-[2px] rounded-[16px] bg-gradient-to-r from-blue-500/20 via-transparent to-blue-500/20 hover:from-blue-600/50 hover:via-blue-500/20 hover:to-blue-600/50 transition-all duration-500 shadow-sm hover:shadow-lg">
                     <div class="bg-white rounded-[14px] overflow-hidden relative z-10">
                         <button class="faq-btn w-full flex justify-between items-center p-6 sm:p-8 text-left focus:outline-none">
-                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">Por quanto tempo terei acesso ao material?</span>
+                            <span class="font-manrope text-[17px] sm:text-lg font-bold text-slate-800 pr-6 group-hover:text-blue-700 transition-colors">O certificado é reconhecido?</span>
                             <div class="flex-shrink-0 text-blue-600 bg-blue-50 p-2 rounded-full border border-blue-100 group-hover:bg-blue-100 group-hover:border-blue-300 transition-all">
                                 <svg class="faq-icon w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                             </div>
                         </button>
                         <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0px;">
                             <div class="p-6 sm:p-8 pt-0 font-inter text-[15px] text-slate-600 leading-relaxed border-t border-slate-100 mt-2">
-                                O seu acesso será <strong>vitalício</strong>. Ou seja, ao garantir a sua vaga hoje, você pode assistir o módulo ao vivo no dia e terá a liberdade de rever as gravações e baixar os materiais quantas vezes quiser, no seu próprio ritmo, para sempre.
+                                O certificado é emitido pelo Instituto Atleta Campeão e assinado pelo Prof. Dr. Leonardo Fortes (UFMG) — um dos três principais pesquisadores do mundo no tema. Contém carga horária registrada, o padrão exigido em processos seletivos, clubes e federações.
                             </div>
                         </div>
                     </div>
@@ -1715,7 +1648,7 @@
                 
                 <!-- Coluna 1: Logo e Descrição -->
                 <div class="flex flex-col gap-6 lg:pr-4">
-                    <img src="/fadiga-mental/assets/images/logo.png" alt="Instituto Atleta Campeão" class="h-10 object-contain w-fit">
+                    <img src="assets/images/logo.png" alt="Instituto Atleta Campeão" class="h-10 object-contain w-fit">
                     <p class="font-inter text-sm text-slate-400 leading-relaxed">
                         A maior referência nacional em treinamento mental e emocional para atletas. Transformando dados da neurociência em resultados reais no esporte desde 2016.
                     </p>
@@ -1759,10 +1692,13 @@
                     <h4 class="font-manrope text-lg font-bold text-white mb-2">Links Úteis</h4>
                     <ul class="space-y-3 font-inter text-sm text-slate-400">
                         <li><a href="#hero" class="hover:text-blue-400 transition-colors">Início</a></li>
-                        <li><a href="#ementa" class="hover:text-blue-400 transition-colors">O que vou aprender?</a></li>
-                        <li><a href="#quem-esta-por-tras" class="hover:text-blue-400 transition-colors">O Professor</a></li>
-                        <li><a href="#oferta-especial" class="hover:text-blue-400 transition-colors">Inscreva-se Agora</a></li>
-                        <li><a href="#faq" class="hover:text-blue-400 transition-colors">Dúvidas Frequentes</a></li>
+                        <li><a href="#conteudo-programatico" class="hover:text-blue-400 transition-colors">Conteúdo</a></li>
+                        <li><a href="#professor" class="hover:text-blue-400 transition-colors">Professor</a></li>
+                        <li><a href="#instituicao" class="hover:text-blue-400 transition-colors">Instituição</a></li>
+                        <li><a href="#certificacao" class="hover:text-blue-400 transition-colors">Certificação</a></li>
+                        <li><a href="#publico-alvo" class="hover:text-blue-400 transition-colors">Para quem é</a></li>
+                        <li><a href="#oferta-especial" class="hover:text-blue-400 transition-colors">Oferta</a></li>
+                        <li><a href="#faq" class="hover:text-blue-400 transition-colors">FAQ</a></li>
                     </ul>
                 </div>
 
@@ -2066,10 +2002,10 @@
             const observer = new IntersectionObserver((entries) => {
                 isVisible = entries[0].isIntersecting;
             }, { threshold: 0 });
-            observer.observe(document.getElementById('quem-esta-por-tras'));
+            observer.observe(document.getElementById('professor'));
 
             function resize() {
-                const section = document.getElementById('quem-esta-por-tras');
+                const section = document.getElementById('professor');
                 W = window.innerWidth;
                 H = section ? section.offsetHeight : window.innerHeight;
                 canvas.width = W;
@@ -2137,7 +2073,7 @@
 
         // ─── Section 04 — Instructor scroll reveal ──────────────────────────────
         (function () {
-            const section = document.getElementById('quem-esta-por-tras');
+            const section = document.getElementById('professor');
             if (!section) return;
 
             const header = section.querySelector('.reveal-header');
@@ -2260,7 +2196,7 @@
 
         // ─── Section 02 — Ementa scroll reveal ──────────────────────────────
         (function () {
-            const targets = document.querySelectorAll('#ementa .ementa-header, #ementa .mod-card-v2, #ementa .ementa-cta');
+            const targets = document.querySelectorAll('#conteudo-programatico .ementa-header, #conteudo-programatico .mod-card-v2, #conteudo-programatico .ementa-cta');
             const io = new IntersectionObserver((entries) => {
                 entries.forEach(e => {
                     if (e.isIntersecting) {

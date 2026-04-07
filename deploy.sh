@@ -12,6 +12,7 @@ echo "📦 Adicionando alterações..."
 git add \
   "obrigado-congresso/" \
   "Congresso de Neuro/" \
+  "curso-telas/" \
   "fadiga-mental/" \
   "inscricao-congresso-neurociencia-no-esporte/" \
   "pos-graduacao-neurociencia-no-esporte/" \

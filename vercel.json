@@ -2,11 +2,13 @@
   "redirects": [
     { "source": "/inscricao-congresso-neurociencia-no-esporte", "destination": "/inscricao-congresso-neurociencia-no-esporte/", "permanent": false },
     { "source": "/fadiga-mental", "destination": "/fadiga-mental/", "permanent": false },
+    { "source": "/curso-telas", "destination": "/curso-telas/", "permanent": false },
     { "source": "/pos-graduacao-neurociencia-no-esporte", "destination": "/pos-graduacao-neurociencia-no-esporte/", "permanent": false },
     { "source": "/pos-graduação-neurociencia-no-esporte", "destination": "/pos-graduacao-neurociencia-no-esporte/", "permanent": true },
     { "source": "/pos-graduação-neurociencia-no-esporte/", "destination": "/pos-graduacao-neurociencia-no-esporte/", "permanent": true }
   ],
   "rewrites": [
+    { "source": "/curso-telas/", "destination": "/curso-telas/lp_curso_de_telas.html" },
     { "source": "/obrigado-congresso-neuro-upgrade/assets/:path*", "destination": "/obrigado-congresso/assets/:path*" },
     { "source": "/obrigado-congresso-neuro-upgrade", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" },
     { "source": "/obrigado-congresso-neuro-upgrade/", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" },
