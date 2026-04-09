@@ -1,0 +1,137 @@
+# Prompt — Hero Section | Congresso Internacional de Neurociência Aplicada ao Esporte
+
+---
+
+Você é um especialista em web design e desenvolvimento frontend, com foco em landing pages de alta conversão. Preciso que você crie o **hero section** de uma página de captura de leads para um Congresso Internacional de Neurociência Aplicada ao Esporte.
+
+---
+
+## 🎨 Design System
+
+> **[PREENCHA AQUI]**
+> Insira suas cores, fontes e estilo visual.
+> Exemplo: *"Cor primária: #1B2B6B, cor de destaque: #F5A623, fonte principal: Montserrat, estilo: sóbrio e profissional"*
+
+---
+
+## 👥 Contexto e Público-Alvo
+
+O público-alvo são profissionais do esporte brasileiros: treinadores, psicólogos esportivos e preparadores físicos. São pessoas que buscam reconhecimento profissional, diferenciação no mercado e acesso a métodos com embasamento científico. A comunicação deve ser direta, profissional e aspiracional — sem ser genérica.
+
+---
+
+## ✍️ Copy do Hero
+
+Use exatamente os textos abaixo, sem alterar nenhuma palavra:
+
+**HEADLINE**
+> O que separa um profissional do esporte comum de um especialista requisitado pelos melhores atletas e clubes do Brasil?
+
+**SUBHEADLINE**
+> Descubra como a Neurociência Aplicada ao Esporte está transformando a carreira de treinadores, psicólogos e preparadores físicos — e como você pode fazer parte dessa elite profissional.
+
+**BOTÃO CTA**
+> → Quero minha vaga gratuita no Congresso Internacional
+
+**MICRO-COPY** (abaixo do botão, em linha horizontal, com ícone à esquerda de cada item)
+
+| Ícone sugerido | Texto |
+|---|---|
+| Ícone de monitor/tela | 100% Online |
+| Ícone de calendário | 23 a 29/03 |
+| Ícone de documento/apostila | Com Apostilas |
+| Ícone de presente/tag | Gratuito |
+
+> ⚠️ Substitua os emojis por ícones vetoriais reais — de preferência da biblioteca **Lucide Icons** ou **FontAwesome** — que remetam visualmente ao significado de cada benefício. Os ícones devem ficar alinhados ao lado do texto correspondente, dispostos em **linha horizontal**, com espaçamento generoso entre eles.
+
+---
+
+## 📱 Responsividade — PRIORIDADE MÁXIMA
+
+**95% dos acessos são via dispositivo móvel.**
+
+O layout deve ser projetado primariamente para mobile (**mobile-first**), com uma experiência fluida e sem nenhum elemento cortado ou comprimido em telas pequenas. No desktop, o layout pode se expandir com mais espaçamento e peso visual, mas o foco é mobile.
+
+> Teste mentalmente o layout em uma tela de **375px de largura** antes de finalizar.
+
+---
+
+## 📋 Formulário de Captura
+
+O formulário será instalado por uma plataforma externa (como GoHighLevel, RD Station ou ActiveCampaign). No código, deixe um bloco **claramente demarcado com comentários** indicando onde o formulário deve ser inserido, exatamente assim:
+
+```html
+<!-- =============================================
+     FORMULÁRIO DE CAPTURA — COLE O CÓDIGO AQUI
+     Substitua este bloco pelo embed da sua plataforma
+     (ex: GoHighLevel, RD Station, ActiveCampaign)
+     ============================================= -->
+
+<iframe
+    src="https://api.leadconnectorhq.com/widget/form/oFCCODh8uT4ZwqAWZeO0"
+    style="width:100%;height:100%;border:none;border-radius:4px"
+    id="inline-oFCCODh8uT4ZwqAWZeO0" 
+    data-layout="{'id':'INLINE'}"
+    data-trigger-type="alwaysShow"
+    data-trigger-value=""
+    data-activation-type="alwaysActivated"
+    data-activation-value=""
+    data-deactivation-type="neverDeactivate"
+    data-deactivation-value=""
+    data-form-name="[CONGRESSO] Neurociência"
+    data-height="434"
+    data-layout-iframe-id="inline-oFCCODh8uT4ZwqAWZeO0"
+    data-form-id="oFCCODh8uT4ZwqAWZeO0"
+    title="[CONGRESSO] Neurociência"
+        >
+</iframe>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+
+<!-- =============================================
+     FIM DO BLOCO DO FORMULÁRIO
+     ============================================= -->
+```
+
+> O formulário deve ficar posicionado **abaixo do botão CTA principal**, dentro do hero, centralizado e com espaçamento adequado para não parecer colado ao botão.
+
+---
+
+## 📊 Pixel do Facebook ADS
+
+Deixe um espaço reservado no `<head>` do HTML para instalação do Pixel do Facebook, claramente indicado com comentários, exatamente assim:
+
+```html
+<!-- =============================================
+     PIXEL DO FACEBOOK ADS — COLE O CÓDIGO AQUI
+     Acesse: business.facebook.com > Gerenciador
+     de Eventos > Configurar Pixel > Instalação Manual
+     ============================================= -->
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1675439549310048');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1675439549310048&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- =============================================
+     FIM DO BLOCO DO PIXEL
+     ============================================= -->
+```
+
+---
+
+## 📦 Entrega Esperada
+
+Um arquivo **HTML único**, com CSS interno no `<style>` e JS mínimo necessário, limpo e bem comentado. O código deve estar pronto para ser publicado ou inserido em um construtor de páginas com suporte a HTML customizado.

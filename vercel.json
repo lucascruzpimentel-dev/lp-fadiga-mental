@@ -15,6 +15,8 @@
     { "source": "/obrigado-congresso", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" },
     { "source": "/obrigado-congresso/", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" },
     { "source": "/congresso-neuro-vip-pass", "destination": "/congresso-neuro-vip-pass/congresso-neuro-vip-pass.html" },
-    { "source": "/congresso-neuro-vip-pass/", "destination": "/congresso-neuro-vip-pass/congresso-neuro-vip-pass.html" }
+    { "source": "/congresso-neuro-vip-pass/", "destination": "/congresso-neuro-vip-pass/congresso-neuro-vip-pass.html" },
+    { "source": "/obrigado-aula-telas-cerebro-do-atleta", "destination": "/curso-telas/obrigado-aula-telas-cerebro-do-atleta.html" },
+    { "source": "/obrigado-aula-telas-cerebro-do-atleta/", "destination": "/curso-telas/obrigado-aula-telas-cerebro-do-atleta.html" }
   ]
 }
