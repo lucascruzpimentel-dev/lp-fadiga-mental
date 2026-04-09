@@ -7,7 +7,6 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-MXDTWRQ3');</script>
-    <!-- End Google Tag Manager -->
     <link rel="icon" href="/favicon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,177 +45,661 @@
         }
     </script>
     <style>
-        body { background: #f8fafc; color: #0f172a; }
-        .primary-btn {
+        :root {
+            --cap-blue: #2563eb;
+            --cap-blue-deep: #1d4ed8;
+            --cap-ink: #0f172a;
+            --cap-muted: #64748b;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            background: #f1f5f9;
+            color: var(--cap-ink);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Faixa contador — premium */
+        .cd-pro {
+            position: relative;
+            background: linear-gradient(180deg, #020617 0%, #0f172a 40%, #0c1222 100%);
+            padding: clamp(1.1rem, 3.5vw, 1.65rem) clamp(1rem, 3vw, 1.5rem);
+            text-align: center;
+            overflow: hidden;
+        }
+        .cd-pro::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 90% 80% at 50% -30%, rgba(59, 130, 246, 0.35), transparent 55%);
+            pointer-events: none;
+        }
+        .cd-pro__inner { position: relative; z-index: 1; }
+        .cd-pro__label {
+            font-size: clamp(0.68rem, 1.8vw, 0.78rem);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: #fbbf24;
+            margin-bottom: 0.65rem;
+            font-weight: 700;
+            text-shadow: 0 0 24px rgba(251, 191, 36, 0.25);
+        }
+        .cd-pro__grid {
+            display: flex;
+            justify-content: center;
+            gap: clamp(0.45rem, 2vw, 0.85rem);
+            flex-wrap: wrap;
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+        @media (min-width: 480px) { .cd-pro__grid { max-width: 36rem; } }
+        .cd-pro__cell {
+            min-width: clamp(4rem, 11vw, 5.75rem);
+            padding: 0.55rem 0.45rem 0.5rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.09) 0%, rgba(255,255,255,0.03) 100%);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 14px;
+            box-shadow: 0 4px 24px -8px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+            backdrop-filter: blur(8px);
+        }
+        .cd-pro__num {
+            display: block;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.5rem, 5vw, 2.35rem);
+            line-height: 1.1;
+            color: #fff;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.03em;
+        }
+        .cd-pro__unit {
+            font-size: clamp(0.58rem, 1.4vw, 0.72rem);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #94a3b8;
+            margin-top: 0.2rem;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero-cap {
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+        }
+        .hero-cap__bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 100% 80% at 0% 0%, rgba(59, 130, 246, 0.11), transparent 50%),
+                radial-gradient(ellipse 70% 60% at 100% 20%, rgba(99, 102, 241, 0.09), transparent 45%),
+                linear-gradient(180deg, #ffffff 0%, #f8fafc 55%, #f1f5f9 100%);
+            pointer-events: none;
+        }
+        .hero-cap__grid {
+            position: absolute;
+            inset: 0;
+            opacity: 0.4;
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(180deg, black 0%, transparent 85%);
+            pointer-events: none;
+        }
+        .hero-cap__mockup-col {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        @media (min-width: 1024px) {
+            .hero-cap__mockup-col {
+                justify-content: center;
+                align-self: center;
+            }
+        }
+        .hero-cap__mockup-wrap {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: min(440px, 100%);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .hero-cap__mockup-img {
+            border-radius: 1.25rem;
+            box-shadow:
+                0 2px 4px rgba(15, 23, 42, 0.04),
+                0 24px 48px -12px rgba(37, 99, 235, 0.18),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+            border: 1px solid rgba(226, 232, 240, 0.95);
+            transition: box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Pills destaque */
+        .pill-cap {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #334155;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(226, 232, 240, 0.95);
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        /* Card formulário — borda gradiente + cabeçalho rico (campos = iframe/GHL) */
+        .form-shell {
+            width: 100%;
+            max-width: 28rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1px;
+            border-radius: 1.25rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #2563eb 45%, #4f46e5 100%);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+                0 20px 50px -18px rgba(37, 99, 235, 0.35),
+                0 8px 24px -12px rgba(15, 23, 42, 0.12);
+        }
+        @media (min-width: 1024px) {
+            .form-shell { margin-left: 0; margin-right: 0; }
+        }
+        .form-shell__inner {
+            border-radius: calc(1.25rem - 1px);
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            overflow: hidden;
+        }
+        .form-shell__head {
+            padding: 1.15rem 1.25rem 1rem;
+            border-bottom: 1px solid #e8eef4;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        }
+        .form-shell__iframe {
+            padding: 0.5rem 0.65rem 0.75rem;
+        }
+        @media (min-width: 640px) {
+            .form-shell__iframe { padding: 0.65rem 0.85rem 0.85rem; }
+        }
+        .form-shell__iframe-box {
+            position: relative;
+            border-radius: 0.875rem;
+            overflow: hidden;
+            background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -2px 12px rgba(15, 23, 42, 0.04);
+        }
+        .form-shell__iframe-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #6366f1);
+            opacity: 0.85;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .form-shell__iframe-box iframe {
+            position: relative;
+            z-index: 0;
+            width: 100%;
+            height: clamp(430px, 52vh, 560px);
+            border: none;
+            display: block;
+            background: #fff;
+        }
+        @media (min-width: 640px) {
+            .form-shell__iframe-box iframe { height: clamp(450px, 50vh, 580px); }
+        }
+
+        /* Seções conteúdo */
+        .section-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.25rem;
+            padding: 1.5rem 1.25rem;
+            box-shadow: 0 4px 24px -12px rgba(15, 23, 42, 0.08);
+        }
+        @media (min-width: 640px) {
+            .section-card { padding: 1.75rem 1.75rem; }
+        }
+
+        /* Headline — acento editorial */
+        .hero-cap__title-accent {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Mockup — hover (desktop) */
+        @media (hover: hover) and (pointer: fine) {
+            .hero-cap__mockup-wrap:hover {
+                transform: translateY(-4px);
+            }
+            .hero-cap__mockup-wrap:hover .hero-cap__mockup-img {
+                box-shadow:
+                    0 4px 8px rgba(15, 23, 42, 0.06),
+                    0 32px 56px -14px rgba(37, 99, 235, 0.28),
+                    0 0 0 1px rgba(255, 255, 255, 0.85) inset;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-cap__mockup-wrap,
+            .hero-cap__mockup-img { transition: none; }
+            .hero-cap__mockup-wrap:hover { transform: none; }
+        }
+
+        /* Pills — hover */
+        @media (hover: hover) {
+            .pill-cap:hover {
+                border-color: rgba(59, 130, 246, 0.35);
+                box-shadow: 0 4px 14px -4px rgba(37, 99, 235, 0.2);
+                transform: translateY(-1px);
+            }
+        }
+
+        /* Timeline estudos */
+        .estudos-timeline {
+            position: relative;
+            padding-left: 0;
+        }
+        .estudos-timeline__item {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 1.25rem;
+        }
+        .estudos-timeline__item:last-child { padding-bottom: 0; }
+        .estudos-timeline__item::before {
+            content: '';
+            position: absolute;
+            left: 0.7rem;
+            top: 1.85rem;
+            bottom: -0.25rem;
+            width: 2px;
+            background: linear-gradient(180deg, #bfdbfe 0%, #e2e8f0 100%);
+        }
+        .estudos-timeline__item:last-child::before { display: none; }
+        .estudos-timeline__badge {
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            display: flex;
+            height: 1.5rem;
+            width: 1.5rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
             background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 14px rgba(37, 99, 235, 0.35);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+        }
+
+        /* CTA fixo mobile */
+        .cta-mobile-bar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 50;
+            padding: 0.65rem 1rem calc(0.65rem + env(safe-area-inset-bottom, 0));
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(248,250,252,0.92) 18%, #f8fafc 100%);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 -8px 32px rgba(15, 23, 42, 0.06);
+        }
+        @media (min-width: 1024px) {
+            .cta-mobile-bar { display: none; }
+        }
+        .cta-mobile-bar__btn {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1.25rem;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 800;
+            font-size: 0.9375rem;
+            letter-spacing: 0.02em;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 0.875rem;
             border: 1px solid #1d4ed8;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+            transition: transform 0.12s ease, filter 0.15s ease;
         }
-        .primary-btn:hover {
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 6px 20px rgba(37, 99, 235, 0.45);
-            transform: translateY(-1px);
+        .cta-mobile-bar__btn:active { transform: scale(0.98); }
+        .cta-mobile-bar__btn:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
         }
-        .hero-glow {
-            background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(59, 130, 246, 0.22), transparent 55%);
+        @media (prefers-reduced-motion: reduce) {
+            .cta-mobile-bar__btn { transition: none; }
+        }
+
+        a:focus-visible {
+            outline: 2px solid #2563eb;
+            outline-offset: 3px;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body class="font-sans antialiased">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXDTWRQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <header class="border-b border-slate-200/80 bg-white/90 backdrop-blur-sm sticky top-0 z-30">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-center">
-            <span class="font-manrope font-bold text-slate-900 text-sm sm:text-base">Instituto Atleta Campeão</span>
+    <header id="top" class="sticky top-0 z-40 border-b border-slate-200/90 bg-white/85 backdrop-blur-md supports-[backdrop-filter]:bg-white/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-col items-center justify-center gap-1.5">
+            <span class="font-manrope font-extrabold text-slate-900 text-sm sm:text-[15px] tracking-tight">Instituto Atleta Campeão</span>
+            <span class="h-0.5 w-12 rounded-full bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600 opacity-90" aria-hidden="true"></span>
         </div>
     </header>
 
-    <main class="hero-glow min-h-[calc(100vh-52px)]">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14 lg:py-16">
-            <p class="font-inter text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-blue-600 text-center mb-4">
-                Aula gratuita · ao vivo
-            </p>
-            <h1 class="font-manrope text-2xl sm:text-3xl lg:text-[2.125rem] font-extrabold text-slate-900 text-center leading-tight mb-4">
-                O cérebro do atleta na era digital: o que telas fazem com decisão e desempenho — e o que fazer na prática
-            </h1>
-            <p class="font-inter text-base sm:text-lg text-slate-600 text-center leading-relaxed max-w-2xl mx-auto mb-8">
-                Com <strong class="text-slate-800">Prof. Dr. Leonardo Fortes</strong> (UFMG · GENEXDES-CNPq). Conteúdo com base em pesquisa, direto para quem treina, prepara ou acompanha atletas.
-            </p>
-
-            <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10">
-                <div class="inline-flex items-center gap-2 rounded-full bg-white border border-slate-200 px-4 py-2 shadow-sm">
-                    <svg class="w-5 h-5 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <span class="font-inter text-sm font-semibold text-slate-800">15 de abril de 2026</span>
+    <section class="cd-pro" aria-label="Contagem regressiva para a aula">
+        <div class="cd-pro__inner" aria-live="polite">
+            <p class="cd-pro__label">Faltam para a aula ao vivo</p>
+            <div class="cd-pro__grid">
+                <div class="cd-pro__cell">
+                    <span class="cd-pro__num" id="captura-cd-days">--</span>
+                    <span class="cd-pro__unit">dias</span>
                 </div>
-                <div class="inline-flex items-center gap-2 rounded-full bg-white border border-slate-200 px-4 py-2 shadow-sm">
-                    <svg class="w-5 h-5 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                    <span class="font-inter text-sm font-semibold text-slate-800">100% online · ao vivo</span>
+                <div class="cd-pro__cell">
+                    <span class="cd-pro__num" id="captura-cd-hours">--</span>
+                    <span class="cd-pro__unit">horas</span>
+                </div>
+                <div class="cd-pro__cell">
+                    <span class="cd-pro__num" id="captura-cd-mins">--</span>
+                    <span class="cd-pro__unit">min</span>
+                </div>
+                <div class="cd-pro__cell">
+                    <span class="cd-pro__num" id="captura-cd-secs">--</span>
+                    <span class="cd-pro__unit">seg</span>
                 </div>
             </div>
-            <p class="font-inter text-sm text-slate-500 text-center mb-10 max-w-xl mx-auto">
-                Horário exato e link da sala serão enviados por e-mail após a inscrição.
-            </p>
+        </div>
+    </section>
 
-            <section id="estudos" class="mb-10" aria-labelledby="estudos-heading">
-                <h2 id="estudos-heading" class="font-manrope text-lg sm:text-xl font-bold text-slate-900 text-center mb-4">
+    <main>
+        <section class="hero-cap relative">
+            <div class="hero-cap__bg" aria-hidden="true"></div>
+            <div class="hero-cap__grid" aria-hidden="true"></div>
+            <div class="relative z-[1] max-w-7xl mx-auto px-4 sm:px-6 py-11 lg:py-16 xl:py-20">
+                <div class="flex flex-col lg:flex-row lg:items-center gap-11 lg:gap-14 xl:gap-16">
+                    <div class="hero-cap__mockup-col lg:w-[46%] xl:w-[44%] shrink-0">
+                        <div class="hero-cap__mockup-wrap mx-auto">
+                            <img
+                                src="assets/images/mkp_captura_aula_telas.png"
+                                width="1200"
+                                height="675"
+                                loading="eager"
+                                decoding="async"
+                                alt="Prévia dos materiais e da aula sobre telas, decisão e desempenho no esporte"
+                                class="hero-cap__mockup-img w-full h-auto">
+                        </div>
+                    </div>
+
+                    <div class="flex-1 min-w-0 w-full max-w-xl mx-auto lg:mx-0 lg:max-w-[26.5rem] flex flex-col text-center lg:text-left">
+                        <span class="inline-flex mx-auto lg:mx-0 items-center rounded-full bg-blue-600/10 text-blue-700 text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] px-3.5 py-1.5 mb-4 border border-blue-200/80">
+                            Aula gratuita · ao vivo
+                        </span>
+                        <h1 class="font-manrope text-[1.35rem] sm:text-2xl lg:text-[1.85rem] xl:text-[2.05rem] font-extrabold text-slate-900 leading-[1.22] tracking-[-0.02em] mb-4">
+                            O cérebro do atleta na <span class="hero-cap__title-accent">era digital</span>: o que telas fazem com decisão e desempenho — e o que fazer na prática
+                        </h1>
+                        <p class="font-inter text-[15px] sm:text-base text-slate-600 leading-relaxed mb-7">
+                            Com <strong class="text-slate-800 font-semibold">Prof. Dr. Leonardo Fortes</strong> (UFMG · GENEXDES-CNPq). Conteúdo com base em pesquisa, para quem treina, prepara ou acompanha atletas.
+                        </p>
+
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-2.5 mb-7" aria-label="Destaques da aula">
+                            <span class="pill-cap">
+                                <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                100% online
+                            </span>
+                            <span class="pill-cap">
+                                <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                15/04 · 20h
+                            </span>
+                            <span class="pill-cap">
+                                <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
+                                Gratuito
+                            </span>
+                        </div>
+
+                        <div class="form-shell" id="form-aula-telas">
+                            <div class="form-shell__inner">
+                                <div class="form-shell__head">
+                                    <p class="font-manrope text-lg font-bold text-slate-900 tracking-tight">Garanta sua vaga na aula</p>
+                                    <p class="font-inter text-sm text-slate-500 mt-1">Preencha abaixo — nome, e-mail e WhatsApp.</p>
+                                </div>
+                                <div class="form-shell__iframe">
+                                    <div class="form-shell__iframe-box">
+                                        <iframe
+                                            src="https://api.leadconnectorhq.com/widget/form/vbDMIvH26mpgbdPhYWCB"
+                                            id="inline-vbDMIvH26mpgbdPhYWCB"
+                                            data-layout="{'id':'INLINE'}"
+                                            data-trigger-type="alwaysShow"
+                                            data-trigger-value=""
+                                            data-activation-type="alwaysActivated"
+                                            data-activation-value=""
+                                            data-deactivation-type="neverDeactivate"
+                                            data-deactivation-value=""
+                                            data-form-name="[CAED] Aula Cérebro do Atleta"
+                                            data-height="500"
+                                            data-layout-iframe-id="inline-vbDMIvH26mpgbdPhYWCB"
+                                            data-form-id="vbDMIvH26mpgbdPhYWCB"
+                                            title="Inscrição — Aula Cérebro do Atleta na era digital">
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-28 lg:pb-16 space-y-10">
+            <section id="estudos" class="section-card" aria-labelledby="estudos-heading">
+                <h2 id="estudos-heading" class="font-manrope text-lg sm:text-xl font-bold text-slate-900 mb-4 text-center sm:text-left">
                     Conteúdo com base em estudos
                 </h2>
-                <ul class="font-inter text-[15px] text-slate-700 space-y-3 max-w-xl mx-auto">
-                    <li class="flex gap-3 items-start">
-                        <span class="text-blue-600 font-bold shrink-0">→</span>
+                <ul class="estudos-timeline font-inter text-[15px] text-slate-700">
+                    <li class="estudos-timeline__item">
+                        <span class="estudos-timeline__badge" aria-hidden="true">1</span>
                         <span>Por que 30 minutos de rede social antes do treino ou jogo já alteram decisões no campo.</span>
                     </li>
-                    <li class="flex gap-3 items-start">
-                        <span class="text-blue-600 font-bold shrink-0">→</span>
+                    <li class="estudos-timeline__item">
+                        <span class="estudos-timeline__badge" aria-hidden="true">2</span>
                         <span>Como celular, videogame e TV impactam o cérebro de formas diferentes — e o que isso muda no protocolo.</span>
                     </li>
-                    <li class="flex gap-3 items-start">
-                        <span class="text-blue-600 font-bold shrink-0">→</span>
+                    <li class="estudos-timeline__item">
+                        <span class="estudos-timeline__badge" aria-hidden="true">3</span>
                         <span>O que times e pesquisas já fizeram para reduzir esse efeito (e como aplicar na sua realidade).</span>
                     </li>
                 </ul>
             </section>
+        </div>
 
-            <section class="mb-10" aria-labelledby="beneficios-heading">
-                <h2 id="beneficios-heading" class="font-manrope text-lg sm:text-xl font-bold text-slate-900 text-center mb-2">
-                    Benefícios de participar da aula
-                </h2>
-                <p class="font-inter text-sm text-slate-500 text-center mb-6 max-w-lg mx-auto">
-                    Ao se inscrever e participar ao vivo, você tem acesso a estes materiais e entregas.
-                </p>
-                <figure class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-sm mb-6">
-                    <img src="assets/images/mkp_curso.png" width="1200" height="675" loading="lazy" decoding="async"
-                        alt="Certificado de participação, gravação da aula e apostilas exclusivas"
-                        class="w-full h-auto max-w-2xl mx-auto object-contain">
-                </figure>
-                <ul class="font-inter text-[15px] text-slate-700 space-y-3 max-w-xl mx-auto">
-                    <li class="flex gap-3 items-start">
-                        <span class="text-blue-600 font-bold shrink-0" aria-hidden="true">✓</span>
-                        <span><strong class="text-slate-900">Certificado de participação</strong> — comprove sua presença na aula.</span>
-                    </li>
-                    <li class="flex gap-3 items-start">
-                        <span class="text-blue-600 font-bold shrink-0" aria-hidden="true">✓</span>
-                        <span><strong class="text-slate-900">Gravação da aula</strong> — revise o conteúdo quando quiser.</span>
-                    </li>
-                    <li class="flex gap-3 items-start">
-                        <span class="text-blue-600 font-bold shrink-0" aria-hidden="true">✓</span>
-                        <span><strong class="text-slate-900">Apostilas exclusivas</strong> — material de apoio para aplicar na prática.</span>
-                    </li>
-                </ul>
-            </section>
-
-            <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm mb-10">
-                <h2 class="font-manrope text-lg font-bold text-slate-900 text-center mb-1">Garanta sua vaga na aula</h2>
-                <p class="font-inter text-sm text-slate-500 text-center mb-6">Gratuito · vagas limitadas</p>
-
-                <!-- =============================================
-                     FORMULÁRIO DE CAPTURA — COLE O CÓDIGO AQUI
-                     Substitua o bloco abaixo pelo embed da sua plataforma
-                     (GoHighLevel, RD Station, ActiveCampaign, etc.)
-                     e remova o formulário demo (#form-demo-wrap).
-                     ============================================= -->
-
-                <div id="form-demo-wrap">
-                    <form id="form-captura-demo" class="space-y-4" novalidate>
-                        <div>
-                            <label for="nome" class="block font-inter text-sm font-semibold text-slate-700 mb-1.5">Nome</label>
-                            <input type="text" id="nome" name="nome" required autocomplete="name" placeholder="Seu nome"
-                                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-inter text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-shadow">
+        <section id="instituicao" class="border-t border-slate-200/90 bg-gradient-to-b from-slate-50 to-white" aria-labelledby="instituicao-heading">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
+                <div class="flex flex-col sm:flex-row gap-8 sm:gap-10 items-start">
+                    <div class="shrink-0 mx-auto sm:mx-0">
+                        <div class="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] rounded-full bg-white border-2 border-blue-200/80 flex items-center justify-center p-3 shadow-sm">
+                            <img src="assets/images/logo_dourada_ac.png" width="120" height="120" loading="lazy" decoding="async" alt="Instituto Atleta Campeão" class="w-full h-full object-contain">
                         </div>
-                        <div>
-                            <label for="email" class="block font-inter text-sm font-semibold text-slate-700 mb-1.5">E-mail <span class="text-red-500">*</span></label>
-                            <input type="email" id="email" name="email" required autocomplete="email" placeholder="seu@email.com"
-                                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-inter text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-shadow">
+                    </div>
+                    <div class="flex-1 min-w-0 text-center sm:text-left">
+                        <p class="font-inter text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">A instituição</p>
+                        <h2 id="instituicao-heading" class="font-manrope text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-2">
+                            Instituto Atleta Campeão
+                        </h2>
+                        <p class="font-inter text-sm font-medium text-blue-700/90 mb-4">
+                            Referência em neurociência e treinamento mental para o esporte desde 2016
+                        </p>
+                        <p class="font-inter text-[15px] text-slate-600 leading-relaxed mb-8">
+                            Fundado em 2016 nos Estados Unidos e expandido para o Brasil em 2017, o Atleta Campeão se tornou a maior referência nacional em treinamento mental e emocional para atletas. Em 2018, foi reconhecido pelo Comitê Olímpico do Brasil e convidado para o Prêmio Brasil Olímpico. Em 2023, lançou sua primeira pós-graduação em Neurociência e Treinamento Mental Aplicado ao Esporte — com mais de 300 alunos na primeira turma. Hoje, já impactou mais de 30 mil atletas de diferentes modalidades, do amador ao campeão mundial.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="rounded-xl border border-slate-200 bg-white px-4 py-4 text-center sm:text-left shadow-sm">
+                                <p class="font-manrope text-2xl sm:text-[1.65rem] font-extrabold text-slate-900 tabular-nums">+30 mil</p>
+                                <p class="font-inter text-xs text-slate-600 mt-1 leading-snug">atletas impactados desde 2016</p>
+                            </div>
+                            <div class="rounded-xl border border-slate-200 bg-white px-4 py-4 text-center sm:text-left shadow-sm">
+                                <p class="font-manrope text-2xl sm:text-[1.65rem] font-extrabold text-slate-900 tabular-nums">+400</p>
+                                <p class="font-inter text-xs text-slate-600 mt-1 leading-snug">alunos inscritos na pós-graduação</p>
+                            </div>
+                            <div class="rounded-xl border border-slate-200 bg-white px-4 py-4 text-center sm:text-left shadow-sm">
+                                <p class="font-manrope text-2xl sm:text-[1.65rem] font-extrabold text-slate-900 tabular-nums">+20</p>
+                                <p class="font-inter text-xs text-slate-600 mt-1 leading-snug">Anos de experiência no mercado esportivo</p>
+                            </div>
                         </div>
-                        <div>
-                            <label for="whatsapp" class="block font-inter text-sm font-semibold text-slate-700 mb-1.5">WhatsApp (opcional)</label>
-                            <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="DDD + número"
-                                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-inter text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-shadow">
-                        </div>
-                        <label class="flex gap-3 items-start cursor-pointer">
-                            <input type="checkbox" id="lgpd" name="lgpd" required class="mt-1 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
-                            <span class="font-inter text-xs text-slate-600 leading-relaxed">Autorizo o uso dos meus dados para receber o link da aula e comunicações do Instituto Atleta Campeão sobre este evento e produtos relacionados, conforme a política de privacidade.</span>
-                        </label>
-                        <button type="submit" class="primary-btn w-full font-inter font-bold text-white text-base py-4 rounded-xl">
-                            Quero participar da aula gratuita
-                        </button>
-                    </form>
-                    <div id="form-captura-obrigado" class="hidden text-center py-6">
-                        <p class="font-manrope text-xl font-bold text-slate-900 mb-2">Inscrição registrada</p>
-                        <p class="font-inter text-slate-600 text-sm leading-relaxed mb-5">Em breve você recebe o link da aula no e-mail informado. Se não aparecer, confira a caixa de spam.</p>
-                        <a href="obrigado-aula-telas-cerebro-do-atleta.html" class="primary-btn inline-flex items-center justify-center font-inter font-bold text-white text-sm px-6 py-3 rounded-xl">
-                            Ver próximos passos — grupo e e-mail
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="cta-mobile-bar" aria-label="Inscrição rápida na aula">
+        <a href="#form-aula-telas" class="cta-mobile-bar__btn">
+            <svg class="h-5 w-5 shrink-0 opacity-95" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/></svg>
+            Garantir minha vaga na aula
+        </a>
+    </nav>
+
+    <footer class="relative bg-[#01030b] border-t border-blue-500/10 pt-14 sm:pt-16 pb-24 lg:pb-8 overflow-hidden" role="contentinfo">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-5 pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[min(800px,100%)] h-[280px] bg-blue-600/10 blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
+
+        <div class="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12 lg:mb-14">
+                <div class="flex flex-col gap-5 lg:pr-4">
+                    <img src="assets/images/logo.png" alt="Instituto Atleta Campeão" width="160" height="40" class="h-9 sm:h-10 w-auto object-contain object-left">
+                    <p class="font-inter text-sm text-slate-400 leading-relaxed">
+                        A maior referência nacional em treinamento mental e emocional para atletas. Transformando dados da neurociência em resultados reais no esporte desde 2016.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <a href="https://www.instagram.com/atletacampeao" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition-all duration-300" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                         </a>
-                        <!-- Integração CRM: URL canônica da página de obrigado: /obrigado-aula-telas-cerebro-do-atleta (ex.: https://atletacampeaotreinamentos.com/obrigado-aula-telas-cerebro-do-atleta). -->
+                        <a href="https://www.youtube.com/atletacampeao" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-600 hover:border-red-500 transition-all duration-300" aria-label="YouTube">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <h3 class="font-manrope text-lg font-bold text-white mb-1">Suporte ao aluno</h3>
+                    <a href="mailto:suporte@atletacampeao.com.br" class="group flex items-start gap-3 text-slate-400 hover:text-blue-400 transition-colors">
+                        <svg class="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span class="font-inter text-sm break-words">suporte@atletacampeao.com.br</span>
+                    </a>
+                    <a href="https://wa.me/5588998091290" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-3 text-slate-400 hover:text-emerald-400 transition-colors">
+                        <svg class="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                        <span class="font-inter text-sm">(88) 9 9809-1290</span>
+                    </a>
+                    <div class="flex items-start gap-3 text-slate-400 mt-1">
+                        <svg class="w-5 h-5 mt-0.5 shrink-0 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span class="font-inter text-sm leading-relaxed">
+                            Av. Copacabana, 268 - Alphaville<br>
+                            Barueri - SP, 06472-001
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <h3 class="font-manrope text-lg font-bold text-white mb-1">Links úteis</h3>
+                    <ul class="space-y-2.5 font-inter text-sm text-slate-400">
+                        <li><a href="#top" class="hover:text-blue-400 transition-colors">Início</a></li>
+                        <li><a href="#estudos" class="hover:text-blue-400 transition-colors">Conteúdo da aula</a></li>
+                        <li><a href="#instituicao" class="hover:text-blue-400 transition-colors">Instituição</a></li>
+                        <li><a href="#form-aula-telas" class="hover:text-blue-400 transition-colors">Inscreva-se</a></li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <h3 class="font-manrope text-lg font-bold text-white mb-1">Inscrição segura</h3>
+                    <p class="font-inter text-sm text-slate-400 leading-relaxed">
+                        Seus dados são usados apenas para enviar o link da aula e lembretes. Conexão criptografada (HTTPS).
+                    </p>
+                    <div class="flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-lg p-3 w-fit">
+                        <svg class="w-8 h-8 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        <div>
+                            <p class="font-inter text-xs font-bold text-white uppercase tracking-wider">Site seguro</p>
+                            <p class="font-inter text-[10px] text-emerald-400">Proteção SSL</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <p class="font-inter text-xs text-slate-500 text-center">
-                Dúvidas? <a href="https://wa.me/5588998091290" target="_blank" rel="noopener noreferrer" class="text-blue-600 font-semibold hover:underline">Fale no WhatsApp</a>
-            </p>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <p class="font-inter text-[13px] text-slate-500">
+                    © <span id="cap-footer-year">2026</span> Instituto Atleta Campeão. Todos os direitos reservados. Aula gratuita ao vivo — inscrição para receber link e materiais.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6 font-inter text-[13px] text-slate-500">
+                    <a href="#" class="hover:text-white transition-colors">Termos de uso</a>
+                    <a href="#" class="hover:text-white transition-colors">Política de privacidade</a>
+                </div>
+            </div>
         </div>
-    </main>
-
-    <footer class="border-t border-slate-200 bg-white py-8 px-4">
-        <p class="font-inter text-xs text-slate-500 text-center max-w-lg mx-auto">
-            © Instituto Atleta Campeão · Aula gratuita ao vivo — inscrição para receber link e materiais.
-        </p>
     </footer>
+    <script>document.getElementById('cap-footer-year').textContent = new Date().getFullYear();</script>
 
+    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
     <script>
     (function () {
-        var form = document.getElementById('form-captura-demo');
-        var thanks = document.getElementById('form-captura-obrigado');
-        var wrap = document.getElementById('form-demo-wrap');
-        if (!form || !thanks || !wrap) return;
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            /* Integração: remova preventDefault e use action do formulário, ou substitua por fetch/embed do CRM (ver comentário HTML acima do form). */
-            form.classList.add('hidden');
-            thanks.classList.remove('hidden');
-            if (typeof fbq === 'function') fbq('track', 'Lead');
-        });
+        var iframe = document.getElementById('inline-vbDMIvH26mpgbdPhYWCB');
+        if (iframe) {
+            window.addEventListener('message', function (ev) {
+                try {
+                    var d = ev.data;
+                    if (d == null || typeof d !== 'object') return;
+                    var h = d.height || d.frameHeight || (d.payload && d.payload.height);
+                    if (typeof h === 'number' && h > 120 && h < 900) {
+                        iframe.style.height = Math.ceil(h) + 'px';
+                    }
+                } catch (e) { /* noop */ }
+            });
+        }
+    })();
+    </script>
+    <script>
+    (function () {
+        var alvo = new Date('2026-04-15T20:00:00-03:00');
+        var elDays = document.getElementById('captura-cd-days');
+        var elHours = document.getElementById('captura-cd-hours');
+        var elMins = document.getElementById('captura-cd-mins');
+        var elSecs = document.getElementById('captura-cd-secs');
+        if (!elDays || !elHours || !elMins || !elSecs) return;
+        function doisDigitos(n) { return n < 10 ? '0' + n : String(n); }
+        function atualizar() {
+            var agora = new Date();
+            var diff = alvo - agora;
+            if (diff <= 0) {
+                elDays.textContent = '0';
+                elHours.textContent = '00';
+                elMins.textContent = '00';
+                elSecs.textContent = '00';
+                return;
+            }
+            var dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var min = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var seg = Math.floor((diff % (1000 * 60)) / 1000);
+            elDays.textContent = String(dias);
+            elHours.textContent = doisDigitos(horas);
+            elMins.textContent = doisDigitos(min);
+            elSecs.textContent = doisDigitos(seg);
+        }
+        atualizar();
+        setInterval(atualizar, 1000);
     })();
     </script>
 </body>

@@ -1,0 +1,113 @@
+/*
+  GHL / LeadConnector → Form Builder → [CAED] Aula Cérebro do Atleta
+  → Styles → Advanced → Custom CSS → colar → Save → Publish
+
+  Visual alinhado à LP de captura (Inter, azul institucional, cantos arredondados).
+*/
+
+*, *::before, *::after { box-sizing: border-box !important; }
+
+body {
+  margin: 0 !important;
+  padding: 12px 14px 16px !important;
+  background: #ffffff !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+form {
+  max-width: 100% !important;
+}
+
+label,
+[data-label],
+label span {
+  display: block !important;
+  font-weight: 600 !important;
+  font-size: 0.8125rem !important;
+  letter-spacing: 0.01em !important;
+  color: #0f172a !important;
+  margin-bottom: 0.4rem !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="phone"],
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+textarea,
+select {
+  width: 100% !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 0.75rem !important;
+  padding: 0.7rem 0.9rem !important;
+  font-size: 1rem !important;
+  line-height: 1.45 !important;
+  color: #0f172a !important;
+  background: #f8fafc !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: #3b82f6 !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18) !important;
+}
+
+button[type="submit"],
+[type="submit"],
+button[class*="submit"] {
+  width: 100% !important;
+  margin-top: 0.65rem !important;
+  padding: 0.95rem 1.25rem !important;
+  font-family: inherit !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.02em !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  border: 1px solid #1d4ed8 !important;
+  border-radius: 0.75rem !important;
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 4px 16px rgba(37, 99, 235, 0.38) !important;
+  transition: filter 0.15s ease, transform 0.12s ease !important;
+}
+
+button[type="submit"]:hover,
+[type="submit"]:hover {
+  filter: brightness(1.05) !important;
+}
+
+button[type="submit"]:active,
+[type="submit"]:active {
+  transform: translateY(1px) !important;
+}
+
+div[class*="field"],
+div[class*="Field"],
+.form-field {
+  margin-bottom: 1rem !important;
+}
+
+.error,
+[class*="error"],
+.text-red-500 {
+  color: #dc2626 !important;
+  font-size: 0.8125rem !important;
+  margin-top: 0.25rem !important;
+}
+
+@media (max-width: 480px) {
+  body { padding: 10px 12px 14px !important; }
+  button[type="submit"], [type="submit"] { padding: 1.05rem 1.25rem !important; }
+}
