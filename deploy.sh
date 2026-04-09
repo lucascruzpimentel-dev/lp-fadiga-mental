@@ -10,8 +10,10 @@ MSG="${1:-Deploy: atualizações nas LPs}"
 
 echo "📦 Adicionando alterações..."
 git add \
+  "index.html" \
   "obrigado-congresso/" \
   "Congresso de Neuro/" \
+  "congresso-neuro-vip-pass/" \
   "curso-telas/" \
   "fadiga-mental/" \
   "inscricao-congresso-neurociencia-no-esporte/" \
