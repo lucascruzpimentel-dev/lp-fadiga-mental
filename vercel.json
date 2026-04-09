@@ -5,9 +5,12 @@
     { "source": "/curso-telas", "destination": "/curso-telas/", "permanent": false },
     { "source": "/pos-graduacao-neurociencia-no-esporte", "destination": "/pos-graduacao-neurociencia-no-esporte/", "permanent": false },
     { "source": "/pos-graduação-neurociencia-no-esporte", "destination": "/pos-graduacao-neurociencia-no-esporte/", "permanent": true },
-    { "source": "/pos-graduação-neurociencia-no-esporte/", "destination": "/pos-graduacao-neurociencia-no-esporte/", "permanent": true }
+    { "source": "/pos-graduação-neurociencia-no-esporte/", "destination": "/pos-graduacao-neurociencia-no-esporte/", "permanent": true },
+    { "source": "/curso-telas/Captura_aula_telas_gratuita.html", "destination": "/aula-cerebro-do-atleta", "permanent": true }
   ],
   "rewrites": [
+    { "source": "/aula-cerebro-do-atleta", "destination": "/curso-telas/Captura_aula_telas_gratuita.html" },
+    { "source": "/aula-cerebro-do-atleta/", "destination": "/curso-telas/Captura_aula_telas_gratuita.html" },
     { "source": "/curso-telas/", "destination": "/curso-telas/lp_curso_de_telas.html" },
     { "source": "/obrigado-congresso-neuro-upgrade/assets/:path*", "destination": "/obrigado-congresso/assets/:path*" },
     { "source": "/obrigado-congresso-neuro-upgrade", "destination": "/obrigado-congresso/obrigado_congresso_neuro.html" },
