@@ -130,11 +130,13 @@
       --shadow-lg: 0 24px 64px rgba(37, 99, 235, 0.12), 0 8px 24px rgba(15, 23, 42, 0.08);
       --max: 1120px;
       --site-nav-height: 4.625rem;
+      /* Altura inicial do bloco fixo (banner + nav); JS atualiza --site-head-offset pelo offsetHeight real */
+      --site-head-offset: calc(2.65rem + var(--site-nav-height));
     }
     *, *::before, *::after { box-sizing: border-box; }
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: calc(var(--site-nav-height) + 0.35rem);
+      scroll-padding-top: calc(var(--site-head-offset) + 0.35rem);
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -150,13 +152,140 @@
     }
     .inner { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2rem); }
 
-    /* Barra superior fixa (âncoras + CTA) */
-    .site-nav {
+    /* Cabeçalho fixo: faixa de oferta + barra de navegação */
+    .site-head {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 100;
+    }
+
+    .promo-countdown {
+      background: #f2c037;
+      color: #001b3a;
+      border-bottom: 2px solid #001b3a;
+      box-shadow: 0 2px 0 rgba(0, 27, 58, 0.15);
+    }
+    .promo-countdown__inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0.5rem clamp(1rem, 3vw, 2rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.65rem;
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: calc(clamp(0.6875rem, 1.35vw, 0.9375rem) + 3px);
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+      text-align: center;
+    }
+    .promo-countdown__text {
+      max-width: 100%;
+    }
+    .promo-countdown__timer {
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+    .promo-countdown__clock {
+      display: inline-flex;
+      align-items: baseline;
+      flex-wrap: nowrap;
+      gap: 0.2rem 0.4rem;
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .promo-clock__part {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.03em;
+    }
+    .promo-clock__value {
+      font-weight: 800;
+    }
+    .promo-clock__suffix-desktop {
+      font-weight: 800;
+      font-size: 0.92em;
+    }
+    .promo-clock__sep {
+      opacity: 0.88;
+      font-weight: 800;
+      user-select: none;
+    }
+    .promo-clock__label {
+      display: none;
+    }
+    /* Mobile: contador em destaque — 3 blocos legíveis */
+    @media (max-width: 639px) {
+      .promo-countdown__inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+        padding: 0.65rem clamp(0.85rem, 3vw, 1.25rem) 0.75rem;
+        font-size: 0.78rem;
+        line-height: 1.38;
+      }
+      .promo-countdown__text {
+        padding: 0 0.15rem;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+      }
+      .promo-countdown__timer {
+        width: 100%;
+      }
+      .promo-countdown__clock {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 0.45rem;
+        width: 100%;
+        max-width: 22rem;
+        margin: 0 auto;
+        white-space: normal;
+      }
+      .promo-clock__sep {
+        display: none;
+      }
+      .promo-clock__part {
+        flex: 1 1 0;
+        min-width: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.55rem 0.35rem 0.48rem;
+        background: rgba(0, 27, 58, 0.1);
+        border: 1px solid rgba(0, 27, 58, 0.14);
+        border-radius: 12px;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset;
+      }
+      .promo-clock__suffix-desktop {
+        display: none;
+      }
+      .promo-clock__value {
+        font-size: clamp(1.45rem, 8.5vw, 2rem);
+        line-height: 1.05;
+        letter-spacing: 0.03em;
+      }
+      .promo-clock__label {
+        display: block;
+        margin-top: 0.4rem;
+        font-size: 0.6rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.88;
+        line-height: 1.2;
+      }
+    }
+
+    /* Barra superior (âncoras + CTA) */
+    .site-nav {
+      position: relative;
       height: var(--site-nav-height);
       display: flex;
       align-items: center;
@@ -278,7 +407,7 @@
     .hero-wrap {
       position: relative;
       overflow: hidden;
-      padding-top: var(--site-nav-height);
+      padding-top: var(--site-head-offset);
       background: linear-gradient(155deg, var(--color-hero-ink) 0%, #0f1c46 46%, var(--color-hero-ink-soft) 100%);
     }
     .hero-wrap::before {
@@ -824,6 +953,144 @@
       background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(37, 99, 235, 0.08), transparent 72%);
       pointer-events: none;
     }
+
+    /* Quem confia — logos institucionais */
+    .band--trust {
+      padding: clamp(3.75rem, 9vw, 6rem) 0;
+      background: linear-gradient(180deg, #fbfcff 0%, #f1f5f9 38%, #f8fafc 100%);
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(148, 163, 184, 0.14);
+    }
+    .band--trust::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 90% 65% at 50% -15%, rgba(37, 99, 235, 0.09), transparent 58%),
+        radial-gradient(ellipse 45% 35% at 0% 100%, rgba(14, 165, 233, 0.06), transparent 50%);
+      pointer-events: none;
+    }
+    .trust {
+      position: relative;
+      z-index: 1;
+    }
+    .trust__head.section-head {
+      margin-bottom: 0.5rem;
+      max-width: 44rem;
+    }
+    .trust__head .trust__title {
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 1.1rem;
+    }
+    .trust__head .trust__title::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: min(5rem, 28vw);
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+      opacity: 0.85;
+    }
+    .trust__lead {
+      margin-top: 0.35rem;
+      font-size: clamp(1rem, 2.1vw, 1.125rem);
+      line-height: 1.65;
+      color: var(--color-slate-600);
+      max-width: 38rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .trust__panel {
+      margin-top: clamp(2rem, 4.5vw, 2.85rem);
+      padding: clamp(1.35rem, 3.5vw, 2rem) clamp(1rem, 3vw, 1.75rem);
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.98) 100%);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 20px;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 20px 50px -28px rgba(15, 23, 42, 0.18),
+        0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    .trust__hint {
+      margin: 0 0 clamp(1.35rem, 3vw, 1.75rem);
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-slate-500);
+    }
+    .trust-logos {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      gap: clamp(1rem, 2.2vw, 1.65rem);
+    }
+    @media (min-width: 1024px) {
+      .trust-logos {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 1.15rem 1.35rem;
+      }
+    }
+    .trust-logos__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 148px;
+      max-width: 100%;
+      min-height: clamp(5.25rem, 12vw, 6.75rem);
+      padding: clamp(1rem, 2.2vw, 1.35rem) clamp(1rem, 2vw, 1.5rem);
+      background: #fff;
+      border: 1px solid rgba(226, 232, 240, 0.98);
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+      transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+    }
+    @media (min-width: 1024px) {
+      .trust-logos__item {
+        flex: unset;
+        max-width: none;
+        min-height: 6.85rem;
+      }
+    }
+    .trust-logos__item:hover {
+      border-color: rgba(37, 99, 235, 0.22);
+      box-shadow: 0 12px 36px rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .trust-logos__item { transition: none; }
+      .trust-logos__item:hover { transform: none; }
+    }
+    .trust-logos__item img {
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      max-height: clamp(3.25rem, 8vw, 5.15rem);
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: 0.88;
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+    .trust-logos__item:hover img {
+      opacity: 1;
+      filter: grayscale(28%);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .trust-logos__item img { transition: none; }
+    }
+
     .movimento { position: relative; z-index: 1; }
     .movimento__title {
       text-align: center;
@@ -2181,22 +2448,47 @@
 
   <a class="skip-link" href="#topo">Ir para o conteúdo</a>
 
-  <nav class="site-nav" aria-label="Navegação principal">
-    <div class="site-nav__inner">
-      <a class="site-nav__brand" href="#topo">
-        <img src="assets/logo-atleta-campeao.png" width="180" height="40" alt="Instituto Atleta Campeão" decoding="async">
-      </a>
-      <div class="site-nav__mid">
-        <ul class="site-nav__links">
-          <li><a href="#modulos">Conteúdo</a></li>
-          <li><a href="#quem-esta-por-tras">Professor</a></li>
-          <li><a href="#para-quem">Para quem é</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
+  <div class="site-head" id="site-head">
+    <div class="promo-countdown" role="region" aria-label="Oferta por tempo limitado">
+      <div class="promo-countdown__inner">
+        <span class="promo-countdown__text">Oferta exclusiva em parcelas de até 18x - somente até domingo dia 12.04 às 23:59h</span>
+        <span class="promo-countdown__timer" id="promo-countdown-timer">
+          <time class="promo-countdown__clock" datetime="2026-04-12T23:59:59-03:00">
+            <span class="promo-clock__part">
+              <span class="promo-clock__value" id="promo-countdown-h">0</span><span class="promo-clock__suffix-desktop">h</span>
+              <span class="promo-clock__label">horas</span>
+            </span>
+            <span class="promo-clock__sep" aria-hidden="true">:</span>
+            <span class="promo-clock__part">
+              <span class="promo-clock__value" id="promo-countdown-m">00</span>
+              <span class="promo-clock__label">min</span>
+            </span>
+            <span class="promo-clock__sep" aria-hidden="true">:</span>
+            <span class="promo-clock__part">
+              <span class="promo-clock__value" id="promo-countdown-s">00</span>
+              <span class="promo-clock__label">seg</span>
+            </span>
+          </time>
+        </span>
       </div>
-      <a class="btn btn--primary site-nav__cta" href="#matricula">Garantir vaga</a>
     </div>
-  </nav>
+    <nav class="site-nav" aria-label="Navegação principal">
+      <div class="site-nav__inner">
+        <a class="site-nav__brand" href="#topo">
+          <img src="assets/logo-atleta-campeao.png" width="180" height="40" alt="Instituto Atleta Campeão" decoding="async">
+        </a>
+        <div class="site-nav__mid">
+          <ul class="site-nav__links">
+            <li><a href="#modulos">Conteúdo</a></li>
+            <li><a href="#quem-esta-por-tras">Professor</a></li>
+            <li><a href="#para-quem">Para quem é</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <a class="btn btn--primary site-nav__cta" href="#matricula">Garantir vaga</a>
+      </div>
+    </nav>
+  </div>
 
   <header class="hero-wrap" id="topo">
     <div class="inner hero">
@@ -2262,6 +2554,35 @@
       </div>
     </div>
   </header>
+
+  <section class="band band--trust" id="quem-confia" aria-labelledby="t-trust">
+    <div class="inner trust">
+      <header class="section-head trust__head">
+        <h2 class="trust__title" id="t-trust">Quem já confia no nosso trabalho</h2>
+        <p class="lead trust__lead">Clubes, universidades e marcas de referência já contrataram palestras, capacitações e projetos com a metodologia do Instituto Atleta Campeão — neurociência e treinamento mental com a mesma exigência da alta performance.</p>
+      </header>
+      <div class="trust__panel">
+        <p class="trust__hint">Palestras · treinamentos · projetos</p>
+        <ul class="trust-logos" aria-label="Instituições e marcas parceiras">
+          <li class="trust-logos__item">
+            <img src="assets/logo%20institui%C3%A7%C3%B5es/logo_corinthians.png" width="280" height="112" alt="Sport Club Corinthians Paulista" loading="lazy" decoding="async">
+          </li>
+          <li class="trust-logos__item">
+            <img src="assets/logo%20institui%C3%A7%C3%B5es/logo_iate_clube.png" width="280" height="112" alt="Iate Clube" loading="lazy" decoding="async">
+          </li>
+          <li class="trust-logos__item">
+            <img src="assets/logo%20institui%C3%A7%C3%B5es/logo_inter.png" width="280" height="112" alt="Clube Internacional de Regatas — Santos" loading="lazy" decoding="async">
+          </li>
+          <li class="trust-logos__item">
+            <img src="assets/logo%20institui%C3%A7%C3%B5es/logo_marie_claire.png" width="280" height="112" alt="Marie Claire" loading="lazy" decoding="async">
+          </li>
+          <li class="trust-logos__item">
+            <img src="assets/logo%20institui%C3%A7%C3%B5es/logo_unisanta.png" width="280" height="112" alt="UNISANTA — Universidade Santa Cecília" loading="lazy" decoding="async">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <section class="band band--facts" id="movimento-mercado" aria-labelledby="t-movimento">
     <div class="inner movimento">
@@ -2838,8 +3159,8 @@
             <!-- Card 1: Mensal -->
             <div style="flex: 1; min-width: 250px; background: #ffffff; border-radius: 16px; padding: 2.5rem 1.5rem; text-align: center; color: #0b1f40; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
               <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 2rem; text-transform: uppercase;">Investimento<br>Mensal</h4>
-              <p style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: #0b1f40;">18x R$ 297,00</p>
-              <a href="https://chk.eduzz.com/6W48A2B30Z" class="btn btn--primary" style="display: block; width: 100%; margin-bottom: 1.5rem; background-color: var(--color-cta); color: #ffffff; text-decoration: none; padding: 1rem; border-radius: 8px; font-weight: 700; text-transform: uppercase; transition: background-color 0.2s; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);">Quero me inscrever</a>
+              <p id="matricula-preco-parcelado" style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: #0b1f40;">18x R$ 297,00</p>
+              <a id="matricula-link-parcelado" href="https://chk.eduzz.com/6W48A2B30Z" class="btn btn--primary" style="display: block; width: 100%; margin-bottom: 1.5rem; background-color: var(--color-cta); color: #ffffff; text-decoration: none; padding: 1rem; border-radius: 8px; font-weight: 700; text-transform: uppercase; transition: background-color 0.2s; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);">Quero me inscrever</a>
               <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center; opacity: 0.6; font-size: 0.8rem;">
                 <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
                   <iconify-icon icon="fa-brands:cc-visa" style="font-size: 1.5rem;"></iconify-icon>
@@ -2857,8 +3178,8 @@
             <!-- Card 2: À Vista -->
             <div style="flex: 1; min-width: 250px; background: #ffffff; border-radius: 16px; padding: 2.5rem 1.5rem; text-align: center; color: #0b1f40; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
               <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 2rem; text-transform: uppercase;">Investimento<br>À Vista</h4>
-              <p style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: #0b1f40;">R$ 3.500,00</p>
-              <a href="https://chk.eduzz.com/8WPAVQ73WP" class="btn btn--primary" style="display: block; width: 100%; margin-bottom: 1.5rem; background-color: var(--color-cta); color: #ffffff; text-decoration: none; padding: 1rem; border-radius: 8px; font-weight: 700; text-transform: uppercase; transition: background-color 0.2s; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);">Quero me inscrever</a>
+              <p id="matricula-preco-vista" style="font-size: 2rem; font-weight: 800; margin-bottom: 2rem; color: #0b1f40;">R$ 3.500,00</p>
+              <a id="matricula-link-vista" href="https://chk.eduzz.com/8WPAVQ73WP" class="btn btn--primary" style="display: block; width: 100%; margin-bottom: 1.5rem; background-color: var(--color-cta); color: #ffffff; text-decoration: none; padding: 1rem; border-radius: 8px; font-weight: 700; text-transform: uppercase; transition: background-color 0.2s; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);">Quero me inscrever</a>
               <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center; opacity: 0.6; font-size: 0.8rem;">
                 <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
                   <iconify-icon icon="fa-brands:cc-visa" style="font-size: 1.5rem;"></iconify-icon>
@@ -3110,6 +3431,96 @@
     </div>
   </footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+  (function () {
+    var deadline = new Date('2026-04-12T23:59:59-03:00');
+    var hEl = document.getElementById('promo-countdown-h');
+    var mEl = document.getElementById('promo-countdown-m');
+    var sEl = document.getElementById('promo-countdown-s');
+    var headEl = document.getElementById('site-head');
+    var promoBarEl = document.querySelector('.promo-countdown');
+    var pricingDone = false;
+    var tickIntervalId = null;
+
+    var POST_PROMO = {
+      parcelado: { label: '18x R$ 450,00', href: 'https://chk.eduzz.com/R9JX2XR60X' },
+      vista: { label: 'R$ 7.000,00', href: 'https://chk.eduzz.com/7putw6px' }
+    };
+
+    function pad2(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    function syncSiteHeadOffset() {
+      if (!headEl) return;
+      document.documentElement.style.setProperty('--site-head-offset', headEl.offsetHeight + 'px');
+    }
+
+    function applyPostPromoPricing() {
+      if (pricingDone) return;
+      var pParc = document.getElementById('matricula-preco-parcelado');
+      var aParc = document.getElementById('matricula-link-parcelado');
+      var pVista = document.getElementById('matricula-preco-vista');
+      var aVista = document.getElementById('matricula-link-vista');
+      if (pParc) pParc.textContent = POST_PROMO.parcelado.label;
+      if (aParc) aParc.setAttribute('href', POST_PROMO.parcelado.href);
+      if (pVista) pVista.textContent = POST_PROMO.vista.label;
+      if (aVista) aVista.setAttribute('href', POST_PROMO.vista.href);
+      if (promoBarEl) promoBarEl.hidden = true;
+      pricingDone = true;
+      syncSiteHeadOffset();
+    }
+
+    function tick() {
+      if (!hEl || !mEl || !sEl) return;
+      var now = Date.now();
+      var ms = deadline.getTime() - now;
+      if (ms <= 0) {
+        hEl.textContent = '0';
+        mEl.textContent = '00';
+        sEl.textContent = '00';
+        applyPostPromoPricing();
+        if (tickIntervalId !== null) {
+          clearInterval(tickIntervalId);
+          tickIntervalId = null;
+        }
+        return;
+      }
+      var s = Math.floor(ms / 1000);
+      var h = Math.floor(s / 3600);
+      var m = Math.floor((s % 3600) / 60);
+      var sec = s % 60;
+      hEl.textContent = String(h);
+      mEl.textContent = pad2(m);
+      sEl.textContent = pad2(sec);
+    }
+
+    function start() {
+      if (Date.now() >= deadline.getTime()) {
+        applyPostPromoPricing();
+        if (hEl && mEl && sEl) {
+          hEl.textContent = '0';
+          mEl.textContent = '00';
+          sEl.textContent = '00';
+        }
+      } else {
+        tick();
+        tickIntervalId = setInterval(tick, 1000);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start);
+    } else {
+      start();
+    }
+    window.addEventListener('resize', syncSiteHeadOffset);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(syncSiteHeadOffset);
+    }
+    syncSiteHeadOffset();
+  })();
+  </script>
   <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
