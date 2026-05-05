@@ -14,10 +14,12 @@ git add \
   "obrigado-congresso/" \
   "Congresso de Neuro/" \
   "congresso-neuro-vip-pass/" \
+  "congresso-psicologia-vip-pass/" \
   "curso-telas/" \
   "fadiga-mental/" \
   "inscricao-congresso-neurociencia-no-esporte/" \
   "pos-graduacao-neurociencia-no-esporte/" \
+  "treinador-mental-atletas/" \
   vercel.json \
   deploy.sh \
   2>/dev/null || true
