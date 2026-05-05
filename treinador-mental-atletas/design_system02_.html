@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Design System — Next Hospitality</title>
+
+<!-- Same fonts/CSS assets as index.html -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="assets/css2_4f052ee6d93c.css" rel="stylesheet"/>
+<script src="assets/resource_3fa48481346f"></script>
+
+<style id="aura-editor-visibility-style">
+.invisible { visibility: hidden !important; }
+</style>
+
+<!-- All the same font links from the original index.html -->
+<link href="assets/css2_86e10c4bcbd4.css" id="all-fonts-link-font-geist" rel="stylesheet"/>
+<style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style>
+
+<style data-scroll-fix="true">
+  html, body {
+    overflow: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100% !important;
+    scroll-behavior: smooth !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  body, .wrapper, main, #__next, #app, .page, .content {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+</style>
+
+<!-- ================================================================
+     GLOBAL KEYFRAMES — pulled VERBATIM from the reference index.html
+     so that motion fidelity is preserved. Do not redefine; only show.
+================================================================ -->
+<style id="ds-keyframes">
+  @keyframes glassFloat {
+    0%, 100% { transform: translate3d(0px, 0px, 25px); }
+    50%      { transform: translate3d(0px, -5px, 30px); }
+  }
+  @keyframes contentSlide {
+    0%   { opacity: 0; transform: translate3d(-30px, 0, 0); }
+    100% { opacity: 1; transform: translate3d(0, 0, 26px); }
+  }
+  @keyframes imageZoom {
+    0%   { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  @keyframes blockSlideDown {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes blockSlideUp {
+    0%   { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes circleFloat1 {
+    0%   { opacity: 0; transform: scale(0) rotate(-180deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+  @keyframes circleFloat2 {
+    0%   { opacity: 0; transform: scale(0) rotate(180deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+  @keyframes badgeSlideIn {
+    0%   { opacity: 0; transform: translate3d(-50px, 0, 26px); }
+    100% { opacity: 1; transform: translate3d(0, 0, 26px); }
+  }
+  @keyframes statBarSlideUp {
+    0%   { opacity: 0; transform: translate3d(0, 100px, 26px); }
+    100% { opacity: 1; transform: translate3d(0, 0, 26px); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7); }
+    50%      { opacity: 0.8; box-shadow: 0 0 0 6px rgba(45, 212, 191, 0); }
+  }
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes rotate3d {
+    from { transform: perspective(1000px) rotateX(-15deg) rotateY(0deg); }
+    to   { transform: perspective(1000px) rotateX(-15deg) rotateY(360deg); }
+  }
+  @keyframes rotate {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* Hover interactions extracted from reference */
+  .parent:hover .card {
+    transform: rotate3d(1, 1, 0, 30deg);
+    box-shadow: rgba(5, 71, 17, 0.3) 30px 50px 25px -40px,
+                rgba(5, 71, 17, 0.1) 0px 25px 30px 0px;
+  }
+
+  /* Carousel track + container (identical to reference) */
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    animation: scroll-left 30s linear infinite;
+    will-change: transform;
+  }
+  .carousel-track:hover { animation-play-state: paused; }
+  .carousel-container {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+
+  /* Gallery 3D rotator (identical to reference) */
+  .gallery-carousel {
+    animation: rotate3d 25s linear infinite;
+    transform-style: preserve-3d;
+  }
+  .gallery-carousel:hover { animation-play-state: paused; }
+
+  /* Design-system specific helpers — purely structural, not visual redesign */
+  .ds-section-anchor { scroll-margin-top: 96px; }
+  .ds-spec-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgb(38 38 38);
+  }
+  .ds-spec-row:last-child { border-bottom: none; }
+  .ds-spec-meta {
+    color: rgb(115 115 115);
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .ds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .ds-swatch {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgb(38 38 38);
+    background: rgba(23,23,23,0.5);
+  }
+  .ds-swatch-color { height: 96px; }
+  .ds-swatch-meta { padding: .75rem 1rem; }
+  .ds-swatch-name { font-size: 13px; font-weight: 600; color: #fff; letter-spacing: -0.01em; }
+  .ds-swatch-token {
+    color: rgb(115 115 115);
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  /* Section nav (top horizontal nav as required) */
+  .ds-topnav a.active {
+    color: #fff;
+    border-color: rgb(64 64 64);
+    background: rgb(23 23 23);
+  }
+</style>
+</head>
+<body class="h-full bg-neutral-950 text-neutral-100 font-sans" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';">
+
+<!-- ============================================================
+     Background (component) — identical to reference
+============================================================ -->
+<div class="aura-background-component top-0 w-full -z-10 absolute h-[840px] hue-rotate-180 saturate-50 brightness-50">
+  <div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+    <div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="ILgOO23w4wEyPQOKyLO4"></div>
+    <script type="text/javascript">
+      !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+    </script>
+  </div>
+</div>
+
+<div class="isolate overflow-hidden relative">
+
+<!-- ============================================================
+     TOP HORIZONTAL NAV (Design System)
+     Reuses the same sticky/backdrop/border treatment as the original
+     site nav, so it visually belongs to this design language.
+============================================================ -->
+<header class="ds-topnav sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 bg-neutral-950/70 border-b border-neutral-800">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between gap-4">
+      <!-- Brand -->
+      <a class="inline-flex items-center justify-center bg-center mix-blend-screen w-[90px] h-[30px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1131bc6c-07a0-4e1d-bc11-1966f9c994f1_800w.png)] bg-cover rounded flex-shrink-0" href="#hero" aria-label="Design System home"></a>
+
+      <!-- Section nav (desktop) -->
+      <nav class="hidden md:flex items-center gap-6 overflow-x-auto">
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#hero">Hero</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#typography">Typography</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#colors">Colors</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#components">Components</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#layout">Layout</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#motion">Motion</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#icons">Icons</a>
+      </nav>
+
+      <!-- Right -->
+      <div class="hidden md:flex items-center gap-3 flex-shrink-0">
+        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-medium text-emerald-300">
+          <span class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" style="animation: pulse 2s ease-in-out infinite;"></span>
+          v1.0 Living
+        </span>
+        <a class="inline-flex items-center gap-2 rounded-md bg-white text-neutral-900 px-3 py-2 text-sm font-semibold hover:bg-neutral-100 transition-colors" href="index.html">
+          <svg class="h-4 w-4" data-lucide="external-link" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+          <span>Open site</span>
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900" id="menuBtn" aria-label="Open menu">
+        <svg class="lucide lucide-menu h-5 w-5 text-neutral-200" data-lucide="menu" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden hidden border-t border-neutral-800" id="mobileMenu">
+      <nav class="py-4 space-y-2">
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#hero">Hero</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#typography">Typography</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#colors">Colors</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#components">Components</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#layout">Layout</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#motion">Motion</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#icons">Icons</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- =============================================================
+     SECTION 0 — HERO (Exact Clone, Text Adapted to Design System)
+     Structure, classes, animations, images, badge, stat bar, and
+     logo carousel are identical to the reference. Only copy text
+     has been substituted.
+============================================================= -->
+<section id="hero" class="ds-section-anchor relative">
+  <!-- Decorative gradient shapes -->
+  <div class="pointer-events-none -z-10 overflow-hidden absolute top-0 right-0 bottom-0 left-0">
+    <div class="-left-32 bg-gradient-to-tr from-fuchsia-500/20 to-indigo-500/10 w-64 h-64 rounded-full absolute top-24 blur-3xl"></div>
+  </div>
+  <div class="sm:px-6 lg:px-8 max-w-7xl mr-auto ml-auto pr-4 pl-4">
+    <div class="grid md:grid-cols-2 items-stretch gap-10 pt-10 md:pt-14">
+      <!-- Copy -->
+      <div class="relative">
+        <div class="mx-auto md:mx-0 max-w-xl">
+          <p class="text-sm font-medium text-teal-400/90">A living pattern library for</p>
+          <h1 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">NEXT HOSPITALITY DESIGN SYSTEM</h1>
+          <p class="mt-5 text-base sm:text-lg leading-relaxed text-neutral-300">
+            Every typography style, color, surface, motion curve and component used across the marketing site, documented in one canonical place. Built from the actual production HTML — not approximations.
+          </p>
+          <div class="mt-7 flex flex-wrap items-center gap-3">
+            <a class="inline-flex gap-2 hover:from-teal-400 hover:to-cyan-500 transition-all text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 gap-x-2 gap-y-2 items-center" href="#typography">
+              <svg class="lucide lucide-map h-4 w-4" data-lucide="map" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path></svg>
+              Browse Tokens
+            </a>
+            <a class="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-5 py-3 text-sm font-semibold text-neutral-100 hover:bg-neutral-900 hover:border-neutral-700 transition-colors" href="#components">
+              <svg class="lucide lucide-briefcase h-4 w-4" data-lucide="briefcase" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect height="14" rx="2" width="20" x="2" y="6"></rect></svg>
+              View Components
+            </a>
+          </div>
+          <div class="mt-8 rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <p class="text-sm font-semibold tracking-tight text-white">Built from the production HTML</p>
+            <p class="text-sm text-neutral-400 mt-2">Class names, animation timings, easing curves and surface treatments are pulled directly from the reference. Drop-in copy/paste fidelity for engineers, faithful spec for designers.</p>
+            <p class="mt-2 text-xs text-neutral-500">
+              If a style or component is not in this document, it is not part of the system. Add by adding to the source first, then regenerate.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual — identical 3D card structure -->
+      <div class="parent relative" style="width: 100%; height: 100%; perspective: 1000px;">
+        <div class="card sm:h-[560px] md:h-full overflow-hidden transition-all duration-700 ease-in-out h-[520px] border-neutral-800 border rounded-[2.5rem] relative" style="transform-style: preserve-3d; background: linear-gradient(135deg, rgb(20, 184, 166) 0%, rgb(16, 185, 129) 100%); box-shadow: rgba(5, 71, 17, 0) 40px 50px 25px -40px, rgba(5, 71, 17, 0.2) 0px 25px 25px -5px;">
+          <!-- Glass overlay -->
+          <div class="glass transition-all duration-700 ease-in-out border-white rounded-[2.5rem] border-b border-l absolute" style="inset: 8px; border-top-right-radius: 100%; background: linear-gradient(0deg, rgba(255, 255, 255, 0.349) 0%, rgba(255, 255, 255, 0.815) 100%); transform: translate3d(0px, 0px, 25px); transform-style: preserve-3d; animation: glassFloat 4s ease-in-out infinite;"></div>
+          <!-- Half overlay shape -->
+          <div class="grid grid-cols-6 grid-rows-6 gap-0 absolute top-0 right-0 bottom-0 left-0" style="transform: translate3d(0, 0, 26px); animation: contentSlide 3.5s ease-out forwards; opacity: 0;">
+            <div class="col-span-4 row-span-6 relative">
+              <img alt="Hospitality setting" class="w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0" src="assets/a1f43713-97b5-42cd-b934-83d430_70398b951a7d.webp" style="animation: imageZoom 3s ease-out forwards;"/>
+              <div class="bg-gradient-to-tr from-neutral-950/30 via-neutral-950/0 to-neutral-950/10 absolute top-0 right-0 bottom-0 left-0"></div>
+            </div>
+            <div class="col-span-2 row-span-6 bg-neutral-950 relative">
+              <div class="absolute top-0 right-0 h-1/2 w-full" style="animation: blockSlideDown 2.5s ease-out 0.3s forwards; transform: translateY(-100%);">
+                <div class="w-full h-full bg-cover bg-center bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/67b6089f-51dd-4ae9-a6d0-d86e96ef1685_800w.webp)]"></div>
+              </div>
+              <div class="absolute bottom-0 right-0 h-1/2 w-full" style="animation: blockSlideUp 2.5s ease-out 0.5s forwards; transform: translateY(100%);">
+                <div class="w-full h-full bg-cover bg-center bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e9a3233f-05ee-4e21-9f4c-39326154c905_800w.webp)]"></div>
+              </div>
+              <div class="bg-center mix-blend-screen w-40 h-40 bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e522f996-daf4-4a6f-8da5-c9f908b2f386_800w.webp)] bg-cover rounded-full absolute top-8 left-[-35%]" style="animation: circleFloat1 3s ease-out 1s forwards; opacity: 0; transform: scale(0);"></div>
+              <div class="w-48 h-48 bg-cover rounded-full absolute bottom-8 left-[-25%] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/625ef4b8-5b92-48c6-ab48-106a91fbe055_800w.webp)] bg-center" style="animation: circleFloat2 3s ease-out 1.3s forwards; opacity: 0; transform: scale(0);"></div>
+            </div>
+          </div>
+          <!-- Badge -->
+          <div class="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-neutral-950/60 px-3 py-1.5 backdrop-blur" style="transform: translate3d(0, 0, 26px); animation: badgeSlideIn 2s ease-out 2.2s forwards; opacity: 0; transform: translate3d(-50px, 0, 26px);">
+            <span class="inline-flex h-2.5 w-2.5 rounded-full bg-teal-400" style="animation: pulse 2s ease-in-out 3s infinite;"></span>
+            <span class="text-xs font-medium text-neutral-200">Source of Truth</span>
+          </div>
+          <!-- Stat Bar -->
+          <div class="absolute bottom-5 left-5 right-5 rounded-xl border border-neutral-800 bg-neutral-950/70 p-3 backdrop-blur transition-all duration-200 ease-in-out" style="transform: translate3d(0, 0, 26px); transform-style: preserve-3d; animation: statBarSlideUp 2.5s ease-out 2.5s forwards; opacity: 0; transform: translate3d(0, 100px, 26px);">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800">
+                  <svg class="h-4 w-4 text-neutral-200" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg>
+                </div>
+                <div class="">
+                  <p class="text-xs text-neutral-400">Tokens & Components</p>
+                  <p class="text-sm font-semibold tracking-tight text-neutral-100">Documented, Versioned, Live</p>
+                </div>
+              </div>
+              <a class="hidden sm:inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-semibold text-neutral-900 hover:bg-neutral-100 transition-all duration-200 ease-in-out" href="#typography" style="transform: translate3d(0, 0, 50px); box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;">
+                <svg class="h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Logos / Partners carousel — identical to reference -->
+  <div class="w-full mt-4 pt-6 pr-6 pb-6 pl-6">
+    <div class="text-center">
+      <p class="uppercase xl:tracking-tight xl:font-light xl:text-xs text-sm font-medium text-zinc-400 tracking-wide">Used across these surfaces of the product</p>
+    </div>
+    <div class="relative overflow-hidden mt-6">
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b9181a49-20ab-4552-b731-976469c0154b_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ca43984b-3298-41bb-871b-d113545c657c_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07ee863a-59fe-4785-a806-5592f2439df2_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[100px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be92aecb-6303-4bbe-9283-ba238ac8b0ee_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[100px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9f9002c0-4b36-4d16-b000-15655b25b879_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1040d3ec-8da2-47f6-b134-1341261ccfb9_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b9181a49-20ab-4552-b731-976469c0154b_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ca43984b-3298-41bb-871b-d113545c657c_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07ee863a-59fe-4785-a806-5592f2439df2_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[100px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be92aecb-6303-4bbe-9283-ba238ac8b0ee_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[100px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9f9002c0-4b36-4d16-b000-15655b25b879_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1040d3ec-8da2-47f6-b134-1341261ccfb9_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     SECTION 1 — TYPOGRAPHY
+     Spec table / vertical list. Each row uses the EXACT element
+     and class string used in the reference HTML, with the size /
+     line-height aligned right.
+============================================================= -->
+<section id="typography" class="ds-section-anchor mt-32 relative">
+  <div class="pointer-events-none -z-10 overflow-hidden absolute top-0 right-0 bottom-0 left-0">
+    <div class="bg-gradient-to-tr from-indigo-500/15 to-fuchsia-500/10 w-80 h-80 rounded-full absolute right-1/4 bottom-10 blur-3xl"></div>
+  </div>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12">
+      <p class="text-sm font-medium text-teal-400/90">01 — Typography</p>
+      <h2 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">Type Scale &amp; Rhythm</h2>
+      <p class="mt-4 text-sm text-neutral-400 max-w-2xl">Inter at every weight, with `tracking-tighter` reserved for display sizes and `tracking-tight` for medium semibolds. Body copy stays on the neutral-300/400 ramp.</p>
+    </div>
+
+    <div class="rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur p-6 sm:p-10">
+
+      <!-- Heading 1 (display) — used by Hero h1 -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 1 — Display</p>
+          <h1 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">GLOBAL GAMES CUP 26</h1>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-[44px] .sm:text-6xl .lg:text-7xl .leading-[0.9] .text-white .tracking-tighter</p>
+        </div>
+        <span class="ds-spec-meta">112px / 90% · sm 60px · base 44px</span>
+      </div>
+
+      <!-- Heading 2 (display) — used for section h2 (matches H1 scale) -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 2 — Display</p>
+          <h2 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">Moments from the experience</h2>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">same class string as H1; semantic h2 used in section headers</p>
+        </div>
+        <span class="ds-spec-meta">112px / 90%</span>
+      </div>
+
+      <!-- Heading 2 — Semibold (used by "Why choose Next Hospitality?") -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 2 — Semibold</p>
+          <h2 class="sm:text-5xl text-4xl font-semibold text-white tracking-tight mt-2">Why choose Next Hospitality?</h2>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.sm:text-5xl .text-4xl .font-semibold .text-white .tracking-tight</p>
+        </div>
+        <span class="ds-spec-meta">48px / 1 · base 36px</span>
+      </div>
+
+      <!-- Heading 3 — Semibold (CTA section) -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 3 — Semibold</p>
+          <h3 class="sm:text-3xl text-2xl font-semibold text-white tracking-tight">Design your hospitality plan</h3>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.sm:text-3xl .text-2xl .font-semibold .text-white .tracking-tight</p>
+        </div>
+        <span class="ds-spec-meta">30px / 36px · base 24px</span>
+      </div>
+
+      <!-- Heading 3 — Extrabold uppercase (Package cards) -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 3 — Extrabold Uppercase (Package)</p>
+          <h3 class="text-3xl font-extrabold tracking-tight text-white uppercase sm:text-2xl">Essential</h3>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-3xl .font-extrabold .tracking-tight .text-white .uppercase .sm:text-2xl</p>
+        </div>
+        <span class="ds-spec-meta">30px / 36px · sm 24px</span>
+      </div>
+
+      <!-- Heading 4 — Card title (small semibold) -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 4 — Card Title</p>
+          <h3 class="text-lg font-semibold tracking-tight text-white">New York</h3>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-lg .font-semibold .tracking-tight .text-white</p>
+        </div>
+        <span class="ds-spec-meta">18px / 28px</span>
+      </div>
+
+      <!-- Bold L — Image card overlay -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Bold L — Image Caption</p>
+          <p class="text-white text-lg font-medium tracking-tight leading-tight">Plated menus</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-white .text-lg .font-medium .tracking-tight .leading-tight</p>
+        </div>
+        <span class="ds-spec-meta">18px / 1.25</span>
+      </div>
+
+      <!-- Bold M — Card heading inline -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Bold M — Sub-card Title</p>
+          <p class="text-sm font-semibold tracking-tight text-white">Verified access</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-sm .font-semibold .tracking-tight .text-white</p>
+        </div>
+        <span class="ds-spec-meta">14px / 20px</span>
+      </div>
+
+      <!-- Bold S — Stat number / large emphasized number -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Bold XL — Stat Number</p>
+          <p class="text-5xl sm:text-6xl font-bold tracking-tight text-white">2 Million</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-5xl .sm:text-6xl .font-bold .tracking-tight .text-white</p>
+        </div>
+        <span class="ds-spec-meta">60px / 1 · base 48px</span>
+      </div>
+
+      <!-- Eyebrow — accent label -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Eyebrow — Section Label</p>
+          <p class="text-sm font-medium text-teal-400/90">Get closer than ever to</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-sm .font-medium .text-teal-400/90</p>
+        </div>
+        <span class="ds-spec-meta">14px / 20px</span>
+      </div>
+
+      <!-- Paragraph (Lead) — Hero body -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Paragraph — Lead</p>
+          <p class="mt-5 text-base sm:text-lg leading-relaxed text-neutral-300">Experience the pinnacle of live sport with curated hospitality: premium seating, chef-led dining, and seamless access. Now available across all three host nations.</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-base .sm:text-lg .leading-relaxed .text-neutral-300</p>
+        </div>
+        <span class="ds-spec-meta">18px / 1.625 · base 16px</span>
+      </div>
+
+      <!-- Regular L — Default body -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Regular L — Body / Card</p>
+          <p class="mt-3 text-sm text-neutral-300">Perfect for first-time visitors who want the complete experience without overwhelming extras.</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-sm .text-neutral-300</p>
+        </div>
+        <span class="ds-spec-meta">14px / 20px</span>
+      </div>
+
+      <!-- Regular M — Muted body -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Regular M — Muted Body</p>
+          <p class="mt-2 text-sm text-neutral-400">Choose a destination and build your hospitality itinerary.</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-sm .text-neutral-400</p>
+        </div>
+        <span class="ds-spec-meta">14px / 20px</span>
+      </div>
+
+      <!-- Regular S — Caption -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Regular S — Caption</p>
+          <p class="text-xs text-neutral-400">White-glove service throughout your experience</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-xs .text-neutral-400</p>
+        </div>
+        <span class="ds-spec-meta">12px / 16px</span>
+      </div>
+
+      <!-- Regular XS — Hint -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Regular XS — Footnote</p>
+          <p class="mt-2 text-xs text-neutral-500">Host nation team fixtures may be restricted to series packages in select markets.</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-xs .text-neutral-500</p>
+        </div>
+        <span class="ds-spec-meta">12px / 16px</span>
+      </div>
+
+      <!-- Tiny micro label -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Tiny — Micro Label</p>
+          <p class="text-[11px] text-neutral-400">Starting at</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-[11px] .text-neutral-400</p>
+        </div>
+        <span class="ds-spec-meta">11px / 16px</span>
+      </div>
+
+    </div>
+  </div>
+</section>

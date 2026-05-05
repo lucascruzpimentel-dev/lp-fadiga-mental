@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html class="h-full scroll-smooth" lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Design System · Atleta Campeão — LP Treinador Mental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,600;0,700;0,800;0,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ac: {
+              gold: "#daa525",
+              "gold-light": "#e8c56c",
+              "gold-dark": "#a37d1f",
+              blue: "#02337a",
+              "blue-hover": "#01285f",
+            },
+          },
+          fontFamily: {
+            barlow: ["Barlow", "system-ui", "sans-serif"],
+            inter: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html {
+      scroll-padding-top: 100px;
+    }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    /* Keyframes — espelho da referência Aura; pulse em dourado AC */
+    @keyframes glassFloat {
+      0%, 100% { transform: translate3d(0px, 0px, 25px); }
+      50% { transform: translate3d(0px, -5px, 30px); }
+    }
+    @keyframes contentSlide {
+      0% { opacity: 0; transform: translate3d(-30px, 0, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 26px); }
+    }
+    @keyframes imageZoom {
+      0% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    @keyframes badgeSlideIn {
+      0% { opacity: 0; transform: translate3d(-50px, 0, 26px); }
+      100% { opacity: 1; transform: translate3d(0, 0, 26px); }
+    }
+    @keyframes statBarSlideUp {
+      0% { opacity: 0; transform: translate3d(0, 100px, 26px); }
+      100% { opacity: 1; transform: translate3d(0, 0, 26px); }
+    }
+    @keyframes pulse-ac {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(218, 165, 37, 0.55); }
+      50% { opacity: 0.88; box-shadow: 0 0 0 8px rgba(218, 165, 37, 0); }
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .parent:hover .card-ac {
+      transform: rotate3d(1, 1, 0, 10deg);
+      box-shadow: rgba(218, 165, 37, 0.22) 24px 40px 36px -36px, rgba(2, 51, 122, 0.15) 0px 28px 36px -8px;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 1.5rem;
+      animation: scroll-left 34s linear infinite;
+      will-change: transform;
+    }
+    .carousel-track:hover {
+      animation-play-state: paused;
+    }
+    .carousel-container {
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+
+    .ds-section-anchor {
+      scroll-margin-top: 96px;
+    }
+    .ds-spec-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgb(38 38 38);
+    }
+    .ds-spec-row:last-child {
+      border-bottom: none;
+    }
+    .ds-spec-meta {
+      color: rgb(115 115 115);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .ds-grid-swatch {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .ds-swatch {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgb(38 38 38);
+      background: rgba(23, 23, 23, 0.5);
+    }
+    .ds-swatch-color {
+      height: 96px;
+    }
+    .ds-swatch-meta {
+      padding: 0.75rem 1rem;
+    }
+    .ds-swatch-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .ds-swatch-token {
+      color: rgb(115 115 115);
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .ds-topnav a.nav-active {
+      color: #fff;
+      border-color: rgb(218 165 37 / 0.45);
+      background: rgb(23 23 23);
+    }
+  </style>
+</head>
+<body class="h-full bg-neutral-950 text-neutral-100 antialiased">
+
+<div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -left-32 top-24 h-64 w-64 rounded-full bg-gradient-to-tr from-ac-blue/25 to-ac-gold/15 blur-3xl"></div>
+  <div class="absolute bottom-20 right-1/4 h-80 w-80 rounded-full bg-gradient-to-tr from-ac-gold/10 to-ac-blue/20 blur-3xl"></div>
+</div>
+
+<div class="isolate relative overflow-hidden">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-neutral-800 bg-neutral-950/70 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <a href="#hero" class="flex shrink-0 items-center gap-2 font-barlow text-lg font-extrabold tracking-tight text-white">
+        <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-ac-gold to-ac-gold-dark text-xs font-black text-neutral-950">AC</span>
+        <span class="hidden sm:inline">Design System</span>
+      </a>
+      <nav class="hidden items-center gap-5 overflow-x-auto md:flex" aria-label="Seções">
+        <a class="ds-nav border border-transparent px-2 py-1 text-sm font-medium text-neutral-300 transition-colors hover:text-white" href="#hero">Hero</a>
+        <a class="ds-nav border border-transparent px-2 py-1 text-sm font-medium text-neutral-300 transition-colors hover:text-white" href="#typography">Tipografia</a>
+        <a class="ds-nav border border-transparent px-2 py-1 text-sm font-medium text-neutral-300 transition-colors hover:text-white" href="#colors">Cores</a>
+        <a class="ds-nav border border-transparent px-2 py-1 text-sm font-medium text-neutral-300 transition-colors hover:text-white" href="#components">Componentes</a>
+        <a class="ds-nav border border-transparent px-2 py-1 text-sm font-medium text-neutral-300 transition-colors hover:text-white" href="#layout">Layout</a>
+        <a class="ds-nav border border-transparent px-2 py-1 text-sm font-medium text-neutral-300 transition-colors hover:text-white" href="#motion">Motion</a>
+        <a class="ds-nav border border-transparent px-2 py-1 text-sm font-medium text-neutral-300 transition-colors hover:text-white" href="#icons">Ícones</a>
+      </nav>
+      <div class="flex shrink-0 items-center gap-2">
+        <span class="hidden items-center gap-2 rounded-full border border-ac-gold/30 bg-ac-gold/10 px-2 py-1 text-[10px] font-medium text-ac-gold-light sm:inline-flex">
+          <span class="inline-flex h-1.5 w-1.5 rounded-full bg-ac-gold" style="animation: pulse-ac 2s ease-in-out infinite;"></span>
+          v1.0 · LP Treinador Mental
+        </span>
+        <a class="inline-flex items-center gap-2 rounded-md bg-white px-3 py-2 text-sm font-semibold text-neutral-900 transition-colors hover:bg-neutral-100" href="index.html">
+          <i data-lucide="external-link" class="h-4 w-4"></i>
+          Abrir landing
+        </a>
+      </div>
+      <button type="button" id="menuBtn" class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900 md:hidden" aria-label="Menu">
+        <i data-lucide="menu" class="h-5 w-5 text-neutral-200"></i>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-neutral-800 md:hidden">
+      <nav class="space-y-1 px-4 py-4">
+        <a class="mobile-nav block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-900 hover:text-white" href="#hero">Hero</a>
+        <a class="mobile-nav block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-900 hover:text-white" href="#typography">Tipografia</a>
+        <a class="mobile-nav block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-900 hover:text-white" href="#colors">Cores</a>
+        <a class="mobile-nav block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-900 hover:text-white" href="#components">Componentes</a>
+        <a class="mobile-nav block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-900 hover:text-white" href="#layout">Layout</a>
+        <a class="mobile-nav block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-900 hover:text-white" href="#motion">Motion</a>
+        <a class="mobile-nav block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:bg-neutral-900 hover:text-white" href="#icons">Ícones</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="ds-section-anchor relative">
+    <div class="mx-auto max-w-7xl px-4 pt-10 sm:px-6 md:pt-14 lg:px-8">
+      <div class="grid items-stretch gap-10 md:grid-cols-2">
+        <div class="relative mx-auto max-w-xl md:mx-0">
+          <p class="text-sm font-medium text-ac-gold">Biblioteca viva de padrões para</p>
+          <h1 class="mt-2 font-barlow text-[44px] font-black leading-[0.9] tracking-tighter text-white sm:text-6xl lg:text-7xl">
+            ATLETA CAMPEÃO · LP PREMIUM
+          </h1>
+          <p class="mt-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
+            Tokens, tipografia, superfícies, motion e componentes usados na página de <strong class="text-white">treinamento mental 1:1</strong>
+            (<code class="rounded bg-neutral-800 px-1 text-xs">index.html</code>). Paleta institucional:
+            <strong class="text-ac-gold">ouro #DAA525</strong> + <strong class="text-blue-400">azul #02337A</strong> — não usar teal/ciano da referência Nova Hospitality.
+          </p>
+          <div class="mt-7 flex flex-wrap items-center gap-3">
+            <a href="#typography" class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-ac-gold to-ac-gold-dark px-5 py-3 text-sm font-semibold text-neutral-950 shadow-lg shadow-ac-gold/25 transition-all hover:from-ac-gold-light hover:to-ac-gold">
+              <i data-lucide="type" class="h-4 w-4"></i>
+              Ver tipografia
+            </a>
+            <a href="#components" class="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-5 py-3 text-sm font-semibold text-neutral-100 transition-colors hover:border-neutral-700 hover:bg-neutral-900">
+              <i data-lucide="component" class="h-4 w-4"></i>
+              Componentes
+            </a>
+          </div>
+          <div class="mt-8 rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <p class="text-sm font-semibold tracking-tight text-white">Implementação canónica</p>
+            <p class="mt-2 text-sm text-neutral-400">
+              Esta página replica a <strong class="text-neutral-200">estrutura</strong> do design system de referência (seções, hero 3D, painéis especificação, marquee).
+              As cores e gradientes foram mapeados para a marca Atleta Campeão.
+            </p>
+          </div>
+        </div>
+
+        <div class="parent relative mx-auto w-full max-w-lg md:max-w-none" style="perspective: 1000px;">
+          <div
+            class="card-ac relative h-[520px] overflow-hidden rounded-[2.5rem] border border-neutral-800 transition-all duration-700 ease-out sm:h-[560px] md:h-full"
+            style="transform-style: preserve-3d; background: linear-gradient(135deg, rgb(2, 51, 122) 0%, rgb(10, 10, 10) 45%, rgb(45, 35, 12) 100%); box-shadow: rgba(0, 0, 0, 0.45) 0 28px 50px -12px, rgba(218, 165, 37, 0.12) 0 0 0 1px;"
+          >
+            <div
+              class="pointer-events-none absolute rounded-[2.5rem] border-b border-l border-white/35"
+              style="inset: 8px; border-top-right-radius: 100%; background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.45) 100%); transform: translate3d(0,0,25px); transform-style: preserve-3d; animation: glassFloat 4s ease-in-out infinite;"
+            ></div>
+            <div class="absolute inset-0" style="transform: translate3d(0,0,26px); animation: contentSlide 1s ease-out forwards;">
+              <img src="assets/mayra_ramos_circulo_dourado.webp" alt="Mayra Ramos" class="h-full w-full object-cover" style="animation: imageZoom 2.5s ease-out forwards;" width="600" height="600" />
+              <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-neutral-950/55 via-transparent to-ac-gold/15"></div>
+            </div>
+            <div class="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-neutral-950/60 px-3 py-1.5 backdrop-blur" style="animation: badgeSlideIn 1.4s ease-out 0.4s forwards; opacity: 0;">
+              <span class="inline-flex h-2.5 w-2.5 rounded-full bg-ac-gold" style="animation: pulse-ac 2s ease-in-out 1.2s infinite;"></span>
+              <span class="text-xs font-medium text-neutral-200">Metodologia AC</span>
+            </div>
+            <div class="absolute bottom-5 left-5 right-5 rounded-xl border border-neutral-800 bg-neutral-950/70 p-3 backdrop-blur" style="animation: statBarSlideUp 1.2s ease-out 0.7s forwards; opacity: 0;">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900">
+                    <i data-lucide="brain" class="h-4 w-4 text-neutral-200"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs text-neutral-400">Treinador mental</p>
+                    <p class="text-sm font-semibold tracking-tight text-neutral-100">+30 mil atletas formados</p>
+                  </div>
+                </div>
+                <a href="index.html#agendar" class="hidden items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-semibold text-neutral-900 transition-colors hover:bg-ac-gold-light sm:inline-flex">
+                  Agendar
+                  <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marquee parceiros (texto — mesma ideia da LP) -->
+    <div class="mt-6 px-6 pb-8 pt-6">
+      <p class="text-center text-sm font-medium uppercase tracking-wide text-zinc-400">Instituições de referência · mesma faixa da landing</p>
+      <div class="relative mt-6 overflow-hidden">
+        <div class="carousel-container">
+          <div class="carousel-track">
+            <span class="shrink-0 rounded-full border border-neutral-800 bg-neutral-900/60 px-5 py-2 text-sm font-semibold text-neutral-400">Comitê Olímpico do Brasil</span>
+            <span class="shrink-0 rounded-full border border-neutral-800 bg-neutral-900/60 px-5 py-2 text-sm font-semibold text-neutral-400">Seleção Brasileira · Atletismo</span>
+            <span class="shrink-0 rounded-full border border-neutral-800 bg-neutral-900/60 px-5 py-2 text-sm font-semibold text-neutral-400">Federação Internacional Patinação</span>
+            <span class="shrink-0 rounded-full border border-neutral-800 bg-neutral-900/60 px-5 py-2 text-sm font-semibold text-neutral-400">Grêmio FBPA</span>
+            <span class="shrink-0 rounded-full border border-neutral-800 bg-neutral-900/60 px-5 py-2 text-sm font-semibold text-neutral-400">Rede Globo</span>
+            <span class="shrink-0 rounded-full border border-neutral-800 bg-neutral-900/60 px-5 py-2 text-sm font-semibold text-neutral-400">UFMG · UNIFATEC</span>
+            <span class="shrink-0 rounded-full border border-neutral-800 bg-neutral-900/60 px-5 py-2 text-sm font-semibold text-neutral-400">Comitê Olímpico do Brasil</span>
+            <span class="shrink-0 rounded-full border border-neutral-800 bg-neutral-900/60 px-5 py-2 text-sm font-semibold text-neutral-400">Seleção Brasileira · Atletismo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typography -->
+  <section id="typography" class="ds-section-anchor relative mt-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <p class="text-sm font-medium text-ac-gold">01 — Tipografia</p>
+        <h2 class="mt-2 font-barlow text-[44px] font-black leading-[0.9] tracking-tighter text-white sm:text-6xl lg:text-7xl">Escala &amp; ritmo</h2>
+        <p class="mt-4 max-w-2xl text-sm text-neutral-400">
+          <strong class="text-neutral-200">Barlow</strong> para display e títulos de seção;
+          <strong class="text-neutral-200">Inter</strong> para corpo e UI. Alinhado ao <code class="text-xs text-neutral-500">index.html</code> da pasta.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur sm:p-10">
+        <div class="ds-spec-row">
+          <div>
+            <p class="mb-2 text-[11px] font-medium text-ac-gold">H1 — Hero</p>
+            <h1 class="mt-2 font-barlow text-[44px] font-black leading-[0.9] tracking-tighter text-white sm:text-6xl lg:text-[4rem]">
+              Seu filho treina como campeão
+            </h1>
+            <p class="mt-2 font-mono text-[11px] text-neutral-500">font-barlow · font-black · tracking-tighter · text-white</p>
+          </div>
+          <span class="ds-spec-meta">display</span>
+        </div>
+        <div class="ds-spec-row">
+          <div>
+            <p class="mb-2 text-[11px] font-medium text-ac-gold">H2 — Seção</p>
+            <h2 class="mt-2 font-barlow text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Quanto custa contratar</h2>
+            <p class="mt-2 font-mono text-[11px] text-neutral-500">Barlow 800 / clamp na LP</p>
+          </div>
+          <span class="ds-spec-meta">seção</span>
+        </div>
+        <div class="ds-spec-row">
+          <div>
+            <p class="mb-2 text-[11px] font-medium text-ac-gold">H3 — Card</p>
+            <h3 class="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl">Diagnóstico personalizado</h3>
+          </div>
+          <span class="ds-spec-meta">card</span>
+        </div>
+        <div class="ds-spec-row">
+          <div>
+            <p class="mb-2 text-[11px] font-medium text-ac-gold">Eyebrow — Pré-título</p>
+            <p class="mt-2 text-sm font-bold uppercase tracking-[0.18em] text-ac-gold">Treinador mental para atletas</p>
+          </div>
+          <span class="ds-spec-meta">kicker</span>
+        </div>
+        <div class="ds-spec-row">
+          <div>
+            <p class="mb-2 text-[11px] font-medium text-ac-gold">Lead — Hero</p>
+            <p class="mt-3 text-base leading-relaxed text-neutral-300 sm:text-lg">
+              Contrate o atendimento mental 1:1 com a metodologia que já formou atletas da Seleção e do COB.
+            </p>
+          </div>
+          <span class="ds-spec-meta">18px</span>
+        </div>
+        <div class="ds-spec-row">
+          <div>
+            <p class="mb-2 text-[11px] font-medium text-ac-gold">Corpo — Card</p>
+            <p class="mt-2 text-sm text-neutral-300">Na primeira sessão identificamos o que trava: ansiedade, medo de errar, autocobrança.</p>
+          </div>
+          <span class="ds-spec-meta">14px</span>
+        </div>
+        <div class="ds-spec-row">
+          <div>
+            <p class="mb-2 text-[11px] font-medium text-ac-gold">Muted / legal</p>
+            <p class="mt-2 text-xs text-neutral-500">© Instituto Atleta Campeão · documentação interna</p>
+          </div>
+          <span class="ds-spec-meta">12px</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colors -->
+  <section id="colors" class="ds-section-anchor mt-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <p class="text-sm font-medium text-ac-gold">02 — Cores &amp; superfícies</p>
+        <h2 class="mt-2 font-barlow text-[44px] font-black leading-[0.9] tracking-tighter text-white sm:text-6xl lg:text-7xl">Paleta AC</h2>
+        <p class="mt-4 max-w-2xl text-sm text-neutral-400">
+          Fundo escuro neutro + <strong class="text-ac-gold">ouro</strong> para ação e destaque +
+          <strong class="text-blue-400">azul #02337A</strong> para profundidade institucional e gradientes do hero.
+        </p>
+      </div>
+
+      <h3 class="text-lg font-semibold tracking-tight text-white">Superfícies</h3>
+      <div class="ds-grid-swatch mt-6">
+        <div class="ds-swatch"><div class="ds-swatch-color bg-neutral-950"></div><div class="ds-swatch-meta"><p class="ds-swatch-name">Página</p><p class="ds-swatch-token">#0A0A0A · bg-neutral-950</p></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color bg-neutral-900"></div><div class="ds-swatch-meta"><p class="ds-swatch-name">Painéis</p><p class="ds-swatch-token">neutral-900</p></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color border border-white/10 bg-neutral-900/60 backdrop-blur"></div><div class="ds-swatch-meta"><p class="ds-swatch-name">Vidro</p><p class="ds-swatch-token">bg-neutral-900/60 blur</p></div></div>
+      </div>
+
+      <h3 class="mt-12 text-lg font-semibold tracking-tight text-white">Marca</h3>
+      <div class="ds-grid-swatch mt-6">
+        <div class="ds-swatch"><div class="ds-swatch-color bg-ac-gold"></div><div class="ds-swatch-meta"><p class="ds-swatch-name">Ouro</p><p class="ds-swatch-token">#DAA525 · ac-gold</p></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color bg-ac-gold-light"></div><div class="ds-swatch-meta"><p class="ds-swatch-name">Ouro claro</p><p class="ds-swatch-token">#E8C56C</p></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color bg-ac-blue"></div><div class="ds-swatch-meta"><p class="ds-swatch-name">Azul AC</p><p class="ds-swatch-token">#02337A</p></div></div>
+      </div>
+
+      <h3 class="mt-12 text-lg font-semibold tracking-tight text-white">Gradientes (ação &amp; hero)</h3>
+      <div class="ds-grid-swatch mt-6">
+        <div class="ds-swatch"><div class="ds-swatch-color bg-gradient-to-r from-ac-gold to-ac-gold-dark"></div><div class="ds-swatch-meta"><p class="ds-swatch-name">CTA primário</p><p class="ds-swatch-token">from-ac-gold → ac-gold-dark</p></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color bg-gradient-to-br from-ac-blue via-neutral-950 to-ac-gold/30"></div><div class="ds-swatch-meta"><p class="ds-swatch-name">Hero card</p><p class="ds-swatch-token">azul → preto → calor</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Components -->
+  <section id="components" class="ds-section-anchor mt-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <p class="text-sm font-medium text-ac-gold">03 — Componentes</p>
+        <h2 class="mt-2 font-barlow text-[44px] font-black leading-[0.9] tracking-tighter text-white sm:text-6xl lg:text-7xl">UI</h2>
+        <p class="mt-4 max-w-2xl text-sm text-neutral-400">Botões em pílula com gradiente dourado; secundário outline escuro; badges com pulse AC.</p>
+      </div>
+
+      <div class="rounded-3xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur sm:p-10">
+        <h3 class="text-lg font-semibold tracking-tight text-white">Botões</h3>
+        <div class="mt-6 flex flex-wrap gap-4">
+          <a href="#" class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-ac-gold to-ac-gold-dark px-5 py-3 text-sm font-semibold text-neutral-950 shadow-lg shadow-ac-gold/30 hover:from-ac-gold-light hover:to-ac-gold">
+            <i data-lucide="zap" class="h-4 w-4"></i>
+            Primário
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-5 py-3 text-sm font-semibold text-neutral-100 hover:border-ac-gold/40 hover:bg-neutral-900">
+            <i data-lucide="circle" class="h-4 w-4"></i>
+            Secundário
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:bg-ac-gold-light">
+            <i data-lucide="sparkles" class="h-4 w-4"></i>
+            Alta ênfase
+          </a>
+        </div>
+
+        <h3 class="mt-10 text-lg font-semibold tracking-tight text-white">Badges</h3>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-neutral-950/60 px-3 py-1.5 text-xs font-medium text-neutral-200 backdrop-blur">
+            <span class="inline-flex h-2.5 w-2.5 rounded-full bg-ac-gold" style="animation:pulse-ac 2s ease-in-out infinite"></span>
+            Ao vivo · sistema
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-full border border-ac-gold/35 bg-ac-gold/10 px-2 py-1 text-[10px] font-medium text-ac-gold-light">
+            <i data-lucide="star" class="h-3 w-3"></i>
+            Mais escolhido
+          </span>
+        </div>
+
+        <h3 class="mt-10 text-lg font-semibold tracking-tight text-white">Cards (feature)</h3>
+        <div class="mt-4 grid gap-4 sm:grid-cols-3">
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <div class="flex items-start gap-3">
+              <div class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900">
+                <i data-lucide="target" class="h-4 w-4 text-ac-gold"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold tracking-tight text-white">Plano individual</p>
+                <p class="mt-1 text-xs text-neutral-400">Protocolo na modalidade do atleta</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <div class="flex items-start gap-3">
+              <div class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900">
+                <i data-lucide="message-circle" class="h-4 w-4 text-ac-gold"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold tracking-tight text-white">WhatsApp</p>
+                <p class="mt-1 text-xs text-neutral-400">Entre sessões · até 24h</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <div class="flex items-start gap-3">
+              <div class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900">
+                <i data-lucide="trophy" class="h-4 w-4 text-ac-gold"></i>
+              </div>
+              <div>
+                <p class="text-sm font-semibold tracking-tight text-white">Dia de prova</p>
+                <p class="mt-1 text-xs text-neutral-400">Ativação e suporte</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layout -->
+  <section id="layout" class="ds-section-anchor mt-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <p class="text-sm font-medium text-ac-gold">04 — Layout</p>
+        <h2 class="mt-2 font-barlow text-[44px] font-black leading-[0.9] tracking-tighter text-white sm:text-6xl lg:text-7xl">Containers</h2>
+      </div>
+      <div class="rounded-3xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur sm:p-10">
+        <ul class="space-y-3 text-sm text-neutral-300">
+          <li><strong class="text-white">max-w-7xl</strong> — largura máxima do conteúdo (referência + LP)</li>
+          <li><strong class="text-white">px-4 sm:px-6 lg:px-8</strong> — gutters responsivos</li>
+          <li><strong class="text-white">rounded-[2.5rem]</strong> — hero visual / fotos premium</li>
+          <li><strong class="text-white">sticky header</strong> + blur — navegação da LP e desta página</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Motion -->
+  <section id="motion" class="ds-section-anchor mt-28 mb-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <p class="text-sm font-medium text-ac-gold">05 — Motion</p>
+        <h2 class="mt-2 font-barlow text-[44px] font-black leading-[0.9] tracking-tighter text-white sm:text-6xl lg:text-7xl">Animações CSS</h2>
+        <p class="mt-4 max-w-2xl text-sm text-neutral-400">Mesmos nomes conceituais da referência Aura; pulse em <strong class="text-ac-gold">dourado</strong>, não teal.</p>
+      </div>
+      <div class="rounded-3xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur sm:p-10">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-neutral-400">
+            <thead>
+              <tr class="border-b border-neutral-800 text-xs uppercase tracking-wider text-neutral-500">
+                <th class="pb-3 pr-4 font-semibold">Keyframe</th>
+                <th class="pb-3 font-semibold">Uso na LP AC</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-800">
+              <tr><td class="py-3 font-mono text-xs text-ac-gold-light">glassFloat</td><td class="py-3">Painel vidro no card do hero</td></tr>
+              <tr><td class="py-3 font-mono text-xs text-ac-gold-light">contentSlide</td><td class="py-3">Entrada da mídia no card</td></tr>
+              <tr><td class="py-3 font-mono text-xs text-ac-gold-light">imageZoom</td><td class="py-3">Zoom-out suave na foto</td></tr>
+              <tr><td class="py-3 font-mono text-xs text-ac-gold-light">badgeSlideIn / statBarSlideUp</td><td class="py-3">Badge + barra inferior</td></tr>
+              <tr><td class="py-3 font-mono text-xs text-ac-gold-light">pulse-ac</td><td class="py-3">Ponto “vivo” dourado (substitui pulse teal)</td></tr>
+              <tr><td class="py-3 font-mono text-xs text-ac-gold-light">scroll-left</td><td class="py-3">Marquee institucional</td></tr>
+              <tr><td class="py-3 font-mono text-xs text-ac-gold-light">parent:hover .card-ac</td><td class="py-3">Inclinação 3D no hover</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Icons -->
+  <section id="icons" class="ds-section-anchor mt-28 mb-32">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <p class="text-sm font-medium text-ac-gold">06 — Ícones</p>
+        <h2 class="mt-2 font-barlow text-[44px] font-black leading-[0.9] tracking-tighter text-white sm:text-6xl lg:text-7xl">Lucide</h2>
+        <p class="mt-4 max-w-2xl text-sm text-neutral-400">
+          Na landing principal também usamos <strong class="text-white">Iconify (pacote Lucide)</strong> por CDN.
+          Nesta página os ícones do header e demos são inicializados com <code class="rounded bg-neutral-800 px-1 text-xs">lucide.createIcons()</code>.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-6 rounded-3xl border border-white/10 bg-neutral-900/60 p-8 backdrop-blur">
+        <span class="flex flex-col items-center gap-2 text-xs text-neutral-500"><i data-lucide="brain" class="h-8 w-8 text-ac-gold"></i>brain</span>
+        <span class="flex flex-col items-center gap-2 text-xs text-neutral-500"><i data-lucide="trophy" class="h-8 w-8 text-ac-gold"></i>trophy</span>
+        <span class="flex flex-col items-center gap-2 text-xs text-neutral-500"><i data-lucide="shield-check" class="h-8 w-8 text-ac-gold"></i>shield-check</span>
+        <span class="flex flex-col items-center gap-2 text-xs text-neutral-500"><i data-lucide="arrow-right" class="h-8 w-8 text-ac-gold"></i>arrow-right</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-neutral-800 bg-neutral-950 py-10">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 text-sm text-neutral-500 sm:px-6 lg:px-8">
+      <span>© <span id="ds-year"></span> Instituto Atleta Campeão · design system interno</span>
+      <a href="index.html" class="font-semibold text-ac-gold hover:text-ac-gold-light">← Voltar à landing</a>
+    </div>
+  </footer>
+</div>
+
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<script>
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.lucide && lucide.createIcons) lucide.createIcons();
+    var y = document.getElementById("ds-year");
+    if (y) y.textContent = new Date().getFullYear();
+
+    var btn = document.getElementById("menuBtn");
+    var menu = document.getElementById("mobileMenu");
+    if (btn && menu) {
+      btn.addEventListener("click", function () {
+        menu.classList.toggle("hidden");
+      });
+      menu.querySelectorAll(".mobile-nav").forEach(function (a) {
+        a.addEventListener("click", function () {
+          menu.classList.add("hidden");
+        });
+      });
+    }
+
+    var navLinks = document.querySelectorAll(".ds-nav");
+    var sections = [];
+    navLinks.forEach(function (a) {
+      var id = a.getAttribute("href");
+      if (id && id.charAt(0) === "#") {
+        var el = document.querySelector(id);
+        if (el) sections.push({ link: a, el: el });
+      }
+    });
+    function onScroll() {
+      var pos = window.scrollY + 120;
+      navLinks.forEach(function (l) {
+        l.classList.remove("nav-active");
+      });
+      var active = navLinks[0];
+      for (var i = sections.length - 1; i >= 0; i--) {
+        if (sections[i].el.offsetTop <= pos) {
+          active = sections[i].link;
+          break;
+        }
+      }
+      if (active) active.classList.add("nav-active");
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  });
+})();
+</script>
+</body>
+</html>

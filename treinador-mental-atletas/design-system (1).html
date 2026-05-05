@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Design System — Next Hospitality</title>
+
+<!-- Same fonts/CSS assets as index.html -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="assets/css2_4f052ee6d93c.css" rel="stylesheet"/>
+<!-- Tailwind via official CDN (the local asset/resource_3fa48481346f is a snapshot of this same script
+     but does not execute reliably when the page is opened from file://). -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style id="aura-editor-visibility-style">
+.invisible { visibility: hidden !important; }
+</style>
+
+<!-- All the same font links from the original index.html -->
+<link href="assets/css2_86e10c4bcbd4.css" id="all-fonts-link-font-geist" rel="stylesheet"/>
+<style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style>
+
+<style data-scroll-fix="true">
+  html, body {
+    overflow: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100% !important;
+    scroll-behavior: smooth !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  body, .wrapper, main, #__next, #app, .page, .content {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+</style>
+
+<!-- ================================================================
+     GLOBAL KEYFRAMES — pulled VERBATIM from the reference index.html
+     so that motion fidelity is preserved. Do not redefine; only show.
+================================================================ -->
+<style id="ds-keyframes">
+  @keyframes glassFloat {
+    0%, 100% { transform: translate3d(0px, 0px, 25px); }
+    50%      { transform: translate3d(0px, -5px, 30px); }
+  }
+  @keyframes contentSlide {
+    0%   { opacity: 0; transform: translate3d(-30px, 0, 0); }
+    100% { opacity: 1; transform: translate3d(0, 0, 26px); }
+  }
+  @keyframes imageZoom {
+    0%   { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  @keyframes blockSlideDown {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes blockSlideUp {
+    0%   { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes circleFloat1 {
+    0%   { opacity: 0; transform: scale(0) rotate(-180deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+  @keyframes circleFloat2 {
+    0%   { opacity: 0; transform: scale(0) rotate(180deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+  @keyframes badgeSlideIn {
+    0%   { opacity: 0; transform: translate3d(-50px, 0, 26px); }
+    100% { opacity: 1; transform: translate3d(0, 0, 26px); }
+  }
+  @keyframes statBarSlideUp {
+    0%   { opacity: 0; transform: translate3d(0, 100px, 26px); }
+    100% { opacity: 1; transform: translate3d(0, 0, 26px); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7); }
+    50%      { opacity: 0.8; box-shadow: 0 0 0 6px rgba(45, 212, 191, 0); }
+  }
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes rotate3d {
+    from { transform: perspective(1000px) rotateX(-15deg) rotateY(0deg); }
+    to   { transform: perspective(1000px) rotateX(-15deg) rotateY(360deg); }
+  }
+  @keyframes rotate {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* Hover interactions extracted from reference */
+  .parent:hover .card {
+    transform: rotate3d(1, 1, 0, 30deg);
+    box-shadow: rgba(5, 71, 17, 0.3) 30px 50px 25px -40px,
+                rgba(5, 71, 17, 0.1) 0px 25px 30px 0px;
+  }
+
+  /* Carousel track + container (identical to reference) */
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    animation: scroll-left 30s linear infinite;
+    will-change: transform;
+  }
+  .carousel-track:hover { animation-play-state: paused; }
+  .carousel-container {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+
+  /* Gallery 3D rotator (identical to reference) */
+  .gallery-carousel {
+    animation: rotate3d 25s linear infinite;
+    transform-style: preserve-3d;
+  }
+  .gallery-carousel:hover { animation-play-state: paused; }
+
+  /* Design-system specific helpers — purely structural, not visual redesign */
+  .ds-section-anchor { scroll-margin-top: 96px; }
+  .ds-spec-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgb(38 38 38);
+  }
+  .ds-spec-row:last-child { border-bottom: none; }
+  .ds-spec-meta {
+    color: rgb(115 115 115);
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .ds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .ds-swatch {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgb(38 38 38);
+    background: rgba(23,23,23,0.5);
+  }
+  .ds-swatch-color { height: 96px; }
+  .ds-swatch-meta { padding: .75rem 1rem; }
+  .ds-swatch-name { font-size: 13px; font-weight: 600; color: #fff; letter-spacing: -0.01em; }
+  .ds-swatch-token {
+    color: rgb(115 115 115);
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  /* Section nav (top horizontal nav as required) */
+  .ds-topnav a.active {
+    color: #fff;
+    border-color: rgb(64 64 64);
+    background: rgb(23 23 23);
+  }
+</style>
+</head>
+<body class="h-full bg-neutral-950 text-neutral-100 font-sans" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';">
+
+<!-- ============================================================
+     Background (component) — identical to reference
+============================================================ -->
+<div class="aura-background-component top-0 w-full -z-10 absolute h-[840px] hue-rotate-180 saturate-50 brightness-50">
+  <div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+    <div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="ILgOO23w4wEyPQOKyLO4"></div>
+    <script type="text/javascript">
+      !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+    </script>
+  </div>
+</div>
+
+<div class="isolate overflow-hidden relative">
+
+<!-- ============================================================
+     TOP HORIZONTAL NAV (Design System)
+     Reuses the same sticky/backdrop/border treatment as the original
+     site nav, so it visually belongs to this design language.
+============================================================ -->
+<header class="ds-topnav sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60 bg-neutral-950/70 border-b border-neutral-800">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between gap-4">
+      <!-- Brand -->
+      <a class="inline-flex items-center justify-center bg-center mix-blend-screen w-[90px] h-[30px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1131bc6c-07a0-4e1d-bc11-1966f9c994f1_800w.png)] bg-cover rounded flex-shrink-0" href="#hero" aria-label="Design System home"></a>
+
+      <!-- Section nav (desktop) -->
+      <nav class="hidden md:flex items-center gap-6 overflow-x-auto">
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#hero">Hero</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#typography">Typography</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#colors">Colors</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#components">Components</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#layout">Layout</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#motion">Motion</a>
+        <a class="text-sm font-medium text-neutral-300 hover:text-white transition-colors" href="#icons">Icons</a>
+      </nav>
+
+      <!-- Right -->
+      <div class="hidden md:flex items-center gap-3 flex-shrink-0">
+        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-medium text-emerald-300">
+          <span class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" style="animation: pulse 2s ease-in-out infinite;"></span>
+          v1.0 Living
+        </span>
+        <a class="inline-flex items-center gap-2 rounded-md bg-white text-neutral-900 px-3 py-2 text-sm font-semibold hover:bg-neutral-100 transition-colors" href="index.html">
+          <svg class="h-4 w-4" data-lucide="external-link" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+          <span>Open site</span>
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900" id="menuBtn" aria-label="Open menu">
+        <svg class="lucide lucide-menu h-5 w-5 text-neutral-200" data-lucide="menu" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden hidden border-t border-neutral-800" id="mobileMenu">
+      <nav class="py-4 space-y-2">
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#hero">Hero</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#typography">Typography</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#colors">Colors</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#components">Components</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#layout">Layout</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#motion">Motion</a>
+        <a class="block rounded-md px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-900" href="#icons">Icons</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- =============================================================
+     SECTION 0 — HERO (Exact Clone, Text Adapted to Design System)
+     Structure, classes, animations, images, badge, stat bar, and
+     logo carousel are identical to the reference. Only copy text
+     has been substituted.
+============================================================= -->
+<section id="hero" class="ds-section-anchor relative">
+  <!-- Decorative gradient shapes -->
+  <div class="pointer-events-none -z-10 overflow-hidden absolute top-0 right-0 bottom-0 left-0">
+    <div class="-left-32 bg-gradient-to-tr from-fuchsia-500/20 to-indigo-500/10 w-64 h-64 rounded-full absolute top-24 blur-3xl"></div>
+  </div>
+  <div class="sm:px-6 lg:px-8 max-w-7xl mr-auto ml-auto pr-4 pl-4">
+    <div class="grid md:grid-cols-2 items-stretch gap-10 pt-10 md:pt-14">
+      <!-- Copy -->
+      <div class="relative">
+        <div class="mx-auto md:mx-0 max-w-xl">
+          <p class="text-sm font-medium text-teal-400/90">A living pattern library for</p>
+          <h1 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">NEXT HOSPITALITY DESIGN SYSTEM</h1>
+          <p class="mt-5 text-base sm:text-lg leading-relaxed text-neutral-300">
+            Every typography style, color, surface, motion curve and component used across the marketing site, documented in one canonical place. Built from the actual production HTML — not approximations.
+          </p>
+          <div class="mt-7 flex flex-wrap items-center gap-3">
+            <a class="inline-flex gap-2 hover:from-teal-400 hover:to-cyan-500 transition-all text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 gap-x-2 gap-y-2 items-center" href="#typography">
+              <svg class="lucide lucide-map h-4 w-4" data-lucide="map" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path></svg>
+              Browse Tokens
+            </a>
+            <a class="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-5 py-3 text-sm font-semibold text-neutral-100 hover:bg-neutral-900 hover:border-neutral-700 transition-colors" href="#components">
+              <svg class="lucide lucide-briefcase h-4 w-4" data-lucide="briefcase" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect height="14" rx="2" width="20" x="2" y="6"></rect></svg>
+              View Components
+            </a>
+          </div>
+          <div class="mt-8 rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <p class="text-sm font-semibold tracking-tight text-white">Built from the production HTML</p>
+            <p class="text-sm text-neutral-400 mt-2">Class names, animation timings, easing curves and surface treatments are pulled directly from the reference. Drop-in copy/paste fidelity for engineers, faithful spec for designers.</p>
+            <p class="mt-2 text-xs text-neutral-500">
+              If a style or component is not in this document, it is not part of the system. Add by adding to the source first, then regenerate.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual — identical 3D card structure -->
+      <div class="parent relative" style="width: 100%; height: 100%; perspective: 1000px;">
+        <div class="card sm:h-[560px] md:h-full overflow-hidden transition-all duration-700 ease-in-out h-[520px] border-neutral-800 border rounded-[2.5rem] relative" style="transform-style: preserve-3d; background: linear-gradient(135deg, rgb(20, 184, 166) 0%, rgb(16, 185, 129) 100%); box-shadow: rgba(5, 71, 17, 0) 40px 50px 25px -40px, rgba(5, 71, 17, 0.2) 0px 25px 25px -5px;">
+          <!-- Glass overlay -->
+          <div class="glass transition-all duration-700 ease-in-out border-white rounded-[2.5rem] border-b border-l absolute" style="inset: 8px; border-top-right-radius: 100%; background: linear-gradient(0deg, rgba(255, 255, 255, 0.349) 0%, rgba(255, 255, 255, 0.815) 100%); transform: translate3d(0px, 0px, 25px); transform-style: preserve-3d; animation: glassFloat 4s ease-in-out infinite;"></div>
+          <!-- Half overlay shape -->
+          <div class="grid grid-cols-6 grid-rows-6 gap-0 absolute top-0 right-0 bottom-0 left-0" style="transform: translate3d(0, 0, 26px); animation: contentSlide 3.5s ease-out forwards; opacity: 0;">
+            <div class="col-span-4 row-span-6 relative">
+              <img alt="Hospitality setting" class="w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0" src="assets/a1f43713-97b5-42cd-b934-83d430_70398b951a7d.webp" style="animation: imageZoom 3s ease-out forwards;"/>
+              <div class="bg-gradient-to-tr from-neutral-950/30 via-neutral-950/0 to-neutral-950/10 absolute top-0 right-0 bottom-0 left-0"></div>
+            </div>
+            <div class="col-span-2 row-span-6 bg-neutral-950 relative">
+              <div class="absolute top-0 right-0 h-1/2 w-full" style="animation: blockSlideDown 2.5s ease-out 0.3s forwards; transform: translateY(-100%);">
+                <div class="w-full h-full bg-cover bg-center bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/67b6089f-51dd-4ae9-a6d0-d86e96ef1685_800w.webp)]"></div>
+              </div>
+              <div class="absolute bottom-0 right-0 h-1/2 w-full" style="animation: blockSlideUp 2.5s ease-out 0.5s forwards; transform: translateY(100%);">
+                <div class="w-full h-full bg-cover bg-center bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e9a3233f-05ee-4e21-9f4c-39326154c905_800w.webp)]"></div>
+              </div>
+              <div class="bg-center mix-blend-screen w-40 h-40 bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e522f996-daf4-4a6f-8da5-c9f908b2f386_800w.webp)] bg-cover rounded-full absolute top-8 left-[-35%]" style="animation: circleFloat1 3s ease-out 1s forwards; opacity: 0; transform: scale(0);"></div>
+              <div class="w-48 h-48 bg-cover rounded-full absolute bottom-8 left-[-25%] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/625ef4b8-5b92-48c6-ab48-106a91fbe055_800w.webp)] bg-center" style="animation: circleFloat2 3s ease-out 1.3s forwards; opacity: 0; transform: scale(0);"></div>
+            </div>
+          </div>
+          <!-- Badge -->
+          <div class="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-neutral-950/60 px-3 py-1.5 backdrop-blur" style="transform: translate3d(0, 0, 26px); animation: badgeSlideIn 2s ease-out 2.2s forwards; opacity: 0; transform: translate3d(-50px, 0, 26px);">
+            <span class="inline-flex h-2.5 w-2.5 rounded-full bg-teal-400" style="animation: pulse 2s ease-in-out 3s infinite;"></span>
+            <span class="text-xs font-medium text-neutral-200">Source of Truth</span>
+          </div>
+          <!-- Stat Bar -->
+          <div class="absolute bottom-5 left-5 right-5 rounded-xl border border-neutral-800 bg-neutral-950/70 p-3 backdrop-blur transition-all duration-200 ease-in-out" style="transform: translate3d(0, 0, 26px); transform-style: preserve-3d; animation: statBarSlideUp 2.5s ease-out 2.5s forwards; opacity: 0; transform: translate3d(0, 100px, 26px);">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800">
+                  <svg class="h-4 w-4 text-neutral-200" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg>
+                </div>
+                <div class="">
+                  <p class="text-xs text-neutral-400">Tokens & Components</p>
+                  <p class="text-sm font-semibold tracking-tight text-neutral-100">Documented, Versioned, Live</p>
+                </div>
+              </div>
+              <a class="hidden sm:inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-semibold text-neutral-900 hover:bg-neutral-100 transition-all duration-200 ease-in-out" href="#typography" style="transform: translate3d(0, 0, 50px); box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;">
+                <svg class="h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Logos / Partners carousel — identical to reference -->
+  <div class="w-full mt-4 pt-6 pr-6 pb-6 pl-6">
+    <div class="text-center">
+      <p class="uppercase xl:tracking-tight xl:font-light xl:text-xs text-sm font-medium text-zinc-400 tracking-wide">Used across these surfaces of the product</p>
+    </div>
+    <div class="relative overflow-hidden mt-6">
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b9181a49-20ab-4552-b731-976469c0154b_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ca43984b-3298-41bb-871b-d113545c657c_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07ee863a-59fe-4785-a806-5592f2439df2_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[100px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be92aecb-6303-4bbe-9283-ba238ac8b0ee_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[100px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9f9002c0-4b36-4d16-b000-15655b25b879_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1040d3ec-8da2-47f6-b134-1341261ccfb9_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b9181a49-20ab-4552-b731-976469c0154b_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ca43984b-3298-41bb-871b-d113545c657c_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07ee863a-59fe-4785-a806-5592f2439df2_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[100px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/be92aecb-6303-4bbe-9283-ba238ac8b0ee_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[100px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9f9002c0-4b36-4d16-b000-15655b25b879_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+          <a class="inline-flex items-center justify-center h-[40px] w-[150px] bg-center mix-blend-screen bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1040d3ec-8da2-47f6-b134-1341261ccfb9_320w.jpg)] bg-cover rounded flex-shrink-0" href="#"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     SECTION 1 — TYPOGRAPHY
+     Spec table / vertical list. Each row uses the EXACT element
+     and class string used in the reference HTML, with the size /
+     line-height aligned right.
+============================================================= -->
+<section id="typography" class="ds-section-anchor mt-32 relative">
+  <div class="pointer-events-none -z-10 overflow-hidden absolute top-0 right-0 bottom-0 left-0">
+    <div class="bg-gradient-to-tr from-indigo-500/15 to-fuchsia-500/10 w-80 h-80 rounded-full absolute right-1/4 bottom-10 blur-3xl"></div>
+  </div>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12">
+      <p class="text-sm font-medium text-teal-400/90">01 — Typography</p>
+      <h2 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">Type Scale &amp; Rhythm</h2>
+      <p class="mt-4 text-sm text-neutral-400 max-w-2xl">Inter at every weight, with `tracking-tighter` reserved for display sizes and `tracking-tight` for medium semibolds. Body copy stays on the neutral-300/400 ramp.</p>
+    </div>
+
+    <div class="rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur p-6 sm:p-10">
+
+      <!-- Heading 1 (display) — used by Hero h1 -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 1 — Display</p>
+          <h1 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">GLOBAL GAMES CUP 26</h1>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-[44px] .sm:text-6xl .lg:text-7xl .leading-[0.9] .text-white .tracking-tighter</p>
+        </div>
+        <span class="ds-spec-meta">112px / 90% · sm 60px · base 44px</span>
+      </div>
+
+      <!-- Heading 2 (display) — used for section h2 (matches H1 scale) -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 2 — Display</p>
+          <h2 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">Moments from the experience</h2>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">same class string as H1; semantic h2 used in section headers</p>
+        </div>
+        <span class="ds-spec-meta">112px / 90%</span>
+      </div>
+
+      <!-- Heading 2 — Semibold (used by "Why choose Next Hospitality?") -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 2 — Semibold</p>
+          <h2 class="sm:text-5xl text-4xl font-semibold text-white tracking-tight mt-2">Why choose Next Hospitality?</h2>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.sm:text-5xl .text-4xl .font-semibold .text-white .tracking-tight</p>
+        </div>
+        <span class="ds-spec-meta">48px / 1 · base 36px</span>
+      </div>
+
+      <!-- Heading 3 — Semibold (CTA section) -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 3 — Semibold</p>
+          <h3 class="sm:text-3xl text-2xl font-semibold text-white tracking-tight">Design your hospitality plan</h3>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.sm:text-3xl .text-2xl .font-semibold .text-white .tracking-tight</p>
+        </div>
+        <span class="ds-spec-meta">30px / 36px · base 24px</span>
+      </div>
+
+      <!-- Heading 3 — Extrabold uppercase (Package cards) -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 3 — Extrabold Uppercase (Package)</p>
+          <h3 class="text-3xl font-extrabold tracking-tight text-white uppercase sm:text-2xl">Essential</h3>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-3xl .font-extrabold .tracking-tight .text-white .uppercase .sm:text-2xl</p>
+        </div>
+        <span class="ds-spec-meta">30px / 36px · sm 24px</span>
+      </div>
+
+      <!-- Heading 4 — Card title (small semibold) -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Heading 4 — Card Title</p>
+          <h3 class="text-lg font-semibold tracking-tight text-white">New York</h3>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-lg .font-semibold .tracking-tight .text-white</p>
+        </div>
+        <span class="ds-spec-meta">18px / 28px</span>
+      </div>
+
+      <!-- Bold L — Image card overlay -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Bold L — Image Caption</p>
+          <p class="text-white text-lg font-medium tracking-tight leading-tight">Plated menus</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-white .text-lg .font-medium .tracking-tight .leading-tight</p>
+        </div>
+        <span class="ds-spec-meta">18px / 1.25</span>
+      </div>
+
+      <!-- Bold M — Card heading inline -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Bold M — Sub-card Title</p>
+          <p class="text-sm font-semibold tracking-tight text-white">Verified access</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-sm .font-semibold .tracking-tight .text-white</p>
+        </div>
+        <span class="ds-spec-meta">14px / 20px</span>
+      </div>
+
+      <!-- Bold S — Stat number / large emphasized number -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Bold XL — Stat Number</p>
+          <p class="text-5xl sm:text-6xl font-bold tracking-tight text-white">2 Million</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-5xl .sm:text-6xl .font-bold .tracking-tight .text-white</p>
+        </div>
+        <span class="ds-spec-meta">60px / 1 · base 48px</span>
+      </div>
+
+      <!-- Eyebrow — accent label -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Eyebrow — Section Label</p>
+          <p class="text-sm font-medium text-teal-400/90">Get closer than ever to</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-sm .font-medium .text-teal-400/90</p>
+        </div>
+        <span class="ds-spec-meta">14px / 20px</span>
+      </div>
+
+      <!-- Paragraph (Lead) — Hero body -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Paragraph — Lead</p>
+          <p class="mt-5 text-base sm:text-lg leading-relaxed text-neutral-300">Experience the pinnacle of live sport with curated hospitality: premium seating, chef-led dining, and seamless access. Now available across all three host nations.</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-base .sm:text-lg .leading-relaxed .text-neutral-300</p>
+        </div>
+        <span class="ds-spec-meta">18px / 1.625 · base 16px</span>
+      </div>
+
+      <!-- Regular L — Default body -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Regular L — Body / Card</p>
+          <p class="mt-3 text-sm text-neutral-300">Perfect for first-time visitors who want the complete experience without overwhelming extras.</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-sm .text-neutral-300</p>
+        </div>
+        <span class="ds-spec-meta">14px / 20px</span>
+      </div>
+
+      <!-- Regular M — Muted body -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Regular M — Muted Body</p>
+          <p class="mt-2 text-sm text-neutral-400">Choose a destination and build your hospitality itinerary.</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-sm .text-neutral-400</p>
+        </div>
+        <span class="ds-spec-meta">14px / 20px</span>
+      </div>
+
+      <!-- Regular S — Caption -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Regular S — Caption</p>
+          <p class="text-xs text-neutral-400">White-glove service throughout your experience</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-xs .text-neutral-400</p>
+        </div>
+        <span class="ds-spec-meta">12px / 16px</span>
+      </div>
+
+      <!-- Regular XS — Hint -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Regular XS — Footnote</p>
+          <p class="mt-2 text-xs text-neutral-500">Host nation team fixtures may be restricted to series packages in select markets.</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-xs .text-neutral-500</p>
+        </div>
+        <span class="ds-spec-meta">12px / 16px</span>
+      </div>
+
+      <!-- Tiny micro label -->
+      <div class="ds-spec-row">
+        <div>
+          <p class="text-[11px] font-medium text-teal-400/90 mb-2">Tiny — Micro Label</p>
+          <p class="text-[11px] text-neutral-400">Starting at</p>
+          <p class="mt-2 text-[11px] text-neutral-500 font-mono">.text-[11px] .text-neutral-400</p>
+        </div>
+        <span class="ds-spec-meta">11px / 16px</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     SECTION 2 — COLORS & SURFACES
+============================================================= -->
+<section id="colors" class="ds-section-anchor mt-32 relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12">
+      <p class="text-sm font-medium text-teal-400/90">02 — Colors &amp; Surfaces</p>
+      <h2 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">Palette &amp; Materials</h2>
+      <p class="mt-4 text-sm text-neutral-400 max-w-2xl">A neutral-950 stage with a teal-to-cyan accent gradient as the primary action color. Decorative blurs use fuchsia/indigo/emerald at very low opacity to add depth without competing with content.</p>
+    </div>
+
+    <!-- 2A — BACKGROUNDS / SURFACES -->
+    <h3 class="text-lg font-semibold tracking-tight text-white">Surfaces</h3>
+    <p class="mt-2 text-sm text-neutral-400">Body, sections, cards, and glass containers.</p>
+    <div class="ds-grid mt-6">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-950"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Page</p>
+          <p class="ds-swatch-token">.bg-neutral-950 · #0a0a0a</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-900"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Surface 900</p>
+          <p class="ds-swatch-token">.bg-neutral-900 · dropdowns, mobile menu</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-900/60 backdrop-blur"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Glass Section</p>
+          <p class="ds-swatch-token">.bg-neutral-900/60 .backdrop-blur</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-900/50"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Card</p>
+          <p class="ds-swatch-token">.bg-neutral-900/50</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-950/70 backdrop-blur"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Sticky Header</p>
+          <p class="ds-swatch-token">.bg-neutral-950/70 .backdrop-blur</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-950/60 backdrop-blur"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Floating Badge</p>
+          <p class="ds-swatch-token">.bg-neutral-950/60 .backdrop-blur</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2B — BORDERS / DIVIDERS / OVERLAYS -->
+    <h3 class="text-lg font-semibold tracking-tight text-white mt-12">Borders, Dividers &amp; Overlays</h3>
+    <p class="mt-2 text-sm text-neutral-400">Hairline borders are the structural language of the system.</p>
+    <div class="ds-grid mt-6">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-900 border border-neutral-800"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Border 800</p>
+          <p class="ds-swatch-token">.border-neutral-800 · default hairline</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-900 border border-neutral-700"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Border 700</p>
+          <p class="ds-swatch-token">.hover:border-neutral-700</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-900 border border-white/10"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">White / 10</p>
+          <p class="ds-swatch-token">.border-white/10 · glass containers</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-neutral-900 border border-white/15"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">White / 15</p>
+          <p class="ds-swatch-token">.border-white/15 · image-overlay pills</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.15), transparent);"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Image Overlay</p>
+          <p class="ds-swatch-token">.bg-gradient-to-b .from-black/0 .via-black/15 .to-black/60</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color" style="background: linear-gradient(to right, rgba(10,10,10,0.5), transparent);"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Edge Vignette</p>
+          <p class="ds-swatch-token">.bg-gradient-to-l .from-neutral-950/50 .to-transparent</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2C — ACCENT / TEXT COLORS -->
+    <h3 class="text-lg font-semibold tracking-tight text-white mt-12">Text &amp; Accent</h3>
+    <p class="mt-2 text-sm text-neutral-400">Foreground ramp on dark, plus the eyebrow + chip accents.</p>
+    <div class="ds-grid mt-6">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center bg-neutral-950"><span class="text-white text-2xl font-semibold tracking-tight">Aa</span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Foreground</p>
+          <p class="ds-swatch-token">.text-white · .text-neutral-100</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center bg-neutral-950"><span class="text-neutral-300 text-2xl font-semibold">Aa</span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Body</p>
+          <p class="ds-swatch-token">.text-neutral-300</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center bg-neutral-950"><span class="text-neutral-400 text-2xl font-semibold">Aa</span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Muted</p>
+          <p class="ds-swatch-token">.text-neutral-400</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center bg-neutral-950"><span class="text-neutral-500 text-2xl font-semibold">Aa</span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Hint</p>
+          <p class="ds-swatch-token">.text-neutral-500</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center bg-neutral-950"><span class="text-teal-400/90 text-2xl font-semibold">Aa</span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Eyebrow</p>
+          <p class="ds-swatch-token">.text-teal-400/90</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center bg-neutral-950"><span class="text-emerald-300 text-2xl font-semibold">Aa</span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Status / Success</p>
+          <p class="ds-swatch-token">.text-emerald-300</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center bg-neutral-950"><span class="text-indigo-300 text-2xl font-semibold">Aa</span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Indigo Accent</p>
+          <p class="ds-swatch-token">.text-indigo-300</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center bg-neutral-950"><span class="text-purple-300 text-2xl font-semibold">Aa</span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Purple Accent</p>
+          <p class="ds-swatch-token">.text-purple-300</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2D — GRADIENTS -->
+    <h3 class="text-lg font-semibold tracking-tight text-white mt-12">Gradients</h3>
+    <p class="mt-2 text-sm text-neutral-400">Primary CTA gradient + decorative blurs + the divider stripe.</p>
+    <div class="ds-grid mt-6">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-gradient-to-r from-teal-500 to-cyan-600"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Primary Action</p>
+          <p class="ds-swatch-token">.from-teal-500 .to-cyan-600</p>
+          <p class="ds-swatch-token mt-1">hover → .from-teal-400 .to-cyan-500</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-gradient-to-tr from-teal-500 to-indigo-500"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Brand Mark</p>
+          <p class="ds-swatch-token">.from-teal-500 .to-indigo-500 (footer logo)</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-gradient-to-br from-teal-400 to-cyan-500"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Check Pip</p>
+          <p class="ds-swatch-token">.from-teal-400 .to-cyan-500 (icon dot)</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-gradient-to-tr from-fuchsia-500/20 to-indigo-500/10 blur-sm"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Hero Halo</p>
+          <p class="ds-swatch-token">.from-fuchsia-500/20 .to-indigo-500/10 .blur-3xl</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-gradient-to-tr from-indigo-500/15 to-fuchsia-500/10 blur-sm"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Section Halo</p>
+          <p class="ds-swatch-token">.from-indigo-500/15 .to-fuchsia-500/10 .blur-3xl</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color bg-gradient-to-tr from-emerald-500/20 to-teal-500/10 blur-sm"></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Why-Section Halo</p>
+          <p class="ds-swatch-token">.from-emerald-500/20 .to-teal-500/10 .blur-3xl</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center"><span class="inline-block h-12 w-1 bg-gradient-to-b from-teal-400 via-indigo-400 to-fuchsia-400 rounded-full"></span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Stat Spectrum</p>
+          <p class="ds-swatch-token">.from-teal-400 .via-indigo-400 .to-fuchsia-400 (vertical 0.5)</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center"><span class="inline-block h-12 w-px bg-gradient-to-b from-emerald-400 via-indigo-400 to-purple-400"></span></div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Timeline Stripe</p>
+          <p class="ds-swatch-token">.from-emerald-400 .via-indigo-400 .to-purple-400</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2E — Status / pill backgrounds -->
+    <h3 class="text-lg font-semibold tracking-tight text-white mt-12">Status Surfaces</h3>
+    <p class="mt-2 text-sm text-neutral-400">Tinted-on-dark pill backgrounds; always paired with a matching /30 border.</p>
+    <div class="ds-grid mt-6">
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center" style="background:rgba(16,185,129,0.1);">
+          <span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-medium text-emerald-300">Most Popular</span>
+        </div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Emerald / Status</p>
+          <p class="ds-swatch-token">.bg-emerald-500/10 + .border-emerald-500/30</p>
+        </div>
+      </div>
+      <div class="ds-swatch">
+        <div class="ds-swatch-color flex items-center justify-center" style="background:rgba(255,255,255,0.05);">
+          <span class="inline-flex items-center gap-2 text-xs text-white/90 bg-white/10 border-white/15 border rounded-full py-1.5 px-3 backdrop-blur">Dining</span>
+        </div>
+        <div class="ds-swatch-meta">
+          <p class="ds-swatch-name">Glass on Image</p>
+          <p class="ds-swatch-token">.bg-white/10 + .border-white/15 .backdrop-blur</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =============================================================
+     SECTION 3 — UI COMPONENTS
+============================================================= -->
+<section id="components" class="ds-section-anchor mt-32 relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12">
+      <p class="text-sm font-medium text-teal-400/90">03 — UI Components</p>
+      <h2 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">Components</h2>
+      <p class="mt-4 text-sm text-neutral-400 max-w-2xl">Buttons, badges, chips, cards. States are shown side-by-side using exact reference classes &mdash; including gradient hover transitions and CSS-only group-hover effects.</p>
+    </div>
+
+    <!-- 3A — BUTTONS -->
+    <div class="rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur p-6 sm:p-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Buttons</h3>
+      <p class="mt-2 text-sm text-neutral-400">Primary action is always the teal-to-cyan gradient pill. Outline pill is the dark-on-dark secondary. White pill is reserved for high-emphasis CTAs over decorative imagery.</p>
+
+      <!-- Primary Gradient Pill -->
+      <div class="mt-8">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Primary &mdash; Gradient Pill</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">inline-flex .from-teal-500 .to-cyan-600 .rounded-full · hover swaps to .from-teal-400 .to-cyan-500</p>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <!-- default -->
+          <div class="flex flex-col items-start gap-2">
+            <a class="inline-flex gap-2 hover:from-teal-400 hover:to-cyan-500 transition-all text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 gap-x-2 gap-y-2 items-center" href="#">
+              <svg class="lucide lucide-map h-4 w-4" data-lucide="map" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path></svg>
+              Explore Events
+            </a>
+            <span class="text-[11px] text-neutral-500 font-mono">default</span>
+          </div>
+          <!-- hover (forced via inline override on the gradient stops to demo end state) -->
+          <div class="flex flex-col items-start gap-2">
+            <a class="inline-flex gap-2 transition-all text-sm font-semibold text-white rounded-full pt-2.5 pr-5 pb-2.5 pl-5 gap-x-2 gap-y-2 items-center" style="background-image: linear-gradient(to right, rgb(45 212 191), rgb(6 182 212));" href="#">
+              <svg class="lucide lucide-map h-4 w-4" data-lucide="map" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path></svg>
+              Explore Events
+            </a>
+            <span class="text-[11px] text-neutral-500 font-mono">hover (lighter)</span>
+          </div>
+          <!-- with inset highlight (used in Pricing card "Select" button) -->
+          <div class="flex flex-col items-start gap-2">
+            <button class="inline-flex hover:from-teal-400 hover:to-cyan-500 transition-all text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 gap-x-2 gap-y-2 items-center" style="box-shadow: inset 0 -2px 25px -4px rgba(255, 255, 255, 0.5);">
+              Select
+              <svg class="h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+            <span class="text-[11px] text-neutral-500 font-mono">w/ inset highlight</span>
+          </div>
+          <!-- disabled -->
+          <div class="flex flex-col items-start gap-2">
+            <button class="inline-flex gap-2 transition-all text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 gap-x-2 gap-y-2 items-center opacity-50 cursor-not-allowed" disabled>
+              Disabled
+            </button>
+            <span class="text-[11px] text-neutral-500 font-mono">disabled (.opacity-50)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outline Pill (secondary large) -->
+      <div class="mt-10">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Secondary &mdash; Outline Pill (Large)</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">.rounded-full .border-neutral-800 .bg-neutral-950 · hover → .bg-neutral-900 .border-neutral-700</p>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <a class="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-5 py-3 text-sm font-semibold text-neutral-100 hover:bg-neutral-900 hover:border-neutral-700 transition-colors" href="#">
+            <svg class="lucide lucide-briefcase h-4 w-4" data-lucide="briefcase" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect height="14" rx="2" width="20" x="2" y="6"></rect></svg>
+            View Packages
+          </a>
+          <a class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-neutral-100 transition-colors" style="background:rgb(23 23 23); border:1px solid rgb(64 64 64);" href="#">
+            <svg class="lucide lucide-briefcase h-4 w-4" data-lucide="briefcase" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect height="14" rx="2" width="20" x="2" y="6"></rect></svg>
+            View Packages
+          </a>
+          <span class="text-[11px] text-neutral-500 font-mono">default · hover</span>
+        </div>
+      </div>
+
+      <!-- Outline Pill (small) -->
+      <div class="mt-10">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Secondary &mdash; Outline Pill (Small)</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">same recipe, .px-4 .py-2</p>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <a class="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-4 py-2 text-sm font-semibold text-neutral-100 hover:bg-neutral-900 hover:border-neutral-700" href="#">
+            <svg class="lucide lucide-compass h-4 w-4" data-lucide="compass" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path><circle cx="12" cy="12" r="10"></circle></svg>
+            View all cities
+          </a>
+        </div>
+      </div>
+
+      <!-- White Pill -->
+      <div class="mt-10">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">High-Emphasis &mdash; White Pill</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">.bg-white .text-neutral-900 .rounded-full · hover → .bg-neutral-100</p>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <a class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-100" href="#">
+            <svg class="lucide lucide-sparkle h-4 w-4" data-lucide="sparkle" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path></svg>
+            Build my package
+          </a>
+          <a class="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-neutral-900" style="background:rgb(245 245 245);" href="#">
+            <svg class="lucide lucide-sparkle h-4 w-4" data-lucide="sparkle" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path></svg>
+            Build my package
+          </a>
+          <span class="text-[11px] text-neutral-500 font-mono">default · hover</span>
+        </div>
+      </div>
+
+      <!-- Compact rounded-md (used in nav) -->
+      <div class="mt-10">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Compact &mdash; Nav Buttons</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">.rounded-md .px-3 .py-2 · two surface variants</p>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <button class="inline-flex items-center gap-2 rounded-md border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors">
+            <svg class="lucide lucide-globe h-4 w-4" data-lucide="globe" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+            <span>Region</span>
+            <svg class="lucide lucide-chevron-down h-4 w-4" data-lucide="chevron-down" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg>
+          </button>
+          <a class="inline-flex items-center gap-2 rounded-md bg-white text-neutral-900 px-3 py-2 text-sm font-semibold hover:bg-neutral-100 transition-colors" href="#">
+            <svg class="lucide lucide-log-in h-4 w-4" data-lucide="log-in" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m10 17 5-5-5-5"></path><path d="M15 12H3"></path><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path></svg>
+            <span>Log in</span>
+          </a>
+          <button class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-neutral-800 bg-neutral-900" style="display:inline-flex;">
+            <svg class="lucide lucide-menu h-5 w-5 text-neutral-200" data-lucide="menu" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+          </button>
+          <span class="text-[11px] text-neutral-500 font-mono">dropdown · login · icon-only</span>
+        </div>
+      </div>
+
+      <!-- Tiny float button (stat-bar Details) -->
+      <div class="mt-10">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Floating &mdash; Stat-Bar Action</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">.text-xs .font-semibold .rounded-full + transform Z-translate</p>
+        <div class="mt-4 inline-flex items-center gap-4 rounded-xl border border-neutral-800 bg-neutral-950/70 p-3 backdrop-blur" style="max-width:420px;">
+          <div class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800">
+            <svg class="h-4 w-4 text-neutral-200" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg>
+          </div>
+          <div class="flex-1">
+            <p class="text-xs text-neutral-400">Premium Seats</p>
+            <p class="text-sm font-semibold tracking-tight text-neutral-100">Sectioned, Hosted</p>
+          </div>
+          <a class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-semibold text-neutral-900 hover:bg-neutral-100 transition-all duration-200 ease-in-out" href="#" style="box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;">
+            <svg class="h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            Details
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3B — BADGES & CHIPS -->
+    <div class="mt-10 rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur p-6 sm:p-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Badges &amp; Chips</h3>
+      <p class="mt-2 text-sm text-neutral-400">Floating verification badge, status pills, on-image overlay chips, and compact icon chips.</p>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        <!-- Glass verification -->
+        <div>
+          <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Verified Access (Glass)</p>
+          <p class="mt-1 text-xs text-neutral-500 font-mono">.border-white/10 .bg-neutral-950/60 .backdrop-blur · pulse dot</p>
+          <div class="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-neutral-950/60 px-3 py-1.5 backdrop-blur">
+            <span class="inline-flex h-2.5 w-2.5 rounded-full bg-teal-400" style="animation: pulse 2s ease-in-out infinite;"></span>
+            <span class="text-xs font-medium text-neutral-200">Verified Access</span>
+          </div>
+        </div>
+
+        <!-- Most popular -->
+        <div>
+          <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Status Pill</p>
+          <p class="mt-1 text-xs text-neutral-500 font-mono">.bg-emerald-500/10 .border-emerald-500/30 .text-emerald-300</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-medium text-emerald-300">
+              <svg class="h-3.5 w-3.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+              Most Popular
+            </span>
+          </div>
+        </div>
+
+        <!-- On image label -->
+        <div>
+          <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">On-Image Label</p>
+          <p class="mt-1 text-xs text-neutral-500 font-mono">.bg-white/10 .border-white/15 .backdrop-blur</p>
+          <div class="mt-4 flex flex-wrap items-center gap-2 rounded-2xl p-4" style="background-image: url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fc60f4d4-5cc1-4ba1-95b8-5cc652d39cb5_800w.jpg); background-size:cover; background-position:center;">
+            <span class="inline-flex items-center gap-2 text-xs text-white/90 bg-white/10 border-white/15 border rounded-full py-1.5 px-3 backdrop-blur">Dining</span>
+            <span class="inline-flex items-center gap-2 text-xs text-white/90 bg-white/10 border-white/15 border rounded-full py-1.5 px-3 backdrop-blur">Lounge</span>
+            <span class="inline-flex items-center gap-2 text-xs text-white/90 bg-white/10 border-white/15 border rounded-full py-1.5 px-3 backdrop-blur">Access</span>
+          </div>
+        </div>
+
+        <!-- Date chip -->
+        <div>
+          <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Inline Icon Chip</p>
+          <p class="mt-1 text-xs text-neutral-500 font-mono">.text-xs .text-neutral-400 + lucide icon</p>
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <span class="inline-flex items-center gap-1 text-xs text-neutral-400">
+              <svg class="lucide lucide-calendar h-4 w-4" data-lucide="calendar" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect height="18" rx="2" width="18" x="3" y="4"></rect><path d="M3 10h18"></path></svg>
+              Jun&ndash;Jul
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs text-neutral-400">
+              <svg class="lucide lucide-target h-4 w-4" data-lucide="target" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              1. Select Package
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3C — CARDS -->
+    <div class="mt-10 rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur p-6 sm:p-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Cards</h3>
+      <p class="mt-2 text-sm text-neutral-400">From smallest to largest container: feature card, image card with group-hover zoom, package card.</p>
+
+      <!-- Feature card (4 used in Why section) -->
+      <div class="mt-8">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Feature Card</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">.rounded-2xl .border-neutral-800 .bg-neutral-900/50 .p-4</p>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <div class="flex items-start gap-3">
+              <div class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800">
+                <svg class="lucide lucide-shield-check h-4 w-4 text-neutral-200" data-lucide="shield-check" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold tracking-tight text-white">Verified access</p>
+                <p class="mt-1 text-xs text-neutral-400">Direct, secure allocations at top venues</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <div class="flex items-start gap-3">
+              <div class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800">
+                <svg class="lucide lucide-concierge-bell h-4 w-4 text-neutral-200" data-lucide="concierge-bell" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"></path><path d="M20 16a8 8 0 1 0-16 0"></path><path d="M12 4v4"></path><path d="M10 4h4"></path></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold tracking-tight text-white">Concierge support</p>
+                <p class="mt-1 text-xs text-neutral-400">Advisors who tailor every detail</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <div class="flex items-start gap-3">
+              <div class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800">
+                <svg class="lucide lucide-utensils h-4 w-4 text-neutral-200" data-lucide="utensils" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold tracking-tight text-white">Chef-led dining</p>
+                <p class="mt-1 text-xs text-neutral-400">Seasonal menus and signature pours</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+            <div class="flex items-start gap-3">
+              <div class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800">
+                <svg class="lucide lucide-sparkles h-4 w-4 text-neutral-200" data-lucide="sparkles" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold tracking-tight text-white">Seamless entry</p>
+                <p class="mt-1 text-xs text-neutral-400">Expedited checkpoints and hosted seating</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image card with group-hover -->
+      <div class="mt-10">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Image Card &mdash; Group Hover Zoom</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">.group .rounded-2xl + img .group-hover:scale-105 .duration-500 (hover the card)</p>
+        <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <a class="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50" href="#">
+            <div class="aspect-[16/9] overflow-hidden">
+              <img alt="City View" class="transition-transform duration-500 group-hover:scale-105 w-full h-full object-cover" src="https://cdn.midjourney.com/9045cb32-6300-49c2-8c89-69a4818be054/0_0.png?w=800&amp;q=80"/>
+            </div>
+            <div class="p-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold tracking-tight text-white">New York</h3>
+                <span class="inline-flex items-center gap-1 text-xs text-neutral-400">
+                  <svg class="lucide lucide-calendar h-4 w-4" data-lucide="calendar" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect height="18" rx="2" width="18" x="3" y="4"></rect><path d="M3 10h18"></path></svg> Jun&ndash;Jul
+                </span>
+              </div>
+              <p class="mt-2 text-sm text-neutral-400">Skybox lounges, chef&rsquo;s tasting menus, curated nightlife.</p>
+            </div>
+          </a>
+          <a class="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50" href="#">
+            <div class="aspect-[16/9] overflow-hidden">
+              <img alt="City View" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://cdn.midjourney.com/1a985241-d750-4b65-836e-ae9b41677a13/0_0.png?w=800&amp;q=80"/>
+            </div>
+            <div class="p-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold tracking-tight text-white">Mexico City</h3>
+                <span class="inline-flex items-center gap-1 text-xs text-neutral-400">
+                  <svg class="lucide lucide-calendar h-4 w-4" data-lucide="calendar" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect height="18" rx="2" width="18" x="3" y="4"></rect><path d="M3 10h18"></path></svg> Jul&ndash;Aug
+                </span>
+              </div>
+              <p class="mt-2 text-sm text-neutral-400">Modern suites, mezcal pairings, guided cultural tours.</p>
+            </div>
+          </a>
+          <a class="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/50" href="#">
+            <div class="aspect-[16/9] overflow-hidden">
+              <img alt="City View" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://cdn.midjourney.com/ca76f814-5d49-44a4-8070-0b8b32799c1a/0_0.png?w=800&amp;q=80"/>
+            </div>
+            <div class="p-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold tracking-tight text-white">Toronto</h3>
+                <span class="inline-flex items-center gap-1 text-xs text-neutral-400">
+                  <svg class="lucide lucide-calendar h-4 w-4" data-lucide="calendar" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect height="18" rx="2" width="18" x="3" y="4"></rect><path d="M3 10h18"></path></svg> Aug&ndash;Sep
+                </span>
+              </div>
+              <p class="mt-2 text-sm text-neutral-400">Rink-side clubs, craft cocktails, skyline after-parties.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Pricing card -->
+      <div class="mt-10">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Pricing Card &mdash; Featured (with rotating border)</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">radial-gradient bg + animated `rotate` border + box-shadow inset highlight</p>
+        <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Essential Featured -->
+          <div class="overflow-hidden sm:p-7 bg-neutral-900/60 border-slate-700 border rounded-3xl pt-6 pr-6 pb-6 pl-6 relative" style="background-color: hsla(240, 15%, 9%, 1); background-image: radial-gradient(at 88% 40%, hsla(240, 15%, 9%, 1) 0px, transparent 85%), radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%), radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%), radial-gradient(at 0% 64%, hsl(189, 99%, 26%) 0px, transparent 85%), radial-gradient(at 41% 94%, hsl(189, 97%, 36%) 0px, transparent 85%), radial-gradient(at 100% 99%, hsl(188, 94%, 13%) 0px, transparent 85%); box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.25) inset;">
+            <div class="absolute inset-0 pointer-events-none overflow-hidden" style="z-index: -10; border-radius: 1.5rem;">
+              <div class="absolute top-0 left-0 w-full h-full" style="background-image: linear-gradient(0deg, hsl(0, 0%, 100%) -50%, hsl(0, 0%, 40%) 100%); border-radius: 1.5rem; transform: translate(-1px, -1px); width: calc(100% + 2px); height: calc(100% + 2px);">
+                <div class="absolute top-1/2 left-1/2 w-[200%] h-40" style="background-image: linear-gradient(0deg, hsla(0, 0%, 100%, 0) 0%, hsl(189, 100%, 50%) 40%, hsl(189, 100%, 50%) 60%, hsla(0, 0%, 40%, 0) 100%); transform: translate(-50%, -50%); animation: rotate 8s linear infinite;"></div>
+              </div>
+            </div>
+            <span class="absolute right-5 top-5 inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-medium text-emerald-300">
+              <svg class="h-3.5 w-3.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+              Featured
+            </span>
+            <h3 class="text-3xl font-extrabold tracking-tight text-white uppercase sm:text-2xl">Essential</h3>
+            <p class="mt-3 text-sm text-neutral-300">Everything starters need; nothing you'll never use.</p>
+            <ul class="space-y-3 text-sm text-neutral-300 mt-4">
+              <li class="flex items-start gap-3">
+                <span class="flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 fill-neutral-900" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path></svg>
+                </span>
+                <span class="text-white">Reserved premium seating</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex-shrink-0 mt-0.5">
+                  <svg class="w-3 h-3 fill-neutral-900" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path></svg>
+                </span>
+                <span class="text-white">Pre-match buffet &amp; drinks</span>
+              </li>
+            </ul>
+            <div class="mt-6 flex items-end justify-between">
+              <div>
+                <p class="text-[11px] text-neutral-400">Starting at</p>
+                <p class="text-xl font-semibold tracking-tight text-white">$895 <span class="text-[11px] font-normal text-neutral-400">USD</span></p>
+              </div>
+              <button class="inline-flex hover:from-teal-400 hover:to-cyan-500 transition-all text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 gap-x-2 gap-y-2 items-center" style="box-shadow: inset 0 -2px 25px -4px rgba(255, 255, 255, 0.5);">
+                Select
+                <svg class="h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Plain pricing card -->
+          <div class="relative overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900/60 p-6 sm:p-7">
+            <h3 class="text-3xl font-extrabold tracking-tight text-white uppercase sm:text-2xl">Elite</h3>
+            <p class="mt-3 text-sm text-neutral-300">Elevated hospitality with chef-curated dining and enhanced amenities.</p>
+            <ul class="mt-4 space-y-2 text-sm text-neutral-300">
+              <li class="flex items-start gap-2">
+                <svg class="lucide lucide-dot mt-1 h-5 w-5 text-neutral-500" data-lucide="dot" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12.1" cy="12.1" r="1"></circle></svg>
+                Multiple match access
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="lucide lucide-dot mt-1 h-5 w-5 text-neutral-500" data-lucide="dot" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12.1" cy="12.1" r="1"></circle></svg>
+                Three-course tasting menu
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="lucide lucide-dot mt-1 h-5 w-5 text-neutral-500" data-lucide="dot" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12.1" cy="12.1" r="1"></circle></svg>
+                Executive lounge access
+              </li>
+            </ul>
+            <div class="mt-6 flex items-end justify-between">
+              <div>
+                <p class="text-[11px] text-neutral-500">Starting at $5,450 <span class="text-[11px] font-normal text-neutral-400">USD</span></p>
+              </div>
+              <a class="inline-flex gap-2 hover:from-teal-400 hover:to-cyan-500 transition-all text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 gap-x-2 gap-y-2 items-center" href="#">
+                <svg class="lucide lucide-arrow-right h-4 w-4" data-lucide="arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                Select
+              </a>
+            </div>
+          </div>
+          <!-- Outline subtle card -->
+          <div class="overflow-hidden sm:p-7 bg-neutral-900/60 border-[#ffffff]/20 border rounded-3xl pt-6 pr-6 pb-6 pl-6 relative">
+            <h3 class="text-3xl font-extrabold tracking-tight text-white uppercase sm:text-2xl">Ultimate</h3>
+            <p class="mt-3 text-sm text-neutral-300">The pinnacle of hospitality with white-glove service.</p>
+            <ul class="mt-4 space-y-2 text-sm text-neutral-300">
+              <li class="flex items-start gap-2">
+                <svg class="lucide lucide-dot mt-1 h-5 w-5 text-neutral-500" data-lucide="dot" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12.1" cy="12.1" r="1"></circle></svg>
+                Pitchside premium seats
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="lucide lucide-dot mt-1 h-5 w-5 text-neutral-500" data-lucide="dot" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12.1" cy="12.1" r="1"></circle></svg>
+                Private chef experiences
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="lucide lucide-dot mt-1 h-5 w-5 text-neutral-500" data-lucide="dot" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12.1" cy="12.1" r="1"></circle></svg>
+                Champions Club membership
+              </li>
+            </ul>
+            <div class="mt-6 flex items-end justify-between">
+              <div>
+                <p class="text-[11px] text-neutral-500">Starting at</p>
+                <p class="text-xl font-semibold tracking-tight text-white">$18,900 <span class="text-[11px] font-normal text-neutral-400">USD</span></p>
+              </div>
+              <a class="inline-flex gap-2 hover:from-teal-400 hover:to-cyan-500 transition-all text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 gap-x-2 gap-y-2 items-center" href="#">
+                <svg class="lucide lucide-arrow-right h-4 w-4" data-lucide="arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                Select
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image-bg article tile -->
+      <div class="mt-10">
+        <p class="text-xs font-medium text-teal-400/90 uppercase tracking-wide">Image-Background Tile</p>
+        <p class="mt-1 text-xs text-neutral-500 font-mono">.aspect-[4/3] .bg-cover .rounded-2xl + gradient overlay + glass chips</p>
+        <div class="mt-4 grid grid-cols-2 gap-4 max-w-2xl">
+          <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover border-white/10 rounded-2xl bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fc60f4d4-5cc1-4ba1-95b8-5cc652d39cb5_800w.jpg)]">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/15 to-black/60"></div>
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-2 text-xs text-white/90 bg-white/10 border-white/15 border rounded-full py-1.5 px-1.5 backdrop-blur">
+                <svg class="h-3.5 w-3.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </span>
+            </div>
+            <div class="absolute top-3 right-3">
+              <span class="inline-flex items-center gap-2 text-xs text-white/90 bg-white/10 border-white/15 border rounded-full py-1.5 px-3 backdrop-blur">Dining</span>
+            </div>
+            <div class="absolute bottom-3 left-3 right-3">
+              <p class="text-white text-lg font-medium tracking-tight leading-tight">Plated menus</p>
+            </div>
+          </article>
+          <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover border-white/10 rounded-2xl bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1d01993c-67dd-4a97-ab99-02c5c2950e6f_800w.jpg)]">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/60"></div>
+            <div class="absolute top-3 right-3">
+              <span class="inline-flex items-center gap-2 text-xs text-white/90 bg-white/10 border-white/15 border rounded-full py-1.5 px-3 backdrop-blur">Lounge</span>
+            </div>
+            <div class="absolute bottom-3 left-3 right-3">
+              <p class="text-white text-lg font-medium tracking-tight leading-tight">Modern comfort</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D — DROPDOWN -->
+    <div class="mt-10 rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur p-6 sm:p-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Dropdown Menu</h3>
+      <p class="mt-2 text-sm text-neutral-400">Region picker — opens beneath its trigger; uses .bg-neutral-900/95 .backdrop-blur for the panel.</p>
+      <div class="mt-6 relative inline-block">
+        <button class="inline-flex items-center gap-2 rounded-md border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors">
+          <svg class="lucide lucide-globe h-4 w-4" data-lucide="globe" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+          <span>Region</span>
+          <svg class="lucide lucide-chevron-down h-4 w-4" data-lucide="chevron-down" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg>
+        </button>
+        <div class="mt-2 w-44 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900/95 shadow-2xl backdrop-blur">
+          <button class="flex w-full items-center gap-2 px-3 py-2 text-sm text-neutral-300 hover:bg-neutral-800/70 hover:text-white">
+            <span>United States</span>
+          </button>
+          <button class="flex w-full items-center gap-2 px-3 py-2 text-sm text-neutral-300 hover:bg-neutral-800/70 hover:text-white">
+            <span>Canada</span>
+          </button>
+          <button class="flex w-full items-center gap-2 px-3 py-2 text-sm text-neutral-300 hover:bg-neutral-800/70 hover:text-white">
+            <span>Mexico</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     SECTION 4 — LAYOUT & SPACING
+============================================================= -->
+<section id="layout" class="ds-section-anchor mt-32 relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12">
+      <p class="text-sm font-medium text-teal-400/90">04 — Layout &amp; Spacing</p>
+      <h2 class="text-[44px] sm:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter mt-2">Containers, Grids &amp; Patterns</h2>
+      <p class="mt-4 text-sm text-neutral-400 max-w-2xl">The whole site composes within a single `max-w-7xl` shell, with the same horizontal padding ramp on every section. Sections are separated by `mt-20` (or `mt-32` for major breaks).</p>
+    </div>
+
+    <!-- 4A — Grid spec -->
+    <div class="rounded-3xl border border-white/10 bg-neutral-900/60 backdrop-blur p-6 sm:p-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Container &amp; Section Spacing</h3>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+          <p class="text-sm font-semibold tracking-tight text-white">Page Container</p>
+          <p class="mt-2 text-xs text-neutral-400 font-mono">.mx-auto .max-w-7xl .px-4 .sm:px-6 .lg:px-8</p>
+          <p class="mt-2 text-xs text-neutral-400">Max-width 80rem (1280px). Padding 16px → 24px → 32px.</p>
+        </div>
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+          <p class="text-sm font-semibold tracking-tight text-white">Section Rhythm</p>
+          <p class="mt-2 text-xs text-neutral-400 font-mono">.mt-20 (80px) standard · .mt-32 (128px) major break</p>
+          <p class="mt-2 text-xs text-neutral-400">Hero pad-top: <span class="font-mono">.pt-10 .md:pt-14</span></p>
+        </div>
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+          <p class="text-sm font-semibold tracking-tight text-white">Glass Section</p>
+          <p class="mt-2 text-xs text-neutral-400 font-mono">.bg-neutral-900/60 .border-white/10 .border .rounded-3xl .backdrop-blur .p-6 .sm:p-8</p>
+        </div>
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-4">
+          <p class="text-sm font-semibold tracking-tight text-white">Card Padding</p>
+          <p class="mt-2 text-xs text-neutral-400 font-mono">.p-4 (sm) · .p-6 .sm:p-7 (pricing) · .p-6 .sm:p-10 (panel)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4B — Two-column hero pattern -->
+    <div class="mt-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Pattern: Two-Column Hero</h3>
+      <p class="mt-2 text-sm text-neutral-400 mb-4 font-mono">.grid .md:grid-cols-2 .items-stretch .gap-10 .pt-10 .md:pt-14</p>
+      <div class="grid md:grid-cols-2 items-stretch gap-10 pt-4 rounded-3xl border border-neutral-800 bg-neutral-950/50 p-6">
+        <div class="rounded-2xl border border-dashed border-neutral-700 bg-neutral-900/40 min-h-[180px] p-4 flex items-center justify-center text-xs text-neutral-500 font-mono">Copy column · max-w-xl</div>
+        <div class="rounded-2xl border border-dashed border-neutral-700 bg-neutral-900/40 min-h-[180px] p-4 flex items-center justify-center text-xs text-neutral-500 font-mono">Visual column · 3D card</div>
+      </div>
+    </div>
+
+    <!-- 4C — Three-card grid -->
+    <div class="mt-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Pattern: Three-Card Grid</h3>
+      <p class="mt-2 text-sm text-neutral-400 mb-4 font-mono">.grid .gap-6 .sm:grid-cols-2 .lg:grid-cols-3</p>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 rounded-3xl border border-neutral-800 bg-neutral-950/50 p-6">
+        <div class="rounded-2xl border border-dashed border-neutral-700 bg-neutral-900/40 min-h-[120px] p-4 flex items-center justify-center text-xs text-neutral-500 font-mono">card</div>
+        <div class="rounded-2xl border border-dashed border-neutral-700 bg-neutral-900/40 min-h-[120px] p-4 flex items-center justify-center text-xs text-neutral-500 font-mono">card</div>
+        <div class="rounded-2xl border border-dashed border-neutral-700 bg-neutral-900/40 min-h-[120px] p-4 flex items-center justify-center text-xs text-neutral-500 font-mono">card</div>
+      </div>
+    </div>
+
+    <!-- 4D — Asymmetric image grid -->
+    <div class="mt-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Pattern: Asymmetric Image Grid (4-up, mixed aspect)</h3>
+      <p class="mt-2 text-sm text-neutral-400 mb-4 font-mono">.grid .grid-cols-2 .gap-4 + .aspect-[4/3] / .aspect-[4/5]</p>
+      <div class="grid grid-cols-2 gap-4 max-w-2xl">
+        <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover border-white/10 rounded-2xl bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fc60f4d4-5cc1-4ba1-95b8-5cc652d39cb5_800w.jpg)]"><div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/15 to-black/60"></div></article>
+        <article class="relative overflow-hidden aspect-[4/3] bg-center bg-cover border-white/10 rounded-2xl bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1d01993c-67dd-4a97-ab99-02c5c2950e6f_800w.jpg)]"><div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/60"></div></article>
+        <article class="relative overflow-hidden aspect-[4/5] bg-center bg-cover border-white/10 rounded-2xl bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8b504780-eb86-496a-8705-a914493c5b66_800w.jpg)]"><div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/60"></div></article>
+        <article class="relative overflow-hidden aspect-[4/5] bg-center bg-cover border-white/10 rounded-2xl bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e8f58e4b-4eb6-4d63-b766-a57b706412db_800w.jpg)]"><div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/60"></div></article>
+      </div>
+    </div>
+
+    <!-- 4E — Split: copy + visual (CTA) -->
+    <div class="mt-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Pattern: Split CTA</h3>
+      <p class="mt-2 text-sm text-neutral-400 mb-4 font-mono">.overflow-hidden .rounded-3xl .border .bg-gradient-to-tr .from-neutral-900 .to-neutral-900/60 + .grid .md:grid-cols-2</p>
+      <div class="overflow-hidden rounded-3xl border border-neutral-800 bg-gradient-to-tr from-neutral-900 to-neutral-900/60">
+        <div class="grid md:grid-cols-2">
+          <div class="sm:p-10 lg:p-12 pt-8 pr-8 pb-8 pl-8">
+            <h3 class="sm:text-3xl text-2xl font-semibold text-white tracking-tight">Design your hospitality plan</h3>
+            <p class="mt-3 text-sm text-neutral-300">Combine matchdays, dining, and local experiences into one seamless package.</p>
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <a class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-100" href="#">
+                <svg class="lucide lucide-sparkle h-4 w-4" data-lucide="sparkle" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path></svg>
+                Build my package
+              </a>
+              <a class="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-5 py-3 text-sm font-semibold text-neutral-100 hover:bg-neutral-900" href="#">
+                <svg class="lucide lucide-message-square h-4 w-4" data-lucide="message-square" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"></path></svg>
+                Talk to an advisor
+              </a>
+            </div>
+          </div>
+          <div class="relative min-h-[220px]">
+            <div class="absolute top-0 right-0 bottom-0 left-0">
+              <img alt="Elegant dining" class="h-full w-full object-cover" src="assets/463bd02d-5320-42e0-a8a5-4a69ea_9d6202753969.jpg"/>
+              <div class="bg-gradient-to-l from-neutral-950/50 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4F — Vertical timeline pattern -->
+    <div class="mt-10">
+      <h3 class="text-lg font-semibold tracking-tight text-white">Pattern: Vertical Timeline</h3>
+      <p class="mt-2 text-sm text-neutral-400 mb-4 font-mono">absolute .w-px gradient stripe + .w-4 .h-4 ringed dots</p>
+      <div class="rounded-3xl border border-neutral-800 bg-neutral-950/50 p-6 max-w-md">
+        <div class="flex flex-col gap-4 relative text-neutral-300 bg-transparent pr-4 pl-4">
+          <div class="relative">
+            <div class="absolute left-2 top-8 bottom-0 w-px bg-gradient-to-b from-emerald-400 via-indigo-400 to-purple-400"></div>
+            <div class="flex gap-4 items-start">
+              <div class="flex-shrink-0 w-4 h-4 z-10 relative bg-neutral-900 border-emerald-400 border-2 rounded-full mt-0.5">
+                <div class="w-1.5 h-1.5 absolute top-0.5 left-0.5 bg-emerald-400 rounded-full"></div>
+              </div>
+              <div class="flex-1 pb-6">
+                <span class="text-sm font-medium text-emerald-300">Chef-curated dining</span>
+                <p class="text-xs text-neutral-400 mt-1">Multi-course tasting menus and wine pairings</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="absolute left-2 top-8 bottom-0 w-px bg-gradient-to-b from-emerald-400 via-indigo-400 to-purple-400"></div>
+            <div class="flex gap-4 items-start">
+              <div class="flex-shrink-0 w-4 h-4 rounded-full border-2 border-indigo-400 bg-neutral-900 z-10 relative mt-0.5">
+                <div class="w-1.5 h-1.5 rounded-full bg-indigo-400 absolute top-0.5 left-0.5"></div>
+              </div>
+              <div class="flex-1 pb-6">
+                <span class="text-sm font-medium text-indigo-300">Premium seating</span>
+                <p class="text-xs text-neutral-400 mt-1">Unobstructed sightlines and VIP section access</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-4 h-4 rounded-full border-2 border-purple-400 bg-neutral-900 z-10 relative mt-0.5">
+                <div class="w-1.5 h-1.5 rounded-full bg-purple-400 absolute top-0.5 left-0.5"></div>
+              </div>
+              <div class="flex-1">
+                <span class="text-sm font-medium text-purple-300">Dedicated concierge</span>
+                <p class="text-xs text-neutral-400 mt-1">White-glove service throughout your experience</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 5 — MOTION & INTERACTION             -->
+<!-- ============================================ -->
+<section id="motion" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-20 sm:mt-32 scroll-mt-24">
+  <div class="flex flex-col gap-3 max-w-3xl">
+    <span class="text-sm font-medium text-teal-400/90">05 — Motion &amp; Interaction</span>
+    <h2 class="sm:text-5xl text-4xl font-semibold text-white tracking-tight mt-2">Animations, hovers, easing</h2>
+    <p class="text-base sm:text-lg leading-relaxed text-neutral-300 mt-4">All keyframes are inlined verbatim from <span class="font-mono text-teal-300">index.html</span>. Hover states use Tailwind <span class="font-mono text-teal-300">transition-colors</span> / <span class="font-mono text-teal-300">transition-all</span> with the default 150 ms duration unless noted.</p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- 5A — 3D card tilt on parent hover -->
+    <div class="rounded-3xl border border-neutral-800 bg-neutral-900/50 p-6">
+      <div class="flex items-baseline justify-between mb-4">
+        <h3 class="text-lg font-semibold tracking-tight text-white">3D card tilt</h3>
+        <span class="text-[10px] font-mono text-neutral-500">.parent:hover .card</span>
+      </div>
+      <p class="text-sm text-neutral-400 mb-6">Hover the wrapper. <span class="font-mono text-teal-300">rotate3d(1,1,0,30deg)</span> with layered shadow on the child.</p>
+      <div class="parent flex justify-center" style="perspective: 1000px;">
+        <div class="card w-48 h-32 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-600 transition-all duration-500 ease-out grid place-items-center text-white text-sm font-semibold" style="transform-style: preserve-3d;">
+          Hover me
+        </div>
+      </div>
+      <pre class="mt-6 text-[11px] font-mono text-neutral-500 leading-relaxed overflow-x-auto">.parent:hover .card {
+  transform: rotate3d(1,1,0,30deg);
+  box-shadow:
+    rgba(5,71,17,0.3) 30px 50px 25px -40px,
+    rgba(5,71,17,0.1) 0 25px 30px 0;
+}</pre>
+    </div>
+
+    <!-- 5B — glassFloat keyframe loop -->
+    <div class="rounded-3xl border border-neutral-800 bg-neutral-900/50 p-6">
+      <div class="flex items-baseline justify-between mb-4">
+        <h3 class="text-lg font-semibold tracking-tight text-white">Glass float loop</h3>
+        <span class="text-[10px] font-mono text-neutral-500">@keyframes glassFloat · 4s ease-in-out ∞</span>
+      </div>
+      <p class="text-sm text-neutral-400 mb-6">Used by floating overlay chips on the hero stat-bar. Translates Y by −8 px and back.</p>
+      <div class="h-32 grid place-items-center">
+        <div class="rounded-full border border-white/10 bg-neutral-950/60 px-3 py-1.5 backdrop-blur text-xs text-neutral-200 flex items-center gap-2" style="animation: glassFloat 4s ease-in-out infinite;">
+          <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+          floating chip
+        </div>
+      </div>
+      <pre class="mt-6 text-[11px] font-mono text-neutral-500 leading-relaxed overflow-x-auto">@keyframes glassFloat {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-8px); }
+}</pre>
+    </div>
+
+    <!-- 5C — Pulse with glow ring -->
+    <div class="rounded-3xl border border-neutral-800 bg-neutral-900/50 p-6">
+      <div class="flex items-baseline justify-between mb-4">
+        <h3 class="text-lg font-semibold tracking-tight text-white">Pulse with glow ring</h3>
+        <span class="text-[10px] font-mono text-neutral-500">@keyframes pulse · 2s ease-in-out ∞</span>
+      </div>
+      <p class="text-sm text-neutral-400 mb-6">Used on verification status dots. Combines opacity fade with expanding <span class="font-mono text-teal-300">box-shadow</span>.</p>
+      <div class="h-32 grid place-items-center">
+        <span class="h-3 w-3 rounded-full bg-emerald-400" style="animation: pulse 2s ease-in-out infinite;"></span>
+      </div>
+      <pre class="mt-6 text-[11px] font-mono text-neutral-500 leading-relaxed overflow-x-auto">@keyframes pulse {
+  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52,211,153,.6); }
+  50%     { opacity: .85; box-shadow: 0 0 0 8px rgba(52,211,153,0); }
+}</pre>
+    </div>
+
+    <!-- 5D — Image zoom on group hover -->
+    <div class="rounded-3xl border border-neutral-800 bg-neutral-900/50 p-6">
+      <div class="flex items-baseline justify-between mb-4">
+        <h3 class="text-lg font-semibold tracking-tight text-white">Image zoom on group hover</h3>
+        <span class="text-[10px] font-mono text-neutral-500">group-hover:scale-105 · 500 ms</span>
+      </div>
+      <p class="text-sm text-neutral-400 mb-6">Used on city tiles and article tiles. Hover the frame.</p>
+      <div class="group overflow-hidden rounded-2xl aspect-[4/3] relative cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=900&q=80" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-950/10 to-transparent"></div>
+        <div class="absolute bottom-3 left-3 text-white text-sm font-semibold">Hover the image</div>
+      </div>
+      <pre class="mt-6 text-[11px] font-mono text-neutral-500 leading-relaxed overflow-x-auto">class="transition-transform duration-500
+group-hover:scale-105"</pre>
+    </div>
+
+    <!-- 5E — Logo carousel scroll-left + hover pause -->
+    <div class="rounded-3xl border border-neutral-800 bg-neutral-900/50 p-6 md:col-span-2">
+      <div class="flex items-baseline justify-between mb-4">
+        <h3 class="text-lg font-semibold tracking-tight text-white">Infinite logo carousel</h3>
+        <span class="text-[10px] font-mono text-neutral-500">@keyframes scroll-left · 30s linear ∞ · pause on hover</span>
+      </div>
+      <p class="text-sm text-neutral-400 mb-6">Mask gradient fades both edges. <span class="font-mono text-teal-300">animation-play-state: paused</span> on hover.</p>
+      <div class="overflow-hidden carousel-mask">
+        <div class="carousel-track flex gap-12 items-center" style="width: max-content;">
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">AURA</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">NORTH·STAR</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">VELVETINE</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">ATLAS&amp;CO</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">HALCYON</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">MERIDIAN</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">AURA</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">NORTH·STAR</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">VELVETINE</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">ATLAS&amp;CO</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">HALCYON</span>
+          <span class="text-2xl font-bold tracking-tight text-neutral-400">MERIDIAN</span>
+        </div>
+      </div>
+      <pre class="mt-6 text-[11px] font-mono text-neutral-500 leading-relaxed overflow-x-auto">@keyframes scroll-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.carousel-track       { animation: scroll-left 30s linear infinite; }
+.carousel-track:hover { animation-play-state: paused; }
+.carousel-mask        { mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); }</pre>
+    </div>
+
+    <!-- 5F — Hero entrance choreography -->
+    <div class="rounded-3xl border border-neutral-800 bg-neutral-900/50 p-6 md:col-span-2">
+      <div class="flex items-baseline justify-between mb-4">
+        <h3 class="text-lg font-semibold tracking-tight text-white">Hero entrance choreography</h3>
+        <span class="text-[10px] font-mono text-neutral-500">contentSlide · imageZoom · blockSlideDown/Up · circleFloat · badgeSlideIn · statBarSlideUp</span>
+      </div>
+      <p class="text-sm text-neutral-400 mb-6">Each layer of the hero card animates in on its own timing. Below: the keyframes used and their default delays.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-[11px] font-mono text-neutral-400">
+        <div class="rounded-xl border border-neutral-800 bg-neutral-950 p-4">
+          <div class="text-white text-xs mb-2">contentSlide</div>
+          3.5s ease-out forwards<br/>opacity 0→1, translateY 24px→0
+        </div>
+        <div class="rounded-xl border border-neutral-800 bg-neutral-950 p-4">
+          <div class="text-white text-xs mb-2">imageZoom</div>
+          3s ease-out forwards<br/>scale 1.1→1, opacity 0→1
+        </div>
+        <div class="rounded-xl border border-neutral-800 bg-neutral-950 p-4">
+          <div class="text-white text-xs mb-2">blockSlideDown / blockSlideUp</div>
+          2.5s · grid blocks slide in opposing Y directions
+        </div>
+        <div class="rounded-xl border border-neutral-800 bg-neutral-950 p-4">
+          <div class="text-white text-xs mb-2">circleFloat1 / circleFloat2</div>
+          3s · loop · float + rotate, two phases offset 180°
+        </div>
+        <div class="rounded-xl border border-neutral-800 bg-neutral-950 p-4">
+          <div class="text-white text-xs mb-2">badgeSlideIn</div>
+          2s ease-out 2.2s forwards<br/>opacity + translateX -20px→0
+        </div>
+        <div class="rounded-xl border border-neutral-800 bg-neutral-950 p-4">
+          <div class="text-white text-xs mb-2">statBarSlideUp</div>
+          2.5s ease-out 2.5s forwards<br/>opacity + translateY 30px→0
+        </div>
+      </div>
+    </div>
+
+    <!-- 5G — Pricing card rotating border -->
+    <div class="rounded-3xl border border-neutral-800 bg-neutral-900/50 p-6">
+      <div class="flex items-baseline justify-between mb-4">
+        <h3 class="text-lg font-semibold tracking-tight text-white">Rotating conic border</h3>
+        <span class="text-[10px] font-mono text-neutral-500">@keyframes rotate · 8s linear ∞</span>
+      </div>
+      <p class="text-sm text-neutral-400 mb-6">Used on the highlighted "Most Popular" pricing card. A conic-gradient pseudo element rotates underneath an inset mask.</p>
+      <div class="grid place-items-center h-40">
+        <div class="relative rounded-2xl p-px overflow-hidden w-44 h-28">
+          <div class="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0deg,#2dd4bf_60deg,transparent_120deg)]" style="animation: rotate 8s linear infinite;"></div>
+          <div class="relative h-full w-full rounded-2xl bg-neutral-950 grid place-items-center text-sm text-white font-semibold">Most Popular</div>
+        </div>
+      </div>
+      <pre class="mt-6 text-[11px] font-mono text-neutral-500 leading-relaxed overflow-x-auto">@keyframes rotate {
+  to { transform: rotate(360deg); }
+}</pre>
+    </div>
+
+    <!-- 5H — Hover transition-colors / transition-all -->
+    <div class="rounded-3xl border border-neutral-800 bg-neutral-900/50 p-6">
+      <div class="flex items-baseline justify-between mb-4">
+        <h3 class="text-lg font-semibold tracking-tight text-white">Color &amp; gradient transitions</h3>
+        <span class="text-[10px] font-mono text-neutral-500">transition-colors · transition-all · 150 ms</span>
+      </div>
+      <p class="text-sm text-neutral-400 mb-6">Hover any control. Outline pills shift border + background; the primary pill shifts the gradient stops.</p>
+      <div class="flex flex-col gap-3 items-start">
+        <a href="javascript:void(0)" class="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-5 py-3 text-sm font-semibold text-neutral-100 hover:bg-neutral-900 hover:border-neutral-700 transition-colors">Outline pill</a>
+        <a href="javascript:void(0)" class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white transition-all">Gradient pill</a>
+        <a href="javascript:void(0)" class="text-sm font-medium text-neutral-300 hover:text-white transition-colors">Nav link</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 6 — ICONS                            -->
+<!-- ============================================ -->
+<section id="icons" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-20 sm:mt-32 scroll-mt-24">
+  <div class="flex flex-col gap-3 max-w-3xl">
+    <span class="text-sm font-medium text-teal-400/90">06 — Icons</span>
+    <h2 class="sm:text-5xl text-4xl font-semibold text-white tracking-tight mt-2">Lucide, line-only, two weights</h2>
+    <p class="text-base sm:text-lg leading-relaxed text-neutral-300 mt-4">All icons in the reference are <a href="https://lucide.dev" class="text-teal-300 hover:text-teal-200 transition-colors">Lucide</a> rendered through <span class="font-mono text-teal-300">data-lucide</span> attributes. Stroke is <span class="font-mono text-teal-300">2</span> by default; small overlay/badge icons use <span class="font-mono text-teal-300">1.5</span>. Color is inherited from the parent's <span class="font-mono text-teal-300">text-*</span> class.</p>
+  </div>
+
+  <!-- 6A — Sizes -->
+  <div class="mt-10">
+    <h3 class="text-lg font-semibold tracking-tight text-white">Size scale</h3>
+    <p class="mt-2 text-sm text-neutral-400 mb-4 font-mono">h-3.5 w-3.5 · h-4 w-4 · h-5 w-5 · h-6 w-6</p>
+    <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 flex items-end gap-10">
+      <div class="flex flex-col items-center gap-2">
+        <i data-lucide="sparkles" class="h-3.5 w-3.5 text-neutral-200"></i>
+        <span class="text-[10px] font-mono text-neutral-500">14 px</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <i data-lucide="sparkles" class="h-4 w-4 text-neutral-200"></i>
+        <span class="text-[10px] font-mono text-neutral-500">16 px</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <i data-lucide="sparkles" class="h-5 w-5 text-neutral-200"></i>
+        <span class="text-[10px] font-mono text-neutral-500">20 px</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <i data-lucide="sparkles" class="h-6 w-6 text-neutral-200"></i>
+        <span class="text-[10px] font-mono text-neutral-500">24 px</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6B — Color inheritance -->
+  <div class="mt-10">
+    <h3 class="text-lg font-semibold tracking-tight text-white">Color inheritance</h3>
+    <p class="mt-2 text-sm text-neutral-400 mb-4 font-mono">stroke = currentColor — set a text-* class on the wrapper</p>
+    <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="flex items-center gap-3 text-white"><i data-lucide="check" class="h-5 w-5"></i><span class="text-xs font-mono text-neutral-500">text-white</span></div>
+      <div class="flex items-center gap-3 text-neutral-200"><i data-lucide="check" class="h-5 w-5"></i><span class="text-xs font-mono text-neutral-500">text-neutral-200</span></div>
+      <div class="flex items-center gap-3 text-neutral-500"><i data-lucide="check" class="h-5 w-5"></i><span class="text-xs font-mono text-neutral-500">text-neutral-500</span></div>
+      <div class="flex items-center gap-3 text-emerald-300"><i data-lucide="check" class="h-5 w-5"></i><span class="text-xs font-mono text-neutral-500">text-emerald-300</span></div>
+      <div class="flex items-center gap-3 text-teal-400"><i data-lucide="check" class="h-5 w-5"></i><span class="text-xs font-mono text-neutral-500">text-teal-400</span></div>
+      <div class="flex items-center gap-3 text-indigo-300"><i data-lucide="check" class="h-5 w-5"></i><span class="text-xs font-mono text-neutral-500">text-indigo-300</span></div>
+      <div class="flex items-center gap-3 text-fuchsia-300"><i data-lucide="check" class="h-5 w-5"></i><span class="text-xs font-mono text-neutral-500">text-fuchsia-300</span></div>
+      <div class="flex items-center gap-3 text-neutral-900 bg-white rounded px-2 py-1"><i data-lucide="check" class="h-5 w-5"></i><span class="text-xs font-mono">on white</span></div>
+    </div>
+  </div>
+
+  <!-- 6C — Icon-in-square pattern -->
+  <div class="mt-10">
+    <h3 class="text-lg font-semibold tracking-tight text-white">Icon-in-square pattern</h3>
+    <p class="mt-2 text-sm text-neutral-400 mb-4 font-mono">inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800</p>
+    <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 flex flex-wrap items-center gap-3">
+      <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800 text-neutral-300"><i data-lucide="search" class="h-4 w-4"></i></span>
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800 text-neutral-300"><i data-lucide="bell" class="h-4 w-4"></i></span>
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800 text-neutral-300"><i data-lucide="user" class="h-4 w-4"></i></span>
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800 text-neutral-300"><i data-lucide="settings" class="h-4 w-4"></i></span>
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800 text-neutral-300"><i data-lucide="bookmark" class="h-4 w-4"></i></span>
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800 text-neutral-300"><i data-lucide="share-2" class="h-4 w-4"></i></span>
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-neutral-900 border border-neutral-800 text-neutral-300"><i data-lucide="more-horizontal" class="h-4 w-4"></i></span>
+    </div>
+  </div>
+
+  <!-- 6D — Glyph library actually used by the site -->
+  <div class="mt-10">
+    <h3 class="text-lg font-semibold tracking-tight text-white">Glyphs used in the reference</h3>
+    <p class="mt-2 text-sm text-neutral-400 mb-4">Pulled from the data-lucide attributes in <span class="font-mono text-teal-300">index.html</span>.</p>
+    <div class="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-y-6 gap-x-4 text-neutral-200">
+      <div class="flex flex-col items-center gap-2"><i data-lucide="sparkles" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">sparkles</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="map-pin" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">map-pin</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="globe" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">globe</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="search" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">search</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="user" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">user</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="menu" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">menu</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="x" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">x</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="chevron-down" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">chevron-down</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="chevron-right" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">chevron-right</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="arrow-right" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">arrow-right</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="arrow-up-right" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">arrow-up-right</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="check" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">check</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="check-circle" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">check-circle</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="shield-check" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">shield-check</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="star" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">star</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="heart" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">heart</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="bed-double" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">bed-double</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="bath" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">bath</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="utensils" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">utensils</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="wine" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">wine</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="coffee" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">coffee</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="waves" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">waves</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="mountain" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">mountain</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="palm-tree" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">palm-tree</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="sun" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">sun</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="moon" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">moon</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="calendar" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">calendar</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="clock" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">clock</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="users" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">users</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="award" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">award</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="phone" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">phone</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="mail" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">mail</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="instagram" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">instagram</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="facebook" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">facebook</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="youtube" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">youtube</span></div>
+      <div class="flex flex-col items-center gap-2"><i data-lucide="play" class="h-5 w-5"></i><span class="text-[11px] font-mono text-neutral-500">play</span></div>
+    </div>
+  </div>
+
+  <!-- 6E — Initialization snippet -->
+  <div class="mt-10">
+    <h3 class="text-lg font-semibold tracking-tight text-white">Initialization</h3>
+    <p class="mt-2 text-sm text-neutral-400 mb-4">Lucide replaces every <span class="font-mono text-teal-300">&lt;i data-lucide="..."&gt;</span> with an inline SVG when <span class="font-mono text-teal-300">createIcons()</span> runs.</p>
+    <pre class="rounded-2xl border border-neutral-800 bg-neutral-950 p-6 text-[12px] font-mono text-neutral-300 leading-relaxed overflow-x-auto">&lt;script src="assets/lucide_latest_2eebd0ebe8c2"&gt;&lt;/script&gt;
+&lt;script&gt;
+  document.addEventListener('DOMContentLoaded', () =&gt; {
+    if (window.lucide) lucide.createIcons();
+  });
+&lt;/script&gt;</pre>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- FOOTER                                       -->
+<!-- ============================================ -->
+<footer class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-20 sm:mt-32 border-t border-neutral-900 pt-10 pb-12">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500 to-cyan-600 text-white">
+        <i data-lucide="sparkles" class="h-4 w-4"></i>
+      </span>
+      <div class="flex flex-col">
+        <span class="text-sm font-semibold text-white tracking-tight">Next Hospitality · Design System</span>
+        <span class="text-xs text-neutral-500">A living pattern library &middot; <span id="ds-year"></span></span>
+      </div>
+    </div>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="index.html" class="text-neutral-300 hover:text-white transition-colors">Reference site</a>
+      <a href="#hero" class="text-neutral-300 hover:text-white transition-colors">Back to top</a>
+      <a href="#" class="text-neutral-300 hover:text-white transition-colors">Terms</a>
+      <a href="#" class="text-neutral-300 hover:text-white transition-colors">Privacy</a>
+      <a href="#" class="text-neutral-300 hover:text-white transition-colors">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.isolate.overflow-hidden.relative -->
+
+<script src="assets/lucide_latest_2eebd0ebe8c2"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide && typeof lucide.createIcons === 'function') {
+      lucide.createIcons();
+    }
+    var y = document.getElementById('ds-year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    // Mobile menu toggle (matches index.html behaviour)
+    var btn = document.getElementById('menuBtn');
+    var menu = document.getElementById('mobileMenu');
+    if (btn && menu) {
+      btn.addEventListener('click', function () {
+        menu.classList.toggle('hidden');
+      });
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () { menu.classList.add('hidden'); });
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
