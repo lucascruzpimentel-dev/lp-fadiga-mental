@@ -304,6 +304,61 @@
       margin-right: auto;
     }
 
+    /* Convite para rolar até a oferta (página obrigado) */
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      margin: clamp(1.25rem, 4vw, 1.75rem) auto 0;
+      padding-top: clamp(0.85rem, 2.5vw, 1.15rem);
+      border-top: 1px solid rgba(2, 51, 122, 0.12);
+      max-width: 22rem;
+      text-decoration: none;
+      color: var(--color-accent);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(0.82rem, 2vw, 0.95rem);
+      text-align: center;
+      line-height: 1.35;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .scroll-hint:hover {
+      color: var(--color-accent-hover);
+    }
+    .scroll-hint:focus-visible {
+      outline: 2px solid var(--color-cta);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+    .scroll-hint__label strong {
+      color: var(--color-heading);
+      font-weight: 700;
+    }
+    .scroll-hint__chevron {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.15rem;
+      animation: scroll-hint-bounce 1.75s ease-in-out infinite;
+    }
+    .scroll-hint__chevron iconify-icon {
+      font-size: clamp(1.85rem, 5vw, 2.35rem);
+      color: var(--color-cta);
+      filter: drop-shadow(0 2px 8px rgba(255, 80, 0, 0.25));
+    }
+    @keyframes scroll-hint-bounce {
+      0%, 100% { transform: translateY(0); opacity: 1; }
+      45% { transform: translateY(10px); opacity: 0.88; }
+      55% { transform: translateY(10px); opacity: 0.88; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-hint__chevron {
+        animation: none;
+      }
+    }
+
     /* ========== Seção Lotes: lote atual em evidência + uma contagem regressiva (urgência) ========== */
     #lotes,
     #lotes-2,
@@ -1398,6 +1453,10 @@
         acesso a <strong>apostilas exclusivas</strong> e um <strong>certificado de participação</strong>,
         leia atentamente a proposta abaixo.
       </p>
+      <a href="#oferta-passe" class="scroll-hint">
+        <span class="scroll-hint__label"><strong>Role para baixo</strong> — veja o Passe Profissional e garanta o upgrade com valor promocional</span>
+        <span class="scroll-hint__chevron" aria-hidden="true"><iconify-icon icon="lucide:chevrons-down"></iconify-icon></span>
+      </a>
     </section>
 
     <!-- Troque os links chk.eduzz.com abaixo pelos checkouts reais do Passe Profissional deste congresso (produtos Eduzz distintos do evento de neurociência). -->
@@ -1420,7 +1479,7 @@
     </section>
 
     <!-- 2) Área de upgrade: mockup 50% à esquerda, card à direita -->
-    <div class="upgrade">
+    <div class="upgrade" id="oferta-passe" tabindex="-1">
       <div class="upgrade__image-wrap">
         <img
           src="/congresso-psicologia-vip-pass/assets/mkp_vip_psi.png"
