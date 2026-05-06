@@ -23,6 +23,8 @@
     { "source": "/inscricao-congresso-psicologia-do-esporte/", "destination": "/congresso-psicologia-vip-pass/captura_congreso_psi.html" },
     { "source": "/congresso-psicologia-vip-pass", "destination": "/congresso-psicologia-vip-pass/congresso-psicologia-vip-pass.html" },
     { "source": "/congresso-psicologia-vip-pass/", "destination": "/congresso-psicologia-vip-pass/congresso-psicologia-vip-pass.html" },
+    { "source": "/obrigado-congresso-psicologia-do-esporte", "destination": "/congresso-psicologia-vip-pass/obrigado-congreso_psi.html" },
+    { "source": "/obrigado-congresso-psicologia-do-esporte/", "destination": "/congresso-psicologia-vip-pass/obrigado-congreso_psi.html" },
     { "source": "/obrigado-aula-telas-cerebro-do-atleta", "destination": "/curso-telas/obrigado-aula-telas-cerebro-do-atleta.html" },
     { "source": "/obrigado-aula-telas-cerebro-do-atleta/", "destination": "/curso-telas/obrigado-aula-telas-cerebro-do-atleta.html" },
     { "source": "/treinador-mental-atletas", "destination": "/treinador-mental-atletas/index.html" },
