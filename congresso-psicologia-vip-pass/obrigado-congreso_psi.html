@@ -1532,7 +1532,7 @@
         </a>
 
         <div class="offer-card__countdown" aria-live="polite">
-          <p class="offer-card__countdown-label">Lote promocional termina em (25 de maio de 2026, 23h59)</p>
+          <p class="offer-card__countdown-label">Lote promocional termina em (2 de junho de 2026, 23h59)</p>
           <div class="offer-card__countdown-grid">
             <div class="offer-card__countdown-item">
               <span class="offer-card__countdown-value" id="countdown-days">--</span>
@@ -1633,10 +1633,10 @@
         </div>
       </div>
       <div class="lotes__grid">
-        <article class="lote-card" id="lote-1" data-end="2026-05-25T23:59:00-03:00" data-price="47">
+        <article class="lote-card" id="lote-1" data-end="2026-06-02T23:59:00-03:00" data-price="47">
           <span class="lote-card__badge">Lote 1</span>
           <p class="lote-card__price">R$ 47</p>
-          <p class="lote-card__valid">Válido até 25 de maio de 2026 (até 23h59)</p>
+          <p class="lote-card__valid">Válido até 2 de junho de 2026 (até 23h59)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1653,7 +1653,7 @@
         <article class="lote-card" id="lote-2" data-end="2026-06-07T23:59:00-03:00" data-price="97">
           <span class="lote-card__badge">Lote 2</span>
           <p class="lote-card__price">R$ 97</p>
-          <p class="lote-card__valid">Válido após a virada do Lote 1 (26/05) até 7 de junho de 2026 (23h59)</p>
+          <p class="lote-card__valid">Válido após a virada do Lote 1 (03/06) até 7 de junho de 2026 (23h59)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1823,10 +1823,10 @@
         </div>
       </div>
       <div class="lotes__grid">
-        <article class="lote-card" id="lote-1-b" data-end="2026-05-25T23:59:00-03:00" data-price="47">
+        <article class="lote-card" id="lote-1-b" data-end="2026-06-02T23:59:00-03:00" data-price="47">
           <span class="lote-card__badge">Lote 1</span>
           <p class="lote-card__price">R$ 47</p>
-          <p class="lote-card__valid">Válido até 25 de maio de 2026 (até 23h59)</p>
+          <p class="lote-card__valid">Válido até 2 de junho de 2026 (até 23h59)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1843,7 +1843,7 @@
         <article class="lote-card" id="lote-2-b" data-end="2026-06-07T23:59:00-03:00" data-price="97">
           <span class="lote-card__badge">Lote 2</span>
           <p class="lote-card__price">R$ 97</p>
-          <p class="lote-card__valid">Válido após a virada do Lote 1 (26/05) até 7 de junho de 2026 (23h59)</p>
+          <p class="lote-card__valid">Válido após a virada do Lote 1 (03/06) até 7 de junho de 2026 (23h59)</p>
           <ul class="lote-card__benefits">
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Sala exclusiva no Zoom</li>
             <li><iconify-icon icon="lucide:check-circle"></iconify-icon> Gravações por tempo ilimitado</li>
@@ -1977,9 +1977,9 @@
   </div>
 
   <script>
-    // Contagem do card de oferta: até fim do Lote 1 — 25/05/2026 23:59 (Brasília). Congresso: 02, 04, 06 e 07/06/2026.
+    // Contagem do card de oferta: até fim do Lote 1 — 02/06/2026 23:59 (Brasília). Congresso: 02 e 04/06 às 20h; 06 e 07/06 às 10h (Brasília).
     (function () {
-      var dataFim = new Date('2026-05-25T23:59:00-03:00');
+      var dataFim = new Date('2026-06-02T23:59:00-03:00');
       var elDays = document.getElementById('countdown-days');
       var elHours = document.getElementById('countdown-hours');
       var elMins = document.getElementById('countdown-mins');
@@ -2014,7 +2014,7 @@
       setInterval(atualizar, 1000);
     })();
 
-    // Lotes: virada 25/05/2026 23:59 — Lote 1 R$47 | Lote 2 R$97 até 07/06/2026 (substituir URLs em LOTES_CHECKOUT pelos links Eduzz deste congresso)
+    // Lotes: virada 02/06/2026 23:59 — Lote 1 R$47 | Lote 2 R$97 até 07/06/2026 (substituir URLs em LOTES_CHECKOUT pelos links Eduzz deste congresso)
     /* Substituir pelos IDs reais da Eduzz do Passe Profissional — Congresso de Psicologia */
     var LOTES_CHECKOUT = {
       1: 'https://chk.eduzz.com/VWGNPJ4P07',
@@ -2029,7 +2029,7 @@
       var elHoursAll = document.querySelectorAll('.js-lotes-countdown-hours');
       var elMinsAll = document.querySelectorAll('.js-lotes-countdown-mins');
       var elSecsAll = document.querySelectorAll('.js-lotes-countdown-secs');
-      var fimLote1 = new Date('2026-05-25T23:59:00-03:00');
+      var fimLote1 = new Date('2026-06-02T23:59:00-03:00');
       var fimLote2 = new Date('2026-06-07T23:59:00-03:00');
 
       function doisDigitos(n) { return n < 10 ? '0' + n : String(n); }
