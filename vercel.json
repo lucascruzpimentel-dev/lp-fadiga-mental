@@ -28,6 +28,8 @@
     { "source": "/obrigado-aula-telas-cerebro-do-atleta", "destination": "/curso-telas/obrigado-aula-telas-cerebro-do-atleta.html" },
     { "source": "/obrigado-aula-telas-cerebro-do-atleta/", "destination": "/curso-telas/obrigado-aula-telas-cerebro-do-atleta.html" },
     { "source": "/treinador-mental-atletas", "destination": "/treinador-mental-atletas/index.html" },
-    { "source": "/treinador-mental-atletas/", "destination": "/treinador-mental-atletas/index.html" }
+    { "source": "/treinador-mental-atletas/", "destination": "/treinador-mental-atletas/index.html" },
+    { "source": "/redirect-congresso-psi-aula-de-pais", "destination": "/congresso-psicologia-vip-pass/redirect_congresso_psi_aula_de_pais.html" },
+    { "source": "/redirect-congresso-psi-aula-de-pais/", "destination": "/congresso-psicologia-vip-pass/redirect_congresso_psi_aula_de_pais.html" }
   ]
 }
