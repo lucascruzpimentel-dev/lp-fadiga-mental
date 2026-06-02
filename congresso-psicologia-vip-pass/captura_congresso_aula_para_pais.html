@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MXDTWRQ3');</script>
+  <!-- End Google Tag Manager -->
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#02337a">
+  <title>Congresso Nacional de Psicologia do Esporte e Coaching | Inscrição | Atleta Campeão</title>
+
+  <!-- Google Fonts: Manrope (títulos) + Inter (corpo) — Design System Atleta Campeão -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Ícones Lucide via Iconify -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <!-- Script UTM: cookies + Eduzz + query string do iframe do formulário Lead Connector -->
+  <script>
+  (function () {
+    function parseParams(source) {
+      try {
+        var out = {};
+        new URLSearchParams(source || "").forEach(function(v, k) { out[k.toLowerCase()] = v; });
+        return out;
+      } catch(e) { return {}; }
+    }
+    function setCookie(n, v, days) {
+      if (!v) return;
+      var t = new Date();
+      t.setTime(t.getTime() + days * 24 * 60 * 60 * 1000);
+      var domain = window.location.hostname.replace(/^www\./, "");
+      document.cookie = n + "=" + encodeURIComponent(v)
+        + ";expires=" + t.toUTCString()
+        + ";path=/"
+        + (domain ? ";domain=." + domain : "")
+        + ";SameSite=Lax";
+    }
+    function getCookie(n) {
+      return document.cookie.split("; ").reduce(function(acc, pair) {
+        var parts = pair.split("=");
+        var k = parts[0];
+        var rest = parts.slice(1).join("=");
+        return k === n ? decodeURIComponent(rest) : acc;
+      }, "");
+    }
+    var q = parseParams(window.location.search);
+    var h = parseParams(window.location.hash ? window.location.hash.replace(/^#/, "?") : "");
+    var params = Object.assign({}, q, h);
+    var refSearch = document.referrer ? (document.referrer.split("?")[1] || "") : "";
+    var referrerParams = parseParams(refSearch);
+    var referrerHostname = "";
+    try { referrerHostname = document.referrer ? new URL(document.referrer).hostname : ""; } catch(e) {}
+    var current = {
+      utm_source:   params.utm_source   || "",
+      utm_medium:   params.utm_medium   || "",
+      utm_campaign: params.utm_campaign || "",
+      utm_content:  params.utm_content  || "",
+      gclid:        params.gclid        || "",
+      fbclid:       params.fbclid       || "",
+      ttclid:       params.ttclid       || ""
+    };
+    if (Object.values(current).some(Boolean)) {
+      Object.entries(current).forEach(function(entry) { setCookie(entry[0], entry[1], 90); });
+    }
+    var utm = {
+      utm_source:   current.utm_source   || getCookie("utm_source")   || "",
+      utm_medium:   current.utm_medium   || getCookie("utm_medium")   || "",
+      utm_campaign: current.utm_campaign || getCookie("utm_campaign") || "",
+      utm_content:  current.utm_content  || getCookie("utm_content")  || "",
+      gclid:        current.gclid        || getCookie("gclid")        || "",
+      fbclid:       current.fbclid       || getCookie("fbclid")       || "",
+      ttclid:       current.ttclid       || getCookie("ttclid")       || ""
+    };
+    if (!utm.utm_source) {
+      utm.utm_source = referrerParams.utm_source || referrerHostname || "direto";
+      setCookie("utm_source", utm.utm_source, 90);
+    }
+    window.__landingUtm = utm;
+
+    /* ID do formulário no Lead Connector (widget embed) */
+    var GHL_EMBED_FORM_ID = "N1dwWmNvp2t2x3nQ6Pop";
+
+    window.buildGhlPsicologiaCongressFormSrc = function () {
+      var u = window.__landingUtm || {};
+      var base = "https://api.leadconnectorhq.com/widget/form/" + GHL_EMBED_FORM_ID;
+      var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "gclid", "fbclid", "ttclid"];
+      var q = [];
+      for (var i = 0; i < keys.length; i++) {
+        if (u[keys[i]]) q.push(encodeURIComponent(keys[i]) + "=" + encodeURIComponent(u[keys[i]]));
+      }
+      return q.length ? base + "?" + q.join("&") : base;
+    };
+
+    function syncGhlEmbedIframeSrc() {
+      var root = document.getElementById("ghl-form-root");
+      if (!root) return;
+      var ifr = root.querySelector("iframe.hero__ghl-iframe");
+      if (!ifr || !window.buildGhlPsicologiaCongressFormSrc) return;
+      var src = window.buildGhlPsicologiaCongressFormSrc();
+      try {
+        if (ifr.src !== src) ifr.src = src;
+      } catch (e) {
+        ifr.src = src;
+      }
+    }
+    function decorateEduzzLinks() {
+      var keys = ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"];
+      document.querySelectorAll("a[href]").forEach(function(a) {
+        var href = a.getAttribute("href");
+        if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+        var url;
+        try { url = new URL(href, window.location.origin); } catch(e) { return; }
+        var host = (url.hostname || "").toLowerCase();
+        var isEduzz = host === "chk.eduzz.com" || host.endsWith(".eduzz.com");
+        if (!isEduzz) return;
+        var changed = false;
+        keys.forEach(function(k) {
+          if (!url.searchParams.get(k) && utm[k]) {
+            url.searchParams.set(k, utm[k]);
+            changed = true;
+          }
+        });
+        if (changed) a.setAttribute("href", url.toString());
+      });
+    }
+    document.addEventListener("click", function(e) {
+      var a = e.target.closest("a[href]");
+      if (!a) return;
+      var href = a.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+      var url;
+      try { url = new URL(href, window.location.origin); } catch(e) { return; }
+      var host = (url.hostname || "").toLowerCase();
+      if (!(host === "chk.eduzz.com" || host.endsWith(".eduzz.com"))) return;
+      ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"].forEach(function(k) {
+        if (!url.searchParams.get(k) && utm[k]) url.searchParams.set(k, utm[k]);
+      });
+      a.setAttribute("href", url.toString());
+    }, true);
+    function runAll() {
+      syncGhlEmbedIframeSrc();
+      decorateEduzzLinks();
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", runAll);
+    } else {
+      runAll();
+    }
+    var debounceTimer;
+    new MutationObserver(function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(runAll, 300);
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  })();
+  </script>
+
+  <!-- =============================================
+       FIM DO BLOCO DO PIXEL
+       ============================================= -->
+
+  <style>
+    /* ============================================
+       DESIGN SYSTEM — Mobile-first + Desktop completo
+       Fundo: redes neurais animadas | Form: pop-up
+       Breakpoints: 375 | 480 | 768 | 1024 | 1280 | 1440
+       ============================================ */
+    :root {
+      --color-hero-bg: #ffffff;
+      --color-hero-text: #0f172a;
+      --color-accent: #02337a;
+      --color-accent-hover: #01285f;
+      --color-gold: #e85d04;
+      --color-subhead: #475569;
+      --color-micro: #64748b;
+      --font-heading: 'Manrope', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --radius-btn: 9999px;
+      --radius-box: 12px;
+      --container-sm: 100%;
+      --container-md: 720px;
+      --container-lg: 960px;
+      --container-xl: 1200px;
+      --container-2xl: 1400px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-hero-text);
+      background: var(--color-hero-bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ---------- Seção do contador: fundo escuro (outra seção) ---------- */
+    .countdown-section {
+      background: #0f172a;
+      width: 100%;
+      padding: clamp(1rem, 3vw, 1.5rem) clamp(1.25rem, 4vw, 2rem);
+      text-align: center;
+    }
+    .countdown {
+      position: relative;
+      max-width: var(--container-2xl);
+      margin: 0 auto;
+    }
+    .countdown__label {
+      font-size: clamp(0.7rem, 2vw, 0.8rem);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-gold);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .countdown__grid {
+      display: flex;
+      justify-content: center;
+      gap: clamp(0.4rem, 1.5vw, 0.75rem);
+      flex-wrap: wrap;
+    }
+    .countdown__item {
+      min-width: clamp(3.5rem, 10vw, 5.5rem);
+      padding: clamp(0.5rem, 1.5vw, 0.85rem) clamp(0.4rem, 1vw, 0.6rem);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-box);
+      text-align: center;
+    }
+    .countdown__value {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.35rem, 4vw, 2.25rem);
+      line-height: 1.2;
+      color: #fff;
+    }
+    .countdown__unit {
+      font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      margin-top: 0.125rem;
+    }
+
+    /* ---------- Hero: fundo com gradiente animado + vídeo (ciência/neuro) ---------- */
+    .hero {
+      position: relative;
+      min-height: auto;
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2rem) clamp(2.5rem, 6vw, 4rem);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #0f172a;
+    }
+
+    /* Vídeo de fundo (ciência/neurociência): coloque seu .mp4 em src */
+    .hero__video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero__video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Gradiente animado (movimento suave, tons ciência/neuro) */
+    .hero__gradient-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        135deg,
+        #0f172a 0%,
+        #1e293b 25%,
+        #1e3a5f 50%,
+        #312e81 75%,
+        #1e293b 100%
+      );
+      background-size: 400% 400%;
+      animation: gradient-shift 15s ease infinite;
+      pointer-events: none;
+    }
+    .hero__gradient-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.92) 0%,
+        rgba(255, 255, 255, 0.97) 100%
+      );
+      pointer-events: none;
+    }
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Se tiver vídeo, reduz opacidade do overlay para o vídeo aparecer */
+    .hero:has(.hero__video-wrap video[src]) .hero__gradient-bg::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.88) 0%,
+        rgba(255, 255, 255, 0.95) 100%
+      );
+    }
+
+    /* ---------- Container principal: logo + conteúdo ---------- */
+    .hero__wrap {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: var(--container-2xl);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(1.25rem, 4vw, 2.5rem);
+    }
+    .hero__logo-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 100%;
+      max-width: min(320px, 62vw);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero__logo {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero__content {
+      width: 100%;
+      max-width: 36rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: clamp(1rem, 2.5vw, 1.5rem);
+    }
+
+    .hero__headline {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.35rem, 4.2vw, 2.75rem);
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      margin: 0;
+      color: var(--color-hero-text);
+    }
+
+    .hero__subheadline {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--color-subhead);
+      margin: 0;
+      max-width: 42ch;
+    }
+
+    .hero__form-wrap {
+      width: 100%;
+      max-width: 28rem;
+      margin-top: 0.5rem;
+    }
+    /* Cartão + iframe Lead Connector (form_embed.js) */
+    .hero__form-card {
+      border-radius: var(--radius-box);
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #fff;
+    }
+    .hero__ghl-iframe {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-height: 434px;
+      height: 464px;
+      border: 0;
+      background: #fff;
+    }
+    @media (max-width: 767px) {
+      .hero__form-card {
+        padding: 0;
+      }
+      .hero__ghl-iframe {
+        min-height: 480px;
+      }
+    }
+
+    .hero__micro {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: clamp(0.6rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.5rem);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: clamp(0.78rem, 1.8vw, 0.9rem);
+      color: var(--color-micro);
+    }
+    .hero__micro li {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .hero__micro iconify-icon {
+      flex-shrink: 0;
+      color: var(--color-accent);
+      font-size: 1.4rem;
+    }
+
+    /* ---------- Breakpoint: tablet (768px) ---------- */
+    @media (min-width: 768px) {
+      .hero__wrap { gap: 2rem; }
+      .hero__logo-wrap { max-width: 380px; }
+      .hero__content { max-width: 38rem; gap: 1.35rem; }
+      .hero__headline { font-size: clamp(1.6rem, 3.5vw, 2.25rem); }
+      .hero__form-wrap { max-width: 32rem; }
+    }
+
+    /* ---------- Breakpoint: desktop (1024px) — logo à esquerda ---------- */
+    @media (min-width: 1024px) {
+      .hero {
+        padding-left: clamp(2rem, 5vw, 4rem);
+        padding-right: clamp(2rem, 5vw, 4rem);
+        justify-content: flex-start;
+      }
+      .hero__wrap {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: clamp(2.5rem, 5vw, 4rem);
+        text-align: left;
+      }
+      .hero__logo-wrap {
+        max-width: min(500px, 38vw);
+        position: sticky;
+        top: clamp(1rem, 3vw, 1.5rem);
+      }
+      .hero__content {
+        flex: 1;
+        min-width: 0;
+        max-width: 38rem;
+        align-items: flex-start;
+        text-align: left;
+        gap: 1.5rem;
+      }
+      .hero__headline { font-size: 2.15rem; max-width: 28ch; }
+      .hero__subheadline { max-width: 40ch; font-size: 1.125rem; }
+      .hero__micro { justify-content: flex-start; }
+      .hero__form-wrap { max-width: 32rem; margin-top: 0.75rem; }
+    }
+
+    /* ---------- Breakpoint: desktop largo (1280px+) ---------- */
+    @media (min-width: 1280px) {
+      .hero__wrap { max-width: var(--container-2xl); gap: 4rem; }
+      .hero__logo-wrap { max-width: 560px; }
+      .hero__content { max-width: 40rem; }
+      .hero__headline { font-size: 2.5rem; }
+      .hero__subheadline { font-size: 1.2rem; }
+    }
+
+    @media (min-width: 1440px) {
+      .hero__headline { font-size: 2.75rem; }
+      .hero__logo-wrap { max-width: 600px; }
+      .countdown__value { font-size: 2.5rem; }
+    }
+
+    /* ---------- Seção 02: Programação — Professores e temas ---------- */
+    .programacao {
+      background: linear-gradient(165deg, #eff6ff 0%, #dbeafe 25%, #e0e7ff 50%, #dbeafe 75%, #eff6ff 100%);
+      padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2rem);
+      width: 100%;
+    }
+    .programacao__inner {
+      max-width: var(--container-2xl);
+      margin: 0 auto;
+    }
+    .programacao__title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--color-hero-text);
+      margin: 0 0 0.5rem;
+      text-align: center;
+      opacity: 0;
+      animation: programacao-fadeIn 0.7s ease forwards;
+    }
+    .programacao__subtitle {
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      line-height: 1.45;
+      color: var(--color-subhead);
+      margin: 0 0 clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      opacity: 0;
+      animation: programacao-fadeIn 0.7s ease 0.15s forwards;
+    }
+    @keyframes programacao-fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .programacao__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.5rem, 4vw, 2rem);
+      align-items: stretch;
+    }
+    .programacao__card {
+      position: relative;
+      border-radius: 18px;
+      padding: 0;
+      overflow: hidden;
+      opacity: 0;
+      animation: programacao-fadeIn 0.6s ease forwards;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .programacao__card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      background: conic-gradient(from 0deg, transparent 0deg 240deg, rgba(255,255,255,0.2) 258deg, rgba(255,255,255,0.85) 275deg, rgba(2,51,122,0.28) 280deg, rgba(255,255,255,0.85) 285deg, rgba(255,255,255,0.2) 302deg, transparent 320deg 360deg);
+      animation: programacao-border-spin 4s linear infinite;
+      z-index: 0;
+    }
+    @keyframes programacao-border-spin {
+      to { transform: rotate(360deg); }
+    }
+    .programacao__card-inner {
+      position: relative;
+      z-index: 1;
+      margin: 3px;
+      border-radius: 15px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      text-align: left;
+      overflow: hidden;
+      min-height: 0;
+      flex: 1 1 auto;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 10px 28px -4px rgba(0, 0, 0, 0.08);
+    }
+    .programacao__card:nth-child(1) { animation-delay: 0.25s; }
+    .programacao__card:nth-child(2) { animation-delay: 0.4s; }
+    .programacao__card:nth-child(3) { animation-delay: 0.55s; }
+    .programacao__badge-band {
+      background: var(--color-accent);
+      color: #fff;
+      padding: 0.6rem 1rem;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .programacao__card-header {
+      padding: clamp(1rem, 2.5vw, 1.25rem) clamp(1.25rem, 3vw, 1.5rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .programacao__badge {
+      display: none;
+    }
+    .programacao__photo {
+      width: clamp(88px, 18vw, 112px);
+      height: clamp(88px, 18vw, 112px);
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.75rem;
+      border: 3px solid rgba(2, 51, 122, 0.18);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+    .programacao__name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+      margin: 0 0 0.35rem;
+    }
+    .programacao__credential {
+      font-size: 0.8rem;
+      color: var(--color-subhead);
+      line-height: 1.4;
+      margin: 0;
+      max-width: 30ch;
+    }
+    .programacao__card-body {
+      padding: clamp(1rem, 2.5vw, 1.25rem) clamp(1.25rem, 3vw, 1.5rem);
+      border-top: 1px solid rgba(2, 51, 122, 0.1);
+      background: #f8fafc;
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .programacao__theme-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      margin: 0 0 0.4rem;
+    }
+    .programacao__theme {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      line-height: 1.4;
+      color: #0f172a;
+      margin: 0 0 0.5rem;
+    }
+    .programacao__desc {
+      font-size: 0.8125rem;
+      color: var(--color-micro);
+      line-height: 1.5;
+      margin: 0;
+      flex: 1 1 auto;
+    }
+    /* Programação: tablet/desktop em 2 colunas (4 aulas) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .programacao__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1.5rem, 3vw, 2rem);
+      }
+    }
+    @media (min-width: 1024px) {
+      .programacao__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1.25rem, 2.5vw, 1.75rem);
+        align-items: stretch;
+      }
+    }
+
+    /* ---------- Seção: Instituto Atleta Campeão (autoridade) ---------- */
+    .instituicao {
+      position: relative;
+      background: linear-gradient(155deg, #0f172a 0%, #1e293b 25%, #0f172a 50%, #1e3a5f 75%, #0f172a 100%);
+      background-size: 200% 200%;
+      animation: instituicao-bg-shift 18s ease infinite;
+      padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 4vw, 2rem);
+      width: 100%;
+      overflow: hidden;
+    }
+    @keyframes instituicao-bg-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .instituicao__inner {
+      position: relative;
+      z-index: 1;
+      max-width: var(--container-2xl);
+      margin: 0 auto;
+    }
+    .instituicao__wrap {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 4vw, 3rem);
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .instituicao__wrap {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        min-height: min(70vh, 560px);
+      }
+    }
+    .instituicao__left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      min-height: 0;
+    }
+    .instituicao__badge {
+      display: inline-block;
+      background: rgba(2, 51, 122, 0.28);
+      border: 1px solid rgba(2, 51, 122, 0.5);
+      color: #fff;
+      font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.45rem 0.85rem;
+      border-radius: 9999px;
+    }
+    .instituicao__logo-wrap {
+      flex-shrink: 0;
+      width: 100%;
+      max-width: min(45vw, 320px);
+      aspect-ratio: 1;
+    }
+    @media (min-width: 768px) {
+      .instituicao__logo-wrap {
+        max-width: min(42vw, 380px);
+      }
+    }
+    .instituicao__logo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+      padding: 10px;
+      display: block;
+    }
+    .instituicao__right {
+      min-width: 0;
+    }
+    .instituicao__label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.5);
+      margin: 0 0 0.25rem;
+    }
+    .instituicao__title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.6rem, 4vw, 2.25rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin: 0 0 0.35rem;
+    }
+    .instituicao__subtitle {
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      color: #93c5fd;
+      margin: 0 0 1.25rem;
+      line-height: 1.4;
+    }
+    .instituicao__text {
+      font-size: clamp(0.9rem, 1.8vw, 1rem);
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0 0 clamp(1.5rem, 3vw, 2rem);
+    }
+    .instituicao__stats {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1rem, 2.5vw, 1.25rem);
+      margin-bottom: clamp(1.75rem, 4vw, 2.25rem);
+    }
+    @media (min-width: 480px) {
+      .instituicao__stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .instituicao__stat {
+      text-align: center;
+      padding: clamp(0.9rem, 2vw, 1.1rem);
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-box);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .instituicao__stat-num {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      line-height: 1.1;
+      color: #fff;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .instituicao__stat-label {
+      font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.35;
+      margin: 0;
+    }
+    .instituicao__cta {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, #02337a 0%, #01285f 100%);
+      border: none;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(2, 51, 122, 0.42);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    @media (min-width: 768px) {
+      .instituicao__cta {
+        margin: 0;
+      }
+    }
+    .instituicao__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(2, 51, 122, 0.5);
+    }
+
+    /* ---------- Seção 03: Como vai funcionar (FAQ) ---------- */
+    .como-funciona {
+      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%);
+      padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2rem);
+      width: 100%;
+    }
+    .como-funciona__inner {
+      max-width: var(--container-2xl);
+      margin: 0 auto;
+    }
+    .como-funciona__title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--color-hero-text);
+      margin: 0 0 0.5rem;
+      text-align: center;
+    }
+    .como-funciona__subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      line-height: 1.45;
+      color: var(--color-subhead);
+      margin: 0 0 clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      max-width: 42ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .como-funciona__lista {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1rem, 3vw, 1.5rem);
+    }
+    .como-funciona__item {
+      background: #fff;
+      border-radius: var(--radius-box);
+      padding: clamp(1.25rem, 3vw, 1.5rem) clamp(1.25rem, 3vw, 1.75rem);
+      border: 1px solid rgba(2, 51, 122, 0.12);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .como-funciona__icon {
+      flex-shrink: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 10px;
+      background: rgba(2, 51, 122, 0.12);
+      color: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    .como-funciona__content {
+      flex: 1;
+      min-width: 0;
+    }
+    .como-funciona__pergunta {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.35;
+      color: var(--color-hero-text);
+      margin: 0 0 0.5rem;
+    }
+    .como-funciona__resposta {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--color-subhead);
+      margin: 0;
+    }
+    .como-funciona__resposta p {
+      margin: 0 0 0.75rem;
+    }
+    .como-funciona__resposta p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      background: #0f172a;
+      color: rgba(255, 255, 255, 0.9);
+      padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2rem) 0;
+      width: 100%;
+    }
+    .footer__inner {
+      max-width: var(--container-2xl);
+      margin: 0 auto;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 4vw, 2.5rem);
+      padding-bottom: clamp(2rem, 4vw, 2.5rem);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    @media (min-width: 640px) {
+      .footer__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (min-width: 1024px) {
+      .footer__grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+    .footer__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .footer__logo-text {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin: 0;
+    }
+    .footer__desc {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.75);
+      margin: 0;
+      max-width: 36ch;
+    }
+    .footer__social {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+    }
+    .footer__social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-decoration: none;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .footer__social a:hover {
+      transform: scale(1.15);
+      background: var(--color-accent);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(2, 51, 122, 0.48);
+    }
+    .footer__social a iconify-icon {
+      font-size: 1.35rem;
+    }
+    .footer__col h3 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #fff;
+      margin: 0 0 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .footer__links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .footer__links li {
+      margin-bottom: 0.5rem;
+    }
+    .footer__links a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.2s ease, padding-left 0.2s ease;
+    }
+    .footer__links a:hover {
+      color: #93c5fd;
+      padding-left: 4px;
+    }
+    .footer__contact {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .footer__contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .footer__contact li:last-child {
+      margin-bottom: 0;
+    }
+    .footer__contact iconify-icon {
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      color: var(--color-accent);
+    }
+    .footer__contact a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .footer__contact a:hover {
+      color: #93c5fd;
+    }
+    .footer__bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: clamp(1rem, 2vw, 1.25rem) 0;
+    }
+    .footer__copy {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin: 0;
+    }
+    .footer__legal {
+      display: flex;
+      gap: 1.25rem;
+    }
+    .footer__legal a {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer__legal a:hover {
+      color: #93c5fd;
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXDTWRQ3"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Seção 1: Contador regressivo (fundo escuro) -->
+  <section class="countdown-section" aria-label="Contagem regressiva">
+    <div class="countdown" aria-live="polite">
+      <p class="countdown__label">Faltam para a primeira aula do congresso</p>
+      <div class="countdown__grid">
+        <div class="countdown__item">
+          <span class="countdown__value" id="countdown-days">--</span>
+          <span class="countdown__unit">dias</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__value" id="countdown-hours">--</span>
+          <span class="countdown__unit">horas</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__value" id="countdown-mins">--</span>
+          <span class="countdown__unit">min</span>
+        </div>
+        <div class="countdown__item">
+          <span class="countdown__value" id="countdown-secs">--</span>
+          <span class="countdown__unit">seg</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="hero" id="hero">
+    <!-- Vídeo de fundo (opcional): coloque um .mp4 de ciência/neurociência em src -->
+    <div class="hero__video-wrap" aria-hidden="true">
+      <video autoplay muted loop playsinline>
+        <!-- Coloque aqui o caminho do seu vídeo, ex: src="assets/video-neurociencia.mp4" -->
+      </video>
+    </div>
+    <div class="hero__gradient-bg" aria-hidden="true"></div>
+
+    <div class="hero__wrap">
+      <div class="hero__logo-wrap">
+        <img
+          src="assets/logo_crongresso_psi.webp"
+          alt="Congresso Nacional de Psicologia do Esporte e Coaching"
+          class="hero__logo"
+          width="320"
+          height="180"
+        />
+      </div>
+
+      <div class="hero__content">
+        <h1 class="hero__headline">
+          Seu filho treina muito bem, mas rende menos na hora da competição? Entenda como você pode ajudá-lo a ser um atleta mais confiante e forte mentalmente.
+        </h1>
+
+        <p class="hero__subheadline">
+          Nervosismo, medo de errar e excesso de cobrança fazem atletas talentosos renderem abaixo do que treinaram justamente nos momentos decisivos. Nesta aula, você vai entender o que acontece na cabeça do seu filho durante a competição e o que fazer, em casa, para ajudá-lo a lidar com a pressão.
+        </p>
+
+        <ul class="hero__micro" aria-label="Benefícios do evento">
+          <li><iconify-icon icon="lucide:monitor"></iconify-icon> 100% Online</li>
+          <li><iconify-icon icon="lucide:video"></iconify-icon> Aulas ao vivo</li>
+          <li><iconify-icon icon="lucide:gift"></iconify-icon> Gratuito</li>
+        </ul>
+
+        <!-- Formulário Go High Level (Lead Connector) — embed oficial + UTMs na URL do iframe -->
+        <div class="hero__form-wrap" id="form-congresso">
+          <div class="hero__form-card">
+            <div id="ghl-form-root"></div>
+          </div>
+          <script>
+          (function () {
+            var root = document.getElementById("ghl-form-root");
+            if (!root) return;
+            var src =
+              window.buildGhlPsicologiaCongressFormSrc
+                ? window.buildGhlPsicologiaCongressFormSrc()
+                : "https://api.leadconnectorhq.com/widget/form/N1dwWmNvp2t2x3nQ6Pop";
+            var ifr = document.createElement("iframe");
+            ifr.src = src;
+            ifr.className = "hero__ghl-iframe";
+            ifr.id = "inline-N1dwWmNvp2t2x3nQ6Pop";
+            ifr.setAttribute("data-layout", "{'id':'INLINE'}");
+            ifr.setAttribute("data-trigger-type", "alwaysShow");
+            ifr.setAttribute("data-trigger-value", "");
+            ifr.setAttribute("data-activation-type", "alwaysActivated");
+            ifr.setAttribute("data-activation-value", "");
+            ifr.setAttribute("data-deactivation-type", "neverDeactivate");
+            ifr.setAttribute("data-deactivation-value", "");
+            ifr.setAttribute("data-form-name", "[CONGRESSO] Psicologia do esporte - Aula de Pais");
+            ifr.setAttribute("data-height", "464");
+            ifr.setAttribute("data-layout-iframe-id", "inline-N1dwWmNvp2t2x3nQ6Pop");
+            ifr.setAttribute("data-form-id", "N1dwWmNvp2t2x3nQ6Pop");
+            ifr.setAttribute("title", "[CONGRESSO] Psicologia do esporte - Aula de Pais");
+            root.appendChild(ifr);
+            var sc = document.createElement("script");
+            sc.src = "https://link.msgsndr.com/js/form_embed.js";
+            sc.async = true;
+            var wrap = document.getElementById("form-congresso");
+            if (wrap) wrap.appendChild(sc);
+          })();
+          </script>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Seção: Instituto Atleta Campeão -->
+  <section class="instituicao" id="instituicao" aria-labelledby="instituicao-title">
+    <div class="instituicao__inner">
+      <div class="instituicao__wrap">
+        <div class="instituicao__left">
+          <span class="instituicao__badge">Reconhecida internacionalmente desde • 2018</span>
+          <div class="instituicao__logo-wrap">
+            <img src="assets/logo_dourada_ac.png" alt="Atleta Campeão" class="instituicao__logo" width="320" height="320">
+          </div>
+        </div>
+        <div class="instituicao__right">
+          <p class="instituicao__label" id="instituicao-title">A instituição</p>
+          <h2 class="instituicao__title">Instituto Atleta Campeão</h2>
+          <p class="instituicao__subtitle">Referência em psicologia do esporte, neurociência e treinamento mental desde 2016.</p>
+          <p class="instituicao__text">
+            Fundado em 2016 nos Estados Unidos e expandido para o Brasil em 2017, o Atleta Campeão se tornou a maior referência nacional em treinamento mental e emocional para atletas. Em 2018, foi reconhecido pelo Comitê Olímpico do Brasil e convidado para o Prêmio Brasil Olímpico. Reúne formações em neurociência e psicologia aplicada ao esporte — e já impactou mais de 30 mil atletas de diferentes modalidades, do amador ao campeão mundial.
+          </p>
+          <div class="instituicao__stats">
+            <div class="instituicao__stat">
+              <span class="instituicao__stat-num" id="stat-atletas" data-count-to="30" data-count-suffix=" mil">0</span>
+              <p class="instituicao__stat-label">atletas impactados desde 2017*</p>
+            </div>
+            <div class="instituicao__stat">
+              <span class="instituicao__stat-num" id="stat-alunos" data-count-to="400">0</span>
+              <p class="instituicao__stat-label">alunos inscritos na pós-graduação</p>
+            </div>
+            <div class="instituicao__stat">
+              <span class="instituicao__stat-num" id="stat-anos" data-count-to="20">0</span>
+              <p class="instituicao__stat-label">anos de experiência no mercado esportivo</p>
+            </div>
+          </div>
+          <a href="#form-congresso" class="instituicao__cta">Garantir minha vaga</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <p class="footer__logo-text">Atleta Campeão</p>
+          <p class="footer__desc">A maior referência nacional em treinamento mental e emocional para atletas. Psicologia do esporte, neurociência e coaching aplicados à performance desde 2016.</p>
+          <div class="footer__social">
+            <a href="https://www.instagram.com/atletacampeao" target="_blank" rel="noopener noreferrer" aria-label="Instagram do Atleta Campeão">
+              <iconify-icon icon="lucide:instagram"></iconify-icon>
+            </a>
+            <a href="https://www.youtube.com/@atletacampeao" target="_blank" rel="noopener noreferrer" aria-label="YouTube do Atleta Campeão">
+              <iconify-icon icon="lucide:youtube"></iconify-icon>
+            </a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h3>Links úteis</h3>
+          <ul class="footer__links">
+            <li><a href="#hero">Início</a></li>
+            <li><a href="#instituicao">A instituição</a></li>
+            <li><a href="#form-congresso">Inscreva-se agora</a></li>
+            <li><a href="/congresso-psicologia-vip-pass">Passe Profissional (upgrade)</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3>Suporte ao aluno</h3>
+          <ul class="footer__contact">
+            <li>
+              <iconify-icon icon="lucide:mail"></iconify-icon>
+              <a href="mailto:suporte@atletacampeao.com.br">suporte@atletacampeao.com.br</a>
+            </li>
+            <li>
+              <iconify-icon icon="lucide:message-circle"></iconify-icon>
+              <a href="https://wa.me/5588998091290" target="_blank" rel="noopener noreferrer">(88) 9 9809-1290</a>
+            </li>
+            <li>
+              <iconify-icon icon="lucide:map-pin"></iconify-icon>
+              <span>Av. Copacabana, 268 — Alphaville Barueri — SP, 06472-001</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <p class="footer__copy">© 2026 Instituto Atleta Campeão. Todos os direitos reservados.</p>
+        <div class="footer__legal">
+          <a href="#">Termos de Uso</a>
+          <a href="#">Política de Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Contagem regressiva até 02/06/2026 20:00 (1ª aula confirmada, horário de Brasília)
+    (function () {
+      var dataCongresso = new Date('2026-06-02T20:00:00-03:00');
+      var elDays = document.getElementById('countdown-days');
+      var elHours = document.getElementById('countdown-hours');
+      var elMins = document.getElementById('countdown-mins');
+      var elSecs = document.getElementById('countdown-secs');
+
+      function doisDigitos(n) { return n < 10 ? '0' + n : String(n); }
+
+      function atualizar() {
+        var agora = new Date();
+        var diff = dataCongresso - agora;
+
+        if (diff <= 0) {
+          elDays.textContent = '0';
+          elHours.textContent = '00';
+          elMins.textContent = '00';
+          elSecs.textContent = '00';
+          return;
+        }
+
+        var dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var min = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var seg = Math.floor((diff % (1000 * 60)) / 1000);
+
+        elDays.textContent = String(dias);
+        elHours.textContent = doisDigitos(horas);
+        elMins.textContent = doisDigitos(min);
+        elSecs.textContent = doisDigitos(seg);
+      }
+
+      atualizar();
+      setInterval(atualizar, 1000);
+    })();
+
+    // Contagem dos números da seção Instituto (efeito de subir)
+    (function () {
+      var section = document.getElementById('instituicao');
+      var counters = section ? section.querySelectorAll('.instituicao__stat-num') : [];
+      var ran = false;
+
+      function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
+      }
+
+      function animateValue(el, end, suffix, duration) {
+        var start = 0;
+        var startTime = null;
+        suffix = suffix || '';
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = easeOutQuart(progress);
+          var current = Math.round(eased * end);
+          el.textContent = '+' + current + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      function runCounters() {
+        if (ran) return;
+        ran = true;
+        counters.forEach(function (el) {
+          var to = parseInt(el.getAttribute('data-count-to'), 10);
+          var suffix = el.getAttribute('data-count-suffix') || '';
+          if (isNaN(to)) return;
+          animateValue(el, to, suffix, 2000);
+        });
+      }
+
+      if (!section || !counters.length) return;
+
+      if (typeof IntersectionObserver !== 'undefined') {
+        var obs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) runCounters();
+            });
+          },
+          { rootMargin: '0px', threshold: 0.2 }
+        );
+        obs.observe(section);
+      } else {
+        runCounters();
+      }
+    })();
+  </script>
+</body>
+</html>
+
