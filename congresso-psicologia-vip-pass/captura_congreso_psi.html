@@ -1398,19 +1398,24 @@
   </footer>
 
   <script>
-    // Contagem regressiva até 07/06/2026 10:00 (último dia — domingo, última aula ao vivo, horário de Brasília)
+    // Contagem regressiva até 07/06/2026 23:59:59 (último dia do congresso — domingo, horário de Brasília)
     (function () {
-      var dataCongresso = new Date('2026-06-07T10:00:00-03:00');
       var elDays = document.getElementById('countdown-days');
       var elHours = document.getElementById('countdown-hours');
       var elMins = document.getElementById('countdown-mins');
       var elSecs = document.getElementById('countdown-secs');
+      if (!elDays || !elHours || !elMins || !elSecs) return;
+
+      var dataCongresso = new Date('2026-06-07T23:59:59-03:00');
+      if (isNaN(dataCongresso.getTime())) {
+        dataCongresso = new Date(Date.UTC(2026, 5, 8, 2, 59, 59));
+      }
 
       function doisDigitos(n) { return n < 10 ? '0' + n : String(n); }
 
       function atualizar() {
         var agora = new Date();
-        var diff = dataCongresso - agora;
+        var diff = dataCongresso.getTime() - agora.getTime();
 
         if (diff <= 0) {
           elDays.textContent = '0';
