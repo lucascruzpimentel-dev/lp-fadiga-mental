@@ -1079,7 +1079,7 @@
   <!-- Seção 1: Contador regressivo (fundo escuro) -->
   <section class="countdown-section" aria-label="Contagem regressiva">
     <div class="countdown" aria-live="polite">
-      <p class="countdown__label">Faltam para a primeira aula do congresso</p>
+      <p class="countdown__label">Faltam para o último dia do congresso</p>
       <div class="countdown__grid">
         <div class="countdown__item">
           <span class="countdown__value" id="countdown-days">--</span>
@@ -1398,9 +1398,9 @@
   </footer>
 
   <script>
-    // Contagem regressiva até 02/06/2026 20:00 (1ª aula confirmada, horário de Brasília)
+    // Contagem regressiva até 07/06/2026 10:00 (último dia — domingo, última aula ao vivo, horário de Brasília)
     (function () {
-      var dataCongresso = new Date('2026-06-02T20:00:00-03:00');
+      var dataCongresso = new Date('2026-06-07T10:00:00-03:00');
       var elDays = document.getElementById('countdown-days');
       var elHours = document.getElementById('countdown-hours');
       var elMins = document.getElementById('countdown-mins');
