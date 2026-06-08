@@ -17,7 +17,8 @@
   <link rel="preconnect" href="https://player.vimeo.com">
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://code.iconify.design">
+  <script defer src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script>
   const CONFIG = {
     GTM_ID: "⟦PREENCHER⟧",
@@ -174,7 +175,8 @@
     .hero__layout{display:grid;grid-template-columns:1fr;gap:clamp(1.5rem,4vw,2.25rem);align-items:stretch}
     .hero__layout>*{min-width:0}
     @media(min-width:1024px){
-      .hero__layout{grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);grid-template-rows:auto auto;column-gap:clamp(2rem,5vw,3.5rem);row-gap:clamp(1.25rem,3vw,1.75rem);align-items:start}
+      .hero-wrap .hero{max-width:min(82vw,1500px);padding-inline:clamp(1rem,1.75vw,2rem)}
+      .hero__layout{grid-template-columns:minmax(0,1.05fr) minmax(320px,1fr);grid-template-rows:auto auto;column-gap:clamp(2.5rem,4vw,4rem);row-gap:clamp(1.25rem,3vw,1.75rem);align-items:start}
       .hero-copy__lead{grid-column:1;grid-row:1}
       .hero-copy__trail{grid-column:1;grid-row:2}
       .hero-aside{grid-column:2;grid-row:1/span 2;align-self:center}
@@ -604,11 +606,11 @@
       </header>
       <div class="trust-panel">
         <ul class="trust-logos" aria-label="Logos de instituições parceiras">
-          <li><img src="./assets/logo%20institui%C3%A7%C3%B5es/logo_corinthians.png" alt="Sport Club Corinthians Paulista" loading="lazy" width="180" height="72"></li>
-          <li><img src="./assets/logo%20institui%C3%A7%C3%B5es/logo_iate_clube.png" alt="Iate Clube" loading="lazy" width="180" height="72"></li>
-          <li><img src="./assets/logo%20institui%C3%A7%C3%B5es/logo_inter.png" alt="Clube Internacional de Regatas — Santos" loading="lazy" width="180" height="72"></li>
-          <li><img src="./assets/logo%20institui%C3%A7%C3%B5es/logo_marie_claire.png" alt="Marie Claire" loading="lazy" width="180" height="72"></li>
-          <li><img src="./assets/logo%20institui%C3%A7%C3%B5es/logo_unisanta.png" alt="UNISANTA" loading="lazy" width="180" height="72"></li>
+          <li><img src="./assets/logo_instituicoes/logo_corinthians.png" alt="Sport Club Corinthians Paulista" loading="lazy" width="180" height="72" decoding="async"></li>
+          <li><img src="./assets/logo_instituicoes/logo_iate_clube.png" alt="Iate Clube" loading="lazy" width="180" height="72" decoding="async"></li>
+          <li><img src="./assets/logo_instituicoes/logo_inter.png" alt="Clube Internacional de Regatas — Santos" loading="lazy" width="180" height="72" decoding="async"></li>
+          <li><img src="./assets/logo_instituicoes/logo_marie_claire.png" alt="Marie Claire" loading="lazy" width="180" height="72" decoding="async"></li>
+          <li><img src="./assets/logo_instituicoes/logo_unisanta.png" alt="UNISANTA" loading="lazy" width="180" height="72" decoding="async"></li>
         </ul>
       </div>
     </div>
@@ -945,7 +947,7 @@
 
           <article class="prof-card">
             <div class="prof-card__photo-wrap">
-              <img class="prof-card__photo" src="./assets/professores_da_pos/Mayra%20Ramos_circle.png" width="280" height="280" alt="Mayra Ramos" loading="lazy" decoding="async">
+              <img class="prof-card__photo" src="./assets/professores_da_pos/mayra_ramos_circle.png" width="280" height="280" alt="Mayra Ramos" loading="lazy" decoding="async">
             </div>
             <h3 class="prof-card__name">Mayra Ramos <span class="prof-card__flags" aria-hidden="true">🇺🇸🇧🇷</span></h3>
             <p class="prof-card__bio">Fundadora do Atleta Campeão, especialista em Neurociência e Treinamento Mental, formada nos EUA e com ampla experiência no desenvolvimento psicológico de atletas.</p>
@@ -953,7 +955,7 @@
 
           <article class="prof-card">
             <div class="prof-card__photo-wrap">
-              <img class="prof-card__photo" src="./assets/professores_da_pos/pf_jose%CC%81_roberto_circle.png" width="280" height="280" alt="Dr. Zé Roberto" loading="lazy" decoding="async">
+              <img class="prof-card__photo" src="./assets/professores_da_pos/pf_jose_roberto_circle.png" width="280" height="280" alt="Dr. Zé Roberto" loading="lazy" decoding="async">
             </div>
             <h3 class="prof-card__name">Dr. Zé Roberto <span class="prof-card__flags" aria-hidden="true">🇧🇷🇺🇸</span></h3>
             <p class="prof-card__bio">Doutor em Educação Física com especialização internacional em Psicologia do Esporte pela University of Stirling, referência no estudo da performance esportiva.</p>
@@ -969,7 +971,7 @@
 
           <article class="prof-card">
             <div class="prof-card__photo-wrap">
-              <img class="prof-card__photo" src="./assets/professores_da_pos/pf_Lucas%20cruz_circle.png" width="280" height="280" alt="Lucas Cruz" loading="lazy" decoding="async">
+              <img class="prof-card__photo" src="./assets/professores_da_pos/pf_lucas_cruz_circle.png" width="280" height="280" alt="Lucas Cruz" loading="lazy" decoding="async">
             </div>
             <h3 class="prof-card__name">Lucas Cruz <span class="prof-card__flags" aria-hidden="true">🇧🇷</span></h3>
             <p class="prof-card__bio">Co-fundador do Atleta Campeão, com atuação em marketing esportivo, posicionamento de marcas e estratégias de negócio no mercado do esporte.</p>
@@ -1308,24 +1310,24 @@
   })();
 
   const MODULOS = [
-    { img: "./assets/modulo1%20.webp", titulo: "Fundamentos e História da Psicologia do Esporte e Ética", descricao: "Origem, princípios e a ética na atuação com atletas." },
-    { img: "./assets/modulo2%20.webp", titulo: "Regulação Psicológica da Ação Esportiva", descricao: "Processos cognitivos e emocionais que influenciam a performance e a autorregulação no desempenho." },
-    { img: "./assets/modulo3%20.webp", titulo: "Formação da Personalidade e o Impacto no Esporte", descricao: "Como traços psicológicos afetam a performance e a adaptação ao treino." },
-    { img: "./assets/modulo4%20.webp", titulo: "Neurodesenvolvimento, Transtornos e Impacto no Desempenho", descricao: "Desenvolvimento, transtornos e seus efeitos na prática esportiva." },
-    { img: "./assets/modulo5%20.webp", titulo: "Treinamento de Habilidades Psicológicas", descricao: "Controle emocional, resiliência e foco aplicados ao atleta." },
-    { img: "./assets/modulo6%20.webp", titulo: "Motivação, Autoconfiança e Mentalidade de Alta Competição", descricao: "Estratégias pra construir confiança e mentalidade vencedora." },
-    { img: "./assets/modulo7%20.webp", titulo: "Atenção, Concentração e Tomada de Decisão", descricao: "Foco e decisão rápida em cenários competitivos." },
-    { img: "./assets/modulo8%20.webp", titulo: "Emoções e Gestão do Estresse", descricao: "Lidar com a pressão e evitar o impacto negativo do estresse." },
-    { img: "./assets/modulo9%20.webp", titulo: "Liderança e Coesão de Grupo", descricao: "Liderança em atletas e treinadores e a união da equipe." },
-    { img: "./assets/modulo10%20.webp", titulo: "Comunicação e Dinâmicas de Grupo", descricao: "Comunicação eficaz entre atletas, treinadores e equipes." },
-    { img: "./assets/modulo11%20.webp", titulo: "O Papel da Família no Esporte Infanto-Juvenil", descricao: "Como o ambiente familiar apoia o desenvolvimento saudável do jovem atleta." },
-    { img: "./assets/modulo12%20.webp", titulo: "Treinamento Mental, Mindfulness e Visualização", descricao: "Técnicas de mentalização e atenção plena pra concentração e desempenho." },
-    { img: "./assets/modulo13%20.webp", titulo: "Programa de Psicologia do Esporte e Coaching", descricao: "Como estruturar um programa completo de acompanhamento." },
-    { img: "./assets/modulo14%20.webp", titulo: "Sessões e Ferramentas de Autoconhecimento", descricao: "Instrumentos pra aprofundar autoconsciência e autogestão." },
-    { img: "./assets/modulo15%20.webp", titulo: "Sessões e Ferramentas de Rotina", descricao: "Organização de treinos, hábitos e rotinas de performance." },
-    { img: "./assets/modulo16%20.webp", titulo: "Sessões e Ferramentas Pré e Pós-Competição", descricao: "Preparação mental antes e recuperação emocional depois." },
-    { img: "./assets/modulo17%20.webp", titulo: "Prática Orientada e Estudo de Caso", descricao: "Aplicação com casos reais e experiências orientadas." },
-    { img: "./assets/modulo18%20.webp", titulo: "Modelos de Palestras e Workshops para Times e Equipes", descricao: "Como estruturar e conduzir palestras e workshops no ambiente esportivo." }
+    { img: "./assets/modulo1.webp", titulo: "Fundamentos e História da Psicologia do Esporte e Ética", descricao: "Origem, princípios e a ética na atuação com atletas." },
+    { img: "./assets/modulo2.webp", titulo: "Regulação Psicológica da Ação Esportiva", descricao: "Processos cognitivos e emocionais que influenciam a performance e a autorregulação no desempenho." },
+    { img: "./assets/modulo3.webp", titulo: "Formação da Personalidade e o Impacto no Esporte", descricao: "Como traços psicológicos afetam a performance e a adaptação ao treino." },
+    { img: "./assets/modulo4.webp", titulo: "Neurodesenvolvimento, Transtornos e Impacto no Desempenho", descricao: "Desenvolvimento, transtornos e seus efeitos na prática esportiva." },
+    { img: "./assets/modulo5.webp", titulo: "Treinamento de Habilidades Psicológicas", descricao: "Controle emocional, resiliência e foco aplicados ao atleta." },
+    { img: "./assets/modulo6.webp", titulo: "Motivação, Autoconfiança e Mentalidade de Alta Competição", descricao: "Estratégias pra construir confiança e mentalidade vencedora." },
+    { img: "./assets/modulo7.webp", titulo: "Atenção, Concentração e Tomada de Decisão", descricao: "Foco e decisão rápida em cenários competitivos." },
+    { img: "./assets/modulo8.webp", titulo: "Emoções e Gestão do Estresse", descricao: "Lidar com a pressão e evitar o impacto negativo do estresse." },
+    { img: "./assets/modulo9.webp", titulo: "Liderança e Coesão de Grupo", descricao: "Liderança em atletas e treinadores e a união da equipe." },
+    { img: "./assets/modulo10.webp", titulo: "Comunicação e Dinâmicas de Grupo", descricao: "Comunicação eficaz entre atletas, treinadores e equipes." },
+    { img: "./assets/modulo11.webp", titulo: "O Papel da Família no Esporte Infanto-Juvenil", descricao: "Como o ambiente familiar apoia o desenvolvimento saudável do jovem atleta." },
+    { img: "./assets/modulo12.webp", titulo: "Treinamento Mental, Mindfulness e Visualização", descricao: "Técnicas de mentalização e atenção plena pra concentração e desempenho." },
+    { img: "./assets/modulo13.webp", titulo: "Programa de Psicologia do Esporte e Coaching", descricao: "Como estruturar um programa completo de acompanhamento." },
+    { img: "./assets/modulo14.webp", titulo: "Sessões e Ferramentas de Autoconhecimento", descricao: "Instrumentos pra aprofundar autoconsciência e autogestão." },
+    { img: "./assets/modulo15.webp", titulo: "Sessões e Ferramentas de Rotina", descricao: "Organização de treinos, hábitos e rotinas de performance." },
+    { img: "./assets/modulo16.webp", titulo: "Sessões e Ferramentas Pré e Pós-Competição", descricao: "Preparação mental antes e recuperação emocional depois." },
+    { img: "./assets/modulo17.webp", titulo: "Prática Orientada e Estudo de Caso", descricao: "Aplicação com casos reais e experiências orientadas." },
+    { img: "./assets/modulo18.webp", titulo: "Modelos de Palestras e Workshops para Times e Equipes", descricao: "Como estruturar e conduzir palestras e workshops no ambiente esportivo." }
   ];
 
   (function utmEduzz() {
@@ -1508,7 +1510,7 @@
     if (!root) return;
     root.innerHTML = MODULOS.map(function(m, i) {
       var n = String(i + 1);
-      var lazy = i > 2 ? ' loading="lazy"' : "";
+      var lazy = ' loading="lazy" fetchpriority="low"';
       var titulo = m.titulo || m.nome || "";
       var desc = m.descricao || "";
       var descHtml = desc && desc.indexOf("⟦") === -1
@@ -1650,6 +1652,6 @@
     else start();
   })();
   </script>
-  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script defer src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
