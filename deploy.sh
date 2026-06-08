@@ -19,6 +19,7 @@ git add \
   "fadiga-mental/" \
   "inscricao-congresso-neurociencia-no-esporte/" \
   "pos-graduacao-neurociencia-no-esporte/" \
+  "pos-psicologia-do-esporte-e-coaching/" \
   "treinador-mental-atletas/" \
   vercel.json \
   deploy.sh \
