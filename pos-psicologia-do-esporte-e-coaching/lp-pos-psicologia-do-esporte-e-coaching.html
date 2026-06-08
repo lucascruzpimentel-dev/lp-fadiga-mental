@@ -185,10 +185,15 @@
     .hero__sub{font-size:clamp(1.05rem,2.2vw,1.2rem);line-height:1.55;color:#cbd5e1;margin:0;max-width:36rem}
     @media(min-width:1024px){.hero__sub{max-width:none}}
     .hero__actions{display:flex;flex-wrap:wrap;gap:.85rem;margin:0 0 1.75rem}
+    @media(max-width:1023px){
+      .hero__actions{flex-direction:column;align-items:center;justify-content:center;width:100%}
+      .hero__actions .btn{width:min(100%,20rem);justify-content:center}
+    }
     .hero-wrap .btn--primary{text-transform:uppercase;letter-spacing:.03em;font-size:.88rem;box-shadow:0 4px 14px rgba(255,80,0,.35)}
     .hero-wrap .btn--primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,80,0,.4)}
-    .hero-wrap .btn--secondary{background:rgba(0,28,68,.45);color:#e2e8f0;border:2px solid rgba(255,255,255,.22);font-weight:700}
-    .hero-wrap .btn--secondary:hover{border-color:var(--accent);background:rgba(0,28,68,.65);color:#fff}
+    .hero-wrap .btn--secondary{background:rgba(255,255,255,.07);color:#e8edf5!important;border:1.5px solid rgba(255,255,255,.32);font-weight:600;box-shadow:none;text-decoration:none!important}
+    .hero-wrap .btn--secondary:hover{border-color:rgba(255,255,255,.48);background:rgba(255,255,255,.12);color:#fff!important}
+    .hero-wrap .btn--secondary iconify-icon{color:currentColor}
     .hero-aside{position:relative;width:100%}
     .hero-video{position:relative;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 18px 42px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.12)}
     .hero-video::before{content:"";display:block;padding-top:75%}
@@ -237,7 +242,14 @@
     #para-quem .lead{max-width:40rem}
     .profile-grid{display:grid;grid-template-columns:1fr;gap:1.1rem;align-items:stretch}
     @media(min-width:720px){.profile-grid{grid-template-columns:repeat(2,1fr);gap:1.25rem}}
-    @media(min-width:1080px){.profile-grid{grid-template-columns:repeat(3,1fr);gap:1.4rem}}
+    @media(min-width:1080px){
+      .profile-grid{grid-template-columns:repeat(6,1fr);gap:1.4rem}
+      .profile-card:nth-child(1){grid-column:1/3}
+      .profile-card:nth-child(2){grid-column:3/5}
+      .profile-card:nth-child(3){grid-column:5/7}
+      .profile-card:nth-child(4){grid-column:2/4}
+      .profile-card:nth-child(5){grid-column:4/6}
+    }
     .profile-card{padding:0;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#fff;display:flex;flex-direction:column;min-height:100%}
     .profile-card__visual{position:relative;display:flex;align-items:center;justify-content:flex-start;gap:1rem;padding:1rem 1.1rem .95rem;background:linear-gradient(135deg,#f7f9fc 0%, #eef4ff 100%);border-bottom:1px solid var(--border)}
     .profile-card__visual::after{content:"";position:absolute;right:1.1rem;top:50%;width:4.75rem;height:2px;border-radius:999px;background:linear-gradient(90deg, rgba(255,80,0,.85) 0%, rgba(255,80,0,0) 100%);transform:translateY(-50%)}
@@ -246,8 +258,6 @@
     .profile-card__body{padding:1.05rem 1.1rem 1.2rem}
     .profile-card h3{font-size:1.08rem;color:var(--navy);margin-bottom:.7rem}
     .profile-card p{color:var(--ink);margin:0;line-height:1.65;font-size:.98rem}
-    .profile-card--wide{grid-column:1/-1;max-width:none;margin:0}
-    @media(min-width:1080px){.profile-card--wide{grid-column:2/span 1}}
     #para-quem .callout{margin-top:1.5rem;border-left-width:5px;font-weight:700}
     /* Blocos 3–5: diagnóstico, ferramentas, mercado */
     #diagnostico,#ferramenta,#mercado{padding:clamp(3.5rem,9vw,6rem) 0}
@@ -429,7 +439,8 @@
     #matricula{background:linear-gradient(180deg,#0b1f40 0%,var(--navy-deep) 100%);color:#fff;padding:clamp(3.5rem,8vw,5.5rem) 0}
     .matricula-body{display:flex;flex-wrap:wrap;gap:clamp(2rem,4vw,3rem);align-items:flex-start;justify-content:space-between}
     .matricula-benefits{flex:1;min-width:min(100%,300px)}
-    .matricula-benefits h2{color:#fff;font-size:clamp(1.25rem,3vw,1.85rem);text-transform:uppercase;line-height:1.2;letter-spacing:-.02em;margin:0 0 .75rem}
+    .matricula-benefits h2{color:#fff;font-size:clamp(1.25rem,3vw,1.85rem);text-transform:uppercase;line-height:1.2;letter-spacing:-.02em;margin:0 0 .75rem;text-wrap:balance}
+    .matricula-benefits h2 .matricula-title-line2{white-space:nowrap}
     .matricula-benefits .lead{color:#e0e0e0;margin:0 0 1.5rem;max-width:28rem;font-size:clamp(.88rem,1.7vw,.98rem);line-height:1.5}
     .matricula-benefits h3{color:#fff;font-size:clamp(1.05rem,2.2vw,1.35rem);margin:0 0 1.5rem;line-height:1.25;font-weight:800}
     .matricula-perks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1.35rem}
@@ -440,8 +451,9 @@
     .matricula-oferta-note{margin:0;font-size:.92rem;color:rgba(246,246,246,.75);line-height:1.5;max-width:26rem}
     .matricula-countdown{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.65rem .85rem;padding:.65rem .9rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,80,0,.35);border-radius:12px}
     .matricula-countdown__label{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#ffb380}
-    .matricula-countdown__time{display:inline-flex;align-items:baseline;gap:.35rem;font-family:var(--font-h);font-weight:800;font-size:clamp(1.1rem,2.5vw,1.35rem);color:#fff;font-variant-numeric:tabular-nums}
-    .matricula-countdown__time span{min-width:1.6ch;text-align:center}
+    .matricula-countdown__time{display:inline-flex;align-items:baseline;gap:.3rem;font-family:var(--font-h);font-weight:800;font-size:clamp(1rem,2.2vw,1.25rem);color:#fff;font-variant-numeric:tabular-nums;flex-wrap:wrap}
+    .matricula-countdown__segment{display:inline-flex;align-items:baseline;gap:.1rem}
+    .matricula-countdown__segment span:first-child{min-width:1.5ch;text-align:center}
     .matricula-countdown__unit{font-size:.72rem;font-weight:700;color:rgba(246,246,246,.65);margin-right:.15rem}
     .matricula-footnote{margin-top:1.25rem;font-size:.92rem;color:rgba(246,246,246,.72);line-height:1.55}
     .matricula-footnote p{margin:0}
@@ -476,6 +488,7 @@
     .cta-final .lead{color:var(--text-muted-on-dark);margin:0 auto 1.5rem}
     .trust-pills{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;font-size:.88rem}
     .site-footer{background:var(--charcoal);color:var(--text-muted-on-dark);padding:3rem 0 1.5rem;font-size:.9rem}
+    .site-footer__logo{display:block;width:auto;max-width:180px;height:auto;object-fit:contain}
     .site-footer a{color:var(--text-on-dark);text-decoration:none}
     .site-footer__grid{display:grid;gap:2rem}
     @media(min-width:768px){.site-footer__grid{grid-template-columns:2fr 1fr 1fr 1fr}}
@@ -496,7 +509,7 @@
         <span class="promo__price" id="promo-oferta"><span id="promo-preco-parcelado" class="js-preco-parcelado-promo">18x R$297</span> ou <span id="promo-preco-vista" class="js-preco-vista-promo">R$3.500</span> à vista</span>
         <span class="promo__sep" aria-hidden="true"></span>
         <span class="promo__clock" aria-live="polite">
-          <time id="promo-timer"><span id="promo-h">0</span>h <span id="promo-m">00</span>m <span id="promo-s">00</span>s</time>
+          <time id="promo-timer"><span id="promo-d">0</span>d <span id="promo-h">00</span>h <span id="promo-m">00</span>m <span id="promo-s">00</span>s</time>
         </span>
         <span class="promo__sep" aria-hidden="true"></span>
         <a class="promo__cta" href="#matricula">Garantir minha vaga</a>
@@ -787,7 +800,7 @@
               <p>Sua cabeça te sabota na hora H. Aqui você aprende a treinar a mente com o mesmo método que usa pra treinar o corpo.</p>
             </div>
           </article>
-          <article class="card profile-card profile-card--wide">
+          <article class="card profile-card">
             <div class="profile-card__visual">
               <span class="profile-card__icon" aria-hidden="true"><iconify-icon icon="lucide:users-round"></iconify-icon></span>
             </div>
@@ -1073,7 +1086,7 @@
       <div class="inner">
         <div class="matricula-body">
           <div class="matricula-benefits">
-            <h2 id="t-mat">Escolha seu plano e<br>faça a sua matrícula</h2>
+            <h2 id="t-mat">Escolha seu plano<br><span class="matricula-title-line2">e faça a sua matrícula</span></h2>
             <p class="lead">Um único preço em todos os canais. Consistência gera confiança.</p>
             <h3>Pós-Graduação em<br>Psicologia do Esporte e Coaching</h3>
             <ul class="matricula-perks">
@@ -1087,9 +1100,10 @@
               <div id="matricula-countdown" class="matricula-countdown" aria-live="polite">
                 <span class="matricula-countdown__label">Oferta encerra em</span>
                 <time class="matricula-countdown__time" id="matricula-timer">
-                  <span><span id="mat-h">0</span><span class="matricula-countdown__unit">h</span></span>
-                  <span><span id="mat-m">00</span><span class="matricula-countdown__unit">m</span></span>
-                  <span><span id="mat-s">00</span><span class="matricula-countdown__unit">s</span></span>
+                  <span class="matricula-countdown__segment"><span id="mat-d">0</span><span class="matricula-countdown__unit">d</span></span>
+                  <span class="matricula-countdown__segment"><span id="mat-h">00</span><span class="matricula-countdown__unit">h</span></span>
+                  <span class="matricula-countdown__segment"><span id="mat-m">00</span><span class="matricula-countdown__unit">m</span></span>
+                  <span class="matricula-countdown__segment"><span id="mat-s">00</span><span class="matricula-countdown__unit">s</span></span>
                 </time>
               </div>
               <p id="matricula-oferta-note" class="matricula-oferta-note">A partir de <span id="matricula-preco-depois-data">13/06</span>, o investimento passa pra <span class="js-preco-parcelado-depois">18x R$450</span> ou <span class="js-preco-vista-depois">R$7.000</span> à vista.</p>
@@ -1100,7 +1114,8 @@
           </div>
 
           <div class="matricula-pricing">
-            <div class="price-card">
+            <div class="price-card price-card--parcelado">
+              <p id="price-discount-badge-parcelado" class="price-card__discount"><iconify-icon icon="lucide:badge-percent" aria-hidden="true"></iconify-icon> <span class="js-desconto-parcelado-pct">34</span>% de desconto</p>
               <h4 class="price-card__label">Investimento<br>Mensal</h4>
               <p class="valor js-preco-parcelado" id="matricula-preco-parcelado">18x R$297</p>
               <a class="btn btn--primary js-link-parcelado" id="matricula-link-parcelado" href="https://chk.eduzz.com/E05N1ED49X">Quero me inscrever</a>
@@ -1118,7 +1133,7 @@
               </div>
             </div>
             <div class="price-card price-card--vista">
-              <p id="price-discount-badge" class="price-card__discount"><iconify-icon icon="lucide:badge-percent" aria-hidden="true"></iconify-icon> 50% de desconto</p>
+              <p id="price-discount-badge-vista" class="price-card__discount"><iconify-icon icon="lucide:badge-percent" aria-hidden="true"></iconify-icon> <span class="js-desconto-vista-pct">50</span>% de desconto</p>
               <h4 class="price-card__label">Investimento<br>À Vista</h4>
               <p class="valor js-preco-vista" id="matricula-preco-vista">R$3.500</p>
               <a class="btn btn--primary js-link-vista" id="matricula-link-vista" href="https://chk.eduzz.com/yeedqrd3">Quero me inscrever</a>
@@ -1204,7 +1219,7 @@
   <footer class="site-footer">
     <div class="inner site-footer__grid">
       <div>
-        <img src="./assets/logo-atleta-campeao.png" width="160" height="36" alt="Instituto Atleta Campeão" loading="lazy">
+        <img class="site-footer__logo" src="./assets/logo-atleta-campeao.png" width="400" height="200" alt="Instituto Atleta Campeão" loading="lazy" decoding="async">
         <p style="margin-top:1rem;max-width:40ch">© Atleta Campeão. Diploma emitido pela UNIFATEC em parceria com o Instituto Atleta Campeão.</p>
         <div class="site-footer__social">
           <a href="https://www.instagram.com/atletacampeao" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -1409,6 +1424,24 @@
     return day + "/" + month;
   }
 
+  function parseParcelaBRL(label) {
+    if (!label || label.indexOf("⟦") !== -1) return NaN;
+    var m = label.match(/x\s*R\$\s*([\d.]+)/i);
+    if (!m) return NaN;
+    return parseInt(m[1].replace(/\./g, ""), 10);
+  }
+
+  function parseVistaBRL(label) {
+    if (!label || label.indexOf("⟦") !== -1) return NaN;
+    var digits = label.replace(/[^\d]/g, "");
+    return digits ? parseInt(digits, 10) : NaN;
+  }
+
+  function calcDescontoPct(antes, depois) {
+    if (isNaN(antes) || isNaN(depois) || depois <= 0 || antes >= depois) return null;
+    return Math.round((1 - antes / depois) * 100);
+  }
+
   function applyPricing() {
     var expired = offerExpired();
     var parcLabel = expired ? CONFIG.PRECO_PARCELADO_DEPOIS : CONFIG.PRECO_PARCELADO_ANTES;
@@ -1434,11 +1467,27 @@
     var offerTag = document.getElementById("matricula-oferta-tag");
     var offerNote = document.getElementById("matricula-oferta-note");
     var matCountdown = document.getElementById("matricula-countdown");
-    var discountBadge = document.getElementById("price-discount-badge");
+    var discountBadgeParc = document.getElementById("price-discount-badge-parcelado");
+    var discountBadgeVista = document.getElementById("price-discount-badge-vista");
+    var descontoParc = calcDescontoPct(
+      parseParcelaBRL(CONFIG.PRECO_PARCELADO_ANTES),
+      parseParcelaBRL(CONFIG.PRECO_PARCELADO_DEPOIS)
+    );
+    var descontoVista = calcDescontoPct(
+      parseVistaBRL(CONFIG.PRECO_VISTA_ANTES),
+      parseVistaBRL(CONFIG.PRECO_VISTA_DEPOIS)
+    );
+    document.querySelectorAll(".js-desconto-parcelado-pct").forEach(function(el) {
+      el.textContent = descontoParc != null ? String(descontoParc) : "—";
+    });
+    document.querySelectorAll(".js-desconto-vista-pct").forEach(function(el) {
+      el.textContent = descontoVista != null ? String(descontoVista) : "—";
+    });
     if (offerTag) offerTag.hidden = expired;
     if (offerNote) offerNote.hidden = expired;
     if (matCountdown) matCountdown.hidden = expired;
-    if (discountBadge) discountBadge.hidden = expired;
+    if (discountBadgeParc) discountBadgeParc.hidden = expired || descontoParc == null;
+    if (discountBadgeVista) discountBadgeVista.hidden = expired || descontoVista == null;
     var parcText = !parcLabel || parcLabel.indexOf("⟦") !== -1 ? "—" : parcLabel;
     var vistaText = !vistaLabel || vistaLabel.indexOf("⟦") !== -1 ? "—" : vistaLabel;
     document.querySelectorAll(".js-preco-parcelado, #matricula-preco-parcelado, .js-preco-parcelado-promo, #promo-preco-parcelado").forEach(function(el) {
@@ -1500,21 +1549,26 @@
     var deadlineRaw = CONFIG.DEADLINE;
     var promo = document.getElementById("promo-bar");
     var head = document.getElementById("site-head");
+    var dEl = document.getElementById("promo-d");
     var hEl = document.getElementById("promo-h");
     var mEl = document.getElementById("promo-m");
     var sEl = document.getElementById("promo-s");
+    var matDEl = document.getElementById("mat-d");
     var matHEl = document.getElementById("mat-h");
     var matMEl = document.getElementById("mat-m");
     var matSEl = document.getElementById("mat-s");
     var tickId = null;
 
-    function setCountdown(h, m, sec) {
-      var hText = String(h);
+    function setCountdown(days, h, m, sec) {
+      var dText = String(days);
+      var hText = pad2(h);
       var mText = pad2(m);
       var sText = pad2(sec);
+      if (dEl) dEl.textContent = dText;
       if (hEl) hEl.textContent = hText;
       if (mEl) mEl.textContent = mText;
       if (sEl) sEl.textContent = sText;
+      if (matDEl) matDEl.textContent = dText;
       if (matHEl) matHEl.textContent = hText;
       if (matMEl) matMEl.textContent = mText;
       if (matSEl) matSEl.textContent = sText;
@@ -1552,16 +1606,17 @@
       }
       var ms = Date.parse(deadlineRaw) - Date.now();
       if (ms <= 0) {
-        setCountdown(0, 0, 0);
+        setCountdown(0, 0, 0, 0);
         hidePromo();
         if (tickId) clearInterval(tickId);
         return;
       }
       var s = Math.floor(ms / 1000);
-      var h = Math.floor(s / 3600);
+      var days = Math.floor(s / 86400);
+      var h = Math.floor((s % 86400) / 3600);
       var m = Math.floor((s % 3600) / 60);
       var sec = s % 60;
-      setCountdown(h, m, sec);
+      setCountdown(days, h, m, sec);
     }
 
     function start() {
