@@ -23,7 +23,7 @@
   const CONFIG = {
     GTM_ID: "⟦PREENCHER⟧",
     VIMEO_ID: "1199296091",
-    DEADLINE: "2026-06-12T23:59:59-03:00",
+    DEADLINE: "2026-06-29T23:59:59-03:00",
     PRECO_PARCELADO_ANTES: "18x R$297",
     PRECO_PARCELADO_DEPOIS: "18x R$450",
     PRECO_VISTA_ANTES: "R$3.500",
@@ -506,7 +506,7 @@
   <div class="site-head" id="site-head">
     <div class="promo" id="promo-bar" role="region" aria-label="Oferta por tempo limitado">
       <div class="promo__inner">
-        <span class="promo__offer">Oferta especial encerra em <strong id="promo-date">12/06</strong></span>
+        <span class="promo__offer">Oferta especial encerra em <strong id="promo-date">29/06</strong></span>
         <span class="promo__sep" aria-hidden="true"></span>
         <span class="promo__price" id="promo-oferta"><span id="promo-preco-parcelado" class="js-preco-parcelado-promo">18x R$297</span> ou <span id="promo-preco-vista" class="js-preco-vista-promo">R$3.500</span> à vista</span>
         <span class="promo__sep" aria-hidden="true"></span>
@@ -1098,7 +1098,7 @@
               <li><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon><span>Corpo docente: especialistas, mestres e doutores</span></li>
             </ul>
             <div class="matricula-offer">
-              <p id="matricula-oferta-tag" class="matricula-oferta-tag">Oferta especial, só até <span id="matricula-oferta-data">12/06</span></p>
+              <p id="matricula-oferta-tag" class="matricula-oferta-tag">Oferta especial, só até <span id="matricula-oferta-data">29/06</span></p>
               <div id="matricula-countdown" class="matricula-countdown" aria-live="polite">
                 <span class="matricula-countdown__label">Oferta encerra em</span>
                 <time class="matricula-countdown__time" id="matricula-timer">
@@ -1205,7 +1205,7 @@
     <section class="band band--dark cta-final" id="cta-final" aria-labelledby="t-cta-f">
       <div class="inner">
         <h2 id="t-cta-f" style="color:#fff">Última chamada</h2>
-        <p class="lead">A oferta especial encerra em <strong id="cta-oferta-data">12/06</strong>. Depois disso, o investimento sobe pra <span class="js-preco-parcelado-depois">18x R$450</span> ou <span class="js-preco-vista-depois">R$7.000</span> à vista.</p>
+        <p class="lead">A oferta especial encerra em <strong id="cta-oferta-data">29/06</strong>. Depois disso, o investimento sobe pra <span class="js-preco-parcelado-depois">18x R$450</span> ou <span class="js-preco-vista-depois">R$7.000</span> à vista.</p>
         <p class="lead" style="margin-top:1rem">Você pode continuar aplicando técnicas genéricas e ver o atleta dessa geração escapar. Ou pode se tornar o treinador mental que esse esporte está procurando.</p>
         <p class="lead" style="margin-top:1rem">A condição é por tempo limitado. Garanta a sua vaga agora.</p>
         <a class="btn btn--light" href="#matricula" style="margin-top:1.5rem">Quero garantir minha vaga</a>
@@ -1408,9 +1408,9 @@
   }
 
   function formatPromoDateAfter(iso) {
-    if (!iso || iso.indexOf("⟦") !== -1) return "13/06";
+    if (!iso || iso.indexOf("⟦") !== -1) return "30/06";
     var d = new Date(iso);
-    if (isNaN(d.getTime())) return "13/06";
+    if (isNaN(d.getTime())) return "30/06";
     d.setDate(d.getDate() + 1);
     var day = String(d.getDate()).padStart(2, "0");
     var month = String(d.getMonth() + 1).padStart(2, "0");
@@ -1418,9 +1418,9 @@
   }
 
   function formatPromoDate(iso) {
-    if (!iso || iso.indexOf("⟦") !== -1) return "12/06";
+    if (!iso || iso.indexOf("⟦") !== -1) return "29/06";
     var d = new Date(iso);
-    if (isNaN(d.getTime())) return "12/06";
+    if (isNaN(d.getTime())) return "29/06";
     var day = String(d.getDate()).padStart(2, "0");
     var month = String(d.getMonth() + 1).padStart(2, "0");
     return day + "/" + month;
