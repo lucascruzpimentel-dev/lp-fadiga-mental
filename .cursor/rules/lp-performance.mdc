@@ -1,0 +1,65 @@
+---
+description: Performance e assets das landing pages — checklist obrigatório antes de deploy
+globs: "**/*.html","**/assets/**","deploy.sh","scripts/audit-lp.sh"
+alwaysApply: true
+---
+
+# Performance das landing pages (LPs)
+
+Ao criar, editar ou fazer deploy de qualquer LP deste repositório, **sempre** revisar performance seguindo este padrão. Referência: `pos-psicologia-do-esporte-e-coaching/`.
+
+## Checklist pré-deploy
+
+Executar `./scripts/audit-lp.sh` e corrigir itens com severidade **P0** antes do push.
+
+### 1. Assets e paths (P0)
+
+- Nomes de arquivo e pastas **somente ASCII** (sem acentos, espaços ou `%CC%81`). Ex.: `logo_instituicoes/`, `pf_lucas_cruz_circle.png`.
+- Toda `src`/`href` de asset local deve existir no disco (sem 404 em Linux/Vercel).
+- Imagens grandes (>300 KB) devem ser redimensionadas/comprimidas (`sips -Z 1200` no macOS ou equivalente).
+- **Nunca** embutir imagens em base64 no HTML — usar arquivos em `assets/`.
+
+### 2. Scripts de terceiros (P1)
+
+- **Iconify**: `preconnect` + `defer`:
+  ```html
+  <link rel="preconnect" href="https://code.iconify.design">
+  <script defer src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  ```
+- **Vimeo player.js**: `defer` no final do `<body>` (só se a página tiver iframe Vimeo).
+- **GTM / Meta Pixel**: manter `async` no snippet padrão — não bloquear render.
+- Evitar Tailwind CDN + GSAP bloqueantes em páginas novas; preferir CSS inline crítico como nas LPs de pós.
+
+### 3. Imagens no HTML (P1)
+
+- Hero, logo e LCP: **sem** `loading="lazy"`.
+- Módulos, depoimentos, galeria, professores: `loading="lazy"` + `width`/`height` explícitos quando possível.
+- Formato preferido: **WebP/AVIF** para fotos; PNG só quando necessário (transparência).
+
+### 4. Tamanho do HTML
+
+- HTML da LP idealmente **< 200 KB**. Se passar de 500 KB, investigar base64, CSS duplicado ou JS inline excessivo.
+
+### 5. Ao finalizar alterações em LP
+
+1. Rodar `./scripts/audit-lp.sh`
+2. Corrigir P0 e P1 relevantes
+3. Confirmar que `deploy.sh` inclui a pasta da LP
+4. Deploy via `./deploy.sh "mensagem"` (se o usuário pedir)
+
+## Pastas em produção (deploy.sh)
+
+`obrigado-congresso/`, `Congresso de Neuro/`, `congresso-neuro-vip-pass/`, `congresso-psicologia-vip-pass/`, `curso-telas/`, `fadiga-mental/`, `inscricao-congresso-neurociencia-no-esporte/`, `pos-graduacao-neurociencia-no-esporte/`, `pos-psicologia-do-esporte-e-coaching/`, `treinador-mental-atletas/`, `index.html`, `vercel.json`.
+
+## Comandos úteis
+
+```bash
+# Auditoria completa
+./scripts/audit-lp.sh
+
+# Tamanho de assets de uma LP
+du -sh pos-psicologia-do-esporte-e-coaching/assets/
+
+# Comprimir PNG (exemplo)
+sips -Z 1200 -s format png arquivo.png --out arquivo.png
+```

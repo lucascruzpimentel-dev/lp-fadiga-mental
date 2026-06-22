@@ -20,9 +20,12 @@ git add \
   "inscricao-congresso-neurociencia-no-esporte/" \
   "pos-graduacao-neurociencia-no-esporte/" \
   "pos-psicologia-do-esporte-e-coaching/" \
+  "sessao-individual-jiu-jitsu/" \
   "treinador-mental-atletas/" \
   vercel.json \
   deploy.sh \
+  scripts/ \
+  ".cursor/rules/lp-performance.mdc" \
   2>/dev/null || true
 
 if git diff --staged --quiet; then
