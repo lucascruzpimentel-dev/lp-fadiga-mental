@@ -36,6 +36,7 @@
     { "source": "/redirect-congresso-psi-aula-de-pais/", "destination": "/congresso-psicologia-vip-pass/redirect_congresso_psi_aula_de_pais.html" },
     { "source": "/pos-psicologia-do-esporte-e-coaching", "destination": "/pos-psicologia-do-esporte-e-coaching/lp-pos-psicologia-do-esporte-e-coaching.html" },
     { "source": "/pos-psicologia-do-esporte-e-coaching/", "destination": "/pos-psicologia-do-esporte-e-coaching/lp-pos-psicologia-do-esporte-e-coaching.html" },
+    { "source": "/reuniao-psi-pos/assets/:path*", "destination": "/pos-psicologia-do-esporte-e-coaching/assets/:path*" },
     { "source": "/reuniao-psi-pos", "destination": "/pos-psicologia-do-esporte-e-coaching/reuniao_psi_pos.html" },
     { "source": "/reuniao-psi-pos/", "destination": "/pos-psicologia-do-esporte-e-coaching/reuniao_psi_pos.html" },
     { "source": "/jiu-jitsu-parents/assets/:path*", "destination": "/sessao-individual-jiu-jitsu/assets/:path*" },
