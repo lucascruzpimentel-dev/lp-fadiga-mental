@@ -1,4 +1,3 @@
-WARN: old_string not found (219 chars)
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,7 +12,7 @@ WARN: old_string not found (219 chars)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>Reunião ao vivo — Pós Psicologia do Esporte e Coaching | Atleta Campeão</title>
-  <meta name="description" content="Participe da reunião ao vivo sobre a Pós-Graduação em Psicologia do Esporte e Coaching. Dia 02/07/2026, quinta-feira, às 11h. Vagas limitadas a 100 pessoas.">
+  <meta name="description" content="Participe da reunião ao vivo sobre a Pós-Graduação em Psicologia do Esporte e Coaching. Toda quinta-feira às 20h (horário de Brasília). Vagas limitadas a 100 pessoas.">
   <link rel="canonical" href="https://atletacampeaotreinamentos.com/reuniao-psi-pos/">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,12 +113,14 @@ WARN: old_string not found (219 chars)
       --muted: rgba(48,48,48,.72);
       --border: #e0e0e0;
       --text-on-dark: #f6f6f6;
+      --text-muted-on-dark: rgba(246,246,246,.72);
+      --charcoal: #171717;
       --font-h: 'Manrope', system-ui, sans-serif;
       --font-b: 'Inter', system-ui, sans-serif;
       --max: 1120px;
       --radius: 16px;
       --shadow: 0 10px 40px rgba(0,28,68,.08);
-      --head-offset: 4.25rem;
+      --head-offset: 6.75rem;
       --page-pad: clamp(1.25rem, 5vw, 2rem);
     }
     *,*::before,*::after{box-sizing:border-box}
@@ -158,14 +159,18 @@ WARN: old_string not found (219 chars)
     .hero-mec__uni{color:#e8c547;font-weight:800}
     .benefits-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:.6rem}
     @media(min-width:420px){.benefits-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}}
-    @media(min-width:900px){.benefits-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(min-width:420px) and (max-width:899px){.benefits-grid .benefit-card:nth-child(5){grid-column:1/-1}}
+    @media(min-width:900px){
+      .benefits-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:.65rem}
+      .benefits-grid .benefit-card:nth-child(-n+3){grid-column:span 2}
+      .benefits-grid .benefit-card:nth-child(4),
+      .benefits-grid .benefit-card:nth-child(5){grid-column:span 3}
+    }
     .benefit-card{display:flex;align-items:flex-start;gap:.75rem;margin:0;padding:.85rem .95rem;background:rgba(0,28,68,.5);border:1px solid rgba(255,255,255,.14);border-radius:14px;box-shadow:0 8px 24px rgba(0,28,68,.25);backdrop-filter:blur(6px);min-height:100%}
     .benefit-card__icon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,rgba(255,80,0,.35),rgba(0,28,68,.5));border:1px solid rgba(255,80,0,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0}
     .benefit-card__icon iconify-icon{font-size:1.15rem;color:#ffb380}
     .benefit-card__text strong{display:block;font-size:.84rem;font-weight:800;color:#f8fafc;line-height:1.25;margin-bottom:.2rem}
     .benefit-card__text span{display:block;font-size:.74rem;color:#cbd5e1;line-height:1.35}
-    .benefit-card--full{grid-column:1/-1}
-    @media(min-width:900px){.benefit-card--full{grid-column:1/-1}}
     #quem-confia{padding:clamp(3.5rem,9vw,5.5rem) 0}
     #quem-confia .section-head{margin-bottom:2.25rem}
     #quem-confia h2{font-size:clamp(1.75rem,4vw,2.5rem)}
@@ -175,8 +180,9 @@ WARN: old_string not found (219 chars)
     .trust-logos img{max-height:clamp(52px,8vw,72px);width:auto;opacity:.95}
     #para-quem{background:linear-gradient(180deg,var(--navy-deep) 0%,#022b67 100%)}
     #para-quem .section-head{max-width:46rem;margin-bottom:2.25rem;text-align:left}
-    #para-quem .lead{max-width:40rem;color:rgba(246,246,246,.72)}
-    #para-quem .callout{margin-top:1.5rem;border-left-width:5px;font-weight:700}
+    #para-quem .section-head h2{color:#fff}
+    #para-quem .lead{max-width:40rem;color:rgba(246,246,246,.82)}
+    #para-quem .callout{margin-top:1.5rem;border-left-width:5px;font-weight:700;color:var(--text-on-dark);background:rgba(255,80,0,.12)}
     .profile-grid{display:grid;grid-template-columns:1fr;gap:1.1rem;align-items:stretch}
     @media(min-width:720px){.profile-grid{grid-template-columns:repeat(2,1fr);gap:1.25rem}}
     @media(min-width:1080px){
@@ -237,6 +243,18 @@ WARN: old_string not found (219 chars)
     .testi-shots-note{margin:1.35rem auto 0;max-width:36rem;font-size:.85rem;color:var(--muted);text-align:center;line-height:1.5}
     .section-cta{display:flex;justify-content:center;margin-top:2rem}
     .site-head{position:fixed;top:0;left:0;right:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 4px 20px rgba(0,28,68,.08)}
+    .head-promo{background:var(--accent);color:#fff;border-bottom:2px solid var(--navy-deep)}
+    .head-promo[hidden]{display:none}
+    .head-promo__inner{max-width:var(--max);margin:0 auto;padding:.5rem var(--page-pad);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.35rem .55rem;font-weight:700;font-size:clamp(.74rem,1.35vw,.88rem);text-align:center;line-height:1.35}
+    .head-promo__label{font-weight:800;letter-spacing:.02em}
+    .head-promo__sep{color:rgba(255,255,255,.75);font-weight:800}
+    .head-promo__clock{display:inline-flex;align-items:baseline;gap:.2rem;font-family:var(--font-h);font-variant-numeric:tabular-nums;font-weight:800;background:rgba(0,28,68,.22);padding:.3rem .6rem;border-radius:8px;white-space:nowrap}
+    .head-promo__clock span{min-width:1.35ch;text-align:center}
+    @media(max-width:420px){
+      .head-promo__sep{display:none}
+      .head-promo__label{width:100%}
+      .head-promo__clock{margin:0 auto}
+    }
     .site-head__inner{max-width:var(--max);margin:0 auto;padding:.65rem var(--page-pad);display:flex;align-items:center;justify-content:space-between;gap:1rem}
     .site-head__brand img{height:34px;width:auto;display:block}
     .site-head .btn{padding:.7rem 1.1rem;font-size:.78rem;white-space:nowrap}
@@ -268,6 +286,35 @@ WARN: old_string not found (219 chars)
     .band--mist{background:var(--surface)}
     .band--dark{background:var(--navy-deep);color:var(--text-on-dark)}
     .band--dark h2{color:#fff}
+    .band--ink{background:linear-gradient(180deg,#0f172a 0%,#1e293b 100%);color:#e2e8f0;position:relative;overflow:hidden}
+    .band--ink::before{content:"";position:absolute;width:80%;height:60%;top:-20%;right:-25%;background:radial-gradient(circle,rgba(2,51,122,.22),transparent 65%);pointer-events:none}
+    #quem-esta-por-tras .behind-head{text-align:center;max-width:38rem;margin:0 auto 3rem;position:relative;z-index:1}
+    #quem-esta-por-tras .behind-head h2{font-size:clamp(1.85rem,4vw,2.65rem);font-weight:800;line-height:1.12;letter-spacing:-.03em;color:#fff;margin:0 0 1rem}
+    #quem-esta-por-tras .behind-head .lead{margin:0;font-size:1rem;line-height:1.6;color:#cbd5e1}
+    .behind-eyebrow{display:block;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#93c5fd;margin-bottom:.75rem}
+    .behind-grid{display:grid;gap:1.75rem;max-width:75rem;margin:0 auto;position:relative;z-index:1}
+    @media(min-width:900px){.behind-grid{grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch}}
+    .behind-card{background:rgba(30,41,59,.88);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:clamp(1.65rem,4vw,2.5rem);box-shadow:0 10px 40px -10px rgba(0,0,0,.35);transition:border-color .3s,box-shadow .3s,transform .3s}
+    .behind-card:hover{border-color:rgba(255,80,0,.35);box-shadow:0 20px 50px -10px rgba(255,80,0,.15),0 0 0 1px rgba(255,80,0,.1);transform:translateY(-3px)}
+    .behind-card--inst{position:relative}
+    .behind-badge{display:none}
+    @media(min-width:600px){.behind-badge{display:inline-block;position:absolute;top:1.75rem;right:1.75rem;border:1px solid rgba(255,80,0,.3);background:rgba(255,80,0,.08);border-radius:999px;padding:.35rem .75rem;font-size:.62rem;font-weight:700;color:#ffb380;text-transform:uppercase;letter-spacing:.1em}}
+    .behind-label{display:block;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#93c5fd;margin-bottom:.65rem}
+    .behind-photo{width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid rgba(255,80,0,.35);margin-bottom:1.15rem;display:block;background:#1e293b}
+    .behind-logo-ring{width:120px;height:120px;border-radius:50%;background:#fff;border:2px solid rgba(255,80,0,.35);margin-bottom:1.15rem;display:flex;align-items:center;justify-content:center;padding:.85rem}
+    .behind-logo-ring img{width:100%;height:100%;object-fit:contain;display:block}
+    .behind-card h3{font-size:1.35rem;font-weight:800;color:#fff;margin:0 0 .45rem;line-height:1.2}
+    .behind-tagline{font-size:.875rem;font-weight:500;color:#93c5fd;margin:0 0 1.1rem;line-height:1.45}
+    .behind-prose{font-size:.905rem;color:#94a3b8;line-height:1.6;margin:0 0 1.75rem}
+    .behind-metrics{margin-top:.25rem}
+    .behind-metric{display:flex;align-items:center;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .behind-metric:first-child{padding-top:0}
+    .behind-metric:last-child{border-bottom:none;padding-bottom:0}
+    .behind-metric__val{font-weight:800;font-size:1.65rem;color:#fff;line-height:1;flex-shrink:0}
+    .behind-metric__val--sm{font-size:1.35rem}
+    .behind-metric__desc{font-size:.8125rem;color:#94a3b8;margin-left:.75rem;line-height:1.35}
+    .behind-card .btn{margin-top:1.75rem;width:100%;justify-content:center;text-transform:uppercase}
+    .behind-foot{font-size:.68rem;color:#94a3b8;letter-spacing:.08em;text-align:center;margin-top:1.15rem;line-height:1.45}
     .section-head{margin-bottom:1.75rem;text-align:center;max-width:42rem;margin-left:auto;margin-right:auto}
     .section-head h2{font-size:clamp(1.5rem,3.5vw,2.1rem);color:var(--navy)}
     .section-head p{margin:.5rem 0 0;color:var(--muted);font-size:1.05rem;line-height:1.6}
@@ -279,17 +326,33 @@ WARN: old_string not found (219 chars)
     .highlight h3{font-size:1rem;color:var(--navy);margin-bottom:.4rem}
     .highlight p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.55}
     .pricing-panel{background:#fff;border:1px solid var(--border);border-radius:calc(var(--radius) + 2px);padding:clamp(1.5rem,4vw,2.25rem);box-shadow:var(--shadow);max-width:52rem;margin:0 auto}
-    .pricing-panel__eyebrow{display:inline-block;background:rgba(255,80,0,.1);color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .75rem;border-radius:999px;margin-bottom:1rem}
-    .pricing-panel h2{font-size:clamp(1.35rem,3vw,1.75rem);color:var(--navy);margin-bottom:.75rem}
     .pricing-panel__regular{margin:0 0 1rem;font-size:1.05rem;color:var(--ink);line-height:1.6}
-    .pricing-grid{display:grid;gap:1rem;margin:1.25rem 0}
-    @media(min-width:560px){.pricing-grid{grid-template-columns:1fr 1fr}}
-    .price-box{border:1px solid var(--border);border-radius:14px;padding:1.15rem 1.25rem;text-align:center;background:var(--surface)}
-    .price-box__label{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
-    .price-box__value{font-family:var(--font-h);font-size:clamp(1.35rem,3vw,1.65rem);font-weight:800;color:var(--navy-deep);margin:0}
-    .pricing-panel__offer{margin:0;padding:1rem 1.15rem;background:linear-gradient(135deg,rgba(2,51,122,.08),rgba(255,80,0,.08));border-left:4px solid var(--accent);border-radius:0 12px 12px 0;font-size:.98rem;line-height:1.6;color:var(--ink)}
-    .pricing-panel__offer strong{color:var(--navy)}
     .pricing-panel .btn{margin-top:1.35rem;width:100%}
+    #investimento{background:linear-gradient(180deg,#0b1f40 0%,var(--navy-deep) 100%);color:var(--text-on-dark);padding:clamp(3rem,7vw,5rem) 0}
+    .invest-body{display:flex;flex-wrap:wrap;gap:clamp(2rem,4vw,3rem);align-items:flex-start;justify-content:space-between}
+    .invest-copy{flex:1;min-width:min(100%,280px);max-width:28rem}
+    .invest-eyebrow{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#ffb380;margin-bottom:.75rem}
+    .invest-copy h2{color:#fff;font-size:clamp(1.45rem,3.2vw,2rem);line-height:1.15;letter-spacing:-.02em;margin:0 0 .75rem}
+    .invest-copy .lead{color:rgba(246,246,246,.78);margin:0 0 1.35rem;font-size:clamp(.95rem,1.8vw,1.05rem);line-height:1.55;max-width:none}
+    .invest-perks{list-style:none;padding:0;margin:0 0 1.5rem;display:flex;flex-direction:column;gap:1rem}
+    .invest-perks li{display:flex;align-items:flex-start;gap:.75rem;font-size:.92rem;line-height:1.45;color:#e2e8f0}
+    .invest-perks iconify-icon{color:var(--accent);font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
+    .invest-offer{padding:1rem 1.1rem;background:rgba(255,80,0,.12);border:1px solid rgba(255,80,0,.35);border-radius:12px}
+    .invest-offer__badge{display:inline-flex;align-items:center;gap:.35rem;margin:0 0 .5rem;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#ffb380}
+    .invest-offer__badge iconify-icon{font-size:.95rem;color:var(--accent)}
+    .invest-offer__text{margin:0;font-size:.9rem;line-height:1.55;color:rgba(246,246,246,.85)}
+    .invest-pricing{flex:1.15;min-width:min(100%,280px);max-width:24rem;display:flex;flex-direction:column;gap:1.15rem}
+    .invest-sheet{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:16px;overflow:hidden;backdrop-filter:blur(10px);box-shadow:0 20px 50px rgba(0,0,0,.25)}
+    .invest-row{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;padding:1.35rem 1.4rem;border-bottom:1px solid rgba(255,255,255,.1)}
+    .invest-row:last-child{border-bottom:0}
+    .invest-row--highlight{background:linear-gradient(90deg,rgba(255,80,0,.14) 0%,rgba(255,80,0,.04) 100%);border-left:3px solid var(--accent);padding-left:calc(1.4rem - 3px)}
+    .invest-row__meta{display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;min-width:0}
+    .invest-row__label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,246,246,.65)}
+    .invest-row__tag{font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#ffb380;background:rgba(255,80,0,.2);border:1px solid rgba(255,80,0,.35);padding:.2rem .5rem;border-radius:4px}
+    .invest-row__value{font-family:var(--font-h);font-size:clamp(1.5rem,3.8vw,2rem);font-weight:800;line-height:1;color:#fff;margin:0;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .invest-row__value small{display:block;margin-top:.35rem;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,246,246,.5)}
+    .invest-cta{width:100%;justify-content:center}
+    .invest-footnote{margin:0;text-align:center;font-size:.8rem;line-height:1.45;color:rgba(246,246,246,.65)}
     #inscricao-reuniao{scroll-margin-top:calc(var(--head-offset) + 1rem)}
     .form-section{background:linear-gradient(180deg,#eef4ff 0%,var(--surface) 100%)}
     .form-wrap{max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:calc(var(--radius) + 2px);box-shadow:0 18px 48px rgba(0,28,68,.1);overflow:hidden;width:100%;min-width:0}
@@ -308,9 +371,20 @@ WARN: old_string not found (219 chars)
     .form-note{max-width:36rem;margin:1.25rem auto 0;text-align:center;font-size:.85rem;color:var(--muted);line-height:1.5}
     .cta-bar{text-align:center}
     .cta-bar .lead{color:rgba(246,246,246,.8);max-width:40rem;margin:0 auto 1.5rem;font-size:1.05rem;line-height:1.6}
-    .site-footer{background:#171717;color:rgba(246,246,246,.72);padding:2rem 0 1.25rem;font-size:.88rem}
-    .site-footer a{color:#f6f6f6;text-decoration:none}
-    .site-footer__inner{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+    .site-footer{background:var(--charcoal);color:var(--text-muted-on-dark);padding:3rem 0 1.5rem;font-size:.9rem}
+    .site-footer a{color:var(--text-on-dark);text-decoration:none}
+    .site-footer a:hover{color:var(--accent)}
+    .site-footer__logo{display:block;width:auto;max-width:180px;height:auto;object-fit:contain}
+    .site-footer__grid{display:grid;gap:2rem}
+    @media(min-width:768px){.site-footer__grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+    .site-footer__col h4{color:#fff;font-size:.95rem;margin:0 0 1rem;font-family:var(--font-h)}
+    .site-footer__col p{margin:0 0 .55rem;line-height:1.5}
+    .site-footer__social{display:flex;gap:.85rem;margin-top:1.15rem;flex-wrap:wrap}
+    .site-footer__social a{font-weight:600;font-size:.88rem}
+    .site-footer__trust{display:flex;flex-direction:column;gap:.55rem;font-size:.82rem;color:var(--text-muted-on-dark)}
+    .site-footer__trust span{display:inline-flex;align-items:center;gap:.4rem}
+    .site-footer__trust iconify-icon{color:var(--accent);font-size:1rem}
+    .site-footer__bottom{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.82rem}
     @media(max-width:599px){
       .site-head .btn span.full{display:none}
       .site-head .btn span.short{display:inline}
@@ -332,8 +406,8 @@ WARN: old_string not found (219 chars)
       .form-wrap__body iframe{min-height:520px}
       .form-wrap__steps{gap:.4rem}
       .form-wrap__step{font-size:.72rem;padding:.3rem .55rem}
-      .pricing-panel{padding:1.35rem}
-      .pricing-panel .btn,.section-cta .btn{width:100%}
+      .invest-pricing,.invest-copy{max-width:none;width:100%}
+      .invest-cta,.section-cta .btn{width:100%}
       .section-cta{padding-inline:0}
       .trust-panel{padding:1.35rem 1.15rem}
       .trust-logos{gap:1.25rem 1.5rem}
@@ -345,7 +419,8 @@ WARN: old_string not found (219 chars)
       .cert-col .lead{margin-inline:auto}
       .cert-note{font-size:.84rem}
       .cta-bar .btn{width:100%;max-width:22rem}
-      .site-footer__inner{flex-direction:column;align-items:flex-start;gap:.75rem}
+      .site-footer__grid{gap:1.5rem}
+      .site-footer__bottom{flex-direction:column}
     }
     @media(max-width:380px){
       :root{--page-pad:1.1rem}
@@ -362,6 +437,20 @@ WARN: old_string not found (219 chars)
   <a class="skip" href="#inscricao-reuniao">Ir para o formulário de inscrição</a>
 
   <header class="site-head" id="site-head">
+    <div class="head-promo" id="head-promo" role="region" aria-label="Contagem regressiva para a reunião">
+      <div class="head-promo__inner">
+        <span class="head-promo__label" id="head-promo-label" data-meeting="promo-label">Reunião ao vivo · —</span>
+        <span class="head-promo__sep" aria-hidden="true">·</span>
+        <span class="head-promo__clock" aria-live="polite">
+          <time id="head-countdown-timer" datetime="">
+            <span id="head-d">0</span>d
+            <span id="head-h">00</span>h
+            <span id="head-m">00</span>m
+            <span id="head-s">00</span>s
+          </time>
+        </span>
+      </div>
+    </div>
     <div class="site-head__inner">
       <a class="site-head__brand" href="#topo">
         <img src="./assets/logo_dourada_ac.png" width="180" height="40" alt="Instituto Atleta Campeão" decoding="async">
@@ -382,7 +471,7 @@ WARN: old_string not found (219 chars)
               <iconify-icon icon="lucide:video" aria-hidden="true"></iconify-icon>
               Reunião ao vivo · gratuita
             </p>
-            <h1>Descubra como a <span class="hl">Pós em Psicologia do Esporte e Coaching</span> pode transformar sua carreira</h1>
+            <h1>Especialize-se em psicologia do esporte e coaching: torne-se o <span class="hl">treinador mental</span> que os atletas dessa geração procuram.</h1>
             <p class="hero__lead">Participe da reunião exclusiva com a equipe do Atleta Campeão, tire suas dúvidas sobre a formação de 360h, o diploma reconhecido pelo MEC e as condições especiais para quem estiver na sala.</p>
 
             <div class="meeting-card" aria-label="Detalhes da reunião">
@@ -390,14 +479,14 @@ WARN: old_string not found (219 chars)
               <div class="meeting-card__row">
                 <iconify-icon icon="lucide:calendar-days" aria-hidden="true"></iconify-icon>
                 <div>
-                  <strong>02/07/2026 — quinta-feira</strong>
+                  <strong data-meeting="date-card">—</strong>
                   <span>Marque na agenda e reserve esse horário.</span>
                 </div>
               </div>
               <div class="meeting-card__row">
                 <iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>
                 <div>
-                  <strong>Às 11h (horário de Brasília)</strong>
+                  <strong>Às 20h (horário de Brasília)</strong>
                   <span>A reunião acontece online, ao vivo.</span>
                 </div>
               </div>
@@ -488,7 +577,7 @@ WARN: old_string not found (219 chars)
                 <span class="benefit-card__icon" aria-hidden="true"><iconify-icon icon="lucide:wifi"></iconify-icon></span>
                 <div class="benefit-card__text"><strong>100% online</strong><span>Aulas ao vivo com gravações na plataforma</span></div>
               </li>
-              <li class="benefit-card benefit-card--full">
+              <li class="benefit-card">
                 <span class="benefit-card__icon" aria-hidden="true"><iconify-icon icon="lucide:message-circle"></iconify-icon></span>
                 <div class="benefit-card__text"><strong>Tutoria + mentoria</strong><span>Acompanhamento quinzenal no WhatsApp e encontro mensal no Zoom</span></div>
               </li>
@@ -641,6 +730,68 @@ WARN: old_string not found (219 chars)
       </div>
     </section>
 
+    <section class="band band--ink" id="quem-esta-por-tras" aria-labelledby="t-behind">
+      <div class="inner" style="position:relative;z-index:1">
+        <header class="behind-head" id="t-behind">
+          <span class="behind-eyebrow">Quem está por trás desta pós</span>
+          <h2>Ciência e experiência no mesmo lugar.</h2>
+          <p class="lead">Esta pós-graduação reúne docentes com vivência em alta performance e pesquisa aplicada com a instituição de referência em treinamento mental para atletas no Brasil — uma combinação que só o Atleta Campeão conseguiu trazer.</p>
+        </header>
+
+        <div class="behind-grid">
+          <article class="behind-card">
+            <img class="behind-photo" src="./assets/corpo_docente.png" width="240" height="240" alt="Corpo docente da Pós-Graduação em Psicologia do Esporte e Coaching" loading="lazy" decoding="async">
+            <span class="behind-label">O corpo docente</span>
+            <h3>Mestres e doutores no mercado</h3>
+            <p class="behind-tagline">Aulas com quem atua em clubes, pesquisa aplicada e psicologia do esporte — coordenação e docentes alinhados ao que a pós exige na prática.</p>
+            <p class="behind-prose">O time de professores reúne titulação stricto sensu e experiência real em alta performance. Entre as referências está o <strong style="color:#e2e8f0">Prof. Dr. Leonardo Fortes</strong> (UFMG, CNPq, GENEXDES), com trajetória internacional em psicologia e ciências do esporte — integrando a base científica que sustenta os módulos ao lado de outros mestres e doutores convidados.</p>
+            <div class="behind-metrics">
+              <div class="behind-metric">
+                <span class="behind-metric__val">360h</span>
+                <span class="behind-metric__desc">carga horária da pós (MEC / UNIFATEC)</span>
+              </div>
+              <div class="behind-metric">
+                <span class="behind-metric__val behind-metric__val--sm">Mestrado · Doutorado</span>
+                <span class="behind-metric__desc">docência com titulação e atuação em campo</span>
+              </div>
+              <div class="behind-metric">
+                <span class="behind-metric__val behind-metric__val--sm">18 meses</span>
+                <span class="behind-metric__desc">formato pensado para quem já está no mercado</span>
+              </div>
+            </div>
+            <a class="btn btn--primary" href="#inscricao-reuniao">Participar da reunião</a>
+            <p class="behind-foot">UNIFATEC · UFMG · CNPq · Instituto Atleta Campeão</p>
+          </article>
+
+          <article class="behind-card behind-card--inst">
+            <span class="behind-badge">Reconhecida internacionalmente desde · 2018</span>
+            <div class="behind-logo-ring">
+              <img src="./assets/logo_dourada_ac.png" width="200" height="200" alt="Instituto Atleta Campeão" loading="lazy" decoding="async">
+            </div>
+            <span class="behind-label">A instituição</span>
+            <h3>Instituto Atleta Campeão</h3>
+            <p class="behind-tagline">Referência em psicologia do esporte e treinamento mental para o esporte desde 2016</p>
+            <p class="behind-prose">Fundado em 2016 nos Estados Unidos e expandido para o Brasil em 2017, o Atleta Campeão se tornou a maior referência nacional em treinamento mental e emocional para atletas. Em 2018, foi reconhecido pelo Comitê Olímpico do Brasil e convidado para o Prêmio Brasil Olímpico. Em parceria com a UNIFATEC, forma especialistas em Psicologia do Esporte e Coaching — com mais de 300 profissionais já passando pela metodologia. Hoje, já impactou mais de 30 mil atletas de diferentes modalidades, do amador ao campeão mundial.</p>
+            <div class="behind-metrics">
+              <div class="behind-metric">
+                <span class="behind-metric__val">+30 mil</span>
+                <span class="behind-metric__desc">atletas impactados desde 2016</span>
+              </div>
+              <div class="behind-metric">
+                <span class="behind-metric__val">+400</span>
+                <span class="behind-metric__desc">alunos inscritos na pós-graduação</span>
+              </div>
+              <div class="behind-metric">
+                <span class="behind-metric__val">+20</span>
+                <span class="behind-metric__desc">anos de experiência no mercado esportivo</span>
+              </div>
+            </div>
+            <a class="btn btn--primary" href="#inscricao-reuniao">Participar da reunião</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="band band--mist" id="depoimentos" aria-labelledby="t-depo">
       <div class="inner">
         <header class="section-head">
@@ -686,26 +837,42 @@ WARN: old_string not found (219 chars)
       </div>
     </section>
 
-    <section class="band" aria-labelledby="t-investimento">
+    <section class="band" id="investimento" aria-labelledby="t-investimento">
       <div class="inner">
-        <div class="pricing-panel">
-          <span class="pricing-panel__eyebrow">Investimento da pós-graduação</span>
-          <h2 id="t-investimento">Valores oficiais da matrícula</h2>
-          <p class="pricing-panel__regular">O investimento regular da Pós-Graduação em Psicologia do Esporte e Coaching é:</p>
-          <div class="pricing-grid">
-            <div class="price-box">
-              <p class="price-box__label">À vista</p>
-              <p class="price-box__value">R$ 7.000</p>
-            </div>
-            <div class="price-box">
-              <p class="price-box__label">Parcelado</p>
-              <p class="price-box__value">18x R$ 450</p>
+        <div class="invest-body">
+          <div class="invest-copy">
+            <span class="invest-eyebrow">Investimento da pós</span>
+            <h2 id="t-investimento">Valores oficiais da matrícula</h2>
+            <p class="lead">Referência do investimento regular da Pós-Graduação em Psicologia do Esporte e Coaching — antes das condições exclusivas da reunião ao vivo.</p>
+            <ul class="invest-perks">
+              <li><iconify-icon icon="lucide:award" aria-hidden="true"></iconify-icon><span>360 horas de formação com diploma UNIFATEC</span></li>
+              <li><iconify-icon icon="lucide:laptop" aria-hidden="true"></iconify-icon><span>18 meses para concluir · 100% online</span></li>
+              <li><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon><span>Corpo docente com especialistas, mestres e doutores</span></li>
+            </ul>
+            <div class="invest-offer">
+              <p class="invest-offer__badge"><iconify-icon icon="lucide:badge-percent" aria-hidden="true"></iconify-icon> Até 50% de desconto na reunião</p>
+              <p class="invest-offer__text">Quem participar da reunião ao vivo de <strong data-meeting="date-short">—</strong> terá acesso a condições exclusivas de matrícula. Os detalhes serão apresentados durante o encontro.</p>
             </div>
           </div>
-          <p class="pricing-panel__offer">
-            <strong>Garanta um desconto especial:</strong> quem participar da reunião ao vivo de 02/07 terá acesso a condições exclusivas de matrícula — com <strong>até 50% de desconto</strong> para os participantes da sala. Os detalhes serão apresentados durante o encontro.
-          </p>
-          <a class="btn btn--primary" href="#inscricao-reuniao">Participar da reunião</a>
+          <div class="invest-pricing">
+            <div class="invest-sheet" aria-label="Valores de referência da matrícula">
+              <div class="invest-row">
+                <div class="invest-row__meta">
+                  <span class="invest-row__label">À vista</span>
+                </div>
+                <p class="invest-row__value">R$ 7.000</p>
+              </div>
+              <div class="invest-row invest-row--highlight">
+                <div class="invest-row__meta">
+                  <span class="invest-row__label">Parcelado</span>
+                  <span class="invest-row__tag">Mais escolhido</span>
+                </div>
+                <p class="invest-row__value">18× R$ 450</p>
+              </div>
+            </div>
+            <a class="btn btn--primary invest-cta" href="#inscricao-reuniao">Participar da reunião</a>
+            <p class="invest-footnote">Condições especiais reveladas ao vivo · vagas limitadas a 100 pessoas</p>
+          </div>
         </div>
       </div>
     </section>
@@ -714,7 +881,7 @@ WARN: old_string not found (219 chars)
       <div class="inner">
         <div class="section-head">
           <h2 id="t-form-bottom">Garanta sua vaga na sala</h2>
-          <p><strong>02/07/2026 · quinta-feira · 11h</strong> — vagas limitadas a 100 pessoas. Preencha o cadastro e receba o link da reunião.</p>
+          <p><strong data-meeting="date-full-line">—</strong> — vagas limitadas a 100 pessoas. Preencha o cadastro e receba o link da reunião.</p>
         </div>
         <div class="pricing-panel" style="text-align:center">
           <p class="pricing-panel__regular" style="margin-bottom:1.25rem">O formulário de inscrição está no topo da página. Clique abaixo para ir direto ao cadastro.</p>
@@ -727,16 +894,49 @@ WARN: old_string not found (219 chars)
     <section class="band band--dark cta-bar">
       <div class="inner">
         <h2 style="color:#fff;margin-bottom:1rem">Não perca a reunião</h2>
-        <p class="lead">São apenas 100 vagas na sala. Inscreva-se agora, participe ao vivo em <strong>02/07 às 11h</strong> e descubra as condições especiais de matrícula.</p>
+        <p class="lead">São apenas 100 vagas na sala. Inscreva-se agora, participe ao vivo em <strong data-meeting="date-inline">—</strong> e descubra as condições especiais de matrícula.</p>
         <a class="btn btn--light" href="#inscricao-reuniao">Participar da reunião</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="inner site-footer__inner">
-      <p style="margin:0">© <span id="y"></span> Instituto Atleta Campeão. Diploma emitido pela UNIFATEC em parceria com o Instituto Atleta Campeão.</p>
-      <p style="margin:0"><a href="/pos-psicologia-do-esporte-e-coaching/">Ver página completa da pós</a></p>
+    <div class="inner site-footer__grid">
+      <div class="site-footer__col">
+        <img class="site-footer__logo" src="./assets/logo-atleta-campeao.png" width="400" height="200" alt="Instituto Atleta Campeão" loading="lazy" decoding="async">
+        <p style="margin-top:1rem;max-width:40ch">Pós-Graduação em Psicologia do Esporte e Coaching — diploma emitido pela UNIFATEC em parceria com o Instituto Atleta Campeão.</p>
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/atletacampeao" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.youtube.com/atletacampeao" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://www.facebook.com/atletacampeao" target="_blank" rel="noopener noreferrer">Facebook</a>
+        </div>
+      </div>
+      <div class="site-footer__col">
+        <h4>Institucional</h4>
+        <p><a href="/politica-de-privacidade/">Política de Privacidade</a></p>
+        <p><a href="mailto:suporte@atletacampeao.com.br">Contato</a></p>
+        <p><a href="/pos-psicologia-do-esporte-e-coaching/">Página completa da pós</a></p>
+      </div>
+      <div class="site-footer__col">
+        <h4>Navegação</h4>
+        <p><a href="#modulos">Conteúdo da pós</a></p>
+        <p><a href="#para-quem">Para quem é</a></p>
+        <p><a href="#quem-esta-por-tras">Quem está por trás</a></p>
+        <p><a href="#inscricao-reuniao">Inscrever-se na reunião</a></p>
+      </div>
+      <div class="site-footer__col">
+        <h4>Reunião ao vivo</h4>
+        <div class="site-footer__trust">
+          <span data-meeting="date-footer"><iconify-icon icon="lucide:video" aria-hidden="true"></iconify-icon> — · online</span>
+          <span><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon> Sala limitada a 100 pessoas</span>
+          <span><iconify-icon icon="lucide:badge-check" aria-hidden="true"></iconify-icon> Inscrição gratuita</span>
+        </div>
+        <p style="margin-top:1rem;font-size:.82rem">Av. Copacabana, 268 — Alphaville, Barueri — SP</p>
+      </div>
+    </div>
+    <div class="inner site-footer__bottom">
+      <p style="margin:0">© <span id="y"></span> Instituto Atleta Campeão. Todos os direitos reservados.</p>
+      <p style="margin:0"><a href="#inscricao-reuniao">Participar da reunião →</a></p>
     </div>
   </footer>
 
@@ -892,6 +1092,156 @@ WARN: old_string not found (219 chars)
   document.getElementById("y").textContent = new Date().getFullYear();
   initFormLazy();
   initModulosLazy();
+
+  (function initMeetingSchedule() {
+    var TZ = "America/Sao_Paulo";
+    var MEETING_HOUR = 20;
+    var MEETING_MINUTE = 0;
+    var lastAppliedAt = 0;
+
+    function pad2(n) { return String(n).padStart(2, "0"); }
+
+    function brtPartsFromMs(ms) {
+      var parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: TZ,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).formatToParts(new Date(ms));
+      var get = function (t) {
+        return parts.find(function (p) { return p.type === t; }).value;
+      };
+      return {
+        year: +get("year"),
+        month: +get("month"),
+        day: +get("day")
+      };
+    }
+
+    function meetingAtBRT(year, month, day) {
+      return Date.parse(
+        year + "-" + pad2(month) + "-" + pad2(day) +
+        "T" + pad2(MEETING_HOUR) + ":" + pad2(MEETING_MINUTE) + ":00-03:00"
+      );
+    }
+
+    function isThursdayBRT(year, month, day) {
+      var wd = new Date(meetingAtBRT(year, month, day)).toLocaleDateString("en-US", {
+        timeZone: TZ,
+        weekday: "short"
+      });
+      return wd === "Thu";
+    }
+
+    function addDaysBRT(year, month, day, days) {
+      return brtPartsFromMs(meetingAtBRT(year, month, day) + days * 86400000);
+    }
+
+    function getNextMeetingAt() {
+      var now = Date.now();
+      var start = brtPartsFromMs(now);
+      var i;
+      for (i = 0; i < 14; i++) {
+        var p = addDaysBRT(start.year, start.month, start.day, i);
+        if (!isThursdayBRT(p.year, p.month, p.day)) continue;
+        var at = meetingAtBRT(p.year, p.month, p.day);
+        if (at > now) return at;
+      }
+      var fallback = addDaysBRT(start.year, start.month, start.day, 7);
+      return meetingAtBRT(fallback.year, fallback.month, fallback.day);
+    }
+
+    function formatMeeting(at) {
+      var d = new Date(at);
+      var dm = d.toLocaleDateString("pt-BR", { timeZone: TZ, day: "2-digit", month: "2-digit" });
+      var dmy = d.toLocaleDateString("pt-BR", { timeZone: TZ, day: "2-digit", month: "2-digit", year: "numeric" });
+      var p = brtPartsFromMs(at);
+      var iso = p.year + "-" + pad2(p.month) + "-" + pad2(p.day) +
+        "T" + pad2(MEETING_HOUR) + ":" + pad2(MEETING_MINUTE) + ":00-03:00";
+      return {
+        dm: dm,
+        dmy: dmy,
+        iso: iso,
+        promoLabel: "Reunião ao vivo · " + dm + " às 20h",
+        dateCard: dmy + " — quinta-feira",
+        dateShort: dm,
+        dateInline: dm + " às 20h",
+        dateFullLine: dmy + " · quinta-feira · 20h",
+        dateFooter: dmy + " · 20h · online"
+      };
+    }
+
+    function applyMeetingCopy(at) {
+      if (at === lastAppliedAt) return;
+      lastAppliedAt = at;
+      var f = formatMeeting(at);
+      var promoLabel = document.getElementById("head-promo-label");
+      var timer = document.getElementById("head-countdown-timer");
+      if (promoLabel) promoLabel.textContent = f.promoLabel;
+      if (timer) timer.setAttribute("datetime", f.iso);
+      document.querySelectorAll("[data-meeting]").forEach(function (el) {
+        var key = el.getAttribute("data-meeting");
+        if (key === "promo-label") el.textContent = f.promoLabel;
+        else if (key === "date-card") el.textContent = f.dateCard;
+        else if (key === "date-short") el.textContent = f.dateShort;
+        else if (key === "date-inline") el.textContent = f.dateInline;
+        else if (key === "date-full-line") el.textContent = f.dateFullLine;
+        else if (key === "date-footer") {
+          el.innerHTML = '<iconify-icon icon="lucide:video" aria-hidden="true"></iconify-icon> ' + f.dateFooter;
+        }
+      });
+    }
+
+    var promo = document.getElementById("head-promo");
+    var head = document.getElementById("site-head");
+    var dEl = document.getElementById("head-d");
+    var hEl = document.getElementById("head-h");
+    var mEl = document.getElementById("head-m");
+    var sEl = document.getElementById("head-s");
+    var tickId = null;
+
+    function syncOffset() {
+      if (!head) return;
+      document.documentElement.style.setProperty("--head-offset", head.offsetHeight + "px");
+    }
+
+    function setCountdown(days, h, m, sec) {
+      if (dEl) dEl.textContent = String(days);
+      if (hEl) hEl.textContent = pad2(h);
+      if (mEl) mEl.textContent = pad2(m);
+      if (sEl) sEl.textContent = pad2(sec);
+    }
+
+    function tick() {
+      var meetingAt = getNextMeetingAt();
+      applyMeetingCopy(meetingAt);
+      if (promo) promo.hidden = false;
+
+      var ms = meetingAt - Date.now();
+      if (ms <= 0) {
+        setCountdown(0, 0, 0, 0);
+        lastAppliedAt = 0;
+        return;
+      }
+      var s = Math.floor(ms / 1000);
+      setCountdown(
+        Math.floor(s / 86400),
+        Math.floor((s % 86400) / 3600),
+        Math.floor((s % 3600) / 60),
+        s % 60
+      );
+    }
+
+    tick();
+    tickId = setInterval(tick, 1000);
+    syncOffset();
+    if (head && window.ResizeObserver) {
+      new ResizeObserver(syncOffset).observe(head);
+    } else {
+      window.addEventListener("resize", syncOffset);
+    }
+  })();
+
   document.querySelectorAll('a[href="#inscricao-reuniao"]').forEach(function (link) {
     link.addEventListener("click", function (e) {
       mountForm(true);
