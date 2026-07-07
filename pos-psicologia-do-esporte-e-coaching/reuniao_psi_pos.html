@@ -8,6 +8,21 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-MXDTWRQ3');</script>
   <!-- End Google Tag Manager -->
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1675439549310048');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1675439549310048&ev=PageView&noscript=1" alt=""></noscript>
+  <!-- End Meta Pixel Code -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -48,14 +63,16 @@
       }, "");
     }
     var q = parseParams(window.location.search);
+    var h = parseParams(window.location.hash ? window.location.hash.replace(/^#/, "?") : "");
+    var params = Object.assign({}, q, h);
     var current = {
-      utm_source: q.utm_source || "",
-      utm_medium: q.utm_medium || "",
-      utm_campaign: q.utm_campaign || "",
-      utm_content: q.utm_content || "",
-      gclid: q.gclid || "",
-      fbclid: q.fbclid || "",
-      ttclid: q.ttclid || ""
+      utm_source: params.utm_source || "",
+      utm_medium: params.utm_medium || "",
+      utm_campaign: params.utm_campaign || "",
+      utm_content: params.utm_content || "",
+      gclid: params.gclid || "",
+      fbclid: params.fbclid || "",
+      ttclid: params.ttclid || ""
     };
     if (Object.values(current).some(Boolean)) {
       Object.entries(current).forEach(function (entry) { setCookie(entry[0], entry[1], 90); });
@@ -70,8 +87,17 @@
       ttclid: current.ttclid || getCookie("ttclid") || ""
     };
     if (!utm.utm_source) {
-      utm.utm_source = "direto";
-      setCookie("utm_source", utm.utm_source, 90);
+      if (utm.fbclid) {
+        utm.utm_source = "facebook";
+        setCookie("utm_source", utm.utm_source, 90);
+      } else {
+        utm.utm_source = "direto";
+        setCookie("utm_source", utm.utm_source, 90);
+      }
+    }
+    if (utm.fbclid && !utm.utm_medium) {
+      utm.utm_medium = "paid";
+      setCookie("utm_medium", utm.utm_medium, 90);
     }
     window.__landingUtm = utm;
     var GHL_FORM_ID = "kZlOaqiS8oWKhNbtahJX";
@@ -83,7 +109,8 @@
       for (var i = 0; i < keys.length; i++) {
         if (u[keys[i]]) parts.push(encodeURIComponent(keys[i]) + "=" + encodeURIComponent(u[keys[i]]));
       }
-      return parts.length ? base + "?" + parts.join("&") : base;
+      parts.push("landing_page_url=" + encodeURIComponent(window.location.href));
+      return base + "?" + parts.join("&");
     };
   })();
   </script>
@@ -497,6 +524,7 @@
             </div>
             <div class="form-wrap__body">
               <iframe
+                class="utm-src"
                 id="inline-kZlOaqiS8oWKhNbtahJX"
                 title="[POPC] Reunião ao vivo"
                 style="width:100%;height:100%;border:none;border-radius:4px"
@@ -990,6 +1018,24 @@
 
   document.getElementById("y").textContent = new Date().getFullYear();
   initModulosLazy();
+
+  (function initGhlFormLeadTracking() {
+    var FORM_ID = "kZlOaqiS8oWKhNbtahJX";
+    window.addEventListener("message", function (event) {
+      var data = event.data;
+      if (!data || typeof data !== "object") return;
+      if (data.type !== "v0:container:formSubmitted" && data.type !== "v0:container:surveySubmitted") return;
+      var submittedFormId = data.formId || data.surveyId || data.id || "";
+      if (submittedFormId && submittedFormId !== FORM_ID) return;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "ghl_form_submit",
+        formId: FORM_ID,
+        formName: "[POPC] Reunião ao vivo"
+      });
+      if (window.fbq) window.fbq("track", "Lead");
+    });
+  })();
 
   (function initMeetingSchedule() {
     var TZ = "America/Sao_Paulo";
