@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imersão Pais de Atleta Campeão · Presencial Alphaville</title>
+  <meta name="description" content="Encontro presencial conduzido por Mayra Ramos para trinta pais de atletas. Um dia em Alphaville, São Paulo.">
+  <meta property="og:title" content="Imersão Pais de Atleta Campeão">
+  <meta property="og:description" content="Como ajudar seu filho a desenvolver a mentalidade de um atleta campeão — imersão presencial conduzida por Mayra Ramos.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://player.vimeo.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /*
+      Imersão Pais — premium limpo.
+      Manrope + Inter · preto/cinza/branco + dourado · fluxo vertical.
+    */
+    :root {
+      --charcoal: #111111;
+      --espresso: #1a1a1a;
+      --ink: #303030;
+      --heading: #111111;
+      --muted: rgba(48, 48, 48, 0.68);
+      --gray-bg: #f7f7f7;
+      --border: #e5e5e5;
+      --gold: #c9a227;
+      --gold-hover: #b8922a;
+      --gold-light: #dbbf6a;
+      --gold-muted: rgba(201, 162, 39, 0.14);
+      --text-on-dark: #f5f5f5;
+      --text-muted-dark: rgba(245, 245, 245, 0.72);
+      --font-h: "Manrope", system-ui, sans-serif;
+      --font-b: "Inter", system-ui, sans-serif;
+      --max: 68rem;
+      --narrow: 40rem;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+      --shadow-ticket: 0 20px 50px rgba(0, 0, 0, 0.12);
+      --space-lg: clamp(3rem, 7vw, 5rem);
+      --space-md: clamp(1.5rem, 4vw, 2.5rem);
+      --head-offset: 4rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--head-offset) + 0.5rem);
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      margin: 0;
+      font-family: var(--font-b);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-inline: clamp(1.25rem, 4vw, 2rem);
+    }
+    .wrap--narrow { max-width: var(--narrow); }
+    .center { text-align: center; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-b);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.85rem;
+    }
+    .band--dark .eyebrow { color: var(--gold-light); }
+
+    h1, h2, h3 {
+      font-family: var(--font-h);
+      line-height: 1.2;
+      margin: 0 0 0.85rem;
+      letter-spacing: -0.02em;
+      color: var(--heading);
+      font-weight: 800;
+    }
+    h1 { font-size: clamp(1.9rem, 5vw, 2.85rem); }
+    .hero h1 .hl { color: var(--gold-light); font-style: normal; }
+    h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); }
+    h3 { font-size: 1.05rem; font-weight: 700; }
+    .band--dark h1,
+    .band--dark h2,
+    .band--dark h3 { color: var(--text-on-dark); }
+    .hero h1 { color: var(--text-on-dark); }
+
+    .lead {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .muted { color: var(--muted); }
+    .band--dark .muted { color: var(--text-muted-dark); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.75rem;
+      border-radius: 6px;
+      font-family: var(--font-b);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .btn--primary {
+      background: var(--gold);
+      color: var(--charcoal) !important;
+      box-shadow: 0 8px 24px rgba(184, 149, 106, 0.28);
+    }
+    .btn--primary:hover { background: var(--gold-hover); transform: translateY(-1px); }
+    .btn--dark {
+      background: var(--charcoal);
+      color: var(--text-on-dark) !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    .btn--dark:hover { background: var(--espresso); transform: translateY(-1px); }
+    .btn--outline {
+      background: transparent;
+      color: var(--text-on-dark) !important;
+      border: 1px solid rgba(245, 245, 245, 0.35);
+    }
+    .btn--outline:hover { border-color: var(--gold-light); color: var(--gold-light) !important; }
+    .btn-note {
+      display: block;
+      margin-top: 0.85rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .band--dark .btn-note,
+    .hero .btn-note { color: var(--text-muted-dark); }
+
+    .band { padding-block: var(--space-lg); }
+    .band--white { background: #fff; }
+    .band--gray { background: var(--gray-bg); }
+    .band--dark {
+      background: linear-gradient(160deg, var(--charcoal) 0%, var(--espresso) 100%);
+      color: var(--text-on-dark);
+    }
+    .band--footer { background: var(--charcoal); color: var(--text-muted-dark); }
+
+    .section-head { max-width: 42rem; margin-bottom: var(--space-md); }
+    .section-head--center { text-align: center; margin-inline: auto; }
+
+    /* Nav */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(18, 17, 16, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .site-nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 0.75rem;
+    }
+    .site-nav__logo { height: 2rem; width: auto; }
+    .site-nav__cta {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.55rem 1rem;
+      border-radius: 4px;
+      background: var(--gold);
+      color: var(--charcoal) !important;
+    }
+    .site-nav__cta:hover { background: var(--gold-hover); }
+
+    /* Hero premium + vídeo */
+    .hero {
+      padding-top: calc(var(--head-offset) + 1.75rem);
+      padding-bottom: clamp(2.75rem, 6vw, 4.25rem);
+      background:
+        radial-gradient(ellipse 55% 45% at 85% 10%, rgba(184, 149, 106, 0.12), transparent 55%),
+        linear-gradient(165deg, var(--charcoal) 0%, var(--espresso) 100%);
+      color: var(--text-on-dark);
+    }
+    .hero__layout {
+      display: grid;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (min-width: 960px) {
+      .hero__layout {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: clamp(2rem, 4vw, 3.5rem);
+        align-items: center;
+      }
+    }
+    .hero__badge {
+      display: inline-flex;
+      padding: 0.4rem 0.85rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 188, 150, 0.35);
+      border-radius: 4px;
+      font-family: var(--font-b);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+    }
+    .hero__product {
+      font-family: var(--font-b);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted-dark);
+      margin: 0 0 0.65rem;
+    }
+    .hero__lead { color: var(--text-muted-dark); margin-top: 0.85rem; max-width: 36rem; }
+    .hero-video {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #0a0a0a;
+      box-shadow: var(--shadow-deep);
+      border: 1px solid rgba(212, 188, 150, 0.22);
+    }
+    .hero-video::before {
+      content: "";
+      display: block;
+      padding-top: 56.25%;
+    }
+    .hero-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .hero-video__slot {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1.5rem;
+      text-align: center;
+      background:
+        linear-gradient(145deg, rgba(28, 25, 23, 0.92) 0%, rgba(18, 17, 16, 0.96) 100%);
+    }
+    .hero-video:has(iframe[src]:not([src=""])) .hero-video__slot { display: none; }
+    .hero-video__play {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-size: 1rem;
+      box-shadow: 0 8px 32px rgba(184, 149, 106, 0.35);
+    }
+    .hero-video__slot p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--text-muted-dark);
+      max-width: 16rem;
+      line-height: 1.5;
+    }
+    .hero-video__caption {
+      margin: 0.75rem 0 0;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted-dark);
+      text-align: center;
+    }
+    .hero__bar {
+      margin-top: clamp(1.75rem, 4vw, 2.5rem);
+      padding-top: clamp(1.5rem, 3vw, 2rem);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .hero-chip {
+      display: inline-flex;
+      padding: 0.4rem 0.8rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-muted-dark);
+    }
+    .hero__actions { flex-shrink: 0; }
+
+    /* Ticket components */
+    .ticket-stack {
+      position: relative;
+      max-width: 22rem;
+      margin: 0 auto;
+    }
+    @media (min-width: 900px) { .ticket-stack { margin: 0 0 0 auto; } }
+    .ticket-stack__back {
+      position: absolute;
+      inset: 12px -8px -12px 8px;
+      background: linear-gradient(135deg, var(--gold-muted) 0%, rgba(42, 38, 34, 0.4) 100%);
+      border-radius: var(--radius);
+      opacity: 0.35;
+      transform: rotate(4deg);
+    }
+    .ticket-frame {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-ticket);
+      transform: rotate(-2deg);
+      transition: transform 0.3s ease;
+    }
+    .ticket-stack:hover .ticket-frame { transform: rotate(0deg) scale(1.02); }
+    .ticket-frame img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: linear-gradient(135deg, #fff 0%, var(--gray-bg) 100%);
+    }
+    .ticket-mock {
+      position: relative;
+      background: #fff;
+      border: 1px dashed var(--border);
+      aspect-ratio: 16 / 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.15rem 1.25rem;
+      min-height: 11rem;
+    }
+    .ticket-mock::before,
+    .ticket-mock::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 1.1rem;
+      height: 1.1rem;
+      margin-top: -0.55rem;
+      background: #fff;
+      border-radius: 50%;
+    }
+    .ticket-mock::before { left: -0.55rem; box-shadow: inset -2px 0 0 rgba(0,0,0,0.06); }
+    .ticket-mock::after { right: -0.55rem; box-shadow: inset 2px 0 0 rgba(0,0,0,0.06); }
+    .ticket-mock__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .ticket-mock__brand {
+      font-family: var(--font-h);
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .ticket-mock__edition {
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      background: #fff;
+      border-radius: 4px;
+      color: var(--gold-hover);
+    }
+    .ticket-mock__title {
+      font-family: var(--font-h);
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      font-weight: 800;
+      color: var(--heading);
+      line-height: 1.2;
+      margin: 0.5rem 0;
+    }
+    .ticket-mock__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .ticket-mock__stub {
+      border-top: 2px dotted var(--border);
+      padding-top: 0.65rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .ticket-caption {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .ticket-gallery {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 640px) { .ticket-gallery { grid-template-columns: repeat(2, 1fr); } }
+    .ticket-gallery__item {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 0.85rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .ticket-gallery__item .ticket-frame {
+      transform: none;
+      box-shadow: 0 8px 24px rgba(18, 17, 16, 0.08);
+    }
+    .ticket-gallery__item .ticket-frame:hover { transform: scale(1.02); }
+    .ticket-gallery__label {
+      margin: 0.75rem 0 0;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--heading);
+      text-align: center;
+    }
+
+    /* Layout — no máximo 2 colunas */
+    .layout-split {
+      display: grid;
+      gap: var(--space-md);
+      align-items: start;
+    }
+    @media (min-width: 768px) {
+      .layout-split { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+
+    .prose { max-width: 40rem; }
+    .prose p { margin: 0 0 1rem; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { font-weight: 700; color: var(--heading); }
+
+    .details {
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+    }
+    @media (min-width: 640px) { .details { grid-template-columns: repeat(2, 1fr); } }
+    .details__cell {
+      padding: 1.25rem 1.35rem;
+      border-bottom: 1px solid var(--border);
+    }
+    @media (min-width: 640px) {
+      .details__cell:nth-child(odd) { border-right: 1px solid var(--border); }
+      .details__cell:nth-last-child(-n+2) { border-bottom: 0; }
+    }
+    .details__cell:last-child { border-bottom: 0; }
+    .details__label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-hover);
+      margin-bottom: 0.5rem;
+    }
+    .details__value {
+      font-family: var(--font-h);
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      font-weight: 800;
+      color: var(--heading);
+      margin: 0 0 0.25rem;
+      line-height: 1.3;
+    }
+    .details__sub { margin: 0; font-size: 0.88rem; color: var(--muted); }
+
+    .check-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.65rem;
+    }
+    .check-list li {
+      position: relative;
+      padding: 0.95rem 1rem 0.95rem 2.4rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      line-height: 1.55;
+      font-size: 0.98rem;
+      box-shadow: 0 2px 8px rgba(18, 17, 16, 0.04);
+    }
+    .check-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0.85rem;
+      top: 0.95rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(184, 149, 106, 0.12);
+      color: var(--gold);
+      font-size: 0.65rem;
+      font-weight: 800;
+    }
+
+    .moment-cards {
+      display: grid;
+      gap: 0;
+      margin-top: var(--space-md);
+      border-left: 2px solid rgba(201, 162, 39, 0.45);
+      padding-left: 1.25rem;
+    }
+    .moment-card {
+      padding: 0.65rem 0;
+      line-height: 1.55;
+      color: var(--text-muted-dark);
+    }
+
+    .pull-banner {
+      margin-top: var(--space-md);
+      padding: 1.5rem 1.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .pull-banner p {
+      font-family: var(--font-h);
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: #fff;
+      margin: 0;
+    }
+    .pull-banner__sub {
+      margin-top: 0.65rem !important;
+      font-family: var(--font-b) !important;
+      font-size: 0.95rem !important;
+      font-weight: 500 !important;
+      color: var(--text-muted-dark) !important;
+    }
+
+    /* Timeline zigzag */
+    .timeline { max-width: 40rem; }
+    .timeline__item {
+      display: grid;
+      gap: 0.75rem 1.25rem;
+      padding: 1.35rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline__item:first-child { border-top: 1px solid var(--border); }
+    @media (min-width: 640px) {
+      .timeline__item { grid-template-columns: 2.75rem 1fr; align-items: start; }
+    }
+    .timeline__num {
+      width: 2.75rem;
+      height: 2.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: var(--charcoal);
+      color: var(--gold-light);
+      font-family: var(--font-h);
+      font-size: 0.9rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .timeline__item p { margin: 0.4rem 0 0; color: var(--muted); line-height: 1.6; }
+
+    .stack-list {
+      list-style: none;
+      margin: var(--space-md) 0 0;
+      padding: 0;
+      border-top: 1px solid var(--border);
+    }
+    .stack-list li {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stack-list li:last-child { border-bottom: 0; }
+    .stack-list strong {
+      display: block;
+      font-family: var(--font-h);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 0.3rem;
+    }
+    .stack-list span { font-size: 0.94rem; color: var(--muted); line-height: 1.55; }
+
+    .ph {
+      aspect-ratio: 4 / 5;
+      background: var(--gray-bg);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .ph__text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 14rem;
+    }
+
+    .mayra-card {
+      background: #fff;
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .mayra-card { display: grid; grid-template-columns: minmax(12rem, 0.38fr) 1fr; }
+    }
+    .mayra-card__photo { min-height: 16rem; }
+    .mayra-card__body { padding: 1.5rem 1.35rem; }
+    .creds {
+      list-style: none;
+      margin: 1rem 0 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .creds li {
+      padding: 0.4rem 0.65rem;
+      background: var(--gray-bg);
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .highlight-box {
+      margin-top: 1.15rem;
+      padding: 1rem 1.1rem;
+      background: var(--gray-bg);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--heading);
+      font-weight: 600;
+    }
+
+    /* Pricing split */
+    .pricing-split {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .pricing-split { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    }
+    .pricing-panel {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px);
+      padding: clamp(1.75rem, 4vw, 2.5rem);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .pricing__value {
+      font-family: var(--font-h);
+      font-size: clamp(2.5rem, 7vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--gold-hover);
+      margin: 0;
+    }
+    .pricing__sub {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 0.5rem 0 1.15rem;
+    }
+    .pricing-ticket .ticket-frame { transform: rotate(-3deg); max-width: 20rem; margin: 0 auto; }
+
+    .faq { max-width: 40rem; margin: 0 auto; }
+    .faq details {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      margin-bottom: 0.5rem;
+    }
+    .faq summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1rem 1.1rem;
+      font-family: var(--font-h);
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--heading);
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "+";
+      float: right;
+      font-weight: 400;
+      color: var(--gold-hover);
+    }
+    .faq details[open] summary::after { content: "−"; }
+    .faq__body {
+      padding: 0 1.1rem 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.94rem;
+    }
+
+    .cta-strip {
+      text-align: center;
+      padding: clamp(2.5rem, 6vw, 4rem) 0;
+      background: var(--gray-bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .site-footer { padding: 2.5rem 0 1.5rem; font-size: 0.88rem; }
+    .site-footer__grid { display: grid; gap: 2rem; }
+    @media (min-width: 768px) {
+      .site-footer__grid { grid-template-columns: 2fr 1fr 1fr; align-items: start; }
+    }
+    .site-footer__logo { max-width: 150px; height: auto; opacity: 0.92; }
+    .site-footer__col h4 {
+      color: #fff;
+      font-family: var(--font-h);
+      font-size: 0.92rem;
+      margin: 0 0 0.85rem;
+    }
+    .site-footer__col p { margin: 0 0 0.45rem; }
+    .site-footer__col a { color: var(--text-muted-dark); text-decoration: none; }
+    .site-footer__col a:hover { color: var(--gold-light); }
+    .site-footer__social { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1rem; }
+    .site-footer__social a { font-weight: 600; }
+    .site-footer__bottom {
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      font-size: 0.82rem;
+    }
+    .site-footer__bottom a { color: var(--gold-light); text-decoration: none; font-weight: 700; }
+    .site-footer__bottom a:hover { color: #fff; }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav wrap" aria-label="Navegação">
+    <div class="site-nav__inner">
+      <a href="#topo">
+        <img class="site-nav__logo" src="./assets/logo_dourada_ac.png" width="160" height="36" alt="Instituto Atleta Campeão" decoding="async">
+      </a>
+      <a class="site-nav__cta" href="#inscricao">Garantir vaga</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="topo">
+    <div class="wrap">
+      <div class="hero__layout">
+        <div class="hero__copy">
+          <span class="hero__badge">Imersão inédita · Alphaville/SP</span>
+          <p class="hero__product">Imersão Pais de Atleta Campeão</p>
+          <h1>Como ajudar seu filho a desenvolver a <span class="hl">mentalidade de um atleta campeão</span></h1>
+          <p class="lead hero__lead">Imersão presencial conduzida por Mayra Ramos para um grupo seleto de 30 pais de atletas.</p>
+        </div>
+        <aside class="hero__media" aria-label="Vídeo de apresentação">
+          <div class="hero-video" id="hero-vsl">
+            <!-- Cole a URL do Vimeo em src quando o vídeo estiver pronto -->
+            <iframe
+              id="hero-vsl-iframe"
+              title="Mayra Ramos apresenta a Imersão Pais de Atleta Campeão"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              loading="eager"></iframe>
+            <div class="hero-video__slot" id="hero-vsl-slot">
+              <span class="hero-video__play" aria-hidden="true">▶</span>
+              <p>Espaço reservado para o vídeo da Mayra explicando a imersão presencial</p>
+            </div>
+          </div>
+          <p class="hero-video__caption">Mayra Ramos · o que é a imersão e para quem ela foi criada</p>
+        </aside>
+      </div>
+      <div class="hero__bar">
+        <div class="hero-chips" aria-label="Data, local e investimento">
+          <span class="hero-chip">[Domingo, XX de Mês de 2026]</span>
+          <span class="hero-chip">Alphaville/SP</span>
+          <span class="hero-chip">10h às 16h</span>
+          <span class="hero-chip">R$ 1.000</span>
+        </div>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#inscricao">Garantir minha vaga</a>
+          <span class="btn-note">Vagas limitadas · confirmação por ordem de inscrição</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo-principal">
+
+    <section class="band band--white" id="ingresso" aria-labelledby="t-ingresso">
+      <div class="wrap">
+        <div class="layout-split">
+          <div>
+            <span class="eyebrow">Seu ingresso</span>
+            <h2 id="t-ingresso">Não é só uma inscrição — é um convite para um domingo diferente</h2>
+            <p class="lead muted" style="margin-top:0.75rem">Cada pai confirmado recebe ingresso físico personalizado, kit do dia e acesso ao grupo exclusivo dos 30 participantes.</p>
+            <p class="prose muted" style="margin-top:1rem">A imersão foi pensada como experiência presencial completa: sala íntima, almoço junto, prática guiada pela Mayra e materiais que você leva para casa.</p>
+          </div>
+          <div class="ticket-gallery">
+            <figure class="ticket-gallery__item">
+              <div class="ticket-frame">
+                <!-- assets/ingresso-frente.png -->
+                <div class="ticket-mock" style="min-height:9rem">
+                  <div>
+                    <span class="ticket-mock__brand">Frente do ingresso</span>
+                    <p class="ticket-mock__title" style="font-size:0.9rem">Foto do ingresso — frente</p>
+                  </div>
+                  <div class="ticket-mock__stub"><span>Substituir asset</span></div>
+                </div>
+              </div>
+              <figcaption class="ticket-gallery__label">Frente · identificação do participante</figcaption>
+            </figure>
+            <figure class="ticket-gallery__item">
+              <div class="ticket-frame">
+                <!-- assets/ingresso-verso.png -->
+                <div class="ticket-mock" style="min-height:9rem">
+                  <div>
+                    <span class="ticket-mock__brand">Verso do ingresso</span>
+                    <p class="ticket-mock__title" style="font-size:0.9rem">Foto do ingresso — verso</p>
+                  </div>
+                  <div class="ticket-mock__stub"><span>Programação do dia</span></div>
+                </div>
+              </div>
+              <figcaption class="ticket-gallery__label">Verso · programação do dia</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--gray" id="o-que-e" aria-labelledby="t-oque">
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow">O encontro</span>
+        <h2 id="t-oque">O que é a Imersão</h2>
+        <div class="prose">
+          <p>Um dia inteiro, presencial, conduzido pessoalmente por Mayra Ramos, criadora do Atleta Campeão e referência em treinamento mental no Brasil.</p>
+          <p>São 30 pais reunidos em uma única sala, em Alphaville, para aprender — na prática — como conduzir o filho dentro e fora da competição. Sem cobrar. Sem corrigir o tempo todo. Sem desgastar o relacionamento em casa.</p>
+          <p>Não é palestra. Não é aula. É vivência: você pratica, recebe devolutiva direta da Mayra, e sai com um plano de ação para os próximos 30 dias.</p>
+          <p>É a primeira vez que a Mayra abre um encontro presencial exclusivo para pais. <strong>Uma edição. Trinta pessoas. Sem repetição.</strong> Almoço incluído no local.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--white" id="quando" aria-labelledby="t-quando">
+      <div class="wrap">
+        <header class="section-head section-head--center">
+          <span class="eyebrow">Detalhes</span>
+          <h2 id="t-quando">Quando, onde, como</h2>
+        </header>
+        <div class="details">
+          <div class="details__cell">
+            <p class="details__label">Data</p>
+            <p class="details__value">[Domingo, XX de Mês de 2026]</p>
+            <p class="details__sub">10h às 16h</p>
+          </div>
+          <div class="details__cell">
+            <p class="details__label">Local</p>
+            <p class="details__value">Alphaville, São Paulo</p>
+            <p class="details__sub">Endereço enviado aos confirmados</p>
+          </div>
+          <div class="details__cell">
+            <p class="details__label">Formato</p>
+            <p class="details__value">Vivência com Mayra Ramos</p>
+            <p class="details__sub">Grupo de 30 pais</p>
+          </div>
+          <div class="details__cell">
+            <p class="details__label">Vagas</p>
+            <p class="details__value">Trinta. Edição I.</p>
+            <p class="details__sub">Confirmação por ordem de pagamento</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--gray" id="para-quem" aria-labelledby="t-para">
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow">Público</span>
+        <h2 id="t-para">Para quem é essa imersão</h2>
+        <p class="lead muted">Essa imersão é para você se reconhece em pelo menos três desses pontos.</p>
+        <ul class="check-list" style="margin-top:1.25rem">
+          <li>Seu filho compete e você acompanha de perto a rotina dele</li>
+          <li>Você quer ajudar, mas nem sempre encontra as palavras certas — no carro, antes da prova, depois de uma derrota</li>
+          <li>A relação familiar é tão importante quanto o resultado esportivo</li>
+          <li>Você já estudou sobre o assunto e quer ir além do que se aprende lendo</li>
+          <li>Você valoriza ambientes pequenos, presenciais e bem conduzidos</li>
+          <li>Você quer praticar com a Mayra, não só ouvir</li>
+        </ul>
+        <p class="highlight-box">Ambientes pequenos e bem conduzidos — longe do formato de palestra para centenas de pessoas.</p>
+      </div>
+    </section>
+
+    <section class="band band--dark" id="contexto" aria-labelledby="t-contexto">
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow">O que ninguém pergunta</span>
+        <h2 id="t-contexto">Você acompanha tudo. E ainda assim, tem momentos em que não sabe o que dizer.</h2>
+        <div class="prose muted">
+          <p>Você está em todo treino. Conhece os adversários do seu filho pelo nome. Já viu ele subir no pódio e já viu ele sair chorando da quadra.</p>
+          <p>Mas existem momentos em que mesmo você — que conhece seu filho mais do que ninguém — não sabe o que falar.</p>
+        </div>
+        <div class="moment-cards">
+          <p class="moment-card">No carro, depois de uma derrota.</p>
+          <p class="moment-card">Na mesa do jantar, quando ele diz que não quer mais treinar.</p>
+          <p class="moment-card">Antes da competição, quando ele está travado de ansiedade.</p>
+          <p class="moment-card">Quando o treinador chama você e diz que seu filho “tá perdendo o foco”.</p>
+        </div>
+        <div class="prose muted" style="margin-top:var(--space-md)">
+          <p>A maior parte dos pais nesses momentos faz uma de três coisas: cobra, conserta ou cala. As três geralmente pioram a situação — porque ninguém te ensinou como fazer.</p>
+        </div>
+        <div class="pull-banner">
+          <p>Treinador estudou anos pra se formar. Atleta treina todo dia com profissionais. E o pai? Quem treina o pai?</p>
+          <p class="pull-banner__sub">É exatamente isso que essa imersão vai fazer com você — em um único domingo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--white" id="o-dia" aria-labelledby="t-dia">
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow">O dia</span>
+        <h2 id="t-dia">O que acontece nas 6 horas da imersão</h2>
+        <p class="lead muted" style="margin-top:0.75rem">Três blocos. Em todos eles, Mayra conduz pessoalmente.</p>
+        <div class="timeline" style="margin-top:var(--space-md)">
+          <article class="timeline__item">
+            <span class="timeline__num">01</span>
+            <div>
+              <h3>A mente do seu filho</h3>
+              <p>Mayra abre o dia explicando como funciona a mente do atleta em formação. O que muda no cérebro a partir da puberdade. O que seu filho precisa de você antes, durante e depois da competição. Em seguida, dinâmica em trios com casos reais.</p>
+            </div>
+          </article>
+          <article class="timeline__item">
+            <span class="timeline__num">02</span>
+            <div>
+              <h3>As conversas que mudam tudo</h3>
+              <p>O exercício central do dia. Cada pai pratica três conversas — antes da competição, no intervalo, e no carro de volta — com mediação direta da Mayra. Você sai com sua versão pessoal, escrita, ensaiada e devolvida.</p>
+            </div>
+          </article>
+          <article class="timeline__item">
+            <span class="timeline__num">03</span>
+            <div>
+              <h3>Casos reais</h3>
+              <p>A tarde é dedicada aos casos do próprio grupo. Quatro pais voluntários expõem situações reais, e Mayra conduz a mediação ao vivo. O dia fecha com cada pai escrevendo seu plano dos próximos 30 dias.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--gray" id="continuidade" aria-labelledby="t-leva">
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow">Continuidade</span>
+        <h2 id="t-leva">O que fica com você depois do dia</h2>
+        <p class="lead muted">Você não sai só com o que aprendeu. Você sai com materiais, áudios e acompanhamento.</p>
+        <ul class="stack-list">
+          <li><strong>Caderno do método</strong><span>Material físico encadernado com a estrutura do dia.</span></li>
+          <li><strong>Áudios personalizados</strong><span>Gravados no dia, com devolutiva da Mayra.</span></li>
+          <li><strong>Grupo de WhatsApp</strong><span>Acesso permanente aos 30 participantes.</span></li>
+          <li><strong>Encontro online de devolutiva</strong><span>90 minutos, 30 dias depois da imersão.</span></li>
+          <li><strong>Almoço incluído</strong><span>Refeição preparada no local com o grupo.</span></li>
+          <li><strong>Kit físico completo</strong><span>Caderno, materiais e registros do seu dia.</span></li>
+        </ul>
+        <div class="ph" style="margin-top:var(--space-md);aspect-ratio:16/10;max-width:36rem" aria-hidden="true">
+          <span class="ph__text">[Foto — sala íntima, círculo de cadeiras]</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--gray" id="mayra" aria-labelledby="t-mayra">
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow">Quem conduz</span>
+        <h2 id="t-mayra">Mayra Ramos</h2>
+        <article class="mayra-card" style="margin-top:1.25rem">
+          <div class="mayra-card__photo ph" aria-hidden="true">
+            <span class="ph__text">[Retrato Mayra Ramos — acolhedor, natural]</span>
+          </div>
+          <div class="mayra-card__body">
+            <div class="prose muted">
+              <p>Atleta da seleção brasileira de patinação artística por quase 20 anos. Bronze nos Jogos Pan-Americanos de 2003, prata por equipes no Mundial de 2007. Duas vezes melhor patinadora do Brasil pelo COB.</p>
+              <p>Certificada Athlete Mental Coach nos EUA em 2017 — mesmo ano em que fundou o Atleta Campeão. Prêmio Brasil Olímpico do COB em 2018. Desde então, formou milhares de atletas, pais e treinadores.</p>
+            </div>
+            <ul class="creds">
+              <li>Mundial 2007 · prata</li>
+              <li>Pan 2003 · bronze</li>
+              <li>Prêmio COB 2018</li>
+              <li>Mental Coach EUA</li>
+            </ul>
+            <p class="highlight-box">A Imersão Pais de Atleta Campeão é a primeira vez que ela abre um encontro presencial exclusivo para pais.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="band band--white" id="inscricao" aria-labelledby="t-investimento">
+      <div class="wrap">
+        <div class="pricing-split">
+          <div class="pricing-ticket">
+            <figure class="ticket-frame">
+              <!-- assets/ingresso-checkout.png -->
+              <div class="ticket-mock">
+                <div>
+                  <div class="ticket-mock__top">
+                    <span class="ticket-mock__brand">Sua vaga</span>
+                    <span class="ticket-mock__edition">30 lugares</span>
+                  </div>
+                  <p class="ticket-mock__title">Garanta seu ingresso</p>
+                  <div class="ticket-mock__meta"><span>Edição inaugural · Alphaville</span></div>
+                </div>
+                <div class="ticket-mock__stub"><span>Confirmado após pagamento</span></div>
+              </div>
+            </figure>
+            <p class="ticket-caption">Ingresso físico enviado ou entregue no check-in</p>
+          </div>
+          <div class="pricing-panel">
+            <span class="eyebrow">Investimento</span>
+            <h2 id="t-investimento" class="visually-hidden">Garanta sua vaga</h2>
+            <p class="pricing__value">R$ 1.000</p>
+            <p class="pricing__sub">por participante · em até 12x no cartão</p>
+            <p class="muted" style="max-width:28rem;margin:0 auto 1.25rem">São 30 vagas confirmadas por ordem de pagamento. Quando esgotarem, não haverá nova edição com o mesmo formato.</p>
+            <a class="btn btn--primary" href="#inscricao">Quero minha vaga</a>
+            <p class="btn-note">Cartão (até 12x), boleto ou Pix · link de checkout em breve</p>
+            <p class="muted" style="margin-top:1rem;font-size:0.9rem">Alunos da Mentoria de Pais: condições especiais nas vagas iniciais. Entre em contato pelo WhatsApp para retirar seu cupom.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--white" id="faq" aria-labelledby="t-faq">
+      <div class="wrap">
+        <header class="section-head section-head--center">
+          <span class="eyebrow">Perguntas frequentes</span>
+          <h2 id="t-faq">O que pode estar passando pela sua cabeça</h2>
+        </header>
+        <div class="faq">
+          <details>
+            <summary>Posso participar com minha esposa ou marido?</summary>
+            <div class="faq__body">Sim. Cada um precisa ter sua vaga. Recomendamos que ambos participem — os exercícios funcionam muito melhor quando o casal vivencia junto.</div>
+          </details>
+          <details>
+            <summary>Meu filho participa da imersão?</summary>
+            <div class="faq__body">Não. Exclusiva para pais. O foco está em você — na sua postura, linguagem e presença na rotina esportiva do filho.</div>
+          </details>
+          <details>
+            <summary>Qual a idade dos filhos?</summary>
+            <div class="faq__body">A maioria tem filhos entre 8 e 17 anos em modalidades competitivas. O método se aplica enquanto o filho estiver competindo.</div>
+          </details>
+          <details>
+            <summary>Funciona pra qual esporte?</summary>
+            <div class="faq__body">Para todos. Trabalhamos a mente do atleta, não a técnica do esporte. Natação, futebol, judô, surf, ginástica, tênis, vôlei e dezenas de outras.</div>
+          </details>
+          <details>
+            <summary>Posso pedir reembolso?</summary>
+            <div class="faq__body">Cancelamentos em até 7 dias após o pagamento são integralmente reembolsados. Depois, crédito para próxima edição ou transferência de vaga.</div>
+          </details>
+          <details>
+            <summary>Vai ter próxima edição?</summary>
+            <div class="faq__body">Edição I, sem compromisso de repetir. Quem participar terá prioridade absoluta caso uma próxima aconteça.</div>
+          </details>
+          <details>
+            <summary>Como funciona o almoço?</summary>
+            <div class="faq__body">Servido no local, incluído no valor. Avise no formulário se tiver restrição alimentar.</div>
+          </details>
+          <details>
+            <summary>Boleto ou Pix?</summary>
+            <div class="faq__body">Sim. Cartão (até 12x), boleto ou Pix — todas as opções no checkout.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-strip" id="cta-final" aria-labelledby="t-final">
+      <div class="wrap wrap--narrow">
+        <span class="eyebrow">Edição inaugural</span>
+        <h2 id="t-final">Um domingo pode mudar como você acompanha seu filho pelos próximos 10 anos</h2>
+        <p class="lead muted" style="margin:0.85rem auto 1.25rem;max-width:30rem">São 30 vagas. Você sai com método, plano e prática — direto da Mayra.</p>
+        <a class="btn btn--dark" href="#inscricao">Garantir minha vaga</a>
+        <span class="btn-note">Vagas preenchidas por ordem de inscrição e confirmação</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer band band--footer">
+    <div class="wrap site-footer__grid">
+      <div class="site-footer__col">
+        <img class="site-footer__logo" src="./assets/logo-atleta-campeao.png" width="200" height="80" alt="Instituto Atleta Campeão" loading="lazy" decoding="async">
+        <p style="margin-top:1rem;max-width:36ch;line-height:1.55">Imersão presencial para pais de atletas — Instituto Atleta Campeão.</p>
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/atletacampeao" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.youtube.com/atletacampeao" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+      <div class="site-footer__col">
+        <h4>Institucional</h4>
+        <p><a href="/politica-de-privacidade/">Política de privacidade</a></p>
+        <p><a href="mailto:suporte@atletacampeao.com.br">Contato</a></p>
+        <p><a href="https://atletacampeao.com.br" target="_blank" rel="noopener noreferrer">atletacampeao.com.br</a></p>
+      </div>
+      <div class="site-footer__col">
+        <h4>Imersão</h4>
+        <p><a href="#ingresso">Seu ingresso</a></p>
+        <p><a href="#para-quem">Para quem é</a></p>
+        <p><a href="#inscricao">Garantir vaga</a></p>
+      </div>
+    </div>
+    <div class="wrap site-footer__bottom">
+      <p style="margin:0">© 2026 Atleta Campeão</p>
+      <p style="margin:0"><a href="#inscricao">Garantir minha vaga →</a></p>
+    </div>
+  </footer>
+  <script defer src="https://player.vimeo.com/api/player.js"></script>
+</body>
+</html>

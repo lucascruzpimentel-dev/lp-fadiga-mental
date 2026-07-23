@@ -1,0 +1,243 @@
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(125deg, #0f172a 0%, #1e3a5f 25%, #0f172a 50%, #1e293b 75%, #0f172a 100%);
+            background-size: 400% 400%;
+            animation: ementaGradientMove 18s ease infinite;
+            pointer-events: none;
+        }
+        @keyframes ementaGradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ─── Section 02 — Ementa ──────────────────── */
+        @media(min-width:768px) {
+            .ementa-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+        }
+
+        /* ─── Section 03 — Certificação ──────────────────── */
+        @media(min-width:900px) {
+            #cert-layout {
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 80px !important;
+            }
+
+            #cert-layout>div:first-child {
+                width: 45% !important;
+                max-width: none !important;
+            }
+
+            .cert-col-right {
+                width: 55% !important;
+                max-width: none !important;
+            }
+        }
+
+        @media(max-width:899px) {
+            section#certificacao {
+                padding: 64px 0 !important;
+            }
+        }
+
+        /* ─── Section 04 — Quem Está Por Trás ──────────────────── */
+        @media(min-width:900px) {
+            .instructor-layout {
+                flex-direction: row !important;
+            }
+
+            .instructor-layout>div {
+                width: 50% !important;
+            }
+        }
+
+        @media(min-width:600px) {
+            .inst-badge {
+                display: inline-block !important;
+            }
+        }
+
+        @media(max-width:899px) {
+            section#quem-esta-por-tras {
+                padding: 64px 0 !important;
+            }
+        }
+
+        /* ─── Section 05 — Público-Alvo ──────────────────── */
+        @media(min-width: 900px) {
+            .pa-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+        }
+
+        /* The sequential glowing animation */
+        @keyframes borderGlowSequenceLight {
+            0%, 15% {
+                border-color: rgba(37, 99, 235, 0.4);
+                box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.15), 0 0 0 1px rgba(37, 99, 235, 0.1);
+                transform: translateY(-8px);
+            }
+            20%, 100% {
+                border-color: rgba(226, 232, 240, 0.8);
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes imgGlowSequenceLight {
+            0%, 15% {
+                transform: scale(1.05);
+                filter: grayscale(0%) contrast(1) brightness(1);
+            }
+            20%, 100% {
+                transform: scale(1);
+                filter: grayscale(100%) contrast(1) brightness(0.95);
+            }
+        }
+
+        .pa-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            opacity: 0; 
+            transform: translateY(30px); 
+        }
+
+        /* We apply this class via JS to trigger the infinite sequence */
+        .pa-card.animate-glow {
+            animation: borderGlowSequenceLight 6s infinite ease-in-out;
+        }
+
+        .pa-card.animate-glow .pa-img-container img {
+            animation: imgGlowSequenceLight 6s infinite ease-in-out;
+        }
+
+--
+                        <div class="cert-inner">
+                            <img src="/fadiga-mental/assets/images/certificado.png" alt="Certificado Neurociência da Fadiga no Esporte"
+                                style="width:100%;height:100%;object-fit:cover;display:block;">
+                        </div>
+                    </div>
+
+                    <!-- Caption below card -->
+                    <p style="font-family:'Inter',sans-serif;font-size:11px;color:#475569;
+                        letter-spacing:0.12em;text-transform:uppercase;margin-top:20px;
+                        text-align:center;">
+                        ✦ Emitido digitalmente após a conclusão do módulo
+                    </p>
+                </div>
+
+                <!-- ── RIGHT COLUMN: Label, headline, desc, bullets ── -->
+                <div class="cert-col-right" style="width:100%;max-width:580px;">
+
+                    <!-- Label -->
+                    <p style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;
+                        letter-spacing:0.2em;text-transform:uppercase;color:#2563eb;margin:0 0 16px;">
+                        Certificação
+                    </p>
+
+                    <!-- Headline -->
+                    <h2 style="font-family:'Manrope',sans-serif;font-size:clamp(28px,3.5vw,44px);
+                        font-weight:700;line-height:1.1;letter-spacing:-0.03em;
+                        color:#0f172a;margin:0;">
+                        Neurociência da Fadiga no Esporte
+                    </h2>
+
+                    <!-- Description -->
+                    <p style="font-family:'Inter',sans-serif;font-size:15px;color:#475569;
+                        line-height:1.65;max-width:440px;margin:14px 0 44px;">
+                        Um documento formal que registra sua qualificação numa das
+                        áreas mais específicas e menos exploradas da ciência do esporte
+                        no Brasil — emitido pelo Atleta Campeão e assinado pelo
+                        Prof. Dr. Leonardo Fortes.
+                    </p>
+
+                    <!-- Bullets -->
+                    <div style="display:flex;flex-direction:column;">
+
+                        <!-- Bullet 01 -->
+                        <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
+                            <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;
+                                background:#f1f5f9;border:1px solid #e2e8f0;
+                                font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#64748b;
+                                display:flex;align-items:center;justify-content:center;">01</div>
+                            <div>
+                                <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
+                                    color:#0f172a;margin:0;">Emissão 24h após a conclusão</p>
+                                <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:#475569;
+                                    line-height:1.55;margin:4px 0 0;">O certificado é gerado digitalmente assim que
+                                    você finaliza
+                                    o treinamento — disponível para download em PDF, sem burocracia.</p>
+                            </div>
+                        </div>
+
+                        <!-- Divider -->
+                        <div style="height:1px;background:#e2e8f0;margin:20px 0;"></div>
+
+                        <!-- Bullet 02 -->
+                        <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
+                            <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;
+                                background:#f1f5f9;border:1px solid #e2e8f0;
+                                font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#64748b;
+                                display:flex;align-items:center;justify-content:center;">02</div>
+                            <div>
+                                <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
+                                    color:#0f172a;margin:0;">Assinado por referência nacional</p>
+                                <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:#475569;
+                                    line-height:1.55;margin:4px 0 0;">Assinado pelo Prof. Dr. Leonardo Fortes, um dos
+                                    principais
+                                    pesquisadores do tema no Brasil. Docente do Mestrado e Doutorado
+                                    em Neurociência Cognitiva da UFPB.</p>
+                            </div>
+                        </div>
+
+                        <!-- Divider -->
+                        <div style="height:1px;background:#e2e8f0;margin:20px 0;"></div>
+
+                        <!-- Bullet 03 -->
+                        <div class="cert-bullet-item" style="display:flex;align-items:flex-start;gap:16px;">
+                            <div style="width:44px;height:44px;border-radius:50%;flex-shrink:0;
+                                background:#f1f5f9;border:1px solid #e2e8f0;
+                                font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:#64748b;
+                                display:flex;align-items:center;justify-content:center;">03</div>
+                            <div>
+                                <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
+                                    color:#0f172a;margin:0;">Carga horária registrada: 6 horas</p>
+                                <p style="font-family:'Inter',sans-serif;font-size:13.5px;color:#475569;
+                                    line-height:1.55;margin:4px 0 0;">Documento com carga horária explícita — o padrão
+                                    exigido quando
+                                    você precisa comprovar qualificação em processos seletivos,
+                                    clubes e federações.</p>
+                            </div>
+                        </div>
+
+                    </div><!-- /bullets -->
+                </div><!-- /cert-col-right -->
+
+            </div><!-- /cert-layout -->
+        </div><!-- /container -->
+
+
+    </section>
+    <!-- ── END SECTION 03 ── -->
+
+    <!-- =======================================================================
+         SECTION 04: QUEM ESTÁ POR TRÁS
+    ======================================================================= -->
+    <section id="quem-esta-por-tras" style="
+        background: #0f172a;
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+    ">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+            width:800px;height:800px;background:rgba(37,99,235,0.04);
+            border-radius:50%;filter:blur(150px);pointer-events:none;z-index:0;"></div>
+

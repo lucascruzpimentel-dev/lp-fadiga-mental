@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ementa detalhada da Pós-Graduação em Neurociência e Treinamento Mental Aplicada ao Esporte — UNIFATEC e Instituto Atleta Campeão.">
+  <title>Ementa completa · Pós Neurociência e Treinamento Mental no Esporte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-hero-text: #0f172a;
+      --color-accent: #2563eb;
+      --color-accent-soft: #eff6ff;
+      --color-hero-ink: #0b1230;
+      --color-subhead: #475569;
+      --color-slate-100: #f1f5f9;
+      --color-slate-200: #e2e8f0;
+      --color-slate-500: #64748b;
+      --color-slate-800: #1e293b;
+      --color-gold: #d97706;
+      --color-gold-bar: #f2c037;
+      --color-gold-soft: #fffbeb;
+      --font-heading: "Manrope", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --radius: 12px;
+      --shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { font-size: 11pt; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--color-hero-text);
+      line-height: 1.6;
+      background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 35%, #ffffff 100%);
+    }
+
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    @media print {
+      .no-print { display: none !important; }
+      body {
+        background: #fff !important;
+        font-size: 9.5pt;
+      }
+      .sheet { box-shadow: none !important; padding: 0 !important; max-width: 100% !important; }
+      .page-break { page-break-before: always; }
+      .mod-block { break-inside: avoid; page-break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+    }
+
+    .sheet {
+      max-width: 210mm;
+      margin: 0 auto 2rem;
+      padding: 10mm 12mm 14mm;
+      background: #fff;
+      box-shadow: var(--shadow);
+      border-radius: 0;
+    }
+
+    @media screen {
+      .sheet { margin-top: 1rem; margin-bottom: 3rem; border-radius: 16px; }
+    }
+
+    /* Barra superior institucional (como faixa da LP, sem promo) */
+    .doc-strip {
+      background: linear-gradient(90deg, var(--color-hero-ink) 0%, #1e3a8a 100%);
+      color: #fff;
+      padding: 0.55rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .doc-strip span { opacity: 0.92; }
+
+    /* Capa */
+    .cover {
+      padding: 1.25rem 0 1.5rem;
+      border-bottom: 3px solid var(--color-accent);
+      margin-bottom: 1.75rem;
+    }
+    .cover__row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .cover__badge-mec {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-gold-soft);
+      border: 1px solid rgba(217, 119, 6, 0.35);
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--color-hero-ink);
+    }
+    .cover__badge-mec img { height: 36px; width: auto; border-radius: 4px; }
+
+    .cover h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: var(--color-hero-ink);
+      margin: 1rem 0 0.5rem;
+    }
+    .cover .subtitle {
+      font-size: 0.95rem;
+      color: var(--color-subhead);
+      max-width: 42rem;
+      margin: 0 0 1rem;
+    }
+
+    .cover__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-top: 1rem;
+      list-style: none;
+      padding: 0;
+    }
+    @media (max-width: 600px) {
+      .cover__stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    .cover__stats li {
+      background: var(--color-accent-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      padding: 0.5rem 0.65rem;
+      font-size: 0.72rem;
+    }
+    .cover__stats strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      color: var(--color-accent);
+      font-weight: 800;
+    }
+    .cover__stats span { color: var(--color-subhead); font-size: 0.68rem; }
+
+    .cover__partner {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1rem;
+      background: var(--color-slate-100);
+      border-radius: var(--radius);
+      border-left: 4px solid var(--color-accent);
+      font-size: 0.82rem;
+      color: var(--color-slate-800);
+    }
+    .cover__partner strong { color: var(--color-hero-ink); }
+
+    /* Títulos de seção */
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-hero-ink);
+      margin: 0 0 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--color-slate-200);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.4rem;
+      color: var(--color-hero-ink);
+    }
+
+    h4 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+      margin: 0.85rem 0 0.35rem;
+    }
+
+    p { margin: 0 0 0.65rem; }
+    ul { margin: 0 0 0.65rem; padding-left: 1.1rem; }
+    li { margin-bottom: 0.35rem; }
+
+    .lead {
+      font-size: 0.92rem;
+      color: var(--color-subhead);
+    }
+
+    .note {
+      font-size: 0.78rem;
+      color: var(--color-slate-500);
+      border-left: 3px solid var(--color-slate-200);
+      padding-left: 0.65rem;
+      margin: 1rem 0;
+    }
+
+    /* Bloco autoridade institucional */
+    .authority {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .authority { grid-template-columns: 1fr; }
+    }
+    .authority__main {
+      background: var(--color-gold-soft);
+      border: 1px solid rgba(217, 119, 6, 0.25);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+    .authority__main h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .authority__main h3::before {
+      content: "";
+      width: 4px;
+      height: 1.1em;
+      background: var(--color-gold-bar);
+      border-radius: 2px;
+    }
+    .authority__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .authority__metric {
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.5rem 0.6rem;
+      text-align: center;
+      border: 1px solid var(--color-slate-200);
+    }
+    .authority__metric strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-hero-ink);
+    }
+    .authority__metric span { font-size: 0.65rem; color: var(--color-subhead); line-height: 1.3; }
+
+    .authority__side {
+      background: var(--color-accent-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      font-size: 0.82rem;
+    }
+    .authority__side ul { margin: 0.5rem 0 0; padding-left: 1rem; }
+    .authority__side li { margin-bottom: 0.4rem; }
+
+    /* Módulos */
+    .mod-block {
+      margin-bottom: 1.35rem;
+      padding: 1rem 1.05rem;
+      background: #fafbfc;
+      border: 1px solid var(--color-slate-200);
+      border-radius: var(--radius);
+      border-top: 3px solid var(--color-accent);
+    }
+    .mod-block__top {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .mod-block__num {
+      flex-shrink: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.85rem;
+      background: var(--color-accent);
+      color: #fff;
+      border-radius: 10px;
+    }
+    .mod-block__titlewrap { flex: 1; min-width: 0; }
+    .mod-block__titlewrap h3 {
+      font-size: 1.02rem;
+      margin: 0 0 0.25rem;
+      line-height: 1.25;
+    }
+    .mod-block__tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .mod-block__lead {
+      font-size: 0.88rem;
+      color: var(--color-slate-800);
+      margin-bottom: 0.5rem;
+    }
+    .mod-block ul {
+      font-size: 0.84rem;
+      color: var(--color-hero-text);
+    }
+    .mod-block ul li::marker { color: var(--color-accent); }
+
+    /* Tabela resumo (opcional no fim) */
+    table.sum {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.72rem;
+      margin-top: 0.5rem;
+    }
+    table.sum th, table.sum td {
+      border: 1px solid var(--color-slate-200);
+      padding: 0.35rem 0.4rem;
+      text-align: left;
+    }
+    table.sum th { background: var(--color-slate-100); font-weight: 600; }
+    table.sum td:first-child { width: 2rem; font-weight: 700; color: var(--color-accent); text-align: center; }
+
+    .toc {
+      font-size: 0.82rem;
+      columns: 2;
+      column-gap: 1.5rem;
+    }
+    .toc ol { margin: 0; padding-left: 1.2rem; }
+    .toc li { margin-bottom: 0.35rem; break-inside: avoid; }
+    @media (max-width: 500px) { .toc { columns: 1; } }
+
+    .footer-doc {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-slate-200);
+      font-size: 0.72rem;
+      color: var(--color-slate-500);
+    }
+
+    .print-hint {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--color-hero-ink);
+      color: #e2e8f0;
+      padding: 0.55rem 1rem;
+      text-align: center;
+      font-size: 0.78rem;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .print-hint button {
+      padding: 0.35rem 0.85rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--color-accent);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-body);
+    }
+
+    /* Logo — proporção preservada (evita achatamento) */
+    .logo-ac-wrap {
+      display: inline-block;
+      max-width: min(300px, 100%);
+      line-height: 0;
+    }
+    .logo-ac-wrap img,
+    img.logo-ac {
+      display: block;
+      width: auto;
+      height: auto;
+      max-height: 52px;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: left center;
+    }
+    .mec-seal {
+      height: 44px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    /* Capa — imagem com moldura offset (referência brochure) */
+    .cover-hero {
+      margin: 1.15rem 0 0.25rem;
+      position: relative;
+      max-width: 100%;
+    }
+    .cover-hero__inner {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12);
+      border: 1px solid var(--color-slate-200);
+    }
+    .cover-hero__inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      box-shadow: 8px 8px 0 0 rgba(153, 27, 27, 0.35);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .cover-hero img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+    .cover-hero figcaption {
+      font-size: 0.72rem;
+      color: var(--color-slate-500);
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    /* Visão geral — duas colunas + hierarquia forte */
+    .visao__eyebrow {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin: 0 0 0.35rem;
+    }
+    .visao__title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      color: var(--color-hero-ink);
+      margin: 0 0 0.85rem;
+    }
+    .visao__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.15rem;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .visao__grid { grid-template-columns: 1fr; }
+    }
+    .visao__col p { font-size: 0.86rem; }
+    .visao__frame {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--color-slate-200);
+      box-shadow: var(--shadow);
+    }
+    .visao__frame img {
+      width: 100%;
+      display: block;
+      height: auto;
+      max-height: 160px;
+      object-fit: contain;
+      object-position: center;
+      padding: 0.5rem;
+      background: #fff;
+    }
+
+    /* Jornada — o que você vivencia */
+    .journey__head {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0 0 0.65rem;
+      color: var(--color-hero-ink);
+    }
+    .journey {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.55rem;
+      margin: 0.75rem 0 0;
+    }
+    @media (max-width: 900px) {
+      .journey { grid-template-columns: repeat(2, 1fr); }
+    }
+    .journey__card {
+      background: linear-gradient(180deg, #fff 0%, var(--color-accent-soft) 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 0.65rem 0.7rem;
+      font-size: 0.74rem;
+      position: relative;
+      padding-top: 1.5rem;
+    }
+    .journey__step {
+      position: absolute;
+      top: 0.45rem;
+      left: 0.55rem;
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .journey__card h4 {
+      margin: 0 0 0.35rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--color-hero-ink);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .journey__card p { margin: 0; color: var(--color-subhead); line-height: 1.45; }
+
+    /* Bloco mercado — fundo suave */
+    section#mercado.market {
+      background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 55%);
+      padding: 1.35rem 1.15rem 1.5rem;
+      border-radius: 16px;
+      border: 1px solid var(--color-slate-200);
+      margin: 1.25rem 0;
+      box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    /* Mercado — números grandes (estilo infográfico) */
+    .market__pre {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-subhead);
+      margin: 0 0 0.25rem;
+    }
+    .market__title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+      color: var(--color-hero-ink);
+    }
+    .market__title em {
+      color: var(--color-accent);
+      font-style: normal;
+    }
+    .market__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    @media (max-width: 700px) {
+      .market__grid { grid-template-columns: 1fr; }
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 0.85rem 0.9rem;
+      border: 1px solid var(--color-slate-200);
+      position: relative;
+      overflow: hidden;
+      min-height: 7.5rem;
+    }
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      right: -20%;
+      bottom: -30%;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(37, 99, 235, 0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .stat-card__n {
+      font-family: var(--font-heading);
+      font-size: 2.35rem;
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      color: #7f1d1d;
+      display: block;
+    }
+    .stat-card__txt {
+      font-size: 0.78rem;
+      color: var(--color-slate-800);
+      margin-top: 0.5rem;
+      line-height: 1.45;
+    }
+    .stat-card__src {
+      font-size: 0.65rem;
+      color: var(--color-slate-500);
+      margin-top: 0.45rem;
+    }
+    .market__evid-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-slate-500);
+      margin: 1rem 0 0.5rem;
+    }
+    .market__evidence {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.45rem;
+    }
+    @media (max-width: 600px) {
+      .market__evidence { grid-template-columns: 1fr; }
+    }
+    .market__evidence figure {
+      margin: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--color-slate-200);
+      background: #fff;
+    }
+    .market__evidence img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .market__evidence figcaption {
+      font-size: 0.62rem;
+      color: var(--color-slate-500);
+      padding: 0.35rem 0.45rem;
+      line-height: 1.35;
+    }
+
+    /* Módulos — miniatura + conteúdo */
+    .mod-block--with-thumb {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 0.85rem;
+      align-items: start;
+    }
+    .mod-block__thumb {
+      margin: 0;
+      padding: 0;
+      border-radius: 11px;
+      overflow: hidden;
+      border: 1px solid var(--color-slate-200);
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+      background: #f8fafc;
+    }
+    .mod-block__thumb img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+    .mod-block__main { min-width: 0; }
+
+    /* Corpo docente — banner + fotos */
+    .faculty-banner {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 0 0 1rem;
+      border: 1px solid var(--color-slate-200);
+      box-shadow: var(--shadow);
+    }
+    .faculty-banner img {
+      width: 100%;
+      display: block;
+      max-height: 240px;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .faculty-banner__overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 0.65rem 1rem;
+      background: linear-gradient(transparent, rgba(11, 18, 48, 0.92));
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .faculty-grid--rich {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+    }
+    @media (max-width: 560px) {
+      .faculty-grid--rich { grid-template-columns: 1fr; }
+    }
+    .faculty-tile {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      padding: 0.65rem 0.7rem;
+      background: #fff;
+      border: 1px solid var(--color-slate-200);
+      border-radius: 12px;
+      border-left: 3px solid var(--color-gold-bar);
+    }
+    .faculty-tile__img {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid var(--color-slate-200);
+    }
+    .faculty-tile__avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: #fff;
+      background: linear-gradient(145deg, #2563eb, #1e3a8a);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .faculty-tile__body {
+      flex: 1;
+      min-width: 0;
+    }
+    .faculty-tile__body strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.86rem;
+      color: var(--color-hero-ink);
+    }
+    .faculty-tile__body span {
+      font-size: 0.78rem;
+      color: var(--color-subhead);
+      line-height: 1.45;
+    }
+
+    @media print {
+      .mod-block--with-thumb { grid-template-columns: 92px 1fr; gap: 0.55rem; }
+      .stat-card__n { font-size: 1.85rem; }
+      .cover-hero img { max-height: 170px; }
+      .market__evidence { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="doc-strip no-print">
+    <span>Material institucional · Ementa completa · Instituto Atleta Campeão + UNIFATEC</span>
+  </div>
+
+  <div class="print-hint no-print">
+    Para gerar PDF: <kbd>Ctrl</kbd>+<kbd>P</kbd> (ou <kbd>Cmd</kbd>+<kbd>P</kbd>) → Salvar como PDF · Papel A4
+    <button type="button" onclick="window.print()">Salvar PDF</button>
+  </div>
+
+  <div class="sheet">
+    <header class="cover page-break">
+      <div class="cover__row">
+        <div>
+          <div class="logo-ac-wrap">
+            <img class="logo-ac" src="assets/logo-atleta-campeao.png" alt="Instituto Atleta Campeão">
+          </div>
+          <div style="margin-top:0.5rem;">
+            <span class="cover__badge-mec">
+              <img class="mec-seal" src="assets/logo-mec-ministerio.jpg" alt="">
+              Credenciamento MEC · Diploma com validade nacional
+            </span>
+          </div>
+        </div>
+      </div>
+      <h1>Pós-Graduação em Neurociência e Treinamento Mental Aplicada ao Esporte</h1>
+      <p class="subtitle">
+        Especialização <em>lato sensu</em> com base científica, ferramentas aplicáveis na semana seguinte e eixo de posicionamento profissional.
+        Curso credenciado com diploma emitido pela <strong>UNIFATEC</strong>, em projeto pedagógico desenvolvido em parceria com o <strong>Instituto Atleta Campeão</strong>.
+      </p>
+      <figure class="cover-hero">
+        <div class="cover-hero__inner">
+          <img src="assets/corpo_docente.png" alt="Equipe de docentes da pós-graduação">
+        </div>
+        <figcaption>Formação com quem atua em universidade, clubes e alta performance — ciência e experiência no mesmo lugar.</figcaption>
+      </figure>
+      <ul class="cover__stats">
+        <li><strong>360h</strong><span>Carga horária</span></li>
+        <li><strong>18 meses</strong><span>Duração prevista</span></li>
+        <li><strong>18 módulos</strong><span>Grade completa</span></li>
+        <li><strong>100% online</strong><span>Para quem já atua</span></li>
+      </ul>
+      <div class="cover__partner">
+        <strong>Parceria acadêmica:</strong> a UNIFATEC (instituição mantenedora, com registro e reconhecimento no âmbito do MEC) credencia a pós-graduação;
+        o Instituto Atleta Campeão estrutura a metodologia, a comunidade e a aplicação prática voltada ao ecossistema esportivo brasileiro.
+        A nota institucional utilizada em materiais oficiais da parceria é <strong>4 de 5 no MEC</strong> (conforme divulgação da própria formação).
+      </div>
+    </header>
+
+    <section id="visao-geral" class="page-break">
+      <p class="visao__eyebrow">Visão geral</p>
+      <h2 class="visao__title">Neurociência e treinamento mental: do laboratório ao vestiário</h2>
+      <div class="visao__grid">
+        <div class="visao__col">
+          <p>
+            Esta pós foi desenhada para que você <strong>sinta o ritmo de uma formação séria</strong>: primeiro a base (o que medir, como falar, como integrar staff e família),
+            depois a neurociência aplicada (sono, decisão, telas, fadiga mental, cognição) e, por fim, a tradução em <strong>rotina de atleta</strong>, <strong>palestras</strong> e <strong>autoridade de mercado</strong>.
+          </p>
+          <p>
+            Cada módulo combina leitura, reflexão e cenários reais — para que, ao concluir, você não apenas “tenha visto aulas”, mas reconheça
+            <strong>onde entra cada ferramenta</strong> na semana seguinte, com diploma reconhecido pelo MEC (UNIFATEC) e método do Instituto Atleta Campeão.
+          </p>
+        </div>
+        <div class="visao__col">
+          <p>
+            O mercado esportivo já separa quem improvisa de quem entrega protocolo. Aqui você constrói repertório científico, linguagem profissional e posicionamento —
+            o trio que sustenta preço, contratos e confiança em clubes, consultorias e educação.
+          </p>
+          <div class="visao__frame">
+            <img src="assets/logo_dourada_ac.png" alt="Instituto Atleta Campeão — marca dourada">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="jornada">
+      <h2 class="journey__head">Sua jornada nos 18 meses (como você vai viver o curso)</h2>
+      <p class="lead">Quatro momentos — cada um com sensação clara de progressão, como em uma temporada bem planejada.</p>
+      <div class="journey">
+        <article class="journey__card">
+          <span class="journey__step">01 · Meses 1–5</span>
+          <h4>Fundamentos e linguagem</h4>
+          <p>Você padroniza conceitos, aprende a conversar com técnico e família e instala hábito de observação — menos achismo, mais método.</p>
+        </article>
+        <article class="journey__card">
+          <span class="journey__step">02 · Meses 5–12</span>
+          <h4>Neurociência na prática</h4>
+          <p>Sono, estresse, telas, cognição e decisão entram no seu playbook. Você enxerga o atleta como sistema — corpo, cérebro e contexto.</p>
+        </article>
+        <article class="journey__card">
+          <span class="journey__step">03 · Meses 12–16</span>
+          <h4>Consolidação com o atleta</h4>
+          <p>Rotina semanal, pré/pós-competição e coach profissional: é onde o treino mental vira rotina aderente, não discurso motivacional.</p>
+        </article>
+        <article class="journey__card">
+          <span class="journey__step">04 · Reta final</span>
+          <h4>Palco e autoridade</h4>
+          <p>Palestras, workshops e posicionamento: você aprende a comunicar valor em salas de clube e no digital — com ética e clareza.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="mercado" class="page-break market">
+      <p class="market__pre">A questão não é se o esporte vai exigir mais ciência mental e neurociência aplicada.</p>
+      <h2 class="market__title">A questão é: você <em>vai crescer junto</em> com esse movimento?</h2>
+      <div class="market__grid">
+        <div class="stat-card">
+          <span class="stat-card__n">18%</span>
+          <p class="stat-card__txt">Crescimento anual do mercado global de treinamento mental esportivo — demanda puxada por clubes e atletas que usam neurociência para performance.</p>
+          <p class="stat-card__src">Fonte: Future Data Stats</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__n">90%</span>
+          <p class="stat-card__txt">Dos times de elite em mercados maduros já investem em estruturas de psicologia do esporte e gestão mental de elenco.</p>
+          <p class="stat-card__src">Fonte: Technavio (mercado global de coaching e treinamento esportivo)</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__n">2025</span>
+          <p class="stat-card__txt">O recrutamento para especialistas com pós em neurociência/psicologia do esporte se intensificou — formação virou critério em vagas de ponta.</p>
+          <p class="stat-card__src">Fonte: tendência citada em materiais da própria formação (LinkedIn / mercado)</p>
+        </div>
+      </div>
+      <p class="market__evid-label">Fontes — trechos de relatórios de mercado</p>
+      <div class="market__evidence">
+        <figure>
+          <img src="assets/evidencia-futuredatastats.png" alt="Future Data Stats: mercado de exercícios mentais no esporte">
+          <figcaption>Future Data Stats — crescimento e projeções do segmento.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/evidencia-allied-mercado.png" alt="Allied Market Research: treinamento esportivo global">
+          <figcaption>Allied Market Research — tamanho do mercado global de treinamento esportivo.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/evidencia-technavio.png" alt="Technavio: coaching e treinamento esportivo">
+          <figcaption>Technavio — adoção de coaching e tecnologias em times de elite.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="page-break">
+      <h2>Autoridade da instituição e da parceria</h2>
+      <p class="lead">
+        A credibilidade desta formação vem da combinação entre <strong>estrutura universitária</strong> (registro do diploma, carga horária, PPC)
+        e <strong>marca de referência no treinamento mental esportivo</strong> no Brasil, com método, comunidade e atuação contínua no campo.
+      </p>
+
+      <div class="authority">
+        <div class="authority__main">
+          <h3>Instituto Atleta Campeão</h3>
+          <p style="font-size:0.84rem;margin:0 0 0.5rem;">
+            Fundado em <strong>2016</strong> nos Estados Unidos e expandido para o Brasil em <strong>2017</strong>, consolidou-se como referência em
+            neurociência e treinamento mental aplicados ao esporte. Em <strong>2018</strong>, foi reconhecido pelo <strong>Comitê Olímpico do Brasil</strong> e
+            convidado ao <strong>Prêmio Brasil Olímpico</strong>. Em <strong>2023</strong>, lançou a primeira turma da pós-graduação em parceria com a UNIFATEC —
+            com ampla adesão na estreia (mais de <strong>300 alunos</strong> na primeira turma, conforme materiais oficiais).
+          </p>
+          <div class="authority__grid">
+            <div class="authority__metric"><strong>+30 mil</strong><span>Atletas impactados (alcance divulgado pela marca)</span></div>
+            <div class="authority__metric"><strong>+400</strong><span>Alunos na pós-graduação (comunidade da formação)</span></div>
+            <div class="authority__metric"><strong>+20 anos</strong><span>Experiência agregada do time no mercado esportivo</span></div>
+            <div class="authority__metric"><strong>MEC</strong><span>Diploma com validade nacional (UNIFATEC)</span></div>
+          </div>
+        </div>
+        <div class="authority__side">
+          <strong style="color:var(--color-hero-ink);font-size:0.88rem;">Por que isso importa para o aluno</strong>
+          <ul>
+            <li><strong>Respaldo formal:</strong> certificação de especialização, não apenas curso avulso.</li>
+            <li><strong>Rede real:</strong> docentes e comunidade conectados a clubes, seleções e alta performance.</li>
+            <li><strong>Atualização:</strong> grade que integra neurociência, cognição, sono, telas, fadiga mental e negócio.</li>
+            <li><strong>Continuidade:</strong> acesso estendido ao conteúdo e encontros de mentoria (conforme regulamento do curso).</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="note">
+        Números de alcance e turmas referem-se a divulgações institucionais; podem ser atualizados em novas edições deste PDF.
+        Para conferência de credenciamento, utilize os canais oficiais do MEC e da mantenedora.
+      </p>
+    </section>
+
+    <section>
+      <h2>Sumário</h2>
+      <nav class="toc" aria-label="Sumário">
+        <ol>
+          <li><a href="#visao-geral">Visão geral</a></li>
+          <li><a href="#jornada">Sua jornada no curso</a></li>
+          <li><a href="#mercado">Mercado e oportunidade</a></li>
+          <li><a href="#identificacao">Identificação e objetivos</a></li>
+          <li><a href="#publico">Público-alvo e pré-requisitos</a></li>
+          <li><a href="#fases">Organização em três fases</a></li>
+          <li><a href="#modulos">Ementa detalhada · módulo a módulo</a></li>
+          <li><a href="#metodologia">Metodologia e acompanhamento</a></li>
+          <li><a href="#certificacao">Certificação</a></li>
+          <li><a href="#docentes">Corpo docente</a></li>
+        </ol>
+      </nav>
+    </section>
+
+    <section id="identificacao" class="page-break">
+      <h2>Identificação e objetivos gerais</h2>
+      <p><strong>Denominação:</strong> Pós-Graduação <em>lato sensu</em> em Neurociência e Treinamento Mental Aplicada ao Esporte.</p>
+      <p><strong>Carga horária:</strong> 360 horas · <strong>Duração prevista:</strong> 18 meses · <strong>Modalidade:</strong> educação a distância.</p>
+      <p>
+        O programa forma profissionais para intervir com <strong>método e evidência</strong> na interface entre mente, cérebro e performance:
+        da preparação da temporada ao momento decisivo, passando por sono, atenção, decisão sob pressão, uso de telas, fadiga mental e comunicação com equipes e famílias.
+      </p>
+      <h4>Competências esperadas do egresso</h4>
+      <ul>
+        <li>Articular linguagem de neurociência e de treinamento mental sem simplificação irresponsável nem jargão inacessível;</li>
+        <li>Selecionar e adaptar protocolos para contextos reais (individual, equipe, categorias de base, pais);</li>
+        <li>Reconhecer limites de atuação profissional e integrar rede (saúde, técnico, clube);</li>
+        <li>Medir esforço e evolução com critérios claros (comportamentais, cognitivos e de rotina);</li>
+        <li>Comunicar valor em ambientes institucionais (palestras, clubes, consultoria) com autoridade técnica.</li>
+      </ul>
+    </section>
+
+    <section id="publico">
+      <h2>Público-alvo e pré-requisitos</h2>
+      <p>
+        Profissionais com <strong>graduação completa</strong> (requisito conforme regulamento da mantenedora) que atuem ou desejem atuar com esporte e performance:
+        educação física, psicologia, treinadores, coaches, profissionais de saúde e educadores que apoiam atletas em desenvolvimento.
+      </p>
+    </section>
+
+    <section id="fases">
+      <h2>Organização em três fases</h2>
+      <p class="lead">A progressão do curso organiza o aprendizado em três eixos cumulativos — do fundamento científico à autoridade profissional.</p>
+      <ul>
+        <li><strong>Fase 1 — Repertório científico e linguagem comum:</strong> módulos 01 a 06 (bases do treinamento mental, grupo, fisiologia aplicada, família, psicologia, introdução à neurociência).</li>
+        <li><strong>Fase 2 — Neurociência e ferramentas na prática:</strong> módulos 07 a 15 (sono, aplicação ao esporte, estimulação não invasiva, fadiga mental, pré/pós-competição, telas, cognição, coach).</li>
+        <li><strong>Fase 3 — Consolidação e posicionamento:</strong> módulos 16 a 18 (rotina do atleta, palestras e workshops, autoridade de mercado).</li>
+      </ul>
+    </section>
+
+    <section id="modulos" class="page-break">
+      <h2>Ementa detalhada · módulo a módulo</h2>
+      <p class="lead">A seguir, a descrição completa de cada unidade curricular: contexto, foco e tópicos centrais.</p>
+
+      <!-- 01 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-01">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/01_principios_basicos.avif" alt="Módulo 01"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">01</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 1 · Fundamentos</span>
+            <h3>Princípios Básicos</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Módulo introdutório que estabelece uma <strong>gramática comum</strong> do treinamento mental: o que é (e o que não é), como se diferencia de improviso motivacional
+          e quais critérios tornam uma intervenção replicável e ética no esporte.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Definição operacional de treinamento mental e papel do profissional no ecossistema (técnico, saúde, família);</li>
+          <li>Modelos simples de demanda psicológica na performance (carga mental, atenção, confiança);</li>
+          <li>Introdução a rotinas de observação: como registrar comportamentos e respostas sob pressão;</li>
+          <li>Ética e limites: quando encaminhar, como comunicar com transparência;</li>
+          <li>Alinhamento de expectativas com atleta e staff: contrato psicológico e plano de intervenção inicial.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-02">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/02_grupos_e_equipes.avif" alt="Módulo 02"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">02</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 1 · Fundamentos</span>
+            <h3>Grupos e Equipes</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Foco em <strong>dinâmicas de equipe</strong>: coesão, papéis, comunicação sob estresse e resiliência coletiva. Prepara para ambientes onde o resultado depende da sincronia entre pessoas.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Formação e manutenção de coesão: fatores psicológicos e situacionais;</li>
+          <li>Liderança no esporte coletivo: estilos, feedback e conflitos;</li>
+          <li>Pressão de resultado e “culpa” individual vs responsabilidade compartilhada;</li>
+          <li>Dinâmicas de grupo aplicáveis (segurança psicológica, metas coletivas, rituais de equipe);</li>
+          <li>Planejamento de intervenções breves em semana de jogos e rivalidade.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-03">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/03_fisiologia_do_Treinamento.avif" alt="Módulo 03"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">03</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 1 · Fundamentos</span>
+            <h3>Fisiologia do Treinamento</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Integra <strong>carga física</strong> e <strong>estado mental</strong>: como periodização, fadiga e recuperação alteram atenção, humor e tomada de decisão — linguagem compartilhada com preparadores físicos.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Princípios de estresse e adaptação: relação entre treino, sono e disponibilidade cognitiva;</li>
+          <li>Sobrecarga: sinais comportamentais e cognitivos antes dos sinais puramente físicos;</li>
+          <li>Integração staff-técnico: como traduzir “cansou” em hipóteses ajustáveis no plano;</li>
+          <li>Microciclos e competição: prioridades mentais por fase da temporada;</li>
+          <li>Bases para conversar com profissionais da saúde e performance sem reducionismo.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-04">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/04_jovem_e_o_contexto_da_familia.avif" alt="Módulo 04"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">04</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 1 · Fundamentos</span>
+            <h3>O Jovem e o Contexto da Família</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Aborda o <strong>sistema familiar</strong> como variável de desenvolvimento: expectativas, ansiedade parental, comunicação e alinhamento com staff — essencial em categorias de base.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Desenvolvimento no esporte: pressão saudável vs pressão tóxica;</li>
+          <li>Protocolos de conversa com pais: escuta, limites e combinados realistas;</li>
+          <li>Papel da família na rotina de sono, telas e organização do dia a dia;</li>
+          <li>Conflitos frequentes (comparação, especialização precoce, culpa) e mediação;</li>
+          <li>Rede de apoio: quando envolver psicologia clínica ou escola.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 05 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-05">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/05_psicologia.avif" alt="Módulo 05"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">05</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 1 · Fundamentos</span>
+            <h3>Psicologia</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Consolida <strong>bases psicológicas</strong> aplicadas ao esporte de alto rendimento: motivação, emoção, aprendizado e modelos de intervenção compatíveis com evidência.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Principais abordagens úteis ao contexto esportivo (foco em aplicação, não em debate escolar);</li>
+          <li>Ansiedade, humor e autoconfiança: leitura de sinais e primeiras estratégias;</li>
+          <li>Metas, feedback e reforço: como construir sistemas de melhoria contínua;</li>
+          <li>Relação terapêutica / relação de treino: papéis e encaminhamentos;</li>
+          <li>Ética profissional e sigilo no ambiente esportivo.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 06 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-06">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/06_introdução_a_neurociência.avif" alt="Módulo 06"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">06</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 1 · Fundamentos</span>
+            <h3>Introdução à Neurociência</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Panorama dos <strong>fundamentos neurofisiológicos</strong> para aplicar neurociência com responsabilidade: neurônios, plasticidade, controle motor e bases da atenção — ponte para os módulos seguintes.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Como o cérebro processa informação e organiza o movimento em contexto esportivo;</li>
+          <li>Neurônios, sinapses e neurotransmissores: implicações para foco, motivação e aprendizagem;</li>
+          <li>Aprendizagem motora e memória: repetição, variabilidade e transferência;</li>
+          <li>Introdução a circuitos relevantes (sistemas de atenção e controle executivo) em linguagem acessível;</li>
+          <li>Leitura crítica de “neuromitos” e divulgação sensacionalista no esporte.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 07 -->
+      <article class="mod-block mod-block--with-thumb page-break" id="mod-07">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/07_neurociência_do_sono.png" alt="Módulo 07"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">07</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 2 · Neurociência aplicada</span>
+            <h3>Neurociência do Sono</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          O sono como <strong>alavanca de performance</strong>: consolidação de memória, recuperação, regulação emocional e ritmos circadianos — com implicações diretas em treino e competição.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Estágios do sono e papel na memória procedural e regeneração;</li>
+          <li>Ritmos circadianos: janelas de treino, viagens e competições em fusos diferentes;</li>
+          <li>Distúrbios comuns em atletas: sinais de alerta e encaminhamento;</li>
+          <li>Higiene do sono: ambiente, rotina, luz e tecnologia;</li>
+          <li>Protocolos práticos e estudos de caso em alto rendimento.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 08 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-08">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/08_neurociência_aplicada_ao_esporte.avif" alt="Módulo 08"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">08</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 2 · Neurociência aplicada</span>
+            <h3>Neurociência Aplicada ao Esporte</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Traduz neurociência para <strong>situações de jogo</strong>: pressão, medo, erro, derrota e reabilitação da confiança — com foco em circuitos de ameaça, regulação emocional e funções executivas.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Medo de falhar e antecipação de ameaça: impacto na atenção e no movimento;</li>
+          <li>Funções executivas no esporte: inibição, flexibilidade cognitiva e controle atencional;</li>
+          <li>Reaprendizagem após falha: como estruturar retorno seguro à competição;</li>
+          <li>Integração mente–corpo em momentos decisivos (rotinas, gatilhos, âncoras);</li>
+          <li>Estudos de caso e leitura de cenários (individual vs coletivo).</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 09 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-09">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/09_estimulação_não_invasiva.png" alt="Módulo 09"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">09</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 2 · Neurociência aplicada</span>
+            <h3>Estimulação Não Invasiva</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Visão crítica e aplicada de <strong>técnicas de neuromodulação não invasiva</strong> discutidas no esporte: o que é, para que serve, evidências, limitações e ética — sem promessas milagrosas.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Introdução à estimulação cerebral não invasiva no contexto de performance;</li>
+          <li>Panorama de modalidades (ex.: tDCS, tACS, tRNS, rTMS) com linguagem técnica acessível;</li>
+          <li>Efeitos esperados, heterogeneidade individual e estado da literatura;</li>
+          <li>Protocolos citados na pesquisa e cuidados de segurança;</li>
+          <li>Ética, contraindicações e papel do profissional (não médico): integração com equipe de saúde.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 10 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-10">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/10_fadiga_mental.JPG" alt="Módulo 10"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">10</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 2 · Neurociência aplicada</span>
+            <h3>Fadiga Mental</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Aprofunda <strong>fadiga mental</strong> vs fadiga física: sobrecarga cognitiva, queda de decisão, tempo de reação e estratégias de recuperação e prevenção na temporada.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Definições e marcadores comportamentais da fadiga mental no esporte;</li>
+          <li>Efeitos da sobrecarga cognitiva em atenção e execução técnica;</li>
+          <li>Interação com sono, estresse e carga de informação (vídeo, análise tática);</li>
+          <li>Estratégias de recuperação cognitiva e microdescansos;</li>
+          <li>Planejamento: equilíbrio entre carga física, emocional e mental no microciclo.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 11 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-11">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/11_treinamento_mental_pré_e_pós_competição.avif" alt="Módulo 11"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">11</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 2 · Neurociência aplicada</span>
+            <h3>Treinamento Mental Pré e Pós Competição</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Protocolos para a <strong>véspera</strong>, o <strong>dia do evento</strong> e o <strong>processamento pós-prova</strong>: ansiedade, insônia, foco, rotina de aquecimento mental e manejo de derrota sem destruir confiança.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Rotinas pré-competição: visualização, respiração, autodiálogo e âncoras;</li>
+          <li>Regulação fisiológica (ativação vs excesso de tensão);</li>
+          <li>Plano B mental para imprevistos (clima, arbitragem, adversário);</li>
+          <li>Pós-competição: análise produtiva vs autocrítica destrutiva;</li>
+          <li>Integração com staff técnico para consistência de mensagens.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 12 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-12">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/12_tempo_de_Telas_e_performance.png" alt="Módulo 12"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">12</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 2 · Neurociência aplicada</span>
+            <h3>Tempo de Telas e Performance</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Impacto do <strong>estímulo digital</strong> em dopamina, atenção, sono e recuperação — com protocolos de higiene digital e envolvimento de pais e treinadores na mudança de hábitos.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Bases neurocientíficas do uso de telas e recompensa;</li>
+          <li>Efeitos no foco, sono e humor: leitura para diferentes idades;</li>
+          <li>Evidências e estudos de caso com atletas de base e alto rendimento;</li>
+          <li>Estratégias práticas: limites, substituição, rotinas e ambiente;</li>
+          <li>Comunicação com famílias: reduzir culpa e aumentar adesão.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 13 -->
+      <article class="mod-block mod-block--with-thumb page-break" id="mod-13">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/13_Perceptivo_Cognitivas .png" alt="Módulo 13"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">13</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 2 · Cognição e decisão</span>
+            <h3>Perceptivo Cognitivas</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Habilidades <strong>perceptivo-cognitivas</strong> que decidem performance: atenção, memória de trabalho, antecipação e tomada de decisão em esportes coletivos, individuais e de alto risco.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Modelos de atenção e leitura de jogo;</li>
+          <li>Memória de trabalho sob pressão e carga de informação;</li>
+          <li>Antecipação e tomada de decisão: treino deliberado vs repetição vazia;</li>
+          <li>Estudos de caso por modalidade;</li>
+          <li>Integração com preparo físico e técnico sem duplicar esforço.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 14 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-14">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/14_treinamento_cognitivo.avif" alt="Módulo 14"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">14</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 2 · Cognição e decisão</span>
+            <h3>Treinamento Cognitivo</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Ferramentas de <strong>treino cognitivo</strong> fora e dentro do campo: softwares, simulações, vídeo e realidade virtual quando aplicável — com foco em transferência para o jogo real.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Princípios de design de treino cognitivo (carga, progressão, feedback);</li>
+          <li>Exercícios para tempo de reação, controle inibitório e flexibilidade cognitiva;</li>
+          <li>Uso de tecnologia com critério (o que mede, o que não mede);</li>
+          <li>Reabilitação e retorno ao esporte: progressão cognitiva segura;</li>
+          <li>Pré-temporada e microciclos: onde encaixar o cognitivo na semana.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 15 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-15">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/15_coach_esportivo.avif" alt="Módulo 15"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">15</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 2 · Cognição e decisão</span>
+            <h3>Coach Esportivo</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          O papel do <strong>coach</strong> como facilitador de mudança: contratos claros, perguntas poderosas, plano de sessões e integração com objetivos esportivos — método em primeiro lugar.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Frameworks de sessão e acompanhamento (objetivos, métricas, revisão);</li>
+          <li>Comunicação e escuta ativa com atletas de perfis diferentes;</li>
+          <li>Integração com equipe técnica: limites e complementaridades;</li>
+          <li>Ferramentas de ancoragem de hábitos e responsabilização saudável;</li>
+          <li>Ética e marketing responsável na divulgação do trabalho.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 16 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-16">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/16_treinamento_mental_na_rotina_do_atleta.avif" alt="Módulo 16"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">16</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 3 · Prática e carreira</span>
+            <h3>Treinamento Mental na Rotina do Atleta</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Consolida <strong>ferramentas diárias</strong> sustentáveis: visualização, respiração, autodiálogo, diário, rotinas pré-treino e pós-treino — com adaptação por idade e nível competitivo.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Design de rotinas curtas com alta adesão (microhábitos);</li>
+          <li>Visualização multimodal e especificidade por modalidade;</li>
+          <li>Regulação emocional no dia a dia (não só na competição);</li>
+          <li>Integração com calendário esportivo (escola, trabalho, viagens);</li>
+          <li>Ajuste fino: quando simplificar e quando aprofundar.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 17 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-17">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/17_como_criar_palestras_e_workshops.avif" alt="Módulo 17"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">17</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 3 · Prática e carreira</span>
+            <h3>Como Criar Palestras e Workshops</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Estrutura para <strong>ensinar quem ensina</strong>: desenho de palestras para clubes, escolas e empresas, com roteiros, slides, dinâmicas e adaptação de público (atletas, pais, staff).
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Arquitetura da apresentação: problema → ciência → ferramenta → plano de ação;</li>
+          <li>Modelos editáveis por tema (base, alto rendimento, famílias);</li>
+          <li>Logística e segurança em grupo (participação, gatilhos emocionais);</li>
+          <li>Como transformar palestra em acompanhamento ou venda ética de serviço;</li>
+          <li>Bibliografia e linguagem adequada a cada leigo.</li>
+        </ul>
+        </div>
+      </article>
+
+      <!-- 18 -->
+      <article class="mod-block mod-block--with-thumb" id="mod-18">
+        <figure class="mod-block__thumb"><img src="memberkit neuro/18_posicionamento_e_autoridade.avif" alt="Módulo 18"></figure>
+        <div class="mod-block__main">
+        <div class="mod-block__top">
+          <span class="mod-block__num">18</span>
+          <div class="mod-block__titlewrap">
+            <span class="mod-block__tag">Fase 3 · Prática e carreira</span>
+            <h3>Posicionamento e Autoridade</h3>
+          </div>
+        </div>
+        <p class="mod-block__lead">
+          Fecha o ciclo com <strong>estratégia de carreira</strong>: posicionamento, prova social legítima, comunicação digital, captação de clientes e construção de reputação técnica no longo prazo.
+        </p>
+        <h4>Conteúdos e tópicos</h4>
+        <ul>
+          <li>Proposta de valor nítida (para quem você é inevitável?);</li>
+          <li>Autoridade baseada em método, casos e transparência;</li>
+          <li>Marketing ético para profissionais da saúde e do esporte;</li>
+          <li>Precificação e pacotes alinhados à formação;</li>
+          <li>Plano de 90 dias pós-formação: conteúdo, parcerias e métricas.</li>
+        </ul>
+        </div>
+      </article>
+
+      <h4>Tabela de referência rápida</h4>
+      <table class="sum" aria-label="Lista dos 18 módulos">
+        <thead>
+          <tr><th>#</th><th>Módulo</th><th>Fase</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>01</td><td>Princípios Básicos</td><td>1</td></tr>
+          <tr><td>02</td><td>Grupos e Equipes</td><td>1</td></tr>
+          <tr><td>03</td><td>Fisiologia do Treinamento</td><td>1</td></tr>
+          <tr><td>04</td><td>O Jovem e o Contexto da Família</td><td>1</td></tr>
+          <tr><td>05</td><td>Psicologia</td><td>1</td></tr>
+          <tr><td>06</td><td>Introdução à Neurociência</td><td>1</td></tr>
+          <tr><td>07</td><td>Neurociência do Sono</td><td>2</td></tr>
+          <tr><td>08</td><td>Neurociência Aplicada ao Esporte</td><td>2</td></tr>
+          <tr><td>09</td><td>Estimulação Não Invasiva</td><td>2</td></tr>
+          <tr><td>10</td><td>Fadiga Mental</td><td>2</td></tr>
+          <tr><td>11</td><td>Treinamento Mental Pré e Pós Competição</td><td>2</td></tr>
+          <tr><td>12</td><td>Tempo de Telas e Performance</td><td>2</td></tr>
+          <tr><td>13</td><td>Perceptivo Cognitivas</td><td>2</td></tr>
+          <tr><td>14</td><td>Treinamento Cognitivo</td><td>2</td></tr>
+          <tr><td>15</td><td>Coach Esportivo</td><td>2</td></tr>
+          <tr><td>16</td><td>Treinamento Mental na Rotina do Atleta</td><td>3</td></tr>
+          <tr><td>17</td><td>Como Criar Palestras e Workshops</td><td>3</td></tr>
+          <tr><td>18</td><td>Posicionamento e Autoridade</td><td>3</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="metodologia" class="page-break">
+      <h2>Metodologia e acompanhamento</h2>
+      <p>
+        A formação é <strong>online</strong>, com organização modular e ritmo compatível com profissionais em atividade. Entre os pilares divulgados pela pós estão:
+        tutoria periódica em grupo, encontros de mentoria em videoconferência, comunidade para troca com pares e prazo estendido de acesso ao conteúdo para revisão.
+        A frequência exata de encontros ao vivo, critérios de avaliação e TCC/regulamento acadêmico seguem o documento oficial entregue ao aluno matriculado na UNIFATEC.
+      </p>
+    </section>
+
+    <section id="certificacao">
+      <h2>Certificação</h2>
+      <p>
+        O diploma de <strong>Pós-Graduação <em>lato sensu</em></strong> é emitido pela <strong>UNIFATEC</strong>, com registro conforme exigências da educação superior brasileira e validade nacional.
+        O Instituto Atleta Campeão participa como parceiro de metodologia e ecossistema profissional vinculado ao projeto do curso.
+      </p>
+    </section>
+
+    <section id="docentes" class="page-break">
+      <h2>Corpo docente</h2>
+      <p class="lead">Quem ensina não está só na universidade: está em campo, em seleções e no mercado. A fotografia reúne parte do time; abaixo, os nomes e a trajetória de cada docente.</p>
+      <div class="faculty-banner">
+        <img src="assets/corpo_docente.png" alt="Corpo docente da pós-graduação Atleta Campeão e UNIFATEC">
+        <div class="faculty-banner__overlay">Mestres e doutores · Pesquisa aplicada e alta performance</div>
+      </div>
+      <div class="faculty-grid--rich">
+        <div class="faculty-tile">
+          <div class="faculty-tile__avatar" aria-hidden="true">FC</div>
+          <div class="faculty-tile__body">
+            <strong>Dr. Fábio Ceschini</strong>
+            <span>Doutor em Fisiologia do Exercício · Coordenação acadêmica do curso.</span>
+          </div>
+        </div>
+        <div class="faculty-tile">
+          <div class="faculty-tile__avatar" aria-hidden="true">MR</div>
+          <div class="faculty-tile__body">
+            <strong>Mayra Ramos</strong>
+            <span>Fundadora do Instituto Atleta Campeão; referência em treinamento mental e neurociência aplicada ao esporte no Brasil.</span>
+          </div>
+        </div>
+        <div class="faculty-tile">
+          <img class="faculty-tile__img" src="assets/professor_leonardo.png" alt="Prof. Dr. Leonardo Fortes">
+          <div class="faculty-tile__body">
+            <strong>Prof. Dr. Leonardo Fortes</strong>
+            <span>Psicologia e ciências do esporte (UFMG, CNPq, GENEXDES); docência e pesquisa com trajetória internacional.</span>
+          </div>
+        </div>
+        <div class="faculty-tile">
+          <div class="faculty-tile__avatar" aria-hidden="true">AS</div>
+          <div class="faculty-tile__body">
+            <strong>Dr. Antônio Serenini</strong>
+            <span>Doutor em Psicologia; experiência em alta performance e contextos de seleções.</span>
+          </div>
+        </div>
+        <div class="faculty-tile">
+          <div class="faculty-tile__avatar" aria-hidden="true">FM</div>
+          <div class="faculty-tile__body">
+            <strong>Flávio Marreti</strong>
+            <span>Treinador mental; aprofundamento em neurociências e performance.</span>
+          </div>
+        </div>
+        <div class="faculty-tile">
+          <div class="faculty-tile__avatar" aria-hidden="true">MZ</div>
+          <div class="faculty-tile__body">
+            <strong>Dr. Marcelo Callegari Zanetti</strong>
+            <span>Doutor em desenvolvimento humano e tecnologias; visão interdisciplinar.</span>
+          </div>
+        </div>
+        <div class="faculty-tile">
+          <div class="faculty-tile__avatar" aria-hidden="true">PR</div>
+          <div class="faculty-tile__body">
+            <strong>Prof. Pablo Rosa</strong>
+            <span>Psicólogo do esporte; ênfase em neurociência e treinamento cognitivo.</span>
+          </div>
+        </div>
+        <div class="faculty-tile">
+          <div class="faculty-tile__avatar" aria-hidden="true">LC</div>
+          <div class="faculty-tile__body">
+            <strong>Lucas Cruz</strong>
+            <span>Estratégia digital, inteligência artificial aplicada e posicionamento de conteúdo para profissionais da área.</span>
+          </div>
+        </div>
+      </div>
+      <p class="note">A escalação por turma pode incluir docentes convidados adicionais, preservando o perfil e os objetivos do programa. Fotos individuais serão incluídas conforme disponibilizadas pela coordenação.</p>
+    </section>
+
+    <footer class="footer-doc">
+      <p><strong>Instituto Atleta Campeão</strong> · Pós-Graduação em Neurociência e Treinamento Mental Aplicada ao Esporte (credenciamento UNIFATEC / MEC).</p>
+      <p>Documento informativo para download. Não substitui edital, regulamento ou contrato. Atualize a data da versão ao publicar nova edição.</p>
+    </footer>
+  </div>
+</body>
+</html>

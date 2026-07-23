@@ -1,0 +1,22 @@
+---
+description: Deploy das LPs para GitHub (Vercel faz o deploy automático no push)
+alwaysApply: false
+globs: "obrigado-congresso/**","Congresso de Neuro/**","fadiga-mental/index.html","curso-telas/**","inscricao-congresso-neurociencia-no-esporte/**"
+---
+
+# Deploy das landing pages
+
+Quando o usuário pedir para **fazer deploy**, **subir**, **publicar** ou **enviar para o GitHub/Vercel**:
+
+1. **Opção preferida**: executar o script `./deploy.sh` com uma mensagem de commit descritiva (ex.: "Meta Pixel na página X", "Footer igual à captura").
+   - Se o usuário não especificou mensagem, use algo como: "Deploy: atualizações nas LPs".
+   - Comando: `./deploy.sh "mensagem"` (com permissões `git_write` e `network`).
+
+2. **Se o script falhar ou não existir**: fazer manualmente:
+   - `git add` das pastas/arquivos alterados (obrigado-congresso, Congresso de Neuro, fadiga-mental, curso-telas, inscricao-congresso-neurociencia-no-esporte, vercel.json).
+   - `git commit -m "mensagem"`
+   - `git push origin main`
+
+3. **Lembrar ao usuário**: o deploy na Vercel é automático após o push (1–2 min). Não é necessário disparar nada no dashboard da Vercel.
+
+Script disponível: raiz do projeto, `deploy.sh`. Documentação: `docs/DEPLOY-AUTOMATICO.md`.
