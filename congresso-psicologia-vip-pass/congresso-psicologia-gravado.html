@@ -1369,6 +1369,154 @@
       margin-top: 0.2rem;
     }
 
+    /* ========== Depoimentos dos alunos (carrossel 1 print) ========== */
+    .depoimentos {
+      background: transparent;
+      padding: clamp(2.75rem, 6vw, 4rem) clamp(0.75rem, 2vw, 1rem);
+      width: 100%;
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    .depoimentos__inner {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    .depoimentos__head {
+      text-align: center;
+      margin: 0 auto 1.35rem;
+    }
+    .depoimentos__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin: 0 0 0.55rem;
+    }
+    .depoimentos__title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.55rem, 4vw, 2.1rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--color-heading);
+      margin: 0 0 0.5rem;
+    }
+    .depoimentos__lead {
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: var(--color-subhead);
+      margin: 0;
+    }
+    .depo-carousel {
+      position: relative;
+      width: 100%;
+    }
+    .depo-carousel__viewport {
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(2, 51, 122, 0.12);
+      background: #fff;
+      box-shadow: 0 8px 28px rgba(0, 28, 68, 0.08);
+      touch-action: pan-y;
+      width: 100%;
+    }
+    .depo-carousel__track {
+      display: flex;
+      transition: transform 0.35s ease;
+      will-change: transform;
+    }
+    .depo-carousel__slide {
+      flex: 0 0 100%;
+      width: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+    .depo-carousel__slide img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: center top;
+    }
+    .depo-carousel__nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-top: 0.9rem;
+    }
+    .depo-carousel__btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--color-slate-200);
+      background: #fff;
+      color: var(--color-accent);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .depo-carousel__btn:hover {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #fff;
+    }
+    .depo-carousel__btn:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+    .depo-carousel__btn iconify-icon {
+      font-size: 1.1rem;
+    }
+    .depo-carousel__status {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-slate-600);
+      min-width: 3.75rem;
+      text-align: center;
+    }
+    .depo-carousel__dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .depo-carousel__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 0;
+      padding: 0;
+      background: var(--color-slate-200);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .depo-carousel__dot[aria-current="true"] {
+      background: var(--color-accent);
+      transform: scale(1.15);
+    }
+    .depo-carousel__dot:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+    .depo-carousel__hint {
+      display: none;
+    }
+
     /* ========== Seção FAQ (accordion, responsivo e separado) ========== */
     #faq {
       font-family: var(--font-heading);
@@ -2370,6 +2518,7 @@
         <a href="#para-quem">Para quem é</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#palestrantes">Professores</a>
+        <a href="#depoimentos">Depoimentos</a>
         <a href="#certificacao">Certificado</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -2384,6 +2533,7 @@
       <a href="#para-quem">Para quem é</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#palestrantes">Professores</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#certificacao">Certificado</a>
       <a href="#faq">FAQ</a>
       <a href="#duvidas">Fale conosco</a>
@@ -2698,6 +2848,51 @@
             </ul>
           </article>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- O que os alunos falam -->
+    <section class="depoimentos" id="depoimentos" aria-labelledby="depoimentos-title">
+      <div class="depoimentos__inner">
+        <div class="depoimentos__head">
+          <p class="depoimentos__eyebrow">Prova social</p>
+          <h2 class="depoimentos__title" id="depoimentos-title">O que os alunos falam sobre o congresso</h2>
+          <p class="depoimentos__lead">Prints reais de quem acompanhou as aulas.</p>
+        </div>
+
+        <div class="depo-carousel" id="depo-carousel" aria-roledescription="carrossel" aria-label="Depoimentos em prints">
+          <div class="depo-carousel__viewport" data-viewport>
+            <div class="depo-carousel__track" data-track>
+              <figure class="depo-carousel__slide" data-slide aria-hidden="false">
+                <img src="assets/depoimento_yt_01.png" alt="Comentários de alunos no YouTube sobre o congresso" width="1024" height="640" decoding="async">
+              </figure>
+              <figure class="depo-carousel__slide" data-slide aria-hidden="true">
+                <img src="assets/depoimento_yt_02.png" alt="Mais comentários de alunos no YouTube" width="798" height="638" loading="lazy" decoding="async">
+              </figure>
+              <figure class="depo-carousel__slide" data-slide aria-hidden="true">
+                <img src="assets/depoimento_yt_03.png" alt="Comentários positivos das aulas no YouTube" width="858" height="836" loading="lazy" decoding="async">
+              </figure>
+              <figure class="depo-carousel__slide" data-slide aria-hidden="true">
+                <img src="assets/depoimento_plataforma_01.png" alt="Comentários de alunos na plataforma do congresso" width="1024" height="622" loading="lazy" decoding="async">
+              </figure>
+              <figure class="depo-carousel__slide" data-slide aria-hidden="true">
+                <img src="assets/depoimento_plataforma_02.png" alt="Depoimentos na plataforma sobre as aulas" width="1024" height="615" loading="lazy" decoding="async">
+              </figure>
+            </div>
+          </div>
+
+          <div class="depo-carousel__nav">
+            <button type="button" class="depo-carousel__btn" data-prev aria-label="Depoimento anterior">
+              <iconify-icon icon="lucide:chevron-left" aria-hidden="true"></iconify-icon>
+            </button>
+            <span class="depo-carousel__status" data-status aria-live="polite">1 / 5</span>
+            <button type="button" class="depo-carousel__btn" data-next aria-label="Próximo depoimento">
+              <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon>
+            </button>
+          </div>
+          <div class="depo-carousel__dots" data-dots role="tablist" aria-label="Escolher print"></div>
+          <p class="depo-carousel__hint">Passa automaticamente · deslize ou use as setas para navegar</p>
         </div>
       </div>
     </section>
@@ -3143,6 +3338,130 @@
         io.disconnect();
       }, { threshold: 0.15 });
       if (certCard) io.observe(certCard);
+    })();
+
+    // Carrossel de depoimentos (1 print por vez + autoplay)
+    (function () {
+      var root = document.getElementById('depo-carousel');
+      if (!root) return;
+      var track = root.querySelector('[data-track]');
+      var slides = Array.prototype.slice.call(root.querySelectorAll('[data-slide]'));
+      var statusEl = root.querySelector('[data-status]');
+      var dotsWrap = root.querySelector('[data-dots]');
+      var btnPrev = root.querySelector('[data-prev]');
+      var btnNext = root.querySelector('[data-next]');
+      var viewport = root.querySelector('[data-viewport]');
+      if (!track || !slides.length) return;
+
+      var index = 0;
+      var total = slides.length;
+      var startX = 0;
+      var deltaX = 0;
+      var dragging = false;
+      var autoplayMs = 2800;
+      var autoplayTimer = null;
+      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'depo-carousel__dot';
+        dot.setAttribute('aria-label', 'Ir para print ' + (i + 1));
+        if (i === 0) dot.setAttribute('aria-current', 'true');
+        dot.addEventListener('click', function () { goTo(i); restartAutoplay(); });
+        dotsWrap.appendChild(dot);
+      });
+      var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('.depo-carousel__dot'));
+
+      function goTo(i) {
+        index = (i + total) % total;
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        slides.forEach(function (slide, s) {
+          slide.setAttribute('aria-hidden', s === index ? 'false' : 'true');
+        });
+        dots.forEach(function (dot, d) {
+          if (d === index) dot.setAttribute('aria-current', 'true');
+          else dot.removeAttribute('aria-current');
+        });
+        if (statusEl) statusEl.textContent = (index + 1) + ' / ' + total;
+      }
+
+      function stopAutoplay() {
+        if (autoplayTimer) {
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
+
+      function startAutoplay() {
+        if (reducedMotion) return;
+        stopAutoplay();
+        autoplayTimer = setInterval(function () {
+          goTo(index + 1);
+        }, autoplayMs);
+      }
+
+      function restartAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+      }
+
+      if (btnPrev) btnPrev.addEventListener('click', function () { goTo(index - 1); restartAutoplay(); });
+      if (btnNext) btnNext.addEventListener('click', function () { goTo(index + 1); restartAutoplay(); });
+
+      root.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(index - 1); restartAutoplay(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1); restartAutoplay(); }
+      });
+      root.setAttribute('tabindex', '0');
+
+      root.addEventListener('mouseenter', stopAutoplay);
+      root.addEventListener('mouseleave', startAutoplay);
+      root.addEventListener('focusin', stopAutoplay);
+      root.addEventListener('focusout', function (e) {
+        if (!root.contains(e.relatedTarget)) startAutoplay();
+      });
+
+      if (viewport) {
+        viewport.addEventListener('touchstart', function (e) {
+          if (!e.touches || !e.touches.length) return;
+          dragging = true;
+          stopAutoplay();
+          startX = e.touches[0].clientX;
+          deltaX = 0;
+          track.style.transition = 'none';
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', function (e) {
+          if (!dragging || !e.touches || !e.touches.length) return;
+          deltaX = e.touches[0].clientX - startX;
+          var pct = (deltaX / viewport.offsetWidth) * 100;
+          track.style.transform = 'translateX(calc(-' + (index * 100) + '% + ' + pct + '%))';
+        }, { passive: true });
+
+        viewport.addEventListener('touchend', function () {
+          if (!dragging) return;
+          dragging = false;
+          track.style.transition = '';
+          if (Math.abs(deltaX) > 50) goTo(deltaX < 0 ? index + 1 : index - 1);
+          else goTo(index);
+          restartAutoplay();
+        });
+      }
+
+      // Pausa quando a seção sai da tela
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          var visible = entries.some(function (e) { return e.isIntersecting; });
+          if (visible) startAutoplay();
+          else stopAutoplay();
+        }, { threshold: 0.25 });
+        io.observe(root);
+      } else {
+        startAutoplay();
+      }
+
+      goTo(0);
     })();
   </script>
 
