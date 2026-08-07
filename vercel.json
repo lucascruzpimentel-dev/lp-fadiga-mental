@@ -10,7 +10,8 @@
     { "source": "/pos-graduação-neurociencia-no-esporte/", "destination": "/pos-graduacao-neurociencia-no-esporte/", "permanent": true },
     { "source": "/curso-telas/Captura_aula_telas_gratuita.html", "destination": "/aula-cerebro-do-atleta", "permanent": true },
     { "source": "/jiu-jitsu-parents", "destination": "/jiu-jitsu-parents/", "permanent": false },
-    { "source": "/congresso-psicologia-gravado", "destination": "/congresso-psicologia-gravado/", "permanent": false }
+    { "source": "/congresso-psicologia-gravado", "destination": "/congresso-psicologia-gravado/", "permanent": false },
+    { "source": "/congresso-psicologia-presencial", "destination": "/congresso-psicologia-presencial/", "permanent": false }
   ],
   "rewrites": [
     { "source": "/aula-cerebro-do-atleta", "destination": "/curso-telas/Captura_aula_telas_gratuita.html" },
@@ -29,6 +30,8 @@
     { "source": "/congresso-psicologia-vip-pass/", "destination": "/congresso-psicologia-vip-pass/congresso-psicologia-vip-pass.html" },
     { "source": "/congresso-psicologia-gravado/", "destination": "/congresso-psicologia-vip-pass/congresso-psicologia-gravado.html" },
     { "source": "/congresso-psicologia-gravado/assets/:path*", "destination": "/congresso-psicologia-vip-pass/assets/:path*" },
+    { "source": "/congresso-psicologia-presencial/", "destination": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso.html" },
+    { "source": "/congresso-psicologia-presencial/assets/:path*", "destination": "/congresso-psicologia-vip-pass/assets/:path*" },
     { "source": "/obrigado-congresso-psicologia-do-esporte", "destination": "/congresso-psicologia-vip-pass/obrigado-congreso_psi.html" },
     { "source": "/obrigado-congresso-psicologia-do-esporte/", "destination": "/congresso-psicologia-vip-pass/obrigado-congreso_psi.html" },
     { "source": "/obrigado-aula-telas-cerebro-do-atleta", "destination": "/curso-telas/obrigado-aula-telas-cerebro-do-atleta.html" },
