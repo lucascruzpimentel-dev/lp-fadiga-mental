@@ -189,19 +189,51 @@ a{text-decoration:none;color:inherit}
 .faq-a p{padding:0 0 18px;font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.7}
 
 /* PARTNER */
-.p-hero{min-height:auto;padding:130px 24px 70px}
-.p-nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:32px}
-.pn{text-align:center;padding:20px 12px}
-.pn .n{font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--n)}
-.pn .l{font-size:.76rem;color:var(--t3);margin-top:2px}
-.p-bens{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:32px}
-.pb{padding:24px;background:var(--w);border-radius:var(--r);border:1px solid var(--b1);transition:.2s}
-.pb:hover{border-color:var(--g)}
-.pb h4{font-size:.88rem;font-weight:700;color:var(--n);margin-bottom:4px;font-family:var(--font-heading)}
-.pb p{font-size:.82rem;color:var(--t3);line-height:1.6}
-.p-cta-box{margin-top:40px;padding:36px;background:var(--n);border-radius:var(--r);text-align:center;color:#fff}
-.p-cta-box h3{font-family:var(--font-heading);font-size:1.3rem;margin-bottom:6px}
-.p-cta-box>p{font-size:.86rem;color:rgba(255,255,255,.55);margin-bottom:20px}
+.p-hero{min-height:auto;padding:120px 24px 80px;text-align:left;align-items:flex-start;justify-content:center}
+.p-hero .hero-inner{max-width:620px;margin:0;text-align:left}
+.p-hero h1{font-size:clamp(2.1rem,4.8vw,3rem)}
+.p-hero .lead{font-size:1rem;color:rgba(255,255,255,.58);line-height:1.85;margin-bottom:36px;text-align:left}
+.p-hero .lead strong{color:rgba(255,255,255,.85);font-weight:600}
+.pa-num{background:var(--nd);padding:0 24px 100px;color:#fff}
+.pa-nums-row{max-width:800px;margin:0 auto;display:flex;justify-content:center;gap:64px;flex-wrap:wrap;text-align:center}
+.pa-big-num{font-family:var(--font-heading);font-size:clamp(2.8rem,7vw,4.2rem);font-weight:700;color:var(--g);line-height:1}
+.pa-big-label{font-size:.78rem;color:rgba(255,255,255,.4);margin-top:8px;line-height:1.4;letter-spacing:.02em}
+.pa-num-note{text-align:center;max-width:540px;margin:44px auto 0;font-size:.86rem;color:rgba(255,255,255,.35);line-height:1.7;border-top:1px solid rgba(255,80,0,.15);padding-top:28px}
+.pa-aud{background:var(--c)}
+.pa-aud-grid{display:grid;grid-template-columns:1fr;gap:40px;margin-top:36px}
+@media(min-width:700px){.pa-aud-grid{grid-template-columns:1fr 1fr}}
+.pa-aud-left h3{font-family:var(--font-heading);font-size:1.35rem;font-weight:700;color:var(--n);line-height:1.25;margin-bottom:16px}
+.pa-aud-left p{font-size:.88rem;color:var(--t3);line-height:1.8;margin-bottom:12px}
+.pa-aud-stats{display:flex;flex-direction:column;gap:12px}
+.pa-stat{display:flex;align-items:baseline;gap:14px;padding:18px 20px;background:var(--w);border-radius:var(--rs);border-left:3px solid var(--g)}
+.pa-stat-n{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--n);min-width:65px;flex-shrink:0}
+.pa-stat-l{font-size:.8rem;color:var(--t3);line-height:1.45}
+.pa-cong{background:var(--w)}
+.pa-cong-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:32px}
+.pa-cg{padding:28px 24px;border-radius:var(--r);background:var(--b2);border:1px solid transparent;transition:.2s}
+.pa-cg:hover{background:var(--c);border-color:rgba(255,80,0,.25)}
+.pa-cg h4{font-size:.9rem;font-weight:700;color:var(--n);margin-bottom:6px;font-family:var(--font-heading)}
+.pa-cg p{font-size:.82rem;color:var(--t3);line-height:1.65}
+.pa-beyond{background:var(--nd);color:#fff}
+.pa-bey-grid{display:grid;grid-template-columns:1fr;gap:28px;margin-top:40px}
+@media(min-width:700px){.pa-bey-grid{grid-template-columns:1fr 1fr}}
+.pa-bey{padding:28px 24px;border-radius:var(--r);border:1px solid rgba(255,80,0,.12);background:rgba(255,255,255,.02);transition:.2s}
+.pa-bey:hover{border-color:rgba(255,80,0,.3);background:rgba(255,255,255,.04)}
+.pa-bey h4{font-size:.95rem;font-weight:700;color:var(--g);margin-bottom:6px;font-family:var(--font-heading)}
+.pa-bey p{font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:10px}
+.pa-bey-opp{font-size:.72rem;color:rgba(255,176,136,.75);font-weight:600;font-style:italic;padding-top:10px;border-top:1px solid rgba(255,80,0,.12)}
+.pa-bey-note{text-align:center;max-width:560px;margin:40px auto 0;font-size:.84rem;color:rgba(255,255,255,.35);line-height:1.7}
+.pa-close{background:var(--c)}
+.pa-close-in{max-width:640px;margin:0 auto;text-align:center}
+.pa-close-in h2{font-family:var(--font-heading);font-size:clamp(1.35rem,3vw,1.8rem);color:var(--n);line-height:1.25;margin-bottom:16px}
+.pa-close-in>p{font-size:.9rem;color:var(--t3);line-height:1.8;margin-bottom:28px}
+.pa-close-box{margin-top:40px;padding:40px 32px;background:var(--n);border-radius:16px;color:#fff}
+.pa-close-box h3{font-family:var(--font-heading);font-size:1.25rem;margin-bottom:8px}
+.pa-close-box>p{font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:24px;max-width:440px;margin-left:auto;margin-right:auto}
+@media(max-width:550px){
+.pa-nums-row{gap:36px}
+.pa-big-num{font-size:2.4rem}
+}
 
 /* FOOTER */
 .foot{padding:36px 24px;text-align:center;background:var(--nd);color:rgba(255,255,255,.3);font-size:.75rem;border-top:1px solid rgba(255,255,255,.05)}
@@ -399,14 +431,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="inst-logo-block"><img src="assets/icone_atleta_campeao.png" alt="Atleta Campeão" width="160" height="160" loading="lazy"></div>
 <div class="inst-text">
 <p>O Instituto Atleta Campeão é a maior referência em treinamento mental esportivo do Brasil. Fundado em 2016 nos Estados Unidos por Mayra Ramos, chegou ao Brasil em 2017 e desde então forma profissionais, atende atletas e produz conteúdo sobre neurociência, psicologia do esporte e coaching de alto rendimento.</p>
-<p>Em 2018, o trabalho do Instituto foi reconhecido pelo Comitê Olímpico do Brasil. Hoje, com mais de 400 mil seguidores e milhares de profissionais formados, o Atleta Campeão é a principal porta de entrada para quem quer atuar com o lado mental do esporte.</p>
+<p>Hoje, com mais de 400 mil seguidores e milhares de profissionais formados, o Atleta Campeão é a principal porta de entrada para quem quer atuar com o lado mental do esporte.</p>
 </div>
 </div>
 <div class="inst-pills">
 <div class="ip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 0v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="ipn">30mil+</div><div class="ipl">Atletas impactados</div></div>
 <div class="ip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><div class="ipn">400mil+</div><div class="ipl">Seguidores</div></div>
 <div class="ip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><div class="ipn">2016</div><div class="ipl">Fundação nos EUA</div></div>
-<div class="ip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><div class="ipn">2018</div><div class="ipl">Reconhecimento COB</div></div>
 </div>
 </div>
 </section>
@@ -422,7 +453,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <div>
 <div class="cert-item"><div class="cert-num">01</div><div><h3>Reconhecido pelo MEC</h3><p>Certificado válido como curso de extensão universitária — aceito para formação continuada e portfólio profissional.</p></div></div>
-<div class="cert-item"><div class="cert-num">02</div><div><h3>Emitido pelo Instituto Atleta Campeão</h3><p>A maior referência nacional em treinamento mental e emocional para atletas, reconhecida pelo Comitê Olímpico do Brasil.</p></div></div>
+<div class="cert-item"><div class="cert-num">02</div><div><h3>Emitido pelo Instituto Atleta Campeão</h3><p>A maior referência nacional em treinamento mental e emocional para atletas.</p></div></div>
 <div class="cert-item"><div class="cert-num">03</div><div><h3>Carga horária registrada</h3><p>Certificado com carga horária proporcional às aulas do congresso — para formação continuada e portfólio profissional.</p></div></div>
 <div style="margin-top:8px;padding:12px 16px;background:var(--c);border-radius:var(--rs);border-left:3px solid var(--g);font-size:.8rem;color:var(--t3)">Emissão digital após o congresso. Prazos e regras de presença serão divulgados no grupo do evento.</div>
 </div>
@@ -492,40 +523,127 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <div class="pg" id="pg-pa">
-<section class="hero p-hero"><div class="hero-inner" style="max-width:700px">
-<div class="tag"><span class="dot"></span>Parceria comercial</div>
-<h1>Leve sua marca para o maior congresso presencial de <em>psicologia aplicada ao esporte</em> de São Paulo</h1>
-<p class="hero-p" style="margin-top:20px">Um público qualificado de psicólogos, coaches, treinadores e profissionais do esporte — reunidos em Alphaville no dia 29 de agosto.</p>
-</div></section>
 
-<section class="sec" style="background:var(--c)"><div class="sec-in">
-<span class="ey">Audiência</span>
-<h2 class="st">Quem vai estar na sala</h2>
-<div class="p-nums">
-<div class="pn"><div class="n">400mil+</div><div class="l">Seguidores nas redes</div></div>
-<div class="pn"><div class="n">30mil+</div><div class="l">Alunos impactados</div></div>
-<div class="pn"><div class="n">8h</div><div class="l">De exposição da marca</div></div>
-<div class="pn"><div class="n">MEC</div><div class="l">Certificado reconhecido</div></div>
+<section class="hero p-hero">
+<div class="hero-inner">
+<div class="tag"><span class="dot"></span>Parceria estratégica</div>
+<h1>Coloque sua marca onde o esporte <em>se transforma</em></h1>
+<p class="lead">O Atleta Campeão não é um canal de conteúdo. É o <strong>ecossistema que forma, desenvolve e conecta quem vive o esporte no Brasil</strong> — de atletas e famílias a profissionais, clubes e federações.<br><br>Uma parceria aqui não é comprar espaço. É <strong>participar do conteúdo que está moldando o futuro do treinamento mental esportivo</strong> — em um país com mais de 30 mil pessoas já impactadas pelo Instituto.</p>
+<a href="https://wa.me/5511966467934?text=Ol%C3%A1!%20Tenho%20interesse%20em%20ser%20parceiro%20do%20Atleta%20Campe%C3%A3o." class="btn">Quero ser um parceiro</a>
 </div>
-</div></section>
+</section>
 
-<section class="sec" style="background:#fff"><div class="sec-in">
-<span class="ey">Benefícios</span>
-<h2 class="st">O que a parceria inclui</h2>
-<div class="p-bens">
-<div class="pb"><h4>Logo em todos os materiais</h4><p>Marca nas peças de divulgação, credenciais, painel do palco e comunicações oficiais.</p></div>
-<div class="pb"><h4>Menção nas redes sociais</h4><p>Posts e stories com tag da marca para a audiência do Atleta Campeão.</p></div>
-<div class="pb"><h4>Espaço físico no congresso</h4><p>Área para banner, material impresso ou distribuição de brindes.</p></div>
-<div class="pb"><h4>Networking exclusivo</h4><p>Interação direta com público e palestrantes nos intervalos.</p></div>
-<div class="pb"><h4>Associação institucional</h4><p>Marca vinculada ao Instituto Atleta Campeão — reconhecido pelo COB.</p></div>
-<div class="pb"><h4>Cotas adaptáveis</h4><p>Modelos de parceria ajustados ao porte e objetivo da empresa.</p></div>
+<section class="pa-num">
+<div class="pa-nums-row">
+<div>
+<div class="pa-big-num">280mil+</div>
+<div class="pa-big-label">pessoas na comunidade</div>
 </div>
-<div class="p-cta-box">
-<h3>Quer saber mais sobre as cotas de parceria?</h3>
-<p>Fale com o time comercial e receba a proposta completa.</p>
-<a href="https://wa.me/5511966467934?text=Ol%C3%A1!%20Tenho%20interesse%20em%20ser%20parceiro%20do%20Congresso%20de%20Psicologia%20Aplicada%20ao%20Esporte%20em%20Alphaville%20dia%2029%2F08." class="btn">Falar no WhatsApp</a>
+<div>
+<div class="pa-big-num">30mil+</div>
+<div class="pa-big-label">diretamente impactadas</div>
 </div>
-</div></section>
+<div>
+<div class="pa-big-num">~1mi</div>
+<div class="pa-big-label">de alcance semanal</div>
+</div>
+</div>
+<p class="pa-num-note">Dois terços do alcance vêm de pessoas que ainda não conheciam o Atleta Campeão. Cada semana amplia a audiência para a sua marca.</p>
+</section>
+
+<section class="sec pa-aud">
+<div class="sec-in">
+<span class="ey">A audiência</span>
+<h2 class="st">Quem acompanha o Atleta Campeão não é um seguidor casual.</h2>
+<div class="pa-aud-grid">
+<div class="pa-aud-left">
+<h3>São profissionais adultos que investem na própria carreira e no esporte.</h3>
+<p>Psicólogos, treinadores, preparadores, gestores esportivos, educadores físicos e profissionais em formação. Gente que compra cursos, frequenta congressos, paga pós-graduação e toma decisão de compra — para si e para suas equipes.</p>
+<p>Audiência concentrada no Brasil, com presença em Portugal, Estados Unidos e outros mercados. Equilíbrio de gênero para dialogar com diferentes categorias de marcas.</p>
+</div>
+<div class="pa-aud-stats">
+<div class="pa-stat"><span class="pa-stat-n">83%</span><span class="pa-stat-l">entre 25 e 54 anos — adultos com poder de decisão</span></div>
+<div class="pa-stat"><span class="pa-stat-n">92%</span><span class="pa-stat-l">no Brasil — escala nacional com presença internacional</span></div>
+<div class="pa-stat"><span class="pa-stat-n">300+</span><span class="pa-stat-l">profissionais formados pelas pós-graduações do Instituto</span></div>
+<div class="pa-stat"><span class="pa-stat-n">131</span><span class="pa-stat-l">semanas consecutivas de produção — consistência real</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec pa-cong">
+<div class="sec-in">
+<span class="ey">No congresso</span>
+<h2 class="st">O que a sua marca recebe no dia 29 de agosto</h2>
+<p class="sd">8 horas de exposição presencial para uma sala de profissionais atentos, engajados e qualificados — em Alphaville, São Paulo.</p>
+<div class="pa-cong-grid">
+<div class="pa-cg">
+<h4>Presença em todo o material</h4>
+<p>Logo nas peças de divulgação, credenciais, painel do palco e comunicação oficial — antes, durante e depois do congresso.</p>
+</div>
+<div class="pa-cg">
+<h4>Espaço físico no evento</h4>
+<p>Área exclusiva para banner, material impresso ou distribuição de brindes. Contato direto com quem está na sala.</p>
+</div>
+<div class="pa-cg">
+<h4>Menção na comunicação do evento</h4>
+<p>Presença na divulgação do congresso para toda a base do ecossistema — mais de 280 mil pessoas acompanham o Atleta Campeão.</p>
+</div>
+<div class="pa-cg">
+<h4>Acesso direto aos participantes</h4>
+<p>Networking com o público e com os palestrantes nos intervalos. Sua marca na mesma sala que a audiência que importa.</p>
+</div>
+</div>
+<div style="text-align:center;margin-top:36px">
+<a href="https://wa.me/5511966467934?text=Ol%C3%A1!%20Tenho%20interesse%20em%20ser%20parceiro%20do%20Congresso%20de%20Psicologia%20Aplicada%20ao%20Esporte." class="btn">Quero ser um parceiro</a>
+</div>
+</div>
+</section>
+
+<section class="sec pa-beyond">
+<div class="sec-in">
+<span class="ey" style="border-color:rgba(255,80,0,.3)">Além do evento</span>
+<h2 class="st" style="color:#fff">A parceria não termina quando o congresso acaba</h2>
+<p class="sd" style="color:rgba(255,255,255,.45)">O Atleta Campeão está abrindo novas propriedades de conteúdo. Cada uma é uma oportunidade de presença para a sua marca.</p>
+<div class="pa-bey-grid">
+<div class="pa-bey">
+<h4>Podcast</h4>
+<p>Conversas com personalidades do esporte sobre pressão, carreira, comportamento e preparação mental. Cada episódio gera uma rede de conteúdos distribuídos por todo o ecossistema.</p>
+<div class="pa-bey-opp">Naming · patrocínio de temporada · episódios especiais</div>
+</div>
+<div class="pa-bey">
+<h4>Programa semanal com Mayra</h4>
+<p>Conteúdo educativo gratuito que cria hábito de consumo e aproxima novos públicos — traduzindo o conhecimento do Instituto para linguagem acessível e prática.</p>
+<div class="pa-bey-opp">Oferecimento · patrocínio de temporada · integração</div>
+</div>
+<div class="pa-bey">
+<h4>Mayra em campo</h4>
+<p>Preparação mental na vida real. Mayra acompanha atletas em treinos e competições — mostrando o trabalho mental quando o resultado está em jogo.</p>
+<div class="pa-bey-opp">Presença em competições · patrocínio de atletas</div>
+</div>
+<div class="pa-bey">
+<h4>Aplicativo e comunidade proprietária</h4>
+<p>Ambiente direto de relacionamento com a comunidade — fora dos algoritmos, com jornadas personalizadas e dados de engajamento real.</p>
+<div class="pa-bey-opp">Conteúdos patrocinados · relacionamento de longo prazo</div>
+</div>
+</div>
+<p class="pa-bey-note">A marca pode ocupar um formato específico ou construir presença integrada em vários momentos da jornada do público.</p>
+</div>
+</section>
+
+<section class="sec pa-close">
+<div class="pa-close-in">
+<span class="ey">Parceria</span>
+<h2>O Atleta Campeão reúne o que poucas propriedades esportivas oferecem ao mesmo tempo</h2>
+<p>Autoridade com certificação reconhecida pelo MEC. Audiência adulta e qualificada. Capacidade comprovada de produção e distribuição de conteúdo. Presença no esporte, na educação e nas organizações. E novas propriedades abrindo espaço para marcas que querem fazer parte dessa construção.</p>
+<div class="pa-close-box">
+<h3>Vamos construir essa parceria?</h3>
+<p>Fale com o nosso time e receba a proposta completa — para o congresso, para o ecossistema, ou para os dois.</p>
+<a href="https://wa.me/5511966467934?text=Ol%C3%A1!%20Tenho%20interesse%20em%20ser%20parceiro%20do%20Atleta%20Campe%C3%A3o." class="btn" style="box-shadow:none">Quero ser um parceiro</a>
+</div>
+</div>
+</section>
+
 </div>
 
 <footer class="foot">
