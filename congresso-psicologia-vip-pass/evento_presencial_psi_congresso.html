@@ -355,7 +355,7 @@ a{text-decoration:none;color:inherit}
 }
 
 
-/* DEBUGFIX: mobile overflow — minmax(0,1fr) + body clip (log: wrapCols 464px @390vw) */
+/* Mobile overflow: grid minmax(0,1fr) + wrap */
 html,body{max-width:100%;overflow-x:hidden}
 .hero-wrap{min-width:0;width:100%;max-width:100%;box-sizing:border-box}
 .hero-wrap > *{min-width:0;max-width:100%;box-sizing:border-box}
@@ -807,88 +807,6 @@ function go(p,btn){document.querySelectorAll('.pg').forEach(function(x){x.classL
 function toggleFaq(el){var a=el.nextElementSibling;var o=el.classList.contains('open');document.querySelectorAll('.faq-q.open').forEach(function(q){q.classList.remove('open');q.nextElementSibling.style.maxHeight=null});if(!o){el.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}}
 </script>
 
-<!-- #region agent log -->
-<script>
-(function(){
-  var ENDPOINT='http://127.0.0.1:7641/ingest/e7376945-3fc9-48e9-977e-5b28ae6ebcff';
-  var SESSION='67201c';
-  function dbg(hypothesisId,location,message,data){
-    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':SESSION},body:JSON.stringify({sessionId:SESSION,runId:'post-fix',hypothesisId:hypothesisId,location:location,message:message,data:data||{},timestamp:Date.now()})}).catch(function(){});
-  }
-  dbg('E','boot','page_boot',{href:location.href,path:location.pathname,ready:document.readyState,title:document.title});
-  window.addEventListener('error',function(ev){
-    dbg('B','window.onerror','js_error',{msg:String(ev.message||''),source:String(ev.filename||''),line:ev.lineno||0,col:ev.colno||0});
-  });
-  window.addEventListener('unhandledrejection',function(ev){
-    dbg('B','unhandledrejection','promise_error',{reason:String(ev.reason&&ev.reason.message||ev.reason||'')});
-  });
-  var origGo=window.go;
-  window.go=function(p,btn){
-    try{
-      dbg('B','go','tab_switch_start',{p:p});
-      var r=origGo(p,btn);
-      dbg('B','go','tab_switch_ok',{p:p,evOn:document.getElementById('pg-ev')&&document.getElementById('pg-ev').classList.contains('on'),paOn:document.getElementById('pg-pa')&&document.getElementById('pg-pa').classList.contains('on')});
-      return r;
-    }catch(err){
-      dbg('B','go','tab_switch_error',{error:String(err&&err.message||err)});
-      throw err;
-    }
-  };
-  function audit(){
-    var imgs=[].slice.call(document.images||[]);
-    var broken=[];
-    var left=imgs.length;
-    function finish(){
-      dbg('A','images','image_audit',{total:imgs.length,broken:broken.length,brokenSrcs:broken.slice(0,8)});
-      var hero=document.querySelector('.hero');
-      var wrap=document.querySelector('.hero-wrap');
-      var visual=document.querySelector('.hero-visual img');
-      var cs=hero?getComputedStyle(hero):null;
-      var tag=document.querySelector('.hero-wrap > .tag');
-      var h1=document.querySelector('.hero-wrap > h1');
-      var vw=document.documentElement.clientWidth;
-      var sw=document.documentElement.scrollWidth;
-      dbg('C','layout','hero_layout',{
-        heroDisplay:cs&&cs.display,
-        heroH:hero&&Math.round(hero.getBoundingClientRect().height),
-        wrapAreas:wrap&&getComputedStyle(wrap).gridTemplateAreas,
-        wrapCols:wrap&&getComputedStyle(wrap).gridTemplateColumns,
-        wrapW:wrap&&Math.round(wrap.getBoundingClientRect().width),
-        clientW:vw,
-        scrollW:sw,
-        overflowX:sw>vw+1,
-        tagW:tag&&Math.round(tag.getBoundingClientRect().width),
-        tagScrollW:tag&&tag.scrollWidth,
-        h1W:h1&&Math.round(h1.getBoundingClientRect().width),
-        h1ScrollW:h1&&h1.scrollWidth,
-        visualW:visual&&Math.round(visual.getBoundingClientRect().width),
-        visualH:visual&&Math.round(visual.getBoundingClientRect().height),
-        visualNatural:visual&&visual.naturalWidth,
-        visualSrc:visual&&(visual.currentSrc||visual.src||'').slice(-60),
-        goType:typeof window.go,
-        faqType:typeof window.toggleFaq,
-        pgEv:!!document.getElementById('pg-ev'),
-        pgPa:!!document.getElementById('pg-pa')
-      });
-      var invest=document.querySelector('#inscrever')||document.querySelector('.invest');
-      if(invest){
-        var price=invest.querySelector('.invest-price');
-        dbg('D','contrast','invest_contrast',{bg:getComputedStyle(invest).backgroundColor,color:getComputedStyle(invest).color,className:invest.className,priceColor:price?getComputedStyle(price).color:null});
-      }
-    }
-    if(!left){finish();return;}
-    imgs.forEach(function(img){
-      function done(){
-        if(!img.complete||img.naturalWidth===0) broken.push({src:(img.currentSrc||img.src||'').slice(-80),w:img.naturalWidth});
-        left--; if(left===0) finish();
-      }
-      if(img.complete) done(); else {img.addEventListener('load',done);img.addEventListener('error',done);}
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',audit); else audit();
-})();
-</script>
-<!-- #endregion -->
 
 </body>
 </html>
