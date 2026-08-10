@@ -336,6 +336,31 @@ a{text-decoration:none;color:inherit}
 }
 
 
+
+/* LOTES INVESTIMENTO */
+.lotes-countdown{margin:24px auto 8px;max-width:520px;text-align:center}
+.lotes-countdown__label{font-size:.78rem;color:var(--color-slate-500);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;font-weight:600}
+.lotes-countdown__grid{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.lotes-countdown__item{min-width:64px;padding:12px 10px;background:#fff;border:1px solid var(--color-slate-200);border-radius:var(--radius-card);box-shadow:var(--shadow-card)}
+.lotes-countdown__val{display:block;font-family:var(--font-heading);font-size:1.45rem;font-weight:700;color:var(--color-cta);line-height:1}
+.lotes-countdown__unit{font-size:.65rem;color:var(--color-slate-500);text-transform:uppercase;letter-spacing:.08em}
+.lotes-grid{display:grid;grid-template-columns:1fr;gap:16px;max-width:980px;margin:28px auto 0;text-align:left}
+@media(min-width:800px){.lotes-grid{grid-template-columns:repeat(3,1fr);align-items:stretch}}
+.lote-card{position:relative;padding:26px 20px;background:#fff;border:1px solid var(--color-slate-200);border-radius:var(--radius-card);display:flex;flex-direction:column;opacity:.75;box-shadow:var(--shadow-card);transition:.2s}
+.lote-card--current{opacity:1;border-color:rgba(255,80,0,.45);box-shadow:0 8px 28px rgba(255,80,0,.12);order:-1}
+.lote-card--encerrado{opacity:.55}
+.lote-card__badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-cta);border-bottom:2px solid var(--color-cta);padding-bottom:4px;margin-bottom:12px}
+.lote-card--current .lote-card__badge{color:#fff;background:var(--color-cta);border:none;border-radius:999px;padding:6px 12px}
+.lote-card__price{font-family:var(--font-heading);font-size:2.1rem;font-weight:700;color:var(--color-heading);margin:4px 0 6px}
+.lote-card__valid{font-size:.78rem;color:var(--color-slate-500);margin-bottom:16px;line-height:1.45}
+.lote-card__benefits{list-style:none;display:flex;flex-direction:column;gap:8px;margin:0 0 20px;padding:0;flex:1}
+.lote-card__benefits li{font-size:.8rem;color:var(--color-subhead);display:flex;gap:8px;align-items:flex-start;line-height:1.4}
+.lote-card__benefits li svg{width:16px;height:16px;color:var(--color-cta);flex-shrink:0;margin-top:2px}
+.lote-card__cta{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:12px 16px;border-radius:var(--radius-pill);font-weight:700;font-size:.85rem;text-decoration:none;border:none;cursor:pointer;font-family:var(--font-body)}
+.lote-card__cta--on{background:var(--color-cta);color:#fff;box-shadow:0 8px 24px rgba(255,80,0,.22)}
+.lote-card__cta--off,.lote-card__cta--done{background:var(--color-slate-100);color:var(--color-slate-500);pointer-events:none;cursor:not-allowed}
+.lote-card__status{font-size:.72rem;color:var(--color-slate-500);text-align:center;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
+
 /* Mobile overflow: grid minmax(0,1fr) + wrap */
 html,body{max-width:100%;overflow-x:hidden}
 .hero-wrap{min-width:0;width:100%;max-width:100%;box-sizing:border-box}
@@ -639,22 +664,66 @@ Ver no Google Maps
 <div class="sec-in">
 <span class="ey">Investimento</span>
 <h2 class="st">Garanta sua vaga no congresso</h2>
-<p class="sd" style="margin:0 auto">Um dia inteiro de congresso presencial em Alphaville com os principais nomes da psicologia aplicada ao esporte.</p>
-<div class="invest-box">
-<div class="invest-lote">Lote 1</div>
-<div class="invest-price">R$ 97</div>
-<div class="invest-note">Pagamento único · Acesso presencial ao dia inteiro</div>
-<div class="invest-list">
-<div class="il"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Congresso presencial completo (10h–18h)</span></div>
-<div class="il"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Todas as palestras com especialistas</span></div>
-<div class="il"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Apostilas digitais e gravação das aulas</span></div>
-<div class="il"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Certificado MEC entregue no presencial</span></div>
-<div class="il"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Perguntas ao vivo com palestrantes</span></div>
-<div class="il"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Networking presencial</span></div>
+<p class="sd" style="margin:0 auto">Um dia inteiro de congresso presencial em Alphaville. O lote atual fica em destaque — os próximos liberam automaticamente na data.</p>
+
+<div class="lotes-countdown" id="lotes-countdown" aria-live="polite">
+<p class="lotes-countdown__label" id="lotes-countdown-label">O lote atual termina em</p>
+<div class="lotes-countdown__grid">
+<div class="lotes-countdown__item"><span class="lotes-countdown__val" id="lc-d">--</span><span class="lotes-countdown__unit">dias</span></div>
+<div class="lotes-countdown__item"><span class="lotes-countdown__val" id="lc-h">--</span><span class="lotes-countdown__unit">horas</span></div>
+<div class="lotes-countdown__item"><span class="lotes-countdown__val" id="lc-m">--</span><span class="lotes-countdown__unit">min</span></div>
+<div class="lotes-countdown__item"><span class="lotes-countdown__val" id="lc-s">--</span><span class="lotes-countdown__unit">seg</span></div>
 </div>
-<a href="https://pay.hotmart.com/C107095956W" target="_blank" rel="noopener" class="btn" style="width:100%">Garantir minha vaga</a>
-<div class="invest-secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Pagamento 100% seguro</div>
 </div>
+
+<div class="lotes-grid" id="lotes-grid">
+<article class="lote-card" data-lote="1" data-start="2026-08-10T00:00:00-03:00" data-end="2026-08-16T23:59:59-03:00" data-price="297">
+<span class="lote-card__badge">Lote 01</span>
+<div class="lote-card__price">R$ 297</div>
+<p class="lote-card__valid">De 10/08 a 16/08 · até 23h59</p>
+
+<ul class="lote-card__benefits">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Congresso presencial completo (10h–18h)</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Todas as palestras com especialistas</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Apostilas digitais e gravação das aulas</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Certificado MEC entregue no presencial</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Networking presencial</span></li>
+</ul>
+<a class="lote-card__cta lote-card__cta--off" href="https://pay.hotmart.com/C107095956W" target="_blank" rel="noopener" data-lote-cta>Indisponível</a>
+<p class="lote-card__status" data-lote-status></p>
+</article>
+<article class="lote-card" data-lote="2" data-start="2026-08-17T00:00:00-03:00" data-end="2026-08-23T23:59:59-03:00" data-price="347">
+<span class="lote-card__badge">Lote 02</span>
+<div class="lote-card__price">R$ 347</div>
+<p class="lote-card__valid">De 17/08 a 23/08 · até 23h59</p>
+
+<ul class="lote-card__benefits">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Congresso presencial completo (10h–18h)</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Todas as palestras com especialistas</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Apostilas digitais e gravação das aulas</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Certificado MEC entregue no presencial</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Networking presencial</span></li>
+</ul>
+<a class="lote-card__cta lote-card__cta--off" href="https://pay.hotmart.com/C107095956W" target="_blank" rel="noopener" data-lote-cta>Indisponível</a>
+<p class="lote-card__status" data-lote-status></p>
+</article>
+<article class="lote-card" data-lote="3" data-start="2026-08-24T00:00:00-03:00" data-end="2026-08-29T23:59:59-03:00" data-price="447">
+<span class="lote-card__badge">Lote 03</span>
+<div class="lote-card__price">R$ 447</div>
+<p class="lote-card__valid">De 24/08 a 29/08 · até 23h59</p>
+
+<ul class="lote-card__benefits">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Congresso presencial completo (10h–18h)</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Todas as palestras com especialistas</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Apostilas digitais e gravação das aulas</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Certificado MEC entregue no presencial</span></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Networking presencial</span></li>
+</ul>
+<a class="lote-card__cta lote-card__cta--off" href="https://pay.hotmart.com/C107095956W" target="_blank" rel="noopener" data-lote-cta>Indisponível</a>
+<p class="lote-card__status" data-lote-status></p>
+</article>
+</div>
+<p class="invest-secure" style="margin-top:24px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Pagamento 100% seguro</p>
 </div>
 </section>
 
@@ -814,6 +883,99 @@ function go(p,btn){document.querySelectorAll('.pg').forEach(function(x){x.classL
 function toggleFaq(el){var a=el.nextElementSibling;var o=el.classList.contains('open');document.querySelectorAll('.faq-q.open').forEach(function(q){q.classList.remove('open');q.nextElementSibling.style.maxHeight=null});if(!o){el.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}}
 </script>
 
+
+
+<script>
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('#lotes-grid .lote-card'));
+  if(!cards.length) return;
+  var label=document.getElementById('lotes-countdown-label');
+  var elD=document.getElementById('lc-d');
+  var elH=document.getElementById('lc-h');
+  var elM=document.getElementById('lc-m');
+  var elS=document.getElementById('lc-s');
+  var wrap=document.getElementById('lotes-countdown');
+  function pad(n){return n<10?'0'+n:String(n)}
+  function parse(s){return new Date(s).getTime()}
+  function state(now){
+    var current=null, nextStart=null;
+    cards.forEach(function(c){
+      var start=parse(c.getAttribute('data-start'));
+      var end=parse(c.getAttribute('data-end'));
+      if(now>=start && now<=end) current=c;
+      else if(now<start && (nextStart===null || start<nextStart)) nextStart=start;
+    });
+    return {current:current, nextStart:nextStart};
+  }
+  function render(){
+    var now=Date.now();
+    var st=state(now);
+    cards.forEach(function(c){
+      var start=parse(c.getAttribute('data-start'));
+      var end=parse(c.getAttribute('data-end'));
+      var cta=c.querySelector('[data-lote-cta]');
+      var status=c.querySelector('[data-lote-status]');
+      c.classList.remove('lote-card--current','lote-card--encerrado','lote-card--future');
+      if(now>end){
+        c.classList.add('lote-card--encerrado');
+        cta.className='lote-card__cta lote-card__cta--done';
+        cta.removeAttribute('href');
+        cta.textContent='Encerrado';
+        if(status) status.textContent='Lote encerrado';
+      } else if(now>=start && now<=end){
+        c.classList.add('lote-card--current');
+        cta.className='lote-card__cta lote-card__cta--on';
+        cta.setAttribute('href', cta.getAttribute('data-href')||cta.href||'https://pay.hotmart.com/C107095956W');
+        if(!cta.getAttribute('data-href')) cta.setAttribute('data-href', cta.getAttribute('href'));
+        cta.setAttribute('target','_blank');
+        cta.setAttribute('rel','noopener');
+        cta.textContent='Garantir minha vaga — R$ '+c.getAttribute('data-price');
+        if(status) status.textContent='Lote atual';
+      } else {
+        c.classList.add('lote-card--future');
+        cta.className='lote-card__cta lote-card__cta--off';
+        cta.removeAttribute('href');
+        var d=new Date(start);
+        var ds=pad(d.getDate())+'/'+pad(d.getMonth()+1);
+        cta.textContent='Disponível em '+ds;
+        if(status) status.textContent='Em breve';
+      }
+    });
+    // move current first
+    var grid=document.getElementById('lotes-grid');
+    if(st.current && grid && grid.firstElementChild!==st.current){
+      grid.insertBefore(st.current, grid.firstElementChild);
+    }
+    var target=null;
+    if(st.current){
+      target=parse(st.current.getAttribute('data-end'));
+      if(label) label.textContent='O lote atual (R$ '+st.current.getAttribute('data-price')+') termina em';
+    } else if(st.nextStart){
+      target=st.nextStart;
+      if(label) label.textContent='Próximo lote libera em';
+    } else {
+      if(wrap) wrap.style.display='none';
+      return;
+    }
+    if(wrap) wrap.style.display='';
+    var diff=Math.max(0, target-now);
+    var days=Math.floor(diff/86400000);
+    var hours=Math.floor((diff%86400000)/3600000);
+    var mins=Math.floor((diff%3600000)/60000);
+    var secs=Math.floor((diff%60000)/1000);
+    if(elD) elD.textContent=String(days);
+    if(elH) elH.textContent=pad(hours);
+    if(elM) elM.textContent=pad(mins);
+    if(elS) elS.textContent=pad(secs);
+  }
+  cards.forEach(function(c){
+    var cta=c.querySelector('[data-lote-cta]');
+    if(cta && cta.getAttribute('href')) cta.setAttribute('data-href', cta.getAttribute('href'));
+  });
+  render();
+  setInterval(render,1000);
+})();
+</script>
 
 </body>
 </html>
