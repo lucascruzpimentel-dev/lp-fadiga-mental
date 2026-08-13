@@ -47,7 +47,7 @@ img{max-width:100%;height:auto;display:block}
 a{text-decoration:none;color:inherit}
 
 /* NAV — topbar gravado */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,28,68,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{position:fixed;top:42px;left:0;right:0;z-index:100;background:rgba(0,28,68,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
 .nav-in{max-width:1200px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:4.25rem}
 .nav-logo{height:44px;width:auto;object-fit:contain;border-radius:0}
 .nav-pills{display:flex;gap:0;background:transparent;border:none;padding:0;border-bottom:none}
@@ -70,15 +70,30 @@ a{text-decoration:none;color:inherit}
 .btn-outline:hover{border-color:var(--color-accent);background:var(--color-blue-50)}
 .pg{display:none}.pg.on{display:block}
 
+
+/* SEATS URGENCY */
+.seats-bar{position:fixed;top:0;left:0;right:0;z-index:110;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 18px;background:linear-gradient(90deg,#fe9b0a 0%,#ff5000 55%,#ff0d0c 100%);color:#140f0a;font-family:var(--font-body);font-size:clamp(.82rem,2.2vw,.95rem);font-weight:600;letter-spacing:.02em;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.35);overflow:hidden}
+.seats-bar::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%);animation:seats-shine 3.2s ease-in-out infinite;pointer-events:none}
+.seats-bar__dot{width:8px;height:8px;border-radius:50%;background:#140f0a;flex-shrink:0;animation:seats-blink 1.2s ease-in-out infinite}
+.seats-bar p{margin:0;position:relative;z-index:1}
+.seats-bar strong,.seats-bar__n{font-family:var(--font-heading);font-size:1.15em;font-weight:800;display:inline-block;animation:seats-pop 1.5s ease-in-out infinite}
+.seats-chip{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;padding:10px 14px;border:1px solid rgba(255,80,0,.4);background:rgba(255,80,0,.12);color:#fff;font-size:.84rem;font-weight:600;letter-spacing:.02em;max-width:100%;box-sizing:border-box}
+.seats-chip__n{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;background:var(--color-cta);color:#fff;font-family:var(--font-heading);font-size:1.15rem;font-weight:800;animation:seats-pop 1.5s ease-in-out infinite}
+@keyframes seats-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+@keyframes seats-blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes seats-shine{0%{transform:translateX(-120%)}60%,100%{transform:translateX(120%)}}
+@media(prefers-reduced-motion:reduce){.seats-bar::before,.seats-bar__dot,.seats-bar strong,.seats-bar__n,.seats-chip__n{animation:none}}
+
 /* HERO — light like gravado + navy accents */
-.hero{min-height:auto;display:flex;align-items:center;justify-content:center;text-align:left;background:var(--color-hero-bg);padding:120px 24px 64px;position:relative;overflow-x:hidden;color:var(--color-hero-text)}
+.hero{min-height:auto;display:flex;align-items:center;justify-content:center;text-align:left;background:var(--color-hero-bg);padding:165px 24px 64px;position:relative;overflow-x:hidden;color:var(--color-hero-text)}
 .hero::before,.hero::after{display:none!important}
-.hero-wrap{max-width:1200px;width:100%;margin:0 auto;display:grid;align-items:center;position:relative;z-index:1;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px 40px;grid-template-areas:"tag visual""title visual""sub visual""p visual""pills visual""cta visual"}
+.hero-wrap{max-width:1200px;width:100%;margin:0 auto;display:grid;align-items:center;position:relative;z-index:1;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px 40px;grid-template-areas:"tag visual""title visual""sub visual""p visual""pills visual""seats visual""cta visual"}
 .hero-wrap>.tag{grid-area:tag}
 .hero-wrap>h1{grid-area:title;margin:0}
 .hero-wrap>.hero-sub{grid-area:sub}
 .hero-wrap>.hero-p{grid-area:p}
 .hero-wrap>.hero-pills{grid-area:pills}
+.hero-wrap>.hero-seats{grid-area:seats;justify-self:start}
 .hero-wrap>.hero-cta{grid-area:cta;justify-self:start}
 .hero-visual{grid-area:visual;min-width:0;width:100%;display:flex;align-items:center;justify-content:center;background:transparent}
 .hero-visual img{width:100%;height:auto;max-width:100%;display:block;object-fit:cover;background:transparent;border-radius:16px;filter:drop-shadow(0 18px 40px rgba(0,28,68,.18))}
@@ -102,9 +117,9 @@ a{text-decoration:none;color:inherit}
 .hero .btn:hover{background:var(--color-cta-hover)}
 
 @media(max-width:900px){
-.hero{text-align:center;padding:96px 18px 48px;min-height:auto;width:100%;box-sizing:border-box}
-.hero-wrap{grid-template-columns:minmax(0,1fr);gap:12px 0;grid-template-areas:"tag""title""sub""visual""p""pills""cta";width:100%;max-width:100%;min-width:0;box-sizing:border-box}
-.hero-wrap>.hero-cta{justify-self:center;width:100%;max-width:320px}
+.hero{text-align:center;padding:145px 18px 48px;min-height:auto;width:100%;box-sizing:border-box}
+.hero-wrap{grid-template-columns:minmax(0,1fr);gap:12px 0;grid-template-areas:"tag""title""sub""visual""p""pills""seats""cta";width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+.hero-wrap>.hero-cta,.hero-wrap>.hero-seats{justify-self:center;width:100%;max-width:320px}.hero-wrap>.hero-seats{justify-content:center}
 .hero-wrap>h1{font-size:clamp(1.45rem,6.2vw,2.05rem);line-height:1.15;overflow-wrap:anywhere;word-break:break-word}
 .hero-sub{margin-bottom:4px;overflow-wrap:anywhere}
 .hero-p{margin:8px auto;font-size:.9rem;overflow-wrap:anywhere}
@@ -385,6 +400,10 @@ html,body{max-width:100%;overflow-x:hidden}
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<div class="seats-bar" role="status" aria-live="polite">
+<span class="seats-bar__dot" aria-hidden="true"></span>
+<p>Restam apenas <strong class="seats-bar__n">11</strong> vagas para o congresso presencial</p>
+</div>
 <nav class="nav"><div class="nav-in">
 <img src="https://atletacampeaotreinamentos.com/congresso-psicologia-vip-pass/assets/logo_atleta_campeao_header.webp?v=20260812b" alt="Atleta Campeão" class="nav-logo" width="160" height="80">
 <a href="https://pay.hotmart.com/C107095956W" target="_blank" rel="noopener" class="nav-cta">Garantir vaga</a>
@@ -394,7 +413,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="hero">
 <div class="hero-wrap">
-<div class="tag"><span class="dot"></span>Congresso presencial · 29 de agosto · Vagas limitadas</div>
+<div class="tag"><span class="dot"></span>Congresso presencial · 29 de agosto · Restam 11 vagas</div>
 <h1>Primeiro congresso presencial de <em>Psicologia do Esporte e Coaching</em></h1>
 <p class="hero-sub">Um dia inteiro com os profissionais que estão construindo o futuro do treinamento mental esportivo no Brasil.</p>
 <div class="hero-visual">
@@ -405,9 +424,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div class="pill-line"></div><span class="pill-text">29 de agosto<br>Sábado</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="pill-line"></div><span class="pill-text">Alphaville<br>São Paulo, SP</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="pill-line"></div><span class="pill-text">10h às 18h<br>Dia inteiro</span></div>
-<div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 0v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="pill-line"></div><span class="pill-text">Vagas<br>limitadas</span></div>
+<div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 0v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="pill-line"></div><span class="pill-text">Restam<br>11 vagas</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><div class="pill-line"></div><span class="pill-text">Certificado<br>reconhecido MEC</span></div>
 </div>
+<div class="seats-chip hero-seats"><span class="seats-chip__n">11</span><span>vagas restantes — garanta a sua agora</span></div>
 <a href="https://pay.hotmart.com/C107095956W" target="_blank" rel="noopener" class="btn hero-cta">Garantir minha vaga</a>
 </div>
 </section>
@@ -659,7 +679,7 @@ Ver no Google Maps
 <div class="pills" style="margin-top:36px;margin-bottom:0">
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div class="pill-line"></div><span class="pill-text">29 de agosto<br>Sábado</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="pill-line"></div><span class="pill-text">Edifício Personal<br>Alphaville, SP</span></div>
-<div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 0v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="pill-line"></div><span class="pill-text">Vagas<br>limitadas</span></div>
+<div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 0v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="pill-line"></div><span class="pill-text">Restam<br>11 vagas</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="pill-line"></div><span class="pill-text">10h às 18h</span></div>
 </div>
 
