@@ -1088,6 +1088,26 @@
     .palestrante-card__tag--dia02 { background: #eef4fc; color: #02337a; border-color: #d4e3f5; }
     .palestrante-card__tag--dia03 { background: #dce8f7; color: #02337a; border-color: #a8c7eb; }
     .palestrante-card__tag--dia04 { background: #f6f6f6; color: #171717; border-color: #02337a; }
+    .palestrante-card__session {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #02337a;
+      margin: -0.35rem 0 0.85rem;
+    }
+    .palestrante-card--break {
+      background: #f8fafc;
+      justify-content: center;
+    }
+    .palestrante-card--break:hover {
+      transform: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border-color: var(--color-slate-200);
+    }
     .palestrante-card__photo-wrap {
       width: clamp(88px, 18vw, 112px);
       height: clamp(88px, 18vw, 112px);
@@ -1489,10 +1509,10 @@
         height="120"
       />
       <h2 class="hero-announce__headline">
-        Congresso Nacional de Psicologia do Esporte e Coaching — 29 de agosto de 2026 · online · 10h às 17h
+        Congresso Nacional de Psicologia do Esporte e Coaching — 29 de agosto de 2026 · online · 10h às 17h30
       </h2>
       <p class="hero-announce__sub">
-        No dia <strong>29 de agosto</strong> (sábado), das <strong>10h às 17h</strong>, quem tem <strong>Passe Profissional</strong> participa ao vivo no Zoom com materiais, certificado e prioridade nas perguntas.
+        No dia <strong>29 de agosto</strong> (sábado), das <strong>10h às 17h30</strong>, quem tem <strong>Passe Profissional</strong> participa ao vivo no Zoom com materiais, certificado e prioridade nas perguntas.
         Com o <strong>seu acesso gratuito</strong>, você já garantiu as <strong>aulas ao vivo online</strong>; abaixo está o upgrade opcional para a experiência completa (gravações, apostilas e certificado).
       </p>
     </section>
@@ -1520,7 +1540,7 @@
         <div class="offer-card__section">
           <p class="offer-card__label">Quando</p>
           <p class="offer-card__desc">
-            Congresso <strong>online ao vivo</strong> em <strong>29 de agosto de 2026</strong> (sábado), das <strong>10h às 17h</strong> (horário de Brasília), com intervalo das 12h às 14h. A <strong>inscrição gratuita</strong> garante acesso às <strong>aulas ao vivo</strong>; o <strong>Passe Profissional</strong> adiciona sala exclusiva no Zoom, apostilas, gravações na plataforma e certificado.
+            Congresso <strong>online ao vivo</strong> em <strong>29 de agosto de 2026</strong> (sábado), das <strong>10h às 17h30</strong> (horário de Brasília), com intervalo das 12h às 14h. A <strong>inscrição gratuita</strong> garante acesso às <strong>aulas ao vivo</strong>; o <strong>Passe Profissional</strong> adiciona sala exclusiva no Zoom, apostilas, gravações na plataforma e certificado.
           </p>
         </div>
 
@@ -1730,19 +1750,19 @@
     <!-- Seção Palestrantes -->
     <section id="palestrantes" aria-labelledby="palestrantes-title">
       <div class="palestrantes__inner">
-        <h2 class="palestrantes__title" id="palestrantes-title">Programação confirmada — 29 de agosto · online · 10h–17h</h2>
+        <h2 class="palestrantes__title" id="palestrantes-title">Programação confirmada — 29 de agosto · online · 10h–17h30</h2>
         <div class="palestrantes__grid">
 
-          
           <article class="palestrante-card">
             <span class="palestrante-card__tag">10H–11H · 29 AGO 2026 · SÁBADO · ONLINE</span>
+            <span class="palestrante-card__session">Palestra de abertura</span>
             <div class="palestrante-card__photo-wrap">
               <img src="/congresso-psicologia-vip-pass/assets/pf_mayra_ramos_circle.png" alt="Mayra Ramos" width="88" height="88" loading="lazy">
             </div>
             <h3 class="palestrante-card__name">Mayra Ramos</h3>
-            <p class="palestrante-card__bio">Fundadora do Atleta Campeão, Especialista em Neurociência e Treinadora mental formada nos EUA.</p>
+            <p class="palestrante-card__bio">Fundadora do Atleta Campeão · Especialista em Neurociência · Treinadora Mental formada nos EUA</p>
             <hr class="palestrante-card__divider">
-            <p class="palestrante-card__talk-title">Como Se Tornar um Treinador Mental Reconhecido e Bem Pago no Mundo dos Esportes.</p>
+            <p class="palestrante-card__talk-title">Como Se Tornar um Treinador Mental Reconhecido e Bem Pago no Mundo dos Esportes</p>
             <ul class="palestrante-card__bullets">
               <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> O mercado e a oportunidade</li>
               <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Autoridade e posicionamento</li>
@@ -1752,13 +1772,14 @@
 
           <article class="palestrante-card">
             <span class="palestrante-card__tag palestrante-card__tag--dia02">11H–12H · 29 AGO 2026 · SÁBADO · ONLINE</span>
+            <span class="palestrante-card__session">Motivação</span>
             <div class="palestrante-card__photo-wrap">
               <img src="/congresso-psicologia-vip-pass/assets/pf_marcelo_zanetti.webp" alt="Dr. Marcelo Zanetti" width="88" height="88" loading="lazy">
             </div>
             <h3 class="palestrante-card__name">Dr. Marcelo Zanetti</h3>
             <p class="palestrante-card__bio">Motivação e Alta Performance de Atletas</p>
             <hr class="palestrante-card__divider">
-            <p class="palestrante-card__talk-title">Motivação e Controle Emocional para Atletas.</p>
+            <p class="palestrante-card__talk-title">Motivação e Controle Emocional para Atletas</p>
             <ul class="palestrante-card__bullets">
               <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Confiança e entusiasmo</li>
               <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Controle emocional</li>
@@ -1766,15 +1787,22 @@
             </ul>
           </article>
 
+          <article class="palestrante-card palestrante-card--break">
+            <span class="palestrante-card__tag">12H–14H · 29 AGO 2026 · SÁBADO · ONLINE</span>
+            <h3 class="palestrante-card__name">Almoço</h3>
+            <p class="palestrante-card__bio">Intervalo para almoço e networking livre entre os participantes.</p>
+          </article>
+
           <article class="palestrante-card">
             <span class="palestrante-card__tag palestrante-card__tag--dia03">14H–15H · 29 AGO 2026 · SÁBADO · ONLINE</span>
+            <span class="palestrante-card__session">Psicologia</span>
             <div class="palestrante-card__photo-wrap">
               <img src="/congresso-psicologia-vip-pass/assets/pf_jose_roberto_circle.png" alt="Dr. Zé Roberto" width="88" height="88" loading="lazy">
             </div>
             <h3 class="palestrante-card__name">Dr. Zé Roberto</h3>
-            <p class="palestrante-card__bio">Intervenções práticas para o perfeccionismo, a ansiedade e o medo de errar em atletas.</p>
+            <p class="palestrante-card__bio">Intervenções práticas para perfeccionismo e ansiedade em atletas</p>
             <hr class="palestrante-card__divider">
-            <p class="palestrante-card__talk-title">Como Lidar com Atletas que se Cobram Demais.</p>
+            <p class="palestrante-card__talk-title">Como Lidar com Atletas que se Cobram Demais</p>
             <ul class="palestrante-card__bullets">
               <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Perfeccionismo</li>
               <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Ansiedade e medo de errar</li>
@@ -1783,21 +1811,56 @@
           </article>
 
           <article class="palestrante-card">
-            <span class="palestrante-card__tag">16H–17H · 29 AGO 2026 · SÁBADO · ONLINE</span>
+            <span class="palestrante-card__tag palestrante-card__tag--dia04">15H–16H · 29 AGO 2026 · SÁBADO · ONLINE</span>
+            <span class="palestrante-card__session">Para pais</span>
             <div class="palestrante-card__photo-wrap">
               <img src="/congresso-psicologia-vip-pass/assets/pf_mayra_ramos_circle.png" alt="Mayra Ramos" width="88" height="88" loading="lazy">
             </div>
             <h3 class="palestrante-card__name">Mayra Ramos</h3>
             <p class="palestrante-card__bio">Fundadora do Atleta Campeão · Especialista em Neurociência</p>
             <hr class="palestrante-card__divider">
-            <p class="palestrante-card__talk-title">Do Congresso à Prática: Como Aplicar o que Você Aprendeu e Acelerar Resultados com Atletas.</p>
+            <p class="palestrante-card__talk-title">Sobre Competição e o Papel dos Pais</p>
+            <ul class="palestrante-card__bullets">
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Competição e pressão</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Papel dos pais</li>
+              <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Apoio sem cobrança</li>
+            </ul>
+          </article>
+
+          <article class="palestrante-card palestrante-card--break">
+            <span class="palestrante-card__tag">16H–16H30 · 29 AGO 2026 · SÁBADO · ONLINE</span>
+            <h3 class="palestrante-card__name">Coffee</h3>
+            <p class="palestrante-card__bio">Pausa para café e networking entre participantes e palestrantes.</p>
+          </article>
+
+          <article class="palestrante-card">
+            <span class="palestrante-card__tag">16H30–17H · 29 AGO 2026 · SÁBADO · ONLINE</span>
+            <span class="palestrante-card__session">Mesa redonda</span>
+            <div class="palestrante-card__photo-wrap">
+              <img src="/congresso-psicologia-vip-pass/assets/pf_mesa_redonda.jpg" alt="Mesa redonda" width="88" height="88" loading="lazy">
+            </div>
+            <h3 class="palestrante-card__name">Mesa redonda</h3>
+            <p class="palestrante-card__bio">Conversa com os palestrantes</p>
+            <hr class="palestrante-card__divider">
+            <p class="palestrante-card__talk-title">Espaço aberto para perguntas, troca de experiências e aprofundamento dos temas do dia com os especialistas.</p>
+          </article>
+
+          <article class="palestrante-card">
+            <span class="palestrante-card__tag">17H–17H30 · 29 AGO 2026 · SÁBADO · ONLINE</span>
+            <span class="palestrante-card__session">Encerramento</span>
+            <div class="palestrante-card__photo-wrap">
+              <img src="/congresso-psicologia-vip-pass/assets/pf_mayra_ramos_circle.png" alt="Mayra Ramos" width="88" height="88" loading="lazy">
+            </div>
+            <h3 class="palestrante-card__name">Mayra Ramos</h3>
+            <p class="palestrante-card__bio">Fundadora do Atleta Campeão · Especialista em Neurociência</p>
+            <hr class="palestrante-card__divider">
+            <p class="palestrante-card__talk-title">Do Congresso à Prática: Como Aplicar o que Você Aprendeu e Acelerar Resultados com Atletas</p>
             <ul class="palestrante-card__bullets">
               <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Plano de ação</li>
               <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Aplicação prática</li>
               <li><iconify-icon icon="lucide:arrow-right"></iconify-icon> Próximos passos</li>
             </ul>
           </article>
-
 
         </div>
       </div>
@@ -1872,7 +1935,7 @@
           <li>
             <details class="faq__item">
               <summary class="faq__question-wrap"><span class="faq__question-text">O congresso é gratuito? Vai haver oferta durante o evento?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
-              <div class="faq__answer"><p>Sim — com a inscrição gratuita você garante acesso às <strong>aulas ao vivo online</strong> do congresso no dia <strong>29 de agosto</strong>, das <strong>10h às 17h</strong>. O <strong>Passe Profissional</strong> é opcional e agrega experiência avançada (Zoom exclusivo, apostilas, gravações na plataforma e certificado). Durante o evento podemos mencionar formações avançadas (ex.: pós-graduação); são convites separados.</p></div>
+              <div class="faq__answer"><p>Sim — com a inscrição gratuita você garante acesso às <strong>aulas ao vivo online</strong> do congresso no dia <strong>29 de agosto</strong>, das <strong>10h às 17h30</strong>. O <strong>Passe Profissional</strong> é opcional e agrega experiência avançada (Zoom exclusivo, apostilas, gravações na plataforma e certificado). Durante o evento podemos mencionar formações avançadas (ex.: pós-graduação); são convites separados.</p></div>
             </details>
           </li>
           <li>
@@ -1884,7 +1947,7 @@
           <li>
             <details class="faq__item">
               <summary class="faq__question-wrap"><span class="faq__question-text">Quanto tempo dura cada aula?</span> <iconify-icon class="faq__icon" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary>
-              <div class="faq__answer"><p>Cada palestra tem em média cerca de <strong>1 hora</strong> de duração. O congresso online vai das <strong>10h às 17h</strong>, com intervalo das 12h às 14h.</p></div>
+              <div class="faq__answer"><p>As palestras principais têm cerca de <strong>1 hora</strong>. O congresso online vai das <strong>10h às 17h30</strong>, com almoço das 12h às 14h, coffee das 16h às 16h30 e mesa redonda das 16h30 às 17h.</p></div>
             </details>
           </li>
           <li>
@@ -1982,7 +2045,7 @@
   </div>
 
   <script>
-    // Contagem do card de oferta: até fim do Lote 1 — 29/08/2026 23:59 (Brasília). Congresso online: 29/08 das 10h às 17h.
+    // Contagem do card de oferta: até fim do Lote 1 — 29/08/2026 23:59 (Brasília). Congresso online: 29/08 das 10h às 17h30.
     (function () {
       var dataFim = new Date('2026-08-29T23:59:00-03:00');
       var elDays = document.getElementById('countdown-days');
