@@ -22,6 +22,8 @@ git add \
   "pos-psicologia-do-esporte-e-coaching/" \
   "sessao-individual-jiu-jitsu/" \
   "treinador-mental-atletas/" \
+  "evento-presencial-pais-atleta/" \
+  "politica-de-privacidade/" \
   vercel.json \
   deploy.sh \
   scripts/ \
