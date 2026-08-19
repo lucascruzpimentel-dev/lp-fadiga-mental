@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #171717; -webkit-font-smoothing: antialiased; }
+    a { color: #ff5000; }
+    a:hover { color: #02337a; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</helmet>
+
+<!-- HERO -->
+<section style="background: #001c44; color: #ffffff; padding: 100px 24px 80px; text-align: center; min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div style="display: inline-block; padding: 6px 20px; border: 1px solid rgba(255,80,0,0.5); border-radius: 100px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #ff5000; margin-bottom: 32px;">Evento presencial · São Paulo · Vagas limitadas</div>
+    <h1 style="font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 700; line-height: 1.15; margin-bottom: 24px;">Congresso de Psicologia Aplicada ao Esporte</h1>
+    <p style="font-size: 18px; line-height: 1.5; color: rgba(255,255,255,0.85); margin-bottom: 16px; font-weight: 500;">Um dia inteiro de conteúdo prático com quem realmente atua no treinamento mental de atletas no Brasil.</p>
+    <p style="font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.6); max-width: 640px; margin: 0 auto 40px;">O congresso que reúne profissionais, pesquisadores e referências da psicologia do esporte em São Paulo — com palestras aplicáveis, trocas reais entre pares e conteúdo que você não encontra em formação tradicional. Das 10h às 18h, presencial, com vagas limitadas.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px;">
+      <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); padding: 10px 20px; border-radius: 100px; font-size: 14px; color: rgba(255,255,255,0.8);">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        A definir
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); padding: 10px 20px; border-radius: 100px; font-size: 14px; color: rgba(255,255,255,0.8);">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        10h às 18h
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); padding: 10px 20px; border-radius: 100px; font-size: 14px; color: rgba(255,255,255,0.8);">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        São Paulo, SP
+      </div>
+    </div>
+    <a href="#inscricao" style="display: inline-block; background: #ff5000; color: #ffffff; font-size: 16px; font-weight: 600; padding: 16px 48px; border-radius: 8px; text-decoration: none; letter-spacing: 0.5px; transition: background 0.2s;" style-hover="background: #e04800">Garantir minha vaga</a>
+  </div>
+</section>
+
+<!-- PROGRAMAÇÃO -->
+<section style="background: #ffffff; padding: 80px 24px;">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div style="font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #ff5000; font-weight: 600; margin-bottom: 12px;">Programação</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 700; margin-bottom: 12px; color: #171717;">O que vai acontecer no dia</h2>
+    <p style="font-size: 15px; line-height: 1.7; color: #303030; margin-bottom: 48px; max-width: 600px;">Cada palestra foi pensada para entregar conteúdo que você aplica na segunda-feira. Sem teoria solta — profissionais que vivem o mercado compartilhando o que funciona.</p>
+
+    <div style="display: flex; flex-direction: column; gap: 0;">
+      <!-- 10:00 -->
+      <div style="display: flex; gap: 24px; padding: 24px 0; border-left: 2px solid #f6f6f6; margin-left: 60px; padding-left: 24px; position: relative;">
+        <div style="position: absolute; left: -71px; top: 24px; width: 60px; text-align: right; font-size: 14px; font-weight: 600; color: #02337a;">10:00</div>
+        <div style="position: absolute; left: -5px; top: 28px; width: 8px; height: 8px; background: #ff5000; border-radius: 50%;"></div>
+        <div>
+          <div style="font-size: 16px; font-weight: 600; color: #171717; margin-bottom: 4px;">Credenciamento e abertura</div>
+          <div style="font-size: 14px; color: #303030; line-height: 1.6;">Recepção, credenciais e boas-vindas ao congresso.</div>
+        </div>
+      </div>
+
+      <!-- 10:30 -->
+      <div style="display: flex; gap: 24px; padding: 24px 0; border-left: 2px solid #f6f6f6; margin-left: 60px; padding-left: 24px; position: relative;">
+        <div style="position: absolute; left: -71px; top: 24px; width: 60px; text-align: right; font-size: 14px; font-weight: 600; color: #02337a;">10:30</div>
+        <div style="position: absolute; left: -5px; top: 28px; width: 8px; height: 8px; background: #ff5000; border-radius: 50%;"></div>
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <img src="assets/pf_antonio_serenini.webp" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+          <div>
+            <div style="font-size: 16px; font-weight: 600; color: #171717;">Palestra 1</div>
+            <div style="font-size: 13px; color: #ff5000; margin-bottom: 4px;">Antonio Serenini</div>
+            <div style="font-size: 12px; color: #303030; line-height: 1.5; margin-bottom: 8px; font-style: italic;">Autoridade a confirmar.</div>
+            <div style="font-size: 14px; color: #303030; line-height: 1.6;">Título e descrição da palestra a confirmar.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12:00 -->
+      <div style="display: flex; gap: 24px; padding: 24px 0; border-left: 2px solid #f6f6f6; margin-left: 60px; padding-left: 24px; position: relative;">
+        <div style="position: absolute; left: -71px; top: 24px; width: 60px; text-align: right; font-size: 14px; font-weight: 600; color: #02337a;">12:00</div>
+        <div style="position: absolute; left: -5px; top: 28px; width: 8px; height: 8px; background: #ff5000; border-radius: 50%;"></div>
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <img src="assets/pf_jose_roberto.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+          <div>
+            <div style="font-size: 16px; font-weight: 600; color: #171717;">Palestra 2</div>
+            <div style="font-size: 13px; color: #ff5000; margin-bottom: 4px;">José Roberto</div>
+            <div style="font-size: 12px; color: #303030; line-height: 1.5; margin-bottom: 8px; font-style: italic;">Autoridade a confirmar.</div>
+            <div style="font-size: 14px; color: #303030; line-height: 1.6;">Título e descrição da palestra a confirmar.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13:30 Almoço -->
+      <div style="display: flex; gap: 24px; padding: 24px 0; border-left: 2px solid #f6f6f6; margin-left: 60px; padding-left: 24px; position: relative;">
+        <div style="position: absolute; left: -71px; top: 24px; width: 60px; text-align: right; font-size: 14px; font-weight: 600; color: #02337a;">13:30</div>
+        <div style="position: absolute; left: -5px; top: 28px; width: 8px; height: 8px; background: #303030; border-radius: 50%;"></div>
+        <div style="background: #f6f6f6; padding: 16px 20px; border-radius: 8px; width: 100%;">
+          <div style="font-size: 15px; font-weight: 500; color: #303030;">Intervalo para almoço</div>
+          <div style="font-size: 13px; color: #303030; opacity: 0.7;">Pausa e networking livre entre os participantes.</div>
+        </div>
+      </div>
+
+      <!-- 14:30 -->
+      <div style="display: flex; gap: 24px; padding: 24px 0; border-left: 2px solid #f6f6f6; margin-left: 60px; padding-left: 24px; position: relative;">
+        <div style="position: absolute; left: -71px; top: 24px; width: 60px; text-align: right; font-size: 14px; font-weight: 600; color: #02337a;">14:30</div>
+        <div style="position: absolute; left: -5px; top: 28px; width: 8px; height: 8px; background: #ff5000; border-radius: 50%;"></div>
+        <div style="display: flex; gap: 16px; align-items: flex-start;">
+          <img src="assets/pf_luis_antonio.png" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+          <div>
+            <div style="font-size: 16px; font-weight: 600; color: #171717;">Palestra 3</div>
+            <div style="font-size: 13px; color: #ff5000; margin-bottom: 4px;">Luís Antonio</div>
+            <div style="font-size: 12px; color: #303030; line-height: 1.5; margin-bottom: 8px; font-style: italic;">Autoridade a confirmar.</div>
+            <div style="font-size: 14px; color: #303030; line-height: 1.6;">Título e descrição da palestra a confirmar.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 16:00 Mayra -->
+      <div style="display: flex; gap: 24px; padding: 24px 0; border-left: 2px solid #ff5000; margin-left: 60px; padding-left: 24px; position: relative;">
+        <div style="position: absolute; left: -71px; top: 24px; width: 60px; text-align: right; font-size: 14px; font-weight: 600; color: #02337a;">16:00</div>
+        <div style="position: absolute; left: -5px; top: 28px; width: 8px; height: 8px; background: #ff5000; border-radius: 50%; box-shadow: 0 0 0 4px rgba(255,80,0,0.2);"></div>
+        <div style="background: linear-gradient(135deg, rgba(255,80,0,0.06), rgba(0,28,68,0.04)); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,80,0,0.15); width: 100%;">
+          <div style="display: flex; gap: 16px; align-items: flex-start;">
+            <img src="assets/pf_mayra_ramos.png" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid #ff5000;">
+            <div>
+              <div style="font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #ff5000; font-weight: 600; margin-bottom: 4px;">Encerramento</div>
+              <div style="font-size: 18px; font-weight: 700; color: #171717; margin-bottom: 2px;">Mayra Ramos</div>
+              <div style="font-size: 12px; color: #303030; line-height: 1.5; margin-bottom: 12px;">Fundadora do Atleta Campeão · Especialista em Neurociência · Treinadora Mental formada nos EUA</div>
+              <div style="font-size: 16px; font-weight: 600; color: #171717; margin-bottom: 8px;">Como Se Tornar um Treinador Mental Reconhecido e Bem Pago no Mundo dos Esportes</div>
+              <div style="font-size: 14px; color: #303030; line-height: 1.7;">O mercado de treinamento mental está crescendo — e os atletas precisam de especialistas qualificados. Mayra vai mostrar os atalhos para se posicionar como referência, construir autoridade e estruturar uma carreira que paga bem no mundo dos esportes. Sem esperar 10 anos. Sem depender de indicação.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 18:00 -->
+      <div style="display: flex; gap: 24px; padding: 24px 0; border-left: 2px solid #f6f6f6; margin-left: 60px; padding-left: 24px; position: relative;">
+        <div style="position: absolute; left: -71px; top: 24px; width: 60px; text-align: right; font-size: 14px; font-weight: 600; color: #02337a;">18:00</div>
+        <div style="position: absolute; left: -5px; top: 28px; width: 8px; height: 8px; background: #303030; border-radius: 50%;"></div>
+        <div>
+          <div style="font-size: 16px; font-weight: 600; color: #171717; margin-bottom: 4px;">Encerramento</div>
+          <div style="font-size: 14px; color: #303030; line-height: 1.6;">Certificados, fotos e despedida.</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size: 12px; color: #303030; opacity: 0.6; margin-top: 32px; font-style: italic;">Os horários e palestrantes são preliminares e podem ser ajustados conforme confirmação dos convidados.</p>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section style="background: #f6f6f6; padding: 80px 24px;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div style="font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #ff5000; font-weight: 600; margin-bottom: 12px;">Para quem é</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 36px); font-weight: 700; margin-bottom: 48px; color: #171717; max-width: 700px;">Se você trabalha — ou quer trabalhar — com o lado mental do esporte, esse congresso é pra você.</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      <div style="background: #ffffff; padding: 28px; border-radius: 8px; border-left: 3px solid #ff5000;">
+        <div style="font-size: 16px; font-weight: 600; color: #171717; margin-bottom: 8px;">Psicólogos e estudantes de psicologia</div>
+        <div style="font-size: 14px; color: #303030; line-height: 1.7;">Que querem sair da clínica generalista e se posicionar no esporte com método, diferencial e remuneração compatível.</div>
+      </div>
+      <div style="background: #ffffff; padding: 28px; border-radius: 8px; border-left: 3px solid #ff5000;">
+        <div style="font-size: 16px; font-weight: 600; color: #171717; margin-bottom: 8px;">Coaches e treinadores mentais</div>
+        <div style="font-size: 14px; color: #303030; line-height: 1.7;">Que já atuam mas travam na hora de cobrar bem, atrair atletas sérios ou explicar o valor do que fazem.</div>
+      </div>
+      <div style="background: #ffffff; padding: 28px; border-radius: 8px; border-left: 3px solid #ff5000;">
+        <div style="font-size: 16px; font-weight: 600; color: #171717; margin-bottom: 8px;">Profissionais de educação física</div>
+        <div style="font-size: 14px; color: #303030; line-height: 1.7;">Que convivem com atletas diariamente e sabem que falta integrar o componente mental ao treinamento — mas não sabem por onde começar.</div>
+      </div>
+      <div style="background: #ffffff; padding: 28px; border-radius: 8px; border-left: 3px solid #ff5000;">
+        <div style="font-size: 16px; font-weight: 600; color: #171717; margin-bottom: 8px;">Técnicos e comissões técnicas</div>
+        <div style="font-size: 14px; color: #303030; line-height: 1.7;">Que lidam com pressão de resultado, motivação e foco dos atletas no dia a dia e precisam de ferramentas práticas.</div>
+      </div>
+      <div style="background: #ffffff; padding: 28px; border-radius: 8px; border-left: 3px solid #ff5000;">
+        <div style="font-size: 16px; font-weight: 600; color: #171717; margin-bottom: 8px;">Gestores e dirigentes esportivos</div>
+        <div style="font-size: 14px; color: #303030; line-height: 1.7;">Que estruturam programas de desenvolvimento e querem incluir saúde mental e performance psicológica no planejamento.</div>
+      </div>
+      <div style="background: #ffffff; padding: 28px; border-radius: 8px; border-left: 3px solid #ff5000;">
+        <div style="font-size: 16px; font-weight: 600; color: #171717; margin-bottom: 8px;">Quem está pensando em entrar na área</div>
+        <div style="font-size: 14px; color: #303030; line-height: 1.7;">Profissionais de outras áreas que enxergam a psicologia do esporte como oportunidade de carreira e querem entender o mercado antes de investir.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTITUTO -->
+<section style="background: #001c44; padding: 80px 24px; color: #ffffff;">
+  <div style="max-width: 1000px; margin: 0 auto; display: flex; gap: 60px; align-items: flex-start; flex-wrap: wrap;">
+    
+    <div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+      <div style="display: inline-block; padding: 6px 20px; border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7);">Referência em treinamento mental desde · 2016</div>
+      <div style="width: 280px; height: 280px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;">
+        <img src="./icone-atleta-campeao-msgat946-ifym.png" alt="icone-atleta-campeao" width="1200" height="1200" style="max-width: 100%; height: 240px; display: block; object-fit: cover; width: 251px; aspect-ratio: 1200 / 1200">
+      </div>
+    </div><div style="flex: 1; min-width: 320px;">
+      <div style="font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #ff5000; font-weight: 600; margin-bottom: 12px;">A Instituição</div>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 700; margin-bottom: 8px;">Instituto Atleta Campeão</h2>
+      <p style="font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic; margin-bottom: 24px;">Referência em psicologia do esporte, neurociência e treinamento mental desde 2016.</p>
+      <p style="font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.75); margin-bottom: 32px;">Fundado em 2016 nos Estados Unidos e expandido para o Brasil em 2017, o Atleta Campeão se tornou a maior referência nacional em treinamento mental e emocional para atletas. Reúne formações em neurociência e psicologia aplicada ao esporte — e já impactou mais de 30 mil atletas de diferentes modalidades, do amador ao campeão mundial.</p>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px;">
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px 16px; text-align: center;">
+          <div style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #ffffff; margin-bottom: 6px;">+30 mil</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.4;">atletas impactados desde 2017</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px 16px; text-align: center;">
+          <div style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #ffffff; margin-bottom: 6px;">+400</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.4;">alunos inscritos na pós-graduação</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px 16px; text-align: center;">
+          <div style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #ffffff; margin-bottom: 6px;">+20</div>
+          <div style="font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.4;">anos de experiência no mercado esportivo</div>
+        </div>
+      </div>
+      <a href="#inscricao" style="display: inline-block; background: #02337a; color: #ffffff; font-size: 16px; font-weight: 600; padding: 16px 48px; border-radius: 8px; text-decoration: none; transition: background 0.2s;" style-hover="background: #034099">Garantir minha vaga</a>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL -->
+<section style="background: #001c44; padding: 80px 24px; color: #ffffff;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <div style="font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #ff5000; font-weight: 600; margin-bottom: 12px;">Local do evento</div>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 700; margin-bottom: 16px;">Pinheiros, São Paulo</h2>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; color: rgba(255,255,255,0.85);">
+        <svg width="18" height="18" fill="none" stroke="#ff5000" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        Av. Eusébio Matoso, 1375 — 14º andar — Pinheiros, SP
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; border-radius: 12px; overflow: hidden; margin-bottom: 32px;">
+      <img src="assets/local-1.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Espaço do evento">
+      <img src="assets/local-2.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Espaço do evento">
+      <img src="assets/local-3.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Espaço do evento">
+      <img src="assets/local-4.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Espaço do evento">
+    </div>
+    <div style="text-align: center;">
+      <p style="font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6;">Espaço com fácil acesso por transporte público e opções de estacionamento próximo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIÇÃO -->
+<section id="inscricao" style="background: #f6f6f6; padding: 80px 24px;">
+  <div style="max-width: 640px; margin: 0 auto; text-align: center;">
+    <div style="font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #ff5000; font-weight: 600; margin-bottom: 12px;">Inscrição</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 700; margin-bottom: 16px; color: #171717;">Tudo o que está incluso na sua vaga</h2>
+    <p style="font-size: 15px; line-height: 1.7; color: #303030; margin-bottom: 40px;">Um dia inteiro de congresso presencial em São Paulo com os principais nomes da psicologia aplicada ao esporte — por um investimento único.</p>
+
+    <div style="background: #ffffff; border-radius: 16px; padding: 48px 40px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); margin-bottom: 32px;">
+      <div style="font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: #171717; margin-bottom: 4px;">R$ 97</div>
+      <div style="font-size: 13px; color: #303030; margin-bottom: 32px;">Pagamento único · Acesso presencial ao dia inteiro</div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; text-align: left; margin-bottom: 40px;">
+        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #171717;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; margin-top: 1px;"><circle cx="10" cy="10" r="10" fill="#ff5000"></circle><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          Dia inteiro de congresso presencial (10h–18h)
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #171717;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; margin-top: 1px;"><circle cx="10" cy="10" r="10" fill="#ff5000"></circle><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          Todas as palestras com especialistas convidados
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #171717;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; margin-top: 1px;"><circle cx="10" cy="10" r="10" fill="#ff5000"></circle><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          Encerramento com Mayra Ramos
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #171717;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; margin-top: 1px;"><circle cx="10" cy="10" r="10" fill="#ff5000"></circle><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          Certificado de participação do Instituto Atleta Campeão
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #171717;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; margin-top: 1px;"><circle cx="10" cy="10" r="10" fill="#ff5000"></circle><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          Material de apoio digital
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #171717;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0; margin-top: 1px;"><circle cx="10" cy="10" r="10" fill="#ff5000"></circle><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          Networking presencial com profissionais da área
+        </div>
+      </div>
+
+      <a href="#" style="display: inline-block; background: #ff5000; color: #ffffff; font-size: 17px; font-weight: 600; padding: 18px 56px; border-radius: 8px; text-decoration: none; transition: background 0.2s; width: 100%; text-align: center;" style-hover="background: #e04800">Garantir minha vaga</a>
+    </div>
+    <p style="font-size: 13px; color: #303030; opacity: 0.6;">Vagas limitadas pela capacidade do espaço.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background: #ffffff; padding: 80px 24px;">
+  <div style="max-width: 700px; margin: 0 auto;">
+    <div style="font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #ff5000; font-weight: 600; margin-bottom: 12px;">Dúvidas frequentes</div>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 36px); font-weight: 700; margin-bottom: 40px; color: #171717;">Perguntas sobre o congresso</h2>
+
+    <sc-for list="{{ faqItems }}" as="faq" hint-placeholder-count="7">
+      <div style="border-bottom: 1px solid #f6f6f6;">
+        <button onClick="{{ faq.toggle }}" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 0; background: none; border: none; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: #171717; gap: 16px;" style-hover="color: #02337a">
+          <span>{{ faq.question }}</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="{{ faq.iconColor }}" stroke-width="2" style="flex-shrink: 0; transition: transform 0.2s; transform: {{ faq.rotation }};">
+            <path d="M5 8l5 5 5-5"></path>
+          </svg>
+        </button>
+        <sc-if value="{{ faq.open }}" hint-placeholder-val="{{ false }}">
+          <div style="padding: 0 0 20px; font-size: 14px; line-height: 1.8; color: #303030;">{{ faq.answer }}</div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #001c44; padding: 40px 24px; text-align: center;">
+  <div style="font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: #ffffff; margin-bottom: 8px;">Congresso de Psicologia Aplicada ao Esporte</div>
+  <div style="font-size: 13px; color: rgba(255,255,255,0.4);">Instituto Atleta Campeão · São Paulo, SP</div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  state = { openIndex: -1 };
+
+  renderVals() {
+    const faqs = [
+      { q: "Preciso ser formado em psicologia para participar?", a: "Não. O congresso é aberto a todos os profissionais que atuam ou querem atuar com treinamento mental, coaching esportivo, educação física, gestão do esporte ou áreas relacionadas. Estudantes também são bem-vindos." },
+      { q: "O evento será gravado?", a: "Não. O congresso é uma experiência presencial — o conteúdo, o networking e a interação com os palestrantes só acontecem para quem estiver na sala." },
+      { q: "O certificado tem validade?", a: "O certificado é emitido pelo Instituto Atleta Campeão. Ele registra a participação no congresso e pode ser utilizado como comprovação de horas complementares, dependendo da instituição." },
+      { q: "Tem estacionamento no local?", a: "As informações de acesso e estacionamento serão divulgadas junto com o endereço completo do evento para todos os inscritos." },
+      { q: "O evento inclui coffee break ou alimentação?", a: "O congresso não inclui alimentação. Há um intervalo para almoço na programação para que os participantes possam se alimentar nas redondezas do espaço." },
+      { q: "Posso parcelar o pagamento?", a: "Sim. As opções de parcelamento estarão disponíveis na página de pagamento no momento da inscrição." },
+      { q: "E se eu não puder ir no dia?", a: "Entre em contato com o nosso suporte antes do evento para solicitar reembolso ou transferência de vaga." },
+      { q: "Ainda tenho dúvidas. Como falo com vocês?", a: "Mande uma mensagem para o nosso WhatsApp ou envie um e-mail para suporte@atletacampeao.com.br." }
+    ];
+
+    const openIndex = this.state.openIndex;
+
+    const faqItems = faqs.map((f, i) => ({
+      question: f.q,
+      answer: f.a,
+      open: openIndex === i,
+      iconColor: openIndex === i ? '#ff5000' : '#303030',
+      rotation: openIndex === i ? 'rotate(180deg)' : 'rotate(0deg)',
+      toggle: () => this.setState({ openIndex: openIndex === i ? -1 : i })
+    }));
+
+    return { faqItems };
+  }
+}
+
+</script>
+</body>
+</html>
