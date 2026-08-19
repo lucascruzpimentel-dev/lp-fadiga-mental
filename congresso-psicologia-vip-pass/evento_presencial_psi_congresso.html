@@ -14,10 +14,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#000000">
 <title>Congresso Presencial de Psicologia do Esporte | 29 Ago</title>
-<meta name="description" content="Congresso presencial em Alphaville — 29 de agosto, das 10h às 18h. Palestras, networking e certificado MEC. Ingressos a partir de R$ 297.">
+<meta name="description" content="Congresso presencial em Alphaville — 29 de agosto, das 10h às 18h. Palestras, networking e certificado MEC. Vagas encerradas.">
 <meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.leadconnectorhq.com">
+<link rel="preconnect" href="https://link.msgsndr.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 
@@ -59,7 +61,7 @@ a{text-decoration:none;color:inherit}
 .np.on{background:none;color:#fff;border-bottom-color:var(--z-orange)}
 .nav-cta{padding:8px 22px;background:var(--z-grad);color:#fff;font-weight:700;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;border:none;border-radius:999px;cursor:pointer;font-family:var(--font-body);box-shadow:0 4px 20px rgba(254,155,10,.25)}
 .nav-cta:hover{box-shadow:0 6px 28px rgba(254,155,10,.4)}
-@media(max-width:600px){.nav-cta{display:none}.np{padding:6px 14px;font-size:.68rem}}
+@media(max-width:600px){.nav-cta{display:inline-flex;padding:8px 12px;font-size:.62rem}.np{padding:6px 14px;font-size:.68rem}}
 
 /* UTILS */
 .sec{padding:88px 24px}
@@ -84,6 +86,11 @@ a{text-decoration:none;color:inherit}
 @keyframes seats-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 @keyframes seats-blink{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes seats-shine{0%{transform:translateX(-120%)}60%,100%{transform:translateX(120%)}}
+.seats-bar--closed{background:var(--z-surface);color:#fff;box-shadow:none}
+.seats-bar--closed::before,.seats-bar--closed .seats-bar__dot,.seats-bar--closed strong,.seats-bar--closed .seats-bar__n{animation:none}
+.seats-bar--closed .seats-bar__dot{background:var(--z-orange);opacity:.7}
+.seats-chip--closed{border-color:var(--z-border);background:rgba(255,255,255,.04)}
+.seats-chip--closed .seats-chip__n{background:rgba(255,255,255,.1);animation:none;min-width:auto;padding:0 10px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
 @media(prefers-reduced-motion:reduce){.seats-bar::before,.seats-bar__dot,.seats-bar strong,.seats-bar__n,.seats-chip__n{animation:none}}
 
 /* HERO */
@@ -220,6 +227,7 @@ a{text-decoration:none;color:inherit}
 .faq-q.open svg{transform:rotate(180deg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
 .faq-a p{padding:0 0 18px;font-size:.84rem;color:var(--z-text2);line-height:1.7}
+.faq-waitlist{display:inline;padding:0;margin:0;border:0;background:none;color:var(--z-orange);font:inherit;font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 
 /* PARTNER */
 .p-hero{min-height:auto;padding:120px 24px 80px;text-align:left;align-items:flex-start;justify-content:center}
@@ -394,9 +402,20 @@ a{text-decoration:none;color:inherit}
 .lote-card__cta{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:12px 16px;border-radius:999px;font-weight:700;font-size:.85rem;text-decoration:none;border:none;cursor:pointer;font-family:var(--font-body)}
 .lote-card__cta--on{background:var(--z-grad);color:#fff;box-shadow:0 4px 20px rgba(254,155,10,.25)}
 .lote-card__cta--off,.lote-card__cta--done{background:rgba(255,255,255,.06);color:var(--z-text3);pointer-events:none;cursor:not-allowed}
+.lote-card--encerrado .lote-card__cta--on{opacity:1;pointer-events:auto;cursor:pointer}
 .lote-card__status{font-size:.72rem;color:var(--z-text3);text-align:center;margin-top:10px;text-transform:uppercase;letter-spacing:.08em}
 .tone-soft .lote-card{background:rgba(255,255,255,.04)}
 .tone-soft .lote-card__price{color:#fff}
+
+.waitlist-modal{position:fixed;inset:0;z-index:220;display:none;align-items:center;justify-content:center;padding:18px}
+.waitlist-modal.is-open{display:flex}
+.waitlist-modal__backdrop{position:absolute;inset:0;background:rgba(8,6,5,.78);backdrop-filter:blur(6px)}
+.waitlist-modal__dialog{position:relative;z-index:1;width:min(560px,100%);max-height:min(92vh,860px);overflow:auto;background:#fff;border-radius:16px;padding:22px 18px 12px;box-shadow:0 28px 80px rgba(0,0,0,.45);color:#161411}
+.waitlist-modal__close{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;border-radius:50%;background:rgba(22,20,17,.08);color:#161411;font-size:22px;line-height:1;cursor:pointer}
+.waitlist-modal__title{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;margin:0 36px 6px 0;text-transform:none;letter-spacing:0;color:#161411}
+.waitlist-modal__lead{font-size:.88rem;color:#4a453f;margin:0 0 12px;line-height:1.5}
+.waitlist-modal__form{min-height:500px}
+.waitlist-modal__form iframe{width:100%;min-height:500px;border:0;border-radius:8px;display:block}
 
 /* Mobile overflow: grid minmax(0,1fr) + wrap */
 html,body{max-width:100%;overflow-x:hidden}
@@ -422,20 +441,20 @@ html,body{max-width:100%;overflow-x:hidden}
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<div class="seats-bar" role="status" aria-live="polite">
+<div class="seats-bar seats-bar--closed" role="status" aria-live="polite">
 <span class="seats-bar__dot" aria-hidden="true"></span>
-<p>Resta apenas <strong class="seats-bar__n">1</strong> vaga para o congresso presencial</p>
+<p>Vagas encerradas para o congresso presencial</p>
 </div>
 <nav class="nav"><div class="nav-in">
 <img src="https://atletacampeaotreinamentos.com/congresso-psicologia-vip-pass/assets/icone_atleta_campeao.png?v=20260812b" alt="Atleta Campeão" class="nav-logo" width="40" height="40">
-<a href="https://pay.hotmart.com/C107095956W?off=7oiu4cnv" target="_blank" rel="noopener" class="nav-cta">Garantir vaga</a>
+<button type="button" class="nav-cta" data-waitlist>Lista de espera</button>
 </div></nav>
 
 <div class="pg on" id="pg-ev">
 
 <section class="hero">
 <div class="hero-wrap">
-<div class="tag"><span class="dot"></span>Congresso presencial · 29 de agosto · Resta 1 vaga</div>
+<div class="tag"><span class="dot"></span>Congresso presencial · 29 de agosto · Vagas encerradas</div>
 <h1>Primeiro congresso presencial de <em>Psicologia do Esporte e Coaching</em></h1>
 <p class="hero-sub">Um dia inteiro com os profissionais que estão construindo o futuro do treinamento mental esportivo no Brasil.</p>
 <div class="hero-visual">
@@ -446,11 +465,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div class="pill-line"></div><span class="pill-text">29 de agosto<br>Sábado</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="pill-line"></div><span class="pill-text">Alphaville<br>São Paulo, SP</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="pill-line"></div><span class="pill-text">10h às 18h<br>Dia inteiro</span></div>
-<div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 0v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="pill-line"></div><span class="pill-text">Resta<br>1 vaga</span></div>
+<div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 0v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="pill-line"></div><span class="pill-text">Vagas<br>encerradas</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><div class="pill-line"></div><span class="pill-text">Certificado<br>reconhecido MEC</span></div>
 </div>
-<div class="seats-chip hero-seats"><span class="seats-chip__n">1</span><span>vaga restante — garanta a sua agora</span></div>
-<a href="https://pay.hotmart.com/C107095956W?off=7oiu4cnv" target="_blank" rel="noopener" class="btn hero-cta">Garantir minha vaga</a>
+<div class="seats-chip seats-chip--closed hero-seats"><span class="seats-chip__n">Esgotado</span><span>vagas encerradas para o congresso presencial</span></div>
+<button type="button" class="btn hero-cta" data-waitlist>Entrar na lista de espera</button>
 </div>
 </section>
 
@@ -458,7 +477,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="proof-inner">
 <h2>Mais de <strong>30 mil alunos</strong> ao redor do mundo já participaram dos treinamentos do Atleta Campeão</h2>
 <p>Aprenda com quem aplica treinamento mental na prática — com atletas do amador ao campeão mundial.</p>
-<a href="https://pay.hotmart.com/C107095956W?off=7oiu4cnv" target="_blank" rel="noopener" class="btn">Garantir minha vaga</a>
+<button type="button" class="btn" data-waitlist>Entrar na lista de espera</button>
 </div>
 </section>
 
@@ -578,7 +597,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="talk talk-break"><div class="talk-time">17:30<br>às<br>18:00</div><div class="talk-body"><div><div class="talk-title">Entrega de certificados</div><p class="talk-desc">Encerramento oficial, entrega dos certificados e momento de fotos entre participantes e palestrantes.</p></div></div></div>
 
-<div style="text-align:center;margin-top:32px"><a href="https://pay.hotmart.com/C107095956W?off=7oiu4cnv" target="_blank" rel="noopener" class="btn">Garantir minha vaga</a></div>
+<div style="text-align:center;margin-top:32px"><button type="button" class="btn" data-waitlist>Entrar na lista de espera</button></div>
 </div>
 </section>
 
@@ -703,13 +722,13 @@ Ver no Google Maps
 <div class="pills" style="margin-top:36px;margin-bottom:0">
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div class="pill-line"></div><span class="pill-text">29 de agosto<br>Sábado</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="pill-line"></div><span class="pill-text">Edifício Personal<br>Alphaville, SP</span></div>
-<div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 0v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="pill-line"></div><span class="pill-text">Resta<br>1 vaga</span></div>
+<div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 0v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div class="pill-line"></div><span class="pill-text">Vagas<br>encerradas</span></div>
 <div class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="pill-line"></div><span class="pill-text">10h às 18h</span></div>
 </div>
 
 <div class="local-actions">
 <a href="https://share.google/y5HyxuECk5IkID14O" class="btn-outline" target="_blank" rel="noopener noreferrer">Abrir localização</a>
-<a href="https://pay.hotmart.com/C107095956W?off=7oiu4cnv" target="_blank" rel="noopener" class="btn">Garantir minha vaga</a>
+<button type="button" class="btn" data-waitlist>Entrar na lista de espera</button>
 </div>
 </div>
 </section>
@@ -717,10 +736,10 @@ Ver no Google Maps
 <section class="sec invest tone-soft" id="inscrever">
 <div class="sec-in">
 <span class="ey">Investimento</span>
-<h2 class="st">Garanta sua vaga no congresso</h2>
-<p class="sd" style="margin:0 auto">Um dia inteiro de congresso presencial em Alphaville. O lote atual fica em destaque — os próximos liberam automaticamente na data.</p>
+<h2 class="st">Vagas encerradas</h2>
+<p class="sd" style="margin:0 auto">As inscrições para o congresso presencial de 29 de agosto foram encerradas. Entre na lista de espera para ser avisado se abrir nova vaga.</p>
 
-<div class="lotes-countdown" id="lotes-countdown" aria-live="polite">
+<div class="lotes-countdown" id="lotes-countdown" aria-live="polite" hidden>
 <p class="lotes-countdown__label" id="lotes-countdown-label">O lote atual termina em</p>
 <div class="lotes-countdown__grid">
 <div class="lotes-countdown__item"><span class="lotes-countdown__val" id="lc-d">--</span><span class="lotes-countdown__unit">dias</span></div>
@@ -731,7 +750,7 @@ Ver no Google Maps
 </div>
 
 <div class="lotes-grid" id="lotes-grid">
-<article class="lote-card" data-lote="1" data-start="2026-08-10T00:00:00-03:00" data-end="2026-08-16T23:59:59-03:00" data-price="197">
+<article class="lote-card lote-card--encerrado" data-lote="1" data-start="2026-08-10T00:00:00-03:00" data-end="2026-08-16T23:59:59-03:00" data-price="197">
 <span class="lote-card__badge">Lote 01</span>
 <div class="lote-card__price">R$ 197</div>
 <p class="lote-card__valid">De 10/08 a 16/08 · até 23h59</p>
@@ -743,10 +762,10 @@ Ver no Google Maps
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Certificado MEC entregue no presencial</span></li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Networking presencial</span></li>
 </ul>
-<a class="lote-card__cta lote-card__cta--off" href="https://pay.hotmart.com/C107095956W?off=7oiu4cnv" target="_blank" rel="noopener" data-lote-cta>Indisponível</a>
+<button type="button" class="lote-card__cta lote-card__cta--on" data-lote-cta data-waitlist>Entrar na lista de espera</button>
 <p class="lote-card__status" data-lote-status></p>
 </article>
-<article class="lote-card" data-lote="2" data-start="2026-08-17T00:00:00-03:00" data-end="2026-08-23T23:59:59-03:00" data-price="297">
+<article class="lote-card lote-card--encerrado" data-lote="2" data-start="2026-08-17T00:00:00-03:00" data-end="2026-08-23T23:59:59-03:00" data-price="297">
 <span class="lote-card__badge">Lote 02</span>
 <div class="lote-card__price">R$ 297</div>
 <p class="lote-card__valid">De 17/08 a 23/08 · até 23h59</p>
@@ -758,10 +777,10 @@ Ver no Google Maps
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Certificado MEC entregue no presencial</span></li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Networking presencial</span></li>
 </ul>
-<a class="lote-card__cta lote-card__cta--off" href="https://pay.hotmart.com/C107095956W?off=7oiu4cnv" data-href="https://pay.hotmart.com/C107095956W?off=7oiu4cnv" target="_blank" rel="noopener" data-lote-cta>Indisponível</a>
+<button type="button" class="lote-card__cta lote-card__cta--on" data-lote-cta data-waitlist>Entrar na lista de espera</button>
 <p class="lote-card__status" data-lote-status></p>
 </article>
-<article class="lote-card" data-lote="3" data-start="2026-08-24T00:00:00-03:00" data-end="2026-08-29T23:59:59-03:00" data-price="397">
+<article class="lote-card lote-card--encerrado" data-lote="3" data-start="2026-08-24T00:00:00-03:00" data-end="2026-08-29T23:59:59-03:00" data-price="397">
 <span class="lote-card__badge">Lote 03</span>
 <div class="lote-card__price">R$ 397</div>
 <p class="lote-card__valid">De 24/08 a 29/08 · até 23h59</p>
@@ -773,7 +792,7 @@ Ver no Google Maps
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Certificado MEC entregue no presencial</span></li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Networking presencial</span></li>
 </ul>
-<a class="lote-card__cta lote-card__cta--off" href="https://pay.hotmart.com/C107095956W?off=7oiu4cnv" target="_blank" rel="noopener" data-lote-cta>Indisponível</a>
+<button type="button" class="lote-card__cta lote-card__cta--on" data-lote-cta data-waitlist>Entrar na lista de espera</button>
 <p class="lote-card__status" data-lote-status></p>
 </article>
 </div>
@@ -787,6 +806,7 @@ Ver no Google Maps
 <h2 class="st">Perguntas sobre o congresso</h2>
 <div class="gold-line" style="margin-bottom:12px"></div>
 <div class="faq-list">
+<div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Ainda dá para se inscrever?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Não. As vagas para o congresso presencial de 29 de agosto foram encerradas. Você pode entrar na <button type="button" class="faq-waitlist" data-waitlist>lista de espera</button> para ser avisado se abrir nova vaga.</p></div></div>
 <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O que é o Congresso de Psicologia do Esporte e Coaching?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>É um evento presencial de um dia inteiro em Alphaville, São Paulo, com palestras de especialistas sobre psicologia do esporte, treinamento mental e neurociência aplicada ao alto rendimento. Organizado pelo Instituto Atleta Campeão, no dia 29 de agosto (sábado), das 10h às 18h.</p></div></div>
 <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Preciso ser formado em psicologia para participar?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Não. O congresso é aberto a todos os profissionais que atuam ou querem atuar com treinamento mental, coaching esportivo, educação física, gestão do esporte ou áreas relacionadas. Estudantes também são bem-vindos.</p></div></div>
 <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O certificado é reconhecido pelo MEC?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Sim. O certificado é reconhecido pelo MEC e tem validade como curso de extensão universitária. É emitido pelo Instituto Atleta Campeão e entregue no presencial para os inscritos, no encerramento do congresso.</p></div></div>
@@ -802,6 +822,33 @@ Ver no Google Maps
 
 </div>
 
+<div class="waitlist-modal" id="waitlist-modal" aria-hidden="true">
+  <div class="waitlist-modal__backdrop" data-waitlist-close></div>
+  <div class="waitlist-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
+    <button type="button" class="waitlist-modal__close" data-waitlist-close aria-label="Fechar">&times;</button>
+    <h2 class="waitlist-modal__title" id="waitlist-title">Lista de espera</h2>
+    <p class="waitlist-modal__lead">As vagas do presencial esgotaram. Preencha para ser avisado se abrir nova vaga.</p>
+    <div class="waitlist-modal__form">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/blyKWfRsSdhlm56ucbv8"
+        style="width:100%;height:100%;border:none;border-radius:8px"
+        id="inline-blyKWfRsSdhlm56ucbv8"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Lista de Espera Evento Presencial"
+        data-height="766"
+        data-layout-iframe-id="inline-blyKWfRsSdhlm56ucbv8"
+        data-form-id="blyKWfRsSdhlm56ucbv8"
+        title="Lista de Espera Evento Presencial">
+      </iframe>
+    </div>
+  </div>
+</div>
 
 <footer class="foot">
 <img src="https://atletacampeaotreinamentos.com/congresso-psicologia-vip-pass/assets/icone_atleta_campeao.png?v=20260812b" alt="Atleta Campeão" width="48" height="48" loading="lazy">
@@ -817,6 +864,7 @@ function toggleFaq(el){var a=el.nextElementSibling;var o=el.classList.contains('
 
 <script>
 (function(){
+  var SOLD_OUT=true;
   var cards=[].slice.call(document.querySelectorAll('#lotes-grid .lote-card'));
   if(!cards.length) return;
   var label=document.getElementById('lotes-countdown-label');
@@ -846,12 +894,13 @@ function toggleFaq(el){var a=el.nextElementSibling;var o=el.classList.contains('
       var cta=c.querySelector('[data-lote-cta]');
       var status=c.querySelector('[data-lote-status]');
       c.classList.remove('lote-card--current','lote-card--encerrado','lote-card--future');
-      if(now>end){
+      if(SOLD_OUT || now>end){
         c.classList.add('lote-card--encerrado');
-        cta.className='lote-card__cta lote-card__cta--done';
+        cta.className='lote-card__cta lote-card__cta--on';
         cta.removeAttribute('href');
-        cta.textContent='Encerrado';
-        if(status) status.textContent='Lote encerrado';
+        cta.setAttribute('data-waitlist','');
+        cta.textContent='Entrar na lista de espera';
+        if(status) status.textContent='Lista de espera';
       } else if(now>=start && now<=end){
         c.classList.add('lote-card--current');
         cta.className='lote-card__cta lote-card__cta--on';
@@ -871,7 +920,10 @@ function toggleFaq(el){var a=el.nextElementSibling;var o=el.classList.contains('
         if(status) status.textContent='Em breve';
       }
     });
-    // move current first
+    if(SOLD_OUT){
+      if(wrap) wrap.style.display='none';
+      return;
+    }
     var grid=document.getElementById('lotes-grid');
     if(st.current && grid && grid.firstElementChild!==st.current){
       grid.insertBefore(st.current, grid.firstElementChild);
@@ -903,9 +955,38 @@ function toggleFaq(el){var a=el.nextElementSibling;var o=el.classList.contains('
     if(cta && cta.getAttribute('href')) cta.setAttribute('data-href', cta.getAttribute('href'));
   });
   render();
-  setInterval(render,1000);
+  if(!SOLD_OUT) setInterval(render,1000);
 })();
 </script>
+
+<script>
+(function(){
+  var modal=document.getElementById('waitlist-modal');
+  if(!modal) return;
+  function openModal(){
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[data-waitlist]')){
+      e.preventDefault();
+      openModal();
+      return;
+    }
+    if(e.target.closest('[data-waitlist-close]')) closeModal();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+})();
+</script>
+<script defer src="https://link.msgsndr.com/js/form_embed.js"></script>
 
 </body>
 </html>
