@@ -431,6 +431,28 @@ html,body{max-width:100%;overflow-x:hidden}
 .np{padding:6px 10px;font-size:.7rem;flex-shrink:0}
 }
 
+
+/* ===== AJUSTES DE LAYOUT ===== */
+
+/* 1. Header colado no topo: nao existe barra superior ocupando os 42px */
+.nav{top:0}
+
+/* 2. Hero centralizado e alinhado com as demais secoes.
+      O grid tinha uma 2a coluna para .hero-visual, que nao existe no HTML,
+      deixando metade do hero vazia e o conteudo encostado a esquerda. */
+.hero-wrap{max-width:960px;grid-template-columns:minmax(0,1fr);grid-template-areas:"tag""title""sub""p""pills""seats""cta"}
+.hero{padding-top:123px;padding-left:24px;padding-right:24px}
+@media(max-width:900px){.hero{padding-top:103px}}
+@media(max-width:700px){.hero{padding-left:18px;padding-right:18px}}
+
+/* 3. Lista "Voce ja se perguntou" legivel sobre fundo claro */
+.tone-light .il,.tone-warm .il{color:var(--z-ink2)}
+
+/* 4. FAQ centralizado como as secoes vizinhas (ingresso / fechamento).
+      As perguntas seguem alinhadas a esquerda dentro de cada linha. */
+.faq .sec-in{text-align:center}
+.faq .gold-line{margin-left:auto;margin-right:auto}
+.faq-list{margin-left:auto;margin-right:auto;text-align:left}
 </style>
 </head>
 <body>
