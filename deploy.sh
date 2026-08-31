@@ -23,6 +23,7 @@ git add \
   "sessao-individual-jiu-jitsu/" \
   "treinador-mental-atletas/" \
   "evento-presencial-pais-atleta/" \
+  "congresso-lideranca-parental/" \
   "politica-de-privacidade/" \
   vercel.json \
   deploy.sh \

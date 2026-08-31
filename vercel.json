@@ -13,7 +13,8 @@
     { "source": "/congresso-psicologia-gravado", "destination": "/congresso-psicologia-gravado/", "permanent": false },
     { "source": "/congresso-psicologia-presencial", "destination": "/congresso-psicologia-presencial/", "permanent": false },
     { "source": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso.html", "destination": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso/", "permanent": true },
-    { "source": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso", "destination": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso/", "permanent": false }
+    { "source": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso", "destination": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso/", "permanent": false },
+    { "source": "/congresso-lideranca-parental", "destination": "/congresso-lideranca-parental/", "permanent": false }
   ],
   "rewrites": [
     { "source": "/aula-cerebro-do-atleta", "destination": "/curso-telas/Captura_aula_telas_gratuita.html" },
