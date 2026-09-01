@@ -78,8 +78,6 @@ a{text-decoration:none;color:inherit}
 .sec{padding:88px 24px}
 .sec-in{max-width:var(--largura);margin:0 auto}
 .sec-in.centro{text-align:center}
-.ey{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--roxo);margin-bottom:14px;padding-left:12px;border-left:3px solid var(--ambar-vivo)}
-.centro .ey{padding-left:0;border-left:0}
 .st{font-size:clamp(1.5rem,3.4vw,2.35rem);font-weight:700;line-height:1.14;letter-spacing:-.02em;color:var(--indigo);margin-bottom:18px;text-wrap:balance}
 .sd{font-size:1rem;color:var(--texto2);line-height:1.75;margin-bottom:16px;max-width:66ch}
 .centro .sd{margin-left:auto;margin-right:auto}
@@ -94,7 +92,6 @@ a{text-decoration:none;color:inherit}
 .f-indigo{background:var(--indigo);color:#fff}
 .f-indigo .st,.f-indigo h3{color:#fff}
 .f-indigo .sd{color:var(--texto-claro)}
-.f-indigo .ey{color:var(--ambar-vivo);border-left-color:var(--ambar-vivo)}
 
 /* ---------- BOTÕES ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:var(--verde);color:#0e3d17;font-size:.94rem;font-weight:700;border:none;border-radius:999px;cursor:pointer;transition:.22s;box-shadow:0 6px 22px rgba(97,206,112,.34);font-family:var(--fonte);letter-spacing:.01em;text-align:center}
@@ -109,15 +106,20 @@ a{text-decoration:none;color:inherit}
 /* ---------- HERO ---------- */
 .hero{background:var(--indigo);color:#fff;padding:128px 24px 78px;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:5px;background:linear-gradient(90deg,var(--ambar-vivo),var(--dourado),var(--roxo))}
-.hero-in{max-width:var(--largura);margin:0 auto;position:relative;z-index:1}
+.hero-in{max-width:1100px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+@media(min-width:880px){.hero-in{grid-template-columns:1.08fr .92fr;gap:44px}.hero-copy{order:0}.hero-foto{order:1}}
+@media(max-width:879px){.hero-foto{order:-1}}
+.hero-copy{min-width:0}
+.hero-foto{margin:0;border-radius:var(--raio-lg);overflow:hidden;border:3px solid var(--ambar-vivo);box-shadow:0 22px 56px rgba(0,0,0,.32);background:var(--indigo-deep)}
+.hero-foto img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center 40%;display:block}
 .hero-ey{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ambar-vivo);margin-bottom:20px;line-height:1.5}
-.hero h1{font-size:clamp(1.9rem,4.4vw,3.15rem);font-weight:800;line-height:1.06;letter-spacing:-.025em;margin-bottom:20px;text-wrap:balance}
+.hero h1{font-size:clamp(1.7rem,3.6vw,2.85rem);font-weight:800;line-height:1.06;letter-spacing:-.025em;margin-bottom:20px;text-wrap:balance}
 .hero h1 em{font-style:normal;color:var(--ambar-vivo)}
 .hero-sub{font-size:clamp(1rem,1.7vw,1.18rem);color:rgba(255,255,255,.86);line-height:1.6;margin-bottom:12px;max-width:60ch}
 .hero-para{font-size:.92rem;color:rgba(255,255,255,.62);margin-bottom:34px;max-width:60ch}
 .hero-dados{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:34px}
 .hd{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid var(--borda-clara);border-radius:999px;padding:9px 17px;font-size:.85rem;font-weight:500;color:#fff}
-.hd span.i{font-size:1rem;line-height:1}
+.hd svg{width:16px;height:16px;flex-shrink:0;color:var(--ambar-vivo)}
 
 /* ---------- LISTAS ---------- */
 .lista{display:flex;flex-direction:column;gap:13px;margin:26px 0}
@@ -126,10 +128,48 @@ a{text-decoration:none;color:inherit}
 .f-indigo .li{color:var(--texto-claro)}
 .f-indigo .li svg{color:var(--ambar-vivo)}
 
-/* narrativa (blocos 2, 3, 4) */
+/* narrativa */
 .narr p{font-size:1.02rem;color:var(--texto2);line-height:1.8;margin-bottom:18px;max-width:68ch}
 .narr p.forte{color:var(--indigo);font-weight:600;font-size:1.08rem}
 .narr p.solo{color:var(--roxo);font-weight:700;font-size:clamp(1.1rem,2.2vw,1.35rem);line-height:1.4;margin:30px 0;max-width:none}
+
+.cenas{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:720px){.cenas{grid-template-columns:repeat(3,1fr)}}
+.cena{background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio);padding:22px 20px;box-shadow:0 3px 14px rgba(61,59,118,.05)}
+.cena-n{display:block;font-size:.7rem;font-weight:800;letter-spacing:.14em;color:var(--ambar-vivo);margin-bottom:10px}
+.cena h3{font-size:1.02rem;font-weight:700;color:var(--indigo);line-height:1.3;margin-bottom:8px}
+.cena p{font-size:.9rem;color:var(--texto2);line-height:1.65;margin:0}
+
+.punch{margin-top:20px;padding:20px 22px;background:var(--amarelo);border-left:4px solid var(--ambar-vivo);border-radius:0 12px 12px 0}
+.punch p{margin:0;font-size:1.02rem;font-weight:600;color:var(--indigo);line-height:1.5}
+.punch.roxo{background:var(--pessego);border-left-color:var(--roxo);margin-top:12px}
+.punch.roxo p{color:var(--roxo)}
+
+.vs{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:720px){.vs{grid-template-columns:1fr 1fr;align-items:stretch}}
+.vs-c{background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio);padding:22px;box-shadow:0 3px 14px rgba(61,59,118,.05)}
+.vs-c h3{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--roxo);margin-bottom:12px}
+.vs-c p{font-size:.92rem;color:var(--texto2);line-height:1.65;margin:0}
+.vs-c ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.vs-c li{font-size:.9rem;color:var(--texto2);line-height:1.5;padding-left:16px;position:relative}
+.vs-c li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--dourado)}
+
+.sinto{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:800px){.sinto{grid-template-columns:repeat(4,1fr)}}
+.sinto article{background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio);padding:18px 16px;box-shadow:0 3px 14px rgba(61,59,118,.05)}
+.sinto h3{font-size:.92rem;font-weight:700;color:var(--indigo);margin-bottom:6px;line-height:1.3}
+.sinto p{font-size:.84rem;color:var(--texto2);line-height:1.55;margin:0}
+
+.insight{margin-top:20px;padding:24px;background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio-lg);box-shadow:0 3px 14px rgba(61,59,118,.05)}
+.insight p{font-size:.98rem;color:var(--texto2);line-height:1.7;margin:0 0 12px}
+.insight p:last-child{margin:0}
+.insight p.forte{color:var(--indigo);font-weight:600}
+
+.f-indigo .card{background:rgba(255,255,255,.08);border-color:var(--borda-clara);box-shadow:none;text-align:left}
+.f-indigo .card h3{color:#fff}
+.f-indigo .card p{color:var(--texto-claro)}
+.f-indigo .card .ic{background:rgba(251,174,11,.18);color:var(--ambar-vivo)}
+.f-indigo .linha{background:linear-gradient(90deg,var(--ambar-vivo),var(--dourado))}
 
 /* ---------- PROGRAMAÇÃO ---------- */
 .prog{display:flex;flex-direction:column;gap:14px;margin-top:34px}
@@ -150,9 +190,22 @@ a{text-decoration:none;color:inherit}
 .grade{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px}
 @media(min-width:720px){.grade.g2{grid-template-columns:1fr 1fr}.grade.g3{grid-template-columns:repeat(3,1fr)}}
 .card{background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio);padding:22px;box-shadow:0 3px 14px rgba(61,59,118,.05)}
-.card .ic{font-size:1.5rem;line-height:1;margin-bottom:11px;display:block}
+.card .ic{display:flex;width:40px;height:40px;align-items:center;justify-content:center;margin-bottom:12px;border-radius:10px;background:var(--amarelo);color:var(--indigo)}
+.card .ic svg{width:20px;height:20px}
 .card h3{font-size:1rem;font-weight:700;color:var(--indigo);margin-bottom:7px;line-height:1.3}
 .card p{font-size:.89rem;color:var(--texto2);line-height:1.65}
+
+/* ---------- CERTIFICAÇÃO ---------- */
+.ey{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ambar-vivo);margin-bottom:14px;display:inline-block;padding:0 0 0 12px;border-left:2px solid var(--ambar-vivo)}
+.cert-layout{display:grid;grid-template-columns:1fr;gap:36px;margin-top:32px;align-items:center}
+@media(min-width:700px){.cert-layout{grid-template-columns:1fr 1fr;gap:40px}}
+.cert-img{background:var(--branco);padding:16px;border-radius:var(--raio-lg);border:1px solid var(--borda);box-shadow:0 8px 28px rgba(61,59,118,.08)}
+.cert-img img{width:100%;height:auto;aspect-ratio:1200/848;object-fit:contain;border-radius:8px}
+.cert-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.cert-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--ambar-vivo),var(--dourado-escuro));color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.cert-item h3{font-size:.82rem;font-weight:700;color:var(--indigo);margin-bottom:4px;text-transform:uppercase;letter-spacing:.03em}
+.cert-item p{font-size:.82rem;color:var(--texto2);line-height:1.6;margin:0}
+.cert-nota{margin-top:8px;padding:14px 16px;background:var(--indigo);border-radius:var(--raio);border-left:3px solid var(--ambar-vivo);font-size:.8rem;color:rgba(255,255,255,.82);line-height:1.6}
 
 /* palestrantes */
 .pal{display:flex;flex-direction:column;gap:18px;margin-top:32px}
@@ -164,10 +217,88 @@ a{text-decoration:none;color:inherit}
 .pal-c h3{font-size:1.15rem;font-weight:700;color:var(--indigo);margin-bottom:4px}
 .pal-fn{font-size:.87rem;color:var(--roxo);font-weight:600;margin-bottom:11px}
 .pal-c p{font-size:.92rem;color:var(--texto2);line-height:1.68;margin-bottom:9px}
+.pal-c ul{margin:12px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.pal-c li{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--texto2);line-height:1.55}
+.pal-c li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ambar-vivo);flex-shrink:0;margin-top:8px}
 
-/* ---------- PLACEHOLDER ---------- */
-.ph{display:inline-block;background:repeating-linear-gradient(45deg,#ffe9e9,#ffe9e9 8px,#ffdede 8px,#ffdede 16px);border:1px dashed #d94a4a;border-radius:6px;padding:5px 11px;font-size:.8rem;font-weight:700;color:#a01b1b;letter-spacing:.02em}
-.ph-bloco{display:block;margin:10px 0}
+/* local do evento */
+.local-gallery{max-width:640px;margin:32px auto 0}
+.local-gallery figure{margin:0;border-radius:var(--raio);overflow:hidden;border:1px solid var(--borda);background:var(--branco);box-shadow:0 3px 14px rgba(61,59,118,.05)}
+.local-gallery img{width:100%;height:280px;object-fit:cover;display:block;object-position:center}
+.local-card{margin-top:22px;padding:22px 24px;background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio);box-shadow:0 3px 14px rgba(61,59,118,.05)}
+.local-card h3{font-size:1.12rem;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.local-card p{font-size:.9rem;color:var(--texto2);line-height:1.65;margin:0 0 8px}
+.local-card a.map-link{display:inline-flex;align-items:center;gap:8px;margin-top:8px;color:var(--roxo);font-weight:600;font-size:.88rem}
+.local-card a.map-link:hover{color:var(--indigo);text-decoration:underline}
+@media(max-width:700px){.local-gallery img{height:200px}}
+
+.pay-ok{margin-top:22px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:.86rem;font-weight:600;color:var(--indigo)}
+.pay-ok svg{width:16px;height:16px;flex-shrink:0;color:var(--verde)}
+
+/* depoimentos */
+.testis{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:8px;text-align:left}
+@media(min-width:700px){.testis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:980px){.testis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.testi{margin:0;background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio);overflow:hidden;box-shadow:0 3px 14px rgba(61,59,118,.05);display:flex;flex-direction:column;min-width:0}
+.testi a{display:block;line-height:0;background:#efeae2}
+.testi img{width:100%;height:auto;display:block}
+.testi figcaption{padding:12px 14px 14px;font-size:.82rem;color:var(--texto2);line-height:1.4}
+.testi figcaption strong{display:block;color:var(--indigo);font-size:.88rem;margin-bottom:2px}
+.testi-nota{margin:18px auto 0;max-width:40rem;font-size:.82rem;color:var(--texto2);text-align:center}
+.testi-hint{display:none}
+.testis-wrap{min-width:0}
+
+@media(max-width:699px){
+  #depoimentos{overflow:hidden}
+  #depoimentos .sec-in{width:100%;max-width:100%;min-width:0;overflow:hidden}
+  .testi-hint{display:block;margin:0 auto 14px;font-size:.78rem;color:var(--texto2);text-align:center;line-height:1.45;max-width:28ch}
+  .testi-nota{margin-left:auto;margin-right:auto;padding:0;line-height:1.45;max-width:28ch}
+  .testis-wrap{
+    margin-inline:-18px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:18px;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    padding:4px 18px 14px;
+    scrollbar-width:none;
+  }
+  .testis-wrap::-webkit-scrollbar{display:none}
+  .testis{
+    display:flex;
+    gap:12px;
+    width:max-content;
+    margin:0;
+    padding:0;
+  }
+  .testi{
+    flex:0 0 min(78vw, 320px);
+    width:min(78vw, 320px);
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+  }
+  .testi a{
+    position:relative;
+    max-height:min(58vh, 420px);
+    overflow:hidden;
+  }
+  .testi--longo a::after{
+    content:'';
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:56px;
+    background:linear-gradient(transparent, rgba(255,255,255,.94));
+    pointer-events:none;
+  }
+  .testi img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    object-position:top center;
+  }
+  .testi figcaption{padding:11px 12px 13px;font-size:.78rem}
+}
 
 /* ---------- PARA PAIS ---------- */
 .pais{background:var(--amarelo);border:2px solid var(--ambar-vivo);border-radius:var(--raio-lg);padding:34px 30px}
@@ -180,7 +311,10 @@ a{text-decoration:none;color:inherit}
 @media(min-width:820px){.lotes{grid-template-columns:repeat(3,1fr);align-items:stretch}}
 .lote{background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio-lg);padding:26px 22px;display:flex;flex-direction:column;text-align:center;box-shadow:0 3px 14px rgba(61,59,118,.05)}
 .lote.ativo{border:2px solid var(--verde);box-shadow:0 10px 34px rgba(97,206,112,.22);position:relative}
+.lote.encerrado{opacity:.72}
 .lote-tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--roxo);margin-bottom:10px}
+.lote-acao{margin-top:auto;width:100%}
+.lote-acao .btn,.lote-acao .lote-off{width:100%}
 
 .lote-preco{font-size:2.15rem;font-weight:800;color:var(--indigo);line-height:1;margin-bottom:8px}
 .lote-per{font-size:.85rem;color:var(--texto2);margin-bottom:18px;min-height:2.6em}
@@ -200,6 +334,8 @@ a{text-decoration:none;color:inherit}
 .faq-q.open svg{transform:rotate(180deg)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
 .faq-a p{padding:0 0 19px;font-size:.91rem;color:var(--texto2);line-height:1.75}
+.faq-a a{color:var(--roxo);font-weight:600}
+.faq-a a:hover{text-decoration:underline}
 
 /* ---------- FECHAMENTO / RODAPÉ ---------- */
 .fech-dados{display:inline-block;background:rgba(255,255,255,.1);border:1px solid var(--borda-clara);border-radius:999px;padding:11px 24px;font-size:.9rem;font-weight:600;color:#fff;margin-bottom:26px}
@@ -209,10 +345,34 @@ a{text-decoration:none;color:inherit}
 .rodape p{margin-bottom:10px}
 .rodape a{color:var(--ambar-vivo)}
 
+/* ---------- CONTADOR FIXO ---------- */
+body{padding-bottom:84px}
+.cd{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#0a0a0a;border-top:1px solid rgba(251,174,11,.28);box-shadow:0 -10px 32px rgba(0,0,0,.4)}
+.cd[hidden]{display:none}
+.cd-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.cd-txt{min-width:0}
+.cd-lote{display:block;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;line-height:1.3}
+.cd-label{display:block;margin-top:2px;font-size:.7rem;color:rgba(255,255,255,.5)}
+.cd-grid{display:flex;gap:7px;flex-shrink:0}
+.cd-grid>div{min-width:50px;text-align:center;background:#141414;border:1px solid rgba(251,174,11,.22);border-radius:8px;padding:7px 6px}
+.cd-grid b{display:block;font-size:1.22rem;font-weight:800;color:var(--ambar-vivo);line-height:1;font-variant-numeric:tabular-nums}
+.cd-grid small{display:block;margin-top:3px;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+.cd-btn{flex-shrink:0;padding:11px 20px;background:var(--ambar-vivo);color:#1a1200;font-weight:800;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;font-family:var(--fonte);white-space:nowrap}
+.cd-btn:hover{background:var(--dourado);color:#fff}
+
+@media(max-width:700px){
+  .cd-in{flex-wrap:wrap;padding:10px 14px;justify-content:center;text-align:center}
+  .cd-txt{width:100%}
+  .cd-grid>div{min-width:46px;padding:6px 4px}
+  .cd-grid b{font-size:1.08rem}
+  .cd-btn{width:100%;text-align:center}
+}
+
 /* ---------- RESPONSIVO ---------- */
 @media(max-width:700px){
   .sec{padding:62px 18px}
   .hero{padding:104px 18px 58px}
+  .hero-foto img{aspect-ratio:16/10}
   .nav-in{padding:10px 16px}
   .nav-cta{padding:8px 14px;font-size:.64rem}
   .nav-logo{height:34px;width:34px}
@@ -222,8 +382,10 @@ a{text-decoration:none;color:inherit}
   .pais{padding:26px 20px}
   .hero-dados{gap:10px}
   .hd{padding:8px 14px;font-size:.8rem}
+  .cert-img{padding:10px}
 }
 html,body{max-width:100%;overflow-x:hidden}
+html{scroll-padding-bottom:96px}
 </style>
 </head>
 <body>
@@ -235,87 +397,132 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav class="nav">
 <div class="nav-in">
 <img class="nav-logo" src="https://atletacampeaotreinamentos.com/congresso-psicologia-vip-pass/assets/icone_atleta_campeao.png" alt="Instituto Atleta Campeão">
-<a href="#investimento" class="nav-cta">Quero minha vaga</a>
+<a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="nav-cta" data-checkout>Quero minha vaga</a>
 </div>
 </nav>
 
 <!-- ===== BLOCO 1 — TOPO ===== -->
 <header class="hero">
 <div class="hero-in">
+<div class="hero-copy">
 <div class="hero-ey">1ª edição · Presencial · Alphaville, Barueri/SP · Apenas 30 vagas</div>
 <h1>Os pais são parte do time. E quase ninguém foi preparado para <em>orientá-los</em>.</h1>
 <p class="hero-sub">Um dia presencial para quem atua no esporte e quer orientar os pais de atleta com método e autoridade.</p>
 <p class="hero-para">Para treinadores, psicólogos do esporte, treinadores mentais, coaches e gestores de clube.</p>
 <div class="hero-dados">
-<div class="hd"><span class="i">📅</span>17 de outubro de 2026, sábado</div>
-<div class="hd"><span class="i">🕙</span>Das 10h às 18h</div>
-<div class="hd"><span class="i">📍</span>Infinitus Hub · Alphaville, Barueri/SP</div>
-<div class="hd"><span class="i">🎟️</span>30 vagas presenciais</div>
-<div class="hd"><span class="i">🎓</span>Certificado de extensão universitária UNIFATEC</div>
+<div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>17 de outubro de 2026, sábado</div>
+<div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Das 10h às 18h</div>
+<div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Infinitus Hub · Alphaville, Barueri/SP</div>
+<div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>30 vagas presenciais</div>
+<div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>Certificado de extensão universitária UNIFATEC</div>
 </div>
-<a href="#investimento" class="btn btn-lg">Quero minha vaga — 1º lote R$ 247</a>
-<span class="btn-nota">1º lote encerra em 17 de setembro. Depois disso, R$ 347.</span>
+<a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="btn btn-lg" data-cta-lote data-checkout>Quero minha vaga — 1º lote R$ 247</a>
+<span class="btn-nota" data-cta-nota>1º lote encerra em 17 de setembro. Depois disso, R$ 347.</span>
+</div>
+<figure class="hero-foto">
+<img src="assets/hero_pais_filho_bola.webp" width="1200" height="800" alt="Pais jogando bola com o filho em um campo" fetchpriority="high" decoding="async">
+</figure>
 </div>
 </header>
 
-<!-- ===== BLOCO 2 — IDENTIFICAÇÃO ===== -->
+<!-- ===== IDENTIFICAÇÃO ===== -->
 <section class="sec f-creme">
-<div class="sec-in narr">
-<span class="ey">Identificação</span>
+<div class="sec-in">
 <h2 class="st">Você conhece esse roteiro.</h2>
 <div class="linha"></div>
+<div class="cenas">
+<article class="cena">
+<span class="cena-n">01</span>
+<h3>O grito na arquibancada</h3>
 <p>Você já viu a confiança de um atleta sumir do rosto dele por causa de um grito vindo da arquibancada.</p>
+</article>
+<article class="cena">
+<span class="cena-n">02</span>
+<h3>A mensagem depois do jogo</h3>
 <p>Você já respondeu a uma mãe no WhatsApp depois do jogo sem saber se falava como técnico, como educador ou como psicólogo.</p>
+</article>
+<article class="cena">
+<span class="cena-n">03</span>
+<h3>O talento que some aos 14</h3>
 <p>Você já perdeu um talento raro aos 14 anos sabendo exatamente o motivo, sem poder dizer em voz alta.</p>
-<p class="forte">Em nenhuma dessas situações o problema era técnico. Era o que acontecia em casa, no carro depois do jogo, na mesa do jantar.</p>
-<p class="solo">E ninguém te ensinou a lidar com isso.</p>
+</article>
+</div>
+<div class="punch"><p>Em nenhuma dessas situações o problema era técnico. Era o que acontecia em casa, no carro depois do jogo, na mesa do jantar.</p></div>
+<div class="punch roxo"><p>E ninguém te ensinou a lidar com isso.</p></div>
 </div>
 </section>
 
-<!-- ===== BLOCO 3 — A VIRADA ===== -->
+<!-- ===== A VIRADA ===== -->
 <section class="sec f-bege">
-<div class="sec-in narr">
-<span class="ey">A virada</span>
+<div class="sec-in">
 <h2 class="st">Durante décadas, o esporte tratou os pais como um problema a ser contornado.</h2>
 <div class="linha"></div>
-<p>Placas de "silêncio na arquibancada". Reuniões que só acontecem quando algo dá errado. Grupos de WhatsApp silenciados. A estratégia sempre foi a mesma: manter os pais o mais longe possível do processo.</p>
-<p class="forte">Só que existe um fato que essa estratégia ignora.</p>
+<div class="vs">
+<article class="vs-c">
+<h3>A estratégia de sempre</h3>
+<ul>
+<li>Placas de “silêncio na arquibancada”</li>
+<li>Reuniões que só acontecem quando algo dá errado</li>
+<li>Grupos de WhatsApp silenciados</li>
+</ul>
+<p style="margin-top:14px">Manter os pais o mais longe possível do processo.</p>
+</article>
+<article class="vs-c">
+<h3>O fato que essa estratégia ignora</h3>
 <p>O pai e a mãe passam mais tempo com o atleta do que qualquer treinador vai passar na vida inteira. Eles estão lá antes do treino, no caminho de volta, no dia seguinte à derrota. Eles são, querendo ou não, os treinadores mentais em tempo integral daquele atleta.</p>
-<p>A questão nunca foi como afastar os pais.</p>
-<p class="solo">A questão é quem vai formar esses pais.</p>
-<p class="forte">É isso que o Congresso de Liderança Parental veio resolver.</p>
+</article>
+</div>
+<div class="punch"><p>A questão nunca foi como afastar os pais. A questão é quem vai formar esses pais.</p></div>
+<div class="punch roxo"><p>É isso que o Congresso de Liderança Parental veio resolver.</p></div>
 </div>
 </section>
 
-<!-- ===== BLOCO 4 — O PONTO CEGO DO ESPORTE ===== -->
+<!-- ===== O PONTO CEGO ===== -->
 <section class="sec f-creme">
-<div class="sec-in narr">
-<span class="ey">O ponto cego do esporte</span>
+<div class="sec-in">
 <h2 class="st">O assunto que tira o sono de treinadores e gestores há muito tempo.</h2>
 <div class="linha"></div>
-<p>Pergunte a qualquer técnico de base o que mais desgasta o trabalho dele. Raramente a resposta vai ser tática, física ou técnica. Quase sempre vai ser a relação com as famílias.</p>
-<p>A cobrança que desmonta o atleta. A comparação com o colega. A conversa no carro depois da derrota. A criança que chega ao treino já derrotada por causa do que ouviu em casa. O talento que abandona o esporte cedo demais.</p>
-<p>Por muito tempo esse assunto simplesmente não tinha resposta. Não era assunto de ninguém. O técnico achava que não era função dele, o psicólogo atendia o atleta e não a família, e o clube só chamava os pais quando o problema já havia estourado.</p>
-<p>Isso começou a mudar. O esporte passou a olhar para esse lado e a entender uma coisa que parece óbvia depois de dita: <span class="destaque">o pai não é um obstáculo por natureza. Ele é alguém sem orientação, tentando ajudar do jeito que sabe.</span></p>
-<p>Um pai bem orientado deixa de atrapalhar o trabalho técnico e passa a sustentá-lo. Ele reforça em casa o que você constrói no treino. Ele protege a motivação do filho em vez de corroê-la. Ele vira a extensão do seu trabalho nos dias em que você não está por perto.</p>
-<p class="forte">E o profissional que sabe conduzir essa conversa se torna insubstituível para o atleta, para a família e para o clube.</p>
-<p class="solo">É esse profissional que o congresso quer formar.</p>
-<div class="cta-bloco"><a href="#investimento" class="btn">Quero minha vaga — 1º lote R$ 247</a></div>
+<p class="sd">Pergunte a qualquer técnico de base o que mais desgasta o trabalho dele. Raramente a resposta vai ser tática, física ou técnica. Quase sempre vai ser a relação com as famílias.</p>
+<div class="sinto">
+<article>
+<h3>A cobrança</h3>
+<p>Desmonta o atleta antes mesmo do treino começar.</p>
+</article>
+<article>
+<h3>A comparação</h3>
+<p>O colega vira régua. A confiança some.</p>
+</article>
+<article>
+<h3>A conversa no carro</h3>
+<p>A derrota continua no banco de trás, o caminho inteiro.</p>
+</article>
+<article>
+<h3>O abandono cedo</h3>
+<p>O talento sai do esporte cedo demais — e todo mundo sabia o motivo.</p>
+</article>
+</div>
+<div class="insight">
+<p>Por muito tempo esse assunto não era de ninguém. O técnico achava que não era função dele, o psicólogo atendia o atleta e não a família, e o clube só chamava os pais quando o problema já havia estourado.</p>
+<p class="forte">O pai não é um obstáculo por natureza. Ele é alguém sem orientação, tentando ajudar do jeito que sabe.</p>
+<p>Um pai bem orientado deixa de atrapalhar o trabalho técnico e passa a sustentá-lo. Ele reforça em casa o que você constrói no treino. Ele protege a motivação do filho em vez de corroê-la.</p>
+<p class="forte">O profissional que sabe conduzir essa conversa se torna insubstituível. É esse profissional que o congresso quer formar.</p>
+</div>
+<div class="cta-bloco"><a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="btn" data-cta-lote data-checkout>Quero minha vaga — 1º lote R$ 247</a></div>
 </div>
 </section>
 
-<!-- ===== BLOCO 5 — O QUE VOCÊ LEVA ===== -->
+<!-- ===== O QUE VOCÊ LEVA ===== -->
 <section class="sec f-indigo">
 <div class="sec-in">
-<span class="ey">O que você leva</span>
 <h2 class="st">O que muda na sua atuação depois do dia 17 de outubro</h2>
-<div class="lista">
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Você vai entender quais comportamentos dos pais impactam a autoestima, a autoconfiança e a motivação do atleta, e saber como conduzir a conversa que muda esse comportamento.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Vai receber ferramentas prontas para atender e orientar pais, aplicáveis já na segunda-feira seguinte.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Vai aprender a orientar famílias no tema mais urgente da base hoje: o impacto das telas no foco, no sono e no rendimento do atleta.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Vai sair com uma palestra para pais estruturada, construída por você ao longo do próprio congresso e apresentada no fim do dia.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Vai ampliar sua atuação para um público que já está ao seu lado todos os dias e que hoje quase ninguém sabe atender.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Vai passar o dia com os palestrantes, inclusive no almoço, num grupo de no máximo 30 pessoas.</span></div>
+<div class="linha"></div>
+<div class="grade g3">
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>A conversa que muda o comportamento</h3><p>Quais atitudes dos pais impactam autoestima, autoconfiança e motivação — e como conduzir essa conversa.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><h3>Ferramentas para segunda-feira</h3><p>Instrumentos prontos para atender e orientar pais, aplicáveis no dia seguinte ao congresso.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><h3>Protocolo de telas</h3><p>Como orientar famílias no tema mais urgente da base: o impacto das telas no foco, no sono e no rendimento.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><h3>A sua palestra, construída no dia</h3><p>Você sai com um roteiro estruturado, montado ao longo do congresso e apresentado no fim da tarde.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>Um público que quase ninguém atende</h3><p>Você amplia a atuação para quem já está ao lado do atleta todos os dias — e hoje quase ninguém sabe orientar.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><h3>O dia com os palestrantes</h3><p>Grupo de no máximo 30 pessoas, inclusive no almoço — o formato que só uma sala pequena permite.</p></div>
 </div>
 </div>
 </section>
@@ -323,7 +530,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ===== BLOCO 6 — PROGRAMAÇÃO ===== -->
 <section class="sec f-creme" id="programacao">
 <div class="sec-in">
-<span class="ey">Programação</span>
 <h2 class="st">17 de outubro · 10h às 18h</h2>
 <div class="linha"></div>
 <div class="prog-nota"><p>Um congresso que você não assiste. <strong>Você constrói.</strong> Cada participante recebe na entrada um <strong>Caderno de Campo</strong>. Ao longo do dia, cada palestra devolve uma tarefa que preenche uma parte dele. No fim da tarde, o caderno virou uma palestra sua, pronta para ser apresentada a pais, clubes e escolinhas. E ela será apresentada ali mesmo.</p></div>
@@ -367,7 +573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="pit-b">
 <div class="pit-tipo">Palestra</div>
 <h3>Como manter um filho motivado no esporte</h3>
-<div class="pit-quem">Dr. Luís Antônio de Souza Júnior — Doutor em Educação Física e pesquisador da parentalidade no esporte</div>
+<div class="pit-quem">Luís Antônio — Doutor em Educação Física</div>
 <p>O que a ciência mostra sobre motivação no esporte infantojuvenil: o que sustenta o interesse de uma criança ao longo dos anos, o que faz ela desistir e quais atitudes dos pais funcionam de verdade. Estratégias baseadas em pesquisa, prontas para você levar às famílias que atende.</p>
 <div class="pit-fim">Ao final: você escolhe o argumento que vai sustentar a sua palestra.</div>
 </div>
@@ -418,79 +624,125 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ===== BLOCO 7 — PALESTRANTES ===== -->
 <section class="sec f-bege">
 <div class="sec-in">
-<span class="ey">Palestrantes</span>
 <h2 class="st">Quem conduz o dia</h2>
 <div class="linha"></div>
 <div class="pal">
 
 <article class="pal-c">
-<div class="pal-foto"><span>FOTO PENDENTE</span></div>
+<div class="pal-foto"><img src="assets/pf_mayra_ramos_circle.webp" width="368" height="368" alt="Mayra Ramos, fundadora do Instituto Atleta Campeão" loading="lazy" decoding="async"></div>
 <div>
 <h3>Mayra Ramos</h3>
-<div class="pal-fn">Fundadora do Atleta Campeão</div>
-<span class="ph ph-bloco">[BIO — 3 a 4 linhas]</span>
+<div class="pal-fn">Fundadora do Instituto Atleta Campeão</div>
+<p>Atleta da seleção brasileira de patinação artística por quase 20 anos, com bronze no Pan-Americano de 2003 e prata por equipes no Mundial de 2007.</p>
+<p>Certificada Athlete Mental Coach nos EUA em 2017 — o mesmo ano em que fundou o Atleta Campeão. Desde então forma atletas, pais e treinadores em treinamento mental, com metodologia aplicada a milhares de famílias no Brasil e no exterior.</p>
 </div>
 </article>
 
 <article class="pal-c">
-<div class="pal-foto"><span>FOTO PENDENTE</span></div>
+<div class="pal-foto"><img src="assets/pf_thaty_keller_circle.webp" width="400" height="400" alt="Thaty Keller, treinadora mental" loading="lazy" decoding="async"></div>
 <div>
 <h3>Thaty Keller</h3>
 <div class="pal-fn">Treinadora mental</div>
 <p>Começou no treinamento mental para ajudar o filho André no judô e transformou o processo em carreira. Hoje orienta pais a viverem o esporte dos filhos com mais leveza e mais direção.</p>
-<span class="ph ph-bloco">[COMPLETAR: formações e tempo de atuação]</span>
 </div>
 </article>
 
 <article class="pal-c">
-<div class="pal-foto"><span>FOTO PENDENTE</span></div>
+<div class="pal-foto"><img src="assets/pf_luis_antonio_circle.webp" width="400" height="400" alt="Luís Antônio, doutor em Educação Física" loading="lazy" decoding="async"></div>
 <div>
-<h3>Dr. Luís Antônio de Souza Júnior</h3>
-<div class="pal-fn">Doutor em Educação Física · pesquisador da parentalidade no esporte</div>
-<span class="ph ph-bloco">[BIO — instituição, linha de pesquisa, publicações]</span>
+<h3>Luís Antônio</h3>
+<div class="pal-fn">Doutor em Educação Física, especialista em motivação e desenvolvimento de jovens atletas.</div>
+<p>Parentalidade e Desenvolvimento Esportivo: o fator mais decisivo (e mais ignorado) na formação de jovens atletas.</p>
+<ul>
+<li>O fator mais decisivo (e mais ignorado) na formação de jovens atletas</li>
+<li>Como transformar a influência dos pais em ferramenta prática</li>
+<li>Estratégias para impactar o desenvolvimento esportivo pelo ambiente familiar</li>
+</ul>
 </div>
 </article>
 
+</div>
+</div>
+</section>
+
+<!-- ===== LOCAL DO EVENTO ===== -->
+<section class="sec f-pessego" id="local">
+<div class="sec-in">
+<h2 class="st">Infinitus Hub · Alphaville</h2>
+<div class="linha"></div>
+<p class="sd">O mesmo espaço do último congresso presencial: auditório no coração de Alphaville, com fácil acesso e estrutura completa para o dia.</p>
+<div class="local-gallery">
+<figure>
+<img src="assets/local_infinitus_1.jpg" width="1200" height="798" alt="Edifício Personal — Alameda Mamoré, 535, Alphaville Industrial, Barueri, SP" loading="lazy" decoding="async">
+</figure>
+</div>
+<div class="local-card">
+<h3>Infinitus Hub · Edifício Personal</h3>
+<p><strong>Alameda Mamoré, 535 · 15º andar, sala 1507</strong></p>
+<p>Alphaville Comercial Industrial · Barueri, SP</p>
+<p>Há opções de estacionamento na região. Após a inscrição, enviamos as orientações de acesso.</p>
+<a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Alameda%20Mamor%C3%A9%2C%20535%2C%20Edif%C3%ADcio%20Personal%2C%20Alphaville%20Industrial%2C%20Barueri%2C%20SP" target="_blank" rel="noopener noreferrer">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+Ver no Google Maps
+</a>
+</div>
+</div>
+</section>
+
+<!-- ===== CERTIFICAÇÃO ===== -->
+<section class="sec f-creme" id="certificacao">
+<div class="sec-in">
+<span class="ey">Certificação</span>
+<h2 class="st">Comprove o que você aprendeu</h2>
+<p class="sd">Certificado de extensão universitária entregue no presencial para os inscritos, com carga horária de 8 horas — emitido pela UNIFATEC.</p>
+<div class="cert-layout">
+<div class="cert-img">
+<img src="assets/certificado-pos.webp" alt="Modelo do certificado de extensão universitária UNIFATEC do Congresso de Liderança Parental" width="1200" height="848" loading="lazy" decoding="async">
+</div>
+<div>
+<div class="cert-item"><div class="cert-num">01</div><div><h3>Reconhecido pelo MEC</h3><p>Certificado válido como curso de extensão universitária — aceito para formação continuada e portfólio profissional.</p></div></div>
+<div class="cert-item"><div class="cert-num">02</div><div><h3>Entrega no presencial</h3><p>Os inscritos recebem o certificado no dia do congresso, durante o encerramento oficial do evento.</p></div></div>
+<div class="cert-item"><div class="cert-num">03</div><div><h3>Carga horária registrada</h3><p>Certificado com carga horária de 8 horas — para formação continuada e portfólio profissional.</p></div></div>
+<div class="cert-nota">Entrega física no presencial para todos os inscritos. A emissão ocorre no encerramento do congresso (entrega de certificados).</div>
+</div>
 </div>
 </div>
 </section>
 
 <!-- ===== BLOCO 8 — O QUE ESTÁ INCLUÍDO ===== -->
-<section class="sec f-creme">
+<section class="sec f-bege">
 <div class="sec-in centro">
-<span class="ey">Incluído</span>
 <h2 class="st">Sua inscrição inclui</h2>
 <div class="linha"></div>
 <div class="grade g3">
-<div class="card"><span class="ic">🎓</span><h3>Certificado de extensão universitária UNIFATEC</h3><p>Certificado de extensão universitária com carga horária de <span class="ph">[CARGA HORÁRIA]</span> horas, emitido pela UNIFATEC, instituição de ensino superior credenciada pelo MEC.</p></div>
-<div class="card"><span class="ic">🎥</span><h3>Gravação completa do evento</h3><p>Todas as palestras gravadas, para rever quantas vezes quiser e usar como material de estudo.</p></div>
-<div class="card"><span class="ic">📘</span><h3>Apostilas</h3><p>Material de apoio de cada palestra, com o conteúdo organizado para consulta.</p></div>
-<div class="card"><span class="ic">🧰</span><h3>Ferramentas de atendimento a pais</h3><p>Os instrumentos práticos apresentados no congresso, prontos para aplicar nos seus atendimentos.</p></div>
-<div class="card"><span class="ic">📝</span><h3>Caderno de Campo</h3><p>O material em que você constrói, ao longo do dia, a sua própria palestra para pais.</p></div>
-<div class="card"><span class="ic">🍽️</span><h3>Almoço com os palestrantes</h3><p>Duas horas de mesa aberta com quem está na frente desse tema no Brasil.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span><h3>Certificado de extensão universitária UNIFATEC</h3><p>Certificado de extensão universitária com carga horária de 8 horas, emitido pela UNIFATEC, instituição de ensino superior credenciada pelo MEC.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span><h3>Gravação completa do evento</h3><p>Todas as palestras gravadas, para rever quantas vezes quiser e usar como material de estudo.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><h3>Apostilas</h3><p>Material de apoio de cada palestra, com o conteúdo organizado para consulta.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><h3>Ferramentas de atendimento a pais</h3><p>Os instrumentos práticos apresentados no congresso, prontos para aplicar nos seus atendimentos.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><h3>Caderno de Campo</h3><p>O material em que você constrói, ao longo do dia, a sua própria palestra para pais.</p></div>
+<div class="card"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>Almoço com os palestrantes</h3><p>Duas horas de mesa aberta com quem está na frente desse tema no Brasil.</p></div>
 </div>
 </div>
 </section>
 
 <!-- ===== BLOCO 9 — PARA QUEM É ===== -->
-<section class="sec f-bege">
+<section class="sec f-creme">
 <div class="sec-in">
-<span class="ey">Para quem é</span>
 <h2 class="st">Este congresso é para você se</h2>
 <div class="linha"></div>
-<div class="lista">
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>É <strong>treinador ou técnico</strong> e sabe que o comportamento das famílias afeta o rendimento do seu grupo.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>É <strong>psicólogo do esporte</strong> e quer estruturar um atendimento específico para pais.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>É <strong>treinador mental ou coach</strong> e quer alcançar quem está ao lado do atleta todos os dias.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>É <strong>profissional de educação física</strong> que atua na base e convive com pais o tempo todo.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>É <strong>gestor de clube ou escolinha</strong> e precisa resolver a relação com as famílias.</span></div>
-<div class="li"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Quer <strong>começar a palestrar</strong> para famílias, clubes e escolas e não sabe por onde começar.</span></div>
+<div class="grade g3">
+<div class="card"><h3>Treinador ou técnico</h3><p>Sabe que o comportamento das famílias afeta o rendimento do seu grupo.</p></div>
+<div class="card"><h3>Psicólogo do esporte</h3><p>Quer estruturar um atendimento específico para pais.</p></div>
+<div class="card"><h3>Treinador mental ou coach</h3><p>Quer alcançar quem está ao lado do atleta todos os dias.</p></div>
+<div class="card"><h3>Educação física na base</h3><p>Atua na formação e convive com pais o tempo todo.</p></div>
+<div class="card"><h3>Gestor de clube ou escolinha</h3><p>Precisa resolver a relação com as famílias.</p></div>
+<div class="card"><h3>Quer começar a palestrar</h3><p>Para famílias, clubes e escolas — e não sabe por onde começar.</p></div>
 </div>
 </div>
 </section>
 
 <!-- ===== BLOCO 10 — PARA PAIS E MÃES ===== -->
-<section class="sec f-creme">
+<section class="sec f-bege">
 <div class="sec-in">
 <div class="pais">
 <span class="selo">É pai ou mãe de atleta e chegou até aqui?</span>
@@ -498,56 +750,86 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>O congresso foi desenhado para profissionais, mas o conteúdo é sobre você. Se você quer entender o próprio papel no desenvolvimento esportivo do seu filho, parar de repetir o padrão que derruba a confiança dele e aprender a conduzir a questão das telas dentro de casa, esse dia vai valer.</p>
 <p>Só saiba de duas coisas: você vai dividir a sala com profissionais da área, e o assunto será tratado com profundidade técnica, sem rodeio.</p>
 <p><strong>São as mesmas 30 vagas.</strong></p>
-<div class="cta-bloco"><a href="#investimento" class="btn">Quero minha vaga</a></div>
+<div class="cta-bloco"><a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="btn" data-checkout>Quero minha vaga</a></div>
 </div>
 </div>
 </section>
 
-<!-- ===== BLOCO 11 — PROVA SOCIAL ===== -->
-<section class="sec f-bege">
-<div class="sec-in centro">
-<span class="ey">Prova social</span>
+<!-- ===== PROVA SOCIAL ===== -->
+<section class="sec f-creme" id="depoimentos">
+<div class="sec-in">
+<div class="centro">
 <h2 class="st">O que dizem quem já passou pelo Atleta Campeão</h2>
 <div class="linha"></div>
-<div class="grade g3">
-<div class="card"><span class="ph ph-bloco">[DEPOIMENTO 1 — nome, função/cidade, foto]</span></div>
-<div class="card"><span class="ph ph-bloco">[DEPOIMENTO 2 — nome, função/cidade, foto]</span></div>
-<div class="card"><span class="ph ph-bloco">[DEPOIMENTO 3 — nome, função/cidade, foto]</span></div>
 </div>
-<div style="margin-top:24px"><span class="ph ph-bloco">[BLOCO DE NÚMEROS — famílias atendidas · profissionais formados · anos de atuação · clubes parceiros]</span></div>
+<p class="testi-hint">Deslize para ver os prints.<br>Toque para ampliar.</p>
+<div class="testis-wrap">
+<div class="testis" role="list">
+<figure class="testi" role="listitem">
+<a href="assets/depoimento_ana_beatriz.webp" target="_blank" rel="noopener noreferrer">
+<img src="assets/depoimento_ana_beatriz.webp" width="630" height="714" alt="Depoimento de Ana Beatriz, treinadora mental, sobre confiança e resultados das atletas Gabi e Jana" loading="lazy" decoding="async">
+</a>
+<figcaption><strong>Ana Beatriz</strong>Treinadora mental</figcaption>
+</figure>
+<figure class="testi testi--longo" role="listitem">
+<a href="assets/depoimento_fernando_ernesto.webp" target="_blank" rel="noopener noreferrer">
+<img src="assets/depoimento_fernando_ernesto.webp" width="529" height="1024" alt="Depoimento de Fernando Ernesto Santos sobre a primeira imersão presencial em treinamento mental" loading="lazy" decoding="async">
+</a>
+<figcaption><strong>Fernando Ernesto Santos</strong>Mentor esportivo · treinamento mental para atletas</figcaption>
+</figure>
+<figure class="testi" role="listitem">
+<a href="assets/depoimento_flavia_melo.webp" target="_blank" rel="noopener noreferrer">
+<img src="assets/depoimento_flavia_melo.webp" width="266" height="300" alt="Depoimento de Flávia Melo, coach mental no hipismo, sobre a formação com a Mayra Ramos" loading="lazy" decoding="async">
+</a>
+<figcaption><strong>Flávia Melo</strong>Coach mental · hipismo</figcaption>
+</figure>
+<figure class="testi" role="listitem">
+<a href="assets/depoimento_palestra_pais.webp" target="_blank" rel="noopener noreferrer">
+<img src="assets/depoimento_palestra_pais.webp" width="819" height="1024" alt="Registro da palestra Pais e Filhos Atletas no Riograndense Futebol Clube" loading="lazy" decoding="async">
+</a>
+<figcaption><strong>Riograndense Futebol Clube</strong>Palestra Pais e Filhos Atletas</figcaption>
+</figure>
+<figure class="testi" role="listitem">
+<a href="assets/depoimento_conteudo_mayra.webp" target="_blank" rel="noopener noreferrer">
+<img src="assets/depoimento_conteudo_mayra.webp" width="819" height="1024" alt="Mensagem de agradecimento à Mayra Ramos pelo conteúdo e pelo caminho profissional" loading="lazy" decoding="async">
+</a>
+<figcaption><strong>Profissional formado</strong>Atleta Campeão</figcaption>
+</figure>
+</div>
+</div>
+<p class="testi-nota">Prints reais de quem passou pela formação.</p>
 </div>
 </section>
 
 <!-- ===== BLOCO 12 — INVESTIMENTO ===== -->
-<section class="sec f-creme" id="investimento">
+<section class="sec f-bege" id="investimento">
 <div class="sec-in centro">
-<span class="ey">Investimento</span>
 <h2 class="st">Escolha seu lote</h2>
 <div class="linha"></div>
 <p class="sd">30 vagas presenciais. O lote vira por data ou quando as vagas acabarem — o que vier primeiro.</p>
 
-<div class="lotes">
-<article class="lote ativo">
-<span class="lote-tag">1º lote · aberto</span>
+<div class="lotes" id="lotes">
+<article class="lote ativo" data-lote="1" data-start="2026-08-01T00:00:00-03:00" data-end="2026-09-17T23:59:59-03:00" data-price="247" data-nome="1º lote">
+<span class="lote-tag" data-lote-tag>1º lote · aberto</span>
 <div class="lote-preco">R$ 247</div>
 <div class="lote-per">Até 17 de setembro</div>
-<a href="#investimento" class="btn">Garantir minha vaga no 1º lote</a>
+<div class="lote-acao" data-lote-acao><a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="btn" data-checkout>Garantir minha vaga no 1º lote</a></div>
 </article>
-<article class="lote">
-<span class="lote-tag">2º lote</span>
+<article class="lote" data-lote="2" data-start="2026-09-18T00:00:00-03:00" data-end="2026-10-01T23:59:59-03:00" data-price="347" data-nome="2º lote">
+<span class="lote-tag" data-lote-tag>2º lote</span>
 <div class="lote-preco">R$ 347</div>
 <div class="lote-per">De 18 de setembro a 1º de outubro</div>
-<div class="lote-off">Abre em 18 de setembro</div>
+<div class="lote-acao" data-lote-acao><div class="lote-off">Abre em 18 de setembro</div></div>
 </article>
-<article class="lote">
-<span class="lote-tag">3º lote</span>
+<article class="lote" data-lote="3" data-start="2026-10-02T00:00:00-03:00" data-end="2026-10-17T09:59:59-03:00" data-price="497" data-nome="3º lote">
+<span class="lote-tag" data-lote-tag>3º lote</span>
 <div class="lote-preco">R$ 497</div>
 <div class="lote-per">De 2 a 17 de outubro, ou até acabarem as vagas</div>
-<div class="lote-off">Abre em 2 de outubro</div>
+<div class="lote-acao" data-lote-acao><div class="lote-off">Abre em 2 de outubro</div></div>
 </article>
 </div>
 
-<div style="margin-top:20px"><span class="ph">[CONFIRMAR PARCELAMENTO]</span> <span class="ph">[LINK DO CHECKOUT]</span></div>
+<p class="pay-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Pagamento 100% seguro via Hotmart. Parcelamento disponível no checkout.</p>
 
 <div class="inclui"><strong>Em qualquer lote você recebe:</strong> certificado de extensão universitária UNIFATEC · gravação completa · apostilas · ferramentas de atendimento · Caderno de Campo · almoço com os palestrantes</div>
 
@@ -556,9 +838,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ===== BLOCO 13 — FAQ ===== -->
-<section class="sec f-bege">
+<section class="sec f-creme">
 <div class="sec-in centro">
-<span class="ey">Dúvidas frequentes</span>
 <h2 class="st">Perguntas frequentes</h2>
 <div class="linha"></div>
 <div class="faq-l">
@@ -571,13 +852,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Preciso apresentar alguma coisa na frente de todo mundo?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Você constrói o seu roteiro ao longo do dia, sim. A apresentação final é feita por um representante de cada grupo, escolhido pelo próprio grupo. Ninguém é obrigado a subir na frente.</p></div></div>
 
-<div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">O certificado é válido?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Sim. É um certificado de extensão universitária emitido pela UNIFATEC, instituição de ensino superior credenciada pelo MEC.</p></div></div>
+<div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">O certificado é válido?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Sim. É um certificado de extensão universitária de 8 horas, emitido pela UNIFATEC, instituição de ensino superior credenciada pelo MEC. A entrega é no presencial, no encerramento do congresso.</p></div></div>
+
+<div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Posso parcelar o pagamento?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Sim. As opções de parcelamento aparecem na página de pagamento da Hotmart, no momento da inscrição.</p></div></div>
 
 <div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Sou pai ou mãe de atleta e não sou profissional da área. Posso ir?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Pode. O conteúdo é sobre o papel dos pais no esporte e vai te servir diretamente. Só tenha em mente que a linguagem será técnica e a sala será majoritariamente de profissionais.</p></div></div>
 
-<div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Como chego ao local?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Infinitus Hub, Edifício Personal — Alameda Mamoré, 535, 15º andar, sala 1507. Alphaville Comercial Industrial, Barueri/SP.<br><span class="ph">[ADICIONAR: estacionamento e link do Google Maps]</span></p></div></div>
+<div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Como chego ao local?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>O evento acontece no <strong>Infinitus Hub</strong>, Edifício Personal — Alameda Mamoré, 535, 15º andar, sala 1507, Alphaville Comercial Industrial, Barueri/SP. Há opções de estacionamento na região. Confira a <a href="#local">seção do local</a> e o <a href="https://www.google.com/maps/search/?api=1&query=Alameda%20Mamor%C3%A9%2C%20535%2C%20Edif%C3%ADcio%20Personal%2C%20Alphaville%20Industrial%2C%20Barueri%2C%20SP" target="_blank" rel="noopener noreferrer">Google Maps</a>. Após a inscrição, enviamos as orientações de acesso.</p></div></div>
 
-<div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Ainda tenho dúvidas.<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Fale com a nossa equipe pelo WhatsApp: <span class="ph">[NÚMERO]</span></p></div></div>
+<div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Ainda tenho dúvidas.<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Fale com a nossa equipe pelo WhatsApp <a href="https://wa.me/551140403112?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20Congresso%20de%20Lideran%C3%A7a%20Parental." target="_blank" rel="noopener noreferrer">(11) 4040-3112</a> ou pelo e-mail <a href="mailto:suporte@atletacampeao.com.br">suporte@atletacampeao.com.br</a>.</p></div></div>
 
 </div>
 </div>
@@ -586,15 +869,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ===== BLOCO 14 — FECHAMENTO ===== -->
 <section class="sec f-indigo">
 <div class="sec-in centro narr">
-<span class="ey">Fechamento</span>
 <h2 class="st">Em algum momento você vai ser chamado para essa conversa.</h2>
 <p class="sd">Vai ser um pai perguntando o que fazer com o filho que perdeu a vontade de treinar. Uma mãe pedindo ajuda porque não sabe mais o que falar no carro depois do jogo. Um clube procurando alguém que consiga falar com as famílias.</p>
 <p class="sd"><strong style="color:var(--ambar-vivo)">A pergunta é se você vai estar preparado quando isso acontecer.</strong></p>
 <p class="sd">São 30 vagas, um sábado, e um grupo pequeno o suficiente para você sair de lá conhecendo todo mundo na sala.</p>
 <div class="fech-dados">17 de outubro de 2026 · 10h às 18h · Alphaville, Barueri/SP</div>
 <div class="cta-bloco">
-<a href="#investimento" class="btn btn-lg">Garantir minha vaga — 1º lote R$ 247</a>
-<span class="btn-nota">1º lote encerra em 17 de setembro.</span>
+<a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="btn btn-lg" data-cta-lote data-checkout>Garantir minha vaga — 1º lote R$ 247</a>
+<span class="btn-nota" data-cta-nota>1º lote encerra em 17 de setembro.</span>
 </div>
 </div>
 </section>
@@ -605,12 +887,130 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <strong>Congresso de Liderança Parental · Os pais são parte do time</strong>
 <p>Uma realização Atleta Campeão · Certificação de extensão universitária UNIFATEC</p>
 <p>Infinitus Hub · Edifício Personal — Alameda Mamoré, 535, 15º andar, sala 1507 · Alphaville Comercial Industrial, Barueri/SP</p>
-<p>Contato: <span class="ph">[E-MAIL]</span> · WhatsApp: <span class="ph">[NÚMERO]</span> · <span class="ph">[REDES SOCIAIS]</span> · <span class="ph">[POLÍTICA DE PRIVACIDADE E TERMOS]</span></p>
+<p>Contato: <a href="mailto:suporte@atletacampeao.com.br">suporte@atletacampeao.com.br</a> · WhatsApp: <a href="https://wa.me/551140403112?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20Congresso%20de%20Lideran%C3%A7a%20Parental." target="_blank" rel="noopener noreferrer">(11) 4040-3112</a></p>
+<p><a href="https://www.instagram.com/atletacampeao" target="_blank" rel="noopener noreferrer">Instagram</a> · <a href="https://www.youtube.com/@atletacampeao" target="_blank" rel="noopener noreferrer">YouTube</a> · <a href="/politica-de-privacidade/">Política de Privacidade</a></p>
 </div>
 </footer>
 
+<aside class="cd" id="cd" aria-live="polite">
+<div class="cd-in">
+<div class="cd-txt">
+<span class="cd-lote" id="cd-lote">1º lote · R$ 247</span>
+<span class="cd-label" id="cd-label">O lote vira em</span>
+</div>
+<div class="cd-grid">
+<div><b id="cd-d">--</b><small>dias</small></div>
+<div><b id="cd-h">--</b><small>hrs</small></div>
+<div><b id="cd-m">--</b><small>min</small></div>
+<div><b id="cd-s">--</b><small>seg</small></div>
+</div>
+<a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="cd-btn" data-checkout>Garantir vaga</a>
+</div>
+</aside>
+
 <script>
 function toggleFaq(el){var a=el.nextElementSibling;var o=el.classList.contains('open');document.querySelectorAll('.faq-q.open').forEach(function(q){q.classList.remove('open');q.nextElementSibling.style.maxHeight=null});if(!o){el.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}}
+
+(function(){
+  var CHECKOUT='https://pay.hotmart.com/U107422718U?off=iqup6ha8';
+  var cards=[].slice.call(document.querySelectorAll('#lotes .lote'));
+  if(!cards.length) return;
+  var bar=document.getElementById('cd');
+  var elLote=document.getElementById('cd-lote');
+  var elLabel=document.getElementById('cd-label');
+  var elD=document.getElementById('cd-d');
+  var elH=document.getElementById('cd-h');
+  var elM=document.getElementById('cd-m');
+  var elS=document.getElementById('cd-s');
+  function pad(n){return n<10?'0'+n:String(n)}
+  function parse(s){return new Date(s).getTime()}
+  function nome(c){return c.getAttribute('data-nome')}
+  function preco(c){return c.getAttribute('data-price')}
+  function abreEm(c){
+    var d=new Date(c.getAttribute('data-start'));
+    return pad(d.getDate())+'/'+pad(d.getMonth()+1);
+  }
+  function ctaCheckout(label){
+    return '<a href="'+CHECKOUT+'" target="_blank" rel="noopener noreferrer" class="btn" data-checkout>'+label+'</a>';
+  }
+  function ligarCheckout(on){
+    document.querySelectorAll('[data-checkout]').forEach(function(a){
+      if(on){
+        a.setAttribute('href', CHECKOUT);
+        a.setAttribute('target','_blank');
+        a.setAttribute('rel','noopener noreferrer');
+      } else {
+        a.setAttribute('href','#investimento');
+        a.removeAttribute('target');
+        a.removeAttribute('rel');
+      }
+    });
+  }
+  function render(){
+    var now=Date.now();
+    var current=null, next=null;
+    cards.forEach(function(c){
+      var start=parse(c.getAttribute('data-start'));
+      var end=parse(c.getAttribute('data-end'));
+      var tag=c.querySelector('[data-lote-tag]');
+      var acao=c.querySelector('[data-lote-acao]');
+      c.classList.remove('ativo','encerrado');
+      if(now>end){
+        c.classList.add('encerrado');
+        if(tag) tag.textContent=nome(c)+' · encerrado';
+        if(acao) acao.innerHTML='<div class="lote-off">Encerrado</div>';
+      } else if(now>=start && now<=end){
+        current=c;
+        c.classList.add('ativo');
+        if(tag) tag.textContent=nome(c)+' · aberto';
+        if(acao) acao.innerHTML=ctaCheckout('Garantir minha vaga no '+nome(c));
+      } else {
+        if(!next) next=c;
+        if(tag) tag.textContent=nome(c);
+        if(acao) acao.innerHTML='<div class="lote-off">Abre em '+abreEm(c)+'</div>';
+      }
+    });
+    var ctaTxt, notaTxt, target;
+    if(current){
+      target=parse(current.getAttribute('data-end'));
+      ctaTxt='Quero minha vaga — '+nome(current)+' R$ '+preco(current);
+      notaTxt=nome(current)+' encerra em breve. Depois o preço sobe.';
+      if(elLote) elLote.textContent=nome(current)+' · R$ '+preco(current);
+      if(elLabel) elLabel.textContent='O lote vira em';
+      if(bar) bar.hidden=false;
+      ligarCheckout(true);
+    } else if(next){
+      target=parse(next.getAttribute('data-start'));
+      ctaTxt='Quero minha vaga — '+nome(next)+' R$ '+preco(next);
+      notaTxt=nome(next)+' abre em breve.';
+      if(elLote) elLote.textContent=nome(next)+' · R$ '+preco(next);
+      if(elLabel) elLabel.textContent='O próximo lote abre em';
+      if(bar) bar.hidden=false;
+      ligarCheckout(true);
+    } else {
+      ctaTxt='Inscrições encerradas';
+      notaTxt='As vagas deste congresso foram encerradas.';
+      document.querySelectorAll('[data-cta-lote]').forEach(function(a){a.textContent=ctaTxt});
+      document.querySelectorAll('[data-cta-nota]').forEach(function(n){n.textContent=notaTxt});
+      ligarCheckout(false);
+      if(bar) bar.hidden=true;
+      return;
+    }
+    document.querySelectorAll('[data-cta-lote]').forEach(function(a){a.textContent=ctaTxt});
+    document.querySelectorAll('[data-cta-nota]').forEach(function(n){n.textContent=notaTxt});
+    var diff=Math.max(0, target-now);
+    var days=Math.floor(diff/86400000);
+    var hours=Math.floor((diff%86400000)/3600000);
+    var mins=Math.floor((diff%3600000)/60000);
+    var secs=Math.floor((diff%60000)/1000);
+    if(elD) elD.textContent=String(days);
+    if(elH) elH.textContent=pad(hours);
+    if(elM) elM.textContent=pad(mins);
+    if(elS) elS.textContent=pad(secs);
+  }
+  render();
+  setInterval(render,1000);
+})();
 </script>
 
 </body>

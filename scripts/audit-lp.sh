@@ -30,6 +30,8 @@ LP_DIRS=(
   "pos-psicologia-do-esporte-e-coaching"
   "sessao-individual-jiu-jitsu"
   "treinador-mental-atletas"
+  "evento-presencial-pais-atleta"
+  "congresso-lideranca-parental"
 )
 
 echo "=== Auditoria de LPs — $(date '+%Y-%m-%d %H:%M') ==="
