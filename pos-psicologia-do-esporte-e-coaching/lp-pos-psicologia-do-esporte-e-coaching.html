@@ -42,7 +42,7 @@
     LINK_EDUZZ_PARCELADO_DEPOIS: "⟦PREENCHER: link Eduzz 18x450⟧",
     LINK_EDUZZ_VISTA_DEPOIS: "⟦PREENCHER: link Eduzz R$7.000⟧",
     GARANTIA_DIAS: "7",
-    WHATSAPP_NUMERO: "5511966467934",
+    WHATSAPP_NUMERO: "551140403112",
     WHATSAPP_MENSAGEM: "Acabei de ver os detalhes da pós-graduação na página e tenho dúvidas, você pode me ajudar?"
   };
   </script>
@@ -483,7 +483,18 @@
     .faq-body{padding:0 1.25rem 1.25rem;color:var(--muted);line-height:1.65}
     .faq-body p{margin:0 0 .85rem}
     .faq-body p:last-child{margin:0}
-    .wa-fab{position:fixed;right:clamp(1rem,3vw,1.35rem);bottom:clamp(1rem,3vw,1.35rem);z-index:90;width:3.5rem;height:3.5rem;border-radius:50%;background:#25D366;color:#fff!important;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,.42);transition:transform .2s,background .2s,box-shadow .2s}
+    .wa-duvidas__card{display:flex;flex-direction:column;gap:1.25rem;align-items:flex-start;padding:clamp(1.5rem,4vw,2.25rem);background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    @media(min-width:720px){.wa-duvidas__card{flex-direction:row;align-items:center;justify-content:space-between;gap:2rem}}
+    .wa-duvidas__title{margin:0 0 .5rem;font-size:clamp(1.35rem,3.5vw,1.85rem);color:var(--navy)}
+    .wa-duvidas__text{margin:0;max-width:42ch;color:var(--muted);font-size:1.05rem}
+    .wa-duvidas__cta{background:#25D366;color:#fff!important;text-decoration:none;box-shadow:0 8px 22px rgba(37,211,102,.35)}
+    .wa-duvidas__cta:hover{background:#1ebe57;transform:translateY(-2px);box-shadow:0 10px 26px rgba(37,211,102,.45)}
+    .wa-duvidas__cta iconify-icon{font-size:1.35rem}
+    @media(max-width:719px){.wa-duvidas__cta{width:100%}}
+    .wa-fab-wrap{position:fixed;right:clamp(1rem,3vw,1.35rem);bottom:clamp(1rem,3vw,1.35rem);z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:.65rem}
+    .wa-fab-tip{max-width:min(230px,calc(100vw - 5.5rem));padding:.7rem .9rem;border-radius:14px 14px 4px 14px;background:#fff;color:var(--navy-deep);font-family:var(--font-h);font-weight:700;font-size:.88rem;line-height:1.35;box-shadow:0 10px 30px rgba(0,0,0,.16);border:1px solid rgba(0,28,68,.08)}
+    .wa-fab-tip a{color:inherit;text-decoration:none}
+    .wa-fab{position:relative;width:3.5rem;height:3.5rem;border-radius:50%;background:#25D366;color:#fff!important;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,.42);transition:transform .2s,background .2s,box-shadow .2s}
     .wa-fab:hover{background:#1ebe57;transform:scale(1.06);color:#fff!important;box-shadow:0 12px 32px rgba(37,211,102,.5)}
     .wa-fab:focus-visible{outline:3px solid #fff;outline-offset:3px}
     .wa-fab iconify-icon{font-size:1.85rem}
@@ -1316,6 +1327,21 @@
       </div>
     </section>
 
+    <section class="band" id="duvidas-whatsapp" aria-labelledby="t-wa">
+      <div class="inner">
+        <div class="wa-duvidas__card">
+          <div>
+            <h2 class="wa-duvidas__title" id="t-wa">Dúvidas? Fale com o nosso time no WhatsApp</h2>
+            <p class="wa-duvidas__text">Se precisar de ajuda sobre a matrícula, a grade ou o diploma, nosso time te atende no WhatsApp.</p>
+          </div>
+          <a class="btn wa-duvidas__cta js-link-whatsapp" id="wa-duvidas-cta" href="https://wa.me/551140403112" target="_blank" rel="noopener noreferrer">
+            <iconify-icon icon="mdi:whatsapp" aria-hidden="true"></iconify-icon>
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section class="band band--dark cta-final" id="cta-final" aria-labelledby="t-cta-f">
       <div class="inner">
         <h2 id="t-cta-f" style="color:#fff">Última chamada</h2>
@@ -1348,6 +1374,7 @@
         <p><a href="/politica-de-privacidade/">Políticas de Privacidade</a></p>
         <p><a href="#">Termos de Uso</a></p>
         <p><a href="mailto:suporte@atletacampeao.com.br">Contato</a></p>
+        <p><a class="js-link-whatsapp" href="https://wa.me/551140403112" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
       </div>
       <div>
         <h4 style="color:#fff;font-size:.95rem">Navegação</h4>
@@ -1372,9 +1399,14 @@
     </div>
   </footer>
 
-  <a class="wa-fab" id="wa-cta" href="#" target="_blank" rel="noopener noreferrer" aria-label="Tirar dúvidas sobre a pós pelo WhatsApp">
-    <iconify-icon icon="mdi:whatsapp" aria-hidden="true"></iconify-icon>
-  </a>
+  <div class="wa-fab-wrap">
+    <div class="wa-fab-tip" role="status">
+      <a class="js-link-whatsapp" href="https://wa.me/551140403112" target="_blank" rel="noopener noreferrer">Dúvidas? Fale com o nosso time no WhatsApp</a>
+    </div>
+    <a class="wa-fab js-link-whatsapp" id="wa-cta" href="https://wa.me/551140403112" target="_blank" rel="noopener noreferrer" aria-label="Tirar dúvidas sobre a pós pelo WhatsApp">
+      <iconify-icon icon="mdi:whatsapp" aria-hidden="true"></iconify-icon>
+    </a>
+  </div>
 
   <script>
   (function initMobileNav() {
@@ -1423,9 +1455,12 @@
   (function initWhatsAppCta() {
     var numero = CONFIG.WHATSAPP_NUMERO;
     var mensagem = CONFIG.WHATSAPP_MENSAGEM;
-    if (!numero || !mensagem) return;
-    var cta = document.getElementById("wa-cta");
-    if (cta) cta.href = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
+    if (!numero) return;
+    var href = "https://wa.me/" + numero;
+    if (mensagem) href += "?text=" + encodeURIComponent(mensagem);
+    document.querySelectorAll(".js-link-whatsapp").forEach(function(el) {
+      el.href = href;
+    });
   })();
 
   const MODULOS = [
