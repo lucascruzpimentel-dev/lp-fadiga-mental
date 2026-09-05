@@ -49,7 +49,7 @@ Executar `./scripts/audit-lp.sh` e corrigir itens com severidade **P0** antes do
 
 ## Pastas em produção (deploy.sh)
 
-`obrigado-congresso/`, `Congresso de Neuro/`, `congresso-neuro-vip-pass/`, `congresso-psicologia-vip-pass/`, `curso-telas/`, `fadiga-mental/`, `inscricao-congresso-neurociencia-no-esporte/`, `pos-graduacao-neurociencia-no-esporte/`, `pos-psicologia-do-esporte-e-coaching/`, `treinador-mental-atletas/`, `index.html`, `vercel.json`.
+`obrigado-congresso/`, `Congresso de Neuro/`, `congresso-neuro-vip-pass/`, `congresso-psicologia-vip-pass/`, `curso-telas/`, `fadiga-mental/`, `inscricao-congresso-neurociencia-no-esporte/`, `pos-graduacao-neurociencia-no-esporte/`, `pos-psicologia-do-esporte-e-coaching/`, `treinador-mental-atletas/`, `palestras/`, `index.html`, `vercel.json`.
 
 ## Comandos úteis
 

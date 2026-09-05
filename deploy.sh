@@ -24,9 +24,11 @@ git add \
   "treinador-mental-atletas/" \
   "evento-presencial-pais-atleta/" \
   "congresso-lideranca-parental/" \
+  "palestras/" \
   "politica-de-privacidade/" \
   vercel.json \
   deploy.sh \
+  .gitignore \
   scripts/ \
   ".cursor/rules/lp-performance.mdc" \
   2>/dev/null || true

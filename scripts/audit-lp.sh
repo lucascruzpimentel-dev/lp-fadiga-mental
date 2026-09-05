@@ -32,6 +32,7 @@ LP_DIRS=(
   "treinador-mental-atletas"
   "evento-presencial-pais-atleta"
   "congresso-lideranca-parental"
+  "palestras"
 )
 
 echo "=== Auditoria de LPs — $(date '+%Y-%m-%d %H:%M') ==="
