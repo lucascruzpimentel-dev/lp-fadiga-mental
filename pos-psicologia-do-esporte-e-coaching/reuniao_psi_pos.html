@@ -1040,6 +1040,9 @@
     var TZ = "America/Sao_Paulo";
     var MEETING_HOUR = 11;
     var MEETING_MINUTE = 0;
+    var FIRST_YEAR = 2026;
+    var FIRST_MONTH = 9;
+    var FIRST_DAY = 17;
     var lastAppliedAt = 0;
 
     function pad2(n) { return String(n).padStart(2, "0"); }
@@ -1082,13 +1085,14 @@
 
     function getNextMeetingAt() {
       var now = Date.now();
-      var start = brtPartsFromMs(now);
+      var firstAt = meetingAtBRT(FIRST_YEAR, FIRST_MONTH, FIRST_DAY);
+      var start = firstAt > now ? brtPartsFromMs(firstAt) : brtPartsFromMs(now);
       var i;
       for (i = 0; i < 14; i++) {
         var p = addDaysBRT(start.year, start.month, start.day, i);
         if (!isThursdayBRT(p.year, p.month, p.day)) continue;
         var at = meetingAtBRT(p.year, p.month, p.day);
-        if (at > now) return at;
+        if (at > now && at >= firstAt) return at;
       }
       var fallback = addDaysBRT(start.year, start.month, start.day, 7);
       return meetingAtBRT(fallback.year, fallback.month, fallback.day);
