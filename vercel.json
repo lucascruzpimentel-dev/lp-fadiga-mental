@@ -15,6 +15,8 @@
     { "source": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso.html", "destination": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso/", "permanent": true },
     { "source": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso", "destination": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso/", "permanent": false },
     { "source": "/congresso-lideranca-parental", "destination": "/congresso-lideranca-parental/", "permanent": false },
+    { "source": "/captura-congresso-lideranca-parental", "destination": "/captura-congresso-lideranca-parental/", "permanent": false },
+    { "source": "/inscricao-congresso-lideranca-parental", "destination": "/inscricao-congresso-lideranca-parental/", "permanent": false },
     { "source": "/palestras", "destination": "/palestras/", "permanent": false }
   ],
   "rewrites": [
@@ -55,7 +57,9 @@
     { "source": "/redirect-reuniao-pos-psi/", "destination": "/pos-psicologia-do-esporte-e-coaching/redirect_reuniao_pos_psi.html" },
     { "source": "/jiu-jitsu-parents/assets/:path*", "destination": "/sessao-individual-jiu-jitsu/assets/:path*" },
     { "source": "/jiu-jitsu-parents/", "destination": "/sessao-individual-jiu-jitsu/sessao_indiv_jiu_jitsu_pais_ingles.html" },
-    { "source": "/palestras/", "destination": "/palestras/lp_palestras.html" }
+    { "source": "/palestras/", "destination": "/palestras/lp_palestras.html" },
+    { "source": "/inscricao-congresso-lideranca-parental", "destination": "/captura-congresso-lideranca-parental/index.html" },
+    { "source": "/inscricao-congresso-lideranca-parental/", "destination": "/captura-congresso-lideranca-parental/index.html" }
   ],
   "headers": [
     {

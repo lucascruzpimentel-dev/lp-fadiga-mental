@@ -24,6 +24,7 @@ git add \
   "treinador-mental-atletas/" \
   "evento-presencial-pais-atleta/" \
   "congresso-lideranca-parental/" \
+  "captura-congresso-lideranca-parental/" \
   "palestras/" \
   "politica-de-privacidade/" \
   vercel.json \
