@@ -21,7 +21,7 @@ git add \
   "pos-graduacao-neurociencia-no-esporte/" \
   "pos-psicologia-do-esporte-e-coaching/" \
   "sessao-individual-jiu-jitsu/" \
-  "treinador-mental-atletas/" \
+  "atendimento-individual-ac/" \
   "evento-presencial-pais-atleta/" \
   "congresso-lideranca-parental/" \
   "captura-congresso-lideranca-parental/" \
