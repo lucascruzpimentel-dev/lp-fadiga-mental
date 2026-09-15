@@ -90,15 +90,10 @@
       letter-spacing: .05em;
       text-transform: uppercase;
     }
-    .brand-mark {
-      width: 38px;
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      border: 1px dashed var(--gold);
-      border-radius: 50%;
-      color: var(--gold);
-      font-size: .65rem;
+    .brand-logo {
+      height: 34px;
+      width: auto;
+      display: block;
     }
     .button {
       display: inline-flex;
@@ -268,9 +263,8 @@
     }
     .capture-card h2 { margin-bottom: 18px; }
     .capture-card p { color: rgba(255,255,255,.82); }
-    .capture-form { display: grid; gap: 12px; align-content: center; }
-    .capture-form .button { width: 100%; border-radius: 14px; }
-    .form-status { min-height: 24px; margin: 4px 0 0; color: var(--gold) !important; font-weight: 750; }
+    .capture-form { display: grid; align-content: center; min-height: 434px; }
+    .capture-form iframe { min-height: 434px; }
 
     footer { padding: 32px 0; color: rgba(255,255,255,.55); background: var(--blue-soft); }
     .footer-inner { display: flex; justify-content: space-between; gap: 24px; align-items: center; font-size: .88rem; }
@@ -293,7 +287,6 @@
     @media (max-width: 620px) {
       :root { --container: min(100% - 28px, 1180px); --radius: 22px; }
       .topbar-inner { min-height: 64px; }
-      .brand span:last-child { display: none; }
       .button-small { padding-inline: 15px; font-size: .7rem; }
       h1 { font-size: clamp(2.65rem, 13vw, 4rem); }
       h2 { font-size: clamp(2.05rem, 10vw, 3rem); }
@@ -313,8 +306,7 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="#inicio" aria-label="Voltar ao início">
-        <span class="brand-mark" aria-hidden="true">LOGO</span>
-        <span>Atleta Campeão</span>
+        <img class="brand-logo" src="assets/AC-logo-original.png" alt="Atleta Campeão">
       </a>
       <a class="button button-small" href="#lista">Entrar na lista</a>
     </div>
@@ -492,22 +484,27 @@
           <p class="lead">Entre para a lista e receba primeiro as informações sobre o livro, a abertura da pré-venda e as novidades do lançamento.</p>
           <p><strong>Os pais são parte do time.</strong></p>
         </div>
-        <form class="capture-form js-capture-form">
-          <label>
-            <span style="position:absolute;left:-9999px">Nome</span>
-            <input type="text" name="name" placeholder="Seu nome" required>
-          </label>
-          <label>
-            <span style="position:absolute;left:-9999px">E-mail</span>
-            <input type="email" name="email" placeholder="Seu melhor e-mail" required>
-          </label>
-          <label>
-            <span style="position:absolute;left:-9999px">WhatsApp</span>
-            <input type="tel" name="whatsapp" placeholder="Seu WhatsApp" required>
-          </label>
-          <button class="button" type="submit">Quero entrar na lista</button>
-          <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
+        <div class="capture-form">
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/DaKC0ozbgz2UCc8RRPFm"
+            style="width:100%;height:100%;border:none;border-radius:8px"
+            id="inline-DaKC0ozbgz2UCc8RRPFm"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Manual da Arquibancada"
+            data-height="434"
+            data-layout-iframe-id="inline-DaKC0ozbgz2UCc8RRPFm"
+            data-form-id="DaKC0ozbgz2UCc8RRPFm"
+            data-cookie-consent="true"
+            data-cookie-consent-provider="auto"
+            title="Manual da Arquibancada"
+          ></iframe>
+        </div>
       </div>
     </section>
   </main>
@@ -529,5 +526,6 @@
       });
     });
   </script>
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
