@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual da Arquibancada — Pré-lançamento</title>
+  <meta name="description" content="Wireframe da página de pré-lançamento do livro Manual da Arquibancada, de Mayra Ramos.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%233d3b76'/%3E%3Cpath d='M15 17h15c5 0 8 3 8 8v25c-2-3-5-4-9-4H15zM49 17H34c-5 0-8 3-8 8v25c2-3 5-4 9-4h14z' fill='none' stroke='%23fbae0b' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#3d3b76">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* paleta Atleta Campeão */
+      --navy: #3d3b76;      /* indigo — marca */
+      --blue: #7200a2;      /* roxo — marca */
+      --blue-soft: #2c2a57; /* indigo-deep */
+      --gold: #fbae0b;      /* âmbar-vivo — destaque */
+      --gold-soft: #d8970e; /* dourado */
+      --verde: #61ce70;
+      --verde-escuro: #4bb35a;
+      --cream: #fff9f2;
+      --paper: #fff9f2;
+      --ink: #3d3b76;
+      --muted: #54595f;
+      --line: rgba(61, 59, 118, 0.14);
+      --white: #ffffff;
+      --radius: 20px;
+      --shadow: 0 20px 50px rgba(61, 59, 118, 0.14);
+      --container: min(1180px, calc(100% - 40px));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font: 400 1rem/1.65 'Outfit', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+
+    .container { width: var(--container); margin-inline: auto; }
+    .section { padding: 104px 0; }
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .section-tag::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { letter-spacing: -.035em; line-height: 1.08; }
+    h1 { font-size: clamp(3rem, 6.6vw, 6.25rem); margin-bottom: 18px; }
+    h2 { font-size: clamp(2.25rem, 4.5vw, 4.4rem); margin-bottom: 28px; }
+    h3 { font-size: clamp(1.25rem, 2.2vw, 1.7rem); }
+    .lead { font-size: clamp(1.15rem, 1.7vw, 1.42rem); line-height: 1.55; }
+    .narrow { max-width: 780px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 249, 242, .92);
+      color: var(--navy);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .topbar-inner {
+      min-height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .brand-mark {
+      width: 38px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px dashed var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: .65rem;
+    }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--verde);
+      color: #0e3d17;
+      font-weight: 700;
+      letter-spacing: .01em;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 6px 22px rgba(97, 206, 112, .34);
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .button:hover { transform: translateY(-1px); background: var(--verde-escuro); color: #fff; box-shadow: 0 8px 28px rgba(97, 206, 112, .5); }
+    .button:focus-visible, input:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 3px; }
+    .button-small { min-height: 42px; padding-inline: 20px; font-size: .78rem; text-transform: uppercase; }
+
+    .hero {
+      min-height: 760px;
+      display: grid;
+      align-items: center;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 78% 28%, rgba(114, 0, 162, .35), transparent 45%),
+        var(--navy);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-soft), var(--blue));
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(350px, .95fr);
+      align-items: center;
+      gap: clamp(50px, 8vw, 110px);
+      padding: 92px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .eyebrow { color: var(--gold); font-size: .82rem; font-weight: 900; letter-spacing: .24em; text-transform: uppercase; }
+    .hero-subtitle { margin-bottom: 26px; color: var(--gold); font-size: clamp(1.5rem, 2.6vw, 2.25rem); font-weight: 800; }
+    .hero-copy .lead { max-width: 720px; color: rgba(255,255,255,.86); }
+    .launch-note { margin: 28px 0 0; color: rgba(255,255,255,.62); }
+
+    .hero-card {
+      padding: 26px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 34px;
+      background: rgba(255,255,255,.09);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .media-placeholder {
+      min-height: 340px;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      border: 2px dashed rgba(255,255,255,.4);
+      border-radius: 22px;
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.75);
+      text-align: center;
+      font-weight: 750;
+    }
+    .hero-form { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 18px; }
+    .hero-form input, .capture-form input {
+      width: 100%;
+      min-height: 54px;
+      padding: 0 18px;
+      border: 1px solid rgba(16,36,54,.2);
+      border-radius: 14px;
+      background: var(--white);
+      color: var(--ink);
+    }
+    .microcopy { margin: 10px 4px 0; color: rgba(255,255,255,.6); font-size: .78rem; }
+
+    .problem-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 80px; align-items: start; }
+    .big-number { color: rgba(3,31,54,.08); font-size: clamp(8rem, 18vw, 15rem); font-weight: 900; line-height: .75; }
+    .questions { display: grid; gap: 12px; margin: 32px 0; }
+    .question {
+      padding: 18px 20px;
+      border-left: 4px solid var(--gold);
+      background: var(--cream);
+      font-size: 1.08rem;
+      font-weight: 750;
+    }
+    .thesis { margin: 32px 0 0; font-size: 1.35rem; font-weight: 850; }
+
+    .score-section { background: var(--cream); }
+    .score-intro { display: flex; justify-content: space-between; gap: 50px; align-items: end; }
+    .score-intro p { max-width: 520px; color: var(--muted); }
+    .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
+    .score-card {
+      min-height: 370px;
+      padding: clamp(28px, 4vw, 48px);
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+    .score-card.dark { background: var(--navy); color: var(--white); }
+    .score-card h3 { margin: 12px 0 28px; font-size: 2rem; }
+    .score-list { display: flex; flex-wrap: wrap; gap: 10px; }
+    .score-list span { padding: 9px 14px; border: 1px solid var(--line); border-radius: 999px; }
+    .dark .score-list span { border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.05); }
+
+    .team-section { color: var(--white); background: var(--blue); }
+    .team-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: center; }
+    .team-section p { color: rgba(255,255,255,.82); }
+    .team-highlight { color: var(--gold); font-size: 1.4rem; font-weight: 850; }
+    .team-visual { min-height: 480px; }
+
+    .topics-header { display: grid; grid-template-columns: 1fr .75fr; gap: 60px; align-items: end; }
+    .topics-header p { color: var(--muted); }
+    .topics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 54px; }
+    .topic-card { min-height: 160px; padding: 26px; border: 1px solid var(--line); border-radius: 20px; background: var(--white); }
+    .topic-number { color: var(--gold); font-size: .8rem; font-weight: 900; letter-spacing: .16em; }
+    .topic-card h3 { margin: 30px 0 0; font-size: 1.28rem; }
+    .topics-note { margin-top: 32px; font-size: 1.2rem; font-weight: 800; }
+
+    .audience { padding: 92px 0; color: var(--navy); background: #ffedcc; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); }
+    .audience-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items: center; }
+    .audience h2 { max-width: 740px; }
+    .audience-list { display: grid; gap: 14px; }
+    .audience-item { padding: 16px 0; border-bottom: 1px solid rgba(61,59,118,.22); font-weight: 750; }
+    .audience .button { margin-top: 30px; }
+
+    .author-section { color: var(--white); background: var(--blue-soft); }
+    .author-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 74px; align-items: center; }
+    .portrait-placeholder { min-height: 620px; }
+    .author-copy p { color: rgba(255,255,255,.82); }
+    .achievement-list { margin: 30px 0 0; padding: 0; list-style: none; }
+    .achievement-list li { position: relative; padding: 11px 0 11px 25px; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .achievement-list li::before { content: "•"; position: absolute; left: 3px; color: var(--gold); }
+    .author-quote { margin-top: 30px; color: var(--gold) !important; font-size: 1.2rem; font-weight: 850; }
+
+    .institution { color: var(--white); background: var(--navy); }
+    .institution-grid { display: grid; grid-template-columns: .55fr 1.45fr; gap: 74px; align-items: center; }
+    .logo-placeholder { min-height: 290px; }
+    .institution-copy p { color: rgba(255,255,255,.75); }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 54px; }
+    .metric { padding: 26px; border: 1px solid rgba(255,255,255,.15); border-radius: 20px; background: rgba(255,255,255,.05); }
+    .metric strong { display: block; color: var(--gold); font-size: 2rem; line-height: 1.1; }
+    .metric span { display: block; margin-top: 8px; color: rgba(255,255,255,.6); font-size: .9rem; }
+
+    .final-cta { padding: 110px 0; background: var(--cream); }
+    .capture-card {
+      display: grid;
+      grid-template-columns: 1fr .85fr;
+      gap: 70px;
+      padding: clamp(34px, 6vw, 72px);
+      border-radius: 34px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: var(--shadow);
+    }
+    .capture-card h2 { margin-bottom: 18px; }
+    .capture-card p { color: rgba(255,255,255,.82); }
+    .capture-form { display: grid; gap: 12px; align-content: center; }
+    .capture-form .button { width: 100%; border-radius: 14px; }
+    .form-status { min-height: 24px; margin: 4px 0 0; color: var(--gold) !important; font-weight: 750; }
+
+    footer { padding: 32px 0; color: rgba(255,255,255,.55); background: var(--blue-soft); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; align-items: center; font-size: .88rem; }
+    .wireframe-note { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      .section { padding: 76px 0; }
+      .hero-grid, .problem-grid, .score-intro, .team-grid, .topics-header, .audience-grid, .author-grid, .institution-grid, .capture-card { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero-grid { padding: 72px 0; }
+      .hero-card { max-width: 620px; }
+      .problem-grid { gap: 30px; }
+      .big-number { display: none; }
+      .topics-grid { grid-template-columns: repeat(2, 1fr); }
+      .portrait-placeholder { min-height: 500px; }
+      .metrics { grid-template-columns: 1fr; }
+      .capture-card { gap: 34px; }
+    }
+
+    @media (max-width: 620px) {
+      :root { --container: min(100% - 28px, 1180px); --radius: 22px; }
+      .topbar-inner { min-height: 64px; }
+      .brand span:last-child { display: none; }
+      .button-small { padding-inline: 15px; font-size: .7rem; }
+      h1 { font-size: clamp(2.65rem, 13vw, 4rem); }
+      h2 { font-size: clamp(2.05rem, 10vw, 3rem); }
+      .hero-grid { gap: 42px; }
+      .hero-card { padding: 16px; }
+      .media-placeholder { min-height: 260px; }
+      .hero-form { grid-template-columns: 1fr; }
+      .score-grid, .topics-grid { grid-template-columns: 1fr; }
+      .score-card { min-height: auto; }
+      .team-visual { min-height: 330px; }
+      .portrait-placeholder { min-height: 420px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#inicio" aria-label="Voltar ao início">
+        <span class="brand-mark" aria-hidden="true">LOGO</span>
+        <span>Atleta Campeão</span>
+      </a>
+      <a class="button button-small" href="#lista">Entrar na lista</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Pré-lançamento • Outubro</p>
+          <h1>Manual da<br>Arquibancada</h1>
+          <p class="hero-subtitle">Os pais são parte do time.</p>
+          <p class="lead"><strong>Um livro para pais que querem ajudar seus filhos no esporte — sem aumentar a pressão, sem atrapalhar o treinador e sem transformar cada competição em uma fonte de tensão.</strong></p>
+          <p class="launch-note">Entre agora para a lista de pré-lançamento e seja um dos primeiros a receber as novidades sobre o livro.</p>
+        </div>
+
+        <div class="hero-card" aria-label="Área de destaque do livro e captura">
+          <div class="media-placeholder">ÁREA VISUAL<br>Mockup do livro + foto contextual<br><small>(imagem será inserida na versão final)</small></div>
+          <form class="hero-form js-capture-form">
+            <label>
+              <span style="position:absolute;left:-9999px">Seu melhor e-mail</span>
+              <input type="email" name="email" placeholder="Seu melhor e-mail" required>
+            </label>
+            <button class="button" type="submit">Quero entrar</button>
+          </form>
+          <p class="microcopy">Você receberá apenas informações sobre o pré-lançamento.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problema">
+      <div class="container problem-grid">
+        <div aria-hidden="true"><span class="big-number">01</span></div>
+        <div>
+          <p class="section-tag">Identificação</p>
+          <h2>Ninguém ensina os pais a serem pais de atletas.</h2>
+          <p class="lead">Seu filho começa a praticar um esporte e, de repente, você também entra em um mundo novo: treinos, competições, derrotas, vitórias, técnicos, expectativas e frustrações.</p>
+          <div class="questions">
+            <div class="question">O que eu falo depois de uma derrota?</div>
+            <div class="question">Até onde devo cobrar?</div>
+            <div class="question">Como incentivo sem pressionar?</div>
+            <div class="question">O que fazer quando meu filho quer desistir?</div>
+          </div>
+          <p>A maioria dos pais quer acertar. O problema é que amar, apoiar e saber como agir no esporte não são exatamente a mesma coisa.</p>
+          <p class="thesis">O Manual da Arquibancada nasceu para ajudar justamente nisso.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section score-section" id="placares">
+      <div class="container">
+        <div class="score-intro">
+          <div>
+            <p class="section-tag">A grande ideia do livro</p>
+            <h2>Existem dois placares no esporte.</h2>
+          </div>
+          <p>O resultado muda a cada competição. O desenvolvimento que acontece longe do pódio acompanha o atleta por toda a vida.</p>
+        </div>
+        <div class="score-grid">
+          <article class="score-card">
+            <p class="eyebrow">O que todos veem</p>
+            <h3>Placar visível</h3>
+            <div class="score-list">
+              <span>Vitórias</span><span>Derrotas</span><span>Medalhas</span><span>Gols</span><span>Tempos</span><span>Convocações</span><span>Pódios</span>
+            </div>
+          </article>
+          <article class="score-card dark">
+            <p class="eyebrow">O que está sendo formado</p>
+            <h3>Placar invisível</h3>
+            <div class="score-list">
+              <span>Confiança</span><span>Autonomia</span><span>Responsabilidade</span><span>Disciplina</span><span>Resiliência</span><span>Relação com o erro</span><span>Pressão</span>
+            </div>
+          </article>
+        </div>
+        <p class="topics-note">O Manual da Arquibancada ajuda os pais a aprenderem a olhar para os dois.</p>
+      </div>
+    </section>
+
+    <section class="section team-section" id="tese">
+      <div class="container team-grid">
+        <div>
+          <p class="section-tag">A tese central</p>
+          <h2>Os pais são parte do time.</h2>
+          <p class="lead">Os pais estão no caminho para o treino, na conversa antes da competição, no carro depois da derrota, na comemoração da vitória e na decisão de continuar ou desistir.</p>
+          <p>O papel dos pais não é substituir o treinador nem controlar a carreira esportiva dos filhos. É aprender a ocupar um lugar que ninguém mais pode ocupar: o lugar de pai e mãe.</p>
+          <p class="team-highlight">Não precisamos de pais mais distantes. Precisamos de pais mais preparados.</p>
+        </div>
+        <div class="media-placeholder team-visual">ÁREA VISUAL<br>Pais + filho atleta em um momento real<br><small>(treino, arquibancada ou conversa pós-jogo)</small></div>
+      </div>
+    </section>
+
+    <section class="section" id="conteudo">
+      <div class="container">
+        <div class="topics-header">
+          <div>
+            <p class="section-tag">Conteúdo</p>
+            <h2>O que você vai encontrar neste livro.</h2>
+          </div>
+          <p>Ciência, experiências reais do esporte e ferramentas práticas para transformar situações comuns da rotina esportiva em momentos de desenvolvimento.</p>
+        </div>
+        <div class="topics-grid">
+          <article class="topic-card"><span class="topic-number">01</span><h3>Cobrança, pressão e expectativas</h3></article>
+          <article class="topic-card"><span class="topic-number">02</span><h3>Antes e depois das competições</h3></article>
+          <article class="topic-card"><span class="topic-number">03</span><h3>Derrotas, erros e frustrações</h3></article>
+          <article class="topic-card"><span class="topic-number">04</span><h3>Motivação e autonomia</h3></article>
+          <article class="topic-card"><span class="topic-number">05</span><h3>Relação entre pais e treinadores</h3></article>
+          <article class="topic-card"><span class="topic-number">06</span><h3>Controle emocional na arquibancada</h3></article>
+          <article class="topic-card"><span class="topic-number">07</span><h3>Comparação entre atletas</h3></article>
+          <article class="topic-card"><span class="topic-number">08</span><h3>Metas e foco no processo</h3></article>
+          <article class="topic-card"><span class="topic-number">09</span><h3>Uso de telas e rotina esportiva</h3></article>
+        </div>
+        <p class="topics-note">Não é um livro para ensinar você a ser um pai perfeito. É um livro para ajudar você a compreender melhor o impacto das suas atitudes.</p>
+      </div>
+    </section>
+
+    <section class="audience" id="para-quem">
+      <div class="container audience-grid">
+        <div>
+          <p class="section-tag" style="color:var(--navy)">Para quem é</p>
+          <h2>Para pais que querem participar sem controlar.</h2>
+          <p class="lead">Da iniciação esportiva ao alto rendimento. Para quem já se perguntou: <strong>“Será que estou ajudando ou pressionando?”</strong></p>
+          <a class="button" href="#lista">Quero conhecer o livro</a>
+        </div>
+        <div class="audience-list">
+          <div class="audience-item">Incentivar sem colocar sobre o filho o peso das próprias expectativas.</div>
+          <div class="audience-item">Apoiar sem ocupar o lugar do treinador.</div>
+          <div class="audience-item">Entender que o esporte pode formar muito mais do que campeões.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section author-section" id="autora">
+      <div class="container author-grid">
+        <div class="media-placeholder portrait-placeholder">FOTO PRINCIPAL DA MAYRA<br>Retrato vertical, elegante e próximo<br><small>(referência: seção “Quem conduz”)</small></div>
+        <div class="author-copy">
+          <p class="section-tag">Sobre a autora</p>
+          <h2>Mayra Ramos</h2>
+          <p class="lead">Mayra conhece o esporte de diferentes lugares: como atleta de alto rendimento, profissional do desenvolvimento mental e, hoje, também como mãe.</p>
+          <p>Durante cerca de 20 anos, integrou a Seleção Brasileira de Patinação Artística e representou o Brasil em competições internacionais. Depois da carreira esportiva, passou a dedicar seu trabalho ao desenvolvimento de atletas, treinadores e famílias.</p>
+          <ul class="achievement-list">
+            <li>Duas vezes eleita a melhor atleta brasileira da modalidade pelo COB</li>
+            <li>Vice-campeã mundial por equipes</li>
+            <li>Medalhista nos Jogos Pan-Americanos</li>
+            <li>Campeã pan-americana e sul-americana</li>
+          </ul>
+          <p class="author-quote">Da atleta que viveu a pressão. Da profissional que orienta famílias. E da mãe que acredita que os pais também precisam ser preparados.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section institution" id="instituto">
+      <div class="container">
+        <div class="institution-grid">
+          <div class="media-placeholder logo-placeholder">MARCA<br>Atleta Campeão</div>
+          <div class="institution-copy">
+            <p class="section-tag">Sobre o</p>
+            <h2>Atleta Campeão</h2>
+            <p class="lead">O Instituto Atleta Campeão nasceu em 2016 com uma missão: transformar a preparação mental de atletas e a forma como famílias e treinadores participam do esporte.</p>
+            <p>Seu trabalho integra psicologia do esporte, neurociência e treinamento mental e hoje alcança atletas, pais e profissionais de diferentes modalidades.</p>
+          </div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><strong>30 mil+</strong><span>Atletas, pais e treinadores impactados</span></div>
+          <div class="metric"><strong>400 mil+</strong><span>Pessoas acompanhando nossos conteúdos</span></div>
+          <div class="metric"><strong>Desde 2016</strong><span>Desenvolvendo o lado mental do esporte</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="lista">
+      <div class="container capture-card">
+        <div>
+          <p class="section-tag">Pré-lançamento</p>
+          <h2>O Manual da Arquibancada chega em outubro.</h2>
+          <p class="lead">Entre para a lista e receba primeiro as informações sobre o livro, a abertura da pré-venda e as novidades do lançamento.</p>
+          <p><strong>Os pais são parte do time.</strong></p>
+        </div>
+        <form class="capture-form js-capture-form">
+          <label>
+            <span style="position:absolute;left:-9999px">Nome</span>
+            <input type="text" name="name" placeholder="Seu nome" required>
+          </label>
+          <label>
+            <span style="position:absolute;left:-9999px">E-mail</span>
+            <input type="email" name="email" placeholder="Seu melhor e-mail" required>
+          </label>
+          <label>
+            <span style="position:absolute;left:-9999px">WhatsApp</span>
+            <input type="tel" name="whatsapp" placeholder="Seu WhatsApp" required>
+          </label>
+          <button class="button" type="submit">Quero entrar na lista</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>Manual da Arquibancada • Mayra Ramos</span>
+      <span class="wireframe-note">Wireframe HTML — conteúdo e imagens finais podem ser substituídos</span>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.js-capture-form').forEach((form) => {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const status = form.querySelector('.form-status');
+        if (status) status.textContent = 'Cadastro recebido — demonstração do wireframe.';
+        else form.querySelector('button').textContent = 'Você está na lista!';
+      });
+    });
+  </script>
+</body>
+</html>

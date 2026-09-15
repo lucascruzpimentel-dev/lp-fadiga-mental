@@ -19,6 +19,7 @@
     { "source": "/inscricao-congresso-lideranca-parental", "destination": "/inscricao-congresso-lideranca-parental/", "permanent": false },
     { "source": "/palestras", "destination": "/palestras/", "permanent": false },
     { "source": "/atendimento-individual-ac", "destination": "/atendimento-individual-ac/", "permanent": false },
+    { "source": "/manual-da-arquibancada", "destination": "/manual-da-arquibancada/", "permanent": false },
     { "source": "/treinador-mental-atletas", "destination": "/atendimento-individual-ac/", "permanent": true },
     { "source": "/treinador-mental-atletas/", "destination": "/atendimento-individual-ac/", "permanent": true }
   ],
