@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -10,16 +10,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#3d3b76">
-<link rel="icon" href="/captura-congresso-lideranca-parental/assets/favicon_ac.png" type="image/png" sizes="64x64">
-<link rel="apple-touch-icon" href="/captura-congresso-lideranca-parental/assets/icone_atleta_campeao.png">
+<meta name="theme-color" content="#a4070b">
+<link rel="icon" href="assets/favicon_ac.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/icone_atleta_campeao.png">
 <title>Congresso de Liderança Parental | Inscrição gratuita | Atleta Campeão</title>
 <meta name="description" content="Inscreva-se grátis no Congresso de Liderança Parental — transmissão online ao vivo em 17 de outubro de 2026, das 10h às 18h. 100% gratuito.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.leadconnectorhq.com">
 <link rel="preconnect" href="https://link.msgsndr.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script>
 (function () {
   var GHL_EMBED_FORM_ID = "IUNKDxsfZQL5iS1s5Z5D";
@@ -102,125 +102,135 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --indigo:#3d3b76;
-  --indigo-deep:#2c2a57;
-  --roxo:#7200a2;
-  --ardosia:#54595f;
-  --verde:#61ce70;
-  --verde-escuro:#4bb35a;
-  --ambar:#df9800;
-  --dourado:#d8970e;
-  --ambar-vivo:#fbae0b;
-  --creme:#fff9f2;
-  --bege:#f8eddb;
-  --amarelo:#ffedcc;
-  --branco:#ffffff;
-  --texto:var(--indigo);
-  --texto2:var(--ardosia);
-  --texto-claro:rgba(255,255,255,.82);
-  --borda:rgba(61,59,118,.14);
-  --borda-clara:rgba(255,255,255,.18);
+  --paper:#fcf8ef;
+  --paper-deep:#f5efe2;
+  --white:#ffffff;
+  --line:#e5dbcd;
+  --ink:#181513;
+  --soft:#605952;
+  --faint:#8c8177;
+  --red:#a4070b;
+  --red-deep:#8d070b;
+  --gold:#b99150;
+  --gold-ink:#7e6230;
+  --night:#14110f;
+  --night-2:#221d19;
+  --night-text:#f3ede1;
+  --texto:var(--ink);
+  --texto2:var(--soft);
+  --texto-claro:rgba(243,237,225,.82);
+  --borda:var(--line);
+  --borda-clara:rgba(243,237,225,.16);
+  --branco:var(--white);
+  --creme:var(--paper);
+  --bege:var(--paper-deep);
   --raio:12px;
-  --raio-lg:20px;
-  --fonte:'Outfit',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --raio-lg:12px;
+  --fonte:'Archivo',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --display:'Fraunces','Georgia',serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
   --largura:960px;
 }
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--fonte);color:var(--texto);line-height:1.65;background:var(--creme);overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;color-scheme:light}
+body{font-family:var(--fonte);color:var(--ink);line-height:1.65;background:var(--paper);overflow-x:hidden;border-top:3px solid var(--gold)}
 img{max-width:100%;height:auto;display:block}
 a{text-decoration:none;color:inherit}
-::selection{background:var(--ambar-vivo);color:var(--indigo-deep)}
+button,a,input{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+::selection{background:rgba(185,145,80,.35);color:var(--ink)}
 
 .sec{padding:88px 24px}
 .sec-in{max-width:var(--largura);margin:0 auto}
 .sec-in.centro{text-align:center}
-.st{font-size:clamp(1.5rem,3.4vw,2.35rem);font-weight:700;line-height:1.14;letter-spacing:-.02em;color:var(--indigo);margin-bottom:18px}
-.sd{font-size:1rem;color:var(--texto2);line-height:1.75;margin-bottom:16px;max-width:66ch}
+.st{font-family:var(--display);font-size:clamp(1.5rem,3.4vw,2.35rem);font-weight:600;line-height:1.14;letter-spacing:-.03em;color:var(--ink);margin-bottom:18px}
+.sd{font-size:1rem;color:var(--soft);line-height:1.75;margin-bottom:16px;max-width:66ch}
 .centro .sd{margin-left:auto;margin-right:auto}
-.linha{width:80px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--ambar-vivo),var(--dourado));margin:0 0 26px}
+.linha{width:80px;height:3px;border-radius:2px;background:var(--gold);margin:0 0 26px}
 .centro .linha{margin-left:auto;margin-right:auto}
-.ey{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ambar-vivo);margin-bottom:14px;display:inline-block;padding:0 0 0 12px;border-left:2px solid var(--ambar-vivo)}
-.f-creme{background:var(--creme)}
-.f-bege{background:var(--bege)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 34px;background:var(--verde);color:#0e3d17;font-size:.94rem;font-weight:700;border:none;border-radius:999px;cursor:pointer;transition:.22s;box-shadow:0 6px 22px rgba(97,206,112,.34);font-family:var(--fonte);letter-spacing:.01em;text-align:center}
-.btn:hover{background:var(--verde-escuro);color:#fff;box-shadow:0 8px 28px rgba(97,206,112,.5);transform:translateY(-1px)}
-.btn-lg{padding:17px 40px;font-size:1rem}
+.ey{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:14px;display:inline-block;padding:0 0 8px;border-bottom:1px solid var(--gold)}
+.f-creme{background:var(--paper)}
+.f-bege{background:var(--paper-deep)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 28px;background:var(--red);color:var(--white);font-size:.94rem;font-weight:600;border:none;border-radius:6px;cursor:pointer;transition:background .15s,transform .15s;font-family:var(--fonte);letter-spacing:.01em;text-align:center;box-shadow:none}
+.btn:hover{background:var(--red-deep);color:var(--white);transform:translateY(-1px)}
+.btn-lg{padding:17px 32px;font-size:1rem}
 .cta-bloco{margin-top:34px}
 
-.countdown{background:var(--indigo-deep);color:#fff;padding:14px 24px;text-align:center;border-bottom:3px solid var(--ambar-vivo)}
+.countdown{background:var(--night);color:var(--night-text);padding:14px 24px;text-align:center;border-bottom:1px solid var(--night-2)}
 .countdown-in{max-width:1100px;margin:0 auto}
-.countdown-label{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ambar-vivo);margin-bottom:8px}
+.countdown-label{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:8px}
 .countdown-grid{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.countdown-item{min-width:64px;padding:8px 10px;background:rgba(255,255,255,.08);border:1px solid var(--borda-clara);border-radius:10px}
-.countdown-item b{display:block;font-size:clamp(1.2rem,3vw,1.7rem);font-weight:800;line-height:1.1;color:#fff}
-.countdown-item small{display:block;margin-top:3px;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.countdown-item{min-width:64px;padding:8px 10px;background:var(--night-2);border:1px solid var(--borda-clara);border-radius:6px}
+.countdown-item b{display:block;font-family:var(--mono);font-size:clamp(1.2rem,3vw,1.7rem);font-weight:500;line-height:1.1;color:var(--night-text)}
+.countdown-item small{display:block;margin-top:3px;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
 
-.hero{background:var(--creme);color:var(--indigo);padding:36px 24px 64px;position:relative}
+.hero{background:var(--paper);color:var(--ink);padding:36px 24px 64px;position:relative;border-bottom:1px solid var(--line)}
 .hero-in{max-width:640px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
 .hero-copy{width:100%}
-.hero-ey{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dourado);margin-bottom:14px}
-.hero h1{font-size:clamp(1.4rem,3.4vw,2.35rem);font-weight:800;line-height:1.14;letter-spacing:-.02em;margin-bottom:14px;color:var(--indigo);text-wrap:pretty}
-.hero h1 em{font-style:normal;color:var(--roxo)}
-.hero-sub{font-size:clamp(.98rem,1.7vw,1.12rem);color:var(--texto2);line-height:1.6;margin:0 auto 16px;max-width:46ch}
+.hero-ey{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gold)}
+.hero h1{font-family:var(--display);font-size:clamp(1.45rem,3.4vw,2.4rem);font-weight:600;line-height:1.12;letter-spacing:-.03em;margin-bottom:14px;color:var(--ink);text-wrap:pretty}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero-sub{font-size:clamp(.98rem,1.7vw,1.12rem);color:var(--soft);line-height:1.6;margin:0 auto 16px;max-width:46ch}
 .hero-dados{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:22px}
-.hd{display:flex;align-items:center;gap:8px;background:var(--bege);border:1px solid var(--borda);border-radius:999px;padding:8px 14px;font-size:.82rem;font-weight:500;color:var(--indigo);flex-shrink:0}
-.hd svg{width:15px;height:15px;flex-shrink:0;color:var(--dourado)}
-.hero-form{width:100%;max-width:32rem;margin:0 auto;border-radius:var(--raio);overflow:hidden;background:#fff;text-align:left}
-.hero__ghl-iframe{display:block;width:100%;max-width:100%;min-height:480px;height:520px;border:0;background:#fff}
+.hd{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:2px;padding:8px 14px;font-size:.82rem;font-weight:500;color:var(--ink);flex-shrink:0}
+.hd svg{width:15px;height:15px;flex-shrink:0;color:var(--gold)}
+.hero-form{width:100%;max-width:32rem;margin:0 auto;border-radius:12px;overflow:hidden;background:var(--white);border:1px solid var(--line);text-align:left}
+.hero__ghl-iframe{display:block;width:100%;max-width:100%;min-height:480px;height:520px;border:0;background:var(--white)}
 
 .prog{display:flex;flex-direction:column;gap:14px;margin-top:34px}
-.pit{display:grid;grid-template-columns:96px 1fr;background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio);overflow:hidden;box-shadow:0 3px 14px rgba(61,59,118,.05)}
-.pit-h{background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:.86rem;padding:16px 8px;line-height:1.3}
-.pit.pausa .pit-h{background:var(--dourado);color:#3a2600}
+.pit{display:grid;grid-template-columns:96px 1fr;background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(24,21,19,.04)}
+.pit-h{background:var(--night);color:var(--night-text);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;font-size:.86rem;padding:16px 8px;line-height:1.3}
+.pit.pausa .pit-h{background:var(--paper-deep);color:var(--soft);border-right:1px solid var(--line)}
 .pit-b{padding:20px 22px}
-.pit-tipo{font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--roxo);margin-bottom:7px}
-.pit-b h3{font-size:1.1rem;font-weight:700;color:var(--indigo);line-height:1.25;margin-bottom:5px}
-.pit-quem{display:flex;align-items:center;gap:12px;font-size:.86rem;font-weight:600;color:var(--ardosia);margin-top:8px}
-.pit-quem img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--ambar-vivo);flex-shrink:0}
+.pit-tipo{font-size:.66rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:7px}
+.pit-b h3{font-family:var(--display);font-size:1.1rem;font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:5px}
+.pit-quem{display:flex;align-items:center;gap:12px;font-size:.86rem;font-weight:500;color:var(--soft);margin-top:8px}
+.pit-quem img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0}
 
-.instituicao{background:var(--indigo);color:#fff;padding:88px 24px}
+.instituicao{background:var(--night);color:var(--night-text);padding:88px 24px}
 .instituicao-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
 @media(min-width:768px){.instituicao-in{grid-template-columns:.85fr 1.15fr;gap:48px}}
 .instituicao-logo{width:min(260px,68vw);margin:0 auto}
 .instituicao-logo img{width:100%;height:auto;object-fit:contain}
-.instituicao .ey{color:var(--ambar-vivo);border-color:var(--ambar-vivo)}
-.instituicao h2{color:#fff;margin-bottom:10px}
+.instituicao .ey{color:var(--gold-ink);border-bottom-color:var(--gold)}
+.instituicao h2,.instituicao .st{color:var(--night-text);margin-bottom:10px}
 .instituicao .sd{color:var(--texto-claro);max-width:none}
 .nums{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0 8px}
 @media(min-width:700px){.nums{grid-template-columns:repeat(3,1fr)}}
-.num{background:rgba(255,255,255,.08);border:1px solid var(--borda-clara);border-radius:var(--raio);padding:18px 14px;text-align:center}
-.num b{display:block;font-size:clamp(1.35rem,3vw,1.8rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:6px}
+.num{background:var(--night-2);border:1px solid var(--borda-clara);border-radius:12px;padding:18px 14px;text-align:center}
+.num b{display:block;font-family:var(--mono);font-size:clamp(1.35rem,3vw,1.8rem);font-weight:500;color:var(--night-text);line-height:1.1;margin-bottom:6px}
 .num span{display:block;font-size:.8rem;color:var(--texto-claro);line-height:1.4}
 
 .como-lista{display:flex;flex-direction:column;gap:14px;margin-top:32px;text-align:left}
-.como-item{display:flex;gap:14px;align-items:flex-start;background:var(--branco);border:1px solid var(--borda);border-radius:var(--raio);padding:20px 22px;box-shadow:0 3px 14px rgba(61,59,118,.05)}
-.como-ic{width:40px;height:40px;border-radius:10px;background:var(--amarelo);color:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.como-item{display:flex;gap:14px;align-items:flex-start;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:0 2px 12px rgba(24,21,19,.04)}
+.como-ic{width:40px;height:40px;border-radius:6px;background:var(--paper-deep);color:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--line)}
 .como-ic svg{width:20px;height:20px}
-.como-item h3{font-size:1.02rem;font-weight:700;color:var(--indigo);margin-bottom:6px;line-height:1.3}
-.como-item p{font-size:.9rem;color:var(--texto2);line-height:1.65}
+.como-item h3{font-family:var(--display);font-size:1.02rem;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.como-item p{font-size:.9rem;color:var(--soft);line-height:1.65}
 
-.rodape{background:var(--indigo-deep);color:rgba(255,255,255,.78);padding:56px 24px 0;font-size:.9rem}
+.rodape{background:var(--night);color:rgba(243,237,225,.78);padding:56px 24px 0;font-size:.9rem}
 .rodape-in{max-width:1100px;margin:0 auto}
-.rodape-grid{display:grid;grid-template-columns:1fr;gap:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.12)}
+.rodape-grid{display:grid;grid-template-columns:1fr;gap:36px;padding-bottom:36px;border-bottom:1px solid var(--borda-clara)}
 @media(min-width:760px){.rodape-grid{grid-template-columns:1.4fr 1fr 1fr;gap:40px;align-items:start}}
 .rodape-brand{display:flex;flex-direction:column;gap:14px}
 .rodape-brand img{width:72px;height:72px;object-fit:contain}
-.rodape-brand strong{display:block;color:#fff;font-size:1.15rem;font-weight:800;letter-spacing:-.02em}
-.rodape-brand p{margin:0;line-height:1.65;max-width:36ch;color:rgba(255,255,255,.72)}
+.rodape-brand strong{display:block;color:var(--night-text);font-family:var(--display);font-size:1.15rem;font-weight:600;letter-spacing:-.02em}
+.rodape-brand p{margin:0;line-height:1.65;max-width:36ch;color:rgba(243,237,225,.72)}
 .rodape-social{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
-.rodape-social a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;transition:.2s}
-.rodape-social a:hover{background:var(--ambar-vivo);color:#1a1200;border-color:var(--ambar-vivo)}
+.rodape-social a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:6px;background:var(--night-2);border:1px solid var(--borda-clara);color:var(--night-text);font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:.15s}
+.rodape-social a:hover{background:var(--red);color:var(--white);border-color:var(--red)}
 .rodape-social svg{width:16px;height:16px;flex-shrink:0}
-.rodape-col h3{color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.rodape-col h3{color:var(--night-text);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
 .rodape-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.rodape-col a,.rodape-col span{color:rgba(255,255,255,.78);line-height:1.45}
-.rodape-col a:hover{color:var(--ambar-vivo)}
+.rodape-col a,.rodape-col span{color:rgba(243,237,225,.78);line-height:1.45}
+.rodape-col a:hover{color:var(--night-text)}
 .rodape-col li{display:flex;align-items:flex-start;gap:10px}
-.rodape-col li svg{width:16px;height:16px;flex-shrink:0;margin-top:3px;color:var(--ambar-vivo)}
+.rodape-col li svg{width:16px;height:16px;flex-shrink:0;margin-top:3px;color:var(--gold)}
 .rodape-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:18px 0 28px}
-.rodape-bar p{margin:0;font-size:.78rem;color:rgba(255,255,255,.5)}
-.rodape-bar a{color:rgba(255,255,255,.55);font-size:.78rem}
-.rodape-bar a:hover{color:#fff}
+.rodape-bar p{margin:0;font-size:.78rem;color:rgba(243,237,225,.5)}
+.rodape-bar a{color:rgba(243,237,225,.55);font-size:.78rem}
+.rodape-bar a:hover{color:var(--night-text)}
 
 @media(max-width:700px){
   .sec,.instituicao{padding:62px 18px}
@@ -308,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="pit-b">
 <div class="pit-tipo">Palestra de abertura · online ao vivo</div>
 <h3>Os comportamentos dos pais que constroem ou destroem a confiança do atleta</h3>
-<div class="pit-quem"><img src="/captura-congresso-lideranca-parental/assets/pf_mayra_ramos_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Mayra Ramos — fundadora do Atleta Campeão</div>
+<div class="pit-quem"><img src="assets/pf_mayra_ramos_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Mayra Ramos — fundadora do Atleta Campeão</div>
 </div>
 </article>
 
@@ -317,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="pit-b">
 <div class="pit-tipo">Palestra · online ao vivo</div>
 <h3>Quando os pais mudam, o atleta muda</h3>
-<div class="pit-quem"><img src="/captura-congresso-lideranca-parental/assets/pf_thaty_keller_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Thaty Keller — treinadora mental e mãe de atleta</div>
+<div class="pit-quem"><img src="assets/pf_thaty_keller_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Thaty Keller — treinadora mental e mãe de atleta</div>
 </div>
 </article>
 
@@ -334,7 +344,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="pit-b">
 <div class="pit-tipo">Palestra · online ao vivo</div>
 <h3>Como manter um filho motivado no esporte</h3>
-<div class="pit-quem"><img src="/captura-congresso-lideranca-parental/assets/pf_luis_antonio_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Dr. Luís Antônio de Souza Júnior — Doutor em Educação Física</div>
+<div class="pit-quem"><img src="assets/pf_luis_antonio_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Dr. Luís Antônio de Souza Júnior — Doutor em Educação Física</div>
 </div>
 </article>
 
@@ -343,7 +353,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="pit-b">
 <div class="pit-tipo">Palestra · online ao vivo</div>
 <h3>Telas, rendimento e como orientar aos pais</h3>
-<div class="pit-quem"><img src="/captura-congresso-lideranca-parental/assets/pf_mayra_ramos_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Mayra Ramos — fundadora do Atleta Campeão</div>
+<div class="pit-quem"><img src="assets/pf_mayra_ramos_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Mayra Ramos — fundadora do Atleta Campeão</div>
 </div>
 </article>
 
@@ -360,7 +370,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="pit-b">
 <div class="pit-tipo">Encerramento · online ao vivo</div>
 <h3>Conversa com os palestrantes e encerramento</h3>
-<div class="pit-quem"><img src="/captura-congresso-lideranca-parental/assets/pf_mayra_ramos_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Mayra Ramos e convidados</div>
+<div class="pit-quem"><img src="assets/pf_mayra_ramos_circle.webp" width="80" height="80" alt="" loading="lazy" decoding="async">Mayra Ramos e convidados</div>
 </div>
 </article>
 
@@ -371,7 +381,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="instituicao" id="instituicao">
 <div class="instituicao-in">
 <div class="instituicao-logo">
-<img src="/captura-congresso-lideranca-parental/assets/AC-Icone-Dourado.png" width="752" height="800" alt="Atleta Campeão" loading="lazy" decoding="async">
+<img src="assets/AC-Icone-Dourado.png" width="752" height="800" alt="Atleta Campeão" loading="lazy" decoding="async">
 </div>
 <div>
 <span class="ey">A instituição</span>
@@ -430,7 +440,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="rodape-in">
 <div class="rodape-grid">
 <div class="rodape-brand">
-<img src="/captura-congresso-lideranca-parental/assets/AC-Icone-Dourado.png" width="72" height="72" alt="Instituto Atleta Campeão" loading="lazy">
+<img src="assets/AC-Icone-Dourado.png" width="72" height="72" alt="Instituto Atleta Campeão" loading="lazy">
 <strong>Instituto Atleta Campeão</strong>
 <p>A maior referência nacional em treinamento mental e emocional para atletas. Neurociência, psicologia do esporte e coaching aplicados à performance — desde 2016, com mais de 30 mil atletas impactados.</p>
 <div class="rodape-social">
