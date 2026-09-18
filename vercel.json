@@ -15,6 +15,7 @@
     { "source": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso.html", "destination": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso/", "permanent": true },
     { "source": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso", "destination": "/congresso-psicologia-vip-pass/evento_presencial_psi_congresso/", "permanent": false },
     { "source": "/congresso-lideranca-parental", "destination": "/congresso-lideranca-parental/", "permanent": false },
+    { "source": "/congresso-lideranca-parental-v2", "destination": "/congresso-lideranca-parental-v2/", "permanent": false },
     { "source": "/captura-congresso-lideranca-parental", "destination": "/captura-congresso-lideranca-parental/", "permanent": false },
     { "source": "/inscricao-congresso-lideranca-parental", "destination": "/inscricao-congresso-lideranca-parental/", "permanent": false },
     { "source": "/palestras", "destination": "/palestras/", "permanent": false },
