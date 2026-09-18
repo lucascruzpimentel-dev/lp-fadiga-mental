@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Congresso de Liderança Parental | 17 Out 2026 · Alphaville</title>
+  <meta name="description" content="Congresso presencial de Liderança Parental — 17 de outubro de 2026, Alphaville/SP. Para treinadores, psicólogos do esporte, treinadores mentais, coaches e gestores de clube. 30 vagas.">
+  <link rel="icon" href="assets/favicon_ac.png" type="image/png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/icone_atleta_campeao.png">
+  <meta name="theme-color" content="#a4070b">
+  <style>
+    /* Identidade visual — mesmo sistema do "Manual da Arquibancada":
+       tipografia Georgia (títulos) + Arial (texto), papel creme,
+       vermelho como único acento, linha dourada como divisor. */
+    :root{
+      --ink:#181513;
+      --muted:#605952;
+      --accent:#a4070b;
+      --accent-dark:#7f0307;
+      --line:#e5dbcd;
+      --paper:#fcf8ef;
+      --gold:#b99150;
+      --gold-label:#8c6940;
+      --white:#ffffff;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: Arial, Helvetica, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;padding-bottom:78px}
+    button,a,input{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+    button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+
+    .wrap{width:min(1080px,calc(100% - 48px));margin:auto}
+    .label{font-size:13px;letter-spacing:.14em;font-weight:700;text-transform:uppercase;margin:0 0 10px;color:var(--gold-label)}
+    h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.03em;margin:0 0 16px;color:var(--ink)}
+    .lead{font-family:var(--serif);font-size:22px;line-height:1.5;max-width:540px;margin:0 0 22px}
+    .bio,p{color:var(--muted)}
+    p{margin:0 0 14px}
+
+    header{border-top:3px solid var(--gold)}
+    .header-inner{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:20px}
+    .logo{width:164px;height:48px;object-fit:contain}
+    .edition{font-size:13px;letter-spacing:.02em;color:var(--muted)}
+
+    .cta{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:4px;background:var(--accent);color:#fff;font-size:15px;font-weight:700;padding:16px 26px;min-height:54px;transition:background .15s;text-align:center}
+    .cta:hover{background:var(--accent-dark)}
+    .cta-ghost{background:none;color:var(--accent);border:1px solid var(--accent);}
+    .cta-ghost:hover{background:var(--accent);color:#fff}
+    .note{margin:13px 0 0;color:var(--muted);font-size:13px;max-width:400px}
+
+    section{padding:56px 0}
+    section + section{border-top:1px solid var(--line)}
+    .divider{border:0;border-top:1px solid var(--line);margin:0}
+
+    /* ---------- HERO ---------- */
+    .hero{padding:46px 0 54px}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:56px}
+    .eyebrow{font-size:13px;color:var(--accent);letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 24px}
+    .eyebrow span{padding:0 0 9px;border-bottom:1px solid var(--gold)}
+    .hero h1{font-size:clamp(38px,4.4vw,60px);line-height:1.08}
+    .hero h1 em{font-style:normal;color:var(--accent)}
+    .hero .lead{max-width:485px}
+    .facts{color:var(--muted);font-size:13.5px;max-width:440px;margin:0 0 28px}
+    .cover{margin:0;max-width:400px;justify-self:center}
+    .cover img{border-radius:6px}
+
+    /* ---------- SEÇÃO SIMPLES (label + h2 + texto) ---------- */
+    .plain-copy{max-width:680px}
+    .thesis{font-family:var(--serif);font-size:20px;color:var(--ink);margin:22px 0 24px}
+
+    /* ---------- DUAS COLUNAS (autor / local / instituto) ---------- */
+    .two-col{display:grid;grid-template-columns:210px 1fr;gap:48px;align-items:center}
+    .two-col .portrait,.two-col .figure-img{width:210px;height:208px;object-fit:cover;border-radius:6px}
+    .two-col.wide{grid-template-columns:320px 1fr}
+    .two-col.wide .figure-img{width:100%;height:230px}
+    .two-col h2{font-size:30px}
+
+    /* ---------- PROGRAMAÇÃO ---------- */
+    .schedule{margin-top:8px}
+    .schedule-row{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+    .schedule-row:first-child{border-top:1px solid var(--line)}
+    .schedule-time{font-family:var(--serif);font-size:19px;color:var(--accent)}
+    .schedule-tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold-label);margin-bottom:6px}
+    .schedule-row h3{font-size:19px;margin-bottom:4px}
+    .schedule-speaker{font-size:14px;color:var(--muted);font-weight:700;margin-bottom:6px}
+    .schedule-row p{margin:0;font-size:15px}
+
+    /* ---------- LISTA NUMERADA (certificação / incluído / para quem é) ---------- */
+    .num-list{display:grid;gap:20px;margin-top:8px}
+    .num-list.cols-2{grid-template-columns:1fr 1fr}
+    .num-item{display:flex;gap:16px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--line)}
+    .num-item .n{font-family:var(--serif);font-size:18px;color:var(--gold);flex-shrink:0;width:34px}
+    .num-item h3{font-size:16px;margin-bottom:4px}
+    .num-item p{margin:0;font-size:14.5px}
+
+    /* ---------- FAIXA (para pais) ---------- */
+    .band{border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);background:#f7f0e2}
+    .band .selo{display:inline-block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:14px}
+
+    /* ---------- DEPOIMENTOS ---------- */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+    .testi-grid figure{margin:0}
+    .testi-grid a{display:block;line-height:0;background:#efe8db;border-radius:6px;overflow:hidden}
+    .testi-grid img{width:100%}
+    .testi-grid figcaption{margin-top:10px;font-size:13px;color:var(--muted)}
+    .testi-grid figcaption strong{display:block;color:var(--ink);font-size:14px;font-family:var(--serif)}
+    .testi-note{margin-top:26px;font-size:13.5px;color:var(--muted)}
+
+    /* ---------- MÉTRICAS ---------- */
+    .metrics{display:flex;gap:0;margin-top:36px;border-top:1px solid var(--line);padding-top:28px}
+    .metric{flex:1;text-align:left;border-left:1px solid var(--line);padding-left:24px}
+    .metric:first-child{border-left:0;padding-left:0}
+    .metric strong{display:block;font-family:var(--serif);font-size:26px;color:var(--accent)}
+    .metric span{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
+
+    /* ---------- INVESTIMENTO ---------- */
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:30px;border-top:1px solid var(--line)}
+    .lote{padding:30px 26px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+    .lote:last-child{border-right:0}
+    .lote-tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--gold-label);margin-bottom:10px;display:block}
+    .lote.ativo .lote-tag{color:var(--accent)}
+    .lote-preco{font-family:var(--serif);font-size:34px;color:var(--ink);margin-bottom:6px}
+    .lote-per{font-size:13.5px;color:var(--muted);margin-bottom:20px;min-height:2.6em}
+    .lote-acao .cta{width:100%}
+    .lote-off{width:100%;text-align:center;padding:15px;border:1px dashed var(--line);border-radius:4px;color:var(--muted);font-size:13.5px}
+    .pay-ok{margin-top:24px;font-size:13.5px;color:var(--muted)}
+    .note-box{margin-top:26px;padding:18px 22px;border-left:3px solid var(--gold);background:var(--white);font-size:14.5px;color:var(--muted)}
+    .note-box strong{color:var(--ink)}
+    .fine-print{margin-top:16px;font-size:13px;color:var(--muted);max-width:70ch}
+
+    /* ---------- FAQ ---------- */
+    .faq-list{max-width:720px;margin-top:8px}
+    .faq-i{border-bottom:1px solid var(--line)}
+    .faq-q{width:100%;padding:20px 0;background:none;border:none;font-family:var(--serif);font-size:18px;color:var(--ink);text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .faq-q:hover{color:var(--accent)}
+    .faq-q svg{width:18px;height:18px;flex-shrink:0;color:var(--gold);transition:transform .25s}
+    .faq-q.open svg{transform:rotate(180deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+    .faq-a p{padding:0 0 20px;font-size:15px}
+    .faq-a a{color:var(--accent);font-weight:700;text-decoration:underline}
+
+    /* ---------- FECHAMENTO ---------- */
+    .fechamento{border-top:3px solid var(--gold)}
+    .fech-dados{display:block;margin-top:6px;color:var(--muted);font-size:14px}
+
+    footer{padding:20px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+    .footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    footer a{color:var(--accent)}
+
+    /* ---------- CONTADOR FIXO ---------- */
+    .cd{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--paper);border-top:3px solid var(--gold);box-shadow:0 -6px 24px rgba(24,21,19,.08)}
+    .cd[hidden]{display:none}
+    .cd-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .cd-lote{display:block;font-family:var(--serif);font-size:15px;color:var(--ink)}
+    .cd-label{display:block;margin-top:1px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .cd-grid{display:flex;gap:8px;flex-shrink:0}
+    .cd-grid>div{min-width:48px;text-align:center;background:var(--white);border:1px solid var(--line);border-radius:4px;padding:6px 4px}
+    .cd-grid b{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+    .cd-grid small{display:block;margin-top:2px;font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .cd-btn{flex-shrink:0;padding:0 20px;min-height:44px}
+
+    @media(max-width:760px){
+      .hero-grid,.two-col,.two-col.wide{grid-template-columns:1fr;gap:24px;text-align:left}
+      .cover{max-width:300px;justify-self:start}
+      .num-list.cols-2,.testi-grid,.pricing-grid{grid-template-columns:1fr}
+      .lote{border-right:0}
+      .metrics{flex-direction:column;gap:16px}
+      .metric{border-left:0;padding-left:0}
+      h1{font-size:clamp(32px,9vw,48px)}
+      section{padding:40px 0}
+      .cd-in{flex-wrap:wrap;justify-content:center;text-align:center;gap:10px;padding:10px 0}
+      .cd-btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap header-inner">
+      <a href="#inicio"><img class="logo" src="assets/AC-logo-original.png" width="164" height="48" alt="Atleta Campeão"></a>
+      <span class="edition">1ª edição · Alphaville, Barueri/SP</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span>1ª edição · presencial · apenas 30 vagas</span></p>
+          <h1>Os pais são parte <em>do time.</em></h1>
+          <p class="lead">E quase ninguém foi preparado para orientá-los. Um dia presencial para quem atua no esporte e quer orientar os pais de atleta com método e autoridade.</p>
+          <p class="facts">Para treinadores, psicólogos do esporte, treinadores mentais, coaches e gestores de clube.<br>17 de outubro de 2026, sábado · 10h às 18h · Alphaville, Barueri/SP · 30 vagas presenciais · Certificado UNIFATEC</p>
+          <a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="cta" data-cta-lote data-checkout>Quero minha vaga — 2º lote R$ 347</a>
+          <p class="note" data-cta-nota>2º lote encerra em breve. Depois o preço sobe.</p>
+        </div>
+        <figure class="cover">
+          <img src="assets/hero_pais_conversa.webp" width="1000" height="1250" alt="Treinadora conversando com pais de atleta na arquibancada, com treino ao fundo" fetchpriority="high">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== O PONTO CEGO ===== -->
+    <section id="problema">
+      <div class="wrap plain-copy">
+        <p class="label">O ponto cego do esporte</p>
+        <h2>O assunto que tira o sono de treinadores e gestores há muito tempo.</h2>
+        <p class="lead" style="font-size:19px">Pergunte a qualquer técnico de base o que mais desgasta o trabalho dele. Raramente a resposta vai ser tática, física ou técnica. Quase sempre vai ser a relação com as famílias.</p>
+        <p>Por muito tempo esse assunto simplesmente não tinha resposta. Não era assunto de ninguém. O técnico achava que não era função dele, o psicólogo atendia o atleta e não a família, e o clube só chamava os pais quando o problema já havia estourado.</p>
+        <p>Isso começou a mudar. O esporte passou a olhar para esse lado e a entender uma coisa que parece óbvia depois de dita: o pai não é um obstáculo por natureza. Ele é alguém tentando ajudar do jeito que sabe.</p>
+        <p class="thesis">E o profissional que sabe conduzir essa conversa se torna insubstituível para o atleta, para a família e para o clube. É esse profissional que o congresso quer formar.</p>
+        <a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="cta" data-cta-lote data-checkout>Quero minha vaga — 2º lote R$ 347</a>
+      </div>
+    </section>
+
+    <!-- ===== PROGRAMAÇÃO ===== -->
+    <section id="programacao">
+      <div class="wrap">
+        <p class="label">Programação</p>
+        <h2>17 de outubro · 10h às 18h</h2>
+
+        <div class="schedule">
+          <div class="schedule-row">
+            <div class="schedule-time">10h</div>
+            <div>
+              <div class="schedule-tag">Palestra de abertura</div>
+              <h3>Os comportamentos dos pais que constroem ou destroem a confiança do atleta</h3>
+              <div class="schedule-speaker">Mayra Ramos — fundadora do Atleta Campeão</div>
+            </div>
+          </div>
+          <div class="schedule-row">
+            <div class="schedule-time">11h</div>
+            <div>
+              <div class="schedule-tag">Palestra</div>
+              <h3>Quando os pais mudam, o atleta muda</h3>
+              <div class="schedule-speaker">Thaty Keller — treinadora mental e mãe de atleta</div>
+            </div>
+          </div>
+          <div class="schedule-row">
+            <div class="schedule-time">12h–14h</div>
+            <div>
+              <div class="schedule-tag">Almoço com os palestrantes</div>
+              <h3>Almoço com os palestrantes</h3>
+              <p>Mesa aberta com os palestrantes e os demais participantes, no formato que só um grupo de 30 pessoas permite.</p>
+            </div>
+          </div>
+          <div class="schedule-row">
+            <div class="schedule-time">14h</div>
+            <div>
+              <div class="schedule-tag">Palestra</div>
+              <h3>Como manter um filho motivado no esporte</h3>
+              <div class="schedule-speaker">Dr. Luís Antônio de Souza Júnior — Doutor em Educação Física e pesquisador da parentalidade no esporte</div>
+            </div>
+          </div>
+          <div class="schedule-row">
+            <div class="schedule-time">15h</div>
+            <div>
+              <div class="schedule-tag">Palestra</div>
+              <h3>Telas, rendimento e como orientar aos pais</h3>
+              <div class="schedule-speaker">Mayra Ramos — fundadora do Atleta Campeão</div>
+            </div>
+          </div>
+          <div class="schedule-row">
+            <div class="schedule-time">16h–16h30</div>
+            <div>
+              <div class="schedule-tag">Intervalo</div>
+              <h3>Intervalo</h3>
+            </div>
+          </div>
+          <div class="schedule-row">
+            <div class="schedule-time">16h30–17h30</div>
+            <div>
+              <div class="schedule-tag">Laboratório</div>
+              <h3>Laboratório de Liderança Parental</h3>
+              <p>Ao longo do dia, os participantes serão divididos em grupos para transformar os conteúdos aprendidos em uma proposta prática de orientação para pais de atletas. Cada grupo discute um desafio real do esporte, constrói uma abordagem e apresenta sua solução, recebendo devolutiva direta dos quatro palestrantes.</p>
+            </div>
+          </div>
+          <div class="schedule-row">
+            <div class="schedule-time">17h30–18h</div>
+            <div>
+              <div class="schedule-tag">Encerramento</div>
+              <h3>Encerramento e entrega dos certificados</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MAYRA RAMOS ===== -->
+    <section id="mayra">
+      <div class="wrap two-col">
+        <img class="portrait" src="assets/pf_mayra_ramos_circle.webp" width="210" height="208" alt="Mayra Ramos, fundadora do Instituto Atleta Campeão" loading="lazy">
+        <div>
+          <p class="label">Quem conduz o dia</p>
+          <h2>Mayra Ramos</h2>
+          <p class="bio">Fundadora do Atleta Campeão. Atleta da seleção brasileira de patinação artística por quase 20 anos, com bronze no Pan-Americano de 2003 e prata por equipes no Mundial de 2007.</p>
+          <p class="bio">Certificada Athlete Mental Coach nos EUA em 2017 — o mesmo ano em que fundou o Atleta Campeão. Desde então forma atletas, pais e treinadores em treinamento mental, com metodologia aplicada a milhares de famílias no Brasil e no exterior. Conduz a abertura e o encerramento do congresso.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OUTROS PALESTRANTES ===== -->
+    <section id="palestrantes">
+      <div class="wrap two-col" style="margin-bottom:40px">
+        <img class="portrait" src="assets/pf_thaty_keller_circle.webp" width="210" height="208" alt="Thaty Keller, treinadora mental e mãe de atleta" loading="lazy">
+        <div>
+          <p class="label">Palestrante</p>
+          <h2>Thaty Keller</h2>
+          <p class="bio">Treinadora mental e mãe de atleta. Começou no treinamento mental para ajudar o filho André no judô e transformou o processo em carreira. Hoje orienta pais a viverem o esporte dos filhos com mais leveza e mais direção.</p>
+        </div>
+      </div>
+      <div class="wrap two-col">
+        <img class="portrait" src="assets/pf_luis_antonio_circle.webp" width="210" height="208" alt="Dr. Luís Antônio de Souza Júnior, doutor em Educação Física" loading="lazy">
+        <div>
+          <p class="label">Palestrante</p>
+          <h2>Dr. Luís Antônio de Souza Júnior</h2>
+          <p class="bio">Doutor em Educação Física e pesquisador da parentalidade no esporte. Vem falar sobre parentalidade e desenvolvimento esportivo: o fator mais decisivo — e mais ignorado — na formação de jovens atletas, como transformar a influência dos pais em ferramenta prática e estratégias para impactar o desenvolvimento esportivo pelo ambiente familiar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LOCAL DO EVENTO ===== -->
+    <section id="local">
+      <div class="wrap two-col wide">
+        <img class="figure-img" src="assets/local_infinitus_1.jpg" width="1200" height="798" alt="Edifício Personal — Alameda Mamoré, 535, Alphaville Industrial, Barueri, SP" loading="lazy">
+        <div>
+          <p class="label">Local</p>
+          <h2>Infinitus Hub · Alphaville</h2>
+          <p class="bio">O mesmo espaço do último congresso presencial: auditório no coração de Alphaville, com fácil acesso e estrutura completa para o dia.</p>
+          <p><strong style="color:var(--ink)">Infinitus Hub · Edifício Personal</strong><br>Alameda Mamoré, 535 · 15º andar, sala 1507 — Alphaville Comercial Industrial, Barueri, SP</p>
+          <p>Há opções de estacionamento na região. Após a inscrição, enviamos as orientações de acesso.</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Alameda%20Mamor%C3%A9%2C%20535%2C%20Edif%C3%ADcio%20Personal%2C%20Alphaville%20Industrial%2C%20Barueri%2C%20SP" target="_blank" rel="noopener noreferrer" class="cta cta-ghost">Ver no Google Maps</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CERTIFICAÇÃO ===== -->
+    <section id="certificacao">
+      <div class="wrap two-col wide">
+        <img class="figure-img" src="assets/certificado-pos.webp" style="height:auto" width="1200" height="848" alt="Modelo do certificado de extensão universitária UNIFATEC do Congresso de Liderança Parental" loading="lazy">
+        <div>
+          <p class="label">Certificação</p>
+          <h2>Comprove o que você aprendeu</h2>
+          <p class="bio" style="margin-bottom:26px">Certificado de extensão universitária com carga horária de 8 horas, emitido pela UNIFATEC, instituição de ensino superior credenciada pelo MEC.</p>
+          <div class="num-list">
+            <div class="num-item"><span class="n">01</span><div><h3>Reconhecido pelo MEC</h3><p>Certificado válido como curso de extensão universitária — aceito para formação continuada e portfólio profissional.</p></div></div>
+            <div class="num-item"><span class="n">02</span><div><h3>Entrega no presencial</h3><p>Os inscritos recebem o certificado no dia do congresso, durante o encerramento oficial do evento.</p></div></div>
+            <div class="num-item"><span class="n">03</span><div><h3>Carga horária registrada</h3><p>Certificado com carga horária de 8 horas — para formação continuada e portfólio profissional.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== O QUE ESTÁ INCLUÍDO ===== -->
+    <section id="incluido">
+      <div class="wrap">
+        <p class="label">O que está incluído</p>
+        <h2>Sua inscrição inclui</h2>
+        <div class="num-list cols-2">
+          <div class="num-item"><span class="n">01</span><div><h3>Certificado UNIFATEC</h3><p>Certificado de extensão universitária com carga horária de 8 horas, emitido por instituição credenciada pelo MEC.</p></div></div>
+          <div class="num-item"><span class="n">02</span><div><h3>Gravação completa do evento</h3><p>Todas as palestras gravadas, para rever quantas vezes quiser e usar como material de estudo.</p></div></div>
+          <div class="num-item"><span class="n">03</span><div><h3>Apostilas</h3><p>Material de apoio de cada palestra, com o conteúdo organizado para consulta.</p></div></div>
+          <div class="num-item"><span class="n">04</span><div><h3>Ferramentas de atendimento a pais</h3><p>Os instrumentos práticos apresentados no congresso, prontos para aplicar nos seus atendimentos.</p></div></div>
+          <div class="num-item"><span class="n">05</span><div><h3>Caderno de Campo</h3><p>O material em que você constrói, ao longo do dia, a sua própria palestra para pais.</p></div></div>
+          <div class="num-item"><span class="n">06</span><div><h3>Almoço com os palestrantes</h3><p>Duas horas de mesa aberta com quem está na frente desse tema no Brasil.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PARA QUEM É ===== -->
+    <section id="publico">
+      <div class="wrap">
+        <p class="label">Para quem é</p>
+        <h2>Este congresso é para você se</h2>
+        <div class="num-list cols-2">
+          <div class="num-item"><span class="n">01</span><div><h3>Treinador ou técnico</h3><p>Sabe que o comportamento das famílias afeta o rendimento do seu grupo.</p></div></div>
+          <div class="num-item"><span class="n">02</span><div><h3>Psicólogo do esporte</h3><p>Quer estruturar um atendimento específico para pais.</p></div></div>
+          <div class="num-item"><span class="n">03</span><div><h3>Treinador mental ou coach</h3><p>Quer alcançar quem está ao lado do atleta todos os dias.</p></div></div>
+          <div class="num-item"><span class="n">04</span><div><h3>Educação física na base</h3><p>Profissional de educação física que atua na base e convive com pais o tempo todo.</p></div></div>
+          <div class="num-item"><span class="n">05</span><div><h3>Gestor de clube ou escolinha</h3><p>Precisa resolver a relação com as famílias.</p></div></div>
+          <div class="num-item"><span class="n">06</span><div><h3>Quer começar a palestrar</h3><p>Para famílias, clubes e escolas — e não sabe por onde começar.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PARA PAIS E MÃES ===== -->
+    <section class="band" id="pais">
+      <div class="wrap plain-copy">
+        <span class="selo">É pai ou mãe de atleta e chegou até aqui?</span>
+        <h2>Você é bem-vindo.</h2>
+        <p class="bio">O congresso foi desenhado para profissionais, mas o conteúdo é sobre você. Se você quer entender o próprio papel no desenvolvimento esportivo do seu filho, parar de repetir o padrão que derruba a confiança dele e aprender a conduzir a questão das telas dentro de casa, esse dia vai valer.</p>
+        <a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="cta" data-checkout>Quero minha vaga</a>
+      </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section id="depoimentos">
+      <div class="wrap">
+        <p class="label">Prova social</p>
+        <h2>O que dizem quem já passou pelo Atleta Campeão</h2>
+        <div class="testi-grid">
+          <figure>
+            <a href="assets/depoimento_ana_beatriz.webp" target="_blank" rel="noopener noreferrer"><img src="assets/depoimento_ana_beatriz.webp" width="630" height="714" alt="Depoimento de Ana Beatriz, treinadora mental, sobre confiança e resultados das atletas Gabi e Jana" loading="lazy"></a>
+            <figcaption><strong>Ana Beatriz</strong>Treinadora mental</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/depoimento_fernando_ernesto.webp" target="_blank" rel="noopener noreferrer"><img src="assets/depoimento_fernando_ernesto.webp" width="529" height="1024" alt="Depoimento de Fernando Ernesto Santos sobre a primeira imersão presencial em treinamento mental" loading="lazy"></a>
+            <figcaption><strong>Fernando Ernesto Santos</strong>Mentor esportivo · treinamento mental</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/depoimento_flavia_melo.webp" target="_blank" rel="noopener noreferrer"><img src="assets/depoimento_flavia_melo.webp" width="266" height="300" alt="Depoimento de Flávia Melo, coach mental no hipismo, sobre a formação com a Mayra Ramos" loading="lazy"></a>
+            <figcaption><strong>Flávia Melo</strong>Coach mental · hipismo</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/depoimento_palestra_pais.webp" target="_blank" rel="noopener noreferrer"><img src="assets/depoimento_palestra_pais.webp" width="819" height="1024" alt="Registro da palestra Pais e Filhos Atletas no Riograndense Futebol Clube" loading="lazy"></a>
+            <figcaption><strong>Riograndense Futebol Clube</strong>Palestra Pais e Filhos Atletas</figcaption>
+          </figure>
+          <figure>
+            <a href="assets/depoimento_conteudo_mayra.webp" target="_blank" rel="noopener noreferrer"><img src="assets/depoimento_conteudo_mayra.webp" width="819" height="1024" alt="Mensagem de agradecimento à Mayra Ramos pelo conteúdo e pelo caminho profissional" loading="lazy"></a>
+            <figcaption><strong>Profissional formado</strong>Atleta Campeão</figcaption>
+          </figure>
+        </div>
+        <p class="testi-note">Prints reais de quem passou pela formação.</p>
+      </div>
+    </section>
+
+    <!-- ===== INSTITUTO ===== -->
+    <section id="instituto">
+      <div class="wrap">
+        <div class="two-col">
+          <img class="portrait" style="width:100%;height:auto;object-fit:contain;background:var(--white);padding:20px;border-radius:6px" src="assets/icone_atleta_campeao.png" alt="Instituto Atleta Campeão" loading="lazy">
+          <div>
+            <p class="label">Sobre o</p>
+            <h2>Atleta Campeão</h2>
+            <p class="bio">O Instituto Atleta Campeão nasceu em 2016 com uma missão: transformar a preparação mental de atletas e a forma como famílias e treinadores participam do esporte. Seu trabalho integra psicologia do esporte, neurociência e treinamento mental, e hoje alcança atletas, pais e profissionais de diferentes modalidades no Brasil e no exterior.</p>
+          </div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><strong>+30 mil</strong><span>atletas e famílias atendidos</span></div>
+          <div class="metric"><strong>+400</strong><span>profissionais formados</span></div>
+          <div class="metric"><strong>Desde 2016</strong><span>anos de atuação</span></div>
+          <div class="metric"><strong>Clubes</strong><span>parceiros no Brasil</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INVESTIMENTO ===== -->
+    <section id="investimento">
+      <div class="wrap">
+        <p class="label">Investimento</p>
+        <h2>30 vagas presenciais</h2>
+        <p class="bio" style="max-width:520px">O lote vira por data ou quando as vagas acabarem — o que vier primeiro.</p>
+
+        <div class="pricing-grid" id="lotes">
+          <article class="lote encerrado" data-lote="1" data-start="2026-08-01T00:00:00-03:00" data-end="2026-09-17T23:59:59-03:00" data-price="247" data-nome="1º lote">
+            <span class="lote-tag" data-lote-tag>1º lote · encerrado</span>
+            <div class="lote-preco">R$ 247</div>
+            <div class="lote-per">Até 17 de setembro</div>
+            <div class="lote-acao" data-lote-acao><div class="lote-off">Encerrado</div></div>
+          </article>
+          <article class="lote ativo" data-lote="2" data-start="2026-09-18T00:00:00-03:00" data-end="2026-10-01T23:59:59-03:00" data-price="347" data-nome="2º lote">
+            <span class="lote-tag" data-lote-tag>2º lote · aberto</span>
+            <div class="lote-preco">R$ 347</div>
+            <div class="lote-per">De 18 de setembro a 1º de outubro</div>
+            <div class="lote-acao" data-lote-acao><a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="cta" data-checkout>Garantir minha vaga no 2º lote</a></div>
+          </article>
+          <article class="lote" data-lote="3" data-start="2026-10-02T00:00:00-03:00" data-end="2026-10-17T09:59:59-03:00" data-price="497" data-nome="3º lote">
+            <span class="lote-tag" data-lote-tag>3º lote</span>
+            <div class="lote-preco">R$ 497</div>
+            <div class="lote-per">De 2 a 17 de outubro, ou até acabarem as vagas</div>
+            <div class="lote-acao" data-lote-acao><div class="lote-off">Abre em 02/10</div></div>
+          </article>
+        </div>
+
+        <p class="pay-ok">Pagamento 100% seguro via Hotmart. Parcelamento disponível no checkout.</p>
+        <div class="note-box"><strong>Em qualquer lote você recebe:</strong> certificado de extensão universitária UNIFATEC · gravação completa · apostilas · ferramentas de atendimento · Caderno de Campo · almoço com os palestrantes</div>
+        <p class="fine-print"><strong style="color:var(--ink)">Política de cancelamento:</strong> por se tratar de evento presencial com vagas limitadas, não há reembolso. A vaga pode ser transferida para outra pessoa até 7 dias antes do evento, mediante aviso por e-mail ou WhatsApp.</p>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq">
+      <div class="wrap">
+        <p class="label">Perguntas frequentes</p>
+        <h2>Ainda com dúvidas?</h2>
+        <div class="faq-list">
+          <div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Preciso já atender pais de atletas para participar?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="faq-a"><p>Não. Boa parte dos participantes chega justamente porque quer começar. O congresso entrega o mapa do zero: o que dizer, como conduzir e como se posicionar.</p></div></div>
+          <div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Trabalho com atletas, não com pais. Isso serve para mim?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="faq-a"><p>Serve, e talvez seja o ponto mais importante do dia. Você já trabalha com os pais, mesmo sem ter escolhido isso: eles influenciam diariamente o atleta que você atende. A diferença é passar a fazer isso de forma intencional, com método, em vez de apagar incêndio.</p></div></div>
+          <div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">O certificado é válido?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="faq-a"><p>Sim. É um certificado de extensão universitária emitido pela UNIFATEC, instituição de ensino superior credenciada pelo MEC.</p></div></div>
+          <div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Sou pai ou mãe de atleta e não sou profissional da área. Posso ir?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="faq-a"><p>Pode. O conteúdo é sobre o papel dos pais no esporte e vai te servir diretamente. Só tenha em mente que a linguagem será técnica e a sala será majoritariamente de profissionais.</p></div></div>
+          <div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Como chego ao local?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="faq-a"><p>Edifício Personal — Alameda Mamoré, 535, 15º andar, sala 1507. Alphaville Comercial Industrial, Barueri/SP. Confira a <a href="#local">seção do local</a> e o <a href="https://www.google.com/maps/search/?api=1&query=Alameda%20Mamor%C3%A9%2C%20535%2C%20Edif%C3%ADcio%20Personal%2C%20Alphaville%20Industrial%2C%20Barueri%2C%20SP" target="_blank" rel="noopener noreferrer">Google Maps</a>.</p></div></div>
+          <div class="faq-i"><button class="faq-q" onclick="toggleFaq(this)">Ainda tenho dúvidas.<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="faq-a"><p>Fale com a nossa equipe pelo WhatsApp: <a href="https://wa.me/551140403112?text=Ol%C3%A1!%20Tenho%20d%C3%BAvidas%20sobre%20o%20Congresso%20de%20Lideran%C3%A7a%20Parental." target="_blank" rel="noopener noreferrer">(11) 4040-3112</a>.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FECHAMENTO ===== -->
+    <section class="fechamento" id="fechamento">
+      <div class="wrap plain-copy">
+        <p class="label">Última chamada</p>
+        <h2>Em algum momento você vai ser chamado para essa conversa.</h2>
+        <p class="lead" style="font-size:19px">Vai ser um pai perguntando o que fazer com o filho que perdeu a vontade de treinar. Uma mãe pedindo ajuda porque não sabe mais o que falar no carro depois do jogo. Um clube procurando alguém que consiga falar com as famílias.</p>
+        <p>São 30 vagas, um sábado, e um grupo pequeno o suficiente para você sair de lá conhecendo todo mundo na sala.</p>
+        <a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="cta" data-cta-lote data-checkout>Quero minha vaga — 2º lote R$ 347</a>
+        <span class="fech-dados" data-cta-nota>17 de outubro de 2026 · 10h às 18h · Alphaville, Barueri/SP</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© 2026 Atleta Campeão</span>
+      <span>Congresso de Liderança Parental · Alameda Mamoré, 535, Alphaville, Barueri/SP · <a href="mailto:suporte@atletacampeao.com.br">suporte@atletacampeao.com.br</a> · <a href="https://wa.me/551140403112" target="_blank" rel="noopener noreferrer">(11) 4040-3112</a></span>
+    </div>
+  </footer>
+
+  <aside class="cd" id="cd" aria-live="polite">
+    <div class="wrap cd-in">
+      <div>
+        <span class="cd-lote" id="cd-lote">2º lote · R$ 347</span>
+        <span class="cd-label" id="cd-label">O lote vira em</span>
+      </div>
+      <div class="cd-grid">
+        <div><b id="cd-d">13</b><small>dias</small></div>
+        <div><b id="cd-h">08</b><small>hrs</small></div>
+        <div><b id="cd-m">18</b><small>min</small></div>
+        <div><b id="cd-s">13</b><small>seg</small></div>
+      </div>
+      <a href="https://pay.hotmart.com/U107422718U?off=iqup6ha8" target="_blank" rel="noopener noreferrer" class="cta cd-btn" data-checkout>Garantir vaga</a>
+    </div>
+  </aside>
+
+  <script>
+    function toggleFaq(el){var a=el.nextElementSibling;var o=el.classList.contains('open');document.querySelectorAll('.faq-q.open').forEach(function(q){q.classList.remove('open');q.nextElementSibling.style.maxHeight=null});if(!o){el.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}}
+
+    (function(){
+      var CHECKOUT='https://pay.hotmart.com/U107422718U?off=iqup6ha8';
+      var cards=[].slice.call(document.querySelectorAll('#lotes .lote'));
+      if(!cards.length) return;
+      var bar=document.getElementById('cd');
+      var elLote=document.getElementById('cd-lote');
+      var elLabel=document.getElementById('cd-label');
+      var elD=document.getElementById('cd-d');
+      var elH=document.getElementById('cd-h');
+      var elM=document.getElementById('cd-m');
+      var elS=document.getElementById('cd-s');
+      function pad(n){return n<10?'0'+n:String(n)}
+      function parse(s){return new Date(s).getTime()}
+      function nome(c){return c.getAttribute('data-nome')}
+      function preco(c){return c.getAttribute('data-price')}
+      function abreEm(c){
+        var d=new Date(c.getAttribute('data-start'));
+        return pad(d.getDate())+'/'+pad(d.getMonth()+1);
+      }
+      function ctaCheckout(label){
+        return '<a href="'+CHECKOUT+'" target="_blank" rel="noopener noreferrer" class="cta" data-checkout>'+label+'</a>';
+      }
+      function ligarCheckout(on){
+        document.querySelectorAll('[data-checkout]').forEach(function(a){
+          if(on){
+            a.setAttribute('href', CHECKOUT);
+            a.setAttribute('target','_blank');
+            a.setAttribute('rel','noopener noreferrer');
+          } else {
+            a.setAttribute('href','#investimento');
+            a.removeAttribute('target');
+            a.removeAttribute('rel');
+          }
+        });
+      }
+      function render(){
+        var now=Date.now();
+        var current=null, next=null;
+        cards.forEach(function(c){
+          var start=parse(c.getAttribute('data-start'));
+          var end=parse(c.getAttribute('data-end'));
+          var tag=c.querySelector('[data-lote-tag]');
+          var acao=c.querySelector('[data-lote-acao]');
+          c.classList.remove('ativo','encerrado');
+          if(now>end){
+            c.classList.add('encerrado');
+            if(tag) tag.textContent=nome(c)+' · encerrado';
+            if(acao) acao.innerHTML='<div class="lote-off">Encerrado</div>';
+          } else if(now>=start && now<=end){
+            current=c;
+            c.classList.add('ativo');
+            if(tag) tag.textContent=nome(c)+' · aberto';
+            if(acao) acao.innerHTML=ctaCheckout('Garantir minha vaga no '+nome(c));
+          } else {
+            if(!next) next=c;
+            if(tag) tag.textContent=nome(c);
+            if(acao) acao.innerHTML='<div class="lote-off">Abre em '+abreEm(c)+'</div>';
+          }
+        });
+        var ctaTxt, notaTxt, target;
+        if(current){
+          target=parse(current.getAttribute('data-end'));
+          ctaTxt='Quero minha vaga — '+nome(current)+' R$ '+preco(current);
+          notaTxt=nome(current)+' encerra em breve. Depois o preço sobe.';
+          if(elLote) elLote.textContent=nome(current)+' · R$ '+preco(current);
+          if(elLabel) elLabel.textContent='O lote vira em';
+          if(bar) bar.hidden=false;
+          ligarCheckout(true);
+        } else if(next){
+          target=parse(next.getAttribute('data-start'));
+          ctaTxt='Quero minha vaga — '+nome(next)+' R$ '+preco(next);
+          notaTxt=nome(next)+' abre em breve.';
+          if(elLote) elLote.textContent=nome(next)+' · R$ '+preco(next);
+          if(elLabel) elLabel.textContent='O próximo lote abre em';
+          if(bar) bar.hidden=false;
+          ligarCheckout(true);
+        } else {
+          ctaTxt='Inscrições encerradas';
+          notaTxt='As vagas deste congresso foram encerradas.';
+          document.querySelectorAll('[data-cta-lote]').forEach(function(a){a.textContent=ctaTxt});
+          document.querySelectorAll('[data-cta-nota]').forEach(function(n){n.textContent=notaTxt});
+          ligarCheckout(false);
+          if(bar) bar.hidden=true;
+          return;
+        }
+        document.querySelectorAll('[data-cta-lote]').forEach(function(a){a.textContent=ctaTxt});
+        document.querySelectorAll('[data-cta-nota]').forEach(function(n){n.textContent=notaTxt});
+        var diff=Math.max(0, target-now);
+        var days=Math.floor(diff/86400000);
+        var hours=Math.floor((diff%86400000)/3600000);
+        var mins=Math.floor((diff%3600000)/60000);
+        var secs=Math.floor((diff%60000)/1000);
+        if(elD) elD.textContent=String(days);
+        if(elH) elH.textContent=pad(hours);
+        if(elM) elM.textContent=pad(mins);
+        if(elS) elS.textContent=pad(secs);
+      }
+      render();
+      setInterval(render,1000);
+    })();
+  </script>
+
+</body>
+</html>
