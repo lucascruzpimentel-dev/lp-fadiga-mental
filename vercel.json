@@ -18,6 +18,7 @@
     { "source": "/congresso-lideranca-parental-v2", "destination": "/congresso-lideranca-parental-v2/", "permanent": false },
     { "source": "/captura-congresso-lideranca-parental", "destination": "/captura-congresso-lideranca-parental/", "permanent": false },
     { "source": "/inscricao-congresso-lideranca-parental", "destination": "/inscricao-congresso-lideranca-parental/", "permanent": false },
+    { "source": "/obrigado-congresso-lideranca-parental", "destination": "/obrigado-congresso-lideranca-parental/", "permanent": false },
     { "source": "/palestras", "destination": "/palestras/", "permanent": false },
     { "source": "/atendimento-individual-ac", "destination": "/atendimento-individual-ac/", "permanent": false },
     { "source": "/manual-da-arquibancada", "destination": "/manual-da-arquibancada/", "permanent": false },
@@ -62,8 +63,12 @@
     { "source": "/jiu-jitsu-parents/assets/:path*", "destination": "/sessao-individual-jiu-jitsu/assets/:path*" },
     { "source": "/jiu-jitsu-parents/", "destination": "/sessao-individual-jiu-jitsu/sessao_indiv_jiu_jitsu_pais_ingles.html" },
     { "source": "/palestras/", "destination": "/palestras/lp_palestras.html" },
+    { "source": "/inscricao-congresso-lideranca-parental/assets/:path*", "destination": "/captura-congresso-lideranca-parental/assets/:path*" },
     { "source": "/inscricao-congresso-lideranca-parental", "destination": "/captura-congresso-lideranca-parental/index.html" },
-    { "source": "/inscricao-congresso-lideranca-parental/", "destination": "/captura-congresso-lideranca-parental/index.html" }
+    { "source": "/inscricao-congresso-lideranca-parental/", "destination": "/captura-congresso-lideranca-parental/index.html" },
+    { "source": "/obrigado-congresso-lideranca-parental/assets/:path*", "destination": "/captura-congresso-lideranca-parental/assets/:path*" },
+    { "source": "/obrigado-congresso-lideranca-parental", "destination": "/captura-congresso-lideranca-parental/obrigado.html" },
+    { "source": "/obrigado-congresso-lideranca-parental/", "destination": "/captura-congresso-lideranca-parental/obrigado.html" }
   ],
   "headers": [
     {
