@@ -210,6 +210,18 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--red);outline-offset
 <section class="wrap" id="pesquisa" aria-label="Pesquisa">
 <iframe src="https://api.leadconnectorhq.com/widget/survey/J4PVTsHSm6aaLSutyYr8" style="border:none;width:100%;" scrolling="no" id="J4PVTsHSm6aaLSutyYr8" title="survey" data-cookie-consent="false"></iframe>
 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+<script>
+(function () {
+  // Repassa para o survey os dados do lead que vierem na URL de redirecionamento
+  // do formulario de inscricao (ex.: ?email=...&phone=...&first_name=...).
+  var ifr = document.getElementById("J4PVTsHSm6aaLSutyYr8");
+  if (!ifr) return;
+  var params = new URLSearchParams(window.location.search);
+  if (!Array.from(params.keys()).length) return;
+  var base = ifr.src.split("?")[0];
+  ifr.src = base + "?" + params.toString();
+})();
+</script>
 </section>
 
 <section class="hero-announce" aria-label="Congresso e Passe Profissional">
