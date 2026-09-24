@@ -23,7 +23,8 @@
     { "source": "/atendimento-individual-ac", "destination": "/atendimento-individual-ac/", "permanent": false },
     { "source": "/manual-da-arquibancada", "destination": "/manual-da-arquibancada/", "permanent": false },
     { "source": "/treinador-mental-atletas", "destination": "/atendimento-individual-ac/", "permanent": true },
-    { "source": "/treinador-mental-atletas/", "destination": "/atendimento-individual-ac/", "permanent": true }
+    { "source": "/treinador-mental-atletas/", "destination": "/atendimento-individual-ac/", "permanent": true },
+    { "source": "/ementa-psicologia-esporte", "destination": "/ementa-psicologia-esporte/", "permanent": false }
   ],
   "rewrites": [
     { "source": "/aula-cerebro-do-atleta", "destination": "/curso-telas/Captura_aula_telas_gratuita.html" },
