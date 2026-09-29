@@ -1749,9 +1749,12 @@
         modal.classList.add("is-open");
         modal.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
-        if (pacote) {
-          var radio = modal.querySelector('input[name="pacote"][value="' + pacote + '"]');
-          if (radio) radio.checked = true;
+        var frame = document.getElementById("inline-7HP0eMXgCbhFd6oLEIjs");
+        if (frame) {
+          var base = "https://api.leadconnectorhq.com/widget/form/7HP0eMXgCbhFd6oLEIjs";
+          var nomes = { "avulsa": "Sessão Avulsa", "5": "Pacote 5 Sessões", "10": "Pacote 10 Sessões" };
+          var next = nomes[pacote] ? base + "?pacote_de_interesse=" + encodeURIComponent(nomes[pacote]) : base;
+          if (frame.getAttribute("src") !== next) frame.setAttribute("src", next);
         }
         if (closeBtn) closeBtn.focus();
       }
