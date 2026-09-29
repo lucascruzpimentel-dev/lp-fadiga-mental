@@ -1665,35 +1665,26 @@
       <button type="button" class="form-modal__close" data-close-form aria-label="Fechar formulário">&times;</button>
       <h2 id="form-modal-title" class="form-modal__title">Agendar sessão</h2>
       <p class="form-modal__lead">Preencha os campos obrigatórios. Retornamos em até 24 horas úteis pelo WhatsApp informado.</p>
-      <form class="lp-form" id="lp-lead-form" action="#" method="post" novalidate>
-        <input type="hidden" name="utm_source" value="">
-        <input type="hidden" name="utm_medium" value="">
-        <input type="hidden" name="utm_campaign" value="">
-        <input type="hidden" name="utm_content" value="">
-        <input type="hidden" name="gclid" value="">
-        <input type="hidden" name="fbclid" value="">
-        <input type="hidden" name="ttclid" value="">
-        <label for="nome-resp">Nome do responsável *</label>
-        <input type="text" id="nome-resp" name="nome_responsavel" required autocomplete="name">
-        <label for="wa">WhatsApp *</label>
-        <input type="tel" id="wa" name="whatsapp" required autocomplete="tel" placeholder="(11) 99999-9999">
-        <label for="nome-atleta">Nome do atleta *</label>
-        <input type="text" id="nome-atleta" name="nome_atleta" required>
-        <label for="idade">Idade do atleta *</label>
-        <input type="number" id="idade" name="idade_atleta" required min="6" max="99">
-        <label for="modalidade">Modalidade *</label>
-        <input type="text" id="modalidade" name="modalidade" required>
-        <label for="desafio">Principal desafio *</label>
-        <textarea id="desafio" name="desafio" required placeholder="Ex.: trava em final, medo de errar, comparação..."></textarea>
-        <span class="lp-form__radios" role="group" aria-label="Pacote de interesse">
-          <span>Pacote de interesse *</span>
-          <label><input type="radio" name="pacote" value="avulsa" required> Sessão avulsa</label>
-          <label><input type="radio" name="pacote" value="5"> Pacote 5 sessões</label>
-          <label><input type="radio" name="pacote" value="10"> Pacote 10 sessões</label>
-        </span>
-        <button type="submit" class="btn btn--full">Enviar pedido de contato</button>
-        <p id="lp-form-msg" class="lp-form__msg" role="status"></p>
-      </form>
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/7HP0eMXgCbhFd6oLEIjs"
+        style="width:100%;height:919px;border:none;border-radius:20px"
+        id="inline-7HP0eMXgCbhFd6oLEIjs"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Atendimento Individual - Contrate um Treinador Mental"
+        data-height="919"
+        data-layout-iframe-id="inline-7HP0eMXgCbhFd6oLEIjs"
+        data-form-id="7HP0eMXgCbhFd6oLEIjs"
+        data-cookie-consent="false"
+        title="Atendimento Individual - Contrate um Treinador Mental"
+        loading="lazy"
+      ></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js"></script>
     </div>
   </div>
 
@@ -1852,46 +1843,6 @@
         fbclid: cur.fbclid || getCookie("fbclid") || "",
         ttclid: cur.ttclid || getCookie("ttclid") || ""
       };
-      function fillFormUtms() {
-        var f = document.getElementById("lp-lead-form");
-        if (!f) return;
-        ["utm_source","utm_medium","utm_campaign","utm_content","gclid","fbclid","ttclid"].forEach(function (k) {
-          var el = f.querySelector('[name="' + k + '"]');
-          if (el && utm[k]) el.value = utm[k];
-        });
-      }
-      fillFormUtms();
-
-      window.LP_WEBHOOK_URL = window.LP_WEBHOOK_URL || "";
-      document.getElementById("lp-lead-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        var msg = document.getElementById("lp-form-msg");
-        msg.className = "lp-form__msg";
-        msg.textContent = "";
-        msg.style.display = "none";
-        var wh = (window.LP_WEBHOOK_URL || "").trim();
-        var fd = new FormData(e.target);
-        var payload = {};
-        fd.forEach(function (v, k) { payload[k] = v; });
-        if (wh) {
-          fetch(wh, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
-            .then(function (r) { if (!r.ok) throw new Error(); msg.textContent = "Recebemos seu pedido! Confira o WhatsApp."; msg.classList.add("lp-form__msg--ok"); msg.style.display = "block"; e.target.reset(); fillFormUtms(); })
-            .catch(function () { msg.textContent = "Não foi possível enviar. Tente WhatsApp."; msg.classList.add("lp-form__msg--err"); msg.style.display = "block"; });
-        } else {
-          var lines = [
-            "Olá! Quero treinador mental (Atleta Campeão).",
-            "Responsável: " + (payload.nome_responsavel || ""),
-            "WhatsApp informado: " + (payload.whatsapp || ""),
-            "Atleta: " + (payload.nome_atleta || "") + " · " + (payload.idade_atleta || "") + " anos · " + (payload.modalidade || ""),
-            "Desafio: " + (payload.desafio || "").slice(0, 400),
-            "Pacote: " + (payload.pacote || "")
-          ];
-          window.open("https://wa.me/551140403112?text=" + encodeURIComponent(lines.join("\n")), "_blank");
-          msg.textContent = "Abrimos o WhatsApp com um resumo do seu pedido.";
-          msg.classList.add("lp-form__msg--ok");
-          msg.style.display = "block";
-        }
-      });
     })();
   </script>
 </body>
