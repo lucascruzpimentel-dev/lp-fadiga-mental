@@ -7,194 +7,211 @@
   <meta name="description" content="Congresso de Liderança Parental — 17 de outubro de 2026. Para treinadores, psicólogos do esporte, treinadores mentais, coaches e gestores de clube. 30 vagas presenciais.">
   <link rel="icon" href="assets/favicon_ac.png" type="image/png" sizes="64x64">
   <link rel="apple-touch-icon" href="assets/icone_atleta_campeao.png">
-  <meta name="theme-color" content="#15110e">
+  <meta name="theme-color" content="#133054">
   <style>
-    /* Design system real do Atleta Campeão (referência: PDF exportado da LP
-       "Congresso de Liderança Parental — Inscrição gratuita"):
-       papel creme, serifada Georgia, vermelho como acento primário,
-       dourado como acento secundário, faixas quase-pretas com o brasão
-       de louros, numerais em monoespaçada. */
+    /* Design system "Liderança Parental" v1.0 (Instituto Atleta Campeão):
+       marinho como base, branco/papel para respirar, malva + dourado como
+       acentos quentes, Arial, raio 16 nos painéis e 8 nos botões (48 px),
+       gradiente malva → dourado e faixas inclinadas como motivo. */
     :root{
-      --paper:#fcf8ef;
-      --ink:#191512;
-      --muted:#605952;
-      --accent:#a4070b;
-      --accent-dark:#7f0307;
-      --gold:#b99150;
-      --gold-bright:#daa525;
-      --gold-dark:#c08f1e;
-      --dark:#15110e;
-      --dark-2:#221d19;
-      --line:#e9e2d4;
+      --navy:#133054;
+      --deep:#151b32;
+      --gold:#f0c45e;
+      --gold-hover:#f7d583;
+      --mauve:#8c575c;
+      --paper:#f5f3ef;
       --white:#ffffff;
-      --shadow: 0 4px 14px rgba(25,21,18,.05);
-      --serif: Georgia, 'Times New Roman', serif;
-      --sans: Arial, Helvetica, sans-serif;
-      --mono: 'Courier New', Courier, monospace;
-      --radius: 10px;
+      --ink:#151b32;
+      --muted:#686d79;
+      --line:#dededc;
+      --focus:#af7b20;
+      --radius:16px;
+      --radius-btn:8px;
+      --space:8px;
+      --gradient:linear-gradient(180deg,#8c575c,#f0c45e);
+      --sans:Arial,Helvetica,sans-serif;
+      --mono:'Courier New',Courier,monospace;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
     button,a,input{font:inherit}
-    button,a{-webkit-tap-highlight-color:transparent}
+    button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
     button{cursor:pointer}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;height:auto;display:block}
-    button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    button:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:5px}
 
     .wrap{width:min(920px,calc(100% - 48px));margin:auto}
     .wrap-lg{width:min(1080px,calc(100% - 48px));margin:auto}
-    h1,h2,h3{font-family:var(--serif);font-weight:700;letter-spacing:-.02em;margin:0 0 16px;color:var(--ink)}
-    h1{font-size:clamp(26px,6vw,44px);line-height:1.2}
-    h2{font-size:clamp(22px,5vw,36px);line-height:1.25}
-    h3{font-size:19px;font-weight:700;margin:0 0 6px}
+    h1,h2,h3{font-family:var(--sans);font-weight:800;letter-spacing:-.02em;margin:0 0 16px;color:var(--ink)}
+    h1{font-size:clamp(32px,4.8vw,56px);line-height:1.04;letter-spacing:-.045em}
+    h2{font-size:clamp(28px,4vw,36px);line-height:1.1;letter-spacing:-.03em}
+    h3{font-size:18px;line-height:1.25;font-weight:700;letter-spacing:-.01em;margin:0 0 8px}
     p{margin:0 0 14px;color:var(--muted)}
     .lead{font-size:18px;color:var(--muted);max-width:640px}
     .centro{text-align:center}
     .centro p,.centro .lead{margin-left:auto;margin-right:auto}
-    em{font-style:normal;color:var(--accent)}
-    .label{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid var(--gold)}
-    .on-dark .label{color:var(--gold)}
-    .rule{border:0;border-top:1px solid var(--gold);width:60px;margin:0 0 18px}
+    em{font-style:italic;color:var(--mauve)}
+    .label{display:block;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mauve);margin:0 0 20px}
+    .rule{border:0;height:7px;width:65px;background:var(--gradient);background:linear-gradient(90deg,#8c575c,#f0c45e);margin:0 0 24px;border-radius:0}
     .centro .rule{margin-left:auto;margin-right:auto}
 
-    section{padding:52px 0}
-    .f-dark{background:var(--dark);color:#fff}
+    section{padding:64px 0}
+    .f-dark{background:var(--navy);color:#fff}
     .f-dark h2,.f-dark h3{color:#fff}
-    .f-dark p{color:rgba(255,255,255,.68)}
+    .f-dark p{color:#d4dce7}
+    .f-dark .label,.hero .label{color:var(--gold)}
+    .f-dark em,.hero em{color:var(--gold)}
 
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:15px;padding:16px 30px;min-height:54px;transition:background .15s,transform .15s;box-shadow:0 10px 24px rgba(164,7,11,.25)}
-    .btn:hover{background:var(--accent-dark);transform:translateY(-1px)}
-    .btn-gold{background:var(--gold-bright);color:#241a02;box-shadow:0 10px 24px rgba(218,165,37,.25)}
-    .btn-gold:hover{background:var(--gold-dark);color:#1a1200}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:var(--radius-btn);background:var(--gold);color:var(--deep);font-weight:700;font-size:14px;padding:12px 24px;min-height:48px;text-align:center;transition:background .18s,transform .18s}
+    .btn:hover{background:var(--gold-hover)}
+    .btn:active{transform:translateY(1px)}
+    .btn-navy{background:var(--navy);color:#fff}
+    .btn-navy:hover{background:var(--deep)}
+    .btn[disabled],.btn:disabled{cursor:not-allowed;background:#e5e4e0;color:#74767c}
     .btn-block{width:100%}
 
-    .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(25,21,18,.05)}
+    .card{background:var(--white);border-radius:var(--radius);border:1px solid var(--line)}
 
     /* ---------- COUNTDOWN (topo) ---------- */
-    .cd{background:var(--dark);color:#fff;padding:16px 0;text-align:center}
+    .cd{background:var(--deep);color:#fff;padding:16px 0;text-align:center;border-bottom:1px solid rgba(240,196,94,.25)}
     .cd-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
     .cd-grid{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
-    .cd-grid>div{min-width:56px;background:var(--dark-2);border:1px solid rgba(185,145,80,.3);border-radius:8px;padding:8px 6px}
-    .cd-grid b{display:block;font-family:var(--mono);font-size:1.3rem;font-weight:700;color:#f6f1e6;line-height:1;font-variant-numeric:tabular-nums}
-    .cd-grid small{display:block;margin-top:4px;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+    .cd-grid>div{min-width:56px;background:var(--navy);border:1px solid rgba(240,196,94,.3);border-radius:8px;padding:8px 6px}
+    .cd-grid b{display:block;font-family:var(--mono);font-size:1.3rem;font-weight:700;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+    .cd-grid small{display:block;margin-top:4px;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#c4c6d0}
 
     /* ---------- HERO ---------- */
-    .hero{padding:48px 0 48px;text-align:center}
-    .hero h1{max-width:820px;margin-left:auto;margin-right:auto}
-    .facts{color:var(--muted);font-size:14px;margin-bottom:0}
-    .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:26px 0 0}
-    .chip{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:12.5px;font-weight:500;box-shadow:var(--shadow)}
-    .chip svg{width:14px;height:14px;color:var(--accent);flex-shrink:0}
+    .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:72px 0 72px;text-align:left}
+    .hero:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#133054 0,#133054 47%,#133054cc 58%,#13305418 100%),linear-gradient(0deg,#133054,transparent 40%);pointer-events:none}
+    .hero-photo{position:absolute;right:0;top:0;height:100%;width:52%;object-fit:cover;object-position:60% 55%}
+    .hero-content{position:relative;z-index:1;max-width:620px}
+    .hero-logo{width:min(270px,80%);margin:0 0 32px}
+    .hero h1{color:#fff;margin-bottom:24px}
+    .hero .lead{color:#e0e5ed;max-width:520px}
+    .facts{color:#d4dce7;font-size:14px;margin-bottom:0}
+    .hero p{color:#e0e5ed}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0}
+    .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);border-radius:30px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:.04em;color:#fff}
+    .chip svg{width:14px;height:14px;color:var(--gold);flex-shrink:0}
 
-    .signup{max-width:520px;margin:36px auto 0;padding:32px;text-align:left}
-    .signup input{width:100%;min-height:52px;padding:0 16px;border:1px solid var(--line);border-radius:10px;background:var(--white);color:var(--ink);margin-bottom:14px}
+    .signup{max-width:480px;margin:36px 0 0;padding:28px;text-align:left}
+    .signup h3{color:var(--ink)}
+    .signup p{color:var(--muted)}
     .signup .btn{width:100%;margin-top:4px}
-    .signup .fine{margin:14px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
+    .signup .fine{margin:14px 0 0;font-size:12px;color:var(--muted);text-align:center}
 
     /* ---------- PROGRAMAÇÃO ---------- */
-    .schedule{display:grid;gap:3px;margin-top:28px;text-align:left}
+    .schedule{display:grid;gap:12px;margin-top:32px;text-align:left}
     .sched-item{display:grid;grid-template-columns:120px 1fr;overflow:hidden}
-    .sched-time{background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--serif);font-weight:700;font-size:17px;padding:14px 8px}
-    .sched-item.pausa .sched-time{background:#efe6d3;color:var(--ink)}
+    .sched-time{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:16px;padding:14px 8px}
+    .sched-item.pausa .sched-time{background:#e6e5e2;color:var(--ink)}
     .sched-body{padding:22px 26px}
-    .sched-tag{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:8px}
+    .sched-tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mauve);margin-bottom:8px}
     .sched-body h3{margin-bottom:8px}
-    .sched-who{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14.5px}
+    .sched-who{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
     .sched-who img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0}
-    .sched-body p{margin:10px 0 0;font-size:14.5px}
+    .sched-body p{margin:10px 0 0;font-size:14px}
 
-    /* ---------- PALESTRANTES / LOCAL / CERTIFICAÇÃO (cards com 2 colunas) ---------- */
-    .split-card{display:grid;grid-template-columns:190px 1fr;gap:32px;align-items:center;padding:30px;margin-bottom:18px;text-align:left}
+    /* ---------- PALESTRANTES / LOCAL / CERTIFICAÇÃO ---------- */
+    .split-card{display:grid;grid-template-columns:190px 1fr;gap:32px;align-items:center;padding:28px;margin-bottom:18px;text-align:left}
     .split-card:last-child{margin-bottom:0}
     .split-card img.round{width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid var(--gold)}
-    .split-card img.rect{width:100%;height:100%;border-radius:10px;object-fit:cover}
-    .split-card .role{color:var(--accent);font-weight:700;font-size:14px;margin-bottom:8px}
+    .split-card img.rect{width:100%;height:100%;border-radius:12px;object-fit:cover}
+    .split-card .role{color:var(--mauve);font-weight:700;font-size:14px;margin-bottom:8px}
+    .split-card p{font-size:14px}
     .split-card ul{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:6px}
     .split-card li{position:relative;padding-left:18px;font-size:14px;color:var(--muted)}
     .split-card li::before{content:'•';position:absolute;left:2px;color:var(--gold)}
 
     .local-card{grid-template-columns:1fr 1.3fr}
-    .local-card .figure-img{width:100%;height:220px;object-fit:cover;border-radius:10px}
-    .map-link{display:inline-flex;align-items:center;gap:8px;margin-top:6px;color:var(--accent);font-weight:700;font-size:14px}
+    .local-card .figure-img{width:100%;height:220px;object-fit:cover;border-radius:12px}
+    .map-link{display:inline-flex;align-items:center;gap:8px;margin-top:6px;color:var(--navy);font-weight:700;font-size:14px}
     .map-link:hover{text-decoration:underline}
 
     .cert-card{grid-template-columns:1fr 1.2fr}
-    .cert-card .figure-img{width:100%;border-radius:10px}
+    .cert-card .figure-img{width:100%;border-radius:12px}
     .num-list{display:grid;gap:16px;margin-top:8px}
     .num-item{display:flex;gap:14px;align-items:flex-start}
-    .num-item .n{font-family:var(--mono);font-weight:700;color:var(--gold-dark);flex-shrink:0;width:28px}
+    .num-item .n{font-weight:800;font-size:12px;color:var(--mauve);flex-shrink:0;width:28px;padding-top:3px}
     .num-item h3{font-size:15px;margin-bottom:3px}
     .num-item p{margin:0;font-size:14px}
 
-    /* ---------- GRID DE CARDS ICONE (incluído / para quem é) ---------- */
-    .icon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;text-align:left}
-    .icon-card{padding:26px}
-    .icon-box{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:#f7ecdf;color:var(--accent);margin-bottom:14px}
+    /* ---------- GRID DE CARDS ICONE ---------- */
+    .icon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;text-align:left}
+    .icon-card{padding:28px}
+    .icon-box{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:var(--navy);color:var(--gold);margin-bottom:16px}
     .icon-box svg{width:20px;height:20px}
-    .icon-card h3{font-size:15.5px}
-    .icon-card p{font-size:13.5px;margin:0}
+    .icon-card h3{font-size:16px}
+    .icon-card p{font-size:14px;margin:0}
 
-    /* ---------- PARA PAIS (faixa suave) ---------- */
-    .band{background:#f4ead9;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
-    .band .selo{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent);text-transform:uppercase;margin-bottom:14px}
+    /* ---------- PARA PAIS (atmosfera de campanha) ---------- */
+    .band{color:#fff;background:radial-gradient(ellipse at 0 100%,#f0c45eaa,transparent 55%),linear-gradient(100deg,#8c575c,#133054 65%)}
+    .band h2{color:#fff}
+    .band p,.band .lead{color:#fff}
+    .band .selo{display:block;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
 
     /* ---------- DEPOIMENTOS ---------- */
     .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
     .testi-card{overflow:hidden}
-    .testi-card a{display:block;line-height:0;background:#efe8db}
+    .testi-card a{display:block;line-height:0;background:#e6e5e2}
     .testi-card img{width:100%}
     .testi-card figcaption{padding:14px 16px}
-    .testi-card figcaption strong{display:block;font-family:var(--serif);font-size:14.5px;color:var(--ink)}
+    .testi-card figcaption strong{display:block;font-size:14.5px;color:var(--ink)}
     .testi-card figcaption span{font-size:12.5px;color:var(--muted)}
-    .testi-note{margin-top:24px;font-size:13.5px;color:var(--muted)}
+    .testi-note{margin-top:24px;font-size:13px;color:var(--muted)}
 
     /* ---------- INSTITUTO ---------- */
     .instituto-grid{display:grid;grid-template-columns:140px 1fr;gap:44px;align-items:center;text-align:left}
     .instituto-logo{width:140px;height:140px}
-    .stats{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;justify-content:center}
-    .stat{flex:1;min-width:150px;background:var(--dark-2);border:1px solid rgba(185,145,80,.28);border-radius:12px;padding:22px}
-    .stat b{display:block;font-family:var(--mono);font-size:1.7rem;color:#f6f1e6}
-    .stat span{display:block;margin-top:6px;font-size:13px;color:rgba(255,255,255,.6)}
+    .stats{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+    .stat{flex:1;min-width:150px;background:var(--deep);border:1px solid rgba(240,196,94,.3);border-radius:12px;padding:22px}
+    .stat b{display:block;font-size:1.7rem;font-weight:800;color:var(--gold);letter-spacing:-.02em}
+    .stat span{display:block;margin-top:6px;font-size:13px;color:#d4dce7}
     .cta-center{text-align:center;margin-top:34px}
 
     /* ---------- INVESTIMENTO ---------- */
     .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;text-align:center}
     .lote{padding:30px 24px;display:flex;flex-direction:column}
-    .lote.ativo{border:2px solid var(--accent)}
-    .lote.encerrado{opacity:.65}
-    .lote-tag{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:10px}
-    .lote.ativo .lote-tag{color:var(--accent)}
-    .lote-preco{font-family:var(--serif);font-weight:700;font-size:32px;margin-bottom:6px}
+    .lote.ativo{border:2px solid var(--navy);position:relative}
+    .lote.ativo:before{content:'';position:absolute;left:24px;right:24px;top:-2px;height:5px;background:linear-gradient(90deg,#8c575c,#f0c45e);border-radius:0 0 4px 4px}
+    .lote.encerrado{opacity:.6}
+    .lote.desativado{background:#efeeeb}
+    .lote.desativado .lote-preco{color:#74767c}
+    .lote-tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mauve);margin-bottom:10px}
+    .lote.ativo .lote-tag{color:var(--navy)}
+    .lote.desativado .lote-tag{color:#74767c}
+    .lote-preco{font-weight:800;font-size:34px;letter-spacing:-.03em;margin-bottom:6px;color:var(--ink)}
     .lote-per{font-size:13.5px;color:var(--muted);margin-bottom:20px;min-height:2.6em}
     .lote-acao{margin-top:auto}
     .lote-acao .btn{width:100%}
-    .lote-off{padding:15px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:13.5px}
-    .pay-ok{margin-top:24px;font-size:13.5px;color:var(--muted)}
-    .note-box{margin-top:24px;padding:20px 24px;border-left:3px solid var(--gold);font-size:14.5px}
+    .lote-off{padding:13px;border:1px dashed #a7abb1;border-radius:8px;color:var(--muted);font-size:13.5px}
+    .pay-ok{margin-top:24px;font-size:13px;color:var(--muted)}
+    .note-box{margin-top:24px;padding:20px 24px;border-left:4px solid var(--gold);font-size:14.5px;text-align:left}
     .fine-print{margin-top:14px;font-size:12.5px;max-width:70ch;margin-inline:auto}
 
     /* ---------- FAQ ---------- */
     .faq-grid{display:grid;gap:16px;margin-top:36px;text-align:left}
     .faq-item{display:flex;gap:16px;align-items:flex-start;padding:26px}
-    .faq-icon{flex-shrink:0;width:40px;height:40px;border-radius:10px;background:#f7ecdf;color:var(--accent);display:flex;align-items:center;justify-content:center}
+    .faq-icon{flex-shrink:0;width:40px;height:40px;border-radius:12px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center}
     .faq-icon svg{width:19px;height:19px}
     .faq-item h3{font-size:16.5px}
     .faq-item p{font-size:14.5px;margin:0}
-    .faq-item a{color:var(--accent);font-weight:700}
+    .faq-item a{color:var(--navy);font-weight:700;text-decoration:underline}
 
     /* ---------- FOOTER ---------- */
-    footer{padding:56px 0 0}
+    footer{padding:56px 0 0;background:var(--deep)}
     .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;text-align:left}
     .footer-logo{width:64px;height:64px;margin-bottom:18px}
-    footer h3{color:#fff;font-family:var(--serif);font-size:19px;margin-bottom:12px}
-    footer p{color:rgba(255,255,255,.6);font-size:14px}
+    footer h3{color:#fff;font-size:19px;margin-bottom:12px}
+    footer p{color:#c4c6d0;font-size:14px}
     .socials{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-    .social-btn{display:inline-flex;align-items:center;gap:8px;background:var(--dark-2);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 14px;font-size:12.5px;font-weight:700;letter-spacing:.03em;color:#fff}
-    .footer-col-title{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-    .footer-col a,.footer-col span{display:block;color:rgba(255,255,255,.72);font-size:14.5px;margin-bottom:10px}
+    .social-btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:10px 14px;min-height:40px;font-size:12.5px;font-weight:700;letter-spacing:.03em;color:#fff}
+    .footer-col-title{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+    .footer-col a,.footer-col span{display:block;color:#d4dce7;font-size:14.5px;margin-bottom:10px}
     .footer-col a:hover{color:#fff}
-    .footer-bottom{margin-top:40px;padding:20px 0;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(255,255,255,.5)}
+    .footer-bottom{margin-top:40px;padding:20px 0;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:#c4c6d0}
 
     @media(max-width:820px){
       .icon-grid,.testi-grid,.pricing-grid{grid-template-columns:1fr 1fr}
@@ -203,13 +220,21 @@
       .num-item{text-align:left}
       .footer-grid{grid-template-columns:1fr}
       .cd-grid>div{min-width:64px}
+      .hero-photo{width:100%;opacity:.45}
+      .hero:after{background:linear-gradient(90deg,#133054ed,#13305477),linear-gradient(0deg,#133054,transparent)}
     }
     @media(max-width:560px){
       .icon-grid,.testi-grid,.pricing-grid{grid-template-columns:1fr}
-      section{padding:40px 0}
-      .hero{padding:36px 0 40px}
+      section{padding:48px 0}
+      .hero{padding:48px 0 48px}
       .chips{gap:8px}
       .signup{padding:22px}
+      .sched-item{grid-template-columns:1fr}
+      .sched-time{justify-content:flex-start;padding:10px 20px}
+      .sched-body{padding:18px 20px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;transition:none!important}
     }
   </style>
 </head>
@@ -230,10 +255,13 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="inicio">
-      <div class="wrap">
+      <img class="hero-photo" src="assets/hero_medalha.webp" alt="Mão adulta segurando uma medalha acima da mão de uma criança" width="900" height="1693" fetchpriority="high">
+      <div class="wrap-lg">
+       <div class="hero-content">
+        <img class="hero-logo" src="assets/logo_lideranca_parental.webp" alt="1º Congresso Liderança Parental" width="1045" height="517">
         <span class="label">1ª edição · presencial · apenas 30 vagas</span>
         <h1>Os pais são parte do time. E quase ninguém foi preparado para <em>orientá-los</em>.</h1>
-        <p class="lead" style="margin-left:auto;margin-right:auto">Um dia presencial para quem atua no esporte e quer orientar os pais de atleta com método e autoridade.</p>
+        <p class="lead">Um dia presencial para quem atua no esporte e quer orientar os pais de atleta com método e autoridade.</p>
         <p class="facts">Para treinadores, psicólogos do esporte, treinadores mentais, coaches e gestores de clube.</p>
 
         <div class="chips">
@@ -246,9 +274,10 @@
         <div class="card signup">
           <h3 style="margin-bottom:4px">Garanta sua vaga — 2º lote R$ 347</h3>
           <p style="margin-bottom:18px;font-size:14px">2º lote encerra em breve. Depois o preço sobe.</p>
-          <a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn btn-block" data-cta-lote data-checkout>Quero minha vaga — 2º lote R$ 347</a>
+          <a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn btn-block" data-checkout>Quero minha vaga — 2º lote R$ 347</a>
           <p class="fine" data-cta-nota>Pagamento 100% seguro via Hotmart. Parcelamento disponível no checkout.</p>
         </div>
+       </div>
       </div>
     </section>
 
@@ -260,7 +289,7 @@
         <p class="lead">Pergunte a qualquer técnico de base o que mais desgasta o trabalho dele. Raramente a resposta vai ser tática, física ou técnica. Quase sempre vai ser a relação com as famílias.</p>
         <p>Por muito tempo esse assunto simplesmente não tinha resposta. O técnico achava que não era função dele, o psicólogo atendia o atleta e não a família, e o clube só chamava os pais quando o problema já havia estourado.</p>
         <p>Isso começou a mudar: o pai não é um obstáculo por natureza. Ele é alguém tentando ajudar do jeito que sabe. <strong style="color:var(--ink)">E o profissional que sabe conduzir essa conversa se torna insubstituível para o atleta, para a família e para o clube.</strong></p>
-        <div class="cta-center"><a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn" data-cta-lote data-checkout>Quero minha vaga — 2º lote R$ 347</a></div>
+        <div class="cta-center"><a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn" data-checkout>Quero minha vaga — 2º lote R$ 347</a></div>
       </div>
     </section>
 
@@ -502,7 +531,7 @@
           <div class="stat"><b>+400</b><span>profissionais formados</span></div>
           <div class="stat"><b>Desde 2016</b><span>anos de atuação</span></div>
         </div>
-        <div class="cta-center"><a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn" data-cta-lote data-checkout>Quero minha vaga — 2º lote R$ 347</a></div>
+        <div class="cta-center"><a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn" data-checkout>Quero minha vaga — 2º lote R$ 347</a></div>
       </div>
     </section>
 
@@ -511,26 +540,26 @@
       <div class="wrap-lg">
         <span class="label">Investimento</span>
         <h2>30 vagas presenciais</h2>
-        <p class="lead">O lote vira por data ou quando as vagas acabarem — o que vier primeiro.</p>
+        <p class="lead">O lote vira quando as vagas acabarem. Garanta a sua no preço atual.</p>
 
         <div class="pricing-grid" id="lotes">
-          <article class="lote card encerrado" data-lote="1" data-start="2026-08-01T00:00:00-03:00" data-end="2026-09-17T23:59:59-03:00" data-price="247" data-nome="1º lote">
-            <span class="lote-tag" data-lote-tag>1º lote · encerrado</span>
+          <article class="lote card encerrado" data-lote="1">
+            <span class="lote-tag">1º lote · encerrado</span>
             <div class="lote-preco">R$ 247</div>
-            <div class="lote-per">Até 17 de setembro</div>
-            <div class="lote-acao" data-lote-acao><div class="lote-off">Encerrado</div></div>
+            <div class="lote-per">Vendas encerradas</div>
+            <div class="lote-acao"><div class="lote-off">Encerrado</div></div>
           </article>
-          <article class="lote card ativo" data-lote="2" data-start="2026-09-18T00:00:00-03:00" data-end="2026-10-01T23:59:59-03:00" data-price="347" data-nome="2º lote">
-            <span class="lote-tag" data-lote-tag>2º lote · aberto</span>
+          <article class="lote card ativo" data-lote="2">
+            <span class="lote-tag">2º lote · aberto</span>
             <div class="lote-preco">R$ 347</div>
-            <div class="lote-per">De 18 de setembro a 1º de outubro</div>
-            <div class="lote-acao" data-lote-acao><a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn" data-checkout>Garantir minha vaga</a></div>
+            <div class="lote-per">Lote atual, enquanto houver vagas</div>
+            <div class="lote-acao"><a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn" data-checkout>Garantir minha vaga</a></div>
           </article>
-          <article class="lote card" data-lote="3" data-start="2026-10-02T00:00:00-03:00" data-end="2026-10-17T09:59:59-03:00" data-price="497" data-nome="3º lote">
-            <span class="lote-tag" data-lote-tag>3º lote</span>
+          <article class="lote card desativado" data-lote="3" aria-disabled="true">
+            <span class="lote-tag">3º lote · indisponível</span>
             <div class="lote-preco">R$ 497</div>
-            <div class="lote-per">De 2 a 17 de outubro, ou até acabarem as vagas</div>
-            <div class="lote-acao" data-lote-acao><div class="lote-off">Abre em 02/10</div></div>
+            <div class="lote-per">Ainda não está aberto</div>
+            <div class="lote-acao"><button type="button" class="btn" disabled>Indisponível</button></div>
           </article>
         </div>
 
@@ -570,7 +599,7 @@
           </div>
         </div>
 
-        <div class="cta-center"><a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn" data-cta-lote data-checkout>Quero minha vaga — 2º lote R$ 347</a></div>
+        <div class="cta-center"><a href="https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155" target="_blank" rel="noopener noreferrer" class="btn" data-checkout>Quero minha vaga — 2º lote R$ 347</a></div>
       </div>
     </section>
 
@@ -611,91 +640,21 @@
   </footer>
 
   <script>
+    /* Contador até o início do congresso (17/10/2026, 10h, horário de Brasília).
+       Os lotes são fixos: 2º lote aberto, 3º desativado; não há virada por data. */
     (function(){
-      var CHECKOUT='https://pay.hotmart.com/U107422718U?off=ymksbk8d&bid=1789780404155';
-      var cards=[].slice.call(document.querySelectorAll('#lotes .lote'));
-      if(!cards.length) return;
+      var target=new Date('2026-10-17T10:00:00-03:00').getTime();
       var cdD=document.getElementById('cd-d');
       var cdH=document.getElementById('cd-h');
       var cdM=document.getElementById('cd-m');
       var cdS=document.getElementById('cd-s');
       function pad(n){return n<10?'0'+n:String(n)}
-      function parse(s){return new Date(s).getTime()}
-      function nome(c){return c.getAttribute('data-nome')}
-      function preco(c){return c.getAttribute('data-price')}
-      function abreEm(c){
-        var d=new Date(c.getAttribute('data-start'));
-        return pad(d.getDate())+'/'+pad(d.getMonth()+1);
-      }
-      function ctaCheckout(label){
-        return '<a href="'+CHECKOUT+'" target="_blank" rel="noopener noreferrer" class="btn" data-checkout>'+label+'</a>';
-      }
-      function ligarCheckout(on){
-        document.querySelectorAll('[data-checkout]').forEach(function(a){
-          if(on){
-            a.setAttribute('href', CHECKOUT);
-            a.setAttribute('target','_blank');
-            a.setAttribute('rel','noopener noreferrer');
-          } else {
-            a.setAttribute('href','#investimento');
-            a.removeAttribute('target');
-            a.removeAttribute('rel');
-          }
-        });
-      }
       function render(){
-        var now=Date.now();
-        var current=null, next=null;
-        cards.forEach(function(c){
-          var start=parse(c.getAttribute('data-start'));
-          var end=parse(c.getAttribute('data-end'));
-          var tag=c.querySelector('[data-lote-tag]');
-          var acao=c.querySelector('[data-lote-acao]');
-          c.classList.remove('ativo','encerrado');
-          if(now>end){
-            c.classList.add('encerrado');
-            if(tag) tag.textContent=nome(c)+' · encerrado';
-            if(acao) acao.innerHTML='<div class="lote-off">Encerrado</div>';
-          } else if(now>=start && now<=end){
-            current=c;
-            c.classList.add('ativo');
-            if(tag) tag.textContent=nome(c)+' · aberto';
-            if(acao) acao.innerHTML=ctaCheckout('Garantir minha vaga');
-          } else {
-            if(!next) next=c;
-            if(tag) tag.textContent=nome(c);
-            if(acao) acao.innerHTML='<div class="lote-off">Abre em '+abreEm(c)+'</div>';
-          }
-        });
-        var ctaTxt, target;
-        if(current){
-          target=parse(current.getAttribute('data-end'));
-          ctaTxt='Quero minha vaga — '+nome(current)+' R$ '+preco(current);
-          ligarCheckout(true);
-        } else if(next){
-          target=parse(next.getAttribute('data-start'));
-          ctaTxt='Quero minha vaga — '+nome(next)+' R$ '+preco(next);
-          ligarCheckout(true);
-        } else {
-          ctaTxt='Inscrições encerradas';
-          document.querySelectorAll('[data-cta-lote]').forEach(function(a){a.textContent=ctaTxt});
-          ligarCheckout(false);
-          if(cdD) cdD.textContent='0';
-          if(cdH) cdH.textContent='00';
-          if(cdM) cdM.textContent='00';
-          if(cdS) cdS.textContent='00';
-          return;
-        }
-        document.querySelectorAll('[data-cta-lote]').forEach(function(a){a.textContent=ctaTxt});
-        var diff=Math.max(0, target-now);
-        var days=Math.floor(diff/86400000);
-        var hours=Math.floor((diff%86400000)/3600000);
-        var mins=Math.floor((diff%3600000)/60000);
-        var secs=Math.floor((diff%60000)/1000);
-        if(cdD) cdD.textContent=String(days);
-        if(cdH) cdH.textContent=pad(hours);
-        if(cdM) cdM.textContent=pad(mins);
-        if(cdS) cdS.textContent=pad(secs);
+        var diff=Math.max(0,target-Date.now());
+        if(cdD) cdD.textContent=String(Math.floor(diff/86400000));
+        if(cdH) cdH.textContent=pad(Math.floor((diff%86400000)/3600000));
+        if(cdM) cdM.textContent=pad(Math.floor((diff%3600000)/60000));
+        if(cdS) cdS.textContent=pad(Math.floor((diff%60000)/1000));
       }
       render();
       setInterval(render,1000);
