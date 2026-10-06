@@ -25,7 +25,16 @@
     { "source": "/treinador-mental-atletas", "destination": "/atendimento-individual-ac/", "permanent": true },
     { "source": "/treinador-mental-atletas/", "destination": "/atendimento-individual-ac/", "permanent": true },
     { "source": "/ementa-psicologia-esporte", "destination": "/ementa-psicologia-esporte/", "permanent": false },
-    { "source": "/passe-profissional-lideranca-parental", "destination": "/passe-profissional-lideranca-parental/", "permanent": false }
+    { "source": "/passe-profissional-lideranca-parental", "destination": "/passe-profissional-lideranca-parental/", "permanent": false },
+    { "source": "/congresso-lideranca-parental-pais", "destination": "/congresso-lideranca-parental-pais/", "permanent": false },
+    { "source": "/obrigado-congresso-lideranca-parental-pais", "destination": "/obrigado-congresso-lideranca-parental-pais/", "permanent": false },
+    { "source": "/passe-profissional-lideranca-parental-pais", "destination": "/passe-profissional-lideranca-parental-pais/", "permanent": false },
+    { "source": "/congresso-lideranca-parental-treinadores", "destination": "/congresso-lideranca-parental-treinadores/", "permanent": false },
+    { "source": "/obrigado-congresso-lideranca-parental-treinadores", "destination": "/obrigado-congresso-lideranca-parental-treinadores/", "permanent": false },
+    { "source": "/passe-profissional-lideranca-parental-treinadores", "destination": "/passe-profissional-lideranca-parental-treinadores/", "permanent": false },
+    { "source": "/congresso-lideranca-parental-psicologos", "destination": "/congresso-lideranca-parental-psicologos/", "permanent": false },
+    { "source": "/obrigado-congresso-lideranca-parental-psicologos", "destination": "/obrigado-congresso-lideranca-parental-psicologos/", "permanent": false },
+    { "source": "/passe-profissional-lideranca-parental-psicologos", "destination": "/passe-profissional-lideranca-parental-psicologos/", "permanent": false }
   ],
   "rewrites": [
     { "source": "/aula-cerebro-do-atleta", "destination": "/curso-telas/Captura_aula_telas_gratuita.html" },
