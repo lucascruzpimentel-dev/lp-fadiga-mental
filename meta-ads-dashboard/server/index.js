@@ -1,5 +1,5 @@
 import express from 'express';
-import cors from 'cors';
+import { requireAuth, login, logout, session } from './auth.js';
 import { mockRows, mockLeads } from './mock.js';
 import { whatsappReport } from './whatsapp.js';
 
@@ -121,9 +121,16 @@ function suggestions(camps) {
 }
 
 const app = express();
-app.use(cors());
+app.disable('x-powered-by');
+app.set('trust proxy', 1);
+app.use(express.json({ limit: '2kb' }));
 
-app.get('/api/health', (_q, res) => res.json({ supabase: !!SB_URL && !!SB_KEY, whatsapp: !!env.WA_SUPABASE_URL && !!env.WA_SUPABASE_SERVICE_ROLE_KEY }));
+// Mesma origem (frontend e API juntos): sem CORS. Tudo que devolve dados exige sessão.
+app.post('/api/login', login);
+app.post('/api/logout', logout);
+app.get('/api/session', session);
+app.use('/api/report', requireAuth);
+app.use('/api/whatsapp', requireAuth);
 
 app.get('/api/whatsapp', async (req, res) => {
   const until = req.query.until || iso(new Date());

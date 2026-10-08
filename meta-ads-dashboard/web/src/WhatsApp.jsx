@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { getJson } from './api.js';
 import { ResponsiveContainer, ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
 
 const int = (n) => (n ?? 0).toLocaleString('pt-BR');
@@ -37,8 +38,7 @@ export default function WhatsApp() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/whatsapp?${new URLSearchParams(range)}`)
-      .then(async (r) => { const j = await r.json(); if (!r.ok) throw new Error(j.error || `Erro ${r.status}`); return j; })
+    getJson(`/api/whatsapp?${new URLSearchParams(range)}`)
       .then((d) => { setData(d); setError(''); })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));

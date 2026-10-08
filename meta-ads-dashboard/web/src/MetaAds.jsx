@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { getJson } from './api.js';
 import { ResponsiveContainer, ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
 
 const brl = (n) => (n == null ? '—' : n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
@@ -74,8 +75,7 @@ export default function MetaAds() {
   useEffect(() => {
     const p = new URLSearchParams({ ...range, campaign, adset });
     setLoading(true);
-    fetch(`/api/report?${p}`)
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`Erro ${r.status}`))))
+    getJson(`/api/report?${p}`)
       .then((d) => { setData(d); setError(''); })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
