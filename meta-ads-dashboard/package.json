@@ -1,0 +1,6 @@
+{ "name": "meta-ads-dashboard", "private": true,
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix web install",
+    "dev:server": "node --env-file-if-exists=.env server/index.js",
+    "dev:web": "npm --prefix web run dev",
+    "build": "npm --prefix web run build" } }
