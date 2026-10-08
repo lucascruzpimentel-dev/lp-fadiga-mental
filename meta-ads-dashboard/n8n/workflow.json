@@ -1,0 +1,22 @@
+{
+  "name": "GHL → Supabase (leads)",
+  "nodes": [
+    { "name": "Webhook GHL", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [0, 0],
+      "parameters": { "httpMethod": "POST", "path": "ghl-lead", "options": {} } },
+    { "name": "Normalizar", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [240, 0],
+      "parameters": { "jsCode": "const b = $input.first().json.body ?? $input.first().json;\nconst pick = (...keys) => keys.map((k) => b[k] ?? b.customData?.[k] ?? b.contact?.[k]).find((v) => v != null && v !== '') ?? null;\nreturn [{ json: { contact_id: pick('contact_id','id'), created_time: pick('date_created','created_time') || new Date().toISOString(), full_name: pick('full_name','name'), email: pick('email'), phone_number: pick('phone','phone_number'), utm_source: pick('utm_source'), utm_medium: pick('utm_medium'), utm_campaign: pick('utm_campaign'), utm_content: pick('utm_content'), utm_term: pick('utm_term'), origem_midia: pick('origem_midia') } }];" } },
+    { "name": "Inserir no Supabase", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [480, 0],
+      "parameters": {
+        "method": "POST", "url": "https://SEU-PROJETO.supabase.co/rest/v1/leads?on_conflict=contact_id",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [
+          { "name": "apikey", "value": "={{ $env.SUPABASE_SERVICE_ROLE_KEY }}" },
+          { "name": "Authorization", "value": "=Bearer {{ $env.SUPABASE_SERVICE_ROLE_KEY }}" },
+          { "name": "Prefer", "value": "resolution=ignore-duplicates,return=minimal" } ] },
+        "sendBody": true, "specifyBody": "json", "jsonBody": "={{ JSON.stringify($json) }}" } }
+  ],
+  "connections": {
+    "Webhook GHL": { "main": [[{ "node": "Normalizar", "index": 0, "type": "main" }]] },
+    "Normalizar": { "main": [[{ "node": "Inserir no Supabase", "index": 0, "type": "main" }]] }
+  }
+}
