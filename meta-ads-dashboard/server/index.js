@@ -1,4 +1,5 @@
 import express from 'express';
+import { safeFetch } from './safe.js';
 import { requireAuth, login, logout, session } from './auth.js';
 import { mockRows, mockLeads } from './mock.js';
 import { whatsappReport } from './whatsapp.js';
@@ -19,9 +20,9 @@ async function sb(table, params = {}) {
   for (let from = 0; ; from += PAGE) {
     const q = new URLSearchParams();
     for (const [k, v] of Object.entries(params)) [].concat(v).forEach((x) => q.append(k, x));
-    const r = await fetch(`${SB_URL}/rest/v1/${table}?${q}`, {
+    const r = await safeFetch(`${SB_URL}/rest/v1/${table}?${q}`, {
       headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, Range: `${from}-${from + PAGE - 1}` },
-    });
+    }, table);
     if (!r.ok) throw new Error(`${table}: HTTP ${r.status}`);
     const page = await r.json();
     out.push(...page);
@@ -78,10 +79,10 @@ async function supabaseLeads(since, until) {
     });
     q.append('created_time', `gte.${since}T00:00:00`);
     q.append('created_time', `lte.${until}T23:59:59`);
-    const r = await fetch(`${SB_URL}/rest/v1/leads?${q}`, {
+    const r = await safeFetch(`${SB_URL}/rest/v1/leads?${q}`, {
       headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, Range: `${from}-${from + PAGE - 1}` },
-    });
-    if (!r.ok) throw new Error(`Supabase ${r.status}`);
+    }, 'leads');
+    if (!r.ok) throw new Error(`leads: HTTP ${r.status}`);
     const page = await r.json();
     out.push(...page);
     if (page.length < PAGE) break;
@@ -158,7 +159,8 @@ app.get('/api/report', async (req, res) => {
       if (g.length) warnings.push(`Sem dados de anúncios sincronizados no Supabase em ${g.map(([a, b]) => (a === b ? br(a) : `${br(a)} a ${br(b)}`)).join(', ')}. Os números desses dias aparecem zerados até a sincronização ser refeita.`);
     }
   } catch (e) {
-    if (e.message !== 'mock') warnings.push(`Supabase indisponível (${e.message}); mostrando dados de demonstração.`);
+    // Demonstração só sem credenciais ou com MOCK=1. Com credenciais e falha, mostra o erro (nunca números inventados).
+    if (e.message !== 'mock') return res.status(502).json({ error: `Supabase indisponível: ${e.message}` });
     source = 'mock';
     rows = mockRows(since, until).filter((r) => (!campaign || r.campaign_id === campaign) && (!adset || r.adset_id === adset));
     leads = mockLeads(rows);

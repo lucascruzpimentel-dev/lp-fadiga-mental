@@ -1,6 +1,7 @@
 // Login por senha única, validada no Supabase (função verify_dashboard_password).
 // O navegador nunca recebe hash nem chave: só um cookie de sessão assinado (HttpOnly).
 import crypto from 'node:crypto';
+import { safeFetch } from './safe.js';
 
 const env = process.env;
 const SECRET = env.DASHBOARD_SESSION_SECRET;
@@ -32,9 +33,9 @@ export function requireAuth(req, res, next) {
 }
 export const session = (req, res) => res.json({ ok: isAuthed(req), login: authEnabled });
 
-const sbFetch = (path, init = {}) => fetch(`${SB_URL}/rest/v1/${path}`, {
+const sbFetch = (path, init = {}) => safeFetch(`${SB_URL}/rest/v1/${path}`, {
   ...init, headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, 'Content-Type': 'application/json', ...init.headers },
-});
+}, 'login');
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export async function login(req, res) {

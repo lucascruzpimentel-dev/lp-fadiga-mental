@@ -1,4 +1,6 @@
 // Aba WhatsApp: lê SOMENTE o projeto Supabase de WhatsApp (WA_*).
+import { safeFetch } from './safe.js';
+
 const env = process.env;
 const URL_ = env.WA_SUPABASE_URL;
 const KEY = env.WA_SUPABASE_SERVICE_ROLE_KEY;
@@ -9,9 +11,9 @@ async function sb(table, params = {}) {
   for (let from = 0; ; from += PAGE) {
     const q = new URLSearchParams();
     for (const [k, v] of Object.entries(params)) [].concat(v).forEach((x) => q.append(k, x));
-    const r = await fetch(`${URL_}/rest/v1/${table}?${q}`, {
+    const r = await safeFetch(`${URL_}/rest/v1/${table}?${q}`, {
       headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, Range: `${from}-${from + PAGE - 1}` },
-    });
+    }, table);
     if (!r.ok) throw new Error(`${table}: HTTP ${r.status}`);
     const page = await r.json();
     out.push(...page);
