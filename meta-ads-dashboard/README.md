@@ -29,6 +29,6 @@ Chaves só no backend / variáveis de ambiente. `.env` está no `.gitignore`.
 
 ## Aba WhatsApp
 Lê só o projeto `WA_SUPABASE_*` (`wa_custos_diarios`, `wa_precos`, `wa_painel_atendimento`, `wa_analises`) via `GET /api/whatsapp`.
-- **Custo de templates:** preencha `preco` (USD) de `utility` e `marketing` em `wa_precos` (ou `WA_PRICE_UTILITY` / `WA_PRICE_MARKETING`). A categoria do template não é registrada, então o custo aparece como faixa (mín = tudo utility, máx = tudo marketing). `WA_USD_BRL` opcional converte para reais.
+- **Custo de templates:** usa a tabela de preços da Meta para o Brasil (BRL, vigente desde 01/10/2026: marketing 0,3217 · utility 0,0350 · authentication 0,0350). Para sobrescrever, preencha `preco` e `moeda` em `wa_precos` ou use `WA_PRICE_MARKETING` / `WA_PRICE_UTILITY`. A categoria do template não é registrada nas mensagens, então o custo aparece como faixa (mín = tudo utility, máx = tudo marketing). Atualize os preços quando a Meta publicar nova tabela.
 - **Vendedores:** o banco guarda só o ID do usuário no HighLevel. Para exibir nomes: `WA_ATENDENTES='{"idDoUsuario":"Nome"}'`.
 - **Sugestões:** regras sobre as notas, resolução, tempo de resposta e os "pontos de melhoria" já gerados em `wa_analises`. Nenhuma conversa é enviada a serviços externos.

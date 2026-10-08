@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ResponsiveContainer, ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
 
 const int = (n) => (n ?? 0).toLocaleString('pt-BR');
-const usd = (n) => (n == null ? '—' : n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+const money = (n, cur = 'BRL') => (n == null ? '—' : n.toLocaleString(cur === 'BRL' ? 'pt-BR' : 'en-US', { style: 'currency', currency: cur }));
 const iso = (d) => d.toISOString().slice(0, 10);
 const shortDate = (s) => s.slice(8, 10) + '/' + s.slice(5, 7);
 const PRESETS = [7, 14, 30];
@@ -46,7 +46,7 @@ export default function WhatsApp() {
 
   const c = data?.custos, v = data?.visao;
   const brl = (n) => (c?.usd_brl && n != null ? ` ≈ ${(n * c.usd_brl).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}` : '');
-  const custoRange = c?.has_price ? `${usd(c.totais.custo_min)} – ${usd(c.totais.custo_max)}` : '—';
+  const custoRange = c?.has_price ? `${money(c.totais.custo_min, c.moeda)} – ${money(c.totais.custo_max, c.moeda)}` : '—';
 
   return (
     <div className="mx-auto max-w-6xl space-y-6 px-4 py-6">
@@ -92,7 +92,7 @@ export default function WhatsApp() {
                 <Kpi label="Mensagens enviadas" value={int(c.totais.enviadas)} />
                 <Kpi label="Dentro da janela 24h" value={int(c.totais.janela)} hint="sem custo de template" tone="text-emerald-600" />
                 <Kpi label="Templates (pagos)" value={int(c.totais.templates)} hint={`${c.totais.pct_templates}% do total`} tone="text-amber-600" />
-                <Kpi label="Custo estimado" value={custoRange} hint={c.has_price ? `de utility a marketing${brl(c.totais.custo_max)}` : 'cadastre os preços em wa_precos'} />
+                <Kpi label="Custo estimado" value={custoRange} hint={`de utility (${money(c.precos.utility, c.moeda)}) a marketing (${money(c.precos.marketing, c.moeda)}) por msg${brl(c.totais.custo_max)}`} />
               </div>
               <div className="mt-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
                 <ResponsiveContainer width="100%" height={260}>
@@ -104,7 +104,7 @@ export default function WhatsApp() {
                     <Legend />
                     <Bar dataKey="janela" name="Dentro da janela" stackId="a" fill="#86efac" isAnimationActive={false} />
                     <Bar dataKey="templates" name="Templates (pagos)" stackId="a" fill="#fbbf24" radius={[4, 4, 0, 0]} isAnimationActive={false} />
-                    {c.has_price && <Line dataKey="custo_max" name="Custo máx. (USD)" stroke="#dc2626" dot={false} />}
+                    {c.has_price && <Line dataKey="custo_max" name={`Custo máx. (${c.moeda})`} stroke="#dc2626" dot={false} />}
                   </ComposedChart>
                 </ResponsiveContainer>
               </div>

@@ -66,8 +66,16 @@ export async function whatsappReport(since, until) {
   // ---- Custos de templates ------------------------------------------------
   // Mensagens enviadas fora da janela de 24h são templates (cobrados). A categoria
   // (marketing/utility) não é registrada, então mostramos faixa: mínimo (tudo utility) a máximo (tudo marketing).
+  // Preços por mensagem: wa_precos (se preenchida) > variável WA_PRICE_* > tabela da Meta para o Brasil (BRL, vigente desde 01/10/2026).
+  const DEFAULT_PRICE = { marketing: 0.3217, utility: 0.035, authentication: 0.035 };
   const price = {};
-  for (const p of precos) price[p.categoria] = p.preco ?? (env[`WA_PRICE_${p.categoria.toUpperCase()}`] ? Number(env[`WA_PRICE_${p.categoria.toUpperCase()}`]) : null);
+  let moeda = 'BRL';
+  for (const [cat, def] of Object.entries(DEFAULT_PRICE)) {
+    const row = precos.find((p) => p.categoria === cat);
+    const envVal = env[`WA_PRICE_${cat.toUpperCase()}`];
+    if (row?.preco != null) { price[cat] = Number(row.preco); if (cat === 'utility' && row.moeda) moeda = row.moeda; }
+    else price[cat] = envVal ? Number(envVal) : def;
+  }
   const usdBrl = env.WA_USD_BRL ? Number(env.WA_USD_BRL) : null;
   const byDay = new Map();
   for (const c of custos) {
@@ -75,16 +83,15 @@ export async function whatsappReport(since, until) {
     d.enviadas += c.mensagens_enviadas; d.janela += c.dentro_janela_24h; d.templates += c.templates_fora_janela;
     byDay.set(c.dia, d);
   }
-  const hasPrice = price.utility != null && price.marketing != null;
+  const hasPrice = true;
   const diario = [...byDay.values()].map((d) => ({
     ...d,
     custo_min: hasPrice ? +(d.templates * price.utility).toFixed(2) : null,
     custo_max: hasPrice ? +(d.templates * price.marketing).toFixed(2) : null,
   }));
   const tot = diario.reduce((t, d) => ({ enviadas: t.enviadas + d.enviadas, janela: t.janela + d.janela, templates: t.templates + d.templates }), { enviadas: 0, janela: 0, templates: 0 });
-  if (!hasPrice) warnings.push('Preços dos templates não cadastrados: preencha a tabela wa_precos (utility e marketing) para ver o custo em dinheiro. Por enquanto mostramos só as quantidades.');
   const custos_out = {
-    moeda: 'USD', usd_brl: usdBrl, precos: price, has_price: hasPrice, diario,
+    moeda, usd_brl: moeda === 'USD' ? usdBrl : null, precos: price, has_price: hasPrice, diario,
     totais: {
       ...tot,
       custo_min: hasPrice ? +(tot.templates * price.utility).toFixed(2) : null,
