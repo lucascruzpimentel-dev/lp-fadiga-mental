@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { mockRows, mockLeads } from './mock.js';
+import { whatsappReport } from './whatsapp.js';
 
 const env = process.env;
 const META_TOKEN = env.META_ACCESS_TOKEN;
@@ -104,7 +105,14 @@ function suggestions(camps) {
 const app = express();
 app.use(cors());
 
-app.get('/api/health', (_q, res) => res.json({ meta: !!META_TOKEN && !!ACCOUNT, supabase: !!SB_URL && !!SB_KEY }));
+app.get('/api/health', (_q, res) => res.json({ meta: !!META_TOKEN && !!ACCOUNT, supabase: !!SB_URL && !!SB_KEY, whatsapp: !!env.WA_SUPABASE_URL && !!env.WA_SUPABASE_SERVICE_ROLE_KEY }));
+
+app.get('/api/whatsapp', async (req, res) => {
+  const until = req.query.until || iso(new Date());
+  const since = req.query.since || iso(new Date(Date.now() - 6 * 864e5));
+  try { res.json(await whatsappReport(since, until)); }
+  catch (e) { res.status(502).json({ error: e.message }); }
+});
 
 app.get('/api/report', async (req, res) => {
   const until = req.query.until || iso(new Date());
