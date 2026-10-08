@@ -2,19 +2,23 @@
 
 Relatório visual de campanhas do Meta Ads cruzado com os leads do formulário (Supabase).
 
-- `server/` API Express (proxy seguro da Meta Marketing API + leitura de leads no Supabase)
+- `server/` API Express que lê só o Supabase (não chama a API do Meta)
 - `web/` Vite + React + Tailwind + Recharts (KPIs, gráfico, tabelas com drill-down campanha → conjunto)
 - `supabase/leads.sql` tabela `leads`
 - `n8n/` fluxo `Webhook GHL → Code → HTTP Request (Supabase)`
 
 ## Rodar localmente
 ```bash
-cp .env.example .env   # preencha META_ACCESS_TOKEN, META_AD_ACCOUNT_ID, META_SUPABASE_URL, META_SUPABASE_SERVICE_ROLE_KEY
+cp .env.example .env   # preencha META_SUPABASE_URL / META_SUPABASE_SERVICE_ROLE_KEY (anúncios) e WA_SUPABASE_* (WhatsApp)
 npm run install:all
 npm run dev:server     # http://localhost:8787
 npm run dev:web        # http://localhost:5173
 ```
 Sem credenciais (ou com `MOCK=1`) o dashboard abre com dados de demonstração.
+
+## De onde vêm os dados
+O dashboard só lê do Supabase. Os dados de anúncios vêm de `meta_adset_daily` (+ nomes em `meta_campaigns` e `meta_adsets`), preenchidas por um processo de sincronização com o Meta que fica fora deste projeto. Se esse processo falhar, o dashboard avisa quais dias estão sem dados e mostra "Dados até DD/MM" no topo.
+Observação: as "conversões" de `meta_adset_daily` e `meta_campaign_daily` não somam igual (gasto, cliques e receita somam). O dashboard usa só a de conjunto, para os números fecharem entre si.
 
 ## Match de leads
 `utm_campaign` = ID da campanha · `utm_term` = ID do conjunto · `utm_content` = ID do anúncio.
