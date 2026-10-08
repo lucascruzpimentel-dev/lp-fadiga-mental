@@ -50,16 +50,24 @@ async function metaRows(since, until, { campaign, adset }) {
 }
 
 async function supabaseLeads(since, until) {
-  const q = new URLSearchParams({
-    select: 'utm_campaign,utm_term,utm_content,created_time',
-    created_time: `gte.${since}T00:00:00`, limit: '10000',
-  });
-  q.append('created_time', `lte.${until}T23:59:59`);
-  const r = await fetch(`${SB_URL}/rest/v1/leads?${q}`, {
-    headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` },
-  });
-  if (!r.ok) throw new Error(`Supabase ${r.status}`);
-  return (await r.json()).map((l) => ({ ...l, date: (l.created_time || '').slice(0, 10) }));
+  const out = [];
+  const PAGE = 1000; // limite máximo do PostgREST por requisição
+  for (let from = 0; ; from += PAGE) {
+    const q = new URLSearchParams({
+      select: 'utm_campaign,utm_term,utm_content,created_time',
+      order: 'created_time.asc',
+    });
+    q.append('created_time', `gte.${since}T00:00:00`);
+    q.append('created_time', `lte.${until}T23:59:59`);
+    const r = await fetch(`${SB_URL}/rest/v1/leads?${q}`, {
+      headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, Range: `${from}-${from + PAGE - 1}` },
+    });
+    if (!r.ok) throw new Error(`Supabase ${r.status}`);
+    const page = await r.json();
+    out.push(...page);
+    if (page.length < PAGE) break;
+  }
+  return out.map((l) => ({ ...l, date: (l.created_time || '').slice(0, 10) }));
 }
 
 const group = (rows, keyFn, init) => {
@@ -126,19 +134,38 @@ app.get('/api/report', async (req, res) => {
     leads = source === 'mock' ? mockLeads(rows) : [];
   }
 
-  // Match leads → campanha/conjunto: ID exato (utm_campaign / utm_term); fallback por nome.
-  const byName = new Map(rows.map((r) => [r.campaign_name?.toLowerCase(), r.campaign_id]));
-  const cKey = (l) => (l.utm_campaign && (byName.get(l.utm_campaign.toLowerCase()) || l.utm_campaign)) || '';
-  const campLeads = {}, setLeads = {}, dayLeads = {};
-  const ids = new Set(rows.map((r) => r.campaign_id)), setIds = new Set(rows.map((r) => r.adset_id));
-  for (const l of leads) {
-    const c = cKey(l);
-    if (!ids.has(c)) continue;
-    if (adset && l.utm_term !== adset) continue;
-    campLeads[c] = (campLeads[c] || 0) + 1;
-    dayLeads[l.date] = (dayLeads[l.date] || 0) + 1;
-    if (l.utm_term && setIds.has(l.utm_term)) setLeads[l.utm_term] = (setLeads[l.utm_term] || 0) + 1;
+  // Match leads → campanha/conjunto. Na prática utm_campaign vem como ID OU como nome
+  // (às vezes "nome da campanha + nome do conjunto") e utm_term como ID do conjunto OU texto.
+  // Ordem: utm_term = ID de conjunto → utm_campaign = ID → nome exato → nome é prefixo (mais longo vence).
+  const norm = (v) => (v || '').toString().trim().toLowerCase();
+  const campById = new Map(), campByName = new Map(), setToCamp = new Map();
+  for (const r of rows) {
+    campById.set(r.campaign_id, r.campaign_id);
+    campByName.set(norm(r.campaign_name), r.campaign_id);
+    setToCamp.set(r.adset_id, r.campaign_id);
   }
+  const names = [...campByName.keys()].filter(Boolean).sort((x, y) => y.length - x.length);
+  const matchLead = (l) => {
+    const term = (l.utm_term || '').toString().trim();
+    if (setToCamp.has(term)) return { camp: setToCamp.get(term), set: term };
+    const uc = (l.utm_campaign || '').toString().trim();
+    if (campById.has(uc)) return { camp: uc };
+    const n = norm(uc);
+    if (campByName.has(n)) return { camp: campByName.get(n) };
+    const pref = names.find((nm) => n.startsWith(nm));
+    return pref ? { camp: campByName.get(pref) } : null;
+  };
+  const campLeads = {}, setLeads = {}, dayLeads = {};
+  let unmatched = 0;
+  for (const l of leads) {
+    const m = matchLead(l);
+    if (!m) { unmatched++; continue; }
+    if (adset && m.set !== adset) continue;
+    campLeads[m.camp] = (campLeads[m.camp] || 0) + 1;
+    dayLeads[l.date] = (dayLeads[l.date] || 0) + 1;
+    if (m.set) setLeads[m.set] = (setLeads[m.set] || 0) + 1;
+  }
+  if (!campaign && !adset && unmatched) warnings.push(`${unmatched} lead(s) do formulário não foram associados a nenhuma campanha com gasto no período.`);
 
   const zero = (r) => ({ spend: 0, impressions: 0, clicks: 0, conversions: 0, revenue: 0, ...r });
   const campaigns = group(rows, (r) => r.campaign_id, (r) => zero({ id: r.campaign_id, name: r.campaign_name }))
