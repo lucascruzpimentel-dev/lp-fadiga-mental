@@ -1,54 +1,72 @@
 import express from 'express';
-import cors from 'cors';
+import { requireAuth, login, logout, session } from './auth.js';
 import { mockRows, mockLeads } from './mock.js';
 import { whatsappReport } from './whatsapp.js';
 
 const env = process.env;
-const META_TOKEN = env.META_ACCESS_TOKEN;
-const ACCOUNT = env.META_AD_ACCOUNT_ID;
-// Projeto Supabase de ANÚNCIOS/leads (META_*). O projeto de WhatsApp (WA_*) é separado e não é usado aqui.
+// O dashboard NÃO chama a API do Meta: lê só o Supabase de ANÚNCIOS (META_*), onde um processo
+// externo sincroniza meta_campaigns / meta_adsets / meta_adset_daily e onde ficam os leads.
+// O projeto de WhatsApp (WA_*) é separado e é lido apenas em whatsapp.js.
 const SB_URL = env.META_SUPABASE_URL;
 const SB_KEY = env.META_SUPABASE_SERVICE_ROLE_KEY;
-const GRAPH = 'https://graph.facebook.com/v21.0';
-const LEAD_TYPES = ['lead', 'offsite_conversion.fb_pixel_lead', 'onsite_conversion.lead_grouped'];
 
 const iso = (d) => d.toISOString().slice(0, 10);
 const num = (v) => Number(v) || 0;
 
-async function graph(path, params) {
-  const url = new URL(`${GRAPH}/${path}`);
-  Object.entries({ ...params, access_token: META_TOKEN }).forEach(([k, v]) => url.searchParams.set(k, v));
-  const rows = [];
-  let next = url.toString();
-  while (next) {
-    const r = await fetch(next);
-    const j = await r.json();
-    if (j.error) throw new Error(`Meta: ${j.error.message}`);
-    rows.push(...(j.data || []));
-    next = j.paging?.next;
+async function sb(table, params = {}) {
+  const out = [];
+  const PAGE = 1000; // limite máximo do PostgREST por requisição
+  for (let from = 0; ; from += PAGE) {
+    const q = new URLSearchParams();
+    for (const [k, v] of Object.entries(params)) [].concat(v).forEach((x) => q.append(k, x));
+    const r = await fetch(`${SB_URL}/rest/v1/${table}?${q}`, {
+      headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, Range: `${from}-${from + PAGE - 1}` },
+    });
+    if (!r.ok) throw new Error(`${table}: HTTP ${r.status}`);
+    const page = await r.json();
+    out.push(...page);
+    if (page.length < PAGE) break;
   }
-  return rows;
+  return out;
 }
 
-async function metaRows(since, until, { campaign, adset }) {
-  const filtering = [];
-  if (campaign) filtering.push({ field: 'campaign.id', operator: 'EQUAL', value: campaign });
-  if (adset) filtering.push({ field: 'adset.id', operator: 'EQUAL', value: adset });
-  const data = await graph(`${ACCOUNT}/insights`, {
-    level: 'adset', time_increment: 1, limit: 500,
-    time_range: JSON.stringify({ since, until }),
-    fields: 'campaign_id,campaign_name,adset_id,adset_name,spend,impressions,clicks,actions,action_values',
-    ...(filtering.length && { filtering: JSON.stringify(filtering) }),
-  });
-  const sum = (arr, types) => (arr || []).filter((a) => types.includes(a.action_type)).reduce((s, a) => s + num(a.value), 0);
-  return data.map((r) => ({
-    date: r.date_start, campaign_id: r.campaign_id, campaign_name: r.campaign_name,
-    adset_id: r.adset_id, adset_name: r.adset_name,
+// Linhas diárias por conjunto (meta_adset_daily) + nomes (meta_campaigns / meta_adsets).
+// Gasto, cliques, impressões e receita de meta_adset_daily e meta_campaign_daily são idênticos;
+// as "conversões" diferem entre as duas tabelas, então usamos uma só fonte (adset) para tudo somar igual.
+async function adRows(since, until, { campaign, adset }) {
+  const f = { select: '*', date: [`gte.${since}`, `lte.${until}`], order: 'date.asc' };
+  if (adset) f.adset_id = `eq.${adset}`;
+  else if (campaign) f.campaign_id = `eq.${campaign}`;
+  const [daily, camps, sets] = await Promise.all([
+    sb('meta_adset_daily', f),
+    sb('meta_campaigns', { select: 'id,name' }),
+    sb('meta_adsets', { select: 'id,name' }),
+  ]);
+  const cName = new Map(camps.map((c) => [c.id, c.name]));
+  const sName = new Map(sets.map((a) => [a.id, a.name]));
+  return daily.map((r) => ({
+    date: r.date, campaign_id: r.campaign_id, campaign_name: cName.get(r.campaign_id) || r.campaign_id,
+    adset_id: r.adset_id, adset_name: sName.get(r.adset_id) || r.adset_id,
     spend: num(r.spend), impressions: num(r.impressions), clicks: num(r.clicks),
-    conversions: sum(r.actions, LEAD_TYPES),
-    revenue: sum(r.action_values, ['purchase', 'offsite_conversion.fb_pixel_purchase']),
+    conversions: num(r.conversions), revenue: num(r.revenue),
   }));
 }
+
+// Dias do período sem nenhuma linha sincronizada (só até a última data existente), agrupados em faixas.
+function gaps(rows, since, until) {
+  const have = new Set(rows.map((r) => r.date));
+  if (!have.size) return [];
+  const last = [...have].sort().at(-1);
+  const out = [];
+  let cur = null;
+  for (let d = new Date(since + 'T00:00:00Z'); iso(d) <= (until < last ? until : last); d.setUTCDate(d.getUTCDate() + 1)) {
+    const k = iso(d);
+    if (have.has(k)) { cur = null; continue; }
+    if (cur) cur[1] = k; else out.push((cur = [k, k]));
+  }
+  return out;
+}
+const br = (d) => d.slice(8, 10) + '/' + d.slice(5, 7);
 
 async function supabaseLeads(since, until) {
   const out = [];
@@ -103,9 +121,16 @@ function suggestions(camps) {
 }
 
 const app = express();
-app.use(cors());
+app.disable('x-powered-by');
+app.set('trust proxy', 1);
+app.use(express.json({ limit: '2kb' }));
 
-app.get('/api/health', (_q, res) => res.json({ meta: !!META_TOKEN && !!ACCOUNT, supabase: !!SB_URL && !!SB_KEY, whatsapp: !!env.WA_SUPABASE_URL && !!env.WA_SUPABASE_SERVICE_ROLE_KEY }));
+// Mesma origem (frontend e API juntos): sem CORS. Tudo que devolve dados exige sessão.
+app.post('/api/login', login);
+app.post('/api/logout', logout);
+app.get('/api/session', session);
+app.use('/api/report', requireAuth);
+app.use('/api/whatsapp', requireAuth);
 
 app.get('/api/whatsapp', async (req, res) => {
   const until = req.query.until || iso(new Date());
@@ -122,25 +147,23 @@ app.get('/api/report', async (req, res) => {
   const warnings = [];
   let source = 'live';
 
-  let rows;
+  let rows, leads;
   try {
-    if (env.MOCK === '1' || !META_TOKEN || !ACCOUNT) throw new Error('mock');
-    rows = await metaRows(since, until, { campaign, adset });
+    if (env.MOCK === '1' || !(SB_URL && SB_KEY)) throw new Error('mock');
+    rows = await adRows(since, until, { campaign, adset });
+    try { leads = await supabaseLeads(since, until); }
+    catch (e) { warnings.push(`Leads do formulário indisponíveis (${e.message}).`); leads = []; }
+    if (!campaign && !adset) {
+      const g = gaps(rows, since, until);
+      if (g.length) warnings.push(`Sem dados de anúncios sincronizados no Supabase em ${g.map(([a, b]) => (a === b ? br(a) : `${br(a)} a ${br(b)}`)).join(', ')}. Os números desses dias aparecem zerados até a sincronização ser refeita.`);
+    }
   } catch (e) {
-    if (e.message !== 'mock') warnings.push(`Meta Ads indisponível (${e.message}); mostrando dados de demonstração.`);
+    if (e.message !== 'mock') warnings.push(`Supabase indisponível (${e.message}); mostrando dados de demonstração.`);
     source = 'mock';
     rows = mockRows(since, until).filter((r) => (!campaign || r.campaign_id === campaign) && (!adset || r.adset_id === adset));
+    leads = mockLeads(rows);
   }
-
-  let leads;
-  try {
-    if (source === 'mock' && !(SB_URL && SB_KEY)) leads = mockLeads(rows);
-    else if (!(SB_URL && SB_KEY)) throw new Error('credenciais ausentes');
-    else leads = await supabaseLeads(since, until);
-  } catch (e) {
-    warnings.push(`Leads do formulário indisponíveis (${e.message}).`);
-    leads = source === 'mock' ? mockLeads(rows) : [];
-  }
+  const dataUntil = rows.map((r) => r.date).sort().at(-1) || null;
 
   // Match leads → campanha/conjunto. Na prática utm_campaign vem como ID OU como nome
   // (às vezes "nome da campanha + nome do conjunto") e utm_term como ID do conjunto OU texto.
@@ -193,7 +216,7 @@ app.get('/api/report', async (req, res) => {
     }), zero({})),
   });
 
-  res.json({ source, since, until, warnings, kpis: total, daily, campaigns, adsets, suggestions: suggestions(campaigns) });
+  res.json({ source, since, until, data_until: dataUntil, warnings, kpis: total, daily, campaigns, adsets, suggestions: suggestions(campaigns) });
 });
 
 const port = env.PORT || 8787;

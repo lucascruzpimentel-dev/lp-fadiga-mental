@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { getJson } from './api.js';
 import { ResponsiveContainer, ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
 
 const brl = (n) => (n == null ? '—' : n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
@@ -74,8 +75,7 @@ export default function MetaAds() {
   useEffect(() => {
     const p = new URLSearchParams({ ...range, campaign, adset });
     setLoading(true);
-    fetch(`/api/report?${p}`)
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`Erro ${r.status}`))))
+    getJson(`/api/report?${p}`)
       .then((d) => { setData(d); setError(''); })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
@@ -92,6 +92,7 @@ export default function MetaAds() {
           <p className="text-sm text-slate-500">Meta Ads + leads do formulário (HighLevel)</p>
         </div>
         {data?.source === 'mock' && <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">Dados de demonstração</span>}
+        {data?.source === 'live' && data.data_until && <span className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600">Dados de anúncios até {data.data_until.slice(8)}/{data.data_until.slice(5, 7)}</span>}
       </header>
 
       <section className="flex flex-wrap items-center gap-2 rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200">
@@ -139,9 +140,9 @@ export default function MetaAds() {
                   <YAxis yAxisId="r" orientation="right" fontSize={12} />
                   <Tooltip labelFormatter={shortDate} formatter={(v, n) => (n === 'Investimento' ? brl(v) : v)} />
                   <Legend />
-                  <Bar yAxisId="l" dataKey="spend" name="Investimento" fill="#93c5fd" radius={[4, 4, 0, 0]} />
-                  <Line yAxisId="r" dataKey="conversions" name="Conversões Meta" stroke="#2563eb" strokeWidth={2} dot={false} />
-                  <Line yAxisId="r" dataKey="leads" name="Leads (formulário)" stroke="#16a34a" strokeWidth={2} dot={false} />
+                  <Bar yAxisId="l" dataKey="spend" name="Investimento" fill="#93c5fd" radius={[4, 4, 0, 0]} isAnimationActive={false} />
+                  <Line yAxisId="r" dataKey="conversions" name="Conversões Meta" stroke="#2563eb" strokeWidth={2} dot={false} isAnimationActive={false} />
+                  <Line yAxisId="r" dataKey="leads" name="Leads (formulário)" stroke="#16a34a" strokeWidth={2} dot={false} isAnimationActive={false} />
                 </ComposedChart>
               </ResponsiveContainer>
             </section>
