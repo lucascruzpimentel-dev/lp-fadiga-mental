@@ -5,8 +5,9 @@ import { mockRows, mockLeads } from './mock.js';
 const env = process.env;
 const META_TOKEN = env.META_ACCESS_TOKEN;
 const ACCOUNT = env.META_AD_ACCOUNT_ID;
-const SB_URL = env.WA_SUPABASE_URL || env.SUPABASE_URL;
-const SB_KEY = env.WA_SUPABASE_SERVICE_ROLE_KEY || env.SUPABASE_SERVICE_ROLE_KEY;
+// Projeto Supabase de ANÚNCIOS/leads (META_*). O projeto de WhatsApp (WA_*) é separado e não é usado aqui.
+const SB_URL = env.META_SUPABASE_URL;
+const SB_KEY = env.META_SUPABASE_SERVICE_ROLE_KEY;
 const GRAPH = 'https://graph.facebook.com/v21.0';
 const LEAD_TYPES = ['lead', 'offsite_conversion.fb_pixel_lead', 'onsite_conversion.lead_grouped'];
 

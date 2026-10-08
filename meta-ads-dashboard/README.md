@@ -9,7 +9,7 @@ Relatório visual de campanhas do Meta Ads cruzado com os leads do formulário (
 
 ## Rodar localmente
 ```bash
-cp .env.example .env   # preencha META_ACCESS_TOKEN, META_AD_ACCOUNT_ID, WA_SUPABASE_URL, WA_SUPABASE_SERVICE_ROLE_KEY
+cp .env.example .env   # preencha META_ACCESS_TOKEN, META_AD_ACCOUNT_ID, META_SUPABASE_URL, META_SUPABASE_SERVICE_ROLE_KEY
 npm run install:all
 npm run dev:server     # http://localhost:8787
 npm run dev:web        # http://localhost:5173
@@ -18,6 +18,7 @@ Sem credenciais (ou com `MOCK=1`) o dashboard abre com dados de demonstração.
 
 ## Match de leads
 `utm_campaign` = ID da campanha · `utm_term` = ID do conjunto · `utm_content` = ID do anúncio.
+São dois projetos Supabase: `META_SUPABASE_*` (anúncios/leads, usado pelo dashboard) e `WA_SUPABASE_*` (WhatsApp, reservado).
 Se `utm_campaign` vier como nome, o match cai para comparação por nome.
 
 ## n8n
