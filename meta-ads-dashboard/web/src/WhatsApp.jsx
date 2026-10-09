@@ -111,6 +111,11 @@ export default function WhatsApp() {
             </Section>
 
             <Section title="Avaliação dos vendedores" sub="baseada na análise de cada conversa">
+              <p className={`rounded-lg px-3 py-2 text-sm ${data.cobertura.whatsapp.pct < 50 ? 'bg-amber-50 text-amber-800' : 'bg-slate-100 text-slate-600'}`}>
+                Cobertura da avaliação: <b>{data.cobertura.whatsapp.analisadas.toLocaleString('pt-BR')} de {data.cobertura.whatsapp.conversas.toLocaleString('pt-BR')}</b> conversas de WhatsApp ({data.cobertura.whatsapp.pct}%)
+                e <b>{data.cobertura.instagram.analisadas.toLocaleString('pt-BR')} de {data.cobertura.instagram.conversas.toLocaleString('pt-BR')}</b> de Instagram ({data.cobertura.instagram.pct}%).
+                {data.cobertura.whatsapp.pct < 50 && ' As notas e percentuais abaixo valem só para as conversas analisadas, não para todo o atendimento.'}
+              </p>
               <div className="overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
                 <table className="w-full min-w-[820px] text-sm">
                   <thead className="bg-slate-50 text-left text-xs uppercase text-slate-500">
@@ -131,6 +136,33 @@ export default function WhatsApp() {
                   </tbody>
                 </table>
               </div>
+            </Section>
+
+            <Section title="Mensagens por vendedor" sub="contagem direta das mensagens enviadas, sem depender da análise">
+              <div className="overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
+                <table className="w-full min-w-[760px] text-sm">
+                  <thead className="bg-slate-50 text-left text-xs uppercase text-slate-500">
+                    <tr>{['Vendedor', 'Enviadas', 'Manuais', 'Automáticas', 'WhatsApp', 'Instagram', 'Conversas'].map((h, i) => <th key={h} className={`px-3 py-2 ${i ? 'text-right' : ''}`}>{h}</th>)}</tr>
+                  </thead>
+                  <tbody>
+                    {data.mensagens_por_vendedor.map((m) => (
+                      <tr key={m.id} className="border-t border-slate-100">
+                        <td className={`px-3 py-2 font-medium ${m.id === '_sem' ? 'text-slate-500' : ''}`}>{m.nome}</td>
+                        <td className="px-3 py-2 text-right font-semibold">{int(m.total)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.manuais)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.automaticas)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.whatsapp)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.instagram)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.conversas)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-slate-500">
+                <b>Manuais</b> são mensagens escritas por uma pessoa; <b>automáticas</b> saem de fluxos e ficam no usuário que criou o fluxo.
+                A linha "Sem usuário registrado" reúne mensagens sem responsável identificado (por exemplo, enviadas direto pelo aplicativo do Instagram ou do celular).
+              </p>
             </Section>
 
             <Section title="Como melhorar a abordagem" sub="sugestões a partir do histórico de conversas">
