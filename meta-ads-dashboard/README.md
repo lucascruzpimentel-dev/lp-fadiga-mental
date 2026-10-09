@@ -46,3 +46,13 @@ Lê só o projeto `WA_SUPABASE_*` (`wa_custos_diarios`, `wa_precos`, `wa_painel_
 Como funciona: o navegador envia a senha digitada ao servidor, que a confere chamando `verify_dashboard_password` no Supabase (hash bcrypt; a função só aceita a chave de servidor). Em caso de acerto, o servidor devolve um cookie de sessão assinado, `HttpOnly` e `SameSite=Strict`, válido por 12 h. Todas as rotas de dados (`/api/report`, `/api/whatsapp`) exigem esse cookie. 5 erros do mesmo IP bloqueiam por 15 minutos. Hash, chave do Supabase e segredo de sessão nunca vão para o navegador.
 Para trocar a senha, rode `set_dashboard_password` de novo; para encerrar todas as sessões, troque `DASHBOARD_SESSION_SECRET`.
 Para rodar localmente sem login, use `AUTH_DISABLED=1`.
+
+## Custo real e templates do WhatsApp (API da Meta → Supabase)
+O dashboard **não chama a API da Meta**. Um fluxo do n8n grava o volume por categoria e a lista de templates no Supabase de WhatsApp, e a aba WhatsApp lê de lá.
+
+1. No SQL Editor do Supabase de **WhatsApp** (`WA_*`), rode `supabase/wa_meta_sync.sql` (tabelas `wa_custos_meta` e `wa_templates`).
+2. No n8n, importe `n8n/wa-meta-sync.json` e defina as variáveis `WA_META_ACCESS_TOKEN` (token do usuário de sistema, com `whatsapp_business_management` e a conta de WhatsApp atribuída), `WA_SUPABASE_URL` e `WA_SUPABASE_SERVICE_ROLE_KEY`. Se o seu n8n bloqueia `$env`, troque os cabeçalhos dos nós HTTP por credenciais "Header Auth". O ID da conta de WhatsApp (WABA) está nos nós HTTP da Meta.
+3. Execute o fluxo uma vez manualmente e confira as duas tabelas. Depois ele roda todo dia às 06:00 (reprocessa os últimos 8 dias, porque a Meta ajusta números recentes).
+
+Como o custo é calculado: volume de `pricing_analytics` (por categoria e tipo de preço) × preço por mensagem. Mensagens `FREE_*` (atendimento dentro da janela, entrada por anúncio) não são cobradas. Preços: `wa_precos` > `WA_PRICE_*` > tabela da Meta para o Brasil (marketing 0,3217 · utility 0,0350 · authentication 0,0350 · service 0,0350). A Meta não deixa o app consultar o valor em dinheiro, só o volume. Sem os dados da Meta, a aba volta para a estimativa (faixa utility–marketing) e avisa na tela.
+Atenção: o token expira (o atual, em 08/12/2026) e o fluxo para de atualizar quando isso acontecer.
