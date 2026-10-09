@@ -9,7 +9,7 @@ const shortDate = (s) => s.slice(8, 10) + '/' + s.slice(5, 7);
 const PRESETS = [7, 14, 30];
 const TONES = { good: 'border-emerald-300 bg-emerald-50', bad: 'border-red-300 bg-red-50', warn: 'border-amber-300 bg-amber-50', info: 'border-slate-200 bg-white' };
 const CAT = { suporte_acesso: 'Suporte / acesso', outro: 'Outros', evento: 'Evento', duvida_produto: 'Dúvida sobre produto', compra: 'Compra', pagamento_financeiro: 'Pagamento', reclamacao: 'Reclamação', cancelamento_reembolso: 'Cancelamento / reembolso' };
-const CATEG = { UTILITY: 'Utility', MARKETING: 'Marketing', AUTHENTICATION: 'Autenticação', SERVICE: 'Service (atendimento)' };
+const CATEG = { UTILITY: 'Utility', MARKETING: 'Marketing', MARKETING_LITE: 'Marketing Lite', AUTHENTICATION: 'Autenticação', SERVICE: 'Service (atendimento)' };
 const TIPO = { REGULAR: 'cobrada', FREE_CUSTOMER_SERVICE: 'grátis · janela de atendimento', FREE_ENTRY_POINT: 'grátis · entrada por anúncio' };
 const catName = (k) => CAT[k] || (k.charAt(0).toUpperCase() + k.slice(1).replace(/_/g, ' '));
 
@@ -176,7 +176,7 @@ export default function WhatsApp() {
                       <li key={`${t.nome}${t.idioma}`} className="flex items-center justify-between gap-3 py-1.5">
                         <span className="break-all">{t.nome}</span>
                         <span className="flex shrink-0 gap-2 text-xs">
-                          <span className={`rounded-full px-2 py-0.5 ${t.categoria === 'MARKETING' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>{CATEG[t.categoria] || t.categoria}</span>
+                          <span className={`rounded-full px-2 py-0.5 ${String(t.categoria).startsWith('MARKETING') ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>{CATEG[t.categoria] || t.categoria}</span>
                           <span className="text-slate-400">{t.idioma}</span>
                         </span>
                       </li>
