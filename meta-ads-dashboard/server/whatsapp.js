@@ -237,7 +237,8 @@ export async function whatsappReport(since, until) {
   if (temas[0]) sugestoes.push({ tone: 'info', text: `Tema que mais aparece nas avaliações: ${temas[0].tema} (${temas[0].n}×). ${temas[0].dica}` });
   if (visao.primeira_resposta_min > 10) sugestoes.push({ tone: 'bad', text: `Primeira resposta média de ${visao.primeira_resposta_min} min. Meta sugerida: abaixo de 5 min em horário comercial.` });
   if (meta && meta.totais.custo > 0) {
-    const m = meta.detalhe.find((t) => String(t.categoria).toUpperCase() === 'MARKETING' && t.cobrada);
+    const mk = meta.detalhe.filter((t) => String(t.categoria).toUpperCase().startsWith('MARKETING') && t.cobrada);
+    const m = mk.length ? { custo: mk.reduce((x, t) => x + t.custo, 0) } : null;
     if (m && m.custo > meta.totais.custo * 0.3) sugestoes.push({ tone: 'warn', text: `Marketing responde por ${Math.round((m.custo / meta.totais.custo) * 100)}% do custo de mensagens. Veja se algum template de marketing pode ser enviado como utility ou dentro da janela de 24h.` });
   }
   if (!meta && hasPrice && tot.enviadas && pct(tot.templates, tot.enviadas) > 50) sugestoes.push({ tone: 'warn', text: `${pct(tot.templates, tot.enviadas)}% das mensagens saem fora da janela de 24h (templates pagos). Responder mais cedo mantém a conversa na janela gratuita.` });

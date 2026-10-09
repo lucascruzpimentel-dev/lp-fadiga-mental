@@ -4,7 +4,12 @@ const r2 = (n) => +n.toFixed(2);
 const gratis = (tipo) => String(tipo || '').toUpperCase().startsWith('FREE');
 
 export function custosMeta(linhas, price) {
-  const precoDe = (cat) => ({ UTILITY: price.utility, MARKETING: price.marketing, AUTHENTICATION: price.authentication, SERVICE: price.service })[String(cat).toUpperCase()] ?? 0;
+  // MARKETING_LITE (Marketing Messages Lite API) usa o preço de marketing, conforme a tabela da Meta.
+  const precoDe = (cat) => {
+    const c = String(cat).toUpperCase();
+    if (c.startsWith('MARKETING')) return price.marketing;
+    return { UTILITY: price.utility, AUTHENTICATION: price.authentication, SERVICE: price.service }[c] ?? 0;
+  };
 
   const porTipo = new Map();
   const porDia = new Map();
@@ -21,6 +26,7 @@ export function custosMeta(linhas, price) {
     else {
       const c = String(l.categoria).toLowerCase();
       if (c === 'service') d.service_cobrada += l.volume;
+      else if (c.startsWith('marketing')) d.marketing += l.volume;
       else if (c in d) d[c] += l.volume;
     }
     d.custo += l.volume * preco;
