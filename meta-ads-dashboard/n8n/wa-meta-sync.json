@@ -1,0 +1,282 @@
+{
+  "name": "Meta WhatsApp → Supabase (custos e templates)",
+  "nodes": [
+    {
+      "name": "Todo dia às 06:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        200
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 6 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Período",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        80
+      ],
+      "parameters": {
+        "jsCode": "// Últimos 8 dias (reprocessa os dias recentes, que a Meta ainda ajusta). O dia da Meta começa às 03:00 UTC.\nconst dia = 86400;\nconst hoje03 = Math.floor(Date.now() / 1000 / dia) * dia + 3 * 3600;\nconst fim = Math.floor(Date.now() / 1000);\nconst inicio = (hoje03 > fim ? hoje03 - dia : hoje03) - 7 * dia;\nreturn [{ json: { inicio, fim } }];"
+      }
+    },
+    {
+      "name": "Meta pricing_analytics",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        80
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "https://graph.facebook.com/v21.0/239774282548578",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.WA_META_ACCESS_TOKEN }}"
+            }
+          ]
+        },
+        "options": {},
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "=pricing_analytics.start({{ $json.inicio }}).end({{ $json.fim }}).granularity(DAILY).dimensions([\"PRICING_CATEGORY\",\"PRICING_TYPE\"])"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Normalizar custos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        80
+      ],
+      "parameters": {
+        "jsCode": "// Node \"Code\" do n8n: transforma a resposta de pricing_analytics em linhas para wa_custos_meta.\n// Agrupa por dia (fuso de Brasília: o dia da Meta começa às 03:00 UTC), categoria e tipo de preço.\nconst resp = $input.first().json;\nconst pontos = (resp.pricing_analytics?.data ?? []).flatMap((d) => d.data_points ?? []);\nconst mapa = new Map();\nfor (const p of pontos) {\n  const dia = new Date(p.start * 1000).toISOString().slice(0, 10);\n  const categoria = p.pricing_category ?? 'DESCONHECIDA';\n  const tipo = p.pricing_type ?? 'REGULAR';\n  const k = `${dia}|${categoria}|${tipo}`;\n  mapa.set(k, { dia, categoria, tipo, volume: (mapa.get(k)?.volume ?? 0) + (p.volume ?? 0) });\n}\nconst agora = new Date().toISOString();\n// Um único item com todas as linhas: o HTTP Request grava tudo em uma chamada.\nreturn [{ json: { linhas: [...mapa.values()].map((r) => ({ ...r, atualizado_em: agora })) } }];\n"
+      }
+    },
+    {
+      "name": "Gravar wa_custos_meta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        80
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.WA_SUPABASE_URL }}/rest/v1/wa_custos_meta?on_conflict=dia,categoria,tipo",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.WA_SUPABASE_SERVICE_ROLE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.WA_SUPABASE_SERVICE_ROLE_KEY }}"
+            },
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=minimal"
+            }
+          ]
+        },
+        "options": {},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.linhas) }}"
+      }
+    },
+    {
+      "name": "Meta message_templates",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        320
+      ],
+      "parameters": {
+        "method": "GET",
+        "url": "https://graph.facebook.com/v21.0/239774282548578/message_templates",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.WA_META_ACCESS_TOKEN }}"
+            }
+          ]
+        },
+        "options": {
+          "pagination": {
+            "pagination": {
+              "paginationMode": "responseContainsNextURL",
+              "nextURL": "={{ $response.body.paging?.next }}",
+              "paginationCompleteWhen": "other",
+              "completeExpression": "={{ !$response.body.paging?.next }}"
+            }
+          }
+        },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "name,status,category,language,quality_score,components"
+            },
+            {
+              "name": "limit",
+              "value": "200"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Normalizar templates",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        320
+      ],
+      "parameters": {
+        "jsCode": "// Node \"Code\" do n8n: transforma message_templates em linhas para wa_templates.\nconst itens = $input.all().flatMap((i) => i.json.data ?? []);\nconst agora = new Date().toISOString();\nreturn [{ json: { linhas: itens.map((t) => ({\n    id: String(t.id),\n    nome: t.name,\n    idioma: t.language ?? null,\n    categoria: t.category ?? null,\n    status: t.status ?? null,\n    corpo: (t.components ?? []).find((c) => c.type === 'BODY')?.text ?? null,\n    qualidade: t.quality_score?.score ?? null,\n    atualizado_em: agora,\n  })) } }];\n"
+      }
+    },
+    {
+      "name": "Gravar wa_templates",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        320
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.WA_SUPABASE_URL }}/rest/v1/wa_templates?on_conflict=id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.WA_SUPABASE_SERVICE_ROLE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.WA_SUPABASE_SERVICE_ROLE_KEY }}"
+            },
+            {
+              "name": "Prefer",
+              "value": "resolution=merge-duplicates,return=minimal"
+            }
+          ]
+        },
+        "options": {},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.linhas) }}"
+      }
+    }
+  ],
+  "connections": {
+    "Todo dia às 06:00": {
+      "main": [
+        [
+          {
+            "node": "Período",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Meta message_templates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Período": {
+      "main": [
+        [
+          {
+            "node": "Meta pricing_analytics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Meta pricing_analytics": {
+      "main": [
+        [
+          {
+            "node": "Normalizar custos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalizar custos": {
+      "main": [
+        [
+          {
+            "node": "Gravar wa_custos_meta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Meta message_templates": {
+      "main": [
+        [
+          {
+            "node": "Normalizar templates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalizar templates": {
+      "main": [
+        [
+          {
+            "node": "Gravar wa_templates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo"
+  }
+}

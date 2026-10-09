@@ -1,23 +1,42 @@
 // Aba WhatsApp: lê SOMENTE o projeto Supabase de WhatsApp (WA_*).
 import { safeFetch } from './safe.js';
+import { custosMeta, resumoTemplates } from './wa-custos.js';
 
 const env = process.env;
 const URL_ = env.WA_SUPABASE_URL;
 const KEY = env.WA_SUPABASE_SERVICE_ROLE_KEY;
 const PAGE = 1000;
 
+async function fetchPage(table, q, from) {
+  const r = await safeFetch(`${URL_}/rest/v1/${table}?${q}`, {
+    headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, Range: `${from}-${from + PAGE - 1}`, Prefer: 'count=exact' },
+  }, table);
+  if (!r.ok) throw new Error(`${table}: HTTP ${r.status}`);
+  const total = Number((r.headers.get('content-range') || '').split('/')[1]);
+  return { rows: await r.json(), total: Number.isFinite(total) ? total : null };
+}
+
+// Lê a tabela inteira (o PostgREST devolve no máximo 1.000 linhas por requisição);
+// as páginas seguintes são buscadas em paralelo quando o total é conhecido.
 async function sb(table, params = {}) {
-  const out = [];
-  for (let from = 0; ; from += PAGE) {
-    const q = new URLSearchParams();
-    for (const [k, v] of Object.entries(params)) [].concat(v).forEach((x) => q.append(k, x));
-    const r = await safeFetch(`${URL_}/rest/v1/${table}?${q}`, {
-      headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, Range: `${from}-${from + PAGE - 1}` },
-    }, table);
-    if (!r.ok) throw new Error(`${table}: HTTP ${r.status}`);
-    const page = await r.json();
-    out.push(...page);
-    if (page.length < PAGE) break;
+  const q = new URLSearchParams();
+  for (const [k, v] of Object.entries(params)) [].concat(v).forEach((x) => q.append(k, x));
+  const first = await fetchPage(table, q, 0);
+  const out = [...first.rows];
+  if (first.rows.length < PAGE) return out;
+  if (first.total) {
+    const starts = [];
+    for (let f = PAGE; f < first.total; f += PAGE) starts.push(f);
+    for (let i = 0; i < starts.length; i += 6) {
+      const pages = await Promise.all(starts.slice(i, i + 6).map((f) => fetchPage(table, q, f)));
+      pages.forEach((p) => out.push(...p.rows));
+    }
+    return out;
+  }
+  for (let f = PAGE; ; f += PAGE) {
+    const p = await fetchPage(table, q, f);
+    out.push(...p.rows);
+    if (p.rows.length < PAGE) break;
   }
   return out;
 }
@@ -55,21 +74,25 @@ export async function whatsappReport(since, until) {
   const warnings = [];
   const inicio = [`gte.${since}T00:00:00`, `lte.${until}T23:59:59`];
 
-  const [custos, precos, painel, analises] = await Promise.all([
+  const opcional = (tabela, params) => sb(tabela, params).catch(() => null); // tabela pode não existir ainda
+  const [custos, precos, painel, analises, mensagens, custosMetaRows, templatesRows] = await Promise.all([
     sb('wa_custos_diarios', { select: '*', dia: [`gte.${since}`, `lte.${until}`], order: 'dia.asc' }),
     sb('wa_precos', { select: '*' }),
     sb('wa_painel_atendimento', { select: '*', dia: [`gte.${since}`, `lte.${until}`], order: 'dia.asc' }),
     sb('wa_analises', {
-      select: 'inicio,categoria,sentimento,resolvido,nota,atendentes,oportunidade_venda,alerta,primeira_resposta_seg,pontos_melhoria,qtd_enviadas_humano',
+      select: 'conversation_id,inicio,categoria,sentimento,resolvido,nota,atendentes,oportunidade_venda,alerta,primeira_resposta_seg,pontos_melhoria,qtd_enviadas_humano',
       inicio, order: 'inicio.asc',
     }),
+    sb('wa_mensagens', { select: 'conversation_id,tipo_mensagem,direcao,user_id,origem', enviada_em: inicio }),
+    opcional('wa_custos_meta', { select: 'dia,categoria,tipo,volume', dia: [`gte.${since}`, `lte.${until}`], order: 'dia.asc' }),
+    opcional('wa_templates', { select: 'nome,idioma,categoria,status' }),
   ]);
 
   // ---- Custos de templates ------------------------------------------------
   // Mensagens enviadas fora da janela de 24h são templates (cobrados). A categoria
   // (marketing/utility) não é registrada, então mostramos faixa: mínimo (tudo utility) a máximo (tudo marketing).
   // Preços por mensagem: wa_precos (se preenchida) > variável WA_PRICE_* > tabela da Meta para o Brasil (BRL, vigente desde 01/10/2026).
-  const DEFAULT_PRICE = { marketing: 0.3217, utility: 0.035, authentication: 0.035 };
+  const DEFAULT_PRICE = { marketing: 0.3217, utility: 0.035, authentication: 0.035, service: 0.035 };
   const price = {};
   let moeda = 'BRL';
   for (const [cat, def] of Object.entries(DEFAULT_PRICE)) {
@@ -92,7 +115,12 @@ export async function whatsappReport(since, until) {
     custo_max: hasPrice ? +(d.templates * price.marketing).toFixed(2) : null,
   }));
   const tot = diario.reduce((t, d) => ({ enviadas: t.enviadas + d.enviadas, janela: t.janela + d.janela, templates: t.templates + d.templates }), { enviadas: 0, janela: 0, templates: 0 });
+  // Custo real: volume por categoria informado pela Meta (wa_custos_meta). Sem esses dados, mantém a estimativa acima.
+  const temMeta = Array.isArray(custosMetaRows) && custosMetaRows.length > 0;
+  if (!temMeta) warnings.push('Custos reais da Meta ainda não disponíveis (tabela wa_custos_meta vazia ou ausente): mostrando estimativa. Rode supabase/wa_meta_sync.sql e importe n8n/wa-meta-sync.json.');
+  const meta = temMeta ? custosMeta(custosMetaRows, price) : null;
   const custos_out = {
+    fonte: temMeta ? 'meta' : 'estimativa', meta,
     moeda, usd_brl: moeda === 'USD' ? usdBrl : null, precos: price, has_price: hasPrice, diario,
     totais: {
       ...tot,
@@ -169,6 +197,37 @@ export async function whatsappReport(since, until) {
     };
   }).sort((a, b) => b.conversas - a.conversas);
 
+  // ---- Mensagens por vendedor (contagem direta; não depende da análise) ----
+  // Mensagens de fluxos automáticos (origem "workflow") ficam no usuário que criou o fluxo.
+  const canalMsg = (t) => (t === 'WhatsApp' ? 'whatsapp' : t === 'IG' ? 'instagram' : 'outros');
+  const convCanais = new Map();
+  const senders = new Map();
+  for (const m of mensagens) {
+    const set = convCanais.get(m.conversation_id) || convCanais.set(m.conversation_id, new Set()).get(m.conversation_id);
+    set.add(m.tipo_mensagem);
+    if (m.direcao !== 'outbound') continue;
+    const id = m.user_id || '_sem';
+    const u = senders.get(id) || senders.set(id, { id, total: 0, manuais: 0, automaticas: 0, whatsapp: 0, instagram: 0, outros: 0, conv: new Set() }).get(id);
+    u.total++;
+    if (m.origem === 'app') u.manuais++; else if (m.origem === 'workflow') u.automaticas++;
+    u[canalMsg(m.tipo_mensagem)]++;
+    u.conv.add(m.conversation_id);
+  }
+  const mensagens_por_vendedor = [...senders.values()].map(({ conv, ...u }) => ({
+    ...u, nome: u.id === '_sem' ? 'Sem usuário registrado' : nameOf(u.id), conversas: conv.size,
+  })).sort((a, b) => b.total - a.total);
+
+  // Cobertura da análise: quantas conversas do período têm avaliação em wa_analises.
+  const analisadas = new Set(analises.map((a) => a.conversation_id));
+  const cobertura = { whatsapp: { conversas: 0, analisadas: 0 }, instagram: { conversas: 0, analisadas: 0 } };
+  for (const [id, tipos] of convCanais) {
+    const c = tipos.has('WhatsApp') ? 'whatsapp' : tipos.has('IG') ? 'instagram' : null;
+    if (!c) continue;
+    cobertura[c].conversas++;
+    if (analisadas.has(id)) cobertura[c].analisadas++;
+  }
+  for (const c of Object.values(cobertura)) c.pct = pct(c.analisadas, c.conversas);
+
   const temas = Object.entries(themeAll).filter(([k]) => k !== 'outros').sort((a, b) => b[1] - a[1])
     .map(([k, n]) => ({ tema: themeLabel[k].label, n, dica: themeLabel[k].tip }));
 
@@ -177,7 +236,11 @@ export async function whatsappReport(since, until) {
   if (oportAbertas) sugestoes.push({ tone: 'good', text: `${oportAbertas} conversas com oportunidade de venda ainda não resolvidas. É o melhor lugar para a equipe agir primeiro.` });
   if (temas[0]) sugestoes.push({ tone: 'info', text: `Tema que mais aparece nas avaliações: ${temas[0].tema} (${temas[0].n}×). ${temas[0].dica}` });
   if (visao.primeira_resposta_min > 10) sugestoes.push({ tone: 'bad', text: `Primeira resposta média de ${visao.primeira_resposta_min} min. Meta sugerida: abaixo de 5 min em horário comercial.` });
-  if (hasPrice && tot.enviadas && pct(tot.templates, tot.enviadas) > 50) sugestoes.push({ tone: 'warn', text: `${pct(tot.templates, tot.enviadas)}% das mensagens saem fora da janela de 24h (templates pagos). Responder mais cedo mantém a conversa na janela gratuita.` });
+  if (meta && meta.totais.custo > 0) {
+    const m = meta.detalhe.find((t) => String(t.categoria).toUpperCase() === 'MARKETING' && t.cobrada);
+    if (m && m.custo > meta.totais.custo * 0.3) sugestoes.push({ tone: 'warn', text: `Marketing responde por ${Math.round((m.custo / meta.totais.custo) * 100)}% do custo de mensagens. Veja se algum template de marketing pode ser enviado como utility ou dentro da janela de 24h.` });
+  }
+  if (!meta && hasPrice && tot.enviadas && pct(tot.templates, tot.enviadas) > 50) sugestoes.push({ tone: 'warn', text: `${pct(tot.templates, tot.enviadas)}% das mensagens saem fora da janela de 24h (templates pagos). Responder mais cedo mantém a conversa na janela gratuita.` });
 
-  return { since, until, warnings, custos: custos_out, visao, vendedores, temas, sugestoes };
+  return { since, until, warnings, custos: custos_out, templates: templatesRows ? resumoTemplates(templatesRows) : null, visao, vendedores, mensagens_por_vendedor, cobertura, temas, sugestoes };
 }

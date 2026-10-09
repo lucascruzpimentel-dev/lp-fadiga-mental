@@ -9,6 +9,8 @@ const shortDate = (s) => s.slice(8, 10) + '/' + s.slice(5, 7);
 const PRESETS = [7, 14, 30];
 const TONES = { good: 'border-emerald-300 bg-emerald-50', bad: 'border-red-300 bg-red-50', warn: 'border-amber-300 bg-amber-50', info: 'border-slate-200 bg-white' };
 const CAT = { suporte_acesso: 'Suporte / acesso', outro: 'Outros', evento: 'Evento', duvida_produto: 'Dúvida sobre produto', compra: 'Compra', pagamento_financeiro: 'Pagamento', reclamacao: 'Reclamação', cancelamento_reembolso: 'Cancelamento / reembolso' };
+const CATEG = { UTILITY: 'Utility', MARKETING: 'Marketing', AUTHENTICATION: 'Autenticação', SERVICE: 'Service (atendimento)' };
+const TIPO = { REGULAR: 'cobrada', FREE_CUSTOMER_SERVICE: 'grátis · janela de atendimento', FREE_ENTRY_POINT: 'grátis · entrada por anúncio' };
 const catName = (k) => CAT[k] || (k.charAt(0).toUpperCase() + k.slice(1).replace(/_/g, ' '));
 
 function Kpi({ label, value, hint, tone }) {
@@ -87,7 +89,55 @@ export default function WhatsApp() {
               </div>
             </Section>
 
-            <Section title="Custo de mensagens (templates)" sub="mensagens fora da janela de 24h são cobradas">
+            {c.fonte === 'meta' ? (
+              <Section title="Custo de mensagens" sub="volume real por categoria, informado pela Meta">
+                <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+                  <Kpi label="Mensagens (Meta)" value={int(c.meta.totais.volume)} />
+                  <Kpi label="Cobradas" value={int(c.meta.totais.cobradas)} tone="text-amber-600" />
+                  <Kpi label="Gratuitas" value={int(c.meta.totais.gratis)} hint="atendimento dentro da janela" tone="text-emerald-600" />
+                  <Kpi label="Custo" value={money(c.meta.totais.custo, c.moeda)} hint={`${brl(c.meta.totais.custo).replace(' ≈ ', '≈ ')}`.trim() || 'pelos preços da tabela da Meta'} />
+                </div>
+                <div className="mt-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+                  <ResponsiveContainer width="100%" height={260}>
+                    <ComposedChart data={c.meta.diario}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                      <XAxis dataKey="dia" tickFormatter={shortDate} fontSize={12} />
+                      <YAxis yAxisId="l" fontSize={12} />
+                      <YAxis yAxisId="r" orientation="right" fontSize={12} tickFormatter={(v) => `R$${v}`} />
+                      <Tooltip labelFormatter={shortDate} formatter={(v, n) => (n.startsWith('Custo') ? money(v, c.moeda) : v)} />
+                      <Legend />
+                      <Bar yAxisId="l" dataKey="gratis" name="Gratuitas" stackId="a" fill="#86efac" isAnimationActive={false} />
+                      <Bar yAxisId="l" dataKey="utility" name="Utility" stackId="a" fill="#93c5fd" isAnimationActive={false} />
+                      <Bar yAxisId="l" dataKey="service_cobrada" name="Service cobrada" stackId="a" fill="#fcd34d" isAnimationActive={false} />
+                      <Bar yAxisId="l" dataKey="marketing" name="Marketing" stackId="a" fill="#f87171" isAnimationActive={false} />
+                      <Line yAxisId="r" dataKey="custo" name={`Custo (${c.moeda})`} stroke="#334155" dot={false} isAnimationActive={false} />
+                    </ComposedChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="mt-3 overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
+                  <table className="w-full min-w-[560px] text-sm">
+                    <thead className="bg-slate-50 text-left text-xs uppercase text-slate-500">
+                      <tr>{['Categoria', 'Tipo', 'Mensagens', 'Preço por msg', 'Custo'].map((h, i) => <th key={h} className={`px-3 py-2 ${i > 1 ? 'text-right' : ''}`}>{h}</th>)}</tr>
+                    </thead>
+                    <tbody>
+                      {c.meta.detalhe.map((t) => (
+                        <tr key={`${t.categoria}${t.tipo}`} className="border-t border-slate-100">
+                          <td className="px-3 py-2 font-medium">{CATEG[t.categoria] || t.categoria}</td>
+                          <td className="px-3 py-2 text-slate-500">{TIPO[t.tipo] || t.tipo}</td>
+                          <td className="px-3 py-2 text-right">{int(t.volume)}</td>
+                          <td className="px-3 py-2 text-right">{t.cobrada ? money(t.preco, c.moeda) : '—'}</td>
+                          <td className="px-3 py-2 text-right font-semibold">{t.cobrada ? money(t.custo, c.moeda) : 'grátis'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-xs text-slate-500">
+                  Custo = mensagens cobradas × preço da tabela da Meta para o Brasil. Mensagens "Service cobrada" usam o preço de Service da tabela; confira na fatura da Meta.
+                </p>
+              </Section>
+            ) : (
+            <Section title="Custo de mensagens (estimativa)" sub="a Meta ainda não está sincronizada; valor entre utility e marketing">
               <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                 <Kpi label="Mensagens enviadas" value={int(c.totais.enviadas)} />
                 <Kpi label="Dentro da janela 24h" value={int(c.totais.janela)} hint="sem custo de template" tone="text-emerald-600" />
@@ -109,8 +159,39 @@ export default function WhatsApp() {
                 </ResponsiveContainer>
               </div>
             </Section>
+            )}
+
+            {data.templates && (
+              <Section title="Templates do WhatsApp" sub="lista sincronizada da Meta">
+                <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+                  <Kpi label="Templates" value={int(data.templates.total)} />
+                  <Kpi label="Aprovados" value={int(data.templates.por_status.APPROVED || 0)} tone="text-emerald-600" />
+                  <Kpi label="Utility" value={int(data.templates.aprovados_por_categoria.UTILITY || 0)} hint="aprovados" />
+                  <Kpi label="Marketing" value={int(data.templates.aprovados_por_categoria.MARKETING || 0)} hint="aprovados" />
+                </div>
+                <details className="mt-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+                  <summary className="cursor-pointer text-sm font-medium text-slate-600">Ver os {int(data.templates.aprovados.length)} templates aprovados</summary>
+                  <ul className="mt-3 max-h-80 divide-y divide-slate-100 overflow-y-auto text-sm">
+                    {data.templates.aprovados.map((t) => (
+                      <li key={`${t.nome}${t.idioma}`} className="flex items-center justify-between gap-3 py-1.5">
+                        <span className="break-all">{t.nome}</span>
+                        <span className="flex shrink-0 gap-2 text-xs">
+                          <span className={`rounded-full px-2 py-0.5 ${t.categoria === 'MARKETING' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>{CATEG[t.categoria] || t.categoria}</span>
+                          <span className="text-slate-400">{t.idioma}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              </Section>
+            )}
 
             <Section title="Avaliação dos vendedores" sub="baseada na análise de cada conversa">
+              <p className={`rounded-lg px-3 py-2 text-sm ${data.cobertura.whatsapp.pct < 50 ? 'bg-amber-50 text-amber-800' : 'bg-slate-100 text-slate-600'}`}>
+                Cobertura da avaliação: <b>{data.cobertura.whatsapp.analisadas.toLocaleString('pt-BR')} de {data.cobertura.whatsapp.conversas.toLocaleString('pt-BR')}</b> conversas de WhatsApp ({data.cobertura.whatsapp.pct}%)
+                e <b>{data.cobertura.instagram.analisadas.toLocaleString('pt-BR')} de {data.cobertura.instagram.conversas.toLocaleString('pt-BR')}</b> de Instagram ({data.cobertura.instagram.pct}%).
+                {data.cobertura.whatsapp.pct < 50 && ' As notas e percentuais abaixo valem só para as conversas analisadas, não para todo o atendimento.'}
+              </p>
               <div className="overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
                 <table className="w-full min-w-[820px] text-sm">
                   <thead className="bg-slate-50 text-left text-xs uppercase text-slate-500">
@@ -131,6 +212,33 @@ export default function WhatsApp() {
                   </tbody>
                 </table>
               </div>
+            </Section>
+
+            <Section title="Mensagens por vendedor" sub="contagem direta das mensagens enviadas, sem depender da análise">
+              <div className="overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-slate-200">
+                <table className="w-full min-w-[760px] text-sm">
+                  <thead className="bg-slate-50 text-left text-xs uppercase text-slate-500">
+                    <tr>{['Vendedor', 'Enviadas', 'Manuais', 'Automáticas', 'WhatsApp', 'Instagram', 'Conversas'].map((h, i) => <th key={h} className={`px-3 py-2 ${i ? 'text-right' : ''}`}>{h}</th>)}</tr>
+                  </thead>
+                  <tbody>
+                    {data.mensagens_por_vendedor.map((m) => (
+                      <tr key={m.id} className="border-t border-slate-100">
+                        <td className={`px-3 py-2 font-medium ${m.id === '_sem' ? 'text-slate-500' : ''}`}>{m.nome}</td>
+                        <td className="px-3 py-2 text-right font-semibold">{int(m.total)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.manuais)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.automaticas)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.whatsapp)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.instagram)}</td>
+                        <td className="px-3 py-2 text-right">{int(m.conversas)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-slate-500">
+                <b>Manuais</b> são mensagens escritas por uma pessoa; <b>automáticas</b> saem de fluxos e ficam no usuário que criou o fluxo.
+                A linha "Sem usuário registrado" reúne mensagens sem responsável identificado (por exemplo, enviadas direto pelo aplicativo do Instagram ou do celular).
+              </p>
             </Section>
 
             <Section title="Como melhorar a abordagem" sub="sugestões a partir do histórico de conversas">
