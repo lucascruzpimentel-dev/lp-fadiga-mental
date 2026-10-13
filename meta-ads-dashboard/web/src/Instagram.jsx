@@ -24,40 +24,50 @@ function pedir(q) {
 
 // Funil de verdade: cada etapa é um trapézio que se estreita até a etapa seguinte. A largura usa escala suavizada
 // (raiz), senão 613 contra 8 faria as últimas etapas sumirem; os números e as taxas são sempre os reais.
-const COR_FUNIL = [['#6366f1', '#7c83f3'], ['#7c83f3', '#8f7cf0'], ['#8f7cf0', '#a672ee'], ['#a672ee', '#34b78f'], ['#34b78f', '#10a37a'], ['#10a37a', '#0b8a68']];
-const largura = (n, max) => Math.max(22, Math.round(100 * Math.pow(Math.max(n, 0) / max, 0.42)));
+const COR_FUNIL = [['#6366f1', '#7479f2'], ['#7479f2', '#8b7bf0'], ['#8b7bf0', '#a572ee'], ['#a572ee', '#38b890'], ['#38b890', '#12a37b'], ['#12a37b', '#0a8665']];
+const largura = (n, max) => Math.max(20, Math.round(100 * Math.pow(Math.max(n, 0) / max, 0.45)));
 
 function Funil({ etapas }) {
   const max = Math.max(1, etapas[0]?.n || 1);
   const w = etapas.map((e) => largura(e.n, max));
+  // Onde o funil mais perde: a etapa com a menor taxa de passagem (a partir da segunda).
+  const pior = etapas.reduce((m, e, i) => (i > 0 && e.pct_anterior != null && (m < 0 || e.pct_anterior < etapas[m].pct_anterior) ? i : m), -1);
   return (
-    <div className="card break-avoid p-4 sm:p-5">
-      <div className="space-y-1">
+    <div className="card break-avoid p-5 sm:p-8">
+      <div className="space-y-1.5">
         {etapas.map((e, i) => {
-          const topo = w[i], base = i < etapas.length - 1 ? w[i + 1] : Math.max(14, w[i] - 8);
+          const topo = w[i], base = i < etapas.length - 1 ? w[i + 1] : Math.max(12, w[i] - 10);
           const a = (100 - topo) / 2, b = (100 - base) / 2;
           const [c1, c2] = COR_FUNIL[i] || COR_FUNIL[COR_FUNIL.length - 1];
-          const queda = e.pct_anterior != null && e.pct_anterior < 15;
+          const critica = i === pior && e.pct_anterior < 25;
+          const perdeu = i > 0 ? etapas[i - 1].n - e.n : 0;
           return (
-            <div key={e.id} title={e.dica} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)_auto] items-center gap-x-3 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)_7.5rem]">
+            <div key={e.id} title={e.dica} className="grid grid-cols-[minmax(0,6.5rem)_minmax(0,1fr)_4.5rem] items-center gap-x-3 sm:grid-cols-[13rem_minmax(0,1fr)_10.5rem] sm:gap-x-6">
               <div className="min-w-0">
-                <p className="text-sm font-semibold leading-tight text-slate-800">{e.rot}</p>
-                <p className="text-xs text-slate-400">{e.pct_total}% do total</p>
+                <p className="text-sm font-semibold leading-tight text-slate-800 sm:text-base">{e.rot}</p>
+                <p className="mt-0.5 text-xs text-slate-400">{e.pct_total}% do total</p>
               </div>
-              <div className="relative h-[60px]">
+              <div className="relative mx-auto h-[72px] w-full max-w-[720px]">
                 <div className="absolute inset-0" style={{ clipPath: `polygon(${a}% 0, ${100 - a}% 0, ${100 - b}% 100%, ${b}% 100%)`, background: `linear-gradient(180deg, ${c1}, ${c2})` }} />
-                <span className="num absolute inset-0 flex items-center justify-center text-xl font-bold text-white drop-shadow-sm">{e.n}</span>
+                <span className="num absolute inset-0 flex items-center justify-center text-2xl font-bold text-white drop-shadow-sm sm:text-[1.7rem]">{e.n}</span>
               </div>
               <div className="text-right">
-                {e.pct_anterior != null
-                  ? <span className={`num inline-block rounded-full px-2.5 py-1 text-xs font-bold ${queda ? 'bg-rose-50 text-rose-700' : 'bg-slate-100 text-slate-600'}`}>↓ {e.pct_anterior}%</span>
-                  : <span className="text-xs text-slate-400">ponto de partida</span>}
+                {i === 0 ? <span className="text-xs text-slate-400">ponto de partida</span> : (
+                  <>
+                    <span className={`num inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold sm:text-sm ${critica ? 'bg-rose-50 text-rose-700 ring-1 ring-rose-200' : 'bg-slate-100 text-slate-700'}`}>↓ {e.pct_anterior}%</span>
+                    <p className="num mt-1 hidden text-xs text-slate-400 sm:block">{perdeu > 0 ? `${perdeu} não avançaram` : 'todos avançaram'}</p>
+                    {critica && <p className="mt-0.5 hidden text-[11px] font-semibold uppercase tracking-wide text-rose-600 sm:block">maior perda</p>}
+                  </>
+                )}
               </div>
             </div>
           );
         })}
       </div>
-      <p className="pt-3 text-xs text-slate-400">A taxa ao lado de cada etapa é quanto passou da etapa de cima (vermelho: menos de 15%). A largura é suavizada para as etapas finais continuarem visíveis; os números são os reais. Qualificado e em condução vêm da conversa (o cliente falou de produto ou serviço, e a troca de mensagens). Reunião e venda vêm do estágio da oportunidade no HighLevel.</p>
+      <details className="no-print mt-5 text-xs text-slate-400">
+        <summary className="cursor-pointer font-semibold text-slate-500">Como ler este funil</summary>
+        <p className="mt-2 max-w-3xl leading-relaxed">A porcentagem ao lado de cada etapa é quanto passou da etapa de cima. A largura é suavizada para as etapas finais continuarem visíveis; os números são os reais. Qualificado vem da conversa (o cliente falou de produto ou serviço). Reunião e venda vêm do estágio da oportunidade no HighLevel.</p>
+      </details>
     </div>
   );
 }
@@ -239,11 +249,11 @@ export default function Instagram() {
             </ul>
           </section>
 
-          <section className="grid gap-6 lg:grid-cols-2">
+          <section className="space-y-8">
             <div className="space-y-3"><Secao icone="trend" titulo="Funil do social selling" dica={`${br(d.de)} a ${br(d.ate)}`} /><Funil etapas={d.etapas} /></div>
             <div className="space-y-3">
               <Secao icone="chart" titulo={d.por_hora ? 'Abordagens por hora' : 'Abordagens por dia'} dica={`Retorno mediano ${tempo(d.geral.mediana_retorno_min)} · ${d.geral.retorno_1h_pct ?? '—'}% em até 1 h`} />
-              <div className="card break-avoid p-4"><div className="h-64">
+              <div className="card break-avoid p-4 sm:p-6"><div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   {d.por_hora ? (
                     <BarChart data={d.por_hora} margin={{ top: 8, right: 8, left: -18, bottom: 0 }}>
