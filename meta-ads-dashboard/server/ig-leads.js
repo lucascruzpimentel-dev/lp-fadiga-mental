@@ -78,8 +78,14 @@ async function calcular() {
     const principal = lista[0] || null;
     const a = principal ? ia.get(principal.id) : null;
     const data = tipo === 'venda' && o.status === 'won' ? o.status_alterado_em : o.atualizada_em;
+    const quandoCrm = o.atualizada_em ? new Date(new Date(o.atualizada_em).getTime() - 3 * 3600e3).toISOString().slice(0, 10).split('-').reverse().slice(0, 2).join('/') : null;
+    const motivo = tipo === 'reuniao'
+      ? `No HighLevel, a oportunidade "${o.nome}" está na etapa "Reunião Agendada" do funil ${o.pipeline_nome}${quandoCrm ? ` (movida/atualizada em ${quandoCrm})` : ''}.`
+      : o.status === 'won'
+        ? `No HighLevel, a oportunidade "${o.nome}" (${o.pipeline_nome}) está marcada como GANHA.`
+        : `No HighLevel, a oportunidade "${o.nome}" está na etapa "Venda realizada" do funil ${o.pipeline_nome}${quandoCrm ? ` (atualizada em ${quandoCrm})` : ''}. O ganho ainda não foi marcado: o time precisa marcar a oportunidade como ganha para a venda entrar na receita.`;
     return {
-      id: o.id, tipo, observacao: extras.length ? `Também no CRM: ${extras.map((e) => `${e.pipeline_nome} › ${e.etapa_nome}${Number(e.valor) ? ` (R$ ${Math.round(Number(e.valor)).toLocaleString('pt-BR')})` : ''}`).join('; ')}` : null, contact_id: o.contact_id, contato: tituloDe(r, o.contact_id), perfil: r.nome && r.perfil ? r.perfil : null,
+      id: o.id, tipo, oportunidade: o.nome, motivo, observacao: extras.length ? `Também no CRM: ${extras.map((e) => `${e.pipeline_nome} › ${e.etapa_nome}${Number(e.valor) ? ` (R$ ${Math.round(Number(e.valor)).toLocaleString('pt-BR')})` : ''}`).join('; ')}` : null, contact_id: o.contact_id, contato: tituloDe(r, o.contact_id), perfil: r.nome && r.perfil ? r.perfil : null,
       telefone: k?.telefone || o.contato_telefone || null, email: k?.email || o.contato_email || null,
       etapa: o.etapa_nome, funil: o.pipeline_nome, status: o.status, valor: Number(o.valor) || 0,
       produto: produtoDaOportunidade(o) === 'prospeccao' ? null : produtoPorId(produtoDaOportunidade(o)).nome, dono: o.responsavel_id ? nameOf(o.responsavel_id) : 'Sem responsável',
@@ -95,7 +101,7 @@ async function calcular() {
   return {
     disponivel: true, mensagens_desde: primeira[0]?.enviada_em || null,
     kpis: {
-      reunioes: reunioes.length, vendas: vendas.length, receita: vendas.filter((v) => v.ganha).reduce((s, v) => s + v.valor, 0),
+      reunioes: reunioes.length, vendas: vendas.length, vendas_ganhas: vendas.filter((v) => v.ganha).length, receita: vendas.filter((v) => v.ganha).reduce((s, v) => s + v.valor, 0),
       vendas_sem_ganho: vendas.filter((v) => !v.ganha).length, sem_conversa: [...reunioes, ...vendas].filter((l) => !l.conversa_id).length,
     },
     reunioes, vendas,
