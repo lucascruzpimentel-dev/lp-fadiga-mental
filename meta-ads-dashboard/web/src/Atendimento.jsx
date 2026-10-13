@@ -9,13 +9,14 @@ import Equipe from './Equipe.jsx';
 import Desempenho from './Desempenho.jsx';
 import Instagram from './Instagram.jsx';
 import InstagramCasos from './InstagramCasos.jsx';
+import InstagramLeads from './InstagramLeads.jsx';
 import { Icon } from './ui.jsx';
 
 const CANAIS = [['geral', 'Geral', 'chart'], ['whatsapp', 'WhatsApp', 'whatsapp'], ['instagram', 'Instagram', 'chat']];
 const SUBS = {
   geral: [['dia', 'Visão do dia'], ['gerencia', 'Gerência'], ['equipe', 'Equipe']],
   whatsapp: [['dia', 'Dia'], ['casos', 'Casos analisados (IA)'], ['vendedor', 'Vendedor']],
-  instagram: [['dia', 'Dia'], ['funil', 'Social selling'], ['casos', 'Casos analisados (IA)']],
+  instagram: [['dia', 'Dia'], ['funil', 'Social selling'], ['leads', 'Reuniões e vendas'], ['casos', 'Casos analisados (IA)']],
 };
 
 const guardar = (k, v) => { try { localStorage.setItem(k, v); } catch { /* sem storage */ } };
@@ -59,6 +60,7 @@ export default function Atendimento() {
         <div className="mx-auto max-w-6xl space-y-6 px-4 pb-10 pt-4"><Desempenho quem={quem} setQuem={setQuem} /></div>
       )}
       {canal === 'instagram' && subAtual === 'funil' && <Instagram />}
+      {canal === 'instagram' && subAtual === 'leads' && <InstagramLeads />}
       {canal === 'instagram' && subAtual === 'casos' && <InstagramCasos />}
     </div>
   );
