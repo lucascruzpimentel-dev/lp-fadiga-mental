@@ -1,1 +1,58 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 10.5rem; }
+@media (max-width: 767px) { html { scroll-padding-top: 4rem; } }
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(1100px 460px at 8% -8%, rgb(224 231 255 / .65), transparent 70%),
+    radial-gradient(900px 420px at 100% 0%, rgb(255 228 236 / .55), transparent 70%),
+    #f8fafc;
+  background-attachment: fixed;
+}
+
+.num { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+
+/* Cartão base: borda fina, sombra suave em duas camadas. */
+.card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0 0 1px rgb(226 232 240 / .9), 0 1px 2px rgb(15 23 42 / .04), 0 14px 28px -18px rgb(15 23 42 / .22);
+}
+.card-hover { transition: transform .18s ease, box-shadow .18s ease; }
+.card-hover:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgb(165 180 252 / .9), 0 2px 4px rgb(15 23 42 / .05), 0 18px 32px -18px rgb(79 70 229 / .35); }
+
+/* Entrada suave das seções. */
+@keyframes fade-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.fade-up { animation: fade-up .42s cubic-bezier(.2, .7, .2, 1) both; }
+.d1 { animation-delay: .04s; } .d2 { animation-delay: .08s; } .d3 { animation-delay: .12s; } .d4 { animation-delay: .16s; }
+
+/* Esqueleto de carregamento. */
+@keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+.skeleton { background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 40%, #e2e8f0 60%); background-size: 300% 100%; animation: shimmer 1.4s linear infinite; border-radius: .9rem; }
+
+/* Anel da nota: anima o preenchimento. */
+.gauge-arc { transition: stroke-dashoffset .9s cubic-bezier(.2, .7, .2, 1); }
+
+/* Barra de progresso fina. */
+.meter { height: .5rem; border-radius: 999px; background: rgb(226 232 240 / .8); overflow: hidden; }
+.meter > i { display: block; height: 100%; border-radius: 999px; transition: width .7s cubic-bezier(.2, .7, .2, 1); }
+
+:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: .5rem; }
+::selection { background: #c7d2fe; }
+
+/* PDF / impressão: esconde o que é só de navegação e mantém as cores. */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .card { box-shadow: none !important; border: 1px solid #e2e8f0; }
+  .break-avoid { break-inside: avoid; }
+  .fade-up { animation: none !important; }
+}

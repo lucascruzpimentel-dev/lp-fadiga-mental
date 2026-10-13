@@ -1,15 +1,22 @@
 // Aba WhatsApp: lê SOMENTE o projeto Supabase de WhatsApp (WA_*).
 import { safeFetch } from './safe.js';
 import { custosMeta, resumoTemplates } from './wa-custos.js';
+import { usaSnapshot, consultarSnapshot } from './snapshot.js';
 
 const env = process.env;
 const URL_ = env.WA_SUPABASE_URL;
 const KEY = env.WA_SUPABASE_SERVICE_ROLE_KEY;
 const PAGE = 1000;
+// Tabelas criadas pelo painel (oportunidades do HighLevel, auditorias, análises de Instagram) podem ficar em um projeto Supabase
+// próprio (GHL_SUPABASE_URL / GHL_SUPABASE_SERVICE_ROLE_KEY). Sem essas variáveis, usam o mesmo projeto do WhatsApp.
+const NOVAS = new Set(['ghl_oportunidades', 'ghl_usuarios', 'ghl_contatos', 'ghl_sync', 'wa_auditorias', 'ig_analises']);
+const destino = (table) => (NOVAS.has(table) && env.GHL_SUPABASE_URL && env.GHL_SUPABASE_SERVICE_ROLE_KEY
+  ? { url: env.GHL_SUPABASE_URL, key: env.GHL_SUPABASE_SERVICE_ROLE_KEY } : { url: URL_, key: KEY });
 
 async function fetchPage(table, q, from) {
-  const r = await safeFetch(`${URL_}/rest/v1/${table}?${q}`, {
-    headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, Range: `${from}-${from + PAGE - 1}`, Prefer: 'count=exact' },
+  const d = destino(table);
+  const r = await safeFetch(`${d.url}/rest/v1/${table}?${q}`, {
+    headers: { apikey: d.key, Authorization: `Bearer ${d.key}`, Range: `${from}-${from + PAGE - 1}`, Prefer: 'count=exact' },
   }, table);
   if (!r.ok) throw new Error(`${table}: HTTP ${r.status}`);
   const total = Number((r.headers.get('content-range') || '').split('/')[1]);
@@ -18,7 +25,8 @@ async function fetchPage(table, q, from) {
 
 // Lê a tabela inteira (o PostgREST devolve no máximo 1.000 linhas por requisição);
 // as páginas seguintes são buscadas em paralelo quando o total é conhecido.
-async function sb(table, params = {}) {
+export async function sb(table, params = {}) {
+  if (usaSnapshot()) return consultarSnapshot(table, params);
   const q = new URLSearchParams();
   for (const [k, v] of Object.entries(params)) [].concat(v).forEach((x) => q.append(k, x));
   const first = await fetchPage(table, q, 0);
@@ -44,10 +52,12 @@ async function sb(table, params = {}) {
 // Nomes dos vendedores: WA_ATENDENTES='{"idDoUsuarioGHL":"Nome", ...}'
 let NAMES = {};
 try { NAMES = JSON.parse(env.WA_ATENDENTES || '{}'); } catch { /* ignora JSON inválido */ }
-const nameOf = (id) => NAMES[id] || `Vendedor ${id.slice(0, 4)}…`;
+// Nomes: primeiro a variável WA_ATENDENTES, depois a tabela ghl_usuarios (preenchida a partir do HighLevel).
+export const NOMES_GHL = { 'sem-responsavel': 'Sem responsável' };
+export const nameOf = (id) => NAMES[id] || NOMES_GHL[id] || `Vendedor ${id.slice(0, 4)}…`;
 
 // Temas recorrentes nos "pontos de melhoria" gerados pela análise de cada conversa.
-const THEMES = [
+export const THEMES = [
   { key: 'tempo', re: /primeira resposta|demor|tempo de resposta|responder mais r|rapidez|lent/i, label: 'Tempo de resposta',
     tip: 'Responda o primeiro contato em poucos minutos: quem espera esfria. Use respostas rápidas e alertas de conversa nova.' },
   { key: 'followup', re: /retom|follow|acompanh|insist|reengaj|sem resposta/i, label: 'Follow-up / retomada',
@@ -63,7 +73,7 @@ const THEMES = [
   { key: 'clareza', re: /clare|objetiv|resum|detalh|confus|incomplet|informa/i, label: 'Clareza das informações',
     tip: 'Seja objetivo: respostas curtas, uma ideia por mensagem e informações completas (data, local, valor) logo de início.' },
 ];
-const themeOf = (text) => THEMES.find((t) => t.re.test(text))?.key || 'outros';
+export const themeOf = (text) => THEMES.find((t) => t.re.test(text))?.key || 'outros';
 
 const avg = (a) => (a.length ? a.reduce((s, x) => s + x, 0) / a.length : null);
 const r1 = (n) => (n == null ? null : +n.toFixed(1));

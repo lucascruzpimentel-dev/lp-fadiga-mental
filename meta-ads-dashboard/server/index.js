@@ -3,6 +3,12 @@ import { safeFetch } from './safe.js';
 import { requireAuth, login, logout, session } from './auth.js';
 import { mockRows, mockLeads } from './mock.js';
 import { whatsappReport } from './whatsapp.js';
+import { atendimentos, conversa, hojeBrt } from './atendimentos.js';
+import { equipe } from './equipe.js';
+import { desempenho, buscar } from './desempenho.js';
+import { gerencia } from './gerencia.js';
+import { instagram } from './instagram.js';
+import { visaoDia } from './dia.js';
 
 const env = process.env;
 // O dashboard NÃO chama a API do Meta: lê só o Supabase de ANÚNCIOS (META_*), onde um processo
@@ -132,11 +138,71 @@ app.post('/api/logout', logout);
 app.get('/api/session', session);
 app.use('/api/report', requireAuth);
 app.use('/api/whatsapp', requireAuth);
+app.use('/api/atendimentos', requireAuth);
+app.use('/api/equipe', requireAuth);
+app.use('/api/desempenho', requireAuth);
+app.use('/api/gerencia', requireAuth);
+app.use('/api/oportunidades', requireAuth);
+app.use('/api/instagram', requireAuth);
+app.use('/api/dia', requireAuth);
 
 app.get('/api/whatsapp', async (req, res) => {
   const until = req.query.until || iso(new Date());
   const since = req.query.since || iso(new Date(Date.now() - 6 * 864e5));
   try { res.json(await whatsappReport(since, until)); }
+  catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/atendimentos', async (req, res) => {
+  const dia = /^\d{4}-\d{2}-\d{2}$/.test(req.query.dia || '') ? req.query.dia : hojeBrt();
+  try { res.json(await atendimentos(dia)); }
+  catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/equipe', async (req, res) => {
+  const dias = [7, 14, 30, 60, 90].includes(Number(req.query.dias)) ? Number(req.query.dias) : 30;
+  try { res.json(await equipe(dias)); }
+  catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/desempenho', async (req, res) => {
+  const data = (v) => /^\d{4}-\d{2}-\d{2}$/.test(v || '');
+  const ate = data(req.query.ate) ? req.query.ate : hojeBrt();
+  const de = data(req.query.de) ? req.query.de : new Date(new Date(ate + 'T12:00:00Z').getTime() - 29 * 864e5).toISOString().slice(0, 10);
+  if (de > ate || (new Date(ate) - new Date(de)) / 864e5 > 400) return res.status(400).json({ error: 'período inválido' });
+  const quem = /^[\w-]{1,80}$/.test(req.query.vendedor || '') ? req.query.vendedor : 'time';
+  const agrupar = ['dia', 'semana', 'mes'].includes(req.query.agrupar) ? req.query.agrupar : 'dia';
+  try { res.json(await desempenho({ quem, de, ate, agrupar })); }
+  catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/gerencia', async (req, res) => {
+  const dias = [7, 14, 30, 60, 90].includes(Number(req.query.dias)) ? Number(req.query.dias) : 30;
+  try { res.json(await gerencia(dias)); }
+  catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/oportunidades', async (req, res) => {
+  const quem = /^[\w-]{1,80}$/.test(req.query.vendedor || '') ? req.query.vendedor : 'time';
+  const termo = String(req.query.q || '').slice(0, 60);
+  try { res.json({ resultados: await buscar({ quem, termo }) }); }
+  catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/instagram', async (req, res) => {
+  const dias = [7, 14, 30, 60, 90].includes(Number(req.query.dias)) ? Number(req.query.dias) : 30;
+  try { res.json(await instagram(dias)); }
+  catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/dia', async (req, res) => {
+  const dia = /^\d{4}-\d{2}-\d{2}$/.test(req.query.dia || '') ? req.query.dia : hojeBrt();
+  try { res.json(await visaoDia(dia)); }
+  catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/atendimentos/conversa', async (req, res) => {
+  try { res.json(await conversa(String(req.query.id || ''))); }
   catch (e) { res.status(502).json({ error: e.message }); }
 });
 
