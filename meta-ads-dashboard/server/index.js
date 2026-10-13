@@ -9,6 +9,7 @@ import { desempenho, buscar } from './desempenho.js';
 import { gerencia } from './gerencia.js';
 import { instagram } from './instagram.js';
 import { visaoDia } from './dia.js';
+import { casosInstagram } from './ig-casos.js';
 
 const env = process.env;
 // O dashboard NÃO chama a API do Meta: lê só o Supabase de ANÚNCIOS (META_*), onde um processo
@@ -145,6 +146,7 @@ app.use('/api/gerencia', requireAuth);
 app.use('/api/oportunidades', requireAuth);
 app.use('/api/instagram', requireAuth);
 app.use('/api/dia', requireAuth);
+app.use('/api/instagram-casos', requireAuth);
 
 app.get('/api/whatsapp', async (req, res) => {
   const until = req.query.until || iso(new Date());
@@ -200,6 +202,20 @@ app.get('/api/instagram', async (req, res) => {
     }
     const dias = [1, 7, 14, 30, 60, 90].includes(Number(req.query.dias)) ? Number(req.query.dias) : 30;
     res.json(await instagram({ dias }));
+  } catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/instagram-casos', async (req, res) => {
+  const data = (v) => /^\d{4}-\d{2}-\d{2}$/.test(v || '');
+  const hoje = hojeBrt();
+  try {
+    if (data(req.query.de) && data(req.query.ate)) {
+      const { de, ate } = req.query;
+      if (de > ate || ate > hoje || (Date.parse(ate) - Date.parse(de)) / 864e5 > 60) return res.status(400).json({ error: 'período inválido (até 60 dias)' });
+      return res.json(await casosInstagram({ de, ate }));
+    }
+    const dias = [1, 7, 14, 30].includes(Number(req.query.dias)) ? Number(req.query.dias) : 7;
+    res.json(await casosInstagram({ dias }));
   } catch (e) { res.status(502).json({ error: e.message }); }
 });
 

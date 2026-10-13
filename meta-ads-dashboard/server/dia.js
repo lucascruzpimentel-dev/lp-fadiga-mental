@@ -83,14 +83,18 @@ async function calcular(dia) {
   const ateTexto = dia > hoje ? hoje : dia;
 
   // Tudo em paralelo: estrutura das mensagens, textos do cliente do dia, análises da IA e contatos.
-  const [wa, ig, textosWa, textosIg, leves, completas, ctx] = await Promise.all([
+  const [wa, ig, textosWa, textosIg, leves, completas, ctx, igAnalises] = await Promise.all([
     estrutura('WhatsApp', de, ate), estrutura('IG', de, ate),
     textosDoCliente('WhatsApp', dia, ateTexto), textosDoCliente('IG', dia, ateTexto),
     sb('wa_analises', { select: 'conversation_id,inicio,resolvido,nota,oportunidade_venda,alerta', inicio: `gte.${de}T03:00:00Z`, order: 'inicio.desc' }).catch(() => []),
     sb('wa_analises', { select: 'conversation_id,inicio,categoria,resolvido,nota,alerta,oportunidade_venda,sentimento,resumo,motivo,proxima_acao,pontos_fortes,pontos_melhoria', inicio: `gte.${addDias(dia, -2)}T03:00:00Z`, order: 'inicio.desc' }).catch(() => []),
     carregarContatos(),
+    sb('ig_analises', { select: 'conversation_id,ultima_msg_em,etapa,qualificado,interesse_produto,objecao,personalizacao,qualificacao,convite,followup,nota,resumo,proxima_acao,mensagem_sugerida,pontos_melhoria', ultima_msg_em: `gte.${addDias(dia, -2)}T03:00:00Z`, order: 'ultima_msg_em.desc' }).catch(() => []),
   ]);
   const { contatos } = ctx;
+  const iaIg = new Map();
+  for (const a of igAnalises) if (!iaIg.has(a.conversation_id)) iaIg.set(a.conversation_id, a);
+  const ETAPAS_IG = { respondeu: 'Só respondeu', conversa: 'Conversa sem produto', qualificado: 'Qualificado', convite_feito: 'Convite feito', agendado: 'Agendado', recusou: 'Recusou', esfriou: 'Esfriou' };
   const fimDados = [wa, ig].flatMap((l) => (l.length ? [Date.parse(l[l.length - 1].enviada_em)] : [])).reduce((a, b) => Math.max(a, b), 0) || Date.now();
   const agora = usaSnapshot() ? fimDados : Date.now();
 
@@ -161,7 +165,8 @@ async function calcular(dia) {
     // Casos do dia: todo cliente que escreveu, com o que a IA já disse quando existe.
     const casos = hojeRs.filter((r) => r.entradaT != null).map((r) => {
       const ct = contatos.get(r.contact_id); const rot = rotular(ct?.nome);
-      const a = iaCompleta.get(r.id);
+      const a = r.canal === 'instagram' ? null : iaCompleta.get(r.id);
+      const g = r.canal === 'instagram' ? iaIg.get(r.id) : null;
       const dono = r.respondedor || ct?.responsavel_id || SEM_ID;
       return {
         id: r.id, canal: r.canal, contato: tituloDe(rot, r.contact_id), telefone: ct?.telefone || null, email: ct?.email || null,
@@ -170,7 +175,7 @@ async function calcular(dia) {
         primeira_resposta_min: r.pessoaMin != null ? Math.round(r.pessoaMin) : null,
         espera_min: r.esperando ? Math.round((agora - Date.parse(r.ultimaEm)) / MIN) : null,
         ultima_msg: ultimoTexto.has(r.id) ? limparTexto(ultimoTexto.get(r.id)) : null,
-        ia: a ? { nota: a.nota, resolvido: !!a.resolvido, categoria: a.categoria, sentimento: a.sentimento, alerta: a.alerta && a.alerta !== 'nenhum' ? a.alerta : null, oportunidade: !!a.oportunidade_venda, resumo: a.resumo, motivo: a.motivo, proxima_acao: a.proxima_acao || null, fortes: a.pontos_fortes || [], melhorias: a.pontos_melhoria || [] } : null,
+        ia: g ? { tipo: 'ig', nota: g.nota, etapa: g.etapa, etapa_rot: ETAPAS_IG[g.etapa] || g.etapa, qualificado: !!g.qualificado, produto: g.interesse_produto, objecao: g.objecao, personalizacao: g.personalizacao, qualificacao: g.qualificacao, convite: g.convite, followup: g.followup, resumo: g.resumo, proxima_acao: g.proxima_acao, mensagem_sugerida: g.mensagem_sugerida, melhorias: g.pontos_melhoria || [] } : a ? { nota: a.nota, resolvido: !!a.resolvido, categoria: a.categoria, sentimento: a.sentimento, alerta: a.alerta && a.alerta !== 'nenhum' ? a.alerta : null, oportunidade: !!a.oportunidade_venda, resumo: a.resumo, motivo: a.motivo, proxima_acao: a.proxima_acao || null, fortes: a.pontos_fortes || [], melhorias: a.pontos_melhoria || [] } : null,
       };
     }).sort((a, b) => (b.esperando - a.esperando) || ((b.espera_min || 0) - (a.espera_min || 0)) || b.hora.localeCompare(a.hora));
 

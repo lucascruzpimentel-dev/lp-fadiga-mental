@@ -62,6 +62,8 @@ function resumirConversa(id, ms, textoCliente, agora) {
     n_cliente: ins.length, n_equipe: humanas.length,
     respondeu: ins.length > 0, conversou: ins.length >= 2,
     obteve_resposta: ins.length > 0 && teveRetorno, // o cliente falou e uma pessoa da equipe respondeu depois
+    primeira_espera_min: retornos.length ? Math.round(retornos[0].espera / 60e3) : null,
+    primeira_fala_cliente: ins.length ? ins[0].enviada_em : null,
     retornos: retornos.filter((r) => noExpediente(r.t0)),
     aguardando_desde: pendente, aguardando_h: pendente == null ? null : (agora - pendente) / H,
     texto_cliente: textoCliente || '',
@@ -70,34 +72,17 @@ function resumirConversa(id, ms, textoCliente, agora) {
   };
 }
 
-// Período: { dias } (termina hoje) ou { de, ate } (datas escolhidas, como "ontem" ou um intervalo qualquer).
-const cache = new Map();
-export async function instagram({ dias, de, ate } = {}) {
-  const hoje = hojeBrt();
-  if (!de || !ate) { ate = hoje; de = addDias(ate, -((dias || 30) - 1)); }
-  const chave = `${de}|${ate}`;
-  const c = cache.get(chave);
-  if (c && Date.now() - c.t < (ate >= hoje ? 60e3 : 5 * 60e3)) return c.p;
-  const n = Math.round((Date.parse(ate + 'T12:00:00Z') - Date.parse(de + 'T12:00:00Z')) / 864e5) + 1;
-  const p = calcular(de, ate, n);
-  p.catch(() => { if (cache.get(chave)?.p === p) cache.delete(chave); });
-  cache.set(chave, { t: Date.now(), p });
-  if (cache.size > 30) cache.delete(cache.keys().next().value);
-  return p;
-}
-
-async function calcular(de, ate, dias) {
-  if (usaMock()) return { mock: true, dias, de, ate, disponivel: false, motivo: 'Sem acesso ao banco de WhatsApp (modo de exemplo).' };
-
+// Conversas de DM do período, já com contato, responsável, estágio no CRM e sinais de qualificação. Compartilhada pelo resumo e pela lista de casos.
+export async function prepararConversas(de, ate) {
   // Tudo em paralelo: estrutura das DMs, texto do cliente, contatos e oportunidades.
   const [msgs, textos, ctx] = await Promise.all([estrutura('IG', de, ate), textosDoCliente('IG', de, ate), carregarContatos()]);
-  const { contatos, opps, porContato } = ctx;
+  const { contatos, porContato } = ctx;
   const fim = msgs.length ? Date.parse(msgs[msgs.length - 1].enviada_em) : Date.now();
   // Quem está em aberto é medido no fim do período escolhido (ontem, por exemplo, é quem ficou sem resposta até o fim de ontem).
   const agora = Math.min(usaSnapshot() ? fim : Date.now(), Date.parse(addDias(ate, 1) + 'T03:00:00Z'));
 
-  const textoPorConv = new Map();
-  for (const t of textos) textoPorConv.set(t.conversation_id, (textoPorConv.get(t.conversation_id) || '') + ' ' + sa(t.corpo));
+  const textoPorConv = new Map(), ultimaFalaCliente = new Map();
+  for (const t of textos) { textoPorConv.set(t.conversation_id, (textoPorConv.get(t.conversation_id) || '') + ' ' + sa(t.corpo)); ultimaFalaCliente.set(t.conversation_id, t.corpo); }
   const porConv = new Map();
   for (const m of msgs) { if (!m.conversation_id) continue; (porConv.get(m.conversation_id) || porConv.set(m.conversation_id, []).get(m.conversation_id)).push(m); }
   const convs = [...porConv].map(([id, ms]) => resumirConversa(id, ms, textoPorConv.get(id), agora));
@@ -122,6 +107,30 @@ async function calcular(de, ate, dias) {
     c.telefone = k?.telefone || o?.contato_telefone || null;
     c.email = k?.email || o?.contato_email || null;
   }
+  return { convs, msgs, ctx, agora, ultimaFalaCliente };
+}
+
+// Período: { dias } (termina hoje) ou { de, ate } (datas escolhidas, como "ontem" ou um intervalo qualquer).
+const cache = new Map();
+export async function instagram({ dias, de, ate } = {}) {
+  const hoje = hojeBrt();
+  if (!de || !ate) { ate = hoje; de = addDias(ate, -((dias || 30) - 1)); }
+  const chave = `${de}|${ate}`;
+  const c = cache.get(chave);
+  if (c && Date.now() - c.t < (ate >= hoje ? 60e3 : 5 * 60e3)) return c.p;
+  const n = Math.round((Date.parse(ate + 'T12:00:00Z') - Date.parse(de + 'T12:00:00Z')) / 864e5) + 1;
+  const p = calcular(de, ate, n);
+  p.catch(() => { if (cache.get(chave)?.p === p) cache.delete(chave); });
+  cache.set(chave, { t: Date.now(), p });
+  if (cache.size > 30) cache.delete(cache.keys().next().value);
+  return p;
+}
+
+async function calcular(de, ate, dias) {
+  if (usaMock()) return { mock: true, dias, de, ate, disponivel: false, motivo: 'Sem acesso ao banco de WhatsApp (modo de exemplo).' };
+
+  const { convs, msgs, ctx, agora, ultimaFalaCliente } = await prepararConversas(de, ate);
+  const { opps, porContato } = ctx;
 
   const retornosMin = (l) => l.flatMap((c) => c.retornos.map((r) => r.espera / 60e3));
   const funil = (l) => {

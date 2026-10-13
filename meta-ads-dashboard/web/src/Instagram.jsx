@@ -4,25 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import { getJson } from './api.js';
 import { ResponsiveContainer, AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { Icon, Avatar, Stat, Secao, Esqueleto, CopiarCampo, Conversa } from './ui.jsx';
+import { SeletorPeriodo, usePeriodo, consulta, br, nomeDia } from './periodo.jsx';
 
-const PERIODOS = [['hoje', 'Hoje'], ['ontem', 'Ontem'], ['7', '7 dias'], ['14', '14 dias'], ['30', '30 dias'], ['60', '60 dias'], ['90', '90 dias'], ['custom', 'Escolher datas']];
-const iso = (d) => d.toISOString().slice(0, 10);
-const hojeBrt = () => iso(new Date(Date.now() - 3 * 3600e3));
-const addDias = (d, n) => iso(new Date(new Date(d + 'T12:00:00Z').getTime() + n * 864e5));
-const br = (d) => d.slice(8, 10) + '/' + d.slice(5, 7);
-const SEMANA = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
-const nomeDia = (d) => `${SEMANA[new Date(d + 'T12:00:00Z').getUTCDay()]}, ${br(d)}`;
-// Período -> parâmetros da consulta ao servidor.
-const consulta = (p) => {
-  if (p.tipo === 'hoje') return 'dias=1';
-  if (p.tipo === 'ontem') { const o = addDias(hojeBrt(), -1); return `de=${o}&ate=${o}`; }
-  if (p.tipo === 'custom') return `de=${p.de}&ate=${p.ate}`;
-  return `dias=${p.tipo}`;
-};
-const periodoInicial = () => {
-  try { const x = JSON.parse(localStorage.getItem('ig_periodo')); if (x?.tipo) return x; } catch { /* sem storage */ }
-  return { tipo: '30' };
-};
+const PERMITIDOS = ['hoje', 'ontem', '7', '14', '30', '60', '90', 'custom'];
 const brl = (n) => (n == null ? '—' : n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }));
 const tempo = (min) => (min == null ? '—' : min >= 1440 ? `${Math.round(min / 144) / 10} dias` : min >= 60 ? `${Math.round(min / 6) / 10} h` : `${min} min`);
 const TOM = { atencao: 'border-l-amber-400 bg-amber-50/60', info: 'border-l-sky-400 bg-sky-50/50' };
@@ -80,8 +64,6 @@ function Funil({ etapas }) {
 
 // Faixa escura do topo: período, os quatro números que respondem "o que aconteceu com as pessoas" e a barra de resposta.
 function Topo({ d, periodo, setPeriodo, carregando, onAberto }) {
-  const hoje = hojeBrt();
-  const escolher = (k) => setPeriodo(k === 'custom' ? { tipo: 'custom', de: periodo.de || addDias(hoje, -6), ate: periodo.ate || hoje } : { tipo: k });
   const g = d?.geral;
   const total = g ? Math.max(1, g.interagiram) : 1;
   const Num = ({ rotulo, valor, linha1, linha2, cor, onClick }) => {
@@ -107,20 +89,7 @@ function Topo({ d, periodo, setPeriodo, carregando, onAberto }) {
             <p className="text-sm text-slate-300">{d ? (d.de === d.ate ? nomeDia(d.de) : `${br(d.de)} a ${br(d.ate)} · ${d.dias} dias`) : 'Carregando…'} · pessoas que a equipe procurou e como elas reagiram</p>
           </div>
         </div>
-        <div className="no-print inline-flex flex-wrap gap-1 rounded-xl bg-white/10 p-1" role="tablist" aria-label="Período">
-          {PERIODOS.map(([k, rot]) => (
-            <button key={k} role="tab" aria-selected={periodo.tipo === k} onClick={() => escolher(k)} className={`rounded-lg px-3 py-1.5 text-sm font-medium transition ${periodo.tipo === k ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-200 hover:bg-white/10'}`}>{rot}</button>
-          ))}
-        </div>
-        {periodo.tipo === 'custom' && (
-          <div className="no-print relative flex w-full flex-wrap items-center gap-2 rounded-xl bg-white/10 p-2 text-sm">
-            <span className="text-slate-300">De</span>
-            <input type="date" value={periodo.de} max={periodo.ate || hoje} onChange={(e) => e.target.value && setPeriodo({ ...periodo, de: e.target.value })} className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-white [color-scheme:dark]" />
-            <span className="text-slate-300">até</span>
-            <input type="date" value={periodo.ate} min={periodo.de} max={hoje} onChange={(e) => e.target.value && setPeriodo({ ...periodo, ate: e.target.value })} className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-white [color-scheme:dark]" />
-            {[['7 dias', 6], ['30 dias', 29]].map(([rot, n]) => <button key={rot} onClick={() => setPeriodo({ tipo: 'custom', de: addDias(periodo.ate || hoje, -n), ate: periodo.ate || hoje })} className="rounded-lg bg-white/10 px-2.5 py-1 text-slate-200 hover:bg-white/20">últimos {rot}</button>)}
-          </div>
-        )}
+        <SeletorPeriodo periodo={periodo} setPeriodo={setPeriodo} permitidos={PERMITIDOS} escuro />
       </div>
 
       {!g ? (
@@ -232,7 +201,7 @@ function Vendedores({ linhas }) {
 }
 
 export default function Instagram() {
-  const [periodo, setPeriodo] = useState(periodoInicial);
+  const [periodo, setPeriodo] = usePeriodo(PERMITIDOS);
   const [d, setD] = useState(null);
   const [erro, setErro] = useState('');
   const [carregando, setCarregando] = useState(true);
@@ -241,7 +210,6 @@ export default function Instagram() {
     let vivo = true;
     setCarregando(true); setErro('');
     pedir(consulta(periodo)).then((x) => vivo && setD(x)).catch((e) => vivo && setErro(e.message)).finally(() => vivo && setCarregando(false));
-    try { localStorage.setItem('ig_periodo', JSON.stringify(periodo)); } catch { /* sem storage */ }
     return () => { vivo = false; };
   }, [periodo]);
 

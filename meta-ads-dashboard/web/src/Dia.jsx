@@ -7,6 +7,7 @@ import { getJson } from './api.js';
 import { ResponsiveContainer, ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
 import { Icon, Avatar, Stat, Secao, Esqueleto, CopiarCampo, Conversa, Gaveta, DeltaChip } from './ui.jsx';
 import { CAT, ALERTA, notaClass } from './shared.jsx';
+import { BlocoAnaliseIG } from './InstagramCasos.jsx';
 
 const iso = (d) => d.toISOString().slice(0, 10);
 const hojeBrt = () => iso(new Date(Date.now() - 3 * 3600e3));
@@ -39,7 +40,7 @@ const FILTROS = [
   ['auto', 'Só automação', (c) => c.estado === 'automacao'],
   ['pessoa', 'Respondidos por pessoa', (c) => c.estado === 'pessoa'],
   ['oport', 'Oportunidades (IA)', (c) => c.ia?.oportunidade && !c.ia?.resolvido],
-  ['aberto', 'Não resolvidos (IA)', (c) => c.ia && !c.ia.resolvido],
+  ['aberto', 'Não resolvidos (IA)', (c) => c.ia && c.ia.tipo !== 'ig' && !c.ia.resolvido],
   ['alerta', 'Com alerta (IA)', (c) => !!c.ia?.alerta],
   ['baixa', 'Nota baixa (≤ 5)', (c) => c.ia?.nota != null && c.ia.nota <= 5],
 ];
@@ -188,7 +189,7 @@ function Detalhe({ c, onClose }) {
           <span className="rounded-full bg-slate-100 px-2.5 py-1 text-slate-600">{c.mensagens_cliente} do cliente · {c.enviadas} da equipe · {c.automacao} automáticas</span>
         </div>
 
-        {ia ? (
+        {ia?.tipo === 'ig' ? <BlocoAnaliseIG ia={ia} /> : ia ? (
           <div className="space-y-3 rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
             <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-slate-400"><Icon name="sparkles" className="h-4 w-4" /> Análise da IA</p>
             <div className="flex flex-wrap gap-1.5 text-xs">
@@ -250,7 +251,8 @@ function Casos({ casos, mostrarCanal, filtro, setFiltro, onAbrir }) {
                   <div className="flex flex-wrap gap-1 text-xs">
                     <span className={`rounded-full px-2 py-0.5 font-semibold ${ESTADO[c.estado][1]}`}>{ESTADO[c.estado][0]}</span>
                     {c.esperando && <span className="num rounded-full bg-amber-50 px-2 py-0.5 font-semibold text-amber-700">espera {tempo(c.espera_min)}</span>}
-                    {c.ia && <span className={`rounded-full px-2 py-0.5 font-semibold ${c.ia.resolvido ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-600'}`}>{c.ia.resolvido ? 'Resolvido' : 'Em aberto'}</span>}
+                    {c.ia && c.ia.tipo !== 'ig' && <span className={`rounded-full px-2 py-0.5 font-semibold ${c.ia.resolvido ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-600'}`}>{c.ia.resolvido ? 'Resolvido' : 'Em aberto'}</span>}
+                    {c.ia?.tipo === 'ig' && <span className="rounded-full bg-indigo-50 px-2 py-0.5 font-semibold text-indigo-700">{c.ia.etapa_rot}</span>}
                     {c.ia?.oportunidade && !c.ia.resolvido && <span className="rounded-full bg-indigo-50 px-2 py-0.5 font-semibold text-indigo-700">Oportunidade</span>}
                     {c.ia?.alerta && <span className="rounded-full bg-rose-50 px-2 py-0.5 font-semibold text-rose-700">{ALERTA[c.ia.alerta] || c.ia.alerta}</span>}
                   </div>
