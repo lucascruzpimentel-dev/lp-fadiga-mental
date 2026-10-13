@@ -12,7 +12,7 @@ const sa = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLow
 const mediana = (a) => { const s = [...a].sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : null; };
 
 // Funis do social selling no CRM (o principal é "Social Selling - Geral"; os demais têm [IG] ou "Social" no nome).
-const ehSocial = (o) => /social|\[ig\]/i.test(o.pipeline_nome || '');
+export const ehSocial = (o) => /social|\[ig\]/i.test(o.pipeline_nome || '');
 
 // Estágio do lead, do mais frio ao mais quente. Reunião só conta se o lead já foi qualificado (regra do gerente).
 export const ESTAGIOS = [
@@ -22,7 +22,7 @@ export const ESTAGIOS = [
   { n: 3, id: 'reuniao', rot: 'Reunião agendada' },
   { n: 4, id: 'venda', rot: 'Venda' },
 ];
-function estagioDe(o) {
+export function estagioDe(o) {
   if (o.status === 'won') return 4;
   const e = sa(o.etapa_nome);
   if (/venda realizada/.test(e)) return 4;

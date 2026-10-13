@@ -10,6 +10,7 @@ import { gerencia } from './gerencia.js';
 import { instagram } from './instagram.js';
 import { visaoDia } from './dia.js';
 import { casosInstagram } from './ig-casos.js';
+import { leadsInstagram } from './ig-leads.js';
 
 const env = process.env;
 // O dashboard NÃO chama a API do Meta: lê só o Supabase de ANÚNCIOS (META_*), onde um processo
@@ -147,6 +148,7 @@ app.use('/api/oportunidades', requireAuth);
 app.use('/api/instagram', requireAuth);
 app.use('/api/dia', requireAuth);
 app.use('/api/instagram-casos', requireAuth);
+app.use('/api/instagram-leads', requireAuth);
 
 app.get('/api/whatsapp', async (req, res) => {
   const until = req.query.until || iso(new Date());
@@ -217,6 +219,11 @@ app.get('/api/instagram-casos', async (req, res) => {
     const dias = [1, 7, 14, 30].includes(Number(req.query.dias)) ? Number(req.query.dias) : 7;
     res.json(await casosInstagram({ dias }));
   } catch (e) { res.status(502).json({ error: e.message }); }
+});
+
+app.get('/api/instagram-leads', async (req, res) => {
+  try { res.json(await leadsInstagram()); }
+  catch (e) { res.status(502).json({ error: e.message }); }
 });
 
 app.get('/api/dia', async (req, res) => {
