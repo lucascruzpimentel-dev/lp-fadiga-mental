@@ -23,6 +23,7 @@ export function consultarSnapshot(tabela, params = {}) {
       else if (op === 'gte') rows = rows.filter((r) => r[col] != null && comoValor(r[col]) >= comoValor(alvo));
       else if (op === 'lte') rows = rows.filter((r) => r[col] != null && comoValor(r[col]) <= comoValor(alvo));
       else if (op === 'not' && alvo === 'is.null') rows = rows.filter((r) => r[col] != null);
+      else if (op === 'in') { const set = new Set(alvo.replace(/^\(|\)$/g, '').split(',')); rows = rows.filter((r) => set.has(String(r[col]))); }
     }
   }
   if (params.order) {
