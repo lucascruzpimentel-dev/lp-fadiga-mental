@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import MetaAds from './MetaAds.jsx';
 import WhatsApp from './WhatsApp.jsx';
+import Atendimento from './Atendimento.jsx';
 import Login from './Login.jsx';
 
-const TABS = [['meta', 'Meta Ads'], ['wa', 'WhatsApp']];
+const TABS = [['meta', 'Meta Ads'], ['atend', 'Atendimento'], ['wa', 'WhatsApp · custos']];
 
 export default function App() {
   const [authed, setAuthed] = useState(null); // null = verificando
@@ -22,18 +23,18 @@ export default function App() {
   if (!authed) return <Login onDone={() => setAuthed(true)} />;
   return (
     <>
-      <nav className="sticky top-0 z-10 border-b border-slate-200 bg-white/90 backdrop-blur">
+      <nav className="no-print sticky top-0 z-10 border-b border-slate-200/70 bg-white/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl gap-1 px-4">
           {TABS.map(([id, label]) => (
             <button key={id} onClick={() => pick(id)}
-              className={`border-b-2 px-4 py-3 text-sm font-medium ${tab === id ? 'border-blue-600 text-blue-700' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>
+              className={`border-b-2 px-4 py-3 text-sm font-semibold transition ${tab === id ? 'border-indigo-600 text-indigo-700' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>
               {label}
             </button>
           ))}
           <button onClick={logout} className="ml-auto px-3 py-3 text-sm text-slate-500 hover:text-slate-800">Sair</button>
         </div>
       </nav>
-      {tab === 'meta' ? <MetaAds /> : <WhatsApp />}
+      {tab === 'meta' ? <MetaAds /> : tab === 'atend' ? <Atendimento /> : <WhatsApp />}
     </>
   );
 }
