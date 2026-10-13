@@ -190,9 +190,17 @@ app.get('/api/oportunidades', async (req, res) => {
 });
 
 app.get('/api/instagram', async (req, res) => {
-  const dias = [1, 7, 14, 30, 60, 90].includes(Number(req.query.dias)) ? Number(req.query.dias) : 30;
-  try { res.json(await instagram(dias)); }
-  catch (e) { res.status(502).json({ error: e.message }); }
+  const data = (v) => /^\d{4}-\d{2}-\d{2}$/.test(v || '');
+  const hoje = hojeBrt();
+  try {
+    if (data(req.query.de) && data(req.query.ate)) {
+      const { de, ate } = req.query;
+      if (de > ate || ate > hoje || (Date.parse(ate) - Date.parse(de)) / 864e5 > 180) return res.status(400).json({ error: 'período inválido' });
+      return res.json(await instagram({ de, ate }));
+    }
+    const dias = [1, 7, 14, 30, 60, 90].includes(Number(req.query.dias)) ? Number(req.query.dias) : 30;
+    res.json(await instagram({ dias }));
+  } catch (e) { res.status(502).json({ error: e.message }); }
 });
 
 app.get('/api/dia', async (req, res) => {

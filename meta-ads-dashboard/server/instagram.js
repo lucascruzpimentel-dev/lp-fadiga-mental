@@ -70,14 +70,19 @@ function resumirConversa(id, ms, textoCliente, agora) {
   };
 }
 
+// Período: { dias } (termina hoje) ou { de, ate } (datas escolhidas, como "ontem" ou um intervalo qualquer).
 const cache = new Map();
-export async function instagram(dias) {
-  const c = cache.get(dias);
-  if (c && Date.now() - c.t < (dias === 1 ? 45e3 : 3 * 60e3)) return c.p;
-  const ate = hojeBrt(), de = addDias(ate, -(dias - 1));
-  const p = calcular(de, ate, dias);
-  p.catch(() => { if (cache.get(dias)?.p === p) cache.delete(dias); });
-  cache.set(dias, { t: Date.now(), p });
+export async function instagram({ dias, de, ate } = {}) {
+  const hoje = hojeBrt();
+  if (!de || !ate) { ate = hoje; de = addDias(ate, -((dias || 30) - 1)); }
+  const chave = `${de}|${ate}`;
+  const c = cache.get(chave);
+  if (c && Date.now() - c.t < (ate >= hoje ? 60e3 : 5 * 60e3)) return c.p;
+  const n = Math.round((Date.parse(ate + 'T12:00:00Z') - Date.parse(de + 'T12:00:00Z')) / 864e5) + 1;
+  const p = calcular(de, ate, n);
+  p.catch(() => { if (cache.get(chave)?.p === p) cache.delete(chave); });
+  cache.set(chave, { t: Date.now(), p });
+  if (cache.size > 30) cache.delete(cache.keys().next().value);
   return p;
 }
 
@@ -88,7 +93,8 @@ async function calcular(de, ate, dias) {
   const [msgs, textos, ctx] = await Promise.all([estrutura('IG', de, ate), textosDoCliente('IG', de, ate), carregarContatos()]);
   const { contatos, opps, porContato } = ctx;
   const fim = msgs.length ? Date.parse(msgs[msgs.length - 1].enviada_em) : Date.now();
-  const agora = usaSnapshot() ? fim : Date.now();
+  // Quem está em aberto é medido no fim do período escolhido (ontem, por exemplo, é quem ficou sem resposta até o fim de ontem).
+  const agora = Math.min(usaSnapshot() ? fim : Date.now(), Date.parse(addDias(ate, 1) + 'T03:00:00Z'));
 
   const textoPorConv = new Map();
   for (const t of textos) textoPorConv.set(t.conversation_id, (textoPorConv.get(t.conversation_id) || '') + ' ' + sa(t.corpo));
@@ -159,6 +165,15 @@ async function calcular(de, ate, dias) {
     serie.push({ dia: d, abordagens: doDia.filter((c) => c.comecou === 'empresa').length, respostas: doDia.filter((c) => c.comecou === 'empresa' && c.respondeu).length, novos_do_cliente: doDia.filter((c) => c.comecou === 'cliente').length });
   }
 
+  // Um único dia: o gráfico por dia não diz nada, então mostra por hora (abordagens iniciadas e mensagens recebidas).
+  let por_hora = null;
+  if (de === ate) {
+    por_hora = Array.from({ length: 24 }, (_, h) => ({ hora: `${String(h).padStart(2, '0')}h`, abordagens: 0, respostas: 0 }));
+    const hh = (iso) => +horaDe(iso).slice(0, 2);
+    for (const c of convs) if (c.comecou === 'empresa') por_hora[hh(c.inicio)].abordagens++;
+    for (const m of msgs) if (m.direcao === 'inbound') por_hora[hh(m.enviada_em)].respostas++;
+  }
+
   // Listas de trabalho. Só para elas se busca o texto da última mensagem (uma consulta curta).
   const vacuo = convs.filter((c) => c.aguardando_h != null && c.aguardando_h > 24 && c.respondeu)
     .sort((a, b) => b.n_cliente - a.n_cliente || a.aguardando_h - b.aguardando_h).slice(0, 40);
@@ -212,7 +227,7 @@ async function calcular(de, ate, dias) {
     automacao_abriu: convs.filter((c) => c.automacao_abriu).length,
   };
 
-  return { mock: false, disponivel: true, dias, de, ate, geral, etapas, vendedores, serie, sem_retorno: semRetorno, qualificados: qualificadosSemReuniao, higiene, insights: leitura({ geral, etapas, vendedores, higiene, f }), tem_opps: opps.length > 0 };
+  return { mock: false, disponivel: true, dias, de, ate, geral, etapas, vendedores, serie, por_hora, sem_retorno: semRetorno, qualificados: qualificadosSemReuniao, higiene, insights: leitura({ geral, etapas, vendedores, higiene, f }), tem_opps: opps.length > 0 };
 }
 
 // Mostra o @ ao lado só quando o título já não é o próprio @.

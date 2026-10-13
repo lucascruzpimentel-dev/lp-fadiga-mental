@@ -2,23 +2,39 @@
 // O topo responde de cara: quantas pessoas foram contactadas, quantas interagiram, quantas obtiveram resposta e quantas estão em aberto.
 import { useEffect, useRef, useState } from 'react';
 import { getJson } from './api.js';
-import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import { ResponsiveContainer, AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { Icon, Avatar, Stat, Secao, Esqueleto, CopiarCampo, Conversa } from './ui.jsx';
 
-const PERIODOS = [[1, 'Hoje'], [7, '7 dias'], [14, '14 dias'], [30, '30 dias'], [60, '60 dias'], [90, '90 dias']];
+const PERIODOS = [['hoje', 'Hoje'], ['ontem', 'Ontem'], ['7', '7 dias'], ['14', '14 dias'], ['30', '30 dias'], ['60', '60 dias'], ['90', '90 dias'], ['custom', 'Escolher datas']];
+const iso = (d) => d.toISOString().slice(0, 10);
+const hojeBrt = () => iso(new Date(Date.now() - 3 * 3600e3));
+const addDias = (d, n) => iso(new Date(new Date(d + 'T12:00:00Z').getTime() + n * 864e5));
 const br = (d) => d.slice(8, 10) + '/' + d.slice(5, 7);
+const SEMANA = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+const nomeDia = (d) => `${SEMANA[new Date(d + 'T12:00:00Z').getUTCDay()]}, ${br(d)}`;
+// Período -> parâmetros da consulta ao servidor.
+const consulta = (p) => {
+  if (p.tipo === 'hoje') return 'dias=1';
+  if (p.tipo === 'ontem') { const o = addDias(hojeBrt(), -1); return `de=${o}&ate=${o}`; }
+  if (p.tipo === 'custom') return `de=${p.de}&ate=${p.ate}`;
+  return `dias=${p.tipo}`;
+};
+const periodoInicial = () => {
+  try { const x = JSON.parse(localStorage.getItem('ig_periodo')); if (x?.tipo) return x; } catch { /* sem storage */ }
+  return { tipo: '30' };
+};
 const brl = (n) => (n == null ? '—' : n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }));
 const tempo = (min) => (min == null ? '—' : min >= 1440 ? `${Math.round(min / 144) / 10} dias` : min >= 60 ? `${Math.round(min / 6) / 10} h` : `${min} min`);
 const TOM = { atencao: 'border-l-amber-400 bg-amber-50/60', info: 'border-l-sky-400 bg-sky-50/50' };
 
 // Respostas do servidor ficam guardadas por 1 minuto: voltar a um período já visto é instantâneo.
 const guarda = new Map();
-function pedir(dias) {
-  const g = guarda.get(dias);
+function pedir(q) {
+  const g = guarda.get(q);
   if (g && Date.now() - g.t < 60e3) return g.p;
-  const p = getJson(`/api/instagram?dias=${dias}`);
-  p.catch(() => guarda.delete(dias));
-  guarda.set(dias, { t: Date.now(), p });
+  const p = getJson(`/api/instagram?${q}`);
+  p.catch(() => guarda.delete(q));
+  guarda.set(q, { t: Date.now(), p });
   return p;
 }
 
@@ -63,7 +79,9 @@ function Funil({ etapas }) {
 }
 
 // Faixa escura do topo: período, os quatro números que respondem "o que aconteceu com as pessoas" e a barra de resposta.
-function Topo({ d, dias, setDias, carregando, onAberto }) {
+function Topo({ d, periodo, setPeriodo, carregando, onAberto }) {
+  const hoje = hojeBrt();
+  const escolher = (k) => setPeriodo(k === 'custom' ? { tipo: 'custom', de: periodo.de || addDias(hoje, -6), ate: periodo.ate || hoje } : { tipo: k });
   const g = d?.geral;
   const total = g ? Math.max(1, g.interagiram) : 1;
   const Num = ({ rotulo, valor, linha1, linha2, cor, onClick }) => {
@@ -86,14 +104,23 @@ function Topo({ d, dias, setDias, carregando, onAberto }) {
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-indigo-500 shadow-lg"><Icon name="chat" className="h-5 w-5 text-white" /></span>
           <div>
             <h2 className="text-xl font-bold leading-tight tracking-tight">Instagram · Social selling</h2>
-            <p className="text-sm text-slate-300">{d ? (dias === 1 ? `Hoje, ${br(d.ate)}` : `${br(d.de)} a ${br(d.ate)}`) : 'Carregando…'} · pessoas que a equipe procurou e como elas reagiram</p>
+            <p className="text-sm text-slate-300">{d ? (d.de === d.ate ? nomeDia(d.de) : `${br(d.de)} a ${br(d.ate)} · ${d.dias} dias`) : 'Carregando…'} · pessoas que a equipe procurou e como elas reagiram</p>
           </div>
         </div>
         <div className="no-print inline-flex flex-wrap gap-1 rounded-xl bg-white/10 p-1" role="tablist" aria-label="Período">
           {PERIODOS.map(([k, rot]) => (
-            <button key={k} role="tab" aria-selected={dias === k} onClick={() => setDias(k)} className={`rounded-lg px-3 py-1.5 text-sm font-medium transition ${dias === k ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-200 hover:bg-white/10'}`}>{rot}</button>
+            <button key={k} role="tab" aria-selected={periodo.tipo === k} onClick={() => escolher(k)} className={`rounded-lg px-3 py-1.5 text-sm font-medium transition ${periodo.tipo === k ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-200 hover:bg-white/10'}`}>{rot}</button>
           ))}
         </div>
+        {periodo.tipo === 'custom' && (
+          <div className="no-print relative flex w-full flex-wrap items-center gap-2 rounded-xl bg-white/10 p-2 text-sm">
+            <span className="text-slate-300">De</span>
+            <input type="date" value={periodo.de} max={periodo.ate || hoje} onChange={(e) => e.target.value && setPeriodo({ ...periodo, de: e.target.value })} className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-white [color-scheme:dark]" />
+            <span className="text-slate-300">até</span>
+            <input type="date" value={periodo.ate} min={periodo.de} max={hoje} onChange={(e) => e.target.value && setPeriodo({ ...periodo, ate: e.target.value })} className="rounded-lg border border-white/20 bg-white/10 px-2 py-1 text-white [color-scheme:dark]" />
+            {[['7 dias', 6], ['30 dias', 29]].map(([rot, n]) => <button key={rot} onClick={() => setPeriodo({ tipo: 'custom', de: addDias(periodo.ate || hoje, -n), ate: periodo.ate || hoje })} className="rounded-lg bg-white/10 px-2.5 py-1 text-slate-200 hover:bg-white/20">últimos {rot}</button>)}
+          </div>
+        )}
       </div>
 
       {!g ? (
@@ -101,7 +128,7 @@ function Topo({ d, dias, setDias, carregando, onAberto }) {
       ) : (
         <div className={`relative mt-6 transition ${carregando ? 'opacity-60' : ''}`}>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-            <Num rotulo="Pessoas contactadas" valor={g.contactadas} cor="bg-indigo-400" linha1={`${g.abordagens_por_dia} por dia`} linha2={`+ ${g.chamaram_primeiro} chamaram primeiro`} />
+            <Num rotulo="Pessoas contactadas" valor={g.contactadas} cor="bg-indigo-400" linha1={d.de === d.ate ? 'no dia' : `${g.abordagens_por_dia} por dia`} linha2={`+ ${g.chamaram_primeiro} chamaram primeiro`} />
             <Num rotulo="Interagiram" valor={g.interagiram} cor="bg-sky-400" linha1={`${g.interagiram_pct}% das ${g.conversas} pessoas`} linha2={`${g.sem_resposta_do_cliente} contactadas ainda não responderam`} />
             <Num rotulo="Obtiveram resposta" valor={g.obtiveram_resposta} cor="bg-emerald-400" linha1={`${g.obtiveram_pct}% de quem interagiu`} linha2="uma pessoa da equipe respondeu" />
             <Num rotulo="Em aberto" valor={g.em_aberto} cor="bg-rose-400" linha1="esperando a equipe agora" linha2={g.em_aberto_24h ? `${g.em_aberto_24h} há mais de 24 h · ver lista →` : 'ver lista →'} onClick={g.em_aberto ? onAberto : undefined} />
@@ -205,7 +232,7 @@ function Vendedores({ linhas }) {
 }
 
 export default function Instagram() {
-  const [dias, setDias] = useState(() => { try { return Number(localStorage.getItem('ig_dias')) || 30; } catch { return 30; } });
+  const [periodo, setPeriodo] = useState(periodoInicial);
   const [d, setD] = useState(null);
   const [erro, setErro] = useState('');
   const [carregando, setCarregando] = useState(true);
@@ -213,14 +240,14 @@ export default function Instagram() {
   useEffect(() => {
     let vivo = true;
     setCarregando(true); setErro('');
-    pedir(dias).then((x) => vivo && setD(x)).catch((e) => vivo && setErro(e.message)).finally(() => vivo && setCarregando(false));
-    try { localStorage.setItem('ig_dias', String(dias)); } catch { /* sem storage */ }
+    pedir(consulta(periodo)).then((x) => vivo && setD(x)).catch((e) => vivo && setErro(e.message)).finally(() => vivo && setCarregando(false));
+    try { localStorage.setItem('ig_periodo', JSON.stringify(periodo)); } catch { /* sem storage */ }
     return () => { vivo = false; };
-  }, [dias]);
+  }, [periodo]);
 
   return (
     <div className="mx-auto max-w-6xl space-y-8 px-4 pb-12 pt-4">
-      <Topo d={d?.disponivel ? d : null} dias={dias} setDias={setDias} carregando={carregando} onAberto={() => vacuo.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })} />
+      <Topo d={d?.disponivel ? d : null} periodo={periodo} setPeriodo={setPeriodo} carregando={carregando} onAberto={() => vacuo.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })} />
 
       {erro && <p className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700">Não consegui carregar: {erro}</p>}
       {!d && !erro && <div className="space-y-4"><div className="grid grid-cols-2 gap-3 lg:grid-cols-4">{Array.from({ length: 4 }).map((_, i) => <Esqueleto key={i} className="h-28" />)}</div><Esqueleto className="h-64" /></div>}
@@ -228,7 +255,7 @@ export default function Instagram() {
 
       {d?.disponivel && (
         <div className={carregando ? 'space-y-8 opacity-60 transition' : 'space-y-8 transition'}>
-          {d.geral.conversas === 0 && <p className="rounded-xl bg-sky-50 px-4 py-3 text-sm text-sky-800">Nenhuma conversa de Instagram neste período ainda.</p>}
+          {d.geral.conversas === 0 && <p className="rounded-xl bg-sky-50 px-4 py-3 text-sm text-sky-800">Nenhuma conversa de Instagram neste período.</p>}
 
           <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
             <Stat icon="users" label="Qualificados" value={d.geral.qualificados} hint={`${d.geral.em_conducao ?? 0} em condução (troca frequente)`} tom="violet" />
@@ -247,16 +274,26 @@ export default function Instagram() {
           <section className="grid gap-6 lg:grid-cols-2">
             <div className="space-y-3"><Secao icone="trend" titulo="Funil do social selling" dica={`${br(d.de)} a ${br(d.ate)}`} /><Funil etapas={d.etapas} /></div>
             <div className="space-y-3">
-              <Secao icone="chart" titulo="Abordagens por dia" dica={`Retorno mediano ${tempo(d.geral.mediana_retorno_min)} · ${d.geral.retorno_1h_pct ?? '—'}% em até 1 h`} />
+              <Secao icone="chart" titulo={d.por_hora ? 'Abordagens por hora' : 'Abordagens por dia'} dica={`Retorno mediano ${tempo(d.geral.mediana_retorno_min)} · ${d.geral.retorno_1h_pct ?? '—'}% em até 1 h`} />
               <div className="card break-avoid p-4"><div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={d.serie.map((x) => ({ ...x, dia: br(x.dia) }))} margin={{ top: 8, right: 8, left: -18, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
-                    <XAxis dataKey="dia" tick={{ fontSize: 11 }} interval="preserveStartEnd" /><YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
-                    <Tooltip /><Legend wrapperStyle={{ fontSize: 12 }} />
-                    <Area type="monotone" dataKey="abordagens" name="Abordagens" stroke="#6366f1" fill="#6366f1" fillOpacity={0.15} strokeWidth={2} isAnimationActive={false} />
-                    <Area type="monotone" dataKey="respostas" name="Responderam" stroke="#10b981" fill="#10b981" fillOpacity={0.2} strokeWidth={2} isAnimationActive={false} />
-                  </AreaChart>
+                  {d.por_hora ? (
+                    <BarChart data={d.por_hora} margin={{ top: 8, right: 8, left: -18, bottom: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                      <XAxis dataKey="hora" tick={{ fontSize: 10 }} interval={2} /><YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                      <Tooltip /><Legend wrapperStyle={{ fontSize: 12 }} />
+                      <Bar dataKey="abordagens" name="Abordagens iniciadas" fill="#6366f1" radius={[4, 4, 0, 0]} isAnimationActive={false} />
+                      <Bar dataKey="respostas" name="Mensagens recebidas" fill="#10b981" radius={[4, 4, 0, 0]} isAnimationActive={false} />
+                    </BarChart>
+                  ) : (
+                    <AreaChart data={d.serie.map((x) => ({ ...x, dia: br(x.dia) }))} margin={{ top: 8, right: 8, left: -18, bottom: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                      <XAxis dataKey="dia" tick={{ fontSize: 11 }} interval="preserveStartEnd" /><YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                      <Tooltip /><Legend wrapperStyle={{ fontSize: 12 }} />
+                      <Area type="monotone" dataKey="abordagens" name="Abordagens" stroke="#6366f1" fill="#6366f1" fillOpacity={0.15} strokeWidth={2} isAnimationActive={false} />
+                      <Area type="monotone" dataKey="respostas" name="Responderam" stroke="#10b981" fill="#10b981" fillOpacity={0.2} strokeWidth={2} isAnimationActive={false} />
+                    </AreaChart>
+                  )}
                 </ResponsiveContainer>
               </div></div>
             </div>
