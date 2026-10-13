@@ -1,9 +1,11 @@
 // Instagram (social selling): mede o funil de prospecção a partir de TODAS as mensagens de DM (wa_mensagens, tipo "IG")
 // e do estágio das oportunidades no CRM. Não usa nota de atendimento: o que importa aqui é abordar, ser respondido,
 // qualificar e agendar reunião com lead qualificado. Tudo por regra, sem IA (a análise de qualidade entra depois).
-import { sb, nameOf, NOMES_GHL } from './whatsapp.js';
-import { usaMock, addDias, hojeBrt, diaDe, horaDe, brt, pct, r1 } from './atendimentos.js';
-import { carregarOportunidades } from './vendas.js';
+import { nameOf } from './whatsapp.js';
+import { usaSnapshot } from './snapshot.js';
+import { usaMock, addDias, hojeBrt, diaDe, horaDe, pct, r1 } from './atendimentos.js';
+import { estrutura, textosDoCliente, ultimasMensagens, limparTexto } from './mensagens.js';
+import { carregarContatos, rotular, tituloDe } from './contatos.js';
 
 const H = 3600e3, DIA = 24 * H;
 const sa = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -31,46 +33,27 @@ function estagioDe(o) {
   return 0;
 }
 
-// O HighLevel nomeia quem chega por DM com o @ do Instagram. Separa o que é nome de pessoa do que é @usuário,
-// para a tela mostrar sempre o mesmo padrão: nome da pessoa (quando existe) e o @ ao lado.
-const pareceUsuario = (t) => /^[a-z0-9._]{3,}$/.test(t) || (/^\S+$/.test(t) && /[._\d]/.test(t));
-export function rotular(bruto) {
-  const t = String(bruto || '').trim().replace(/^@/, '');
-  if (!t) return { nome: null, perfil: null };
-  return pareceUsuario(t) ? { nome: null, perfil: t } : { nome: t, perfil: null };
-}
-
-// Nome do contato quando o CRM não tem: a abordagem costuma começar com "Boa tarde, Karin!".
-const NOME_NA_ABORDAGEM = /^(?:oi|ola|olá|boa (?:tarde|noite)|bom dia|e ai|eae)[,!\s]+([A-ZÀ-Ú][a-zà-ú]{2,})/;
-const nomeInferido = (msgs) => {
-  for (const m of msgs) if (m.direcao === 'outbound' && m.corpo) { const x = NOME_NA_ABORDAGEM.exec(String(m.corpo).trim()); if (x) return x[1]; }
-  return null;
-};
-// Quem atendeu quando a mensagem sai do celular sem identificação: o time se apresenta ("Aqui é a Luiza do time...").
-const APRESENTA = /(?:[Aa]qui (?:e|é) (?:a|o)|[Ss]ou (?:a|o)|[Mm]eu nome (?:e|é)|[Mm]e chamo)\s+([A-ZÀ-Ú][a-zà-ú]+)/;
-
 // Qualificado = o CLIENTE falou de produto ou serviço (preço, inscrição, curso, pós, mentoria, atendimento...).
 // "Oportunidade estabelecida" no CRM não vale: a maioria é só a primeira mensagem enviada (ativação).
 const INTERESSE = /\b(valor(es)?|preco|quanto (custa|e|fica|sai)|investimento|parcel\w*|pagamento|pix|cartao|boleto|inscri\w*|matricul\w*|curso|pos[- ]?gradua\w*|posgrad\w*|mentoria|congresso|formacao|certificad\w*|ementa|grade|atendimento|sessao|consulta|terapia|coaching|lideranca parental|treinamento mental|neurociencia|como funciona|tenho interesse|me interessa|quero saber|gostaria de saber|queria saber|vagas?|quando (comeca|e|sera)|reuniao|agendar|horario|link)\b/;
 // Em condução = troca frequente: o cliente respondeu várias vezes e a equipe também.
 const EM_CONDUCAO = (c) => c.n_cliente >= 4 && c.n_equipe >= 3;
 
-function resumirConversa(id, ms, agora) {
+// Resume uma conversa de DM a partir da estrutura das mensagens (sem texto: é o que pesa) e do texto das falas do cliente.
+function resumirConversa(id, ms, textoCliente, agora) {
   const ins = ms.filter((m) => m.direcao === 'inbound');
-  const outs = ms.filter((m) => m.direcao === 'outbound');
-  const humanas = outs.filter((m) => m.origem !== 'workflow');
+  const humanas = ms.filter((m) => m.direcao === 'outbound' && m.origem !== 'workflow');
   const primeira = ms[0], ultima = ms[ms.length - 1];
   // Cada vez que o cliente fala e ninguém da equipe responde: guarda quanto demorou. O que ficou sem resposta vira "aguardando".
   const retornos = [];
-  let pendente = null;
+  let pendente = null, teveRetorno = false;
   for (const m of ms) {
     const t = Date.parse(m.enviada_em);
     if (m.direcao === 'inbound') { if (pendente == null) pendente = t; }
-    else if (m.origem !== 'workflow' && pendente != null) { retornos.push({ t0: pendente, espera: t - pendente }); pendente = null; }
+    else if (m.origem !== 'workflow' && pendente != null) { retornos.push({ t0: pendente, espera: t - pendente }); teveRetorno = true; pendente = null; }
   }
   const hora = (t) => +horaDe(new Date(t).toISOString()).slice(0, 2);
   const noExpediente = (t) => hora(t) >= 8 && hora(t) < 21;
-  const quem = (() => { for (const m of humanas) { const x = APRESENTA.exec(String(m.corpo || '')); if (x) return x[1]; } return null; })();
   return {
     id, contact_id: ms.find((m) => m.contact_id)?.contact_id || null,
     inicio: primeira.enviada_em, ultima_em: ultima.enviada_em,
@@ -78,69 +61,58 @@ function resumirConversa(id, ms, agora) {
     automacao_abriu: primeira.direcao === 'outbound' && primeira.origem === 'workflow',
     n_cliente: ins.length, n_equipe: humanas.length,
     respondeu: ins.length > 0, conversou: ins.length >= 2,
+    obteve_resposta: ins.length > 0 && teveRetorno, // o cliente falou e uma pessoa da equipe respondeu depois
     retornos: retornos.filter((r) => noExpediente(r.t0)),
     aguardando_desde: pendente, aguardando_h: pendente == null ? null : (agora - pendente) / H,
-    nome: nomeInferido(ms), apresentou_se: quem,
-    texto_cliente: sa(ins.map((m) => m.corpo || '').join(' ')),
-    ultima_texto: String(ultima.corpo || '').replace(/\s+/g, ' ').trim().slice(0, 160) || '(mídia)',
+    texto_cliente: textoCliente || '',
     ultima_de: ultima.direcao === 'inbound' ? 'cliente' : 'equipe',
     user_ids: [...new Set(humanas.map((m) => m.user_id).filter(Boolean))],
   };
 }
 
-let cache = { chave: '', t: 0, v: null };
+const cache = new Map();
 export async function instagram(dias) {
+  const c = cache.get(dias);
+  if (c && Date.now() - c.t < (dias === 1 ? 45e3 : 3 * 60e3)) return c.p;
   const ate = hojeBrt(), de = addDias(ate, -(dias - 1));
-  const chave = `${de}|${ate}`;
-  if (cache.v && cache.chave === chave && Date.now() - cache.t < 300e3) return cache.v;
-  const v = await calcular(de, ate, dias);
-  cache = { chave, t: Date.now(), v };
-  return v;
+  const p = calcular(de, ate, dias);
+  p.catch(() => { if (cache.get(dias)?.p === p) cache.delete(dias); });
+  cache.set(dias, { t: Date.now(), p });
+  return p;
 }
 
 async function calcular(de, ate, dias) {
-  const agora = Date.now();
   if (usaMock()) return { mock: true, dias, de, ate, disponivel: false, motivo: 'Sem acesso ao banco de WhatsApp (modo de exemplo).' };
 
-  try { for (const u of await sb('ghl_usuarios', { select: 'id,nome' })) if (u.nome) NOMES_GHL[u.id] = u.nome; } catch { /* tabela ainda não existe */ }
-  const msgs = await sb('wa_mensagens', {
-    select: 'conversation_id,contact_id,direcao,user_id,origem,corpo,enviada_em',
-    tipo_mensagem: 'eq.IG',
-    enviada_em: [`gte.${de}T03:00:00Z`, `lte.${addDias(ate, 1)}T02:59:59Z`],
-    order: 'enviada_em.asc',
-  });
+  // Tudo em paralelo: estrutura das DMs, texto do cliente, contatos e oportunidades.
+  const [msgs, textos, ctx] = await Promise.all([estrutura('IG', de, ate), textosDoCliente('IG', de, ate), carregarContatos()]);
+  const { contatos, opps, porContato } = ctx;
+  const fim = msgs.length ? Date.parse(msgs[msgs.length - 1].enviada_em) : Date.now();
+  const agora = usaSnapshot() ? fim : Date.now();
+
+  const textoPorConv = new Map();
+  for (const t of textos) textoPorConv.set(t.conversation_id, (textoPorConv.get(t.conversation_id) || '') + ' ' + sa(t.corpo));
   const porConv = new Map();
   for (const m of msgs) { if (!m.conversation_id) continue; (porConv.get(m.conversation_id) || porConv.set(m.conversation_id, []).get(m.conversation_id)).push(m); }
-  const convs = [...porConv].map(([id, ms]) => ({ ...resumirConversa(id, ms, agora), _ms: ms }));
-
-  const contatosGhl = new Map();
-  try { for (const k of await sb('ghl_contatos', { select: 'id,nome,telefone,email,responsavel_id' })) contatosGhl.set(k.id, k); } catch { /* tabela ainda não existe */ }
+  const convs = [...porConv].map(([id, ms]) => resumirConversa(id, ms, textoPorConv.get(id), agora));
 
   // Oportunidades do CRM por contato: o estágio mais avançado entre as de social selling, e quem é o responsável.
-  const opps = await carregarOportunidades();
-  const porContato = new Map();
-  for (const o of opps) if (o.contact_id) (porContato.get(o.contact_id) || porContato.set(o.contact_id, []).get(o.contact_id)).push(o);
   const melhorOpp = (cid) => {
     const l = (porContato.get(cid) || []).filter((o) => o.status === 'open' || o.status === 'won');
     const soc = l.filter(ehSocial), base = soc.length ? soc : l;
     return base.sort((a, b) => estagioDe(b) - estagioDe(a) || String(b.atualizada_em).localeCompare(String(a.atualizada_em)))[0] || null;
   };
-
-  // Primeiro nome -> id do vendedor (para quem se apresenta pelo nome quando a mensagem não traz o usuário).
-  const idPorPrimeiroNome = {};
-  for (const [id, nome] of Object.entries(NOMES_GHL)) if (id !== 'sem-responsavel') idPorPrimeiroNome[sa(String(nome).split(' ')[0])] = id;
-
   for (const c of convs) {
     const o = melhorOpp(c.contact_id);
+    const k = contatos.get(c.contact_id);
     c.opp = o;
     c.estagio = o ? estagioDe(o) : null;
-    c.dono = o?.responsavel_id || contatosGhl.get(c.contact_id)?.responsavel_id || c.user_ids[0] || idPorPrimeiroNome[sa(c.apresentou_se)] || 'sem-responsavel';
+    c.dono = o?.responsavel_id || k?.responsavel_id || c.user_ids[0] || 'sem-responsavel';
     c.qualificado = (c.n_cliente >= 2 && INTERESSE.test(c.texto_cliente)) || (c.estagio != null && c.estagio >= 3);
     c.conducao = EM_CONDUCAO(c);
-    const k = contatosGhl.get(c.contact_id);
     const r = rotular(k?.nome || o?.contato_nome);
     c.perfil = r.perfil;
-    c.contato = r.nome || (r.perfil ? `@${r.perfil}` : c.nome ? `${c.nome} (pelo texto)` : c.contact_id ? `Contato …${String(c.contact_id).slice(-4)}` : '—');
+    c.contato = tituloDe(r, c.contact_id);
     c.telefone = k?.telefone || o?.contato_telefone || null;
     c.email = k?.email || o?.contato_email || null;
   }
@@ -148,10 +120,16 @@ async function calcular(de, ate, dias) {
   const retornosMin = (l) => l.flatMap((c) => c.retornos.map((r) => r.espera / 60e3));
   const funil = (l) => {
     const abordadas = l.filter((c) => c.comecou === 'empresa');
+    const interagiram = l.filter((c) => c.respondeu);
     const comOpp = (n) => l.filter((c) => c.estagio != null && c.estagio >= n).length;
     return {
-      conversas: l.length, abordadas: abordadas.length, abordadas_respondidas: abordadas.filter((c) => c.respondeu).length,
-      responderam: l.filter((c) => c.respondeu).length, conversaram: l.filter((c) => c.conversou).length,
+      conversas: l.length,
+      // Quem a equipe procurou, quem chamou primeiro, quem interagiu, quem foi respondido e quem espera.
+      contactadas: abordadas.length, chamaram_primeiro: l.length - abordadas.length, abordadas: abordadas.length, abordadas_respondidas: abordadas.filter((c) => c.respondeu).length,
+      interagiram: interagiram.length, obtiveram_resposta: interagiram.filter((c) => c.obteve_resposta).length,
+      em_aberto: interagiram.filter((c) => c.aguardando_desde != null).length, em_aberto_24h: interagiram.filter((c) => c.aguardando_h > 24).length,
+      sem_resposta_do_cliente: abordadas.filter((c) => !c.respondeu).length,
+      responderam: interagiram.length, conversaram: l.filter((c) => c.conversou).length,
       qualificados: l.filter((c) => c.qualificado).length, em_conducao: l.filter((c) => c.conducao).length,
       reunioes: comOpp(3), reunioes_qualificadas: l.filter((c) => c.estagio != null && c.estagio >= 3 && c.qualificado).length, vendas: comOpp(4),
     };
@@ -181,28 +159,30 @@ async function calcular(de, ate, dias) {
     serie.push({ dia: d, abordagens: doDia.filter((c) => c.comecou === 'empresa').length, respostas: doDia.filter((c) => c.comecou === 'empresa' && c.respondeu).length, novos_do_cliente: doDia.filter((c) => c.comecou === 'cliente').length });
   }
 
-  // Quem escreveu e o cliente deixou no vácuo: o lead que respondeu e a equipe não voltou em 24 h.
-  const semRetorno = convs.filter((c) => c.aguardando_h != null && c.aguardando_h > 24 && c.respondeu)
-    .sort((a, b) => b.n_cliente - a.n_cliente || a.aguardando_h - b.aguardando_h)
-    .slice(0, 40).map((c) => caso(c, { tipo: c.n_equipe ? 'Esfriou: respondeu e ninguém voltou' : 'Nunca foi respondida por uma pessoa' }));
+  // Listas de trabalho. Só para elas se busca o texto da última mensagem (uma consulta curta).
+  const vacuo = convs.filter((c) => c.aguardando_h != null && c.aguardando_h > 24 && c.respondeu)
+    .sort((a, b) => b.n_cliente - a.n_cliente || a.aguardando_h - b.aguardando_h).slice(0, 40);
+  const qualSemReuniao = convs.filter((c) => c.qualificado && !(c.estagio >= 3)).sort((a, b) => b.ultima_em.localeCompare(a.ultima_em)).slice(0, 40);
+  const semOpp = convs.filter((c) => !porContato.get(c.contact_id)?.length);
+  const exemplosSemOpp = semOpp.filter((c) => c.respondeu).slice(0, 8);
+  const ultimas = await ultimasMensagens([...vacuo, ...qualSemReuniao, ...exemplosSemOpp].map((c) => c.id), de).catch(() => new Map());
+  for (const c of [...vacuo, ...qualSemReuniao, ...exemplosSemOpp]) c.ultima_texto = ultimas.has(c.id) ? limparTexto(ultimas.get(c.id).corpo) : '(abra a conversa)';
 
-  // Leads qualificados (pela conversa) ainda sem reunião: a lista de trabalho de quem agenda.
-  const qualificadosSemReuniao = convs.filter((c) => c.qualificado && !(c.estagio >= 3))
-    .sort((a, b) => b.ultima_em.localeCompare(a.ultima_em)).slice(0, 40).map((c) => {
-      const o = c.opp;
-      return {
-        id: c.id, opp_id: o?.id || null, contato: c.contato, perfil: r_perfil(c), telefone: c.telefone, email: c.email,
-        etapa: o?.etapa_nome || 'Sem oportunidade no CRM', funil: o?.pipeline_nome || null, valor: Number(o?.valor) || 0, dono: nameOf(c.dono),
-        parado_dias: Math.floor((agora - Date.parse(c.ultima_em)) / DIA),
-        ultima_msg: c.ultima_texto, ultima_de: c.ultima_de, mensagens_cliente: c.n_cliente,
-        tipo: c.conducao ? 'Em condução: troca frequente de mensagens' : 'Falou de produto ou serviço, ainda sem reunião',
-      };
-    });
+  const semRetorno = vacuo.map((c) => caso(c, { tipo: c.n_equipe ? 'Esfriou: respondeu e ninguém voltou' : 'Nunca foi respondida por uma pessoa' }));
+  const qualificadosSemReuniao = qualSemReuniao.map((c) => {
+    const o = c.opp;
+    return {
+      id: c.id, opp_id: o?.id || null, contato: c.contato, perfil: r_perfil(c), telefone: c.telefone, email: c.email,
+      etapa: o?.etapa_nome || 'Sem oportunidade no CRM', funil: o?.pipeline_nome || null, valor: Number(o?.valor) || 0, dono: nameOf(c.dono),
+      parado_dias: Math.floor((agora - Date.parse(c.ultima_em)) / DIA),
+      ultima_msg: c.ultima_texto, ultima_de: c.ultima_de, mensagens_cliente: c.n_cliente,
+      tipo: c.conducao ? 'Em condução: troca frequente de mensagens' : 'Falou de produto ou serviço, ainda sem reunião',
+    };
+  });
   const socialAbertas = opps.filter((o) => o.status === 'open' && ehSocial(o));
 
   // Higiene do CRM
   const contatosIg = new Set(convs.map((c) => c.contact_id).filter(Boolean));
-  const semOpp = convs.filter((c) => !porContato.get(c.contact_id)?.length);
   const paradas = socialAbertas.filter((o) => estagioDe(o) === 1 && o.atualizada_em && agora - Date.parse(o.atualizada_em) > 7 * DIA);
   const vendaAberta = socialAbertas.filter((o) => /venda realizada/.test(sa(o.etapa_nome)));
   const porContatoConv = new Map();
@@ -211,10 +191,10 @@ async function calcular(de, ate, dias) {
   const soAtivacao = declaradasAvancadas.filter((o) => !porContatoConv.get(o.contact_id)?.respondeu);
   const higiene = {
     estabelecida_so_ativacao: { n: soAtivacao.length, de: declaradasAvancadas.length },
-    contatos_sem_oportunidade: { n: semOpp.length, pct: pct(semOpp.length, convs.length), exemplos: semOpp.filter((c) => c.respondeu).slice(0, 8).map((c) => caso(c, {})) },
+    contatos_sem_oportunidade: { n: semOpp.length, pct: pct(semOpp.length, convs.length), exemplos: exemplosSemOpp.map((c) => caso(c, {})) },
     para_contactar: socialAbertas.filter((o) => /para contactar/.test(sa(o.etapa_nome))).length,
     em_contato_parados_7d: paradas.length,
-    venda_realizada_aberta: vendaAberta.map((o) => ({ contato: (() => { const r = rotular(o.contato_nome || o.nome); return r.nome || (r.perfil ? `@${r.perfil}` : '—'); })(), valor: Number(o.valor) || 0, dono: nameOf(o.responsavel_id || 'sem-responsavel'), etapa: o.etapa_nome })),
+    venda_realizada_aberta: vendaAberta.map((o) => ({ contato: tituloDe(rotular(o.contato_nome || o.nome), null), valor: Number(o.valor) || 0, dono: nameOf(o.responsavel_id || 'sem-responsavel'), etapa: o.etapa_nome })),
     sem_responsavel: socialAbertas.filter((o) => !o.responsavel_id).length,
     total_social_abertas: socialAbertas.length,
     contatos_ig: contatosIg.size,
@@ -223,10 +203,11 @@ async function calcular(de, ate, dias) {
   const todos = retornosMin(convs);
   const geral = {
     ...f, taxa_resposta: pct(f.abordadas_respondidas, f.abordadas), taxa_conversa: pct(f.conversaram, f.conversas),
+    interagiram_pct: pct(f.interagiram, f.conversas), obtiveram_pct: pct(f.obtiveram_resposta, f.interagiram), em_aberto_pct: pct(f.em_aberto, f.interagiram),
     mediana_retorno_min: todos.length ? Math.round(mediana(todos)) : null,
     retorno_1h_pct: todos.length ? pct(todos.filter((m) => m <= 60).length, todos.length) : null,
     retorno_amostra: todos.length,
-    sem_retorno: convs.filter((c) => c.aguardando_h > 24 && c.respondeu).length,
+    sem_retorno: f.em_aberto_24h,
     abordagens_por_dia: r1(f.abordadas / dias),
     automacao_abriu: convs.filter((c) => c.automacao_abriu).length,
   };
@@ -251,7 +232,8 @@ function caso(c, extra) {
 function leitura({ geral: g, etapas, vendedores, higiene: h, f }) {
   const out = [];
   if (!f.conversas) return [{ tom: 'info', texto: 'Ainda não há mensagens de Instagram no período.' }];
-  out.push({ tom: g.taxa_resposta < 40 ? 'atencao' : 'info', texto: `${g.abordadas} abordagens no período (${g.abordagens_por_dia} por dia). ${g.taxa_resposta}% responderam e ${g.taxa_conversa}% viraram conversa de verdade (2 ou mais mensagens do cliente).` });
+  out.push({ tom: g.taxa_resposta < 40 ? 'atencao' : 'info', texto: `${f.contactadas} pessoas contactadas no período (${g.abordagens_por_dia} por dia) e ${f.chamaram_primeiro} que chamaram primeiro. ${g.interagiram_pct}% das ${f.conversas} pessoas interagiram, e ${g.taxa_conversa}% viraram conversa de verdade (2 ou mais mensagens do cliente).` });
+  if (f.interagiram) out.push({ tom: g.obtiveram_pct < 70 ? 'atencao' : 'info', texto: `Das ${f.interagiram} pessoas que interagiram, ${f.obtiveram_resposta} (${g.obtiveram_pct}%) receberam resposta da equipe e ${f.em_aberto} estão em aberto, esperando resposta agora${f.em_aberto_24h ? ` (${f.em_aberto_24h} há mais de 24 h)` : ''}.` });
   // Maior queda entre etapas consecutivas a partir de "conversaram"
   const quedas = etapas.slice(3).filter((e) => e.pct_anterior != null);
   const pior = quedas.sort((a, b) => a.pct_anterior - b.pct_anterior)[0];
@@ -267,7 +249,6 @@ function leitura({ geral: g, etapas, vendedores, higiene: h, f }) {
     const lento = g.mediana_retorno_min > 120;
     out.push({ tom: lento ? 'atencao' : 'info', texto: `Quando o cliente responde (entre 8h e 21h), a equipe volta em ${g.mediana_retorno_min >= 60 ? `${r1(g.mediana_retorno_min / 60)} h` : `${g.mediana_retorno_min} min`} na mediana. ${g.retorno_1h_pct}% são respondidos em até 1 hora.` });
   }
-  if (g.sem_retorno) out.push({ tom: 'atencao', texto: `${g.sem_retorno} leads responderam e ficaram mais de 24 h sem retorno. São os mais baratos de recuperar: já mostraram interesse.` });
   if (h.contatos_sem_oportunidade.n) out.push({ tom: 'atencao', texto: `${h.contatos_sem_oportunidade.n} contatos (${h.contatos_sem_oportunidade.pct}%) com conversa no Instagram não têm nenhuma oportunidade no CRM. Eles não aparecem em nenhum funil nem em nenhum relatório.` });
   if (h.venda_realizada_aberta.length) out.push({ tom: 'atencao', texto: `${h.venda_realizada_aberta.length} oportunidade(s) estão em "Venda realizada" mas com status aberto. Se foram vendas, marque como ganho no HighLevel, senão não entram na receita.` });
   if (h.em_contato_parados_7d) out.push({ tom: 'info', texto: `${h.em_contato_parados_7d} leads em "Em contato" estão há mais de 7 dias sem movimento. Decidir: retomar com follow-up ou encerrar.` });

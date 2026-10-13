@@ -190,7 +190,7 @@ app.get('/api/oportunidades', async (req, res) => {
 });
 
 app.get('/api/instagram', async (req, res) => {
-  const dias = [7, 14, 30, 60, 90].includes(Number(req.query.dias)) ? Number(req.query.dias) : 30;
+  const dias = [1, 7, 14, 30, 60, 90].includes(Number(req.query.dias)) ? Number(req.query.dias) : 30;
   try { res.json(await instagram(dias)); }
   catch (e) { res.status(502).json({ error: e.message }); }
 });
