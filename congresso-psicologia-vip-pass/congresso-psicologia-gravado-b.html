@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MXDTWRQ3');</script>
+  <!-- End Google Tag Manager -->
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#02337a">
+  <meta name="description" content="As 4 aulas gravadas do Congresso Internacional de Psicologia do Esporte e Coaching, com apostilas, certificado (~8h) e acesso ilimitado por R$ 47.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Congresso Internacional de Psicologia do Esporte — Aulas gravadas | Atleta Campeão">
+  <meta property="og:description" content="Quatro aulas com especialistas, apostilas, certificado e acesso ilimitado por R$ 47.">
+  <meta property="og:image" content="https://atletacampeaotreinamentos.com/congresso-psicologia-vip-pass/assets/mkp_vip_psi.webp">
+  <meta property="og:url" content="https://atletacampeaotreinamentos.com/congresso-psicologia-gravado/">
+  <link rel="canonical" href="https://atletacampeaotreinamentos.com/congresso-psicologia-gravado/">
+  <title>Congresso Internacional de Psicologia do Esporte — Aulas gravadas | Atleta Campeão</title>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1675439549310048');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', {content_name: 'Congresso Psicologia Gravado', value: 47, currency: 'BRL', variante: 'b'});
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1675439549310048&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <script>
+  (function () {
+    function parseParams(source) {
+      try {
+        const out = {};
+        new URLSearchParams(source || "").forEach((v, k) => { out[k.toLowerCase()] = v; });
+        return out;
+      } catch { return {}; }
+    }
+    function setCookie(n, v, days) {
+      if (!v) return;
+      const t = new Date();
+      t.setTime(t.getTime() + days * 24 * 60 * 60 * 1000);
+      const domain = window.location.hostname.replace(/^www\./, "");
+      document.cookie = n + "=" + encodeURIComponent(v)
+        + ";expires=" + t.toUTCString()
+        + ";path=/"
+        + (domain ? ";domain=." + domain : "")
+        + ";SameSite=Lax";
+    }
+    function getCookie(n){
+      return document.cookie.split("; ").reduce((acc, pair)=>{
+        const [k, ...rest] = pair.split("=");
+        return k === n ? decodeURIComponent(rest.join("=")) : acc;
+      }, "");
+    }
+    const q = parseParams(window.location.search);
+    const h = parseParams(window.location.hash ? window.location.hash.replace(/^#/, "?") : "");
+    const params = Object.assign({}, q, h);
+    const current = {
+      utm_source:   params.utm_source   || "",
+      utm_medium:   params.utm_medium   || "",
+      utm_campaign: params.utm_campaign || "",
+      utm_content:  params.utm_content  || "",
+      gclid:        params.gclid        || "",
+      fbclid:       params.fbclid       || "",
+      ttclid:       params.ttclid       || ""
+    };
+    if (Object.values(current).some(Boolean)) {
+      Object.entries(current).forEach(([k, v]) => setCookie(k, v, 90));
+    }
+    const utm = {
+      utm_source:   current.utm_source   || getCookie("utm_source")   || "",
+      utm_medium:   current.utm_medium   || getCookie("utm_medium")   || "",
+      utm_campaign: current.utm_campaign || getCookie("utm_campaign") || "",
+      utm_content:  current.utm_content  || getCookie("utm_content")  || "",
+      gclid:        current.gclid        || getCookie("gclid")        || "",
+      fbclid:       current.fbclid       || getCookie("fbclid")       || "",
+      ttclid:       current.ttclid       || getCookie("ttclid")       || ""
+    };
+    function setManyInScope(scope, names, value) {
+      if (!value) return;
+      names.forEach((n) => {
+        scope.querySelectorAll(`[name="${n}"]`).forEach(el => { if ("value" in el) el.value = value; });
+        try {
+          scope.querySelectorAll(`#${CSS.escape(n)}`).forEach(el => { if ("value" in el) el.value = value; });
+        } catch {}
+      });
+    }
+    function fillScope(scope){
+      setManyInScope(scope, ["utm_source","contact.utm_source"],     utm.utm_source);
+      setManyInScope(scope, ["utm_medium","contact.utm_medium"],     utm.utm_medium);
+      setManyInScope(scope, ["utm_campaign","contact.utm_campaign"], utm.utm_campaign);
+      setManyInScope(scope, ["utm_content","contact.utm_content"],   utm.utm_content);
+    }
+    function fillAll(){
+      fillScope(document);
+      document.querySelectorAll("form").forEach(fillScope);
+    }
+    function decorateEduzzLinks() {
+      const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "gclid", "fbclid", "ttclid"];
+      document.querySelectorAll("a[href]").forEach((a) => {
+        const href = a.getAttribute("href");
+        if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+        let url;
+        try { url = new URL(href, window.location.origin); }
+        catch { return; }
+        const host = (url.hostname || "").toLowerCase();
+        const isEduzz = host === "chk.eduzz.com" || host.endsWith(".eduzz.com");
+        if (!isEduzz) return;
+        let changed = false;
+        keys.forEach((k) => {
+          if (!url.searchParams.get(k) && utm[k]) {
+            url.searchParams.set(k, utm[k]);
+            changed = true;
+          }
+        });
+        if (changed) a.setAttribute("href", url.toString());
+      });
+    }
+
+    document.addEventListener("click", function (e) {
+      const a = e.target.closest("a[href]");
+      if (!a) return;
+      const href = a.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("javascript:")) return;
+      let url;
+      try { url = new URL(href, window.location.origin); }
+      catch { return; }
+      const host = (url.hostname || "").toLowerCase();
+      if (!(host === "chk.eduzz.com" || host.endsWith(".eduzz.com"))) return;
+      const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "gclid", "fbclid", "ttclid"];
+      keys.forEach((k) => {
+        if (!url.searchParams.get(k) && utm[k]) url.searchParams.set(k, utm[k]);
+      });
+      a.setAttribute("href", url.toString());
+    }, true);
+    function runAll(){
+      fillAll();
+      decorateEduzzLinks();
+    }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", runAll);
+    } else {
+      runAll();
+    }
+    let debounceTimer;
+    new MutationObserver(() => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(runAll, 300);
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  })();
+  </script>
+<style>
+:root{--blue:#02337a;--blue-dark:#001c44;--blue-50:#eef4fc;--cta:#ff5000;--cta-hover:#e04800;--ink:#171717;--text:#3a3a3a;--muted:#5f6670;--line:#e3e7ee;--bg:#f6f6f6;--ok:#0f7a3d;--r:14px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{color:var(--ink);line-height:1.2;margin:0}
+p{margin:0}
+a{color:var(--blue)}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 16px}
+.sec{padding:48px 0}
+.sec--alt{background:var(--bg)}
+.kicker{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.h2{font-size:1.6rem;margin:8px 0 10px}
+.lead{color:var(--muted);max-width:640px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:54px;padding:14px 20px;border-radius:10px;background:var(--cta);color:#fff;font-weight:700;font-size:1.06rem;text-decoration:none;text-align:center;box-shadow:0 6px 16px rgba(255,80,0,.25);transition:background .15s}
+.btn:hover{background:var(--cta-hover)}
+.check{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.check li{position:relative;padding-left:28px}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;background:var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat}
+
+/* Topo */
+.top{background:var(--blue-dark)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.top img{width:96px;height:48px}
+.top span{font-size:.8rem;color:#c9d6ea}
+
+/* Primeira dobra */
+.hero{background:var(--blue-50);padding:24px 0 32px}
+.hero__grid{display:grid;gap:24px}
+.hero h1{font-size:1.72rem;letter-spacing:-.01em;margin:8px 0 12px}
+.hero__sub{font-size:1.02rem;margin-bottom:16px}
+.hero .check{margin-bottom:18px;font-weight:600;color:var(--ink)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.price strong{font-size:2rem;color:var(--ink);line-height:1}
+.price span{color:var(--muted);font-size:.92rem}
+.safe{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;font-size:.88rem;color:var(--muted)}
+.safe svg{flex:none}
+.mock{margin:0;text-align:center}
+.mock img{width:280px;margin:0 auto;border-radius:12px}
+.mock figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
+
+/* Aulas */
+.aulas{display:grid;gap:14px;margin-top:22px}
+.aula{border:1px solid var(--line);border-radius:var(--r);background:#fff;padding:18px}
+.aula__n{font-size:.75rem;font-weight:700;letter-spacing:.08em;color:var(--blue);text-transform:uppercase}
+.aula__tag{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:99px;background:var(--blue-50);color:var(--blue);font-size:.72rem;font-weight:700;letter-spacing:0;text-transform:none}
+.aula h3{font-size:1.12rem;margin:8px 0 12px}
+.prof{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.prof img{width:52px;height:52px;border-radius:50%;flex:none}
+.prof b{display:block;color:var(--ink)}
+.prof small{display:block;color:var(--muted);font-size:.84rem;line-height:1.35}
+.aula__pratica{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:.95rem}
+.aula__pratica b{color:var(--ink)}
+.aula details{margin-top:10px}
+.aula summary{cursor:pointer;color:var(--blue);font-weight:600;font-size:.95rem;list-style:none;padding:6px 0}
+.aula summary::-webkit-details-marker{display:none}
+.aula summary::after{content:" +"}
+.aula details[open] summary::after{content:" −"}
+.aula details ul{margin:6px 0 0;padding-left:20px;display:grid;gap:4px;font-size:.95rem}
+
+/* Depoimentos */
+.dep-main{margin:22px 0 0;background:#fff;border-radius:var(--r);border:1px solid var(--line);padding:22px;border-left:4px solid var(--blue)}
+.dep-main p{font-size:1.06rem;color:var(--ink)}
+.dep-main p+p{margin-top:10px}
+.who{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:.9rem}
+.who i{font-style:normal;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;flex:none}
+.who b{display:block;color:var(--ink)}
+.who small{color:var(--muted)}
+.deps{display:grid;gap:12px;margin-top:12px}
+.dep{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.dep p{color:var(--ink)}
+.note{font-size:.8rem;color:var(--muted);margin-top:12px}
+
+/* Certificado e materiais */
+.cert{display:grid;gap:22px;margin-top:22px;align-items:center}
+.cert img{border-radius:10px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,28,68,.1)}
+.cert .check{gap:12px}
+.cert .check b{color:var(--ink)}
+
+/* Compra final */
+.buy{background:var(--blue-dark);color:#dfe8f5}
+.buy .wrap{max-width:560px}
+.buy h2{color:#fff}
+.buy .kicker{color:#9cc0f0}
+.buy-card{background:#fff;color:var(--text);border-radius:var(--r);padding:22px;margin-top:20px}
+.buy-card .check{margin-bottom:18px}
+.buy-card .price strong{font-size:2.3rem}
+.guar{display:flex;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:.92rem}
+.guar svg{flex:none;margin-top:2px}
+.guar b{color:var(--ink)}
+
+/* FAQ */
+.faq{margin-top:20px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:16px 28px 16px 0;position:relative;font-weight:600;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:13px;font-size:1.3rem;color:var(--blue)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 16px}
+.help{margin-top:22px;font-size:.95rem}
+
+/* Rodapé */
+.foot{background:#0c1626;color:#a9b4c4;font-size:.85rem;padding:32px 0 96px}
+.foot p+p{margin-top:8px}
+.foot a{color:#dfe8f5}
+
+/* CTA fixo (mobile) */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .2s}
+.sticky.on{transform:none}
+.sticky .btn{min-height:50px;box-shadow:none}
+
+@media (min-width:860px){
+  .sec{padding:72px 0}
+  .h2{font-size:2.1rem}
+  .hero{padding:56px 0 64px}
+  .hero__grid{grid-template-columns:1.1fr .9fr;align-items:center;gap:48px}
+  .hero h1{font-size:2.5rem}
+  .hero__cta{max-width:420px}
+  .mock img{width:420px}
+  .aulas{grid-template-columns:1fr 1fr}
+  .deps{grid-template-columns:repeat(3,1fr)}
+  .cert{grid-template-columns:1fr 1fr;gap:40px}
+  .sticky{display:none}
+  .foot{padding-bottom:32px}
+}
+</style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXDTWRQ3"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="top">
+    <div class="wrap">
+      <img src="assets/logo_atleta_campeao_header.webp" alt="Instituto Atleta Campeão" width="96" height="48">
+      <span>Aulas gravadas</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Promessa + oferta + CTA -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero__grid">
+        <div>
+          <span class="kicker">Psicologia do esporte, na prática</span>
+          <h1 id="hero-title">Aprenda com 4 especialistas a trabalhar foco, pressão e desenvolvimento de atletas</h1>
+          <p class="hero__sub">Aulas gravadas do Congresso Internacional de Psicologia do Esporte e Coaching, para profissionais do esporte. Assista no seu ritmo, com materiais de apoio e uma aula sobre carreira em treinamento mental.</p>
+          <ul class="check">
+            <li>4 aulas · cerca de 8 horas</li>
+            <li>Apostilas e certificado digital</li>
+            <li>Acesso imediato e por tempo ilimitado</li>
+          </ul>
+          <div class="hero__cta">
+            <div class="price"><strong>R$ 47</strong><span>pagamento único · Pix ou cartão</span></div>
+            <a class="btn" id="cta-hero" href="https://chk.eduzz.com/VWGNPJ4P07" data-checkout target="_blank" rel="noopener">Acessar as 4 aulas por R$ 47</a>
+            <p class="safe"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f7a3d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>Garantia de 7 dias</p>
+          </div>
+        </div>
+        <figure class="mock">
+          <img src="assets/mkp_vip_psi-560.webp" srcset="assets/mkp_vip_psi-560.webp 560w, assets/mkp_vip_psi.webp 1080w" sizes="(min-width:860px) 420px, 280px" alt="Plataforma com as aulas gravadas, apostilas e certificado" width="560" height="560" decoding="async">
+          <figcaption>Aulas, apostilas e certificado reunidos na plataforma</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 2. As quatro aulas e professores -->
+    <section class="sec" id="aulas" aria-labelledby="aulas-title">
+      <div class="wrap">
+        <span class="kicker">Programação</span>
+        <h2 class="h2" id="aulas-title">As 4 aulas e o que cada uma leva para o seu trabalho</h2>
+        <p class="lead">Cada aula tem entre 1h30 e 2 horas, com um tema que aparece no dia a dia de quem trabalha com atletas.</p>
+        <div class="aulas">
+          <article class="aula">
+            <span class="aula__n">Aula 01 <span class="aula__tag">Foco e comunicação na equipe</span></span>
+            <h3>Treinamento mental para equipes</h3>
+            <div class="prof">
+              <img src="assets/pf_antonio_serenini_circle-144.webp" alt="" width="52" height="52" loading="lazy" decoding="async">
+              <div><b>Antônio Serenini</b><small>Treinador mental da Seleção Brasileira de Vôlei · tricampeão olímpico</small></div>
+            </div>
+            <p class="aula__pratica"><b>Na prática:</b> como técnicas de foco e mentalidade coletiva ajudam a melhorar liderança, relacionamento e comunicação dentro do grupo.</p>
+            <details>
+              <summary>Ver o que a aula aborda</summary>
+              <ul>
+                <li>Técnicas de foco e mentalidade coletiva</li>
+                <li>Liderança, relacionamento e comunicação dentro das equipes</li>
+                <li>Como criar uma cultura mental vencedora no dia a dia</li>
+              </ul>
+            </details>
+          </article>
+          <article class="aula">
+            <span class="aula__n">Aula 02 <span class="aula__tag">Influência dos pais</span></span>
+            <h3>Parentalidade e desenvolvimento esportivo</h3>
+            <div class="prof">
+              <img src="assets/pf_luis_antonio_circle-144.webp" alt="" width="52" height="52" loading="lazy" decoding="async">
+              <div><b>Luís Antônio</b><small>Doutor em Educação Física, especialista em motivação e desenvolvimento de jovens atletas</small></div>
+            </div>
+            <p class="aula__pratica"><b>Na prática:</b> como orientar a família para que a influência dos pais ajude, e não atrapalhe, a formação do jovem atleta.</p>
+            <details>
+              <summary>Ver o que a aula aborda</summary>
+              <ul>
+                <li>O fator mais decisivo (e mais ignorado) na formação de jovens atletas</li>
+                <li>Como transformar a influência dos pais em ferramenta prática</li>
+                <li>Estratégias para impactar o desenvolvimento esportivo pelo ambiente familiar</li>
+              </ul>
+            </details>
+          </article>
+          <article class="aula">
+            <span class="aula__n">Aula 03 <span class="aula__tag">Medo de errar</span></span>
+            <h3>Como lidar com atletas que se cobram demais</h3>
+            <div class="prof">
+              <img src="assets/pf_jose_roberto_circle-144.webp" alt="" width="52" height="52" loading="lazy" decoding="async">
+              <div><b>Dr. Zé Roberto</b><small>Intervenções para perfeccionismo, ansiedade e medo de errar</small></div>
+            </div>
+            <p class="aula__pratica"><b>Na prática:</b> intervenções para atletas perfeccionistas, ansiosos ou com medo de errar, dentro e fora da competição.</p>
+            <details>
+              <summary>Ver o que a aula aborda</summary>
+              <ul>
+                <li>Da autocrítica destrutiva ao motor de alto desempenho</li>
+                <li>Estratégias para pressão, ansiedade e confiança na competição</li>
+                <li>Intervenções práticas para orientar atletas e reduzir o medo de errar</li>
+              </ul>
+            </details>
+          </article>
+          <article class="aula">
+            <span class="aula__n">Aula 04 <span class="aula__tag">Carreira em treinamento mental</span></span>
+            <h3>Como se tornar um treinador mental reconhecido no esporte</h3>
+            <div class="prof">
+              <img src="assets/pf_mayra_ramos_circle-144.webp" alt="" width="52" height="52" loading="lazy" decoding="async">
+              <div><b>Mayra Ramos</b><small>Fundadora do Atleta Campeão, especialista em neurociência e treinadora mental formada nos EUA</small></div>
+            </div>
+            <p class="aula__pratica"><b>Na prática:</b> caminhos para se posicionar, construir autoridade e estruturar uma carreira trabalhando com atletas.</p>
+            <details>
+              <summary>Ver o que a aula aborda</summary>
+              <ul>
+                <li>O mercado está crescendo e os atletas precisam de especialistas</li>
+                <li>Atalhos para se destacar e construir autoridade</li>
+                <li>Como estruturar uma carreira bem remunerada</li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Depoimentos -->
+    <section class="sec sec--alt" id="depoimentos" aria-labelledby="dep-title">
+      <div class="wrap">
+        <span class="kicker">Quem assistiu</span>
+        <h2 class="h2" id="dep-title">O que os participantes comentaram nas aulas</h2>
+        <blockquote class="dep-main">
+          <p>“Como psicóloga e pesquisadora em Psicologia do Esporte, me senti muito contemplada pelas reflexões apresentadas. Meu TCC abordou saúde mental no alto rendimento e o papel da TCC diante da pressão por performance, então foi muito enriquecedor ouvir suas contribuições.”</p>
+          <div class="who"><i aria-hidden="true">SB</i><div><b>Simara Braz Villarinho</b><small>Psicóloga e pesquisadora em Psicologia do Esporte</small></div></div>
+        </blockquote>
+        <div class="deps">
+          <blockquote class="dep" style="margin:0">
+            <p>“Professor mostrou através da pesquisa científica dados importantes para os pais de atletas.”</p>
+            <div class="who"><i aria-hidden="true">NC</i><div><b>Nadia Ibrahim Martins de Castro</b><small>Participante · comentário na plataforma</small></div></div>
+          </blockquote>
+          <blockquote class="dep" style="margin:0">
+            <p>“Aula sensacional. Um poço de conhecimento teórico e prático. Adorei o conceito de que o esporte não é um fim em si mesmo, mas um meio de formação de pessoas.”</p>
+            <div class="who"><i aria-hidden="true">CC</i><div><b>Camilla Calcagno</b><small>Participante · comentário no YouTube</small></div></div>
+          </blockquote>
+          <blockquote class="dep" style="margin:0">
+            <p>“Sou mãe de atleta de jiu-jítsu. Dentro das minhas formações, estou iniciando um projeto na academia da minha filha de cuidado da saúde mental dos atletas competidores.”</p>
+            <div class="who"><i aria-hidden="true">NL</i><div><b>Nalcione Maria Medrado de Lima</b><small>Mãe de atleta · comentário no YouTube</small></div></div>
+          </blockquote>
+        </div>
+        <p class="note">Comentários transcritos da plataforma de aulas e da transmissão no YouTube.</p>
+      </div>
+    </section>
+
+    <!-- 4. Certificado e materiais -->
+    <section class="sec" id="certificado" aria-labelledby="cert-title">
+      <div class="wrap">
+        <span class="kicker">Certificado e materiais</span>
+        <h2 class="h2" id="cert-title">Comprove o que você estudou</h2>
+        <div class="cert">
+          <img src="assets/certificado_psicologia_coaching-720.webp" srcset="assets/certificado_psicologia_coaching-720.webp 720w, assets/certificado_psicologia_coaching.webp 1200w" sizes="(min-width:860px) 520px, 100vw" alt="Modelo do certificado do Congresso Internacional de Psicologia do Esporte e Coaching" width="720" height="509" loading="lazy" decoding="async">
+          <ul class="check">
+            <li><b>Certificado digital com carga horária de cerca de 8 horas</b>, emitido pelo Instituto Atleta Campeão, para formação continuada e portfólio profissional.</li>
+            <li><b>Emissão na plataforma</b>, após cumprir os critérios informados no ambiente do curso.</li>
+            <li><b>Apostilas e materiais complementares</b> reunidos junto com as aulas.</li>
+            <li><b>Acesso por tempo ilimitado</b> para rever as aulas quando quiser.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Garantia + CTA -->
+    <section class="sec buy" id="comprar" aria-labelledby="buy-title">
+      <div class="wrap">
+        <span class="kicker">Acesso completo</span>
+        <h2 class="h2" id="buy-title">As 4 aulas do Congresso Internacional, no seu ritmo</h2>
+        <div class="buy-card">
+          <ul class="check">
+            <li>4 aulas gravadas · cerca de 8 horas</li>
+            <li>Apostilas e materiais de apoio</li>
+            <li>Certificado digital emitido pelo Instituto Atleta Campeão</li>
+            <li>Acesso imediato e por tempo ilimitado</li>
+          </ul>
+          <div class="price"><strong>R$ 47</strong><span>pagamento único · Pix ou cartão</span></div>
+          <a class="btn" id="cta-final" href="https://chk.eduzz.com/VWGNPJ4P07" data-checkout target="_blank" rel="noopener">Acessar as 4 aulas por R$ 47</a>
+          <div class="guar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0f7a3d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <p><b>Garantia de 7 dias.</b> Se o conteúdo não fizer sentido para você, peça o reembolso em até 7 dias corridos após a compra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Perguntas frequentes -->
+    <section class="sec" id="faq" aria-labelledby="faq-title">
+      <div class="wrap" style="max-width:760px">
+        <span class="kicker">Dúvidas</span>
+        <h2 class="h2" id="faq-title">Perguntas frequentes</h2>
+        <div class="faq">
+          <details><summary>As aulas são ao vivo ou gravadas?</summary><p>Gravadas. Você recebe as gravações integrais das quatro aulas e assiste quando quiser, sem agenda ao vivo.</p></details>
+          <details><summary>Por quanto tempo terei acesso?</summary><p>Por tempo ilimitado. Você pode assistir e rever o conteúdo no seu ritmo.</p></details>
+          <details><summary>Quanto tempo dura cada aula?</summary><p>Cada aula tem entre 1h30 e 2 horas, cerca de 8 horas no total.</p></details>
+          <details><summary>Como funciona o certificado?</summary><p>O certificado digital é emitido pelo Instituto Atleta Campeão após o cumprimento dos critérios informados na plataforma. Ele registra a participação nas quatro aulas e a carga horária correspondente.</p></details>
+          <details><summary>Serve para quem ainda não atua na área?</summary><p>Sim. A programação mistura equipes, desenvolvimento de jovens, intervenções sob pressão e carreira, e é útil tanto para quem já trabalha com atletas quanto para quem está começando.</p></details>
+          <details><summary>Posso pagar com Pix?</summary><p>Sim. O pagamento é feito no checkout da Eduzz, com Pix ou cartão de crédito, conforme as opções disponíveis no momento da compra.</p></details>
+          <details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, as instruções de acesso à plataforma chegam no e-mail informado no checkout.</p></details>
+          <details><summary>Como funciona a garantia de 7 dias?</summary><p>Você pode pedir o cancelamento e o reembolso em até 7 dias corridos após a compra, pelos canais de suporte informados no checkout.</p></details>
+        </div>
+        <p class="help">Ficou com alguma dúvida? <a href="https://wa.me/551140403112" target="_blank" rel="noopener">Fale com a equipe no WhatsApp</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p><b style="color:#fff">Instituto Atleta Campeão</b> · Av. Copacabana, 268 — Alphaville, Barueri — SP</p>
+      <p><a href="mailto:suporte@atletacampeao.com.br">suporte@atletacampeao.com.br</a> · (11) 4040-3112 · <a href="/politica-de-privacidade/">Política de privacidade</a></p>
+    </div>
+  </footer>
+
+  <div class="sticky" id="sticky" aria-hidden="true">
+    <a class="btn" href="https://chk.eduzz.com/VWGNPJ4P07" data-checkout target="_blank" rel="noopener" tabindex="-1">4 aulas por R$ 47</a>
+  </div>
+
+  <script>
+    // InitiateCheckout nos CTAs Eduzz
+    (function () {
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a[data-checkout]');
+        if (!a) return;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'initiate_checkout', product_name: 'Congresso Psicologia Gravado', value: 47, currency: 'BRL', variante: 'b' });
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'InitiateCheckout', { content_name: 'Congresso Psicologia Gravado', value: 47, currency: 'BRL', variante: 'b' });
+        }
+      }, true);
+    })();
+
+    // CTA fixo: aparece depois que o botão da primeira dobra sai da tela e some no bloco final de compra
+    (function () {
+      var s = document.getElementById('sticky');
+      var hero = document.getElementById('cta-hero');
+      var buy = document.getElementById('comprar');
+      if (!s || !hero || !('IntersectionObserver' in window)) return;
+      var heroOut = false, buyIn = false;
+      function set() {
+        var on = heroOut && !buyIn;
+        s.classList.toggle('on', on);
+        s.setAttribute('aria-hidden', on ? 'false' : 'true');
+        s.querySelector('a').tabIndex = on ? 0 : -1;
+      }
+      new IntersectionObserver(function (en) {
+        heroOut = !en[0].isIntersecting && en[0].boundingClientRect.top < 0; set();
+      }).observe(hero);
+      new IntersectionObserver(function (en) { buyIn = en[0].isIntersecting; set(); }).observe(buy);
+    })();
+  </script>
+</body>
+</html>
