@@ -30,6 +30,7 @@
     { "source": "/obrigado-congresso-lideranca-parental-pais", "destination": "/obrigado-congresso-lideranca-parental-pais/", "permanent": false },
     { "source": "/passe-profissional-lideranca-parental-pais", "destination": "/passe-profissional-lideranca-parental-pais/", "permanent": false },
     { "source": "/congresso-lideranca-parental-treinadores", "destination": "/congresso-lideranca-parental-treinadores/", "permanent": false },
+    { "source": "/congresso-lideranca-parental-treinadores-b", "destination": "/congresso-lideranca-parental-treinadores-b/", "permanent": false },
     { "source": "/obrigado-congresso-lideranca-parental-treinadores", "destination": "/obrigado-congresso-lideranca-parental-treinadores/", "permanent": false },
     { "source": "/passe-profissional-lideranca-parental-treinadores", "destination": "/passe-profissional-lideranca-parental-treinadores/", "permanent": false },
     { "source": "/congresso-lideranca-parental-psicologos", "destination": "/congresso-lideranca-parental-psicologos/", "permanent": false },
