@@ -1,0 +1,366 @@
+<title>Atleta 10X Mais Confiante</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Design system Atleta Campeão: marinho + dourado sobre branco, tudo chapado (sem sombra, degradê ou raio), Sora nos títulos e rótulos, Source Serif 4 no corpo. Layout: faixas alternadas, mobile primeiro. */
+:root{
+  --marinho:#0A1B33; --dourado:#B08D2A; --branco:#FFFFFF;
+  --cinza-texto:#2B3442; --cinza-legenda:#5A6474; --cinza-filete:#C9CFD8; --cinza-fundo:#F4F5F7;
+  --font-display:"Sora",system-ui,sans-serif;
+  --font-body:"Source Serif 4",Georgia,serif;
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;
+  --filete-fino:1px; --filete-grosso:3px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--branco);color:var(--cinza-texto);font-family:var(--font-body);font-size:17px;line-height:1.65;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:56px}
+h1,h2,h3{font-family:var(--font-display);text-transform:uppercase;line-height:1.15;letter-spacing:.02em;color:var(--marinho);margin:0;text-wrap:balance}
+h1{font-size:clamp(27px,5.6vw,44px);font-weight:800;line-height:1.1}
+h2{font-size:clamp(23px,4vw,32px);font-weight:800}
+h2::after{content:"";display:block;width:56px;height:var(--filete-grosso);background:var(--dourado);margin-top:12px}
+.final h2::after{margin-inline:auto}
+h3{font-size:16.5px;font-weight:700;letter-spacing:.03em}
+p{margin:0}
+.rotulo,.eyebrow{font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza-legenda);display:block}
+.lead{font-size:19px;color:var(--cinza-legenda);max-width:60ch}
+.btn{display:inline-block;background:var(--marinho);color:var(--branco);font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:17px 28px 14px;border-bottom:var(--filete-grosso) solid var(--dourado);text-align:center;line-height:1.3}
+.btn:hover{background:#13294b}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--dourado);outline-offset:3px}
+.chip{display:inline-block;font-family:var(--font-display);font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border:1.5px solid var(--marinho);color:var(--marinho)}
+
+.topbar{background:var(--marinho);padding-block:12px;border-bottom:var(--filete-grosso) solid var(--dourado)}
+.topbar img{display:block;height:54px;width:auto}
+
+/* hero */
+.hero{padding-top:36px;padding-bottom:48px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:start}
+.hero h1{margin-block:12px 18px}
+.hero h1 em{font-style:normal;box-shadow:inset 0 -.28em 0 rgba(176,141,42,.35)}
+.hero .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:26px}
+.price-note{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza-legenda)}
+.price-note strong{display:block;font-size:32px;letter-spacing:.01em;color:var(--marinho);line-height:1.1}
+.stack{display:grid;gap:20px;min-width:0}
+.mock{display:block;width:100%;height:auto}
+
+/* sumula */
+.sheet{background:var(--branco);border:var(--filete-fino) solid var(--cinza-filete)}
+.sheet header{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:var(--filete-grosso) solid var(--marinho);font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--marinho)}
+.sheet ol{list-style:none;margin:0;padding:0}
+.sheet li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;border-bottom:var(--filete-fino) solid var(--cinza-filete);font-family:var(--font-display);font-weight:600;font-size:14px;line-height:1.35;color:var(--marinho)}
+.sheet li:last-child{border-bottom:0}
+.sheet .n{font-weight:800;font-size:20px;color:var(--dourado)}
+.sheet .fmt{font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza-legenda)}
+
+/* problema */
+.problem{background:var(--cinza-fundo)}
+.problem .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:32px}
+.problem .col{border-top:var(--filete-grosso) solid var(--marinho);padding-top:14px}
+.problem .col p{margin-top:8px}
+.problem .after{margin-top:32px;max-width:62ch;font-size:19px}
+
+/* faixa marinho */
+.band{background:var(--marinho);color:var(--cinza-filete)}
+.band h1,.band h2,.band h3{color:var(--branco)}
+.band .eyebrow,.band .rotulo{color:var(--dourado)}
+.band .lead{color:var(--cinza-filete)}
+.band .btn{background:var(--dourado);color:var(--marinho);border-bottom-color:var(--branco)}
+.band .btn:hover{background:#c29f38}
+.method{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--filete-fino);background:#24374f;border:var(--filete-fino) solid #24374f;margin-top:32px}
+.method div{background:var(--marinho);padding:20px 18px}
+.method h3{margin-bottom:8px}
+.method p{font-size:15px;line-height:1.55}
+
+/* materiais */
+.items{margin-top:32px;border-top:var(--filete-grosso) solid var(--marinho)}
+.item{display:grid;grid-template-columns:230px minmax(0,1fr) 140px;gap:8px 28px;padding:26px 0;border-bottom:var(--filete-fino) solid var(--cinza-filete);align-items:start}
+.item img{display:block;width:100%;height:auto}
+.item h3{margin-bottom:6px;font-size:17px}
+.item h3 .k{color:var(--dourado);margin-right:8px;font-size:24px;vertical-align:-2px}
+.item .what{color:var(--cinza-legenda);margin-bottom:10px}
+.item dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;font-size:16px}
+.item dt{font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--marinho);padding-top:5px}
+.item dd{margin:0}
+.item .side{text-align:right}
+.item .side .val{display:block;margin-top:10px;font-size:14px;color:var(--cinza-legenda)}
+
+/* comentarios */
+.gallery{columns:2;column-gap:20px;margin-top:32px}
+.gallery figure{margin:0 0 20px;break-inside:avoid;border:var(--filete-fino) solid var(--cinza-filete);background:var(--branco)}
+.gallery img{display:block;width:100%;height:auto}
+.gallery-note{margin-top:12px;font-size:16px;color:var(--cinza-legenda);max-width:62ch}
+
+/* quem criou */
+.proof{background:var(--cinza-fundo)}
+.proof .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.mayra{display:block;width:150px;height:150px;margin-bottom:18px}
+.proof ul{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.proof li{padding-left:20px;position:relative}
+.proof li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:3px;background:var(--dourado)}
+.stat{font-family:var(--font-display);font-weight:800;font-size:clamp(48px,8vw,80px);line-height:1;color:var(--marinho);letter-spacing:.01em}
+.stat small{display:block;font-family:var(--font-body);font-weight:400;font-size:17px;line-height:1.55;color:var(--cinza-legenda);margin-top:10px;letter-spacing:0}
+
+/* preco */
+.price .box{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.ledger{width:100%;border-collapse:collapse;font-size:16px;margin-top:22px}
+.ledger td{padding:9px 0;border-bottom:var(--filete-fino) solid #24374f}
+.ledger td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.ledger tr.total td{font-weight:600;color:var(--branco);border-bottom:var(--filete-grosso) solid var(--dourado)}
+.tag{background:var(--branco);color:var(--cinza-texto);padding:32px 24px;text-align:center}
+.tag .old{font-size:16px;color:var(--cinza-legenda)}
+.tag .now{font-family:var(--font-display);font-weight:800;font-size:clamp(60px,10vw,92px);line-height:1;margin:8px 0;color:var(--marinho)}
+.tag .now sup{font-size:.34em;vertical-align:top;position:relative;top:.35em;margin-right:4px}
+.tag .btn{margin-top:20px;display:block;background:var(--marinho);color:var(--branco);border-bottom-color:var(--dourado)}
+.tag .btn:hover{background:#13294b}
+.tag .fine{margin-top:14px;font-size:14px;color:var(--cinza-legenda)}
+.why{margin-top:36px;max-width:66ch}
+
+/* faq */
+.faq .wrap{max-width:780px}
+details{border-bottom:var(--filete-fino) solid var(--cinza-filete)}
+details:first-of-type{border-top:var(--filete-grosso) solid var(--marinho);margin-top:28px}
+summary{cursor:pointer;list-style:none;padding:18px 0;font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.4;color:var(--marinho);display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:600;font-size:24px;line-height:1;color:var(--dourado)}
+details[open] summary::after{content:"\2212"}
+details p{padding:0 0 18px;color:var(--cinza-legenda);max-width:62ch}
+
+.final{text-align:center}
+.final .wrap{display:grid;justify-items:center;gap:22px}
+.final h2{max-width:20ch}
+footer{padding-block:28px;font-family:var(--font-display);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cinza-legenda);border-top:var(--filete-fino) solid var(--cinza-filete)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 28px}
+
+@media (max-width:860px){
+  .hero .wrap,.proof .wrap,.price .box{grid-template-columns:minmax(0,1fr);gap:32px}
+  .problem .cols{grid-template-columns:minmax(0,1fr)}
+  .method{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .item{grid-template-columns:minmax(0,1fr)}
+  .item img{max-width:420px}
+  .item .side{text-align:left}
+  .item .side .val{display:inline;margin-left:10px}
+  .gallery{columns:1}
+}
+@media (max-width:480px){
+  .method{grid-template-columns:minmax(0,1fr)}
+  .btn{display:block}
+  .item dl{grid-template-columns:minmax(0,1fr)}
+  .item dt{padding-top:0}
+}
+</style>
+
+<header class="topbar"><div class="wrap"><img src="assets/logo.webp" alt="Instituto Atleta Campeão" width="96" height="54"></div></header>
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Treinamento mental online para atletas</span>
+      <h1>Você treina bem, mas <em>rende menos</em> quando a competição começa?</h1>
+      <p class="lead">Aprenda uma rotina mental para lidar com a pressão, recuperar o foco depois de um erro e competir com mais confiança.</p>
+      <p style="margin-top:16px;max-width:60ch">O <strong>Combo Atleta 10X Mais Confiante</strong> reúne vídeos de preparação pré-competição, e-books com exercícios e áudios para praticar foco e visualização.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://pay.hotmart.com/K41265957E?off=rhb6d7ji&checkoutMode=10&bid=1713356916115">Quero conhecer o combo</a>
+        <p class="price-note"><strong>R$ 47</strong>pagamento pela Hotmart</p>
+      </div>
+    </div>
+    <div class="stack">
+    <img class="mock" src="assets/combo.webp" alt="Combo Atleta 10X Mais Confiante com vídeos, e-books e áudios" width="900" height="506" fetchpriority="high">
+    <aside class="sheet" aria-label="O que está incluído no combo">
+      <header><span>O que vem no combo</span><span>6 materiais</span></header>
+      <ol>
+        <li><span class="n">1</span><span>Treinamento Mental Pré-Competição Express</span><span class="fmt">3 vídeos</span></li>
+        <li><span class="n">2</span><span>Os 5 Maiores Erros que os Atletas Cometem na Competição</span><span class="fmt">E-book</span></li>
+        <li><span class="n">3</span><span>Sonho Grande</span><span class="fmt">E-book</span></li>
+        <li><span class="n">4</span><span>Desafio 30 Dias de Sucesso</span><span class="fmt">E-book</span></li>
+        <li><span class="n">5</span><span>Mindfulness para Atletas</span><span class="fmt">Áudio</span></li>
+        <li><span class="n">6</span><span>O Poder da Visualização</span><span class="fmt">Áudio</span></li>
+      </ol>
+    </aside>
+    </div>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="wrap">
+    <span class="eyebrow">Você reconhece isso?</span>
+    <h2 style="margin-top:8px">O treino foi bom. A competição, não.</h2>
+    <div class="cols">
+      <div class="col"><h3>Pressão antes de começar</h3><p>O frio na barriga e os pensamentos de "e se eu errar?" aparecem antes da primeira prova, do primeiro ponto, do apito inicial.</p></div>
+      <div class="col"><h3>Medo de errar</h3><p>Uma falha logo no começo e a cabeça fica presa nela. O resto da competição vira tentativa de se recuperar.</p></div>
+      <div class="col"><h3>Não repetir o treino</h3><p>Você sabe o que consegue fazer. Na hora que vale, o desempenho fica abaixo do que aparece nos treinos.</p></div>
+    </div>
+    <p class="after">Isso acontece em qualquer modalidade, do futsal à natação, do judô ao vôlei. A parte física e tática já está no treino. O combo trabalha a parte mental, com práticas que você adapta ao seu esporte.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <span class="eyebrow">Método</span>
+    <h2 style="margin-top:8px">Quatro práticas para levar para o próximo treino</h2>
+    <p class="lead" style="margin-top:14px">"10X" é o nome do combo. O que você recebe são exercícios para repetir, não uma promessa de resultado pronto.</p>
+    <div class="method">
+      <div><h3>Rotina pré-competição</h3><p>Passos para organizar a cabeça nas horas antes de competir.</p></div>
+      <div><h3>Pensamentos que atrapalham</h3><p>Aprender a reconhecer o diálogo interno que derruba o foco e o que fazer no lugar.</p></div>
+      <div><h3>Foco no momento presente</h3><p>Áudios guiados para treinar a atenção e voltar ao jogo depois de um erro.</p></div>
+      <div><h3>Visualização</h3><p>Ensaiar mentalmente a competição e os seus objetivos antes de viver tudo isso na prática.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Conteúdo</span>
+    <h2 style="margin-top:8px">O que cada material faz por você</h2>
+    <div class="items">
+      <article class="item">
+        <img src="assets/i1.webp" alt="" loading="lazy" decoding="async" width="720" height="405">
+        <div>
+          <h3><span class="k">1</span>Treinamento Mental Pré-Competição Express</h3>
+          <p class="what">Três vídeos curtos sobre como lidar com nervosismo, ansiedade e pressão antes de competir.</p>
+          <dl><dt>Quando usar</dt><dd>Nos dias e nas horas que antecedem uma competição.</dd><dt>Você pratica</dt><dd>Uma rotina mental para chegar à competição mais calmo e focado.</dd></dl>
+        </div>
+        <div class="side"><span class="chip">3 vídeos</span><span class="val">valor avulso R$ 197</span></div>
+      </article>
+      <article class="item">
+        <img src="assets/i2.webp" alt="" loading="lazy" decoding="async" width="720" height="329">
+        <div>
+          <h3><span class="k">2</span>Os 5 Maiores Erros que os Atletas Cometem na Competição</h3>
+          <p class="what">E-book sobre cinco erros mentais comuns antes de competir e como evitar cada um.</p>
+          <dl><dt>Quando usar</dt><dd>Na preparação, antes da próxima competição.</dd><dt>Você pratica</dt><dd>Identificar o seu diálogo interno e trocar pensamentos que tiram o foco.</dd></dl>
+        </div>
+        <div class="side"><span class="chip">E-book</span><span class="val">valor avulso R$ 39</span></div>
+      </article>
+      <article class="item">
+        <img src="assets/i3.webp" alt="" loading="lazy" decoding="async" width="720" height="361">
+        <div>
+          <h3><span class="k">3</span>Sonho Grande</h3>
+          <p class="what">E-book sobre motivação: como encontrar o que te move e manter a energia ao longo da temporada.</p>
+          <dl><dt>Quando usar</dt><dd>Quando bater o desânimo, nos treinos ou perto de competir.</dd><dt>Você pratica</dt><dd>Estratégias para manter motivação e foco no seu objetivo esportivo.</dd></dl>
+        </div>
+        <div class="side"><span class="chip">E-book</span><span class="val">valor avulso R$ 39</span></div>
+      </article>
+      <article class="item">
+        <img src="assets/i4.webp" alt="" loading="lazy" decoding="async" width="600" height="735">
+        <div>
+          <h3><span class="k">4</span>Desafio 30 Dias de Sucesso</h3>
+          <p class="what">E-book com um plano de 30 dias para construir autoconfiança com uma rotina estruturada.</p>
+          <dl><dt>Quando usar</dt><dd>Em um ciclo de treinos, começando agora e seguindo por um mês.</dd><dt>Você pratica</dt><dd>Exercícios diários para depender menos da opinião dos outros sobre o seu desempenho.</dd></dl>
+        </div>
+        <div class="side"><span class="chip">E-book</span><span class="val">valor avulso R$ 39</span></div>
+      </article>
+      <article class="item">
+        <img src="assets/i5.webp" alt="" loading="lazy" decoding="async" width="720" height="417">
+        <div>
+          <h3><span class="k">5</span>Mindfulness para Atletas</h3>
+          <p class="what">Áudio guiado para treinar a atenção e voltar ao momento presente antes de competir.</p>
+          <dl><dt>Quando usar</dt><dd>Antes de treinos e competições importantes.</dd><dt>Você pratica</dt><dd>Respiração e atenção plena para manter a calma e a concentração.</dd></dl>
+        </div>
+        <div class="side"><span class="chip">Áudio</span><span class="val">valor avulso R$ 39</span></div>
+      </article>
+      <article class="item">
+        <img src="assets/i6.webp" alt="" loading="lazy" decoding="async" width="520" height="717">
+        <div>
+          <h3><span class="k">6</span>O Poder da Visualização</h3>
+          <p class="what">Áudio guiado de visualização de objetivos, com técnicas que a Mayra usa com atletas de atendimento individual.</p>
+          <dl><dt>Quando usar</dt><dd>Nos dias que antecedem a competição e na rotina de treino.</dd><dt>Você pratica</dt><dd>Imaginar a competição e as suas metas em detalhes, como parte da preparação.</dd></dl>
+        </div>
+        <div class="side"><span class="chip">Áudio</span><span class="val">valor avulso R$ 97</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Comentários</span>
+    <h2 style="margin-top:8px">O que atletas comentaram sobre o conteúdo</h2>
+    <p class="gallery-note" style="margin-top:12px">Comentários deixados por quem já acessou o material, como aparecem na plataforma.</p>
+    <div class="gallery">
+      <figure><img src="assets/c1.webp" width="873" height="1055" decoding="async" alt="Comentários de Bruna de Oliveira, Aylla Calasans, Gilmar Tavares, Laudo Spíndola, Tamires Silva e Igor Pereira" loading="lazy"></figure>
+      <figure><img src="assets/c2.webp" width="873" height="1026" decoding="async" alt="Comentários de Ewerton Melo Diniz, Rafael Camargo Costa, Marcelo Valdevino, Ana da Silva Loureiro, Nielson Silva e Jenilson Rodrigues, goleiro" loading="lazy"></figure>
+      <figure><img src="assets/c3.webp" width="873" height="522" decoding="async" alt="Comentários de Gilmar Tavares, Venâncio Costa e Anastacia Pereira" loading="lazy"></figure>
+      <figure><img src="assets/c4.webp" width="873" height="538" decoding="async" alt="Comentários de Tayron de Souza, Anderson Porto e Bruno Lima" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="wrap">
+    <div>
+      <p class="stat">+20 mil<small>atletas, treinadores e pais já passaram por atendimentos, cursos e palestras da Mayra Ramos, on-line e presencial.</small></p>
+    </div>
+    <div>
+      <img class="mayra" src="assets/mayra.webp" alt="Mayra Ramos" width="150" height="150" loading="lazy" decoding="async">
+      <span class="eyebrow">Quem criou</span>
+      <h2 style="margin-top:8px">Método de uma ex-atleta da seleção brasileira</h2>
+      <p style="margin-top:14px;color:var(--cinza-legenda)">Mayra Ramos fundou o Instituto Atleta Campeão e criou o método de treinamento mental. Foi 20 anos atleta da seleção brasileira de patinação artística.</p>
+      <ul>
+        <li>Eleita duas vezes pelo Comitê Olímpico do Brasil a melhor atleta de patinação do país</li>
+        <li>Vice-campeã mundial por equipes</li>
+        <li>Campeã pan-americana e sul-americana de duplas, e bronze nos Jogos Pan-Americanos</li>
+        <li>Formação em coaching, psicologia esportiva, neurociência esportiva e hipnoterapia clínica</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band price">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <span class="eyebrow">Preço</span>
+        <h2 style="margin-top:8px">Seis materiais por R$ 47</h2>
+        <p class="lead" style="margin-top:14px">O combo normalmente é vendido por R$ 97. Hoje está por R$ 47, em oferta por tempo limitado. Os valores avulsos abaixo são os de cada material vendido separadamente.</p>
+        <table class="ledger" aria-label="Valores avulsos dos materiais">
+          <tr><td>Pré-Competição Express</td><td>R$ 197,00</td></tr>
+          <tr><td>E-book Os 5 Maiores Erros</td><td>R$ 39,00</td></tr>
+          <tr><td>E-book Sonho Grande</td><td>R$ 39,00</td></tr>
+          <tr><td>E-book 30 Dias de Sucesso</td><td>R$ 39,00</td></tr>
+          <tr><td>Áudio Mindfulness para Atletas</td><td>R$ 39,00</td></tr>
+          <tr><td>Áudio O Poder da Visualização</td><td>R$ 97,00</td></tr>
+          <tr class="total"><td>Soma dos materiais avulsos</td><td>R$ 450,00</td></tr>
+        </table>
+      </div>
+      <div class="tag">
+        <p class="old">Preço habitual do combo <s>R$ 97,00</s></p>
+        <p class="now"><sup>R$</sup>47</p>
+        <p class="old">por tempo limitado</p>
+        <a class="btn" href="https://pay.hotmart.com/K41265957E?off=rhb6d7ji&checkoutMode=10&bid=1713356916115">Quero conhecer o combo</a>
+        <p class="fine">Pagamento na página segura da Hotmart.</p>
+      </div>
+    </div>
+    <p class="why">Por que tão acessível? A Mayra quer ajudar o maior número possível de atletas e acredita que, com uma entrada de baixo custo, você começa a praticar e decide depois se quer seguir a jornada com ela.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <span class="eyebrow">Dúvidas</span>
+    <h2 style="margin-top:8px">Antes de comprar</h2>
+    <details><summary>O combo serve para a minha modalidade?</summary><p>As práticas tratam de pressão, foco, motivação e confiança, que aparecem em qualquer esporte, individual ou coletivo. Você adapta cada exercício à sua modalidade.</p></details>
+    <details><summary>Em que formato recebo o conteúdo?</summary><p>Três vídeos, três e-books e dois áudios guiados, reunidos no combo. Os áudios podem ser baixados para você praticar quando quiser.</p></details>
+    <details><summary>Isso garante que vou competir melhor?</summary><p>Não. O combo ensina práticas de treino mental. O resultado depende de você aplicá-las com regularidade, assim como acontece com o treino físico.</p></details>
+    <details><summary>O que eu preciso fazer depois de comprar?</summary><p>Comece pelos vídeos de pré-competição e escolha um áudio para praticar antes do próximo treino. O desafio de 30 dias ajuda a transformar isso em rotina.</p></details>
+    <details><summary>R$ 47 vale por quanto tempo?</summary><p>É uma oferta por tempo limitado. O preço habitual do combo é R$ 97, e ele pode voltar a esse valor sem aviso.</p></details>
+    <details><summary>Como falo com o suporte?</summary><p>Pelo WhatsApp +55 (88) 9809-1290 ou pelo Instagram @atletacampeao.</p></details>
+  </div>
+</section>
+
+<section class="band final">
+  <div class="wrap">
+    <h2>Leve a rotina mental do treino para a competição</h2>
+    <p class="lead">Seis materiais, vídeos, e-books e áudios, por R$ 47.</p>
+    <a class="btn" href="https://pay.hotmart.com/K41265957E?off=rhb6d7ji&checkoutMode=10&bid=1713356916115">Quero conhecer o combo</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2024 Atleta Campeão. Todos os direitos reservados.</span>
+    <span>WhatsApp +55 (88) 9809-1290 · Instagram @atletacampeao</span>
+  </div>
+</footer>
