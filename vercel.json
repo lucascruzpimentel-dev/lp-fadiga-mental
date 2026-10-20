@@ -2,6 +2,7 @@
   "redirects": [
     { "source": "/inscricao-congresso-neurociencia-no-esporte", "destination": "/inscricao-congresso-neurociencia-no-esporte/", "permanent": false },
     { "source": "/fadiga-mental", "destination": "/fadiga-mental/", "permanent": false },
+    { "source": "/atleta-10x-mais-confiante", "destination": "/atleta-10x-mais-confiante/", "permanent": false },
     { "source": "/curso-telas", "destination": "/curso-telas/", "permanent": false },
     { "source": "/pos-graduacao-neurociencia-no-esporte", "destination": "/pos-graduacao-neurociencia-no-esporte/", "permanent": false },
     { "source": "/pos-psicologia-do-esporte-e-coaching", "destination": "/pos-psicologia-do-esporte-e-coaching/", "permanent": false },
