@@ -652,8 +652,8 @@
         <h1 id="ok-title">Inscrição confirmada. <span class="hl">Sua vaga está garantida.</span></h1>
         <p class="hero__lead">Você vai receber o link da aula por e-mail e WhatsApp. Siga os passos abaixo para não perder o webinar.</p>
         <div class="when-card">
-          <b data-wb="data-completa">Quinta-feira, 5 de novembro · 20h</b>
-          <span>Horário de Brasília · Online, ao vivo</span>
+          <b data-wb="data-completa">Quarta-feira, 28 de outubro · 20h</b>
+          <span>Horário de Brasília · Online</span>
         </div>
         <div class="countdown" role="timer" aria-label="Contagem regressiva para o webinar">
           <div class="countdown__item"><b id="cd-dias">00</b><span>dias</span></div>
@@ -668,13 +668,13 @@
       <div class="wrap wrap--6 center">
         <div class="anim">
           <span class="sec-eyebrow">Faça agora</span>
-          <h2 id="passos-title" class="sec-title">3 passos para garantir o seu lugar na sala</h2>
+          <h2 id="passos-title" class="sec-title">3 passos para não perder a aula</h2>
         </div>
         <div class="steps anim-stagger">
           <article class="card step">
             <div class="num">1</div>
             <h3>Salve na agenda</h3>
-            <p>Marque o horário para não esquecer. A aula começa pontualmente e as vagas na sala são limitadas.</p>
+            <p>Marque o horário para não esquecer. A aula começa pontualmente às 20h, no horário de Brasília.</p>
             <a class="btn" id="btn-agenda" href="#" target="_blank" rel="noopener noreferrer" data-cta="agenda">Adicionar à agenda</a>
           </article>
           <article class="card step" id="step-grupo" hidden>
@@ -731,7 +731,12 @@
 
   <script>
     // Mesma data da página de captura (horário de Brasília). Ajuste nos dois arquivos.
-    var WEBINAR_DATE = new Date("2026-11-05T20:00:00-03:00");
+    var FIRST_SESSION = new Date("2026-10-28T20:00:00-03:00"); // 1ª sessão: quarta 28/10; depois, toda quarta no mesmo horário
+    var WEBINAR_DATE = (function () {
+      var week = 7 * 864e5, t = FIRST_SESSION.getTime(), now = Date.now();
+      if (now > t) t += Math.ceil((now - t) / week) * week;
+      return new Date(t);
+    })();
     // Link do grupo de WhatsApp da turma. Vazio = o passo fica oculto.
     var WHATSAPP_GROUP_URL = "";
     var CAPTURE_URL = "https://atletacampeaotreinamentos.com/webinar-pre-competicao/";
@@ -767,7 +772,7 @@
       document.getElementById("btn-agenda").href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
         "&text=" + encodeURIComponent("Webinar: como lidar com a pressão na competição (Atleta Campeão)") +
         "&dates=" + fmt(WEBINAR_DATE) + "/" + fmt(fim) +
-        "&details=" + encodeURIComponent("Aula ao vivo e gratuita com a Mayra Ramos. O link de acesso chega por e-mail e WhatsApp.");
+        "&details=" + encodeURIComponent("Aula online e gratuita com a Mayra Ramos. O link de acesso chega por e-mail e WhatsApp.");
 
       // Passo do grupo de WhatsApp só aparece se houver link; renumera os passos
       var grupo = document.getElementById("step-grupo");
@@ -776,7 +781,7 @@
         document.getElementById("btn-grupo").href = WHATSAPP_GROUP_URL;
         document.getElementById("num-email").textContent = "3";
         document.getElementById("num-prep").textContent = "4";
-        document.getElementById("passos-title").textContent = "4 passos para garantir o seu lugar na sala";
+        document.getElementById("passos-title").textContent = "4 passos para não perder a aula";
       }
 
       document.getElementById("btn-share").href = "https://wa.me/?text=" + encodeURIComponent(
