@@ -60,7 +60,7 @@
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+    html { scroll-behavior: smooth; scroll-padding-top: 8rem; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body {
       margin: 0;
@@ -117,10 +117,82 @@
     .btn--full { width: 100%; }
     .btn svg { width: 1rem; height: 1rem; flex-shrink: 0; }
 
+    .top { position: sticky; top: 0; z-index: 40; }
+    .urgency-bar {
+      background: linear-gradient(90deg, #8f1a12 0%, var(--error) 50%, #8f1a12 100%);
+      color: var(--white);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .urgency-bar__in {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem 1.5rem;
+      padding-block: 0.55rem;
+    }
+    .urgency-bar__txt {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .urgency-bar__dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: var(--gold-light);
+      box-shadow: 0 0 0 0 rgba(245, 215, 138, 0.7);
+      animation: urgency-pulse 1.8s ease-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes urgency-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(245, 215, 138, 0.7); }
+      70% { box-shadow: 0 0 0 0.5rem rgba(245, 215, 138, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 215, 138, 0); }
+    }
+    .countdown { display: flex; align-items: center; gap: 0.6rem; }
+    .countdown__label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .countdown__grid { display: flex; align-items: center; gap: 0.3rem; }
+    .countdown__unit {
+      display: flex;
+      align-items: baseline;
+      gap: 0.2rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      background: rgba(0, 32, 60, 0.55);
+      border: 1px solid rgba(245, 215, 138, 0.35);
+      font-family: var(--font-h);
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+      color: var(--white);
+    }
+    .countdown__unit small {
+      font-family: var(--font-b);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    @media (prefers-reduced-motion: reduce) { .urgency-bar__dot { animation: none; } }
+    @media (max-width: 640px) {
+      .urgency-bar__txt { font-size: 0.62rem; letter-spacing: 0.1em; }
+      .countdown__label { font-size: 0.6rem; }
+      .countdown__unit { font-size: 0.95rem; padding: 0.1rem 0.4rem; }
+    }
     .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
       background: rgba(0, 32, 60, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -716,6 +788,21 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <noscript><style>.anim,.anim-stagger>*{opacity:1;transform:none}</style></noscript>
+  <div class="top">
+  <div class="urgency-bar" id="urgency-bar">
+    <div class="wrap urgency-bar__in">
+      <span class="urgency-bar__txt"><span class="urgency-bar__dot" aria-hidden="true"></span>Seleção aberta · 20 vagas · outubro e novembro</span>
+      <div class="countdown" id="countdown" role="timer" aria-label="Tempo restante para se candidatar">
+        <span class="countdown__label" id="countdown-label">Candidaturas encerram em</span>
+        <div class="countdown__grid" id="countdown-grid">
+          <span class="countdown__unit"><b id="cd-d">00</b><small>d</small></span>
+          <span class="countdown__unit"><b id="cd-h">00</b><small>h</small></span>
+          <span class="countdown__unit"><b id="cd-m">00</b><small>min</small></span>
+          <span class="countdown__unit"><b id="cd-s">00</b><small>s</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
   <header class="site-header">
     <div class="wrap site-header__in">
       <a href="#topo" aria-label="Atleta Campeão — início">
@@ -724,12 +811,12 @@
       <a class="btn" href="#candidatura">Candidatar-se</a>
     </div>
   </header>
+  </div>
 
   <main id="topo">
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero__grid">
         <div>
-          <span class="eyebrow">Seleção aberta · 20 vagas · outubro e novembro</span>
           <h1 id="hero-title">Uma sessão com um <span class="hl">treinador mental</span> do Atleta Campeão para 20 atletas selecionados</h1>
           <p class="hero__lead">A sessão de diagnóstico tem valor de R$ 350. Neste ciclo, 20 atletas vão realizar essa sessão sem custo. Não se trata de sorteio. É um processo de seleção: a equipe lê cada candidatura e escolhe os perfis que o método atende melhor.</p>
           <div class="hero__cta">
@@ -1116,6 +1203,29 @@
           vid.removeAttribute("controls");
           vid.currentTime = 0;
         });
+      }
+
+      /* Contador: candidaturas até o fim de outubro/2026 (horário de Brasília) */
+      var DEADLINE = new Date("2026-10-31T23:59:59-03:00").getTime();
+      var cdGrid = document.getElementById("countdown-grid");
+      var cdLabel = document.getElementById("countdown-label");
+      function two(n) { return (n < 10 ? "0" : "") + n; }
+      function tick() {
+        var left = DEADLINE - Date.now();
+        if (left <= 0) {
+          cdGrid.style.display = "none";
+          cdLabel.textContent = "Prazo de candidatura encerrado";
+          return false;
+        }
+        var s = Math.floor(left / 1000);
+        document.getElementById("cd-d").textContent = two(Math.floor(s / 86400));
+        document.getElementById("cd-h").textContent = two(Math.floor(s % 86400 / 3600));
+        document.getElementById("cd-m").textContent = two(Math.floor(s % 3600 / 60));
+        document.getElementById("cd-s").textContent = two(s % 60);
+        return true;
+      }
+      if (tick()) {
+        var cdTimer = setInterval(function () { if (!tick()) clearInterval(cdTimer); }, 1000);
       }
 
       /* Animação de entrada (mesmo padrão da página de atendimento) */
