@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MXDTWRQ3');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscrição confirmada | Webinar Pré-Competição | Atleta Campeão</title>
+  <meta name="description" content="Sua vaga no webinar gratuito pré-competição com a Mayra Ramos está confirmada.">
+  <meta name="author" content="Instituto Atleta Campeão">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#003366">
+  <link rel="icon" href="https://atletacampeaotreinamentos.com/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #003366;
+      --navy-deep: #00203c;
+      --gold: #d79e4f;
+      --gold-hover: #c48c3e;
+      --gold-light: #f5d78a;
+      --gold-dark: #8a5a1f;
+      --ink: #0f2638;
+      --muted: rgba(15, 38, 56, 0.75);
+      --cream: #f7f5f1;
+      --border: rgba(15, 38, 56, 0.1);
+      --white: #ffffff;
+      --success: #1a7a45;
+      --error: #b42318;
+      --font-h: "Barlow", system-ui, sans-serif;
+      --font-b: "Inter", system-ui, sans-serif;
+      --radius: 12px;
+      --radius-xl: 1rem;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      font-family: var(--font-b);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--navy);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    h1, h2, h3 {
+      font-family: var(--font-h);
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0;
+      font-weight: 800;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding-inline: clamp(1.25rem, 4vw, 1.5rem);
+    }
+    .wrap--6 { max-width: 72rem; }
+    .wrap--4 { max-width: 56rem; }
+
+    /* Botões */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 999px;
+      font-family: var(--font-b);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s var(--ease), transform 0.15s var(--ease);
+    }
+    button.btn { appearance: none; -webkit-appearance: none; }
+    .btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
+    .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .btn--full { width: 100%; }
+    .btn--lg { min-height: 3.75rem; padding: 1rem 2.25rem; font-size: 0.875rem; }
+    .btn small {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      opacity: 0.8;
+    }
+    .btn--stack { flex-direction: column; gap: 0; text-align: center; }
+    .btn svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+
+    /* Faixa de urgência */
+    .urgency-bar {
+      background: var(--gold);
+      color: var(--navy);
+      text-align: center;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(0, 32, 60, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(215, 158, 79, 0.28);
+    }
+    .site-header__in {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-block: 0.75rem;
+      min-width: 0;
+    }
+    .site-header__logo { height: 2.45rem; width: auto; max-width: 10rem; }
+    .site-header a { min-width: 0; flex-shrink: 1; }
+    .site-header .btn { padding: 0.6rem 1.15rem; font-size: 0.7rem; flex-shrink: 0; min-height: 2.35rem; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg, #003366 0%, var(--navy) 50%, var(--navy-deep) 100%);
+      color: var(--white);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 70%, var(--gold-light) 100%);
+    }
+    .hero__in {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-block: clamp(3.5rem, 8vw, 5rem);
+    }
+    .eyebrow {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .tag {
+      display: inline-block;
+      border: 1px solid rgba(215, 158, 79, 0.55);
+      border-radius: 999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      max-width: 22ch;
+      font-size: clamp(1.85rem, 5.2vw, 3.75rem);
+      font-weight: 900;
+      color: var(--white);
+      overflow-wrap: break-word;
+      text-wrap: balance;
+    }
+    .hero h1 .hl { color: var(--gold); }
+    .hero__lead {
+      margin: 1.5rem 0 0;
+      max-width: 40rem;
+      font-size: 1.125rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2.25rem;
+    }
+    .countdown__item {
+      min-width: 5.25rem;
+      padding: 0.85rem 0.75rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(215, 158, 79, 0.3);
+      border-radius: var(--radius-xl);
+    }
+    .countdown__item b {
+      display: block;
+      font-family: var(--font-h);
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--gold-light);
+      font-variant-numeric: tabular-nums;
+    }
+    .countdown__item span {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .hero .btn { margin-top: 2rem; width: 100%; max-width: 32rem; }
+    .hero__when {
+      margin: 1rem 0 0;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Seções */
+    .band { padding-block: clamp(4rem, 8vw, 5rem); }
+    .band--cream { background: var(--cream); }
+    .band--navy { background: var(--navy); color: var(--white); }
+    .band--deep { background: var(--navy-deep); color: var(--white); }
+    .center { text-align: center; }
+    .sec-eyebrow {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+    }
+    .band--navy .sec-eyebrow, .band--deep .sec-eyebrow { color: var(--gold); }
+    .sec-title {
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      color: var(--navy);
+      text-wrap: balance;
+    }
+    .band--navy .sec-title, .band--deep .sec-title { color: var(--white); }
+    .sec-lead {
+      margin: 1.25rem auto 0;
+      max-width: 44rem;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+    .band--navy .sec-lead, .band--deep .sec-lead { color: rgba(255, 255, 255, 0.8); }
+    .cta-row { display: flex; justify-content: center; margin-top: 2.5rem; }
+    .cta-row .btn { width: 100%; max-width: 32rem; }
+
+    /* Segredos */
+    .grid-3 { display: grid; gap: 1.5rem; margin-top: 3rem; }
+    @media (min-width: 900px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      background: var(--white);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.25s var(--ease);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(215, 158, 79, 0.45);
+      box-shadow: 0 16px 36px rgba(15, 38, 56, 0.08);
+    }
+    .num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--font-h);
+      font-size: 1.125rem;
+      font-weight: 800;
+    }
+    .card__kicker {
+      display: block;
+      margin-top: 1.25rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+    }
+    .card h3 { margin-top: 0.35rem; font-size: 1.4rem; line-height: 1.15; }
+    .card p { margin: 0.75rem 0 0; font-size: 0.9375rem; color: var(--muted); }
+
+    /* Bônus */
+    .bonus {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: var(--white);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 16px 40px rgba(15, 38, 56, 0.08);
+    }
+    .bonus__badge {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .checks { list-style: none; margin: 0; padding: 0; }
+    .checks li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      margin-top: 0.9rem;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .checks li:first-child { margin-top: 0; }
+    .checks li strong { color: var(--navy); }
+    .checks svg {
+      flex-shrink: 0;
+      width: 1.35rem;
+      height: 1.35rem;
+      margin-top: 0.15rem;
+      stroke: var(--gold-dark);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Para quem é */
+    .fit { display: grid; gap: 0.85rem; margin-top: 2.5rem; text-align: left; }
+    @media (min-width: 768px) { .fit { grid-template-columns: repeat(2, 1fr); } }
+    .fit__item {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      padding: 1.25rem 1.15rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      font-size: 0.97rem;
+      color: rgba(255, 255, 255, 0.88);
+      transition: transform 0.35s var(--ease), background 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .fit__item:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(215, 158, 79, 0.35);
+    }
+    .fit__item svg {
+      flex-shrink: 0;
+      width: 1.35rem;
+      height: 1.35rem;
+      margin-top: 0.15rem;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .fit__punch {
+      margin: 2.5rem auto 0;
+      max-width: 40rem;
+      font-size: 1.125rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .fit__punch strong { color: var(--gold); }
+
+    /* Quem apresenta */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) { .bio-grid { grid-template-columns: 0.85fr 1.15fr; } }
+    .bio-photo { position: relative; max-width: 28rem; margin-inline: auto; width: 100%; }
+    .bio-photo__shadow {
+      position: absolute;
+      bottom: -1.25rem;
+      left: -1.25rem;
+      z-index: 0;
+      width: 7rem;
+      height: 7rem;
+      border-radius: var(--radius);
+      background: var(--gold);
+    }
+    .bio-photo img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center 32%;
+      border-radius: var(--radius);
+    }
+    .bio-copy h2 { font-size: clamp(1.75rem, 4vw, 2.6rem); color: var(--navy); }
+    .bio-copy .role {
+      margin: 0.6rem 0 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+    }
+    .bio-copy p { margin: 1.15rem 0 0; font-size: 1rem; color: var(--muted); }
+    .bio-copy .quote {
+      padding-left: 1rem;
+      border-left: 4px solid var(--gold);
+      font-family: var(--font-h);
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: var(--navy);
+    }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-top: 1.75rem; }
+    .stat {
+      padding: 1.1rem 1rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+    }
+    .stat strong {
+      display: block;
+      font-family: var(--font-h);
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--navy);
+    }
+    .stat span { display: block; margin-top: 0.25rem; font-size: 0.78rem; line-height: 1.35; color: var(--muted); }
+
+    /* Formulário */
+    .signup {
+      margin-top: 2rem;
+      padding: 2.25rem 1.75rem 1.75rem;
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border-top: 6px solid var(--gold);
+      box-shadow: 0 16px 40px rgba(15, 38, 56, 0.1);
+    }
+    .lp-form label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+      margin-bottom: 0.35rem;
+      color: var(--navy);
+    }
+    .lp-form input,
+    .lp-form select {
+      width: 100%;
+      min-height: 3.1rem;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid rgba(15, 38, 56, 0.2);
+      border-radius: 8px;
+      font-family: var(--font-b);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: var(--navy);
+      background: var(--white);
+    }
+    .lp-form input::placeholder { color: rgba(15, 38, 56, 0.45); }
+    .lp-form input:focus,
+    .lp-form select:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 1px;
+      border-color: var(--gold);
+    }
+    .lp-form .btn { margin-top: 0.5rem; }
+    .lp-form__note {
+      margin: 1rem 0 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      text-align: center;
+      color: var(--muted);
+    }
+    .lp-form__msg {
+      display: none;
+      margin-top: 0.85rem;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      background: #fef2f2;
+      color: #991b1b;
+    }
+    .lp-form__msg.is-on { display: block; }
+
+    /* Fechamento */
+    .close { text-align: center; }
+    .close h2 { max-width: 20ch; margin-inline: auto; font-size: clamp(1.75rem, 4vw, 2.75rem); }
+    .close p { margin: 1.25rem auto 0; max-width: 40rem; font-size: 1.05rem; color: rgba(255, 255, 255, 0.82); }
+    .close .btn { margin-top: 2rem; width: 100%; max-width: 28rem; }
+
+    /* Rodapé */
+    .site-footer {
+      background: var(--navy-deep);
+      color: rgba(255, 255, 255, 0.65);
+      padding: 2rem 0 1.5rem;
+      font-size: 0.875rem;
+      border-top: 1px solid rgba(215, 158, 79, 0.2);
+    }
+    .site-footer__in {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+    .site-footer a { text-decoration: none; }
+    .site-footer a:hover { color: var(--gold); }
+    .site-footer__legal {
+      margin: 1.25rem 0 0;
+      max-width: 48rem;
+      font-size: 0.75rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    @media (max-width: 640px) {
+      .site-header .btn { padding: 0.5rem 0.85rem; font-size: 0.62rem; }
+      .site-header__logo { height: 2.05rem; max-width: 7.5rem; }
+      .hero h1 { font-size: 1.7rem; }
+      .hero__lead { font-size: 1rem; }
+      .bio-photo__shadow { display: none; }
+      .countdown__item { min-width: 4.4rem; }
+      .countdown__item b { font-size: 1.65rem; }
+      .stats { grid-template-columns: 1fr; }
+      .signup { padding: 2rem 1.25rem 1.5rem; }
+    }
+
+
+    /* Página de obrigado */
+    .ok-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 4rem; height: 4rem; border-radius: 50%;
+      background: var(--gold); color: var(--navy); margin-bottom: 1.5rem;
+    }
+    .ok-badge svg { width: 2rem; height: 2rem; stroke: currentColor; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .when-card {
+      margin: 2rem auto 0; max-width: 34rem; padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(215,158,79,0.3);
+      border-radius: var(--radius-xl); text-align: center;
+    }
+    .when-card b { display: block; font-family: var(--font-h); font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; color: var(--gold-light); line-height: 1.2; }
+    .when-card span { display: block; margin-top: 0.35rem; font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+    .steps { display: grid; gap: 1.5rem; margin-top: 3rem; text-align: left; }
+    @media (min-width: 900px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+    .step .btn { margin-top: 1.25rem; width: 100%; }
+    .step[hidden] { display: none; }
+
+    /* Animações de entrada */
+    .anim {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+    }
+    .anim.is-in { opacity: 1; transform: none; }
+    .anim-stagger > * {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .anim-stagger.is-in > * { opacity: 1; transform: none; }
+    .anim-stagger.is-in > *:nth-child(1) { transition-delay: 0.04s; }
+    .anim-stagger.is-in > *:nth-child(2) { transition-delay: 0.1s; }
+    .anim-stagger.is-in > *:nth-child(3) { transition-delay: 0.16s; }
+    .anim-stagger.is-in > *:nth-child(4) { transition-delay: 0.22s; }
+    .anim-stagger.is-in > *:nth-child(5) { transition-delay: 0.28s; }
+    .anim-stagger.is-in > *:nth-child(6) { transition-delay: 0.34s; }
+    @media (prefers-reduced-motion: reduce) {
+      .anim, .anim-stagger > * { opacity: 1; transform: none; transition: none; }
+      .card:hover, .fit__item:hover { transform: none; }
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1675439549310048');
+  fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXDTWRQ3"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1675439549310048&ev=PageView&noscript=1" alt=""></noscript>
+  <noscript><style>.anim,.anim-stagger>*{opacity:1;transform:none}</style></noscript>
+
+  <header class="site-header">
+    <div class="wrap site-header__in">
+      <a href="/" aria-label="Atleta Campeão">
+        <img class="site-header__logo" src="assets/ac_logo_dourado.webp" width="240" height="102" alt="Atleta Campeão">
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="ok-title">
+      <div class="wrap wrap--4 hero__in">
+        <div class="ok-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h1 id="ok-title">Inscrição confirmada. <span class="hl">Sua vaga está garantida.</span></h1>
+        <p class="hero__lead">Você vai receber o link da aula por e-mail e WhatsApp. Siga os passos abaixo para não perder o webinar.</p>
+        <div class="when-card">
+          <b data-wb="data-completa">Quinta-feira, 5 de novembro · 20h</b>
+          <span>Horário de Brasília · Online, ao vivo</span>
+        </div>
+        <div class="countdown" role="timer" aria-label="Contagem regressiva para o webinar">
+          <div class="countdown__item"><b id="cd-dias">00</b><span>dias</span></div>
+          <div class="countdown__item"><b id="cd-horas">00</b><span>horas</span></div>
+          <div class="countdown__item"><b id="cd-min">00</b><span>min</span></div>
+          <div class="countdown__item"><b id="cd-seg">00</b><span>seg</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="passos-title">
+      <div class="wrap wrap--6 center">
+        <div class="anim">
+          <span class="sec-eyebrow">Faça agora</span>
+          <h2 id="passos-title" class="sec-title">3 passos para garantir o seu lugar na sala</h2>
+        </div>
+        <div class="steps anim-stagger">
+          <article class="card step">
+            <div class="num">1</div>
+            <h3>Salve na agenda</h3>
+            <p>Marque o horário para não esquecer. A aula começa pontualmente e as vagas na sala são limitadas.</p>
+            <a class="btn" id="btn-agenda" href="#" target="_blank" rel="noopener noreferrer" data-cta="agenda">Adicionar à agenda</a>
+          </article>
+          <article class="card step" id="step-grupo" hidden>
+            <div class="num">2</div>
+            <h3>Entre no grupo do WhatsApp</h3>
+            <p>É por lá que enviamos o link da aula e os lembretes antes de começar.</p>
+            <a class="btn" id="btn-grupo" href="#" target="_blank" rel="noopener noreferrer" data-cta="grupo-whatsapp">Entrar no grupo</a>
+          </article>
+          <article class="card step">
+            <div class="num" id="num-email">2</div>
+            <h3>Confira o seu e-mail</h3>
+            <p>Enviamos a confirmação agora. Se não aparecer na caixa de entrada, olhe em Promoções e Spam e marque como "não é spam".</p>
+          </article>
+          <article class="card step">
+            <div class="num" id="num-prep">3</div>
+            <h3>Separe papel e caneta</h3>
+            <p>Durante a aula você faz o Teste Pré-Competição e um exercício de respiração guiado com a Mayra. Entre num lugar tranquilo e com internet estável.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band--navy close" aria-labelledby="close-title">
+      <div class="wrap wrap--4 anim">
+        <h2 id="close-title">Leve alguém do seu time junto.</h2>
+        <p>Treinador, pai ou colega de equipe também pode se inscrever. Quanto mais gente do seu lado entendendo a pressão da competição, mais fácil fica competir bem.</p>
+        <a class="btn btn--lg" id="btn-share" href="#" target="_blank" rel="noopener noreferrer" data-cta="compartilhar">Convidar por WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__in">
+        <p style="margin:0">© 2026 Instituto Atleta Campeão</p>
+        <p style="margin:0">
+          <a href="/politica-de-privacidade/">Política de privacidade</a>
+          ·
+          <a href="https://wa.me/551140403112" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mesma data da página de captura (horário de Brasília). Ajuste nos dois arquivos.
+    var WEBINAR_DATE = new Date("2026-11-05T20:00:00-03:00");
+    // Link do grupo de WhatsApp da turma. Vazio = o passo fica oculto.
+    var WHATSAPP_GROUP_URL = "";
+    var CAPTURE_URL = "https://atletacampeaotreinamentos.com/webinar-pre-competicao/";
+
+    (function () {
+      var meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+      var dias = ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"];
+      var p = {};
+      new Intl.DateTimeFormat("en-US", { timeZone: "America/Sao_Paulo", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", weekday: "short", hourCycle: "h23" })
+        .formatToParts(WEBINAR_DATE).forEach(function (x) { p[x.type] = x.value; });
+      var wd = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(p.weekday);
+      var hora = p.minute === "00" ? p.hour + "h" : p.hour + "h" + p.minute;
+      var completa = dias[wd].charAt(0).toUpperCase() + dias[wd].slice(1) + ", " + Number(p.day) + " de " + meses[p.month - 1] + " · " + hora;
+      document.querySelectorAll('[data-wb="data-completa"]').forEach(function (el) { el.textContent = completa; });
+    })();
+
+    (function () {
+      var ids = ["cd-dias", "cd-horas", "cd-min", "cd-seg"].map(function (i) { return document.getElementById(i); });
+      function pad(n) { return String(n).padStart(2, "0"); }
+      function tick() {
+        var s = Math.max(0, Math.floor((WEBINAR_DATE - new Date()) / 1000));
+        var v = [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60];
+        ids.forEach(function (el, i) { el.textContent = pad(v[i]); });
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    (function () {
+      // Google Agenda (1h de duração, em UTC)
+      function fmt(d) { return d.toISOString().replace(/[-:]|\.\d{3}/g, ""); }
+      var fim = new Date(WEBINAR_DATE.getTime() + 60 * 60000);
+      document.getElementById("btn-agenda").href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+        "&text=" + encodeURIComponent("Webinar: como lidar com a pressão na competição (Atleta Campeão)") +
+        "&dates=" + fmt(WEBINAR_DATE) + "/" + fmt(fim) +
+        "&details=" + encodeURIComponent("Aula ao vivo e gratuita com a Mayra Ramos. O link de acesso chega por e-mail e WhatsApp.");
+
+      // Passo do grupo de WhatsApp só aparece se houver link; renumera os passos
+      var grupo = document.getElementById("step-grupo");
+      if (WHATSAPP_GROUP_URL) {
+        grupo.hidden = false;
+        document.getElementById("btn-grupo").href = WHATSAPP_GROUP_URL;
+        document.getElementById("num-email").textContent = "3";
+        document.getElementById("num-prep").textContent = "4";
+        document.getElementById("passos-title").textContent = "4 passos para garantir o seu lugar na sala";
+      }
+
+      document.getElementById("btn-share").href = "https://wa.me/?text=" + encodeURIComponent(
+        "Vou participar do webinar gratuito da Mayra Ramos sobre como lidar com a pressão na competição. Inscreva-se também: " + CAPTURE_URL);
+
+      document.querySelectorAll("[data-cta]").forEach(function (a) {
+        a.addEventListener("click", function () {
+          (window.dataLayer = window.dataLayer || []).push({ event: "cta_click", cta: a.getAttribute("data-cta"), page: "obrigado-webinar-pre-competicao" });
+        });
+      });
+      (window.dataLayer = window.dataLayer || []).push({ event: "thank_you_view", page: "obrigado-webinar-pre-competicao" });
+    })();
+
+    (function () {
+      var targets = [].slice.call(document.querySelectorAll(".anim, .anim-stagger"));
+      function markIn(el) { el.classList.add("is-in"); }
+      if (!("IntersectionObserver" in window)) { targets.forEach(markIn); return; }
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) { if (e.isIntersecting) { markIn(e.target); io.unobserve(e.target); } });
+      }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+      var vh = window.innerHeight || 800;
+      targets.forEach(function (el) {
+        if (el.getBoundingClientRect().top < vh * 0.92) markIn(el); else io.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
