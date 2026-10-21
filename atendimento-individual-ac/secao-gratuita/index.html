@@ -821,7 +821,7 @@
           <p class="hero__lead">A sessão de diagnóstico tem valor de R$ 350. Neste ciclo, 20 atletas vão realizar essa sessão sem custo. Não se trata de sorteio. É um processo de seleção: a equipe lê cada candidatura e escolhe os perfis que o método atende melhor.</p>
           <div class="hero__cta">
             <a class="btn" href="#candidatura">Quero me candidatar</a>
-            <small>Candidatura em cerca de 5 minutos. Resposta em até 2 dias úteis.</small>
+            <small>Candidatura em cerca de 5 minutos. Resposta em até 3 dias úteis.</small>
           </div>
           <div class="hero-stats">
             <div><strong>60 min</strong><span>Sessão online</span></div>
@@ -980,7 +980,7 @@
         <h2 id="como-title" class="sec-title center">Como funciona a seleção</h2>
         <ol class="steps">
           <li><span class="num">01</span>Candidatura pelo formulário, em cerca de 5 minutos.</li>
-          <li><span class="num">02</span>A equipe analisa e responde em até 2 dias úteis, com aprovação ou não.</li>
+          <li><span class="num">02</span>A equipe analisa e responde em até 3 dias úteis, com aprovação ou não.</li>
           <li><span class="num">03</span>Para atletas menores de idade, a equipe fala primeiro com o responsável.</li>
           <li><span class="num">04</span>Agenda e link da sessão enviados pelo WhatsApp.</li>
           <li><span class="num">05</span>Sessão de 60 minutos, com os próximos passos apresentados ao final.</li>
@@ -1062,10 +1062,10 @@
                   <label for="competicoes">Quantas competições o atleta disputou nos últimos 12 meses?</label>
                   <select id="competicoes" name="competicoes" required>
                     <option value="">Selecione</option>
-                    <option>Nenhuma</option>
-                    <option>1 a 2</option>
-                    <option>3 a 5</option>
-                    <option>6 ou mais</option>
+                    <option>1 a 4</option>
+                    <option>5 a 8</option>
+                    <option>9 a 12</option>
+                    <option>Mais de 12 vezes</option>
                   </select>
                 </div>
               </div>
@@ -1073,7 +1073,7 @@
 
             <fieldset>
               <legend>3. Responsável legal <small>obrigatório para menores de 18 anos</small></legend>
-              <p class="note">Se você é o responsável, repita os seus dados aqui. Se o atleta tem 18 anos ou mais, deixe este bloco em branco.</p>
+              <p class="note">Se você é o responsável, insira os seus dados aqui. Se o atleta tem 18 anos ou mais, deixe este bloco em branco.</p>
               <div class="form-grid">
                 <div class="field">
                   <label for="nome-resp">Nome do responsável</label>
@@ -1130,7 +1130,7 @@
               <button class="btn" type="submit" id="submit-btn">Enviar candidatura
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </button>
-              <small>Resposta em até 2 dias úteis pelo WhatsApp informado. Seus dados são usados apenas para esta seleção.</small>
+              <small>Resposta em até 3 dias úteis pelo WhatsApp informado. Seus dados são usados apenas para esta seleção.</small>
               <div class="lp-form__msg" id="form-msg" role="status" aria-live="polite"></div>
             </div>
           </form>
@@ -1410,7 +1410,7 @@
           }).then(function (r) {
             if (!r.ok) throw new Error("HTTP " + r.status);
             form.reset();
-            show("ok", "Candidatura enviada. A equipe responde em até 2 dias úteis pelo WhatsApp informado.");
+            show("ok", "Candidatura enviada. A equipe responde em até 3 dias úteis pelo WhatsApp informado.");
           }).catch(function () {
             show("err", "Não foi possível enviar agora. Tente novamente em instantes ou fale com a gente pelo WhatsApp (11) 4040-3112.");
           }).then(function () { btn.disabled = false; });
