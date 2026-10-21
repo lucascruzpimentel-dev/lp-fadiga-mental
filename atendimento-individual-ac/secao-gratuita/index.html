@@ -630,7 +630,7 @@
       margin-bottom: 0.35rem;
       color: var(--navy);
     }
-    .lp-form input[type="text"], .lp-form input[type="tel"], .lp-form input[type="number"],
+    .lp-form input[type="text"], .lp-form input[type="tel"], .lp-form input[type="email"], .lp-form input[type="number"],
     .lp-form select, .lp-form textarea {
       width: 100%;
       padding: 0.75rem 0.9rem;
@@ -1020,6 +1020,10 @@
                   <label for="whats-preenche">Seu WhatsApp</label>
                   <input id="whats-preenche" name="whats_preenche" type="tel" placeholder="(11) 90000-0000" autocomplete="tel" inputmode="tel" required>
                 </div>
+                <div class="field span2">
+                  <label for="email-preenche">Seu e-mail</label>
+                  <input id="email-preenche" name="email_preenche" type="email" placeholder="voce@email.com" autocomplete="email" inputmode="email" required>
+                </div>
               </div>
             </fieldset>
 
@@ -1034,6 +1038,11 @@
                 <div class="field">
                   <label for="idade-atleta">Idade do atleta</label>
                   <input id="idade-atleta" name="idade_atleta" type="number" min="5" max="80" inputmode="numeric" placeholder="Ex.: 14" required>
+                </div>
+                <div class="field span2">
+                  <label for="instagram">Instagram do atleta</label>
+                  <input id="instagram" name="instagram" type="text" placeholder="@usuario" autocapitalize="none" autocorrect="off" spellcheck="false" required>
+                  <p class="help">Se o atleta ainda não tem perfil, informe o do responsável.</p>
                 </div>
                 <div class="field">
                   <label for="modalidade">Modalidade</label>
@@ -1308,6 +1317,9 @@
         }
         return (el.value || "").trim();
       }
+      function igUser(s) {
+        return (s || "").trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/^@/, "").replace(/[\/?#].*$/, "");
+      }
       function digits(s) { return (s || "").replace(/\D/g, ""); }
       function show(kind, text) {
         msg.className = "lp-form__msg lp-form__msg--" + kind;
@@ -1337,7 +1349,9 @@
         need("quem", !!val("quem"));
         need("nome_preenche", val("nome_preenche").split(/\s+/).filter(Boolean).length >= 2);
         need("whats_preenche", digits(val("whats_preenche")).length >= 10);
+        need("email_preenche", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val("email_preenche")));
         need("nome_atleta", val("nome_atleta").length >= 3);
+        need("instagram", /^[A-Za-z0-9._]{1,30}$/.test(igUser(val("instagram"))));
         need("idade_atleta", !isNaN(idade) && idade >= 5 && idade <= 80);
         need("modalidade", !!val("modalidade"));
         need("nivel", !!val("nivel"));
@@ -1364,7 +1378,9 @@
           quem_preenche: val("quem"),
           nome_preenche: val("nome_preenche"),
           whatsapp_preenche: val("whats_preenche"),
+          email_preenche: val("email_preenche"),
           nome_atleta: val("nome_atleta"),
+          instagram_atleta: "@" + igUser(val("instagram")),
           idade_atleta: idade,
           modalidade: val("modalidade"),
           nivel: val("nivel"),
@@ -1403,8 +1419,8 @@
 
         var linhas = [
           "Candidatura — Sessão de experiência (20 vagas)",
-          "Preenchido por: " + data.quem_preenche + " — " + data.nome_preenche + " (" + data.whatsapp_preenche + ")",
-          "Atleta: " + data.nome_atleta + ", " + data.idade_atleta + " anos",
+          "Preenchido por: " + data.quem_preenche + " — " + data.nome_preenche + " (" + data.whatsapp_preenche + ") — " + data.email_preenche,
+          "Atleta: " + data.nome_atleta + ", " + data.idade_atleta + " anos — Instagram " + data.instagram_atleta,
           "Modalidade: " + data.modalidade + " | Nível: " + data.nivel + " | Competições (12 meses): " + data.competicoes_12_meses
         ];
         if (data.nome_responsavel) {
