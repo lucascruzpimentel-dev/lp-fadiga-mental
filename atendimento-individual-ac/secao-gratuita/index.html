@@ -601,94 +601,9 @@
       background: var(--white);
       color: var(--navy);
       border-radius: var(--radius-xl);
-      padding: clamp(1.5rem, 4vw, 3rem);
+      padding: clamp(0.5rem, 2vw, 1rem);
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
     }
-    .lp-form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
-    .lp-form fieldset + fieldset { margin-top: 2.25rem; padding-top: 2.25rem; border-top: 1px solid var(--border); }
-    .lp-form legend {
-      float: left;
-      width: 100%;
-      padding: 0;
-      margin-bottom: 1.25rem;
-      font-family: var(--font-h);
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--navy);
-    }
-    .lp-form legend + * { clear: both; }
-    .lp-form legend small { font-family: var(--font-b); font-size: 0.8rem; font-weight: 600; letter-spacing: 0; color: var(--gold-dark); margin-left: 0.4rem; }
-    .form-grid { display: grid; gap: 0 1.25rem; grid-template-columns: minmax(0, 1fr); }
-    @media (min-width: 640px) { .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    .form-grid .span2 { grid-column: 1 / -1; }
-    .field { margin-bottom: 1.15rem; }
-    .lp-form label, .lp-form .field__label {
-      display: block;
-      font-weight: 600;
-      font-size: 0.88rem;
-      margin-bottom: 0.35rem;
-      color: var(--navy);
-    }
-    .lp-form input[type="text"], .lp-form input[type="tel"], .lp-form input[type="email"], .lp-form input[type="number"],
-    .lp-form select, .lp-form textarea {
-      width: 100%;
-      padding: 0.75rem 0.9rem;
-      border: 1px solid var(--border-strong);
-      border-radius: 8px;
-      font-family: var(--font-b);
-      font-size: 1rem;
-      color: var(--navy);
-      background: var(--white);
-    }
-    .lp-form select {
-      appearance: none;
-      -webkit-appearance: none;
-      padding-right: 2.5rem;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23003366' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 0.9rem center;
-    }
-    .lp-form input:focus, .lp-form select:focus, .lp-form textarea:focus {
-      outline: 2px solid var(--gold);
-      outline-offset: 1px;
-      border-color: var(--gold);
-    }
-    .lp-form textarea { min-height: 7rem; resize: vertical; line-height: 1.5; }
-    .lp-form .is-invalid { border-color: var(--error) !important; }
-    .help { margin: 0.35rem 0 0; font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
-    .choices { display: grid; gap: 0.1rem 1.25rem; }
-    @media (min-width: 640px) { .choices--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    .lp-form .choice {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      min-height: 2.6rem;
-      margin: 0;
-      font-weight: 500;
-      font-size: 0.95rem;
-      cursor: pointer;
-    }
-    .lp-form .choice input { width: 1.1rem; height: 1.1rem; margin: 0; accent-color: var(--navy); flex-shrink: 0; }
-    .lp-form .choice--check { align-items: flex-start; font-size: 0.88rem; line-height: 1.55; color: var(--muted); }
-    .lp-form .choice--check input { margin-top: 0.2rem; }
-    .note {
-      margin: 0 0 1.25rem;
-      padding: 1rem 1.15rem;
-      border-radius: var(--radius);
-      background: var(--cream);
-      border-left: 4px solid var(--gold);
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-    .form-foot { margin-top: 2.25rem; padding-top: 2.25rem; border-top: 1px solid var(--border); }
-    .form-foot .btn { margin-top: 1.25rem; }
-    .form-foot small { display: block; margin-top: 1rem; font-size: 0.8rem; color: var(--muted); }
-    .lp-form__msg { padding: 0.85rem 1rem; border-radius: 8px; font-size: 0.9rem; display: none; margin-top: 1rem; }
-    .lp-form__msg--ok { background: #ecfdf5; color: #065f46; display: block; }
-    .lp-form__msg--err { background: #fef2f2; color: #991b1b; display: block; }
-    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
     .faq { max-width: 42rem; margin: 2rem auto 0; }
     .faq-item { border-bottom: 1px solid var(--border); }
@@ -997,143 +912,26 @@
         </div>
 
         <div class="form-card">
-          <form class="lp-form" id="candidatura-form" novalidate>
-            <div class="hp" aria-hidden="true"><label>Não preencha <input type="text" name="empresa" tabindex="-1" autocomplete="off"></label></div>
-
-            <fieldset>
-              <legend>1. Quem está preenchendo</legend>
-              <div class="field">
-                <span class="field__label" id="lbl-quem">Você é</span>
-                <div class="choices choices--2" role="radiogroup" aria-labelledby="lbl-quem">
-                  <label class="choice"><input type="radio" name="quem" value="O próprio atleta" required> O próprio atleta</label>
-                  <label class="choice"><input type="radio" name="quem" value="Pai do atleta"> Pai do atleta</label>
-                  <label class="choice"><input type="radio" name="quem" value="Mãe do atleta"> Mãe do atleta</label>
-                  <label class="choice"><input type="radio" name="quem" value="Outro responsável legal"> Outro responsável legal</label>
-                </div>
-              </div>
-              <div class="form-grid">
-                <div class="field">
-                  <label for="nome-preenche">Seu nome completo</label>
-                  <input id="nome-preenche" name="nome_preenche" type="text" placeholder="Nome e sobrenome" autocomplete="name" required>
-                </div>
-                <div class="field">
-                  <label for="whats-preenche">Seu WhatsApp</label>
-                  <input id="whats-preenche" name="whats_preenche" type="tel" placeholder="(11) 90000-0000" autocomplete="tel" inputmode="tel" required>
-                </div>
-                <div class="field span2">
-                  <label for="email-preenche">Seu e-mail</label>
-                  <input id="email-preenche" name="email_preenche" type="email" placeholder="voce@email.com" autocomplete="email" inputmode="email" required>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>2. O atleta</legend>
-              <div class="form-grid">
-                <div class="field">
-                  <label for="nome-atleta">Nome do atleta</label>
-                  <input id="nome-atleta" name="nome_atleta" type="text" placeholder="Nome e sobrenome" required>
-                  <p class="help">Se você é o atleta, repita o seu nome.</p>
-                </div>
-                <div class="field">
-                  <label for="idade-atleta">Idade do atleta</label>
-                  <input id="idade-atleta" name="idade_atleta" type="number" min="5" max="80" inputmode="numeric" placeholder="Ex.: 14" required>
-                </div>
-                <div class="field span2">
-                  <label for="instagram">Instagram do atleta</label>
-                  <input id="instagram" name="instagram" type="text" placeholder="@usuario" autocapitalize="none" autocorrect="off" spellcheck="false" required>
-                  <p class="help">Se o atleta ainda não tem perfil, informe o do responsável.</p>
-                </div>
-                <div class="field">
-                  <label for="modalidade">Modalidade</label>
-                  <input id="modalidade" name="modalidade" type="text" placeholder="Ex.: jiu-jitsu, natação, tênis" required>
-                </div>
-                <div class="field">
-                  <label for="nivel">Nível atual</label>
-                  <select id="nivel" name="nivel" required>
-                    <option value="">Selecione</option>
-                    <option>Iniciante, ainda não compete</option>
-                    <option>Competitivo regional</option>
-                    <option>Competitivo estadual</option>
-                    <option>Nacional ou internacional</option>
-                  </select>
-                </div>
-                <div class="field span2">
-                  <label for="competicoes">Quantas competições o atleta disputou nos últimos 12 meses?</label>
-                  <select id="competicoes" name="competicoes" required>
-                    <option value="">Selecione</option>
-                    <option>1 a 4</option>
-                    <option>5 a 8</option>
-                    <option>9 a 12</option>
-                    <option>Mais de 12 vezes</option>
-                  </select>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>3. Responsável legal <small>obrigatório para menores de 18 anos</small></legend>
-              <p class="note">Se você é o responsável, insira os seus dados aqui. Se o atleta tem 18 anos ou mais, deixe este bloco em branco.</p>
-              <div class="form-grid">
-                <div class="field">
-                  <label for="nome-resp">Nome do responsável</label>
-                  <input id="nome-resp" name="nome_responsavel" type="text" placeholder="Nome e sobrenome">
-                </div>
-                <div class="field">
-                  <label for="parentesco">Grau de parentesco</label>
-                  <select id="parentesco" name="parentesco">
-                    <option value="">Selecione</option>
-                    <option>Pai</option>
-                    <option>Mãe</option>
-                    <option>Outro responsável legal</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="whats-resp">WhatsApp do responsável</label>
-                  <input id="whats-resp" name="whats_responsavel" type="tel" placeholder="(11) 90000-0000" inputmode="tel">
-                </div>
-                <div class="field">
-                  <span class="field__label" id="lbl-ciente">O responsável está ciente desta candidatura?</span>
-                  <div class="choices" role="radiogroup" aria-labelledby="lbl-ciente">
-                    <label class="choice"><input type="radio" name="ciente" value="Sim"> Sim</label>
-                    <label class="choice"><input type="radio" name="ciente" value="Ainda não"> Ainda não</label>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>4. Sobre o atleta sob pressão</legend>
-              <div class="field">
-                <label for="pressao">Descreva em até 3 linhas o que acontece com o atleta sob pressão</label>
-                <textarea id="pressao" name="pressao" maxlength="600" placeholder="Ex.: treina bem a semana inteira, mas no dia da competição trava, erra o básico e sai frustrado." required></textarea>
-              </div>
-              <div class="field">
-                <span class="field__label" id="lbl-invest">Se a sessão fizer sentido, a família (ou o atleta adulto) tem condições de seguir em um ciclo de 5 sessões (R$ 1.650)?</span>
-                <div class="choices" role="radiogroup" aria-labelledby="lbl-invest">
-                  <label class="choice"><input type="radio" name="investimento" value="Sim" required> Sim</label>
-                  <label class="choice"><input type="radio" name="investimento" value="Preciso entender melhor"> Preciso entender melhor</label>
-                  <label class="choice"><input type="radio" name="investimento" value="Não neste momento"> Não neste momento</label>
-                </div>
-              </div>
-              <div class="field">
-                <label for="porque">Por que este atleta deveria ocupar uma das 20 vagas?</label>
-                <textarea id="porque" name="porque" maxlength="800" placeholder="Escreva com sinceridade. Esta resposta pesa na seleção." required></textarea>
-              </div>
-            </fieldset>
-
-            <div class="form-foot">
-              <label class="choice choice--check">
-                <input type="checkbox" name="ciencia" value="sim" required>
-                <span>Estou ciente de que a sessão de experiência é gratuita, que a continuidade do trabalho é paga e que, no caso de atleta menor de 18 anos, o agendamento depende de contato prévio com o responsável.</span>
-              </label>
-              <button class="btn" type="submit" id="submit-btn">Enviar candidatura
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              </button>
-              <small>Resposta em até 3 dias úteis pelo WhatsApp informado. Seus dados são usados apenas para esta seleção.</small>
-              <div class="lp-form__msg" id="form-msg" role="status" aria-live="polite"></div>
-            </div>
-          </form>
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/biw2VkbuIhAObfADnRyQ"
+            style="width:100%;height:2360px;border:none;border-radius:16px;display:block"
+            id="inline-biw2VkbuIhAObfADnRyQ"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Seleção – Sessão de Experiência (20 vagas)"
+            data-height="2360"
+            data-layout-iframe-id="inline-biw2VkbuIhAObfADnRyQ"
+            data-form-id="biw2VkbuIhAObfADnRyQ"
+            data-cookie-consent="true"
+            data-cookie-consent-provider="auto"
+            title="Seleção – Sessão de Experiência (20 vagas)"
+          ></iframe>
+          <script src="https://link.msgsndr.com/js/form_embed.js"></script>
         </div>
       </div>
     </section>
@@ -1298,144 +1096,13 @@
       var utm = {};
       KEYS.forEach(function (k) { utm[k] = q[k] || getCookie(k) || ""; });
 
-      /* Formulário de candidatura
-         FORM_ENDPOINT: URL (webhook GoHighLevel, n8n etc.) que recebe o JSON da candidatura via POST.
-         Enquanto estiver vazio, a candidatura é encaminhada ao WhatsApp do instituto. */
-      var FORM_ENDPOINT = "";
-      var WHATSAPP = "551140403112";
-
-      var form = document.getElementById("candidatura-form");
-      var msg = document.getElementById("form-msg");
-      var btn = document.getElementById("submit-btn");
-
-      function val(name) {
-        var el = form.elements[name];
-        if (!el) return "";
-        if (el.length && el[0] && el[0].type === "radio") {
-          var c = form.querySelector('input[name="' + name + '"]:checked');
-          return c ? c.value : "";
-        }
-        return (el.value || "").trim();
+      /* Repassa UTMs / click ids ao formulário do GoHighLevel (campos ocultos de mesmo nome) */
+      var frame = document.getElementById("inline-biw2VkbuIhAObfADnRyQ");
+      if (frame) {
+        var qs = KEYS.filter(function (k) { return utm[k]; })
+          .map(function (k) { return k + "=" + encodeURIComponent(utm[k]); }).join("&");
+        if (qs) frame.setAttribute("src", frame.getAttribute("src") + "?" + qs);
       }
-      function igUser(s) {
-        return (s || "").trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i, "").replace(/^@/, "").replace(/[\/?#].*$/, "");
-      }
-      function digits(s) { return (s || "").replace(/\D/g, ""); }
-      function show(kind, text) {
-        msg.className = "lp-form__msg lp-form__msg--" + kind;
-        msg.textContent = text;
-      }
-      function mark(el, bad) { if (el) el.classList.toggle("is-invalid", !!bad); }
-
-      form.addEventListener("input", function (e) { mark(e.target, false); });
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        msg.className = "lp-form__msg";
-        if (val("empresa")) return; // honeypot
-
-        var firstBad = null;
-        function need(name, ok) {
-          var el = form.elements[name];
-          var bad = !ok;
-          if (el && !(el.length && el[0] && el[0].type === "radio")) mark(el, bad);
-          if (bad && !firstBad) firstBad = el && el.length ? el[0] : el;
-          return ok;
-        }
-
-        var idade = parseInt(val("idade_atleta"), 10);
-        var menor = !isNaN(idade) && idade < 18;
-
-        need("quem", !!val("quem"));
-        need("nome_preenche", val("nome_preenche").split(/\s+/).filter(Boolean).length >= 2);
-        need("whats_preenche", digits(val("whats_preenche")).length >= 10);
-        need("email_preenche", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val("email_preenche")));
-        need("nome_atleta", val("nome_atleta").length >= 3);
-        need("instagram", /^[A-Za-z0-9._]{1,30}$/.test(igUser(val("instagram"))));
-        need("idade_atleta", !isNaN(idade) && idade >= 5 && idade <= 80);
-        need("modalidade", !!val("modalidade"));
-        need("nivel", !!val("nivel"));
-        need("competicoes", !!val("competicoes"));
-        if (menor) {
-          need("nome_responsavel", val("nome_responsavel").length >= 3);
-          need("parentesco", !!val("parentesco"));
-          need("whats_responsavel", digits(val("whats_responsavel")).length >= 10);
-        }
-        need("pressao", val("pressao").length >= 10);
-        need("investimento", !!val("investimento"));
-        need("porque", val("porque").length >= 10);
-        need("ciencia", form.elements["ciencia"].checked);
-
-        if (firstBad) {
-          show("err", menor && !val("nome_responsavel")
-            ? "Para atletas menores de 18 anos, os dados do responsável são obrigatórios. Revise os campos destacados."
-            : "Revise os campos destacados e tente novamente.");
-          if (firstBad.focus) firstBad.focus();
-          return;
-        }
-
-        var data = {
-          quem_preenche: val("quem"),
-          nome_preenche: val("nome_preenche"),
-          whatsapp_preenche: val("whats_preenche"),
-          email_preenche: val("email_preenche"),
-          nome_atleta: val("nome_atleta"),
-          instagram_atleta: "@" + igUser(val("instagram")),
-          idade_atleta: idade,
-          modalidade: val("modalidade"),
-          nivel: val("nivel"),
-          competicoes_12_meses: val("competicoes"),
-          nome_responsavel: val("nome_responsavel"),
-          parentesco: val("parentesco"),
-          whatsapp_responsavel: val("whats_responsavel"),
-          responsavel_ciente: val("ciente"),
-          sob_pressao: val("pressao"),
-          condicoes_ciclo_5_sessoes: val("investimento"),
-          por_que_a_vaga: val("porque"),
-          pagina: "selecao-para-atendimento-individual",
-          enviado_em: new Date().toISOString()
-        };
-        KEYS.forEach(function (k) { data[k] = utm[k]; });
-
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: "candidatura_selecao_enviada", menor_de_idade: menor });
-
-        btn.disabled = true;
-
-        if (FORM_ENDPOINT) {
-          fetch(FORM_ENDPOINT, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-          }).then(function (r) {
-            if (!r.ok) throw new Error("HTTP " + r.status);
-            form.reset();
-            show("ok", "Candidatura enviada. A equipe responde em até 3 dias úteis pelo WhatsApp informado.");
-          }).catch(function () {
-            show("err", "Não foi possível enviar agora. Tente novamente em instantes ou fale com a gente pelo WhatsApp (11) 4040-3112.");
-          }).then(function () { btn.disabled = false; });
-          return;
-        }
-
-        var linhas = [
-          "Candidatura — Sessão de experiência (20 vagas)",
-          "Preenchido por: " + data.quem_preenche + " — " + data.nome_preenche + " (" + data.whatsapp_preenche + ") — " + data.email_preenche,
-          "Atleta: " + data.nome_atleta + ", " + data.idade_atleta + " anos — Instagram " + data.instagram_atleta,
-          "Modalidade: " + data.modalidade + " | Nível: " + data.nivel + " | Competições (12 meses): " + data.competicoes_12_meses
-        ];
-        if (data.nome_responsavel) {
-          linhas.push("Responsável: " + data.nome_responsavel + " (" + data.parentesco + ") " + data.whatsapp_responsavel + " — ciente: " + (data.responsavel_ciente || "não informado"));
-        }
-        linhas.push("Sob pressão: " + data.sob_pressao);
-        linhas.push("Ciclo de 5 sessões (R$ 1.650): " + data.condicoes_ciclo_5_sessoes);
-        linhas.push("Por que a vaga: " + data.por_que_a_vaga);
-        var url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(linhas.join("\n"));
-        var w = window.open(url, "_blank");
-        if (w) { try { w.opener = null; } catch (err) {} }
-        else window.location.href = url;
-        show("ok", "Quase lá: envie a mensagem que abrimos no WhatsApp para concluir a candidatura.");
-        btn.disabled = false;
-      });
     })();
   </script>
 </body>
