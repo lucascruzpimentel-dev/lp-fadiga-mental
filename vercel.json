@@ -27,6 +27,8 @@
     { "source": "/palestras", "destination": "/palestras/", "permanent": false },
     { "source": "/atendimento-individual-ac", "destination": "/atendimento-individual-ac/", "permanent": false },
     { "source": "/selecao-para-atendimento-individual", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
+    { "source": "/seleção-para-atendimento-individual", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
+    { "source": "/seleção-para-atendimento-individual/", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
     { "source": "/manual-da-arquibancada", "destination": "/manual-da-arquibancada/", "permanent": false },
     { "source": "/treinador-mental-atletas", "destination": "/atendimento-individual-ac/", "permanent": true },
     { "source": "/treinador-mental-atletas/", "destination": "/atendimento-individual-ac/", "permanent": true },
