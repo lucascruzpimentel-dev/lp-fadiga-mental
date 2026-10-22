@@ -34,7 +34,7 @@
   <link rel="icon" href="https://atletacampeaotreinamentos.com/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #16161c;
@@ -60,14 +60,14 @@
       --white: #ffffff;
       --success: #1a7a45;
       --error: #b42318;
-      --font-h: "Barlow", system-ui, sans-serif;
+      --font-h: "Marcellus", Georgia, "Times New Roman", serif;
       --font-b: "Inter", system-ui, sans-serif;
       --radius: 12px;
       --radius-xl: 1rem;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+    html { font-synthesis: none; scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body {
       margin: 0;
@@ -83,7 +83,7 @@
     a { color: inherit; }
     h1, h2, h3 {
       font-family: var(--font-h);
-      letter-spacing: -0.03em;
+      letter-spacing: 0;
       line-height: 1.08;
       margin: 0;
       font-weight: 800;
@@ -223,11 +223,12 @@
       margin-bottom: 1.5rem;
     }
     .hero h1 {
-      max-width: 24ch;
-      font-style: italic;
+      max-width: 34ch;
+      -webkit-text-stroke: 0.04em currentColor;
       text-transform: uppercase;
       line-height: 1.02;
-      font-size: clamp(1.6rem, 4.6vw, 3.3rem);
+      font-size: clamp(1.55rem, 4.2vw, 3rem);
+      letter-spacing: 0.01em;
       font-weight: 900;
       color: var(--white);
       overflow-wrap: break-word;
@@ -290,17 +291,17 @@
       text-align: center;
     }
     .split__nums {
+      -webkit-text-stroke: 0.03em currentColor;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: baseline;
       gap: 0.5rem 2.5rem;
       font-family: var(--font-h);
-      font-style: italic;
       font-weight: 900;
       text-transform: uppercase;
-      line-height: 0.9;
-      letter-spacing: -0.03em;
+      line-height: 0.95;
+      letter-spacing: 0;
     }
     .split__nums b { font-size: clamp(4.5rem, 16vw, 9.5rem); }
     .split__nums span { font-size: clamp(1.4rem, 4vw, 2.4rem); letter-spacing: 0.02em; }
@@ -320,7 +321,6 @@
       margin: 2rem auto 0;
       max-width: 22ch;
       font-size: clamp(1.5rem, 3.6vw, 2.4rem);
-      font-style: italic;
       text-transform: uppercase;
       color: var(--white);
       text-wrap: balance;
@@ -637,7 +637,7 @@
     @media (max-width: 640px) {
       .site-header .btn { padding: 0.5rem 0.85rem; font-size: 0.62rem; }
       .site-header__logo { height: 2.05rem; max-width: 7.5rem; }
-      .hero h1 { font-size: 1.5rem; }
+      .hero h1 { font-size: 1.65rem; }
       .hero__lead { font-size: 1rem; }
       .bio-photo__shadow { display: none; }
       .countdown__item { min-width: 4.4rem; }
