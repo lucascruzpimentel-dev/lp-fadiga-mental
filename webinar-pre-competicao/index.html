@@ -545,7 +545,7 @@
     /* Formulário */
     .signup {
       margin-top: 2rem;
-      padding: 2.25rem 1.75rem 1.75rem;
+      padding: 1.25rem 1rem 1rem;
       background: var(--white);
       border-radius: var(--radius-xl);
       border-top: 6px solid var(--gold);
@@ -863,34 +863,26 @@
         </div>
 
         <div class="signup anim">
-          <!-- Troque o action pela URL do formulário/webhook (GHL, n8n etc.) -->
-          <form class="lp-form" id="wb-form" action="[URL_DO_FORMULARIO]" method="post" novalidate>
-            <label for="nome">Seu nome</label>
-            <input id="nome" name="nome" type="text" placeholder="Nome completo" autocomplete="name" required>
-
-            <label for="email">Seu melhor e-mail</label>
-            <input id="email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
-
-            <label for="whatsapp">Seu WhatsApp</label>
-            <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" placeholder="(11) 99999-9999" autocomplete="tel" required>
-
-            <label for="perfil">Você é</label>
-            <select id="perfil" name="perfil">
-              <option value="atleta">Atleta</option>
-              <option value="treinador">Treinador(a)</option>
-              <option value="pai-mae">Pai ou mãe de atleta</option>
-              <option value="outro">Outro</option>
-            </select>
-
-            <input type="hidden" name="utm_source" value="">
-            <input type="hidden" name="utm_medium" value="">
-            <input type="hidden" name="utm_campaign" value="">
-            <input type="hidden" name="utm_content" value="">
-
-            <button type="submit" class="btn btn--lg btn--full">Sim! Quero minha vaga gratuita</button>
-            <div class="lp-form__msg" id="wb-msg" role="alert"></div>
-            <p class="lp-form__note">Seus dados estão seguros. Sem spam. Você pode sair da lista quando quiser.</p>
-          </form>
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/1Z6eCLZpukbfgFcbe5yN"
+            style="width:100%;height:100%;min-height:560px;border:none;border-radius:16px"
+            id="inline-1Z6eCLZpukbfgFcbe5yN"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="TMPC – Webinar StreamYard"
+            data-height="1538"
+            data-layout-iframe-id="inline-1Z6eCLZpukbfgFcbe5yN"
+            data-form-id="1Z6eCLZpukbfgFcbe5yN"
+            data-cookie-consent="true"
+            data-cookie-consent-provider="auto"
+            title="TMPC – Webinar StreamYard">
+          </iframe>
+          <script src="https://link.msgsndr.com/js/form_embed.js"></script>
         </div>
       </div>
     </section>
@@ -955,41 +947,28 @@
       setInterval(tick, 1000);
     })();
 
-    // UTMs e click ids: URL > cookie > referrer
+    // UTMs e click ids (URL > cookie > referrer) repassados ao formulário do GHL
     (function () {
-      var form = document.getElementById("wb-form");
+      var ifr = document.getElementById("inline-1Z6eCLZpukbfgFcbe5yN");
       var q = new URLSearchParams(location.search);
       function getCookie(n) {
         var m = document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)"));
         return m ? decodeURIComponent(m[1]) : "";
       }
-      ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (k) {
-        var val = q.get(k) || getCookie(k) || (k === "utm_source" ? (document.referrer ? new URL(document.referrer).hostname : "direto") : "");
+      var out = [];
+      ["utm_source", "utm_medium", "utm_campaign", "utm_content", "gclid", "fbclid", "ttclid"].forEach(function (k) {
+        var val = q.get(k) || getCookie(k) || "";
+        if (!val && k === "utm_source") {
+          try { val = document.referrer ? new URL(document.referrer).hostname : "direto"; } catch (e) { val = "direto"; }
+        }
         if (q.get(k)) document.cookie = k + "=" + encodeURIComponent(val) + ";path=/;max-age=" + 90 * 86400;
-        form.elements[k].value = val;
+        if (val) out.push(encodeURIComponent(k) + "=" + encodeURIComponent(val));
       });
+      if (ifr && out.length) ifr.src = ifr.src.split("?")[0] + "?" + out.join("&");
     })();
 
-    // Envio
+    // Cliques nos botões
     (function () {
-      var form = document.getElementById("wb-form");
-      var msg = document.getElementById("wb-msg");
-      form.addEventListener("submit", function (e) {
-        msg.classList.remove("is-on");
-        if (!form.checkValidity()) {
-          e.preventDefault();
-          form.reportValidity();
-          return;
-        }
-        if (form.getAttribute("action").indexOf("[") !== -1) {
-          e.preventDefault();
-          msg.textContent = "Formulário ainda não conectado: defina a URL em action (webinar-pre-competicao/index.html).";
-          msg.classList.add("is-on");
-          return;
-        }
-        if (window.fbq) fbq("track", "Lead");
-        (window.dataLayer = window.dataLayer || []).push({ event: "generate_lead", form: "webinar-pre-competicao" });
-      });
       document.querySelectorAll("[data-cta]").forEach(function (a) {
         a.addEventListener("click", function () {
           (window.dataLayer = window.dataLayer || []).push({ event: "cta_click", cta: a.getAttribute("data-cta") });

@@ -812,6 +812,8 @@
         });
       });
       (window.dataLayer = window.dataLayer || []).push({ event: "thank_you_view", page: "obrigado-webinar-pre-competicao" });
+      if (window.fbq) fbq("track", "Lead");
+      window.dataLayer.push({ event: "generate_lead", form: "webinar-pre-competicao" });
     })();
 
     (function () {
