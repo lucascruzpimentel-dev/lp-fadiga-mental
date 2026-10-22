@@ -48,6 +48,9 @@
     { "source": "/passe-profissional-lideranca-parental-psicologos", "destination": "/passe-profissional-lideranca-parental-psicologos/", "permanent": false }
   ],
   "rewrites": [
+    { "source": "/w/:id", "destination": "/webinar-evergreen/sala/index.html" },
+    { "source": "/painel-webinars", "destination": "/webinar-evergreen/painel/index.html" },
+    { "source": "/painel-webinars/", "destination": "/webinar-evergreen/painel/index.html" },
     { "source": "/aula-cerebro-do-atleta", "destination": "/curso-telas/Captura_aula_telas_gratuita.html" },
     { "source": "/aula-cerebro-do-atleta/", "destination": "/curso-telas/Captura_aula_telas_gratuita.html" },
     { "source": "/curso-telas/", "destination": "/curso-telas/lp_curso_de_telas.html" },
@@ -104,6 +107,26 @@
     { "source": "/obrigado-congresso-lideranca-parental/", "destination": "/captura-congresso-lideranca-parental/obrigado.html" }
   ],
   "headers": [
+    {
+      "source": "/w/:id",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/painel-webinars",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/webinar-evergreen/(.*)\\.(js|css)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+      ]
+    },
     {
       "source": "/(.*)\\.html",
       "headers": [
