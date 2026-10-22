@@ -30,32 +30,32 @@
   <meta name="twitter:title" content="Super Aula Pré-Competição: vença o nervosismo e a ansiedade">
   <meta name="twitter:description" content="Aula online e gratuita com a Mayra Ramos, do Atleta Campeão. Toda quarta.">
   <meta name="twitter:image" content="https://atletacampeaotreinamentos.com/webinar-pre-competicao/assets/ac_mayra_palco.webp">
-  <meta name="theme-color" content="#003366">
+  <meta name="theme-color" content="#0a0a0d">
   <link rel="icon" href="https://atletacampeaotreinamentos.com/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #003366;
-      --navy-hi: #003366;
-      --navy-deep: #00203c;
-      --band: var(--navy);
-      --hero-a: #003366;
-      --hero-b: var(--navy);
-      --hero-c: var(--navy-deep);
-      --header-bg: rgba(0, 32, 60, 0.92);
-      --accent-rgb: 215, 158, 79;
-      --on-accent: #003366;
-      --ink-rgb: 15, 38, 56;
+      --navy: #16161c;
+      --navy-hi: #16161c;
+      --navy-deep: #0a0a0d;
+      --band: #121217;
+      --hero-a: #0a0a0d;
+      --hero-b: #15151b;
+      --hero-c: #2a0a0f;
+      --header-bg: rgba(10, 10, 13, 0.92);
+      --accent-rgb: 228, 32, 45;
+      --on-accent: #ffffff;
+      --ink-rgb: 22, 22, 28;
       --hero-deco: none;
-      --gold: #d79e4f;
-      --gold-hover: #c48c3e;
-      --gold-light: #f5d78a;
-      --gold-dark: #8a5a1f;
-      --ink: #0f2638;
+      --gold: #e4202d;
+      --gold-hover: #c8151f;
+      --gold-light: #ff6b74;
+      --gold-dark: #b30f1c;
+      --ink: #16161c;
       --muted: rgba(var(--ink-rgb), 0.75);
-      --cream: #f7f5f1;
+      --cream: #f6f4f3;
       --border: rgba(var(--ink-rgb), 0.1);
       --white: #ffffff;
       --success: #1a7a45;
@@ -187,7 +187,10 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: var(--hero-deco);
+      background:
+        radial-gradient(ellipse 70% 60% at 85% 100%, rgba(228, 32, 45, 0.45), transparent 70%),
+        linear-gradient(180deg, rgba(10, 10, 13, 0.80) 0%, rgba(10, 10, 13, 0.90) 100%),
+        url(assets/ac_mayra_palco.webp) center 38% / cover no-repeat;
       pointer-events: none;
     }
     .hero__in {
@@ -220,14 +223,17 @@
       margin-bottom: 1.5rem;
     }
     .hero h1 {
-      max-width: 22ch;
-      font-size: clamp(1.85rem, 5.2vw, 3.75rem);
+      max-width: 24ch;
+      font-style: italic;
+      text-transform: uppercase;
+      line-height: 1.02;
+      font-size: clamp(1.6rem, 4.6vw, 3.3rem);
       font-weight: 900;
       color: var(--white);
       overflow-wrap: break-word;
       text-wrap: balance;
     }
-    .hero h1 .hl { color: var(--gold); }
+    .hero h1 .hl { display: block; color: var(--gold); }
     .hero__lead {
       margin: 1.5rem 0 0;
       max-width: 40rem;
@@ -273,6 +279,53 @@
       font-size: 0.875rem;
       color: rgba(255, 255, 255, 0.6);
     }
+
+    /* 90/10 */
+    .split {
+      position: relative;
+      overflow: hidden;
+      padding-block: clamp(3rem, 6vw, 4.5rem);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--white);
+      text-align: center;
+    }
+    .split__nums {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.5rem 2.5rem;
+      font-family: var(--font-h);
+      font-style: italic;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+    }
+    .split__nums b { font-size: clamp(4.5rem, 16vw, 9.5rem); }
+    .split__nums span { font-size: clamp(1.4rem, 4vw, 2.4rem); letter-spacing: 0.02em; }
+    .split__nums .dim { opacity: 0.6; }
+    .split__nums .dim b { font-size: clamp(2.4rem, 8vw, 4.5rem); }
+    .split__bar {
+      display: flex;
+      height: 0.9rem;
+      max-width: 40rem;
+      margin: 1.5rem auto 0;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.35);
+    }
+    .split__bar i { display: block; width: 90%; background: var(--white); }
+    .split h2 {
+      margin: 2rem auto 0;
+      max-width: 22ch;
+      font-size: clamp(1.5rem, 3.6vw, 2.4rem);
+      font-style: italic;
+      text-transform: uppercase;
+      color: var(--white);
+      text-wrap: balance;
+    }
+    .split p { margin: 1rem auto 0; max-width: 40rem; font-size: 1.05rem; color: rgba(255, 255, 255, 0.92); }
 
     /* Seções */
     .band { padding-block: clamp(4rem, 8vw, 5rem); }
@@ -584,7 +637,7 @@
     @media (max-width: 640px) {
       .site-header .btn { padding: 0.5rem 0.85rem; font-size: 0.62rem; }
       .site-header__logo { height: 2.05rem; max-width: 7.5rem; }
-      .hero h1 { font-size: 1.7rem; }
+      .hero h1 { font-size: 1.5rem; }
       .hero__lead { font-size: 1rem; }
       .bio-photo__shadow { display: none; }
       .countdown__item { min-width: 4.4rem; }
@@ -673,6 +726,19 @@
           <small>Clique aqui para se inscrever agora. É 100% gratuito.</small>
         </a>
         <p class="hero__when">Próxima aula: <span data-wb="data-completa">Quarta-feira, 28 de outubro · 20h</span> (horário de Brasília) · Online, toda quarta</p>
+      </div>
+    </section>
+
+    <!-- 90/10 -->
+    <section class="split" aria-labelledby="split-title">
+      <div class="wrap wrap--4 anim">
+        <div class="split__nums" aria-hidden="true">
+          <div><b>90%</b> <span>mente</span></div>
+          <div class="dim"><b>10%</b> <span>físico</span></div>
+        </div>
+        <div class="split__bar" aria-hidden="true"><i></i></div>
+        <h2 id="split-title">Você passa a semana treinando os 10%. A competição é decidida nos 90%.</h2>
+        <p>Treinar muito e não conseguir fazer nem metade do que você sabe não é falta de talento. Acontece porque, na hora da competição, é 90% mente e 10% físico.</p>
       </div>
     </section>
 
@@ -767,7 +833,7 @@
           </div>
         </div>
 
-        <p class="fit__punch anim">Isso não é falta de talento nem de treino. Isso acontece porque, na hora da competição, é <strong>90% mente e 10% físico</strong>, e quase ninguém treina a parte que decide o resultado.</p>
+        <p class="fit__punch anim">Isso não é falta de talento nem de treino. É falta de <strong>treino mental</strong>, a parte que decide o resultado e que quase ninguém treina.</p>
       </div>
     </section>
 

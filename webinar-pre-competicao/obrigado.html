@@ -14,23 +14,33 @@
   <meta name="description" content="Sua vaga no webinar gratuito pré-competição com a Mayra Ramos está confirmada.">
   <meta name="author" content="Instituto Atleta Campeão">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#003366">
+  <meta name="theme-color" content="#0a0a0d">
   <link rel="icon" href="https://atletacampeaotreinamentos.com/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #003366;
-      --navy-deep: #00203c;
-      --gold: #d79e4f;
-      --gold-hover: #c48c3e;
-      --gold-light: #f5d78a;
-      --gold-dark: #8a5a1f;
-      --ink: #0f2638;
-      --muted: rgba(15, 38, 56, 0.75);
-      --cream: #f7f5f1;
-      --border: rgba(15, 38, 56, 0.1);
+      --navy: #16161c;
+      --navy-hi: #16161c;
+      --navy-deep: #0a0a0d;
+      --band: #121217;
+      --hero-a: #0a0a0d;
+      --hero-b: #15151b;
+      --hero-c: #2a0a0f;
+      --header-bg: rgba(10, 10, 13, 0.92);
+      --accent-rgb: 228, 32, 45;
+      --on-accent: #ffffff;
+      --ink-rgb: 22, 22, 28;
+      --hero-deco: none;
+      --gold: #e4202d;
+      --gold-hover: #c8151f;
+      --gold-light: #ff6b74;
+      --gold-dark: #b30f1c;
+      --ink: #16161c;
+      --muted: rgba(var(--ink-rgb), 0.75);
+      --cream: #f6f4f3;
+      --border: rgba(var(--ink-rgb), 0.1);
       --white: #ffffff;
       --success: #1a7a45;
       --error: #b42318;
@@ -86,7 +96,7 @@
       text-transform: uppercase;
       text-decoration: none;
       background: var(--gold);
-      color: var(--navy);
+      color: var(--on-accent);
       border: none;
       cursor: pointer;
       transition: background 0.2s var(--ease), transform 0.15s var(--ease);
@@ -111,7 +121,7 @@
     /* Faixa de urgência */
     .urgency-bar {
       background: var(--gold);
-      color: var(--navy);
+      color: var(--on-accent);
       text-align: center;
       padding: 0.65rem 1.25rem;
       font-size: 0.75rem;
@@ -126,10 +136,10 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(0, 32, 60, 0.92);
+      background: var(--header-bg);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(215, 158, 79, 0.28);
+      border-bottom: 1px solid rgba(var(--accent-rgb), 0.28);
     }
     .site-header__in {
       display: flex;
@@ -147,7 +157,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(90deg, #003366 0%, var(--navy) 50%, var(--navy-deep) 100%);
+      background: linear-gradient(90deg, var(--hero-a) 0%, var(--hero-b) 50%, var(--hero-c) 100%);
       color: var(--white);
     }
     .hero::after {
@@ -157,7 +167,16 @@
       height: 3px;
       background: linear-gradient(90deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 70%, var(--gold-light) 100%);
     }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 85% 100%, rgba(228, 32, 45, 0.4), transparent 70%);
+      pointer-events: none;
+    }
     .hero__in {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -175,7 +194,7 @@
     }
     .tag {
       display: inline-block;
-      border: 1px solid rgba(215, 158, 79, 0.55);
+      border: 1px solid rgba(var(--accent-rgb), 0.55);
       border-radius: 999px;
       padding: 0.4rem 1rem;
       font-size: 0.7rem;
@@ -186,8 +205,11 @@
       margin-bottom: 1.5rem;
     }
     .hero h1 {
-      max-width: 22ch;
-      font-size: clamp(1.85rem, 5.2vw, 3.75rem);
+      max-width: 24ch;
+      font-style: italic;
+      text-transform: uppercase;
+      line-height: 1.02;
+      font-size: clamp(1.6rem, 4.6vw, 3.3rem);
       font-weight: 900;
       color: var(--white);
       overflow-wrap: break-word;
@@ -211,7 +233,7 @@
       min-width: 5.25rem;
       padding: 0.85rem 0.75rem;
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(215, 158, 79, 0.3);
+      border: 1px solid rgba(var(--accent-rgb), 0.3);
       border-radius: var(--radius-xl);
     }
     .countdown__item b {
@@ -243,7 +265,7 @@
     /* Seções */
     .band { padding-block: clamp(4rem, 8vw, 5rem); }
     .band--cream { background: var(--cream); }
-    .band--navy { background: var(--navy); color: var(--white); }
+    .band--navy { background: var(--band); color: var(--white); }
     .band--deep { background: var(--navy-deep); color: var(--white); }
     .center { text-align: center; }
     .sec-eyebrow {
@@ -284,7 +306,7 @@
     }
     .card:hover {
       transform: translateY(-5px);
-      border-color: rgba(215, 158, 79, 0.45);
+      border-color: rgba(var(--accent-rgb), 0.45);
       box-shadow: 0 16px 36px rgba(15, 38, 56, 0.08);
     }
     .num {
@@ -295,7 +317,7 @@
       height: 3rem;
       border-radius: 50%;
       background: var(--gold);
-      color: var(--navy);
+      color: var(--on-accent);
       font-family: var(--font-h);
       font-size: 1.125rem;
       font-weight: 800;
@@ -327,7 +349,7 @@
       padding: 0.3rem 0.7rem;
       border-radius: 4px;
       background: var(--gold);
-      color: var(--navy);
+      color: var(--on-accent);
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -375,7 +397,7 @@
     .fit__item:hover {
       transform: translateY(-4px);
       background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(215, 158, 79, 0.35);
+      border-color: rgba(var(--accent-rgb), 0.35);
     }
     .fit__item svg {
       flex-shrink: 0;
@@ -482,7 +504,7 @@
       width: 100%;
       min-height: 3.1rem;
       padding: 0.75rem 0.9rem;
-      border: 1px solid rgba(15, 38, 56, 0.2);
+      border: 1px solid rgba(var(--ink-rgb), 0.2);
       border-radius: 8px;
       font-family: var(--font-b);
       font-size: 1rem;
@@ -528,7 +550,7 @@
       color: rgba(255, 255, 255, 0.65);
       padding: 2rem 0 1.5rem;
       font-size: 0.875rem;
-      border-top: 1px solid rgba(215, 158, 79, 0.2);
+      border-top: 1px solid rgba(var(--accent-rgb), 0.2);
     }
     .site-footer__in {
       display: flex;
@@ -550,7 +572,7 @@
     @media (max-width: 640px) {
       .site-header .btn { padding: 0.5rem 0.85rem; font-size: 0.62rem; }
       .site-header__logo { height: 2.05rem; max-width: 7.5rem; }
-      .hero h1 { font-size: 1.7rem; }
+      .hero h1 { font-size: 1.5rem; }
       .hero__lead { font-size: 1rem; }
       .bio-photo__shadow { display: none; }
       .countdown__item { min-width: 4.4rem; }
@@ -564,7 +586,7 @@
     .ok-badge {
       display: inline-flex; align-items: center; justify-content: center;
       width: 4rem; height: 4rem; border-radius: 50%;
-      background: var(--gold); color: var(--navy); margin-bottom: 1.5rem;
+      background: var(--gold); color: var(--on-accent); margin-bottom: 1.5rem;
     }
     .ok-badge svg { width: 2rem; height: 2rem; stroke: currentColor; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
     .when-card {
