@@ -38,15 +38,25 @@
   <style>
     :root {
       --navy: #003366;
+      --navy-hi: #003366;
       --navy-deep: #00203c;
+      --band: var(--navy);
+      --hero-a: #003366;
+      --hero-b: var(--navy);
+      --hero-c: var(--navy-deep);
+      --header-bg: rgba(0, 32, 60, 0.92);
+      --accent-rgb: 215, 158, 79;
+      --on-accent: #003366;
+      --ink-rgb: 15, 38, 56;
+      --hero-deco: none;
       --gold: #d79e4f;
       --gold-hover: #c48c3e;
       --gold-light: #f5d78a;
       --gold-dark: #8a5a1f;
       --ink: #0f2638;
-      --muted: rgba(15, 38, 56, 0.75);
+      --muted: rgba(var(--ink-rgb), 0.75);
       --cream: #f7f5f1;
-      --border: rgba(15, 38, 56, 0.1);
+      --border: rgba(var(--ink-rgb), 0.1);
       --white: #ffffff;
       --success: #1a7a45;
       --error: #b42318;
@@ -102,7 +112,7 @@
       text-transform: uppercase;
       text-decoration: none;
       background: var(--gold);
-      color: var(--navy);
+      color: var(--on-accent);
       border: none;
       cursor: pointer;
       transition: background 0.2s var(--ease), transform 0.15s var(--ease);
@@ -127,7 +137,7 @@
     /* Faixa de urgência */
     .urgency-bar {
       background: var(--gold);
-      color: var(--navy);
+      color: var(--on-accent);
       text-align: center;
       padding: 0.65rem 1.25rem;
       font-size: 0.75rem;
@@ -142,10 +152,10 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(0, 32, 60, 0.92);
+      background: var(--header-bg);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(215, 158, 79, 0.28);
+      border-bottom: 1px solid rgba(var(--accent-rgb), 0.28);
     }
     .site-header__in {
       display: flex;
@@ -163,7 +173,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(90deg, #003366 0%, var(--navy) 50%, var(--navy-deep) 100%);
+      background: linear-gradient(90deg, var(--hero-a) 0%, var(--hero-b) 50%, var(--hero-c) 100%);
       color: var(--white);
     }
     .hero::after {
@@ -173,7 +183,15 @@
       height: 3px;
       background: linear-gradient(90deg, var(--gold-light) 0%, var(--gold) 40%, var(--gold-dark) 70%, var(--gold-light) 100%);
     }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--hero-deco);
+      pointer-events: none;
+    }
     .hero__in {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -191,7 +209,7 @@
     }
     .tag {
       display: inline-block;
-      border: 1px solid rgba(215, 158, 79, 0.55);
+      border: 1px solid rgba(var(--accent-rgb), 0.55);
       border-radius: 999px;
       padding: 0.4rem 1rem;
       font-size: 0.7rem;
@@ -227,7 +245,7 @@
       min-width: 5.25rem;
       padding: 0.85rem 0.75rem;
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(215, 158, 79, 0.3);
+      border: 1px solid rgba(var(--accent-rgb), 0.3);
       border-radius: var(--radius-xl);
     }
     .countdown__item b {
@@ -259,7 +277,7 @@
     /* Seções */
     .band { padding-block: clamp(4rem, 8vw, 5rem); }
     .band--cream { background: var(--cream); }
-    .band--navy { background: var(--navy); color: var(--white); }
+    .band--navy { background: var(--band); color: var(--white); }
     .band--deep { background: var(--navy-deep); color: var(--white); }
     .center { text-align: center; }
     .sec-eyebrow {
@@ -300,7 +318,7 @@
     }
     .card:hover {
       transform: translateY(-5px);
-      border-color: rgba(215, 158, 79, 0.45);
+      border-color: rgba(var(--accent-rgb), 0.45);
       box-shadow: 0 16px 36px rgba(15, 38, 56, 0.08);
     }
     .num {
@@ -311,7 +329,7 @@
       height: 3rem;
       border-radius: 50%;
       background: var(--gold);
-      color: var(--navy);
+      color: var(--on-accent);
       font-family: var(--font-h);
       font-size: 1.125rem;
       font-weight: 800;
@@ -343,7 +361,7 @@
       padding: 0.3rem 0.7rem;
       border-radius: 4px;
       background: var(--gold);
-      color: var(--navy);
+      color: var(--on-accent);
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -391,7 +409,7 @@
     .fit__item:hover {
       transform: translateY(-4px);
       background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(215, 158, 79, 0.35);
+      border-color: rgba(var(--accent-rgb), 0.35);
     }
     .fit__item svg {
       flex-shrink: 0;
@@ -498,7 +516,7 @@
       width: 100%;
       min-height: 3.1rem;
       padding: 0.75rem 0.9rem;
-      border: 1px solid rgba(15, 38, 56, 0.2);
+      border: 1px solid rgba(var(--ink-rgb), 0.2);
       border-radius: 8px;
       font-family: var(--font-b);
       font-size: 1rem;
@@ -544,7 +562,7 @@
       color: rgba(255, 255, 255, 0.65);
       padding: 2rem 0 1.5rem;
       font-size: 0.875rem;
-      border-top: 1px solid rgba(215, 158, 79, 0.2);
+      border-top: 1px solid rgba(var(--accent-rgb), 0.2);
     }
     .site-footer__in {
       display: flex;
