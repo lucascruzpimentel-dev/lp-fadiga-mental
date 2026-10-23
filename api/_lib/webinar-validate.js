@@ -9,6 +9,15 @@ const httpUrl = (v) => {
   return s === '' || /^https?:\/\//i.test(s) ? s : null;
 };
 
+/** Trechos da transcrição: {at (s), text}. Limites para não inflar o banco. */
+function validateTranscript(list) {
+  return (Array.isArray(list) ? list : [])
+    .slice(0, 4000)
+    .map((t) => ({ at: Math.round(num(t && t.at, 0, 86400, 0)), text: str(t && t.text, 400).replace(/\s+/g, ' ').trim() }))
+    .filter((t) => t.text)
+    .sort((a, b) => a.at - b.at);
+}
+
 function validateWebinar(w) {
   if (!w || typeof w !== 'object') throw new Error('Dados inválidos');
   if (typeof w.id !== 'string' || !/^[a-z0-9-]{1,40}$/i.test(w.id)) throw new Error('ID inválido');
@@ -52,6 +61,7 @@ function validateWebinar(w) {
     viewersBase: Math.round(num(w.viewersBase, 1, 100000, 180)),
     chat,
     offers,
+    transcript: validateTranscript(w.transcript),
   };
 }
 
@@ -66,4 +76,4 @@ function validTz(tz) {
 
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 
-module.exports = { validateWebinar, EMAIL };
+module.exports = { validateWebinar, validateTranscript, EMAIL };

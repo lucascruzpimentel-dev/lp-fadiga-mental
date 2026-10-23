@@ -69,6 +69,28 @@ Só volume e tela cheia ficam disponíveis ao espectador.
 4. Se o vídeo não carregar dentro de ~25 s (privado, domínio não permitido, vídeo removido), a sala mostra
    "Não foi possível carregar o vídeo". Em "Detectar do vídeo", o painel avisa se não conseguir ler.
 
+## Comentários coerentes com o vídeo (transcrição + IA)
+
+No editor, em **Chat**, importe a transcrição com timestamps e gere os comentários a partir dela:
+
+1. **Transcrição:** cole ou importe um arquivo `.srt`, `.vtt` ou `.txt`. São aceitos SRT, VTT, linhas `mm:ss texto`
+   ou `[hh:mm:ss] texto` e o formato "Nome  mm:ss" (Zoom/Otter). No Vimeo: Configurações do vídeo → Legendas →
+   baixar o `.vtt`. O painel agrupa em trechos de ~12 s e mostra o resumo (nº de trechos e cobertura).
+2. **Gerar comentários com IA:** o servidor divide o vídeo em janelas de ~7 min, chama a Claude API em paralelo
+   (uma chamada por janela) e devolve mensagens com horário, nome e texto, cada uma reagindo ao que foi dito
+   segundos antes. As primeiras janelas têm cumprimentos de chegada e, depois de cada oferta, mensagens de
+   interesse (sem preço ou condição, que não estão na transcrição). Revise o resultado e clique em **Salvar**.
+3. **Sem chave de API:** "Copiar prompt" gera um prompt pronto (com a transcrição e as regras) para colar no
+   Claude.ai; cole a resposta no campo de comentários. "Modelo genérico (sem IA)" continua disponível.
+
+Detalhes técnicos: `api/_lib/webinar-ai.js` usa o SDK oficial `@anthropic-ai/sdk` (`package.json` na raiz),
+modelo `claude-opus-5-5` por padrão (troque com a variável `ANTHROPIC_MODEL`, ex.: `claude-sonnet-5-5` para gastar
+cerca da metade), saída estruturada por JSON Schema, `effort` baixo e `fallbacks: "default"` (reexecuta no modelo
+recomendado se um classificador de segurança recusar). A ação exige login, tem limite de 12 gerações por hora por IP
+(best-effort) e a função roda até 60 s (`vercel.json`). A transcrição fica salva no webinar, **só visível ao admin**:
+a API pública não a entrega. Estimativa de custo para ~100 comentários em 1 h de vídeo: da ordem de US$ 0,20 a 0,50
+com o modelo padrão (confira o consumo no console da Anthropic).
+
 ## Configuração (uma vez)
 
 1. **Supabase** → SQL Editor → rodar `webinar-evergreen/supabase/schema.sql`.
@@ -76,6 +98,8 @@ Só volume e tela cheia ficam disponíveis ao espectador.
    - `SUPABASE_URL` — `https://SEU-PROJETO.supabase.co`
    - `SUPABASE_SERVICE_ROLE_KEY` — chave `service_role` (só no servidor; **nunca** no código)
    - `ADMIN_PASSWORD` — senha do painel
+   - `ANTHROPIC_API_KEY` — *opcional*, só para "Gerar comentários com IA" (chave em console.anthropic.com)
+   - `ANTHROPIC_MODEL` — *opcional*, padrão `claude-opus-5-5`
 3. Redeploy (variáveis só valem em novos deploys).
 
 ## Segurança

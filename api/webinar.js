@@ -1,7 +1,8 @@
 // API do webinar evergreen (uma única função): POST /api/webinar  { action, ... }
 const { login, verify } = require('./_lib/webinar-auth');
 const db = require('./_lib/webinar-db');
-const { validateWebinar, EMAIL } = require('./_lib/webinar-validate');
+const { generateChatComments, friendlyError } = require('./_lib/webinar-ai');
+const { validateWebinar, validateTranscript, EMAIL } = require('./_lib/webinar-validate');
 
 // Limite simples por IP (best-effort: a memória é por instância da função).
 const hits = new Map();
@@ -31,8 +32,10 @@ module.exports = async (req, res) => {
       case 'get': {
         const w = await db.getWebinar(String(body.id || '').slice(0, 40));
         if (!w) return send(res, 200, { webinar: null });
-        if (w.active || verify(body.token)) return send(res, 200, { webinar: w });
-        return send(res, 200, { webinar: null });
+        const admin = verify(body.token);
+        if (!w.active && !admin) return send(res, 200, { webinar: null });
+        if (!admin) delete w.transcript; // a transcrição é material interno: não vai para o público
+        return send(res, 200, { webinar: w });
       }
 
       case 'lead': {
@@ -55,7 +58,7 @@ module.exports = async (req, res) => {
       }
     }
 
-    if (!['dashboard', 'save', 'delete', 'leads'].includes(body.action)) {
+    if (!['dashboard', 'save', 'delete', 'leads', 'chat-generate'].includes(body.action)) {
       return send(res, 400, { error: 'Ação inválida' });
     }
     if (!verify(body.token)) return send(res, 401, { error: 'unauthorized' });
@@ -75,6 +78,27 @@ module.exports = async (req, res) => {
       }
       case 'leads': {
         return send(res, 200, { leads: await db.listLeads(String(body.id || '').slice(0, 40)) });
+      }
+      case 'chat-generate': {
+        if (limited('gen:' + ip, 12, 60 * 60 * 1000)) return send(res, 429, { error: 'Muitas gerações seguidas. Tente de novo em alguns minutos.' });
+        const segments = validateTranscript(body.transcript);
+        const duration = Math.round(Number(body.duration));
+        const count = Math.round(Number(body.count));
+        if (segments.length < 3) return send(res, 400, { error: 'Importe a transcrição com timestamps antes de gerar.' });
+        if (!(duration >= 60 && duration <= 86400)) return send(res, 400, { error: 'Informe a duração do vídeo.' });
+        if (!(count >= 5 && count <= 300)) return send(res, 400, { error: 'A quantidade deve ficar entre 5 e 300.' });
+        const offers = (Array.isArray(body.offers) ? body.offers : []).map(Number).filter((t) => t >= 0 && t < duration).slice(0, 20);
+        try {
+          const r = await generateChatComments({
+            segments, duration, count, offers,
+            title: String(body.title || '').slice(0, 200), host: String(body.host || '').slice(0, 200),
+          });
+          return send(res, 200, r);
+        } catch (e) {
+          console.error('[api/webinar] chat-generate', e && e.message);
+          const f = friendlyError(e);
+          return send(res, f.status, { error: f.message });
+        }
       }
     }
   } catch (e) {
