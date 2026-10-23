@@ -29,6 +29,8 @@ git add \
   "captura-congresso-lideranca-parental/" \
   "palestras/" \
   "politica-de-privacidade/" \
+  "webinar-evergreen/" \
+  "api/" \
   vercel.json \
   deploy.sh \
   .gitignore \
