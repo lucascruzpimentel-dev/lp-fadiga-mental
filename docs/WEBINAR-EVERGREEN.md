@@ -34,6 +34,18 @@ api/
   _lib/                                banco (Supabase), login (HMAC) e validação
 ```
 
+## Identidade visual
+
+Segue o **Atleta Campeão Design System** (Claude Design, set/2026): marinho `#0A1B33` + dourado `#B08D2A` sobre
+branco, Sora (títulos e rótulos em caixa alta) + Source Serif 4 (corpo), tudo chapado (raio 0, sem sombra, sem
+degradê, sem blur), filetes de 1px e 3px, ícones monolineares (Lucide, traço 1,5) e marca nominal "ATLETA CAMPEÃO"
+com filete dourado (não há logo). Os tokens estão no topo de `webinar-evergreen/assets/webinar.css`.
+
+O design system é de material impresso; para a tela foram adicionados só foco, hover e estado desativado, também
+chapados. Regras de contraste: dourado como texto apenas sobre marinho; sobre branco, só filete ou preenchimento;
+texto sobre dourado é marinho; borda de campo usa o cinza-legenda. Cores de tipo de conteúdo (conceito, exercício…)
+não são usadas aqui. Os comentários simulados do chat mantêm o jeito de gente real (podem ter emoji).
+
 ## Vídeo
 
 O campo de vídeo do painel aceita:

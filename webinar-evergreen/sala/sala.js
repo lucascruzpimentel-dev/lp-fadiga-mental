@@ -1,6 +1,6 @@
 // Sala do webinar evergreen: cadastro + transmissão simulada ao vivo.
 import {
-  api, fakeViewerCount, formatClock, h, lsGet, lsSet, newId, normalize, TOKEN_KEY, upcomingSessions,
+  api, brandMark, fakeViewerCount, formatClock, h, lsGet, lsSet, newId, normalize, TOKEN_KEY, upcomingSessions,
 } from '/webinar-evergreen/assets/core.js';
 import { createEngine, parseVideoSource, probeDuration } from '/webinar-evergreen/assets/player-engines.js';
 
@@ -26,7 +26,7 @@ const icon = (svg) => { const s = h('span'); s.innerHTML = svg; return s.firstCh
 
 function show(...nodes) { app.replaceChildren(...nodes); }
 function message(title, text) {
-  show(h('div', { class: 'center' }, h('h1', { style: 'font-size:24px' }, title), text && h('p', { class: 'muted' }, text)));
+  show(h('div', { class: 'center', style: 'padding:24px' }, h('h1', { style: 'font-size:22px' }, title), text && h('p', { class: 'muted' }, text)));
 }
 
 // ---------- boot ----------
@@ -59,9 +59,10 @@ function register(webinar) {
 
   const form = h('form', { class: 'reg stack' },
     h('div', null,
-      h('p', { class: 'eyebrow center' }, 'Webinar gratuito'),
+      brandMark(true),
+      h('p', { class: 'eyebrow center', style: 'margin-top:28px' }, 'Webinar gratuito'),
       h('h1', null, webinar.title),
-      webinar.host && h('p', { class: 'muted center', style: 'margin:8px 0 0;font-size:14px' }, 'com ' + webinar.host)),
+      webinar.host && h('p', { class: 'sub' }, 'com ' + webinar.host)),
     next && h('div', { class: 'next' },
       next.inProgress
         ? h('span', { class: 'live' }, 'Ao vivo agora')
@@ -135,7 +136,8 @@ function start(webinar, viewer, duration, source) {
   const cover = h('div', { class: 'cover', hidden: true });
   const tap = h('button', { class: 'tap', type: 'button', hidden: true }, h('span', null, h('i', { class: 'dot' }), 'Entrar na transmissão ao vivo'));
   const fsOffer = h('div', { class: 'fs-offer' });
-  const player = h('div', { class: 'player' }, engine.el, h('div', { class: 'shield' }), fsOffer, cover, tap, bar);
+  const stage = h('div', { class: 'stage' }, engine.el, h('div', { class: 'shield' }), fsOffer, cover, tap);
+  const player = h('div', { class: 'player' }, stage, bar);
   player.addEventListener('contextmenu', (e) => e.preventDefault());
 
   const syncVolIcon = () => { volBtn.replaceChildren(icon(vstate.muted || vstate.volume === 0 ? ICON.mute : vstate.volume < 0.5 ? ICON.low : ICON.volume)); };
@@ -161,28 +163,19 @@ function start(webinar, viewer, duration, source) {
   document.addEventListener('fullscreenchange', syncFs);
   syncFs();
 
-  let idleTimer;
-  const wake = () => { player.classList.remove('idle'); clearTimeout(idleTimer); idleTimer = setTimeout(() => player.classList.add('idle'), 3000); };
-  player.addEventListener('mousemove', wake);
-  player.addEventListener('touchstart', wake, { passive: true });
-  wake();
-
   // --- chat ---
   const chatList = h('div', { class: 'chat-list' });
   const chatInput = h('input', { class: 'input', placeholder: 'Escreva uma mensagem…', maxlength: '280' });
   const chatForm = h('form', { class: 'chat-form' }, chatInput, h('button', { class: 'btn', type: 'submit', 'aria-label': 'Enviar' }, icon(ICON.send)));
-  chatForm.querySelector('svg').style.cssText = 'width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2';
   chatForm.hidden = !webinar.allowViewerChat;
   const chat = h('aside', { class: 'chat' }, h('div', { class: 'chat-head' }, 'Chat ao vivo'), chatList, chatForm);
 
   let stick = true;
   chatList.addEventListener('scroll', () => { stick = chatList.scrollHeight - chatList.scrollTop - chatList.clientHeight < 40; });
-  const COLORS = ['#38bdf8', '#fbbf24', '#e879f9', '#a3e635', '#fb7185', '#22d3ee'];
-  const colorFor = (n) => { let x = 0; for (const c of n) x = (x * 31 + c.charCodeAt(0)) >>> 0; return COLORS[x % COLORS.length]; };
   function addLine(l, mine) {
     if (rendered.has(l.id)) return;
     rendered.add(l.id);
-    chatList.append(h('p', { class: 'msg' }, h('b', { style: 'color:' + (mine ? '#fff' : colorFor(l.author)) }, l.author), h('span', null, l.text)));
+    chatList.append(h('p', { class: 'msg' + (mine ? ' me' : '') }, h('b', null, l.author), h('span', null, l.text)));
     while (chatList.children.length > 120) chatList.firstChild.remove();
     if (stick) chatList.scrollTop = chatList.scrollHeight;
   }
@@ -216,9 +209,10 @@ function start(webinar, viewer, duration, source) {
   }
 
   // --- cabeçalho/layout ---
-  const head = h('header', { class: 'room-head' },
-    h('div', null, h('h1', null, webinar.title), webinar.host && h('p', null, webinar.host)),
-    preview && h('a', { class: 'btn btn-ghost btn-sm', href: '/painel-webinars' }, 'Voltar ao painel'));
+  const head = h('header', { class: 'topbar room-head' },
+    brandMark(),
+    h('div', { class: 'meta' }, h('h1', null, webinar.title), webinar.host && h('p', null, webinar.host)),
+    preview && h('a', { class: 'btn btn-sm', href: '/painel-webinars' }, 'Voltar ao painel'));
   show(head, h('main', { class: 'room' }, h('div', { class: 'room-main' }, player, offerSlot), chat));
 
   // --- cover (espera / fim / erro) ---
@@ -228,13 +222,13 @@ function start(webinar, viewer, duration, source) {
     cover.replaceChildren(...[].concat(node));
   }
   const countdownEl = h('div', { class: 'countdown' });
-  const waitingNode = [h('p', { class: 'eyebrow', style: 'color:var(--muted)' }, 'A transmissão começa em'), countdownEl];
+  const waitingNode = [h('p', { class: 'eyebrow' }, 'A transmissão começa em'), countdownEl];
   let coverMode = null;
 
   function endedNode() {
     const last = sortedOffers().pop();
     const next = preview ? null : upcomingSessions(Object.assign({}, webinar, { allowLateJoin: false }), duration, Date.now(), 1)[0];
-    const nodes = [h('h2', { style: 'font-size:28px' }, 'Transmissão encerrada'), h('p', { class: 'muted' }, 'Obrigado por participar!')];
+    const nodes = [h('h2', { style: 'font-size:24px' }, 'Transmissão encerrada'), h('p', { class: 'muted', style: 'margin-top:6px' }, 'Obrigado por participar.')];
     if (last) nodes.push(h('div', { style: 'margin-top:12px;max-width:440px;width:100%' }, offerCard(last, false)));
     if (next) {
       nodes.push(h('button', { class: 'btn btn-ghost btn-sm', type: 'button', style: 'margin-top:12px', onclick: () => {

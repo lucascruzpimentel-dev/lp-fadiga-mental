@@ -35,6 +35,11 @@ export function h(tag, attrs, ...children) {
   return el;
 }
 
+/** Marca nominal (sem logo fornecido): "ATLETA CAMPEÃO" em Sora 800 caixa alta com filete dourado. */
+export function brandMark(onLight = false) {
+  return h('span', { class: 'brand' + (onLight ? ' on-light' : '') }, 'Atleta Campeão');
+}
+
 // ---------- modelo ----------
 export function blankWebinar() {
   return {
