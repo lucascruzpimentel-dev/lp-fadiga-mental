@@ -1,6 +1,6 @@
 // Painel de gestão dos webinars evergreen (login, dashboard e editor).
 import {
-  api, blankWebinar, chatToText, formatClock, generateChat, h, isValidSlot, lsGet, lsSet, newId,
+  api, blankWebinar, brandMark, chatToText, formatClock, generateChat, h, isValidSlot, lsGet, lsSet, newId,
   normalize, parseChatText, parseClock, TOKEN_KEY, upcomingSessions,
 } from '/webinar-evergreen/assets/core.js';
 import { parseVideoSource, probeDuration } from '/webinar-evergreen/assets/player-engines.js';
@@ -44,6 +44,12 @@ async function load() {
   data = { webinars: d.webinars.map(normalize), counts: d.counts };
 }
 
+/** Barra superior marinho com a marca nominal. */
+function topbar(label, ...actions) {
+  return h('header', { class: 'topbar' }, brandMark(),
+    h('div', { class: 'row' }, h('span', { class: 'label' }, label), ...actions));
+}
+
 // ---------- roteamento por hash ----------
 async function render() {
   if (!token) return renderLogin();
@@ -68,7 +74,7 @@ function renderLogin() {
   const pw = h('input', { class: 'input', type: 'password', placeholder: 'Senha', autofocus: true, autocomplete: 'current-password' });
   const err = h('p', { class: 'error', hidden: true });
   const btn = h('button', { class: 'btn btn-primary btn-block', type: 'submit' }, 'Entrar');
-  const form = h('form', { class: 'stack', style: 'width:100%;max-width:320px' }, h('h1', { style: 'font-size:32px' }, 'Painel de webinars'), pw, err, btn);
+  const form = h('form', { class: 'stack', style: 'width:100%;max-width:340px' }, brandMark(true), h('h1', { style: 'font-size:24px;margin-top:28px' }, 'Painel de webinars'), pw, err, btn);
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     btn.disabled = true; err.hidden = true;
@@ -168,13 +174,11 @@ function renderDashboard() {
   });
 
   const stat = (label, value) => h('div', { class: 'stat' }, h('dt', null, label), h('dd', null, String(value)));
-  app.replaceChildren(h('div', { class: 'wrap' },
+  app.replaceChildren(topbar('Painel de webinars', h('button', { class: 'btn btn-ghost btn-sm', onclick: logout }, 'Sair')), h('div', { class: 'wrap' },
     h('header', { class: 'row', style: 'align-items:flex-end;justify-content:space-between' },
-      h('div', null, h('p', { class: 'eyebrow' }, 'Atleta Campeão'), h('h1', { class: 'page-title' }, 'Webinars evergreen'),
-        h('p', { class: 'muted', style: 'margin:8px 0 0;font-size:14px' }, 'Transmissões gravadas que vão ao ar sozinhas, nos dias e horários que você define.')),
-      h('div', { class: 'row' },
-        h('button', { class: 'btn btn-ghost', onclick: logout }, 'Sair'),
-        h('button', { class: 'btn btn-primary', onclick: () => createAndOpen(blankWebinar()) }, '+ Novo webinar'))),
+      h('div', null, h('h1', { class: 'page-title' }, 'Webinars evergreen'),
+        h('p', { class: 'muted', style: 'margin-top:12px' }, 'Transmissões gravadas que vão ao ar sozinhas, nos dias e horários que você define.')),
+      h('button', { class: 'btn btn-primary', onclick: () => createAndOpen(blankWebinar()) }, 'Novo webinar')),
     h('dl', { class: 'stats' }, stat('Webinars', webinars.length), stat('No ar', webinars.filter((w) => w.active).length), stat('Cadastros', leadsTotal)),
     webinars.length
       ? h('div', { class: 'cards' }, cards)
@@ -208,7 +212,7 @@ function renderEditor(stored) {
   const d = JSON.parse(JSON.stringify(stored));
   let chatText = chatToText(d.chat);
 
-  const title = h('h1', { class: 'page-title', style: 'font-size:32px' }, d.title || 'Sem título');
+  const title = h('h1', { class: 'page-title', style: 'font-size:24px' }, d.title || 'Sem título');
   const status = h('span', { class: 'muted', style: 'font-size:13px' });
   const saveBtn = h('button', { class: 'btn btn-primary' }, 'Salvar');
 
@@ -312,7 +316,7 @@ function renderEditor(stored) {
   });
 
   renderSlots(); renderSessions(); renderOffers();
-  app.replaceChildren(h('div', { class: 'wrap', style: 'max-width:760px' },
+  app.replaceChildren(topbar('Editar webinar'), h('div', { class: 'wrap', style: 'max-width:760px' },
     h('a', { class: 'btn btn-ghost btn-sm', href: '#/' }, '← Webinars'),
     h('div', { class: 'row', style: 'margin-top:12px;justify-content:space-between' }, title,
       h('div', { class: 'row' }, status, h('a', { class: 'btn', href: `/w/${d.id}?preview=1`, target: '_blank', rel: 'noopener' }, 'Prévia'), saveBtn)),
