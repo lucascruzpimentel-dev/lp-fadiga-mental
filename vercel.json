@@ -1,4 +1,7 @@
 {
+  "functions": {
+    "api/webinar.js": { "maxDuration": 60 }
+  },
   "redirects": [
     { "source": "/inscricao-congresso-neurociencia-no-esporte", "destination": "/inscricao-congresso-neurociencia-no-esporte/", "permanent": false },
     { "source": "/fadiga-mental", "destination": "/fadiga-mental/", "permanent": false },

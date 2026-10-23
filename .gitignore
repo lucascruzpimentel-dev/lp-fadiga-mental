@@ -3,3 +3,6 @@
 
 # Originais pesados da LP de palestras (a página usa as cópias em palestras/assets/)
 palestras/assets/banco_de_imagens/
+
+# Dependências da API (npm install)
+node_modules/

@@ -31,6 +31,8 @@ git add \
   "politica-de-privacidade/" \
   "webinar-evergreen/" \
   "api/" \
+  package.json \
+  package-lock.json \
   vercel.json \
   deploy.sh \
   .gitignore \

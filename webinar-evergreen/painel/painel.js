@@ -1,7 +1,7 @@
 // Painel de gestão dos webinars evergreen (login, dashboard e editor).
 import {
-  api, blankWebinar, brandMark, chatToText, formatClock, generateChat, h, isValidSlot, lsGet, lsSet, newId,
-  normalize, parseChatText, parseClock, TOKEN_KEY, upcomingSessions,
+  api, blankWebinar, brandMark, buildCommentsPrompt, chatToText, formatClock, generateChat, h, isValidSlot, lsGet, lsSet,
+  newId, normalize, parseChatText, parseClock, parseTranscript, TOKEN_KEY, transcriptToText, upcomingSessions,
 } from '/webinar-evergreen/assets/core.js';
 import { parseVideoSource, probeDuration } from '/webinar-evergreen/assets/player-engines.js';
 
@@ -279,14 +279,85 @@ function renderEditor(stored) {
     chatInfo.replaceChildren(`${p.lines.length} comentários`, p.errors.length ? h('span', { class: 'error' }, ' · linhas inválidas: ' + p.errors.join(', ')) : '');
   };
   chatArea.addEventListener('input', updateChatInfo);
-  const genCount = h('input', { class: 'input w-sm', type: 'number', min: '1', max: '500', value: '60', style: 'width:90px' });
-  const gen = h('button', { class: 'btn', type: 'button' }, 'Gerar automaticamente');
+  const genCount = h('input', { class: 'input w-sm', type: 'number', min: '5', max: '300', value: '60', style: 'width:90px', 'aria-label': 'Quantidade de comentários' });
+  const gen = h('button', { class: 'btn btn-sm', type: 'button' }, 'Modelo genérico (sem IA)');
   gen.addEventListener('click', () => {
-    const n = Math.min(500, Math.max(1, Number(genCount.value) || 60));
+    const n = Math.min(300, Math.max(5, Number(genCount.value) || 60));
     chatArea.value = chatToText(generateChat(d.duration || 3600, d.offers.map((o) => o.at), n));
     updateChatInfo();
   });
   updateChatInfo();
+
+  // transcrição + geração coerente com o conteúdo
+  d.transcript = d.transcript || [];
+  const trArea = h('textarea', { class: 'textarea mono', rows: '6', placeholder: 'Cole a transcrição com timestamps (SRT, VTT ou linhas "mm:ss texto")…' });
+  trArea.value = transcriptToText(d.transcript);
+  const trInfo = h('p', { class: 'muted', style: 'font-size:13px' });
+  const updateTrInfo = (r) => {
+    const segs = d.transcript;
+    if (segs.length) {
+      const end = segs[segs.length - 1].at;
+      const short = d.duration && end < d.duration * 0.8 ? ` · termina em ${formatClock(end)}, antes do fim do vídeo (${formatClock(d.duration)})` : '';
+      trInfo.className = 'muted';
+      trInfo.textContent = `${segs.length} trechos · ${formatClock(segs[0].at)} a ${formatClock(end)}${short}`;
+    } else if (trArea.value.trim()) {
+      trInfo.className = 'error';
+      trInfo.textContent = 'Nenhum timestamp reconhecido. Use linhas no formato "mm:ss texto" ou um arquivo .srt/.vtt.';
+    } else {
+      trInfo.className = 'muted';
+      trInfo.textContent = 'Sem transcrição. No Vimeo: Configurações do vídeo → Legendas → baixe o arquivo .vtt.';
+    }
+  };
+  const applyTranscript = (raw, rewrite) => {
+    d.transcript = parseTranscript(raw).segments;
+    if (rewrite && d.transcript.length) trArea.value = transcriptToText(d.transcript);
+    updateTrInfo();
+  };
+  trArea.addEventListener('input', () => applyTranscript(trArea.value, false));
+  trArea.addEventListener('blur', () => { if (d.transcript.length) trArea.value = transcriptToText(d.transcript); });
+  const fileIn = h('input', { type: 'file', accept: '.srt,.vtt,.txt,text/plain,text/vtt', hidden: true });
+  fileIn.addEventListener('change', async () => {
+    const f = fileIn.files[0];
+    fileIn.value = '';
+    if (!f) return;
+    if (f.size > 3_000_000) return alert('Arquivo grande demais (máximo 3 MB).');
+    const txt = await f.text();
+    trArea.value = txt;
+    applyTranscript(txt, true);
+  });
+  const pick = h('button', { class: 'btn btn-sm', type: 'button', onclick: () => fileIn.click() }, 'Importar arquivo (.srt, .vtt, .txt)');
+  updateTrInfo();
+
+  const aiStatus = h('p', { class: 'muted', style: 'font-size:13px' });
+  const say = (text, isError) => { aiStatus.className = isError ? 'error' : 'muted'; aiStatus.textContent = text; };
+  const checkReady = () => {
+    if (d.transcript.length < 3) { say('Importe a transcrição com timestamps antes de gerar.', true); return false; }
+    if (!d.duration) { say('Informe a duração do vídeo (use "Detectar do vídeo").', true); return false; }
+    return true;
+  };
+  const wanted = () => Math.min(300, Math.max(5, Number(genCount.value) || 60));
+  const aiBtn = h('button', { class: 'btn btn-primary', type: 'button' }, 'Gerar comentários com IA');
+  aiBtn.addEventListener('click', async () => {
+    if (!checkReady()) return;
+    if (chatArea.value.trim() && !confirm('Substituir os comentários atuais pelos que serão gerados?')) return;
+    aiBtn.disabled = true;
+    say('Gerando… pode levar até 1 minuto.');
+    try {
+      const r = await call('chat-generate', {
+        transcript: d.transcript, duration: d.duration, count: wanted(), offers: d.offers.map((o) => o.at), title: d.title, host: d.host,
+      });
+      chatArea.value = chatToText(r.comments);
+      updateChatInfo();
+      say(`${r.comments.length} comentários gerados (${r.model}, ${(r.usage.input + r.usage.output).toLocaleString('pt-BR')} tokens). Revise e clique em Salvar.`);
+    } catch (e) { say(e.message, true); }
+    aiBtn.disabled = false;
+  });
+  const copyPrompt = h('button', { class: 'btn btn-sm', type: 'button' }, 'Copiar prompt (usar no Claude.ai)');
+  copyPrompt.addEventListener('click', async () => {
+    if (!checkReady()) return;
+    await navigator.clipboard.writeText(buildCommentsPrompt({ title: d.title, host: d.host, duration: d.duration, count: wanted(), offers: d.offers.map((o) => o.at), segments: d.transcript }));
+    say('Prompt copiado. Cole no Claude.ai, copie a resposta e cole no campo de comentários abaixo.');
+  });
 
   // ofertas
   const offersBox = h('div', { class: 'stack' });
@@ -331,8 +402,12 @@ function renderEditor(stored) {
     section('Chat',
       toggleRow('Espectador pode enviar mensagens', d.allowViewerChat, (v) => (d.allowViewerChat = v)),
       field('Espectadores simulados (pico aproximado)', textInput(String(d.viewersBase), (v) => (d.viewersBase = Math.max(1, Number(v) || 1)), { type: 'number', min: '1', style: 'width:130px' })),
+      field('Transcrição do vídeo (para comentários coerentes com o que é dito)', trArea),
+      h('div', { class: 'row' }, pick, fileIn, trInfo),
+      h('div', { class: 'row' }, genCount, aiBtn, copyPrompt),
+      aiStatus,
       field('Comentários programados — um por linha: mm:ss | Nome | mensagem', chatArea),
-      h('div', { class: 'row' }, chatInfo, h('span', { class: 'grow' }), genCount, gen)),
+      h('div', { class: 'row' }, chatInfo, h('span', { class: 'grow' }), gen)),
     section('Ofertas automáticas', offersBox, addOffer),
     h('p', { class: 'muted', style: 'margin-top:32px;font-size:12px' }, 'Link público: ' + location.origin + '/w/' + d.id)));
 }
