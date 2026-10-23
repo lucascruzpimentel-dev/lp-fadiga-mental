@@ -2,6 +2,7 @@
 import {
   api, fakeViewerCount, formatClock, h, lsGet, lsSet, newId, normalize, TOKEN_KEY, upcomingSessions,
 } from '/webinar-evergreen/assets/core.js';
+import { createEngine, parseVideoSource, probeDuration } from '/webinar-evergreen/assets/player-engines.js';
 
 const app = document.getElementById('app');
 const id = location.pathname.split('/').filter(Boolean).pop() || '';
@@ -89,18 +90,15 @@ function register(webinar) {
 // ---------- sala ----------
 function room(webinar, viewer) {
   if (!webinar.videoUrl) return message('Nenhuma sessão agendada no momento.');
-  if (webinar.duration) start(webinar, viewer, webinar.duration);
-  else {
-    show(h('p', { class: 'center muted' }, 'Carregando…'));
-    const probe = document.createElement('video');
-    probe.preload = 'metadata';
-    probe.onloadedmetadata = () => Number.isFinite(probe.duration) ? start(webinar, viewer, Math.floor(probe.duration)) : message('Vídeo indisponível');
-    probe.onerror = () => message('Não foi possível carregar o vídeo.');
-    probe.src = webinar.videoUrl;
-  }
+  const source = parseVideoSource(webinar.videoUrl);
+  if (webinar.duration) return start(webinar, viewer, webinar.duration, source);
+  show(h('p', { class: 'center muted' }, 'Carregando…'));
+  probeDuration(source)
+    .then((d) => start(webinar, viewer, d, source))
+    .catch(() => message('Não foi possível carregar o vídeo.'));
 }
 
-function start(webinar, viewer, duration) {
+function start(webinar, viewer, duration, source) {
   let startAt;
   if (preview) startAt = Date.now();
   else {
@@ -118,9 +116,12 @@ function start(webinar, viewer, duration) {
   const rendered = new Set();
   const sortedOffers = () => webinar.offers.slice().sort((a, b) => a.at - b.at);
 
-  // --- vídeo (sem controles nativos) ---
-  const video = h('video', { playsinline: true, preload: 'auto', disablepictureinpicture: true, disableremoteplayback: true, controlslist: 'nodownload noplaybackrate noremoteplayback', src: webinar.videoUrl });
-  video.controls = false;
+  // --- vídeo (arquivo ou Vimeo), sem controles nativos ---
+  const hooks = {};
+  const engine = createEngine(source, hooks);
+  const vstate = { volume: 1, muted: false };
+  let lastSeek = 0;
+  let lastPlay = 0;
 
   // --- controles: só volume e tela cheia ---
   const volBtn = h('button', { class: 'icon-btn', type: 'button', 'aria-label': 'Silenciar' });
@@ -134,18 +135,28 @@ function start(webinar, viewer, duration) {
   const cover = h('div', { class: 'cover', hidden: true });
   const tap = h('button', { class: 'tap', type: 'button', hidden: true }, h('span', null, h('i', { class: 'dot' }), 'Entrar na transmissão ao vivo'));
   const fsOffer = h('div', { class: 'fs-offer' });
-  const player = h('div', { class: 'player' }, video, h('div', { class: 'shield' }), fsOffer, cover, tap, bar);
+  const player = h('div', { class: 'player' }, engine.el, h('div', { class: 'shield' }), fsOffer, cover, tap, bar);
   player.addEventListener('contextmenu', (e) => e.preventDefault());
 
-  const syncVolIcon = () => { volBtn.replaceChildren(icon(video.muted || video.volume === 0 ? ICON.mute : video.volume < 0.5 ? ICON.low : ICON.volume)); };
-  volBtn.addEventListener('click', () => { video.muted = !video.muted; vol.value = video.muted ? '0' : String(video.volume || 1); syncVolIcon(); });
-  vol.addEventListener('input', () => { const v = Number(vol.value); video.volume = v; video.muted = v === 0; syncVolIcon(); });
+  const syncVolIcon = () => { volBtn.replaceChildren(icon(vstate.muted || vstate.volume === 0 ? ICON.mute : vstate.volume < 0.5 ? ICON.low : ICON.volume)); };
+  volBtn.addEventListener('click', () => {
+    vstate.muted = !vstate.muted;
+    engine.setMuted(vstate.muted);
+    vol.value = vstate.muted ? '0' : String(vstate.volume || 1);
+    syncVolIcon();
+  });
+  vol.addEventListener('input', () => {
+    const v = Number(vol.value);
+    vstate.volume = v; vstate.muted = v === 0;
+    engine.setVolume(v); engine.setMuted(vstate.muted);
+    syncVolIcon();
+  });
   syncVolIcon();
   const syncFs = () => { fsBtn.replaceChildren(icon(document.fullscreenElement ? ICON.exit : ICON.enter)); fsBtn.setAttribute('aria-label', document.fullscreenElement ? 'Sair da tela cheia' : 'Tela cheia'); };
   fsBtn.addEventListener('click', () => {
     if (document.fullscreenElement) document.exitFullscreen();
     else if (player.requestFullscreen) player.requestFullscreen();
-    else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen(); // iPhone
+    else engine.requestFullscreen(); // iPhone
   });
   document.addEventListener('fullscreenchange', syncFs);
   syncFs();
@@ -236,23 +247,24 @@ function start(webinar, viewer, duration) {
   // --- sincronização com o "ao vivo" ---
   function enforce() {
     const offset = (Date.now() - startAt) / 1000;
-    if (offset < 0 || offset >= duration) { if (!video.paused) video.pause(); return; }
-    if (video.playbackRate !== 1) video.playbackRate = 1;
-    if (Math.abs(video.currentTime - offset) > 1.5) video.currentTime = offset;
-    if (video.paused && !needsTap) {
-      const p = video.play();
-      if (p) p.catch((e) => { if (e && e.name === 'NotAllowedError') { needsTap = true; tap.hidden = false; } });
+    if (offset < 0 || offset >= duration) { if (!engine.paused) engine.pause(); return; }
+    if (engine.rate !== 1) engine.setRate(1);
+    const now = Date.now();
+    if (Math.abs(engine.time - offset) > 1.5 && now - lastSeek > 800) { lastSeek = now; engine.seek(offset); }
+    if (engine.paused && !needsTap && now - lastPlay > 800) {
+      lastPlay = now;
+      engine.play().catch((e) => { if (e && e.name === 'NotAllowedError') { needsTap = true; tap.hidden = false; } });
     }
   }
-  ['seeking', 'pause', 'ratechange'].forEach((ev) => video.addEventListener(ev, enforce));
+  hooks.enforce = enforce;
+  hooks.onError = () => { coverMode = 'error'; setCover(h('p', { class: 'muted' }, 'Não foi possível carregar o vídeo.')); };
   document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && enforce());
-  video.addEventListener('error', () => { coverMode = 'error'; setCover(h('p', { class: 'muted' }, 'Não foi possível carregar o vídeo.')); });
   tap.addEventListener('click', () => {
     needsTap = false; tap.hidden = true;
     const offset = (Date.now() - startAt) / 1000;
-    if (offset >= 0 && offset < duration) video.currentTime = offset;
-    const p = video.play();
-    if (p) p.catch(() => { needsTap = true; tap.hidden = false; });
+    if (offset >= 0 && offset < duration) { lastSeek = Date.now(); engine.seek(offset); }
+    lastPlay = Date.now();
+    engine.play().catch(() => { needsTap = true; tap.hidden = false; });
   });
 
   function tick() {
@@ -294,7 +306,7 @@ function start(webinar, viewer, duration) {
         const { webinar: fresh } = await api('get', { id });
         if (!fresh) {
           clearInterval(tickTimer); clearInterval(refreshTimer);
-          video.pause(); video.removeAttribute('src'); video.load();
+          engine.destroy();
           return message('Webinar indisponível', 'Este webinar não está no ar no momento.');
         }
         Object.assign(webinar, { chat: fresh.chat || [], offers: fresh.offers || [], viewersBase: fresh.viewersBase || webinar.viewersBase, allowViewerChat: fresh.allowViewerChat !== false });

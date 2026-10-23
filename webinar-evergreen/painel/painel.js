@@ -3,6 +3,7 @@ import {
   api, blankWebinar, chatToText, formatClock, generateChat, h, isValidSlot, lsGet, lsSet, newId,
   normalize, parseChatText, parseClock, TOKEN_KEY, upcomingSessions,
 } from '/webinar-evergreen/assets/core.js';
+import { parseVideoSource, probeDuration } from '/webinar-evergreen/assets/player-engines.js';
 
 const app = document.getElementById('app');
 const DAYS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
@@ -213,14 +214,26 @@ function renderEditor(stored) {
 
   // básico
   const durationBox = clockInput(d.duration, (s) => { d.duration = s; renderSessions(); });
-  const videoInput = textInput(d.videoUrl, (v) => (d.videoUrl = v.trim()), { placeholder: 'https://…/webinar.mp4' });
+  const videoHint = h('p', { class: 'muted', style: 'margin:6px 0 0;font-size:12px' });
+  const showVideoHint = () => {
+    const src = parseVideoSource(d.videoUrl);
+    videoHint.textContent = !d.videoUrl ? 'Cole o link do Vimeo (ou o código de incorporação) ou a URL de um arquivo .mp4/.webm.'
+      : src.type === 'vimeo' ? `Vimeo reconhecido (vídeo ${src.id}${src.hash ? ', link não listado' : ''}).`
+      : 'Arquivo de vídeo direto.';
+  };
+  const videoInput = textInput(d.videoUrl, (v) => { d.videoUrl = parseVideoSource(v).url; showVideoHint(); }, { placeholder: 'https://vimeo.com/123456789  ou  https://…/webinar.mp4' });
+  videoInput.addEventListener('blur', () => { videoInput.value = d.videoUrl; }); // cola o <iframe> e fica só o link
+  showVideoHint();
   const detect = h('button', { class: 'btn', type: 'button' }, 'Detectar do vídeo');
-  detect.addEventListener('click', () => {
-    const v = document.createElement('video');
-    v.preload = 'metadata';
-    v.onloadedmetadata = () => { if (Number.isFinite(v.duration)) { d.duration = Math.floor(v.duration); durationBox.value = formatClock(d.duration); renderSessions(); } };
-    v.onerror = () => alert('Não foi possível ler o vídeo. A URL precisa ser um arquivo direto .mp4 ou .webm.');
-    v.src = d.videoUrl;
+  detect.addEventListener('click', async () => {
+    detect.disabled = true; detect.textContent = 'Detectando…';
+    try {
+      d.duration = await probeDuration(parseVideoSource(d.videoUrl));
+      durationBox.value = formatClock(d.duration); renderSessions();
+    } catch (e) {
+      alert('Não foi possível ler o vídeo. No Vimeo, confira se o vídeo está liberado para incorporação neste domínio; em arquivo direto, a URL precisa ser .mp4 ou .webm.');
+    }
+    detect.disabled = false; detect.textContent = 'Detectar do vídeo';
   });
 
   // agenda
@@ -306,7 +319,7 @@ function renderEditor(stored) {
     section('Básico',
       field('Título', textInput(d.title, (v) => (d.title = v))),
       field('Apresentador', textInput(d.host, (v) => (d.host = v))),
-      field('URL do vídeo (arquivo direto .mp4 ou .webm)', videoInput),
+      field('Vídeo (link do Vimeo ou arquivo .mp4/.webm)', h('div', null, videoInput, videoHint)),
       field('Duração (mm:ss — 0 detecta automaticamente)', h('div', { class: 'row' }, durationBox, detect))),
     section('Agendamento',
       toggleRow('Webinar ativo (página pública no ar)', d.active, (v) => (d.active = v)),
