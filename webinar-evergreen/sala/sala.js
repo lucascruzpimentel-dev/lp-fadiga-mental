@@ -3,6 +3,7 @@ import {
   api, brandMark, fakeViewerCount, formatClock, h, lsGet, lsSet, newId, normalize, TOKEN_KEY, upcomingSessions,
 } from '/webinar-evergreen/assets/core.js';
 import { createEngine, parseVideoSource, probeDuration } from '/webinar-evergreen/assets/player-engines.js';
+import { createTracker } from '/webinar-evergreen/assets/watch-tracker.js';
 
 const app = document.getElementById('app');
 const id = location.pathname.split('/').filter(Boolean).pop() || '';
@@ -67,7 +68,9 @@ function register(webinar) {
       next.inProgress
         ? h('span', { class: 'live' }, 'Ao vivo agora')
         : [h('span', { class: 'muted' }, 'Próxima transmissão'), h('br'), h('span', { class: 'cap' }, fmtSession.format(next.startAt))]),
-    name, email, err, btn);
+    name, email, err, btn,
+    h('p', { class: 'note' }, 'Ao se cadastrar, você concorda com a ', h('a', { href: '/politica-de-privacidade/', target: '_blank', rel: 'noopener' }, 'Política de Privacidade'),
+      '. Registramos sua presença e o tempo assistido.'));
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -75,7 +78,8 @@ function register(webinar) {
     err.hidden = true;
     const viewer = { name: name.value.trim(), email: email.value.trim() };
     try {
-      await api('lead', { id: webinar.id, name: viewer.name, email: viewer.email });
+      const r = await api('lead', { id: webinar.id, name: viewer.name, email: viewer.email });
+      viewer.sig = r.sig; // permite gravar a audiência deste espectador
       lsSet(viewerKey, JSON.stringify(viewer));
       track('webinar_lead');
       room(webinar, viewer);
@@ -108,6 +112,7 @@ function start(webinar, viewer, duration, source) {
     startAt = first.startAt;
   }
 
+  const tracker = createTracker({ webinarId: webinar.id, viewer, duration, enabled: !preview && Boolean(viewer.sig) });
   let needsTap = false;
   let lastOfferId = null;
   let joined = false;
@@ -252,7 +257,8 @@ function start(webinar, viewer, duration, source) {
   }
   hooks.enforce = enforce;
   hooks.onError = () => { coverMode = 'error'; setCover(h('p', { class: 'muted' }, 'Não foi possível carregar o vídeo.')); };
-  document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && enforce());
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') enforce(); else tracker.flush(true); });
+  window.addEventListener('pagehide', () => tracker.flush(true));
   tap.addEventListener('click', () => {
     needsTap = false; tap.hidden = true;
     const offset = (Date.now() - startAt) / 1000;
@@ -278,6 +284,9 @@ function start(webinar, viewer, duration, source) {
       else setCover(null);
     }
     if (phase === 'waiting') countdownEl.textContent = formatClock(Math.ceil(-offset));
+
+    tracker.setSession(startAt);
+    tracker.tick(Math.max(0, offset), phase === 'live' && !engine.paused && !needsTap);
 
     chatInput.disabled = phase !== 'live';
     if (phase === 'live') {

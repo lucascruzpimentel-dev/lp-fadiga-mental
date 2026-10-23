@@ -35,4 +35,13 @@ function verify(token) {
   return safeEqual(sig, sign(exp));
 }
 
-module.exports = { login, verify };
+/** Assinatura entregue no cadastro: prova que o e-mail se registrou neste webinar (para gravar audiência). */
+function signViewer(webinarId, email) {
+  return sign('viewer:' + webinarId + ':' + String(email).toLowerCase());
+}
+
+function verifyViewer(webinarId, email, sig) {
+  return typeof sig === 'string' && safeEqual(sig, signViewer(webinarId, email));
+}
+
+module.exports = { login, verify, signViewer, verifyViewer };

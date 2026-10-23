@@ -1,5 +1,6 @@
 // API do webinar evergreen (uma única função): POST /api/webinar  { action, ... }
-const { login, verify } = require('./_lib/webinar-auth');
+const { login, verify, signViewer, verifyViewer } = require('./_lib/webinar-auth');
+const watchLib = require('./_lib/webinar-watch');
 const db = require('./_lib/webinar-db');
 const { generateChatComments, friendlyError } = require('./_lib/webinar-ai');
 const { validateWebinar, validateTranscript, EMAIL } = require('./_lib/webinar-validate');
@@ -46,6 +47,34 @@ module.exports = async (req, res) => {
         const w = await db.getWebinar(String(body.id || '').slice(0, 40));
         if (!w || !w.active) return send(res, 404, { error: 'Webinar indisponível' });
         await db.insertLead(w.id, name, email);
+        return send(res, 200, { ok: true, sig: signViewer(w.id, email) });
+      }
+
+      // Batimento de audiência: trechos do vídeo realmente assistidos (união com o que já estava salvo).
+      case 'watch': {
+        const email = String(body.email || '').trim().toLowerCase();
+        if (!EMAIL.test(email) || !verifyViewer(String(body.id || ''), email, body.sig)) return send(res, 401, { error: 'unauthorized' });
+        if (limited('watch:' + email, 900, 60 * 60 * 1000)) return send(res, 429, { error: 'Muitas requisições' });
+        const w = await db.getWebinar(String(body.id || '').slice(0, 40));
+        if (!w) return send(res, 200, { ok: false });
+        const duration = Math.round(w.duration || Number(body.duration) || 0);
+        const sessionStart = Number(body.sessionStart);
+        const now = Date.now();
+        if (!(duration >= 60 && duration <= 86400) || !(sessionStart > now - 14 * 86400e3 && sessionStart < now + 10 * 60e3)) {
+          return send(res, 400, { error: 'Dados inválidos' });
+        }
+        const sent = watchLib.mergeIntervals(body.intervals, duration);
+        // ninguém assiste mais segundos do que se passaram desde o início da sessão
+        if (watchLib.totalSeconds(sent) > (now - sessionStart) / 1000 + 15) return send(res, 400, { error: 'Dados inválidos' });
+        const startIso = new Date(sessionStart).toISOString();
+        const prev = await db.getWatch(w.id, email, startIso);
+        const merged = watchLib.mergeIntervals([...(prev ? prev.intervals : []), ...sent], duration);
+        if (!merged.length) return send(res, 200, { ok: true });
+        await db.upsertWatch({
+          webinar_id: w.id, email, name: String(body.name || '').slice(0, 100), session_start: startIso, duration,
+          seconds_watched: Math.round(watchLib.totalSeconds(merged)), first_offset: Math.round(merged[0][0]),
+          max_offset: Math.round(merged[merged.length - 1][1]), intervals: merged, last_seen: new Date().toISOString(),
+        });
         return send(res, 200, { ok: true });
       }
 
@@ -65,8 +94,12 @@ module.exports = async (req, res) => {
 
     switch (body.action) {
       case 'dashboard': {
-        const [webinars, counts] = await Promise.all([db.listWebinars(), db.leadCounts()]);
-        return send(res, 200, { webinars, counts });
+        const [webinars, counts, watch] = await Promise.all([
+          db.listWebinars(), db.leadCounts(),
+          // sem a tabela watch_sessions (schema.sql ainda não rodou), o painel segue funcionando sem audiência
+          db.listAllWatch().then((rows) => watchLib.summarize(rows)).catch(() => null),
+        ]);
+        return send(res, 200, { webinars, counts, watch });
       }
       case 'save': {
         await db.upsertWebinar(validateWebinar(body.webinar));
@@ -77,7 +110,10 @@ module.exports = async (req, res) => {
         return send(res, 200, { ok: true });
       }
       case 'leads': {
-        return send(res, 200, { leads: await db.listLeads(String(body.id || '').slice(0, 40)) });
+        const id = String(body.id || '').slice(0, 40);
+        const [leads, rows] = await Promise.all([db.listLeads(id), db.listWatch(id).catch(() => null)]);
+        const best = rows ? watchLib.bestByEmail(rows) : null;
+        return send(res, 200, { leads: leads.map((l) => ({ ...l, watch: best ? best.get(l.email) || null : null })), watchEnabled: rows !== null });
       }
       case 'chat-generate': {
         if (limited('gen:' + ip, 12, 60 * 60 * 1000)) return send(res, 429, { error: 'Muitas gerações seguidas. Tente de novo em alguns minutos.' });

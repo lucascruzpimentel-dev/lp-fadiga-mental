@@ -129,6 +129,18 @@ label.field > span { display: block; font-family: var(--font-display); font-weig
 .w-sm { width: 130px; }
 @media (max-width: 640px) { .stats { grid-template-columns: 1fr; } .grid2 { grid-template-columns: 1fr; } .page-title { font-size: 22px; } .topbar { padding: 12px 16px; } }
 
+/* audiência */
+.table-wrap { overflow-x: auto; border: 1px solid var(--cinza-filete); background: var(--branco); }
+.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table th { text-align: left; padding: 10px 14px; font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--marinho); background: var(--cinza-fundo); border-bottom: 3px solid var(--marinho); white-space: nowrap; }
+.table td { padding: 10px 14px; border-bottom: 1px solid var(--cinza-filete); vertical-align: middle; }
+.table tr:last-child td { border-bottom: 0; }
+.pbar-row { display: flex; align-items: center; gap: 10px; min-width: 150px; }
+.pbar { flex: 1; height: 8px; background: var(--cinza-fundo); border: 1px solid var(--cinza-filete); }
+.pbar i { display: block; height: 100%; background: var(--marinho); }
+.pbar-row b { font-family: var(--font-display); font-size: 13px; color: var(--marinho); min-width: 40px; text-align: right; }
+@media (max-width: 800px) { dl.stats[style] { grid-template-columns: 1fr 1fr !important; } }
+
 /* ===== sala ===== */
 .room-page { min-height: 100vh; display: flex; flex-direction: column; background: var(--cinza-fundo); }
 .room-head .meta { min-width: 0; text-align: right; }
@@ -200,4 +212,6 @@ label.field > span { display: block; font-family: var(--font-display); font-weig
 .reg .next { border: 1px solid var(--cinza-filete); border-top: 3px solid var(--marinho); background: var(--branco); padding: 14px 16px; text-align: center; font-size: 15px; }
 .reg .next .live { font-family: var(--font-display); font-weight: 800; font-size: 12px; letter-spacing: var(--tracking-rotulo); text-transform: uppercase; color: var(--marinho); }
 .reg .next .live::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--dourado); margin-right: 8px; }
+.reg .note { font-size: 13px; line-height: 1.5; color: var(--text-caption); text-align: center; }
+.reg .note a { text-decoration: underline; text-underline-offset: 3px; }
 .cap::first-letter { text-transform: uppercase; }

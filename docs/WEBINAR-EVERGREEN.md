@@ -69,6 +69,29 @@ Só volume e tela cheia ficam disponíveis ao espectador.
 4. Se o vídeo não carregar dentro de ~25 s (privado, domínio não permitido, vídeo removido), a sala mostra
    "Não foi possível carregar o vídeo". Em "Detectar do vídeo", o painel avisa se não conseguir ler.
 
+## Audiência: quanto cada pessoa assistiu
+
+Cada espectador cadastrado tem o tempo assistido medido sobre a **duração total do vídeo**:
+
+- A sala registra os trechos em que o vídeo está de fato tocando na posição do "ao vivo" (pausado pelo navegador,
+  aba sem reprodução ou botão "Entrar na transmissão" pendente não contam) e envia um batimento a cada 15 s e
+  ao fechar ou recarregar a página. Recarregar não zera: o estado fica no navegador e o servidor une os trechos.
+- Quem entra no meio da sessão não alcança 100%: o percentual é sobre o vídeo inteiro. A coluna "Entrou em" mostra
+  em que ponto da transmissão a pessoa chegou.
+- Por pessoa vale a **melhor sessão**. "Assistiu" = ao menos 1 minuto.
+- No painel: cada webinar mostra um resumo ("2 assistiram · média 70% · 2 com 50% ou mais · 1 com 90% ou mais") e o
+  botão **Audiência** abre a tabela por pessoa, com filtros (assistiram, não assistiram, 50%+, 90%+) e **Baixar CSV**
+  com `pct_assistido`, `segundos_assistidos`, `entrou_em`, `ultima_atividade` e `sessoes` (o CSV de leads também traz
+  essas colunas).
+- **Ativação:** rode de novo `webinar-evergreen/supabase/schema.sql` no Supabase (cria `watch_sessions`; é idempotente).
+  Sem a tabela o painel continua funcionando e a tela de audiência avisa o que fazer.
+- **Segurança:** o cadastro devolve uma assinatura (HMAC) do par webinar + e-mail; sem ela o servidor rejeita
+  batimentos. O servidor também recusa mais segundos assistidos do que o tempo decorrido desde o início da sessão.
+  A medição é indicativa (quem controla o próprio navegador poderia inflar o próprio número, não o de outras pessoas).
+- **Privacidade:** a tela de cadastro avisa que o tempo assistido é registrado e linka a Política de Privacidade.
+  Vale revisar o texto da política (LGPD) para citar esse uso. Quem se cadastrou antes desta versão não é rastreado
+  até se cadastrar de novo.
+
 ## Comentários coerentes com o vídeo (transcrição + IA)
 
 No editor, em **Chat**, importe a transcrição com timestamps e gere os comentários a partir dela:

@@ -41,7 +41,7 @@ async function call(action, payload) {
 
 async function load() {
   const d = await call('dashboard');
-  data = { webinars: d.webinars.map(normalize), counts: d.counts };
+  data = { webinars: d.webinars.map(normalize), counts: d.counts, watch: d.watch };
 }
 
 /** Barra superior marinho com a marca nominal. */
@@ -59,6 +59,11 @@ async function render() {
       if (e.status === 401) return;
       return app.replaceChildren(h('div', { class: 'wrap' }, h('p', { class: 'error' }, 'Não foi possível carregar: ' + e.message), h('button', { class: 'btn', onclick: () => render() }, 'Tentar de novo')));
     }
+  }
+  const au = /^#\/audience\/([\w-]+)/.exec(location.hash);
+  if (au) {
+    const w = data.webinars.find((x) => x.id === au[1]);
+    return w ? renderAudience(w) : (location.hash = '#/');
   }
   const m = /^#\/edit\/([\w-]+)/.exec(location.hash);
   if (m) {
@@ -98,10 +103,17 @@ const daysLabel = (d) => (d.length === 7 ? 'Todos os dias' : d.map((x) => DAYS[x
 /** Evita que o Excel/Sheets execute células que começam com = + - @ (CSV injection). */
 const csvCell = (v) => `"${(/^[=+\-@\t\r]/.test(v) ? "'" + v : v).replace(/"/g, '""')}"`;
 
-async function downloadLeads(w) {
-  const { leads } = await call('leads', { id: w.id });
-  const rows = leads.map((l) => [csvCell(l.name), csvCell(l.email), new Date(l.at).toISOString()].join(','));
-  const blob = new Blob(['﻿' + ['nome,email,cadastro', ...rows].join('\n')], { type: 'text/csv;charset=utf-8' });
+const fmtLast = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+
+async function downloadLeads(w, given) {
+  const leads = given || (await call('leads', { id: w.id })).leads;
+  const header = 'nome,email,cadastro,pct_assistido,segundos_assistidos,entrou_em,ultima_atividade,sessoes';
+  const rows = leads.map((l) => {
+    const x = l.watch;
+    return [csvCell(l.name), csvCell(l.email), new Date(l.at).toISOString(), x ? x.pct : 0, x ? x.seconds : 0,
+      x ? formatClock(x.firstOffset) : '', x ? new Date(x.lastSeen).toISOString() : '', x ? x.sessions : 0].join(',');
+  });
+  const blob = new Blob(['\ufeff' + [header, ...rows].join('\n')], { type: 'text/csv;charset=utf-8' });
   const a = h('a', { href: URL.createObjectURL(blob), download: `leads-${w.id}.csv` });
   a.click();
   URL.revokeObjectURL(a.href);
@@ -159,11 +171,14 @@ function renderDashboard() {
             `${daysLabel(w.days)} · ${w.slots.join(', ') || 'sem horários'} · ${TZ_SHORT[w.timezone] || w.timezone}`, h('br'),
             `${w.duration ? formatClock(w.duration) : 'duração automática'} · ${w.chat.length} comentários · ${w.offers.length} ofertas · ${leads} cadastros`,
             w.active && next && !next.inProgress && [h('br'), 'Próxima sessão: ', h('b', { style: 'color:var(--text)' }, fmtWhen(w.timezone).format(next.startAt))],
+            data.watch && data.watch[w.id] && data.watch[w.id].viewers > 0 && [h('br'),
+              `Audiência: ${data.watch[w.id].viewers} assistiram · média ${data.watch[w.id].avg}% · ${data.watch[w.id].ge50} com 50% ou mais · ${data.watch[w.id].ge90} com 90% ou mais`],
             block && [h('br'), h('span', { class: 'error' }, block)])),
         h('label', { class: 'toggle' }, h('span', { class: 'switch' }, toggle, h('i')), w.active ? 'Ativo' : 'Pausado')),
       h('div', { class: 'card-actions' },
         copy,
         h('a', { class: 'btn btn-ghost btn-sm', href: `/w/${w.id}?preview=1`, target: '_blank', rel: 'noopener' }, 'Prévia'),
+        h('a', { class: 'btn btn-ghost btn-sm', href: '#/audience/' + w.id }, 'Audiência'),
         h('button', { class: 'btn btn-ghost btn-sm', disabled: leads === 0, onclick: () => downloadLeads(w).catch((e) => alert(e.message)) }, 'Baixar leads'),
         h('span', { class: 'grow' }),
         h('a', { class: 'btn btn-ghost btn-sm', href: '#/edit/' + w.id }, 'Configurar'),
@@ -183,6 +198,63 @@ function renderDashboard() {
     webinars.length
       ? h('div', { class: 'cards' }, cards)
       : h('div', { class: 'empty' }, h('p', { class: 'muted' }, 'Nenhum webinar ainda.'), h('button', { class: 'btn', style: 'margin-top:12px', onclick: () => createAndOpen(demoWebinar()) }, 'Criar exemplo pronto'))));
+}
+
+// ---------- audiência ----------
+async function renderAudience(w) {
+  app.replaceChildren(topbar('Audiência'), h('p', { class: 'center muted', style: 'padding:80px' }, 'Carregando…'));
+  let r;
+  try { r = await call('leads', { id: w.id }); } catch (e) {
+    if (e.status === 401) return;
+    return app.replaceChildren(topbar('Audiência'), h('div', { class: 'wrap' }, h('p', { class: 'error' }, 'Não foi possível carregar: ' + e.message)));
+  }
+  const leads = r.leads;
+  const seen = (l) => l.watch && l.watch.seconds >= 60; // "assistiu" = pelo menos 1 minuto
+  const people = leads.filter(seen);
+  const stat = (label, value) => h('div', { class: 'stat' }, h('dt', null, label), h('dd', null, String(value)));
+  const avg = people.length ? Math.round(people.reduce((n, l) => n + l.watch.pct, 0) / people.length) : 0;
+
+  const filters = [
+    ['all', 'Todos os cadastros', () => true],
+    ['seen', 'Assistiram (1 min ou mais)', seen],
+    ['none', 'Não assistiram', (l) => !seen(l)],
+    ['50', '50% ou mais', (l) => seen(l) && l.watch.pct >= 50],
+    ['90', '90% ou mais', (l) => seen(l) && l.watch.pct >= 90],
+  ];
+  const select = h('select', { class: 'select', style: 'max-width:280px', 'aria-label': 'Filtrar' },
+    ...filters.map(([v, label]) => h('option', { value: v }, label)));
+  const body = h('tbody');
+  const count = h('span', { class: 'muted', style: 'font-size:14px' });
+  const draw = () => {
+    const f = filters.find(([v]) => v === select.value)[2];
+    const rows = leads.filter(f).sort((a, b) => (b.watch ? b.watch.pct : -1) - (a.watch ? a.watch.pct : -1) || a.name.localeCompare(b.name));
+    count.textContent = `${rows.length} ${rows.length === 1 ? 'pessoa' : 'pessoas'}`;
+    body.replaceChildren(...rows.map((l) => h('tr', null,
+      h('td', null, l.name),
+      h('td', { class: 'muted' }, l.email),
+      h('td', null, h('div', { class: 'pbar-row' }, h('span', { class: 'pbar', role: 'img', 'aria-label': `${l.watch ? l.watch.pct : 0}% assistido` }, h('i', { style: `width:${l.watch ? l.watch.pct : 0}%` })),
+        h('b', null, `${l.watch ? l.watch.pct : 0}%`))),
+      h('td', { class: 'muted' }, l.watch ? formatClock(l.watch.firstOffset) : '—'),
+      h('td', { class: 'muted' }, l.watch ? fmtLast.format(new Date(l.watch.lastSeen)) : '—'),
+      h('td', { class: 'muted' }, l.watch ? String(l.watch.sessions) : '—'))));
+  };
+  select.addEventListener('change', draw);
+  draw();
+
+  app.replaceChildren(topbar('Audiência'), h('div', { class: 'wrap' },
+    h('a', { class: 'btn btn-ghost btn-sm', href: '#/' }, '← Webinars'),
+    h('div', { class: 'row', style: 'margin-top:12px;justify-content:space-between;align-items:flex-end' },
+      h('div', null, h('h1', { class: 'page-title', style: 'font-size:24px' }, w.title || 'Sem título'),
+        h('p', { class: 'muted', style: 'margin-top:12px' }, 'Quanto de cada transmissão cada pessoa assistiu (trechos realmente reproduzidos, sobre a duração total do vídeo).')),
+      h('button', { class: 'btn', onclick: () => downloadLeads(w, leads).catch((e) => alert(e.message)) }, 'Baixar CSV')),
+    !r.watchEnabled && h('p', { class: 'box', style: 'margin-top:24px' }, 'A audiência ainda não está ativa: rode de novo o arquivo webinar-evergreen/supabase/schema.sql no SQL Editor do Supabase para criar a tabela watch_sessions.'),
+    h('dl', { class: 'stats', style: 'grid-template-columns:repeat(5,1fr)' },
+      stat('Cadastros', leads.length), stat('Assistiram', people.length), stat('50% ou mais', people.filter((l) => l.watch.pct >= 50).length),
+      stat('90% ou mais', people.filter((l) => l.watch.pct >= 90).length), stat('Média', avg + '%')),
+    h('div', { class: 'row', style: 'justify-content:space-between;margin-bottom:12px' }, select, count),
+    h('div', { class: 'table-wrap' }, h('table', { class: 'table' },
+      h('thead', null, h('tr', null, ...['Nome', 'E-mail', 'Assistido', 'Entrou em', 'Última atividade', 'Sessões'].map((t) => h('th', null, t)))),
+      body))));
 }
 
 // ---------- editor ----------
