@@ -68,4 +68,32 @@ async function leadCounts() {
   return out;
 }
 
-module.exports = { listWebinars, getWebinar, upsertWebinar, removeWebinar, insertLead, listLeads, leadCounts };
+async function getWatch(webinarId, email, sessionStartIso) {
+  const rows = await rest(
+    'watch_sessions?select=intervals,first_seen&webinar_id=eq.' + enc(webinarId) + '&email=eq.' + enc(email) +
+      '&session_start=eq.' + enc(sessionStartIso) + '&limit=1'
+  );
+  return rows[0] || null;
+}
+
+async function upsertWatch(row) {
+  await rest('watch_sessions?on_conflict=webinar_id,email,session_start', {
+    method: 'POST',
+    prefer: 'resolution=merge-duplicates,return=minimal',
+    body: row,
+  });
+}
+
+async function listWatch(webinarId) {
+  return rest(
+    'watch_sessions?select=email,seconds_watched,duration,first_offset,max_offset,session_start,last_seen&webinar_id=eq.' +
+      enc(webinarId) + '&limit=20000'
+  );
+}
+
+async function listAllWatch() {
+  return rest('watch_sessions?select=webinar_id,email,seconds_watched,duration,first_offset,max_offset,session_start,last_seen&limit=200000');
+}
+
+module.exports = {
+  getWatch, upsertWatch, listWatch, listAllWatch, listWebinars, getWebinar, upsertWebinar, removeWebinar, insertLead, listLeads, leadCounts };
