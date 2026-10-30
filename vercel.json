@@ -30,6 +30,7 @@
     { "source": "/palestras", "destination": "/palestras/", "permanent": false },
     { "source": "/atendimento-individual-ac", "destination": "/atendimento-individual-ac/", "permanent": false },
     { "source": "/webinar-pre-competicao", "destination": "/webinar-pre-competicao/", "permanent": false },
+    { "source": "/pre-competicao", "destination": "/pre-competicao/", "permanent": false },
     { "source": "/selecao-para-atendimento-individual", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
     { "source": "/seleção-para-atendimento-individual", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
     { "source": "/seleção-para-atendimento-individual/", "destination": "/selecao-para-atendimento-individual/", "permanent": false },

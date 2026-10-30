@@ -23,6 +23,7 @@ git add \
   "sessao-individual-jiu-jitsu/" \
   "atendimento-individual-ac/" \
   "webinar-pre-competicao/" \
+  "pre-competicao/" \
   "manual-da-arquibancada/" \
   "evento-presencial-pais-atleta/" \
   "congresso-lideranca-parental/" \
