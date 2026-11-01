@@ -24,6 +24,7 @@ git add \
   "atendimento-individual-ac/" \
   "webinar-pre-competicao/" \
   "pre-competicao/" \
+  "academia-do-atleta-campeao/" \
   "manual-da-arquibancada/" \
   "evento-presencial-pais-atleta/" \
   "congresso-lideranca-parental/" \
