@@ -2425,7 +2425,31 @@ var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/atletacampeao.com.br\/wp-
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7VSJTGF"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-	</body>
+	<script>
+/* Repassa src, sck e utm_* do endereço da página para os links do checkout da Hotmart */
+(function () {
+  var keys = ["src", "sck", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+  var page = new URLSearchParams(window.location.search);
+  if (!keys.some(function (k) { return page.get(k); })) return;
+  function tag(a) {
+    try {
+      var url = new URL(a.href);
+      if (url.hostname !== "pay.hotmart.com") return;
+      keys.forEach(function (k) {
+        var v = page.get(k);
+        if (v && !url.searchParams.get(k)) url.searchParams.set(k, v);
+      });
+      a.href = url.toString();
+    } catch (e) {}
+  }
+  document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(tag);
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="pay.hotmart.com"]');
+    if (a) tag(a);
+  }, true);
+})();
+</script>
+</body>
 </html>
 
 
