@@ -30,6 +30,7 @@ git add \
   "congresso-lideranca-parental/" \
   "captura-congresso-lideranca-parental/" \
   "palestras/" \
+  "academia-atleta-campeao/" \
   "politica-de-privacidade/" \
   "webinar-evergreen/" \
   "api/" \
