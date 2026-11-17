@@ -331,6 +331,31 @@
     .calls-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 2rem; }
     @media (min-width: 768px) { .calls-note { text-align: center; } }
     .sand .swipe { color: var(--muted); margin: 0 0 0.5rem; }
+    .vids-head { margin: 0.5rem 0 1rem; }
+    .vids-head h3 { font-family: var(--display, "Barlow"), sans-serif; font-weight: 900; font-size: clamp(1.45rem, 5.5vw, 2rem); line-height: 1.08; margin: 0.35rem 0 0.4rem; color: var(--ink); }
+    .vids-head p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    @media (min-width: 768px) { .vids-head { text-align: center; } }
+    .vids { display: grid; grid-auto-flow: column; grid-auto-columns: 82%; gap: 0.9rem; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -1.25rem 0.5rem; padding: 0.5rem 1.25rem 1rem; scrollbar-width: none; }
+    .vids::-webkit-scrollbar { display: none; }
+    @media (min-width: 768px) { .vids { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; overflow: visible; margin: 0 0 1rem; padding: 0; } .vids .vid.more { display: none; } .vids.open .vid.more { display: block; } }
+    .vid { margin: 0; scroll-snap-align: start; background: #fff; padding: 0.45rem; border-radius: 8px; box-shadow: 0 14px 28px -18px rgba(43,23,15,0.6); }
+    .vid-play, .vid-frame { position: relative; display: block; width: 100%; aspect-ratio: 16/9; border: 0; padding: 0; border-radius: 4px; overflow: hidden; background: #1a0d0a; cursor: pointer; }
+    .vid-play img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+    .vid-play:hover img { transform: scale(1.04); }
+    .vid-btn { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: var(--gold, #dca24f); color: #150806; display: grid; place-items: center; box-shadow: 0 8px 22px -6px rgba(0,0,0,0.55); }
+    .vid-btn .i { width: 24px; height: 24px; margin-left: 3px; fill: currentColor; }
+    .vid-dur { position: absolute; right: 0.4rem; bottom: 0.4rem; background: rgba(21,8,6,0.82); color: #fff; font-size: 0.72rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 4px; }
+    .vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .vid figcaption { display: flex; flex-direction: column; gap: 0.1rem; padding: 0.4rem 0.3rem 0.2rem; }
+    @media (min-width: 768px) { .vid figcaption { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 0.5rem; } }
+    .vid figcaption b { font-size: 1.35rem; color: var(--ink); line-height: 1; }
+    .vid figcaption span { font-size: 0.8rem; color: var(--muted); }
+    .vids-more { display: none; text-align: center; margin: 0 0 2.25rem; }
+    @media (min-width: 768px) { .vids-more { display: block; } .vids.open + .swipe + .vids-more { display: none; } }
+    .btn-ghost { font: inherit; font-weight: 700; font-size: 0.95rem; color: var(--ink); background: transparent; border: 2px solid var(--ink); border-radius: 999px; padding: 0.7rem 1.4rem; cursor: pointer; }
+    .btn-ghost:hover { background: var(--ink); color: #fff; }
+    .vids + .swipe { margin-bottom: 2rem; }
+    @media (min-width: 768px) { .vids + .swipe { margin: 0; } }
     .more-testi { margin-top: 0.75rem; border-radius: 16px; border: 2px dashed #d9b864; background: rgba(255,226,122,0.15); padding: 1.1rem; text-align: center; color: var(--muted); font-size: 0.88rem; }
 
     /* Planos */
@@ -476,6 +501,7 @@
     <symbol id="i-quote" viewBox="0 0 24 24"><path d="M10 7H6a2 2 0 0 0-2 2v4h4v-2a2 2 0 0 0 2-2zM20 7h-4a2 2 0 0 0-2 2v4h4v-2a2 2 0 0 0 2-2zM4 13c0 3 1 4 3 5M14 13c0 3 1 4 3 5"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-swipe" viewBox="0 0 24 24"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" stroke="none"/></symbol>
     <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></symbol>
   </svg>
 
@@ -739,6 +765,28 @@
       </div>
       <div class="swipe"><svg class="i"><use href="#i-swipe"/></svg>Arraste para ver mais atletas</div>
       <p class="calls-note"><span class="tbc">A CONFIRMAR: autorização de uso de imagem dos atletas e nomes</span></p>
+      <div class="vids-head">
+        <span class="label">Em vídeo</span>
+        <h3>Alunos da Academia, <span class="gold">com as próprias palavras</span></h3>
+        <p>Gravados em casa, pelo celular, por atletas de vários esportes. Aperte o play.</p>
+      </div>
+      <div class="vids" id="vids">
+        <figure class="vid"><button type="button" class="vid-play js-vid" data-id="422418516" aria-label="Assistir ao depoimento de Aline Rocha, Atletismo em cadeira de rodas"><img src="assets/real/videos/v-422418516.webp" alt="Aline Rocha, Atletismo em cadeira de rodas, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">1:14</span></button><figcaption><b class="hand">Aline Rocha</b><span>Atletismo em cadeira de rodas</span></figcaption></figure>
+        <figure class="vid"><button type="button" class="vid-play js-vid" data-id="422423777" aria-label="Assistir ao depoimento de Vinicius Garcia, Futebol"><img src="assets/real/videos/v-422423777.webp" alt="Vinicius Garcia, Futebol, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">1:28</span></button><figcaption><b class="hand">Vinicius Garcia</b><span>Futebol</span></figcaption></figure>
+        <figure class="vid"><button type="button" class="vid-play js-vid" data-id="473652868" aria-label="Assistir ao depoimento de Raquel, Handebol"><img src="assets/real/videos/v-473652868.webp" alt="Raquel, Handebol, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">1:22</span></button><figcaption><b class="hand">Raquel</b><span>Handebol</span></figcaption></figure>
+        <figure class="vid"><button type="button" class="vid-play js-vid" data-id="473652946" aria-label="Assistir ao depoimento de Letícia, Judô"><img src="assets/real/videos/v-473652946.webp" alt="Letícia, Judô, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">1:01</span></button><figcaption><b class="hand">Letícia</b><span>Judô</span></figcaption></figure>
+        <figure class="vid"><button type="button" class="vid-play js-vid" data-id="422418834" aria-label="Assistir ao depoimento de Angela, CrossFit"><img src="assets/real/videos/v-422418834.webp" alt="Angela, CrossFit, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">1:31</span></button><figcaption><b class="hand">Angela</b><span>CrossFit</span></figcaption></figure>
+        <figure class="vid"><button type="button" class="vid-play js-vid" data-id="422423500" aria-label="Assistir ao depoimento de Caio Fábio, Tênis de mesa"><img src="assets/real/videos/v-422423500.webp" alt="Caio Fábio, Tênis de mesa, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">1:23</span></button><figcaption><b class="hand">Caio Fábio</b><span>Tênis de mesa</span></figcaption></figure>
+        <figure class="vid more"><button type="button" class="vid-play js-vid" data-id="473652863" aria-label="Assistir ao depoimento de Elen, Xadrez"><img src="assets/real/videos/v-473652863.webp" alt="Elen, Xadrez, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">0:52</span></button><figcaption><b class="hand">Elen</b><span>Xadrez</span></figcaption></figure>
+        <figure class="vid more"><button type="button" class="vid-play js-vid" data-id="422423860" aria-label="Assistir ao depoimento de Sophia, Ginástica rítmica"><img src="assets/real/videos/v-422423860.webp" alt="Sophia, Ginástica rítmica, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">0:48</span></button><figcaption><b class="hand">Sophia</b><span>Ginástica rítmica</span></figcaption></figure>
+        <figure class="vid more"><button type="button" class="vid-play js-vid" data-id="422418484" aria-label="Assistir ao depoimento de Kamile, Vôlei"><img src="assets/real/videos/v-422418484.webp" alt="Kamile, Vôlei, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">0:55</span></button><figcaption><b class="hand">Kamile</b><span>Vôlei</span></figcaption></figure>
+        <figure class="vid more"><button type="button" class="vid-play js-vid" data-id="422418445" aria-label="Assistir ao depoimento de André, Judô"><img src="assets/real/videos/v-422418445.webp" alt="André, Judô, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">0:58</span></button><figcaption><b class="hand">André</b><span>Judô</span></figcaption></figure>
+        <figure class="vid more"><button type="button" class="vid-play js-vid" data-id="422418415" aria-label="Assistir ao depoimento de Jhonatan, Hipismo"><img src="assets/real/videos/v-422418415.webp" alt="Jhonatan, Hipismo, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">1:06</span></button><figcaption><b class="hand">Jhonatan</b><span>Hipismo</span></figcaption></figure>
+        <figure class="vid more"><button type="button" class="vid-play js-vid" data-id="422418800" aria-label="Assistir ao depoimento de Hamil, Jogador e psicólogo"><img src="assets/real/videos/v-422418800.webp" alt="Hamil, Jogador e psicólogo, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">1:05</span></button><figcaption><b class="hand">Hamil</b><span>Jogador e psicólogo</span></figcaption></figure>
+        <figure class="vid more"><button type="button" class="vid-play js-vid" data-id="422418694" aria-label="Assistir ao depoimento de Matheus Barbosa, Treinador de basquete"><img src="assets/real/videos/v-422418694.webp" alt="Matheus Barbosa, Treinador de basquete, gravando depoimento" width="640" height="360" loading="lazy"><span class="vid-btn"><svg class="i"><use href="#i-play"/></svg></span><span class="vid-dur">1:15</span></button><figcaption><b class="hand">Matheus Barbosa</b><span>Treinador de basquete</span></figcaption></figure>
+      </div>
+      <div class="swipe"><svg class="i"><use href="#i-swipe"/></svg>Arraste para ver mais depoimentos</div>
+      <div class="vids-more"><button type="button" class="btn-ghost js-vids-more">Ver mais 7 depoimentos</button></div>
       <div class="testi reveal">
         <img src="assets/depoimento-felipe.webp" alt="Felipe França com medalha de ouro" width="1024" height="674" loading="lazy">
         <div class="testi-body">
@@ -747,7 +795,6 @@
           <cite><b>Felipe França</b><br>Nadador olímpico da Seleção Brasileira</cite>
         </div>
       </div>
-      <div class="more-testi"><span class="tbc">ESPAÇO PARA 3 A 6 DEPOIMENTOS REAIS</span><br>Prints de WhatsApp ou vídeos curtos de alunos. Não inventar.</div>
     </div>
   </section>
 
@@ -933,6 +980,19 @@
     document.querySelectorAll('.js-sales').forEach(function (a) {
       a.addEventListener('click', function () { track('academia_whatsapp_sales'); if (window.fbq) fbq('track', 'Contact'); });
     });
+
+
+    document.querySelectorAll('.js-vid').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.dataset.id, wrap = document.createElement('div');
+        wrap.className = 'vid-frame';
+        wrap.innerHTML = '<iframe src="https://player.vimeo.com/video/' + id + '?autoplay=1&title=0&byline=0&portrait=0&color=dca24f" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Depoimento em vídeo"></iframe>';
+        b.replaceWith(wrap);
+        track('academia_video_depoimento', { video_id: id });
+      });
+    });
+    var vm = document.querySelector('.js-vids-more');
+    if (vm) vm.addEventListener('click', function () { document.getElementById('vids').classList.add('open'); });
 
     var sticky = document.getElementById('sticky');
     var hero = document.getElementById('topo');
