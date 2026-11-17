@@ -303,7 +303,7 @@ footer a{color:var(--gold)}
     <div class="temas">
       <div class="tema reveal"><span class="n">01</span><h3>Foco</h3><p>Voltar para o próximo ponto depois de um rali perdido.</p></div>
       <div class="tema reveal"><span class="n">02</span><h3>Confiança</h3><p>Errar uma devolução fácil e sacar sem medo.</p></div>
-      <div class="tema reveal"><span class="n">03</span><h3>Pressão</h3><p>O 20 a 20 do set decisivo.</p></div>
+      <div class="tema reveal"><span class="n">03</span><h3>Pressão</h3><p>O 15 a 15 do set decisivo.</p></div>
       <div class="tema reveal"><span class="n">04</span><h3>Controle emocional</h3><p>A irritação com a arbitragem ou com a dupla.</p></div>
     </div>
   </div>
@@ -439,6 +439,7 @@ footer a{color:var(--gold)}
     </ol>
 
     <form class="brief" id="form" novalidate>
+      <input type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="brief__head">
         <span class="lbl">Briefing da comissão técnica</span>
         <span class="brief__count" id="count">1 de 8</span>
@@ -501,6 +502,8 @@ footer a{color:var(--gold)}
 <script>
 (function(){
   var WA='5511966467934', CLUBE='Sociedade Hípica de Campinas', KEY='ac-brief-hipica';
+  // URL do App da Web do Google Apps Script (propostas/briefing-planilha.gs). Vazia = só WhatsApp.
+  var SHEET_URL='';
   var store={get:function(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return{}}},set:function(v){try{localStorage.setItem(KEY,JSON.stringify(v))}catch(e){}}};
 
   var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12}):null;
@@ -560,6 +563,11 @@ footer a{color:var(--gold)}
   f.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.tagName==='INPUT'&&e.target.type==='text'&&!next.hidden){e.preventDefault();next.click()}});
   f.addEventListener('submit',function(e){
     e.preventDefault();
+    var v=function(id){var el=f.querySelector('#'+id);return el?el.value.trim():''};
+    var tm=f.querySelector('input[name=tema]:checked');
+    var payload={clube:CLUBE,tema:tm?tm.value:'',outro:f.outro.value.trim(),situacoes:v('q2'),habilidade:v('q3'),funciona:v('q4'),cuidados:v('q5'),grupo:v('q6'),janela:v('q7'),respondido:v('q8'),pagina:location.href,site:(f.site&&f.site.value)||''};
+    if(SHEET_URL.indexOf('https://script.google.com/')===0){try{fetch(SHEET_URL,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}).catch(function(){})}catch(err){}}
+    try{localStorage.removeItem(KEY)}catch(err){}
     var t=['*Briefing · Atleta Campeão na Prática*','Clube: '+CLUBE+' (badminton)',''];
     answers().forEach(function(p,k){t.push('*'+(k+1)+'. '+p[0]+':* '+p[1],'')});
     t.push('Respondido por: '+(f.querySelector('#q8').value.trim()||'-'));
