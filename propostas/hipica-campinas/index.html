@@ -226,6 +226,31 @@ footer a{color:var(--gold)}
   .bar{display:none}
   footer{padding-bottom:40px}
 }
+
+/* v7: página mais clara */
+.lt{background:var(--paper);color:var(--ink)}
+.lt h2,.lt h3{color:var(--ink)}
+.lt .lbl,.lt .g{color:var(--gold-d)}
+.lt .sub{color:var(--ink2)}
+.lt .tema{background:#fff;border:1px solid var(--cream2)}
+.cream .pil>div{background:#fff;border:1px solid var(--cream2)}
+.cream .note2{color:var(--ink2)}
+.cream .note2 b{color:var(--gold-d)}
+.cream .col.l{background:#fff;border:1px solid var(--cream2)}
+.cream .film div{color:var(--ink2);border-color:var(--gold-d)}
+.cream .film b{color:var(--ink)}
+.cream .col.d,.cream .col.d h3,.cream .col.d li{color:#fff}
+.quote.dk{background:var(--dark)}
+.quote.dk p{color:#fff}
+.quote.dk .g{color:var(--gold)}
+.logos{background:var(--paper);border-top:1px solid var(--cream2);padding:8px 0 64px}
+.logos small{color:var(--gold-d)}
+.logos li{border:1px solid var(--cream2)}
+.big3{grid-template-columns:1fr;gap:12px;border-top:0;padding-top:0}
+.big3>div{background:#fff;border:1px solid var(--cream2);border-top:4px solid var(--gold);border-radius:12px;padding:22px 22px 20px;box-shadow:0 10px 30px -22px rgba(60,40,10,.5)}
+.big3 b{font-size:clamp(2.4rem,11vw,3.2rem);font-variant-numeric:tabular-nums}
+.big3 span{font-size:.92rem}
+@media (min-width:640px){.big3{grid-template-columns:repeat(3,1fr);gap:16px}.big3 b{font-size:clamp(2rem,4.6vw,3.2rem)}}
 </style>
 </head>
 <body>
@@ -271,7 +296,7 @@ footer a{color:var(--gold)}
     </div>
   </div>
 </section>
-<section>
+<section class="lt">
   <div class="wrap">
     <span class="lbl">Personalizado para o badminton</span>
     <h2 class="reveal">A comissão escolhe o foco.</h2>
@@ -285,7 +310,7 @@ footer a{color:var(--gold)}
 </section>
 
 <!-- NA PRÁTICA -->
-<section style="border-top:1px solid #222">
+<section class="cream">
   <div class="wrap">
     <span class="lbl">O treinamento na prática</span>
     <h2 class="reveal">Mayra em ação: <span class="g">treinamento mental ao vivo.</span></h2>
@@ -333,15 +358,15 @@ footer a{color:var(--gold)}
 </section>
 
 <!-- SOBRE O ATLETA CAMPEÃO -->
-<section class="cream">
+<section class="lt">
   <div class="wrap">
     <span class="lbl">Sobre o Atleta Campeão</span>
     <h2 class="reveal">A maior referência em treinamento mental esportivo do Brasil.</h2>
     <p class="sub reveal">Fundado por Mayra Ramos nos Estados Unidos, em 2016. No Brasil desde 2017, atende atletas, forma profissionais e leva o método a clubes e equipes.</p>
     <div class="big3 reveal">
-      <div><b>30 mil+</b><span>atletas impactados</span></div>
-      <div><b>400 mil+</b><span>seguidores</span></div>
-      <div><b>2016</b><span>fundação nos EUA</span></div>
+      <div><b class="count" data-to="30" data-suf=" mil+">30 mil+</b><span>atletas impactados</span></div>
+      <div><b class="count" data-to="400" data-suf=" mil+">400 mil+</b><span>seguidores nas redes</span></div>
+      <div><b class="count" data-from="2000" data-to="2016">2016</b><span>ano de fundação, nos EUA</span></div>
     </div>
     <div class="fmt3">
       <div class="reveal"><b>Atendimento individual</b><p>Treinamento mental para atletas de todo o Brasil e do exterior.</p></div>
@@ -366,7 +391,7 @@ footer a{color:var(--gold)}
 </div>
 
 <!-- A PARCERIA -->
-<section style="border-top:1px solid #222">
+<section class="cream">
   <div class="wrap">
     <span class="lbl">A parceria</span>
     <h2 class="reveal">O treinamento é nosso.<br><span class="g">A contrapartida é a gravação.</span></h2>
@@ -397,7 +422,7 @@ footer a{color:var(--gold)}
     </div>
   </div>
 </section>
-<div class="cream quote">
+<div class="quote dk">
   <div class="wrap"><p>O Atleta Campeão na Prática mostra o treinamento mental <span class="g">acontecendo dentro do clube.</span></p></div>
 </div>
 
@@ -480,6 +505,15 @@ footer a{color:var(--gold)}
 
   var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12}):null;
   document.querySelectorAll('.reveal').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+
+  // números subindo
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(n){return String(n)}
+  function run(el){var to=+el.dataset.to,from=+(el.dataset.from||0),suf=el.dataset.suf||'',t0=null,d=1600;
+    function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);el.textContent=fmt(Math.round(from+(to-from)*e))+suf;if(k<1)requestAnimationFrame(step)}
+    el.textContent=fmt(from)+suf;requestAnimationFrame(step)}
+  if(!reduce&&'IntersectionObserver' in window){var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);co.unobserve(e.target)}})},{threshold:.6});
+    document.querySelectorAll('.count').forEach(function(el){co.observe(el)})}
 
   var bar=document.getElementById('stickybar'), sec=document.getElementById('briefing'), hero=document.querySelector('.hero'), vis={hero:true,brief:false};
   function upd(){bar.classList.toggle('hide',vis.hero||vis.brief)}
