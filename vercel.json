@@ -36,6 +36,8 @@
     { "source": "/seleção-para-atendimento-individual", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
     { "source": "/seleção-para-atendimento-individual/", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
     { "source": "/manual-da-arquibancada", "destination": "/manual-da-arquibancada/", "permanent": false },
+    { "source": "/termos-de-uso", "destination": "/termos-de-uso/", "permanent": false },
+    { "source": "/boas-vindas-congresso-neuro", "destination": "/boas-vindas-congresso-neuro/", "permanent": false },
     { "source": "/treinador-mental-atletas", "destination": "/atendimento-individual-ac/", "permanent": true },
     { "source": "/treinador-mental-atletas/", "destination": "/atendimento-individual-ac/", "permanent": true },
     { "source": "/ementa-psicologia-esporte", "destination": "/ementa-psicologia-esporte/", "permanent": false },
