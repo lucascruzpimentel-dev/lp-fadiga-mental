@@ -8,7 +8,7 @@
 - Lote 1: R$ 47 até 14/12/2026 às 23h59 → https://chk.eduzz.com/39ZQZRJZ9E
 - Lote 2: R$ 97 a partir de 14/12/2026 às 23h59 → https://chk.eduzz.com/ej6ik63h
 
-> Antes de enviar: trocar `[SOBRENOME]` do Luiz e conferir se os links da Eduzz continuam ativos para esta edição.
+> Antes de enviar: conferir se os links da Eduzz continuam ativos para esta edição.
 
 ---
 
@@ -25,7 +25,7 @@ Olá, [Nome]!
 Sua inscrição no **Congresso Internacional de Neurociência Aplicada ao Esporte** está confirmada. De **14 a 17 de dezembro, às 20h30**, você vai assistir ao vivo:
 
 - **14/12 (seg)** · Leonardo Fortes: O Cérebro do Atleta na Era Digital
-- **15/12 (ter)** · Luiz [SOBRENOME]: Fadiga Mental
+- **15/12 (ter)** · Luiz Frota Solon Júnior: Fadiga Mental
 - **16/12 (qua)** · Mayra Ramos: O Cérebro do Atleta na Competição
 - **17/12 (qui)** · Lucas Cruz: Como se tornar um treinador mental reconhecido e bem pago
 
