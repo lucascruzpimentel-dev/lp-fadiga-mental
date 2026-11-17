@@ -30,14 +30,14 @@
   <meta property="og:title" content="Academia do Atleta Campeão: 10 minutos por dia para treinar a mente">
   <meta property="og:description" content="Práticas curtas, um desafio por semana e mentoria ao vivo a cada 15 dias.">
   <meta property="og:url" content="https://atletacampeaotreinamentos.com/academia-atleta-campeao/">
-  <meta property="og:image" content="https://atletacampeaotreinamentos.com/academia-atleta-campeao/assets/foto-corredora.webp">
+  <meta property="og:image" content="https://atletacampeaotreinamentos.com/academia-atleta-campeao/assets/real/grupo-ao-vivo.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#150806">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/foto-corredora.webp">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/real/grupo-ao-vivo.webp">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800;900&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --night: #150806;
@@ -110,16 +110,24 @@
     .topbar .tbc { margin-left: 0.25rem; }
 
     /* Hero */
-    .hero { position: relative; background: var(--night); color: #fff; overflow: hidden; }
-    .hero-photo { position: absolute; top: 0; right: -30%; width: 100%; height: 560px; background: url("assets/foto-corredora.webp") center 25% / cover no-repeat; }
-    .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(21,8,6,0.15) 0%, rgba(21,8,6,0.65) 55%, var(--night) 100%), linear-gradient(90deg, var(--night) 0%, rgba(21,8,6,0.2) 65%); }
-    @media (min-width: 960px) { .hero-photo { right: 0; left: 42%; width: auto; height: 100%; } .hero-photo::after { background: linear-gradient(90deg, var(--night) 0%, rgba(21,8,6,0.1) 45%, rgba(21,8,6,0.3) 100%); } }
+    .hero { position: relative; background: radial-gradient(ellipse 90% 60% at 85% 30%, rgba(154,68,33,0.45), transparent 70%), var(--night); color: #fff; overflow: hidden; }
     .hero .wrap { position: relative; z-index: 1; }
     .hero-top { padding: 1rem 0 0; }
     .hero-top img { height: 40px; width: auto; }
-    .hero-grid { display: grid; gap: 2.5rem; padding: 4.5rem 0 3rem; }
-    @media (min-width: 960px) { .hero-grid { grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 4rem 0 6rem; } }
-    .hero h1 { color: #fff; font-size: clamp(2.3rem, 10.5vw, 4rem); margin-bottom: 1rem; max-width: 12ch; text-shadow: 0 2px 20px rgba(21,8,6,0.6); }
+    .hero-grid { display: grid; gap: 2.25rem; padding: 2.5rem 0 3rem; }
+    @media (min-width: 960px) { .hero-grid { grid-template-columns: 1fr 1fr; align-items: center; gap: 3.5rem; padding: 4rem 0 6rem; } }
+    .hero h1 { color: #fff; font-size: clamp(2.3rem, 10.5vw, 4rem); margin-bottom: 1rem; max-width: 13ch; }
+    .hand { font-family: "Caveat", cursive; font-weight: 700; letter-spacing: 0; line-height: 1.1; }
+    .hero-call { position: relative; margin: 0; transform: rotate(-1.2deg); }
+    .hero-call img { width: 100%; border-radius: 14px; border: 6px solid #fff8ee; box-shadow: 0 30px 60px -25px rgba(0,0,0,0.9); }
+    .hero-call .live-pill { top: 1rem; left: 1rem; }
+    .hero-call figcaption { position: absolute; right: 0.4rem; bottom: -1.6rem; background: var(--gold); color: var(--wine); font-size: 1.35rem; padding: 0.15rem 0.8rem; border-radius: 6px; transform: rotate(2.5deg); box-shadow: 0 8px 18px -8px rgba(0,0,0,0.6); }
+    .avatars { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.1rem; }
+    .avatars .stack { display: flex; flex: 0 0 auto; }
+    .avatars img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--night); margin-left: -10px; }
+    .avatars img:first-child { margin-left: 0; }
+    .avatars p { margin: 0; font-size: 0.8rem; line-height: 1.3; color: var(--on-dark); }
+    .avatars p b { color: #fff; }
     @media (min-width: 960px) { .hero h1 { max-width: 14ch; } }
     .hero h1 em { font-style: normal; color: var(--gold); }
     .hero .lead { color: var(--on-dark); font-size: 1.02rem; max-width: 33rem; margin-bottom: 1.5rem; }
@@ -159,17 +167,18 @@
     .logos img { width: 58px; height: 58px; object-fit: contain; filter: brightness(0) invert(0.88) sepia(0.5); opacity: 0.75; }
 
     /* Virada */
-    .punch { position: relative; background: var(--night); color: #fff; padding: 0; overflow: hidden; }
-    .punch-photo { height: 64vw; max-height: 400px; background: url("assets/foto-grito.webp") 80% 15% / cover no-repeat; position: relative; }
-    .punch-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, var(--night) 100%); }
-    .punch .wrap { position: relative; z-index: 1; padding-bottom: 3.5rem; margin-top: -2rem; }
+    .punch { position: relative; background: var(--wine); color: #fff; padding: 3.5rem 0 3rem; overflow: hidden; }
+    @media (min-width: 900px) { .punch { padding: 5.5rem 0 4.5rem; } }
     .punch h2 { color: #fff; font-size: clamp(2.2rem, 9.5vw, 4.2rem); max-width: 15ch; }
-    @media (min-width: 900px) {
-      .punch { min-height: 520px; display: flex; align-items: center; }
-      .punch-photo { position: absolute; inset: 0; height: auto; max-height: none; background-position: 85% 20%; }
-      .punch-photo::after { background: linear-gradient(90deg, var(--night) 30%, rgba(21,8,6,0.2) 75%); }
-      .punch .wrap { margin-top: 0; padding-top: 6rem; padding-bottom: 6rem; }
-    }
+    .punch .hand { display: block; color: var(--gold-light); font-size: 1.6rem; margin-top: 0.9rem; }
+    @media (min-width: 900px) { .punch .wrap { text-align: center; } .punch h2 { margin: 0 auto; } }
+    .faces { margin-top: 2.25rem; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+    .faces-track { display: flex; gap: 0.65rem; width: max-content; animation: faces 60s linear infinite; }
+    .faces-track.rev { animation-direction: reverse; margin-top: 0.65rem; }
+    .faces img { width: 104px; height: 104px; border-radius: 16px; object-fit: cover; border: 3px solid rgba(255,248,238,0.9); }
+    @media (min-width: 900px) { .faces img { width: 140px; height: 140px; } }
+    @keyframes faces { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .faces-track { animation: none; } }
 
     /* Identificação */
     .story { max-width: 40rem; margin: 0 auto; font-size: 1.06rem; }
@@ -286,9 +295,14 @@
     /* Quem conduz */
     .author { display: grid; gap: 2rem; align-items: center; }
     @media (min-width: 960px) { .author { grid-template-columns: 0.95fr 1.05fr; gap: 4rem; } }
-    .author-photos { position: relative; padding-bottom: 2.5rem; }
-    .author-photos .main { border-radius: 20px; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
-    .author-photos .portrait { position: absolute; right: 0.75rem; bottom: 0; width: 36%; aspect-ratio: 1; object-fit: cover; object-position: center 20%; border-radius: 50%; border: 4px solid var(--cream); box-shadow: 0 0 0 2px var(--gold); }
+    .author-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 0.75rem; padding: 0.5rem 0.25rem 1rem; }
+    .pola { margin: 0; background: #fff; padding: 0.5rem 0.5rem 0.4rem; border-radius: 4px; box-shadow: 0 14px 30px -18px rgba(43,23,15,0.55); }
+    .pola img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 2px; }
+    .pola figcaption { font-size: 1.25rem; color: var(--ink); text-align: center; padding-top: 0.3rem; }
+    .pola.p1 { grid-column: 1 / -1; transform: rotate(-1.5deg); }
+    .pola.p2 { transform: rotate(2deg); }
+    .pola.p3 { transform: rotate(-2.5deg); }
+    .pola.p3 img { object-position: center 20%; }
     .author p { color: var(--muted); }
     .author p b { color: var(--ink); }
     .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 1.25rem; }
@@ -306,6 +320,17 @@
     .testi blockquote { margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--ink); }
     .testi cite { display: block; margin-top: 1rem; font-style: normal; color: var(--muted); font-size: 0.9rem; }
     .testi cite b { color: var(--ink); font-size: 1rem; }
+    .calls { display: grid; grid-auto-flow: column; grid-auto-columns: 64%; gap: 0.9rem; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -1.25rem 0.5rem; padding: 0.5rem 1.25rem 1.25rem; scrollbar-width: none; }
+    .calls::-webkit-scrollbar { display: none; }
+    @media (min-width: 768px) { .calls { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(4, 1fr); overflow: visible; margin: 0 0 1rem; padding: 0; } }
+    .call-card { margin: 0; scroll-snap-align: start; background: #fff; padding: 0.45rem 0.45rem 0.3rem; border-radius: 6px; box-shadow: 0 14px 28px -18px rgba(43,23,15,0.6); }
+    .call-card:nth-child(odd) { transform: rotate(-1deg); }
+    .call-card:nth-child(even) { transform: rotate(1.2deg); }
+    .call-card img { width: 100%; aspect-ratio: 9/10; object-fit: cover; border-radius: 3px; background: #1a1a1a; }
+    .call-card figcaption { font-size: 1.3rem; text-align: center; color: var(--ink); padding-top: 0.2rem; }
+    .calls-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 2rem; }
+    @media (min-width: 768px) { .calls-note { text-align: center; } }
+    .sand .swipe { color: var(--muted); margin: 0 0 0.5rem; }
     .more-testi { margin-top: 0.75rem; border-radius: 16px; border: 2px dashed #d9b864; background: rgba(255,226,122,0.15); padding: 1.1rem; text-align: center; color: var(--muted); font-size: 0.88rem; }
 
     /* Planos */
@@ -391,8 +416,11 @@
 
     /* Final */
     .final { position: relative; background: var(--night); color: #fff; overflow: hidden; padding: 0 0 4rem; }
-    .final-photo { height: 62vw; max-height: 420px; background: url("assets/foto-trofeu.webp") center 40% / cover no-repeat; position: relative; }
-    .final-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, var(--night) 100%); }
+    .final-photo { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); height: 62vw; max-height: 420px; overflow: hidden; }
+    .final-photo img { width: 100%; height: 100%; min-height: 0; object-fit: cover; filter: saturate(0.85); }
+    .final-photo img:nth-child(n+9) { display: none; }
+    .final-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(21,8,6,0.35) 0%, var(--night) 100%); }
+    @media (min-width: 900px) { .final-photo { grid-template-columns: repeat(8, 1fr); } .final-photo img:nth-child(n+9) { display: block; } }
     .final .wrap { position: relative; z-index: 1; margin-top: -1.5rem; }
     .final h2 { color: #fff; font-size: clamp(2.1rem, 8.5vw, 3.8rem); }
     .final .lead { color: var(--on-dark); font-size: 1.1rem; margin: 0.9rem 0 0.4rem; }
@@ -456,7 +484,6 @@
 
   <!-- 1. Hero -->
   <header class="hero" id="topo">
-    <div class="hero-photo" aria-hidden="true"></div>
     <div class="wrap">
       <div class="hero-top"><img src="assets/ac_logo_dourado.webp" alt="Atleta Campeão" width="800" height="300"></div>
       <div class="hero-grid">
@@ -465,6 +492,16 @@
           <h1>10 minutos por dia para treinar a mente como <em>os grandes campeões</em></h1>
           <p class="lead">Estamos construindo a maior academia de treinamento mental para atletas do país. Aqui, você treina a mente todos os dias, como treina o corpo. São 10 minutos de prática, um desafio por semana e mentoria ao vivo a cada 15 dias.</p>
           <a href="#planos" class="btn js-cta" data-cta="hero">Quero entrar na Academia<svg class="i"><use href="#i-arrow"/></svg></a>
+          <div class="avatars">
+            <div class="stack">
+              <img src="assets/real/face-bia.webp" alt="" width="40" height="40">
+              <img src="assets/real/face-g5.webp" alt="" width="40" height="40">
+              <img src="assets/real/face-tulio.webp" alt="" width="40" height="40">
+              <img src="assets/real/face-g3.webp" alt="" width="40" height="40">
+              <img src="assets/real/face-matheus.webp" alt="" width="40" height="40">
+            </div>
+            <p><b>Atletas de verdade,</b> de vários esportes, já treinaram a mente com a Mayra.</p>
+          </div>
           <div class="trust">
             <span><svg class="i"><use href="#i-monitor"/></svg>100% online</span>
             <span><svg class="i"><use href="#i-unlock"/></svg>Acesso imediato</span>
@@ -472,23 +509,11 @@
           </div>
         </div>
         <div class="hero-visual">
-          <div class="phone" aria-label="Tela da Caixa de Ferramentas no celular">
-            <div class="screen">
-              <div class="notch"></div>
-              <div class="app-top"><img src="assets/ac_icone_dourado.webp" alt="" width="20" height="20"><small>Hoje · dia 4 de 7</small></div>
-              <div class="app-title">Caixa de Ferramentas</div>
-              <div class="tools">
-                <div class="tool"><svg class="i"><use href="#i-moon"/></svg><div>Para dormir<small>Brainwave · 21 min</small></div></div>
-                <div class="tool on"><svg class="i"><use href="#i-bolt"/></svg><div>Antes do treino<small>Ativação · 3 min</small></div></div>
-                <div class="tool"><svg class="i"><use href="#i-reset"/></svg><div>Depois do erro<small>Voltar ao jogo · 2 min</small></div></div>
-                <div class="tool"><svg class="i"><use href="#i-trophy"/></svg><div>Antes da competição<small>Visualização · 5 min</small></div></div>
-              </div>
-              <div class="player">
-                <span class="play" aria-hidden="true"></span>
-                <div class="meta"><b>Respiração de Ativação</b><small>Antes do treino · 3 min</small><div class="track"><i></i></div></div>
-              </div>
-            </div>
-          </div>
+          <figure class="hero-call">
+            <img src="assets/real/grupo-ao-vivo.webp" alt="Mayra Ramos em um encontro online com seis atletas" width="1400" height="793">
+            <span class="live-pill">AO VIVO</span>
+            <figcaption class="hand">Encontro com a turma</figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -508,9 +533,19 @@
 
   <!-- 3. Virada -->
   <section class="punch">
-    <div class="punch-photo" aria-hidden="true"></div>
     <div class="wrap">
       <h2 class="reveal">Pare de perder na cabeça o que você <span class="gold">ganha no treino.</span></h2>
+      <span class="hand reveal">Todo atleta aqui já passou por isso.</span>
+    </div>
+    <div class="faces" aria-hidden="true">
+      <div class="faces-track">
+        <img src="assets/real/face-bia.webp" alt="" loading="lazy"><img src="assets/real/face-g1.webp" alt="" loading="lazy"><img src="assets/real/face-dream1.webp" alt="" loading="lazy"><img src="assets/real/face-lucas.webp" alt="" loading="lazy"><img src="assets/real/face-g3.webp" alt="" loading="lazy"><img src="assets/real/face-alejo.webp" alt="" loading="lazy"><img src="assets/real/face-tulio.webp" alt="" loading="lazy"><img src="assets/real/face-g4.webp" alt="" loading="lazy">
+        <img src="assets/real/face-bia.webp" alt="" loading="lazy"><img src="assets/real/face-g1.webp" alt="" loading="lazy"><img src="assets/real/face-dream1.webp" alt="" loading="lazy"><img src="assets/real/face-lucas.webp" alt="" loading="lazy"><img src="assets/real/face-g3.webp" alt="" loading="lazy"><img src="assets/real/face-alejo.webp" alt="" loading="lazy"><img src="assets/real/face-tulio.webp" alt="" loading="lazy"><img src="assets/real/face-g4.webp" alt="" loading="lazy">
+      </div>
+      <div class="faces-track rev">
+        <img src="assets/real/face-golfe.webp" alt="" loading="lazy"><img src="assets/real/face-g5.webp" alt="" loading="lazy"><img src="assets/real/face-matheus.webp" alt="" loading="lazy"><img src="assets/real/face-dream2.webp" alt="" loading="lazy"><img src="assets/real/face-piaui.webp" alt="" loading="lazy"><img src="assets/real/face-g2.webp" alt="" loading="lazy"><img src="assets/real/face-patrick.webp" alt="" loading="lazy"><img src="assets/real/face-sorriso.webp" alt="" loading="lazy">
+        <img src="assets/real/face-golfe.webp" alt="" loading="lazy"><img src="assets/real/face-g5.webp" alt="" loading="lazy"><img src="assets/real/face-matheus.webp" alt="" loading="lazy"><img src="assets/real/face-dream2.webp" alt="" loading="lazy"><img src="assets/real/face-piaui.webp" alt="" loading="lazy"><img src="assets/real/face-g2.webp" alt="" loading="lazy"><img src="assets/real/face-patrick.webp" alt="" loading="lazy"><img src="assets/real/face-sorriso.webp" alt="" loading="lazy">
+      </div>
     </div>
   </section>
 
@@ -608,7 +643,7 @@
         <article class="step reveal">
           <div class="step-visual">
             <div class="live">
-              <div class="call"><img src="assets/ac_mayra_palco.webp" alt="Mayra Ramos conduzindo um encontro" width="1400" height="933" loading="lazy"><span class="live-pill">AO VIVO</span></div>
+              <div class="call"><img src="assets/real/grupo-dream-art.webp" alt="Mayra Ramos em encontro online com um grupo de atletas" width="1200" height="680" loading="lazy"><span class="live-pill">AO VIVO</span></div>
               <div class="dates">
                 <div class="date"><span class="cal"><b>NOV</b><span>XX</span></span><small>Mentoria #1<br><span class="tbc">A CONFIRMAR</span></small></div>
                 <div class="date"><span class="cal"><b>DEZ</b><span>XX</span></span><small>Mentoria #2<br><span class="tbc">A CONFIRMAR</span></small></div>
@@ -647,7 +682,7 @@
   <!-- 8. Um dia na Academia -->
   <section class="sand">
     <div class="wrap day-grid">
-      <div class="day-photo reveal"><img src="assets/foto-judo.webp" alt="Atletas de judô em combate" width="1600" height="1044" loading="lazy" style="object-position:30% center"></div>
+      <div class="day-photo reveal"><img src="assets/real/call-tulio.webp" alt="Atleta jovem fazendo sinal de positivo em chamada com a Mayra" width="720" height="816" loading="lazy"></div>
       <div class="reveal">
         <span class="label">Cabe na sua rotina</span>
         <h2>Um dia na <span class="gold">Academia</span></h2>
@@ -666,12 +701,13 @@
   <section class="light">
     <div class="wrap author">
       <div class="author-photos reveal">
-        <img class="main" src="assets/foto-turma.webp" alt="Mayra Ramos com atletas do Corinthians" width="1400" height="933" loading="lazy">
-        <img class="portrait" src="assets/mayra_up.webp" alt="Mayra Ramos" width="1200" height="1200" loading="lazy">
+        <figure class="pola p1"><img src="assets/real/mayra-delegacao.webp" alt="Mayra Ramos com a delegação da Seleção Brasileira de patinação" width="640" height="480" loading="lazy"><figcaption class="hand">Com a Seleção Brasileira de patinação</figcaption></figure>
+        <figure class="pola p2"><img src="assets/real/mayra-italiana-pista.webp" alt="Mayra Ramos na pista de um Mundial, com o collant do Brasil" width="640" height="480" loading="lazy"><figcaption class="hand">Na pista do Mundial</figcaption></figure>
+        <figure class="pola p3"><img src="assets/real/mayra-selecao-sorriso.webp" alt="Mayra Ramos com colegas de seleção" width="640" height="480" loading="lazy"><figcaption class="hand">Os amigos de seleção</figcaption></figure>
       </div>
       <div class="reveal">
         <span class="label">Quem conduz</span>
-        <h2 style="margin-bottom:1.1rem">Quem está por trás <span class="gold">da Academia</span></h2>
+        <h2 style="margin-bottom:1.1rem">Antes de treinar atletas, <span class="gold">ela foi uma.</span></h2>
         <p><b>Mayra Ramos</b> foi atleta da Seleção Brasileira de patinação, com medalhas internacionais. Ela viveu na pele o que é treinar bem e sentir a pressão no dia da prova.</p>
         <p>Hoje, ela lidera o Atleta Campeão, que já ajudou milhares de atletas, treinadores e famílias a treinar a mente com método. <span class="tbc">A CONFIRMAR: bio oficial e números</span></p>
         <p>Na Academia, você treina com o método dela e com <b>treinadores mentais formados pelo Atleta Campeão.</b></p>
@@ -687,9 +723,22 @@
   <section class="sand">
     <div class="wrap">
       <div class="head">
-        <span class="label">Depoimentos</span>
-        <h2 class="reveal">O que dizem <span class="gold">os atletas</span></h2>
+        <span class="label">Quem já treinou com a Mayra</span>
+        <h2 class="reveal">Atletas de verdade. <span class="gold">Conversas de verdade.</span></h2>
+        <p>Prints de encontros online da Mayra com atletas de vários esportes. Sem banco de imagem, sem montagem.</p>
       </div>
+      <div class="calls">
+        <figure class="call-card"><img src="assets/real/call-bia-mesquita.webp" alt="Bia Mesquita com troféu em chamada com a Mayra" width="530" height="600" loading="lazy"><figcaption class="hand">Bia Mesquita</figcaption></figure>
+        <figure class="call-card"><img src="assets/real/call-alejo-2.webp" alt="Alejo Muniz em chamada com a Mayra" width="720" height="820" loading="lazy"><figcaption class="hand">Alejo Muniz</figcaption></figure>
+        <figure class="call-card"><img src="assets/real/call-tulio.webp" alt="Túlio em chamada com a Mayra" width="720" height="816" loading="lazy"><figcaption class="hand">Túlio</figcaption></figure>
+        <figure class="call-card"><img src="assets/real/call-matheus.webp" alt="Matheus Jussa em chamada com a Mayra" width="527" height="595" loading="lazy"><figcaption class="hand">Matheus Jussa</figcaption></figure>
+        <figure class="call-card"><img src="assets/real/call-bia-patrick.webp" alt="Bia e Patrick em chamada com a Mayra" width="720" height="816" loading="lazy"><figcaption class="hand">Bia e Patrick</figcaption></figure>
+        <figure class="call-card"><img src="assets/real/call-lucas-pinheiro.webp" alt="Lucas Pinheiro em chamada com a Mayra" width="720" height="815" loading="lazy"><figcaption class="hand">Lucas Pinheiro</figcaption></figure>
+        <figure class="call-card"><img src="assets/real/call-lucas-piaui.webp" alt="Lucas em chamada com a Mayra" width="720" height="815" loading="lazy"><figcaption class="hand">Lucas</figcaption></figure>
+        <figure class="call-card"><img src="assets/real/call-atleta-golfe.webp" alt="Atleta jovem em chamada com a Mayra" width="720" height="816" loading="lazy"><figcaption class="hand">Atendimento online</figcaption></figure>
+      </div>
+      <div class="swipe"><svg class="i"><use href="#i-swipe"/></svg>Arraste para ver mais atletas</div>
+      <p class="calls-note"><span class="tbc">A CONFIRMAR: autorização de uso de imagem dos atletas e nomes</span></p>
       <div class="testi reveal">
         <img src="assets/depoimento-felipe.webp" alt="Felipe França com medalha de ouro" width="1024" height="674" loading="lazy">
         <div class="testi-body">
@@ -823,7 +872,12 @@
 
   <!-- 15. Final -->
   <section class="final">
-    <div class="final-photo" aria-hidden="true"></div>
+    <div class="final-photo" aria-hidden="true">
+      <img src="assets/real/face-g1.webp" alt="" loading="lazy"><img src="assets/real/face-bia.webp" alt="" loading="lazy"><img src="assets/real/face-g5.webp" alt="" loading="lazy"><img src="assets/real/face-golfe.webp" alt="" loading="lazy">
+      <img src="assets/real/face-dream2.webp" alt="" loading="lazy"><img src="assets/real/face-tulio.webp" alt="" loading="lazy"><img src="assets/real/face-g3.webp" alt="" loading="lazy"><img src="assets/real/face-alejo.webp" alt="" loading="lazy">
+      <img src="assets/real/face-lucas.webp" alt="" loading="lazy"><img src="assets/real/face-g4.webp" alt="" loading="lazy"><img src="assets/real/face-patrick.webp" alt="" loading="lazy"><img src="assets/real/face-dream1.webp" alt="" loading="lazy">
+      <img src="assets/real/face-matheus.webp" alt="" loading="lazy"><img src="assets/real/face-piaui.webp" alt="" loading="lazy"><img src="assets/real/face-g2.webp" alt="" loading="lazy"><img src="assets/real/face-sorriso.webp" alt="" loading="lazy">
+    </div>
     <div class="wrap">
       <h2 class="reveal">A próxima competição <span class="gold">já está chegando.</span></h2>
       <p class="lead">A pergunta é: a sua mente vai estar pronta?</p>
