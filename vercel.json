@@ -32,6 +32,7 @@
     { "source": "/webinar-pre-competicao", "destination": "/webinar-pre-competicao/", "permanent": false },
     { "source": "/pre-competicao", "destination": "/pre-competicao/", "permanent": false },
     { "source": "/academia-do-atleta-campeao", "destination": "/academia-do-atleta-campeao/", "permanent": false },
+    { "source": "/academia-atleta-campeao", "destination": "/academia-atleta-campeao/", "permanent": false },
     { "source": "/selecao-para-atendimento-individual", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
     { "source": "/seleção-para-atendimento-individual", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
     { "source": "/seleção-para-atendimento-individual/", "destination": "/selecao-para-atendimento-individual/", "permanent": false },
