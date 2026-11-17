@@ -4,344 +4,310 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <title>Atleta Campeão × Hípica de Campinas · Proposta (PDF)</title>
-<!-- Fonte da versão DOCUMENTO. Gerar: bash propostas/gerar-pdf.sh hipica-campinas -->
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@700;800;900&family=Caveat:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Versão DOCUMENTO (v6): o Atleta Campeão é o protagonista. Páginas escuras e creme alternadas, Montserrat, pouco texto.
+     Gerar: bash propostas/gerar-pdf.sh hipica-campinas -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 @page{size:A4;margin:0}
-:root{--bg:#0a0a0a;--s9:#171717;--glass:rgba(255,255,255,.035);--line:#262626;--line2:#3a3a3a;--t:#fafafa;--body:#d4d4d4;--muted:#a3a3a3;--gold:#daa525;--gold-l:#e8c56c;--gold-d:#a37d1f;--blue:#02337a;--club:#202569;--h:"Barlow",sans-serif;--b:"Inter",sans-serif}
+:root{--dark:#0d0d0d;--cream:#f3ece0;--cream2:#e9dfcd;--ink:#1c1c1c;--ink2:#5c5548;
+  --gold:#daa525;--gold-d:#9c7419;--f:"Montserrat",sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#555}
-body{font-family:var(--b);color:var(--body);font-size:9.8pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:var(--bg);margin:0 auto 10mm;break-after:page;padding:17mm 16mm 20mm}
+html,body{background:#777}
+body{font-family:var(--f);font-size:11pt;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;margin:0 auto 10mm;break-after:page;padding:20mm 18mm 22mm}
 .page:last-child{break-after:auto;margin-bottom:0}
 @media print{html,body{background:none}.page{margin:0}}
-h1,h2,h3{font-family:var(--h);color:var(--t);font-weight:900;letter-spacing:-.025em;line-height:.98}
-h2{font-size:25pt;margin:6px 0 8px}
-h3{font-size:12pt;font-weight:800;letter-spacing:-.01em;line-height:1.15}
-.gold{color:var(--gold)}
-.eb{display:inline-flex;align-items:center;gap:6px;font-size:8pt;font-weight:500;color:var(--gold-l)}
-.eb::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(218,165,37,.2)}
-.lead{color:var(--body);font-size:10.2pt}
-.muted{color:var(--muted)}
-.ico{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.card{background:var(--glass);border:1px solid var(--line);border-radius:12px}
-.halo{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
-.foot{position:absolute;left:16mm;right:16mm;bottom:8mm;display:flex;justify-content:space-between;align-items:center;font-size:7pt;color:#737373;border-top:1px solid var(--line);padding-top:7px;letter-spacing:.04em}
-.cob{display:flex;align-items:center;gap:7px}
-.cob .ac{height:18px}
-.chip{background:#fff;border-radius:6px;display:grid;place-items:center;padding:2px}
+.dark{background:var(--dark);color:#d9d9d9}
+.cream{background:var(--cream);color:var(--ink)}
+h1,h2,h3{font-family:var(--f);text-transform:uppercase;letter-spacing:-.01em;line-height:1.02}
+h1{font-weight:900}
+h2{font-weight:800;font-size:25pt}
+h3{font-weight:800;font-size:13pt;line-height:1.15}
+.dark h1,.dark h2,.dark h3{color:#fff}
+.cream h2,.cream h3{color:var(--ink)}
+.g{color:var(--gold)}
+.cream .g{color:var(--gold-d)}
+.lbl{display:block;font-weight:700;font-size:10pt;color:var(--gold);margin-bottom:3mm}
+.cream .lbl{color:var(--gold-d)}
+.sub{margin-top:4mm;font-size:11.5pt;font-weight:500;max-width:150mm}
+.dark .sub{color:#cfcfcf}.cream .sub{color:var(--ink2)}
+.ft{position:absolute;left:18mm;right:18mm;bottom:9mm;display:flex;justify-content:space-between;font-size:8.5pt;font-weight:500;opacity:.6}
+.chip{background:#fff;border-radius:2mm;display:grid;place-items:center;padding:1mm}
 .chip img{width:100%;height:100%;object-fit:contain}
-.ph{border-radius:14px;overflow:hidden;position:relative;border:1px solid var(--line);background:var(--s9)}
+.ph{border-radius:2.5mm;overflow:hidden}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.ph figcaption{position:absolute;left:7px;bottom:7px;background:rgba(10,10,10,.65);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:6.8pt;padding:3px 8px;border-radius:99px}
-.pill{display:inline-block;background:linear-gradient(90deg,var(--gold),var(--gold-d));color:#0a0a0a;font-weight:700;font-size:7.4pt;padding:4px 10px;border-radius:99px}
 
 /* 1 capa */
 .capa{padding:0}
-.capa .bg{position:absolute;inset:0;width:100%;height:68%;object-fit:cover;object-position:58% 35%}
-.capa .fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.5) 0%,rgba(10,10,10,.35) 22%,rgba(10,10,10,.92) 56%,var(--bg) 68%)}
-.capa .in{position:relative;z-index:1;height:100%;padding:14mm 16mm 13mm;display:flex;flex-direction:column}
-.capa .cob .ac{height:40px}.capa .cob .x{color:#8a8a8a;font-size:12pt}.capa .cob .chip{width:42px;height:42px;border-radius:10px;padding:4px}
-.badge{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(218,165,37,.3);background:rgba(218,165,37,.1);color:var(--gold-l);border-radius:99px;padding:5px 12px;font-size:7.8pt;font-weight:600}
-.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold)}
-.capa h1{font-size:54pt;letter-spacing:-.035em;line-height:.92;margin:12px 0 12px}
-.capa .sub{font-size:12pt;max-width:150mm}
-.capa .para{margin-top:11mm;display:grid;grid-template-columns:1fr auto;gap:8mm;align-items:end;padding:6mm 7mm}
-.capa .para small{display:block;font-size:7pt;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
-.capa .para strong{display:block;font-family:var(--h);font-weight:800;font-size:19pt;color:var(--t);margin:3px 0 2px}
-.capa .para span{font-size:9pt;color:var(--muted)}
-.capa .data{text-align:right;font-size:8.6pt;color:var(--muted)}.capa .data b{display:block;color:var(--t);font-size:9.6pt}
-.capa .com{margin-top:5mm;font-size:8.4pt;color:var(--muted)}
+.capa .bg{position:absolute;left:0;top:0;width:100%;height:66%;object-fit:cover;object-position:56% 40%}
+.capa .fade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.55) 0%,rgba(13,13,13,.15) 22%,rgba(13,13,13,.85) 55%,var(--dark) 66%)}
+.capa .in{position:relative;z-index:1;height:100%;padding:14mm 18mm 16mm;display:flex;flex-direction:column}
+.cob{display:flex;align-items:center;gap:3mm}
+.cob .ac{height:10mm}.cob .x{color:#999;font-size:10pt}.cob .chip{width:10mm;height:10mm}
+.capa .lbl{margin-top:auto}
+.capa h1{font-size:44pt;line-height:.98}
+.capa .sub{margin-top:6mm;font-size:12.5pt}
+.capa .meta{margin-top:12mm;display:flex;justify-content:space-between;align-items:flex-end;padding-top:5mm;border-top:1px solid #333;font-size:10pt;color:#9a9a9a}
+.capa .meta b{display:block;color:#fff;font-size:13pt;font-weight:800;text-transform:uppercase}
 
-/* 2 */
-.res{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5mm;margin-top:5mm}
-.res .card{padding:4.5mm}
-.res .ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:rgba(218,165,37,.1);border:1px solid rgba(218,165,37,.25);color:var(--gold);margin-bottom:8px}
-.res b{display:block;color:var(--t);font-size:9.6pt;line-height:1.3;margin-bottom:2px}
-.res p{font-size:8.4pt;color:var(--muted);line-height:1.45}
-.club{margin-top:9mm;border-radius:16px;padding:6.5mm;background:linear-gradient(140deg,rgba(32,37,105,.6),rgba(10,10,10,.6) 62%),var(--s9);border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden}
-.club::after{content:"";position:absolute;right:-50px;top:-50px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(237,31,36,.2),transparent 70%)}
-.club .hd{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
-.club .hd .chip{width:40px;height:40px;border-radius:10px;padding:4px}
-.club .hd small{display:block;font-size:7pt;letter-spacing:.16em;text-transform:uppercase;color:#aab0ff}
-.club .hd b{font-family:var(--h);font-weight:800;font-size:15pt;color:var(--t)}
-.wins{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:5mm;position:relative;z-index:1}
-.wins li{display:flex;gap:9px;padding:3.5mm;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
-.wins .md{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(218,165,37,.14);color:var(--gold);flex:none}
-.wins b{display:block;color:var(--t);font-size:9pt;line-height:1.3}
-.wins span{font-size:7.8pt;color:var(--muted);line-height:1.4;display:block}
-.src{margin-top:3mm;font-size:7pt;color:#8a8a8a;position:relative;z-index:1}
-.bridge{margin-top:8mm;font-family:var(--h);font-weight:800;font-size:16pt;color:var(--t);line-height:1.18;letter-spacing:-.01em}
-.bridge em{font-style:normal;color:var(--gold)}
-.team{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:6mm}
-.team .card{display:flex;gap:9px;align-items:center;padding:3.5mm}
-.av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--club);color:#fff;font-family:var(--h);font-weight:800;font-size:9pt;flex:none;border:2px solid rgba(255,255,255,.15)}
-.team b{display:block;color:var(--t);font-size:9pt}
-.team span{font-size:7.6pt;color:var(--muted)}
+/* 2 o que entregamos */
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:7mm;margin-top:14mm}
+.steps3 .n{display:block;font-weight:900;font-size:42pt;line-height:1;color:var(--gold-d)}
+.steps3 b{display:block;font-weight:800;font-size:12pt;margin-top:2mm;text-transform:uppercase;line-height:1.15}
+.steps3 p{margin-top:1.5mm;font-size:10pt;color:var(--ink2)}
+.band{position:absolute;left:0;right:0;bottom:0;background:var(--dark);color:#d9d9d9;padding:16mm 18mm 24mm}
+.band h2{color:#fff;font-size:20pt}
+.temas{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-top:7mm}
+.tema{background:var(--cream);color:var(--ink);border-radius:2.5mm;padding:8mm 7mm}
+.tema .n{font-weight:900;font-size:10pt;color:var(--gold-d)}
+.tema h3{color:var(--ink);margin-top:1mm;font-size:12.5pt}
+.tema p{margin-top:2mm;font-size:10pt;color:var(--ink2)}
+.band .ft{color:#fff}
 
-/* 3 */
-.proj{display:grid;grid-template-columns:66mm 1fr;gap:7mm;align-items:center;margin-top:2mm}
-.proj .ph{height:52mm}
-.proj p+p{margin-top:6px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:3.5mm;margin-top:5mm}
-.steps .card{padding:4.5mm}
-.steps .n{font-family:var(--h);font-weight:900;font-size:24pt;line-height:.9;background:linear-gradient(180deg,var(--gold-l),var(--gold-d));-webkit-background-clip:text;background-clip:text;color:transparent}
-.steps h3{margin:6px 0 3px}
-.steps p{font-size:8.5pt;color:var(--muted);line-height:1.45}
-.fmt{margin-top:3.5mm;padding:3.5mm 4.5mm;display:flex;gap:8px;align-items:center;font-size:8.6pt}
-.fmt .ico{color:var(--gold)}.fmt b{color:var(--t)}
-.temas{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm;margin-top:4mm}
-.tema{padding:4.5mm}
-.tema .n{font-family:var(--h);font-weight:900;color:var(--gold);font-size:10pt}
-.tema h3{margin:4px 0 3px;font-size:11.4pt}
-.tema p{font-size:8.4pt;color:var(--muted);line-height:1.45}
-.tema .q{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line2);color:var(--body)}
-.tema .q b{color:var(--gold-l);font-weight:600}
+/* 3 Mayra */
+.mayra{display:grid;grid-template-columns:78mm 1fr;gap:9mm;height:150mm}
+.mayra .ph{height:150mm}
+.mayra .ph img{object-position:45% 30%}
+.mayra h2{font-size:30pt;line-height:1}
+.cred{list-style:none;margin-top:7mm}
+.cred li{padding:3mm 0;border-top:1px solid #2c2c2c;font-size:11pt;color:#e8e8e8;font-weight:500;line-height:1.3}
+.cred li b{display:block;color:var(--gold);font-weight:900;font-size:13pt;text-transform:uppercase}
+.strip{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:4mm;margin-top:8mm;height:58mm}
+.strip .ph{height:58mm}
+.more{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:7mm}
+.more div{border-top:2px solid var(--gold);padding-top:3mm;font-size:10pt;color:#bdbdbd}
+.more b{display:block;color:#fff;font-weight:800;font-size:10.5pt;text-transform:uppercase;margin-bottom:1mm}
 
-/* 4 */
-.trade{display:grid;grid-template-columns:1.1fr 1fr;gap:4mm;margin-top:5mm}
-.box{padding:6mm}
-.box h3{display:flex;gap:7px;align-items:center;margin-bottom:8px}
-.box h3 .ico{color:var(--gold)}
-.box ul{list-style:none;display:grid;gap:7px}
-.box li{display:flex;gap:8px;font-size:9pt;line-height:1.45}
-.box li .ico{width:13px;height:13px;color:var(--gold);margin-top:3px}
-.box.hl{background:linear-gradient(150deg,rgba(2,51,122,.6),rgba(23,23,23,.8) 65%);border-color:rgba(218,165,37,.28)}
-.cuid{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:4mm}
-.cuid .card{display:flex;gap:8px;align-items:flex-start;padding:3.6mm 4mm;font-size:8.6pt;line-height:1.4}
-.cuid .ico{color:var(--gold);margin-top:1px}
-.quote{margin-top:10mm;padding:7mm;border-radius:16px;border:1px solid rgba(218,165,37,.28);background:linear-gradient(120deg,rgba(218,165,37,.1),transparent 60%)}
-.quote p{font-family:var(--h);font-weight:800;font-size:17pt;line-height:1.2;color:var(--t);letter-spacing:-.01em}
-.quote p em{font-style:normal;color:var(--gold)}
-.quote span{display:block;margin-top:8px;font-size:8.4pt;color:var(--muted)}
+/* 4 Atleta Campeão */
+.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:6mm;margin-top:14mm;border-top:2px solid var(--gold-d)}
+.big3 div{padding-top:4mm}
+.big3 b{display:block;font-weight:900;font-size:33pt;white-space:nowrap;line-height:1;color:var(--ink)}
+.big3 span{display:block;margin-top:1.5mm;font-size:10pt;color:var(--ink2);font-weight:600}
+.acphoto{margin-top:9mm;height:62mm}
+.cob2{margin-top:7mm;display:grid;grid-template-columns:auto 1fr;gap:6mm;align-items:center;background:#fff8ec;border:1px solid var(--cream2);border-radius:2.5mm;padding:6mm}
+.cob2 b{font-weight:900;font-size:22pt;color:var(--gold-d)}
+.cob2 p{font-size:10.5pt;color:var(--ink);font-weight:500}
+.logos{position:absolute;left:0;right:0;bottom:0;background:var(--dark);padding:16mm 18mm 22mm}
+.logos small{display:block;text-align:center;font-weight:700;font-size:11pt;color:var(--gold)}
+.logos .row{display:flex;justify-content:space-between;margin-top:5mm}
+.logos .row div{width:20mm;height:20mm;background:#fff;border-radius:2.5mm;padding:2mm;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.logos img{display:block;width:15mm;height:15mm;object-fit:contain}
+.logos .ft{color:#fff}
 
-/* 5 Mayra */
-.about{display:grid;grid-template-columns:56mm 1fr;gap:7mm;align-items:center}
-.about .ph{height:70mm}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm;margin-top:5mm}
-.stats .card{padding:3mm 2mm;text-align:center}
-.stats b{display:block;font-family:var(--h);font-weight:900;font-size:15pt;color:var(--t)}
-.stats span{font-size:7pt;color:var(--muted)}
-.polas{display:flex;justify-content:space-between;margin:7mm -2mm 0;padding:0 2mm}
-.pola{width:24.5mm;background:#f6f1e7;padding:1.6mm 1.6mm 0;border-radius:2px;box-shadow:0 8px 18px -8px rgba(0,0,0,.9);transform:rotate(-2deg)}
-.pola:nth-child(even){transform:rotate(2.4deg)}
-.pola img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
-.pola span{display:block;font-family:"Caveat",cursive;font-weight:700;font-size:9.4pt;color:#2b2b2b;text-align:center;line-height:1.05;padding:3px 1px 5px}
-.tl{list-style:none;margin-top:7mm;display:grid;gap:2.6mm;position:relative}
-.tl li{display:grid;grid-template-columns:28mm 1fr;gap:4mm;align-items:start}
-.tl .w{font-family:var(--h);font-weight:900;font-size:11pt;color:var(--gold);padding-top:2px;border-top:2px solid var(--gold)}
-.tl .card{padding:2.8mm 4mm}
-.tl b{display:block;color:var(--t);font-size:9.2pt;line-height:1.3}
-.tl p{font-size:8pt;color:var(--muted);line-height:1.4}
-.tl ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;margin-top:3px}
-.tl ul li{display:flex;gap:6px;font-size:8pt;color:var(--body);grid-template-columns:none}
-.tl ul li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold);margin-top:.6em;flex:none}
-.logos{margin-top:6mm;display:grid;grid-template-columns:repeat(7,1fr);gap:2.5mm}
-.logos div{background:#fff;border-radius:8px;height:15mm;display:grid;place-items:center;padding:2mm}
-.logos img{max-height:100%;max-width:100%;object-fit:contain}
-.logos-t{margin-top:6mm;font-size:7.6pt;color:var(--muted);text-align:center}
+/* 5 parceria */
+.trade{display:grid;grid-template-columns:1.1fr 1fr;gap:6mm;margin-top:10mm}
+.col{border-radius:2.5mm;padding:9mm 8mm}
+.col.l{background:var(--cream);color:var(--ink)}
+.col.l h3{color:var(--ink)}
+.col.d{background:#1a1a1a;border:1px solid #2c2c2c}
+.col ul{list-style:none;margin-top:4mm}
+.col li{padding:3.6mm 0 3.6mm 6mm;position:relative;font-size:11.5pt;font-weight:500;border-top:1px solid rgba(128,128,128,.25)}
+.col li::before{content:"";position:absolute;left:0;top:5.4mm;width:3mm;height:2px;background:var(--gold)}
+.pill{display:inline-block;margin-top:5mm;background:var(--gold);color:var(--dark);font-weight:800;font-size:10pt;text-transform:uppercase;padding:2mm 4.5mm;border-radius:99px}
+.film{margin-top:12mm;display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.film div{border-top:2px solid var(--gold);padding-top:3mm;font-size:10pt;color:#bdbdbd}
+.film b{display:block;color:#fff;font-weight:800;font-size:10.5pt;text-transform:uppercase;margin-bottom:1mm}
+.quote{position:absolute;left:0;right:0;bottom:0;background:var(--cream);padding:16mm 18mm 24mm}
+.quote p{font-weight:800;font-size:19pt;line-height:1.2;color:var(--ink);text-transform:uppercase;max-width:165mm}
+.quote .ft{color:var(--ink)}
 
-/* 6 próximos + briefing (página clara, para imprimir) */
-.light{background:#fbfaf7;color:#1f2933}
-.light h2{color:#0f1720}
-.light .eb{color:var(--gold-d)}
-.light .foot{border-color:#e5e2da;color:#8a8a8a}
-.next{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-top:4mm}
-.next div{border-top:2px solid var(--gold);padding-top:2.5mm}
-.next b{display:block;font-size:9pt;color:#0f1720}
-.next span{font-size:7.8pt;color:#5b6570;line-height:1.4;display:block}
-.cta{margin-top:5mm;background:#0a0a0a;color:#fff;border-radius:14px;padding:5mm 6mm;display:flex;justify-content:space-between;align-items:center;gap:5mm}
-.cta b{font-family:var(--h);font-weight:900;font-size:13pt;display:block}
-.cta span{font-size:8.2pt;color:#a3a3a3}
-.cta .url{background:linear-gradient(90deg,var(--gold),var(--gold-d));color:#0a0a0a;border-radius:99px;padding:2.6mm 4.5mm;font-size:8pt;font-weight:700;white-space:nowrap}
-.bq{margin-top:3.6mm}
-.bq b{display:block;font-size:9.6pt;color:#0f1720}
-.bq i{display:block;font-style:normal;font-size:8pt;color:#5b6570}
-.bq .ln{height:6.6mm;border-bottom:1px solid #d9d5cb}
-.chk{display:grid;grid-template-columns:1fr 1fr;gap:2mm 6mm;margin-top:2.5mm;font-size:9pt}
-.chk span{display:flex;gap:7px;align-items:center}
-.chk span::before{content:"";width:10px;height:10px;border:1.4px solid #0f1720;border-radius:50%}
+/* 6 briefing */
+.next{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin-top:3mm}
+.next div{border-top:2px solid var(--gold-d);padding-top:2.5mm;font-size:9.5pt;color:var(--ink2);line-height:1.3}
+.next b{display:block;color:var(--ink);font-weight:800;font-size:10pt;text-transform:uppercase}
+.cta{margin-top:6mm;background:var(--dark);color:#cfcfcf;border-radius:2.5mm;padding:5mm 6mm;display:flex;flex-direction:column;gap:1.5mm;font-size:10pt}
+.cta b{color:#fff;text-transform:uppercase;font-weight:800}
+.cta .url{color:var(--gold);font-weight:700;font-size:9.5pt}
+.bq{margin-top:6mm}
+.bq b{display:block;font-size:11pt;color:var(--ink);font-weight:700}
+.bq .ln{height:9mm;border-bottom:1px solid #c9bda6}
+.chk{display:grid;grid-template-columns:1fr 1fr;gap:2mm 6mm;margin-top:2.5mm;font-size:10.5pt;font-weight:500}
+.chk span{display:flex;gap:2.5mm;align-items:center}
+.chk span::before{content:"";width:3.2mm;height:3.2mm;border:1.4px solid var(--ink);border-radius:50%}
+
+/* treinamento na prática */
+.gal{display:grid;grid-template-columns:1.35fr 1fr;grid-template-rows:55mm 55mm;gap:4mm;margin-top:8mm}
+.gal .ph:first-child{grid-row:span 2}
+.gal figure{position:relative}
+.gal figcaption{position:absolute;left:3mm;bottom:3mm;background:rgba(13,13,13,.75);color:#fff;font-size:8.5pt;font-weight:600;padding:1mm 3mm;border-radius:99px}
+.pil{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:10mm}
+.pil div{background:var(--cream);color:var(--ink);border-radius:2.5mm;padding:6mm 5mm}
+.pil h3{color:var(--ink);font-size:12pt}
+.pil h3 span{display:block;font-size:9pt;color:var(--gold-d);font-weight:800;margin-bottom:1mm}
+.pil ul{list-style:none;margin-top:3mm}
+.pil li{font-size:10pt;font-weight:500;color:var(--ink2);padding:1.8mm 0;border-top:1px solid var(--cream2)}
+.note2{margin-top:6mm;font-size:10pt;color:#bdbdbd}
+.note2 b{color:var(--gold)}
+.fmt3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;margin-top:16mm}
+.fmt3 div{background:#fff8ec;border:1px solid var(--cream2);border-radius:2.5mm;padding:10mm 6mm;min-height:52mm}
+.fmt3 b{display:block;font-weight:800;font-size:11.5pt;text-transform:uppercase;color:var(--ink);line-height:1.15}
+.fmt3 p{margin-top:3mm;font-size:10.5pt;color:var(--ink2)}
 </style>
 </head>
 <body>
 
-<!-- 1 CAPA -->
-<section class="page capa">
+<!-- 1 CAPA (escura) -->
+<section class="page dark capa">
   <img class="bg" src="../assets/ac_mayra_palco.webp" alt="">
   <div class="fade"></div>
   <div class="in">
     <div class="cob"><img class="ac" src="../assets/ac_logo_dourado.webp" alt="Atleta Campeão"><span class="x">×</span><span class="chip"><img src="assets/logo-hipica-02.svg" alt="Hípica"></span></div>
-    <span class="badge">Proposta de parceria · Atleta Campeão na Prática</span>
-    <h1>A cabeça também<br>entra em <span class="gold">quadra.</span></h1>
-    <p class="sub">Um pocket workshop de treinamento mental para a equipe de badminton da Hípica, construído com a comissão técnica e conduzido por Mayra Ramos.</p>
-    <div class="para card">
-      <div><small>Preparada para</small><strong>Sociedade Hípica de Campinas</strong><span>Badminton · Alto rendimento · Atletas de 14 a 45 anos</span></div>
-      <div class="data"><b>17 de novembro de 2026</b>Instituto Atleta Campeão</div>
+    <span class="lbl">Atleta Campeão na Prática</span>
+    <h1>A cabeça também<br>entra em <span class="g">quadra.</span></h1>
+    <p class="sub">Um treinamento mental feito sob medida para a equipe de badminton da Hípica, conduzido por Mayra Ramos.</p>
+    <div class="meta"><div><b>Sociedade Hípica de Campinas</b>Proposta de parceria · Badminton</div><div>Novembro de 2026</div></div>
+  </div>
+</section>
+
+<!-- 2 O QUE ENTREGAMOS (creme + faixa escura de temas) -->
+<section class="page cream">
+  <span class="lbl">O que entregamos</span>
+  <h2>Um treinamento mental<br>feito para a sua equipe.</h2>
+  <p class="sub">Não é uma palestra pronta. O Atleta Campeão monta o encontro a partir do que a comissão técnica vê na quadra.</p>
+  <div class="steps3">
+    <div><span class="n">01</span><b>Diagnóstico</b><p>A comissão técnica responde um briefing de 5 minutos.</p></div>
+    <div><span class="n">02</span><b>Encontro no clube</b><p>Mayra conduz 45 a 60 minutos com os atletas.</p></div>
+    <div><span class="n">03</span><b>Prática para o treino</b><p>Uma ferramenta para usar na rotina.</p></div>
+  </div>
+  <div class="band">
+    <span class="lbl">Personalizado para o badminton</span>
+    <h2>A comissão escolhe o foco.</h2>
+    <div class="temas">
+      <div class="tema"><span class="n">01</span><h3>Foco</h3><p>Voltar para o próximo ponto depois de um rali perdido.</p></div>
+      <div class="tema"><span class="n">02</span><h3>Confiança</h3><p>Errar uma devolução fácil e sacar sem medo.</p></div>
+      <div class="tema"><span class="n">03</span><h3>Pressão</h3><p>O 20 a 20 do set decisivo.</p></div>
+      <div class="tema"><span class="n">04</span><h3>Controle emocional</h3><p>A irritação com a arbitragem ou com a dupla.</p></div>
     </div>
-    <p class="com">Diretor da modalidade: Filipe Lima &nbsp;·&nbsp; Técnicos: Luis Fernando Martin e Gustavo Aquino</p>
+    <div class="ft"><span>Atleta Campeão × Hípica de Campinas</span><span>02</span></div>
   </div>
 </section>
 
-<!-- 2 RESUMO + POR QUE A HÍPICA -->
-<section class="page">
-  <div class="halo" style="width:220px;height:220px;right:-80px;top:-60px;background:rgba(2,51,122,.4)"></div>
-  <span class="eb">Em 30 segundos</span>
-  <h2>Um encontro. Um foco.<br>Uma prática para levar ao treino.</h2>
-  <div class="res">
-    <div class="card"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3a4 4 0 0 1 4 4v4a4 4 0 0 1-8 0V7a4 4 0 0 1 4-4z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div><b>Os técnicos escolhem o tema</b><p>Um briefing de 5 minutos define a prioridade da equipe.</p></div>
-    <div class="card"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c.6-3.4 3-5.4 6-5.4s5.4 2 6 5.4M15 14.7c2.7-.3 5 1.4 5.6 4.3"/></svg></div><b>Mayra conduz com os atletas</b><p>Conversa breve, dinâmica coletiva e uma ferramenta prática.</p></div>
-    <div class="card"><div class="ic"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg></div><b>Sem cachê, em troca do registro</b><p>A atividade é filmada e vira conteúdo nos canais do Atleta Campeão.</p></div>
+<!-- 3 O TREINAMENTO NA PRÁTICA (escura) -->
+<section class="page dark">
+  <span class="lbl">O treinamento na prática</span>
+  <h2>Mayra já levou o treinamento<br>mental a <span class="g">milhares de atletas.</span></h2>
+  <div class="gal">
+    <figure class="ph"><img src="../assets/mayra-palco-congresso.jpg" alt="" style="object-position:45% 30%"><figcaption>Congresso Atleta Campeão</figcaption></figure>
+    <figure class="ph"><img src="../assets/ac_mayra_palco.webp" alt=""><figcaption>Atletas, pais e treinadores</figcaption></figure>
+    <figure class="ph"><img src="../assets/ac_corinthians.webp" alt=""><figcaption>Atletas do Corinthians</figcaption></figure>
   </div>
-
-  <div class="club">
-    <div class="hd"><span class="chip"><img src="assets/logo-hipica-02.svg" alt=""></span><div><small>Por que a Hípica</small><b>Uma equipe que já está no pódio</b></div></div>
-    <ul class="wins">
-      <li><span class="md"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/></svg></span><div><b>3 ouros e 1 prata no Nacional Master</b><span>Florianópolis, nov. 2026: Rodrigo Bongers, Fernanda Kumasaka e Filipe Lima no pódio</span></div></li>
-      <li><span class="md"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/></svg></span><div><b>Vice-campeã nacional por equipes mistas</b><span>Agosto de 2026</span></div></li>
-      <li><span class="md"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/></svg></span><div><b>Título e 4 medalhas na I Etapa Nacional</b><span>Curitiba, fevereiro de 2026</span></div></li>
-      <li><span class="md"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/></svg></span><div><b>Prata no Pan-Americano de Parabadminton</b><span>Frederico Chanoft, novembro de 2025</span></div></li>
-    </ul>
-    <p class="src">Conquistas divulgadas em hipica.com.br</p>
+  <div class="pil">
+    <div><h3><span>Pilar 01</span>Atletas</h3><ul><li>Controle emocional na competição</li><li>Foco consistente</li><li>Confiança sob pressão</li></ul></div>
+    <div><h3><span>Pilar 02</span>Treinadores</h3><ul><li>Liderar esta geração de atletas</li><li>Disciplina sem desgaste</li><li>Cultura de equipe</li></ul></div>
+    <div><h3><span>Pilar 03</span>Pais</h3><ul><li>Apoiar sem cobrar demais</li><li>Lidar com a derrota</li><li>Diálogo com o jovem atleta</li></ul></div>
   </div>
-  <p class="bridge">Técnica e preparo a equipe já tem. Num esporte decidido <em>ponto a ponto</em>, o que acontece na cabeça entre um rali e outro também se treina.</p>
-  <div class="team">
-    <div class="card"><span class="av">FL</span><div><b>Filipe Lima</b><span>Diretor da modalidade</span></div></div>
-    <div class="card"><span class="av">LF</span><div><b>Luis Fernando Martin</b><span>Técnico · ex-atleta da Seleção</span></div></div>
-    <div class="card"><span class="av">GA</span><div><b>Gustavo Aquino</b><span>Técnico · ex-atleta da Seleção</span></div></div>
-  </div>
-  <div class="foot"><span>ATLETA CAMPEÃO × SOCIEDADE HÍPICA DE CAMPINAS</span><span>02 / 06</span></div>
+  <p class="note2"><b>Na Hípica:</b> o foco é a equipe de badminton, e o encontro pode incluir a comissão técnica e os pais.</p>
+  <div class="ft"><span>Atleta Campeão × Hípica de Campinas</span><span>03</span></div>
 </section>
 
-<!-- 3 PROJETO + COMO FUNCIONA + TEMAS -->
-<section class="page">
-  <div class="proj">
-    <figure class="ph"><img src="../assets/ac_corinthians.webp" alt=""><figcaption>Encontro com atletas no Corinthians</figcaption></figure>
+<!-- 3 SOBRE A MAYRA (escura) -->
+<section class="page dark">
+  <div class="mayra">
+    <div class="ph"><img src="../assets/mayra-patinando-mundial.jpg" alt="Mayra Ramos competindo no Mundial de patinação artística"></div>
     <div>
-      <span class="eb">O projeto</span>
-      <h2 style="font-size:20pt">O treinamento mental onde o atleta está.</h2>
-      <p class="lead">O <b style="color:var(--t)">Atleta Campeão na Prática</b> leva o treinamento mental para o clube, a quadra e a rotina de treino, e registra a aplicação de uma ferramenta real.</p>
-      <p class="lead">Na Hípica, o encontro parte do que os técnicos já observam e soma ao trabalho que eles conduzem.</p>
+      <span class="lbl">Quem conduz</span>
+      <h2>Mayra<br>Ramos.</h2>
+      <p class="sub" style="font-size:11pt">20 anos na Seleção Brasileira de Patinação Artística. Fundadora do Atleta Campeão.</p>
+      <ul class="cred">
+        <li><b>Vice-campeã mundial</b>por equipes</li>
+        <li><b>2x melhor do Brasil</b>eleita pelo Comitê Olímpico do Brasil</li>
+        <li><b>Bronze no Pan</b>Jogos Pan-Americanos de Santo Domingo</li>
+        <li><b>Campeã pan-americana</b>e sul-americana de duplas</li>
+      </ul>
     </div>
   </div>
-  <span class="eb" style="margin-top:8mm">Como funciona</span>
-  <div class="steps">
-    <div class="card"><span class="n">01</span><h3>Ouvir</h3><p>Os técnicos indicam uma prioridade e compartilham situações dos treinos e das competições.</p></div>
-    <div class="card"><span class="n">02</span><h3>Praticar</h3><p>Mayra conduz uma conversa breve, uma dinâmica coletiva e uma ferramenta ligada ao desafio escolhido.</p></div>
-    <div class="card"><span class="n">03</span><h3>Levar para o treino</h3><p>Os atletas saem com uma prática simples para usar na rotina, em sintonia com as orientações da equipe.</p></div>
+  <div class="strip">
+    <div class="ph"><img src="../assets/mayra-salto-mundial.jpg" alt="" style="object-position:50% 30%"></div>
+    <div class="ph"><img src="../assets/mayra-bracos-mundial.jpg" alt="" style="object-position:50% 25%"></div>
+    <div class="ph"><img src="../assets/mayra-premio-brasil-olimpico.jpg" alt="" style="object-position:62% 40%"></div>
   </div>
-  <p class="fmt card"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Formato sugerido:</b> encontro presencial de 45 a 60 minutos. Data, duração e dinâmica seguem a rotina do clube.</span></p>
-  <span class="eb" style="margin-top:8mm">Temas · os técnicos escolhem o foco</span>
-  <div class="temas">
-    <div class="tema card"><span class="n">01</span><h3>Foco e concentração</h3><p>Reconhecer distrações e voltar a atenção para o próximo ponto.</p><p class="q"><b>Na quadra:</b> o intervalo entre um rali e outro, quando a cabeça ainda está no ponto perdido.</p></div>
-    <div class="tema card"><span class="n">02</span><h3>Confiança e resposta aos erros</h3><p>Lidar com o erro e se preparar com confiança para a próxima ação.</p><p class="q"><b>Na quadra:</b> errar uma devolução fácil e sacar o ponto seguinte sem medo.</p></div>
-    <div class="tema card"><span class="n">03</span><h3>Pressão competitiva</h3><p>Experimentar recursos para lidar com a ansiedade e se preparar para competir.</p><p class="q"><b>Na quadra:</b> o 20 a 20 do set decisivo, a final de etapa, o jogo contra o favorito.</p></div>
-    <div class="tema card"><span class="n">04</span><h3>Controle emocional</h3><p>Reconhecer emoções e escolher respostas mais úteis diante da frustração.</p><p class="q"><b>Na quadra:</b> a irritação com a arbitragem ou com o parceiro de dupla que contamina o jogo.</p></div>
+  <div class="more">
+    <div><b>Formação nos EUA</b>Psicologia esportiva, neurociência esportiva, coaching e hipnoterapia clínica.</div>
+    <div><b>Comunicação</b>Repórter na TV Tribuna (Globo) e comentarista dos Jogos de Inverno na Record.</div>
   </div>
-  <div class="foot"><span>ATLETA CAMPEÃO × SOCIEDADE HÍPICA DE CAMPINAS</span><span>03 / 06</span></div>
+  <div class="ft"><span>Atleta Campeão × Hípica de Campinas</span><span>04</span></div>
 </section>
 
-<!-- 4 PARCERIA -->
-<section class="page">
-  <div class="halo" style="width:240px;height:240px;left:-90px;bottom:40px;background:rgba(218,165,37,.14)"></div>
-  <span class="eb">A parceria</span>
-  <h2>O que cada lado coloca na mesa.</h2>
-  <div class="trade">
-    <div class="box card hl">
-      <h3><svg class="ico" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></svg>A Hípica recebe</h3>
-      <ul>
-        <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Pocket workshop de treinamento mental conduzido por Mayra Ramos.</li>
-        <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Conteúdo adaptado ao desafio que a comissão técnica escolher.</li>
-        <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Uma ferramenta prática para os atletas usarem na rotina de treino.</li>
-        <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Visibilidade do trabalho da equipe nos canais do Atleta Campeão, com o nome do clube quando autorizado.</li>
-      </ul>
-      <p style="margin-top:10px"><span class="pill">Sem cobrança de cachê</span></p>
+<!-- 4 SOBRE O ATLETA CAMPEÃO (creme + faixa escura de logos) -->
+<section class="page cream">
+  <span class="lbl">Sobre o Atleta Campeão</span>
+  <h2>A maior referência em<br>treinamento mental<br>esportivo do Brasil.</h2>
+  <p class="sub">Fundado por Mayra Ramos nos Estados Unidos, em 2016. No Brasil desde 2017, atende atletas, forma profissionais e leva o método a clubes e equipes.</p>
+  <div class="big3">
+    <div><b>30 mil+</b><span>atletas impactados</span></div>
+    <div><b>400 mil+</b><span>seguidores</span></div>
+    <div><b>2016</b><span>fundação nos EUA</span></div>
+  </div>
+  <div class="fmt3">
+    <div><b>Atendimento individual</b><p>Treinamento mental para atletas de todo o Brasil e do exterior.</p></div>
+    <div><b>Clubes e equipes</b><p>Palestras e treinamentos sob medida, presenciais ou online.</p></div>
+    <div><b>Formação</b><p>Pós-graduação e cursos para quem trabalha com o esporte.</p></div>
+  </div>
+  <div class="logos">
+    <small>Clubes e equipes que já receberam o Atleta Campeão</small>
+    <div class="row">
+      <div><img src="../assets/logo_corinthians.png" alt=""></div><div><img src="../assets/logo_inter.png" alt=""></div><div><img src="../assets/logo_iate_clube.png" alt=""></div><div><img src="../assets/logo_unisanta.png" alt=""></div><div><img src="../assets/logo_gracie_barra.webp" alt=""></div><div><img src="../assets/logo_alliance.png" alt=""></div><div><img src="../assets/logo_atos.png" alt=""></div>
     </div>
-    <div class="box card">
-      <h3><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg>A contrapartida</h3>
+    <div class="ft"><span>Atleta Campeão × Hípica de Campinas</span><span>05</span></div>
+  </div>
+</section>
+
+<!-- 5 A PARCERIA (escura + rodapé creme) -->
+<section class="page dark">
+  <span class="lbl">A parceria</span>
+  <h2>O treinamento é nosso.<br><span class="g">A contrapartida é a gravação.</span></h2>
+  <div class="trade">
+    <div class="col l">
+      <h3>A Hípica recebe</h3>
       <ul>
-        <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Permissão para filmar a atividade no clube.</li>
-        <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Publicação dos registros autorizados nos canais do Atleta Campeão, incluindo YouTube e redes sociais.</li>
-        <li><svg class="ico" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>Alinhamento prévio de espaços, rotina de gravação e uso do nome e da marca do clube.</li>
+        <li>Treinamento mental sob medida</li>
+        <li>Conduzido por Mayra Ramos</li>
+        <li>Uma prática para a rotina de treino</li>
+        <li>Visibilidade nos canais do Atleta Campeão</li>
+      </ul>
+      <span class="pill">Sem custo para o clube</span>
+    </div>
+    <div class="col d">
+      <h3>Em contrapartida</h3>
+      <ul>
+        <li>O Atleta Campeão filma o encontro</li>
+        <li>E publica os registros autorizados</li>
+        <li>Com alinhamento prévio de uso da marca</li>
       </ul>
     </div>
   </div>
-  <h3 style="margin-top:9mm">Cuidados com a filmagem</h3>
-  <div class="cuid">
-    <div class="card"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Imagem e voz usadas somente com autorização de cada participante.</div>
-    <div class="card"><svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 20c.5-3.5 3-5.5 6-5.5M16 11v6M13 14h6"/></svg>Menores de idade: autorização dos responsáveis e concordância do atleta.</div>
-    <div class="card"><svg class="ico" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 6.1A9.6 9.6 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.6 6.6C4.2 8.2 3 12 3 12s4 6 9 6c1.6 0 3-.4 4.3-1.1"/></svg>Quem preferir não aparecer participa sem ser identificado.</div>
-    <div class="card"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>O conteúdo tem foco na experiência coletiva e nos aprendizados.</div>
+  <div class="film">
+    <div><b>Autorização</b>Imagem só com o ok de cada participante.</div>
+    <div><b>Menores</b>Com autorização dos responsáveis.</div>
+    <div><b>Escolha</b>Quem preferir não aparece.</div>
   </div>
   <div class="quote">
-    <p>Os técnicos definem a prioridade. Mayra conduz uma experiência prática que <em>soma ao trabalho que eles já fazem.</em></p>
-    <span>Atleta Campeão na Prática · um encontro construído com a comissão técnica</span>
+    <p>O Atleta Campeão na Prática mostra o treinamento mental <span class="g">acontecendo dentro do clube.</span></p>
+    <div class="ft"><span>Atleta Campeão × Hípica de Campinas</span><span>06</span></div>
   </div>
-  <div class="foot"><span>ATLETA CAMPEÃO × SOCIEDADE HÍPICA DE CAMPINAS</span><span>04 / 06</span></div>
 </section>
 
-<!-- 5 SOBRE A MAYRA -->
-<section class="page">
-  <div class="halo" style="width:260px;height:260px;right:-100px;top:-40px;background:rgba(218,165,37,.15)"></div>
-  <div class="about">
-    <figure class="ph"><img src="../assets/mayra_up.webp" alt=""></figure>
-    <div>
-      <span class="eb">Sobre a Mayra</span>
-      <h2 style="font-size:22pt">20 anos de Seleção antes de treinar a mente de atletas.</h2>
-      <p class="lead">Mayra Ramos competiu pela Seleção Brasileira de Patinação Artística por duas décadas. Conhece por dentro o alto rendimento, a cobrança e o momento de entrar para competir.</p>
-      <div class="stats">
-        <div class="card"><b>20 anos</b><span>na Seleção</span></div>
-        <div class="card"><b>30 mil+</b><span>atletas, pais e treinadores</span></div>
-        <div class="card"><b>15+</b><span>países com atletas</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="polas">
-    <div class="pola"><img src="../assets/arq-mundial-italiana.webp" alt=""><span>Mundial, com a Itália</span></div>
-    <div class="pola"><img src="../assets/mayra-delegacao.webp" alt=""><span>Delegação brasileira</span></div>
-    <div class="pola"><img src="../assets/arq-bastidor-internacional.webp" alt=""><span>Bastidores</span></div>
-    <div class="pola"><img src="../assets/arq-ginasio-treino.webp" alt="" style="object-position:50% 25%"><span>Dia de treino</span></div>
-    <div class="pola"><img src="../assets/arq-selecao-arquibancada.webp" alt=""><span>Com a Seleção</span></div>
-    <div class="pola"><img src="../assets/mayra-italiana-pista.webp" alt=""><span>Na pista do Mundial</span></div>
-  </div>
-  <ol class="tl">
-    <li><span class="w">Atleta</span><div class="card"><b>20 anos na Seleção Brasileira de Patinação Artística</b><ul><li>Campeã pan-americana e sul-americana de duplas</li><li>Vice-campeã mundial por equipes</li><li>Bronze no Pan de Santo Domingo 2003</li><li>Eleita 2 vezes pelo COB a melhor da patinação</li></ul></div></li>
-    <li><span class="w">Comunicação</span><div class="card"><b>Do pódio para a cobertura do esporte</b><p>Repórter na TV Tribuna (afiliada Globo) e comentarista dos Jogos de Inverno pela Record.</p></div></li>
-    <li><span class="w">Formação</span><div class="card"><b>Especialização nos Estados Unidos</b><p>Coaching, psicologia esportiva, neurociência esportiva e hipnoterapia clínica.</p></div></li>
-    <li><span class="w">2016 · 2017</span><div class="card"><b>Funda o Atleta Campeão nos EUA e traz o método ao Brasil</b></div></li>
-    <li><span class="w">2018</span><div class="card"><b>Reconhecimento do COB e convite ao Prêmio Brasil Olímpico</b></div></li>
-    <li><span class="w">Hoje</span><div class="card"><b>Referência em treinamento mental esportivo, com 400 mil seguidores</b></div></li>
-  </ol>
-  <p class="logos-t">Clubes e equipes que já receberam o Atleta Campeão</p>
-  <div class="logos" style="margin-top:3mm">
-    <div><img src="../assets/logo_corinthians.png" alt=""></div><div><img src="../assets/logo_inter.png" alt=""></div><div><img src="../assets/logo_iate_clube.png" alt=""></div><div><img src="../assets/logo_unisanta.png" alt=""></div><div><img src="../assets/logo_gracie_barra.webp" alt=""></div><div><img src="../assets/logo_alliance.png" alt=""></div><div><img src="../assets/logo_atos.png" alt=""></div>
-  </div>
-  <div class="foot"><span>ATLETA CAMPEÃO × SOCIEDADE HÍPICA DE CAMPINAS</span><span>05 / 06</span></div>
-</section>
-
-<!-- 6 PRÓXIMOS PASSOS + BRIEFING -->
-<section class="page light">
-  <span class="eb">Próximos passos</span>
+<!-- 6 BRIEFING (creme) -->
+<section class="page cream">
+  <span class="lbl">Próximos passos</span>
   <div class="next">
-    <div><b>1. Briefing</b><span>Os técnicos respondem as perguntas abaixo ou online.</span></div>
-    <div><b>2. Foco</b><span>Mayra prepara a dinâmica a partir das respostas.</span></div>
-    <div><b>3. Organização</b><span>Grupo, data, espaço e autorizações de gravação.</span></div>
-    <div><b>4. Encontro</b><span>Workshop, filmagem e a prática para o treino.</span></div>
+    <div><b>1. Briefing</b>A comissão responde.</div>
+    <div><b>2. Foco</b>Mayra monta o encontro.</div>
+    <div><b>3. Agenda</b>Data, grupo e autorizações.</div>
+    <div><b>4. Encontro</b>Treinamento e gravação.</div>
   </div>
-  <div class="cta"><div><b>Prefere responder pelo celular?</b><span>5 minutos, com o tema já em opções para marcar.</span></div><span class="url">atletacampeaotreinamentos.com/propostas/hipica-campinas</span></div>
-
-  <h2 style="margin-top:8mm;font-size:21pt">Briefing da comissão técnica</h2>
-  <p style="font-size:9pt;color:#5b6570">Respostas breves, por escrito ou áudio, sem identificar atletas.</p>
-  <div class="bq"><b>1. Qual tema seria mais útil para a equipe agora?</b>
-    <div class="chk"><span>Foco e concentração</span><span>Confiança e resposta aos erros</span><span>Pressão competitiva</span><span>Controle emocional</span></div>
-    <div class="ln"><i style="padding-top:2.5mm">Outro:</i></div></div>
-  <div class="bq"><b>2. Em quais situações esse desafio aparece?</b><i>Um exemplo do treino ou da competição.</i><div class="ln"></div><div class="ln"></div></div>
-  <div class="bq"><b>3. Que atitude ou habilidade gostariam de estimular no encontro?</b><div class="ln"></div></div>
-  <div class="bq"><b>4. O que vocês já fazem que ajuda e deve ser valorizado?</b><i>Orientações, estratégias ou rotinas já usadas com a equipe.</i><div class="ln"></div><div class="ln"></div></div>
-  <div class="bq"><b>5. Há cuidados com a linguagem, a dinâmica ou a filmagem?</b><div class="ln"></div></div>
-  <div class="bq"><b>6. Quantos atletas participariam e como organizar o grupo?</b><div class="ln"></div></div>
-  <div class="bq"><b>7. Qual seria uma boa janela para a atividade?</b><i>Data e horário, tempo disponível e espaço no clube.</i><div class="ln"></div></div>
-  <div class="bq"><b>Quem respondeu (nome e função)</b><div class="ln"></div></div>
-  <div class="foot"><span class="cob"><img class="ac" src="../assets/ac_logo_dourado.webp" alt=""></span><span>06 / 06</span></div>
+  <div class="cta"><span><b>Responda pelo celular</b> · 5 minutos</span><span class="url">atletacampeaotreinamentos.com/propostas/hipica-campinas</span></div>
+  <h2 style="margin-top:9mm;font-size:20pt">Briefing da comissão técnica</h2>
+  <div class="bq"><b>1. Qual tema seria mais útil agora?</b>
+    <div class="chk"><span>Foco</span><span>Confiança</span><span>Pressão</span><span>Controle emocional</span></div>
+    <div class="ln"></div></div>
+  <div class="bq"><b>2. Em que situação esse desafio aparece?</b><div class="ln"></div><div class="ln"></div></div>
+  <div class="bq"><b>3. O que gostariam de ver diferente na quadra?</b><div class="ln"></div></div>
+  <div class="bq"><b>4. O que vocês já fazem e funciona?</b><div class="ln"></div></div>
+  <div class="bq"><b>5. Algum cuidado com a dinâmica ou a filmagem?</b><div class="ln"></div></div>
+  <div class="bq"><b>6. Quantos atletas e qual a melhor data?</b><div class="ln"></div></div>
+  <div class="bq"><b>Quem respondeu</b><div class="ln"></div></div>
+  <div class="ft"><span>Atleta Campeão × Hípica de Campinas</span><span>07</span></div>
 </section>
 
 </body>

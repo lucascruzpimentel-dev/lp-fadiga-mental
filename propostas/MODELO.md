@@ -19,5 +19,7 @@ Cada proposta tem duas versões geradas a partir da mesma pasta:
 As fotos e logos ficam em `propostas/assets/` e são compartilhadas por todas as propostas.
 As páginas têm `noindex` para não aparecer no Google.
 
-Visual: segue o design system do AC (`atendimento-individual-ac/design_system.html`): fundo #0A0A0A, ouro #DAA525, azul #02337A, Barlow 900 + Inter, botões em pílula. A cor do clube aparece só no card "Por que o clube" e no selo do logo.
-A seção "Sobre a Mayra" (arquivo pessoal + linha do tempo) é igual para todas as propostas.
+Estrutura: o Atleta Campeão é o protagonista. Capa → o que entregamos (treinamento sob medida + temas do esporte) → o treinamento na prática (fotos reais de palestras + pilares atletas, treinadores, pais) → Sobre a Mayra (fotos patinando, títulos) → Sobre o Atleta Campeão (números, formatos, logos) → a parceria (o treino é nosso, a contrapartida é a gravação) → briefing. Não elogiar o clube cliente.
+
+Visual: seções escuras (#0D0D0D) e creme (#F3ECE0) alternadas, Montserrat (fonte das capas @atletacampeao) com títulos em caixa alta, dourado #DAA525, pouco texto (um item por linha), logo pequena. Nada de Georgia/serif, Inter ou página toda branca.
+A seção "Sobre a Mayra" e "Sobre o Atleta Campeão" são iguais para todas as propostas.
