@@ -25,7 +25,7 @@ Olá, [Nome]!
 Sua inscrição no **Congresso Internacional de Neurociência Aplicada ao Esporte** está confirmada. De **14 a 17 de dezembro, às 20h30**, você vai assistir ao vivo:
 
 - **14/12 (seg)** · Leonardo Fortes: O Cérebro do Atleta na Era Digital
-- **15/12 (ter)** · Luiz Frota Solon Júnior: Fadiga Mental
+- **15/12 (ter)** · Luiz Solon Júnior: Fadiga Mental
 - **16/12 (qua)** · Mayra Ramos: O Cérebro do Atleta na Competição
 - **17/12 (qui)** · Lucas Cruz: Como se tornar um treinador mental reconhecido e bem pago
 
