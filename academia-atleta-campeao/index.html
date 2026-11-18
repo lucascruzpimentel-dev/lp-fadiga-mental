@@ -61,7 +61,7 @@
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 1rem; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     @media (min-width: 768px) { body { font-size: 1.0625rem; } }
@@ -226,7 +226,7 @@
     @media (min-width: 768px) { .after { text-align: center; } }
 
     /* Como funciona */
-    .platform { margin: 0 auto 1.25rem; max-width: 40rem; }
+    .platform { display: block; width: 100%; margin: 0 auto 1.25rem; max-width: min(40rem, 100%); height: auto; }
     .steps { display: grid; gap: 1rem; }
     @media (min-width: 960px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: stretch; } }
     .step { background: #fff; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; }
