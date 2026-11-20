@@ -1288,6 +1288,140 @@
     .footer__legal a:hover {
       color: #93c5fd;
     }
+
+    /* ========== Comunidade WhatsApp: banner clicável + balão que fica verde com o scroll ========== */
+    #comunidade {
+      padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4vw, 1.5rem);
+      scroll-margin-top: 24px;
+    }
+    .comunidade__banner {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 3vw, 1.75rem);
+      max-width: 880px;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 4vw, 2rem) clamp(1.25rem, 4vw, 2.25rem);
+      border-radius: 20px;
+      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 14px 40px rgba(21, 128, 61, 0.28), 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .comunidade__banner:hover { transform: translateY(-3px); box-shadow: 0 20px 48px rgba(21, 128, 61, 0.36), 0 4px 12px rgba(0, 0, 0, 0.08); }
+    .comunidade__banner:focus-visible { outline: 3px solid #86efac; outline-offset: 4px; }
+    .comunidade__icon {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: clamp(56px, 12vw, 76px);
+      height: clamp(56px, 12vw, 76px);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.16);
+      font-size: clamp(32px, 7vw, 44px);
+    }
+    .comunidade__text { flex: 1 1 auto; min-width: 0; }
+    .comunidade__eyebrow {
+      margin: 0 0 4px;
+      font-family: var(--font-body);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #bbf7d0;
+    }
+    .comunidade__title {
+      margin: 0 0 6px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .comunidade__desc { margin: 0; font-size: clamp(.9rem, 2.4vw, 1rem); line-height: 1.5; color: #dcfce7; }
+    .comunidade__cta {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: #fff;
+      color: #15803d;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    @media (max-width: 699px) {
+      .comunidade__banner { flex-wrap: wrap; text-align: left; }
+      .comunidade__text { flex-basis: calc(100% - 92px); }
+      .comunidade__cta { width: 100%; justify-content: center; }
+    }
+
+    /* Balão: começa branco com texto preto e vai "enchendo" de verde de baixo para cima (--p de 0 a 1) */
+    .balao-grupo {
+      --p: 0;
+      position: fixed;
+      left: 50%;
+      bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+      z-index: 50;
+      transform: translateX(-50%);
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: #fff;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: .04em;
+      white-space: nowrap;
+      cursor: pointer;
+      filter: drop-shadow(0 4px 12px rgba(15, 23, 42, 0.22)) drop-shadow(0 0 1px rgba(15, 23, 42, 0.35));
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+    .balao-grupo__base,
+    .balao-grupo__cheio {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: inherit;
+    }
+    .balao-grupo__base { color: #0f172a; }
+    .balao-grupo__cheio {
+      position: absolute;
+      inset: 0;
+      background: #15803d;
+      color: #fff;
+      clip-path: inset(calc((1 - var(--p)) * 100%) 0 0 0);
+    }
+    .balao-grupo::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -7px;
+      margin-left: -8px;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid #fff;
+    }
+    .balao-grupo--enchendo::after { border-top-color: #15803d; }
+    .balao-grupo iconify-icon { font-size: 15px; }
+    .balao-grupo--oculto { opacity: 0; visibility: hidden; pointer-events: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      .balao-grupo { animation: balao-flutua 2.4s ease-in-out infinite; }
+      @keyframes balao-flutua {
+        0%, 100% { margin-bottom: 0; }
+        50% { margin-bottom: 5px; }
+      }
+    }
+    @media (max-width: 480px) {
+      .balao-grupo { font-size: 12px; }
+      .balao-grupo__base, .balao-grupo__cheio { padding: 8px 13px; }
+    }
   </style>
 </head>
 <body>
@@ -1582,6 +1716,19 @@
       </div>
     </section>
 
+    <!-- Comunidade do WhatsApp: banner clicável (alvo do balão flutuante) -->
+    <section id="comunidade" aria-label="Grupo do Congresso no WhatsApp">
+      <a href="https://lp.atletacampeao.com.br/redirect-comunidade-whatsapp" class="comunidade__banner" target="_blank" rel="noopener" data-gtm="comunidade-whatsapp-banner">
+        <span class="comunidade__icon" aria-hidden="true"><iconify-icon icon="mdi:whatsapp"></iconify-icon></span>
+        <div class="comunidade__text">
+          <p class="comunidade__eyebrow">Comunidade do Congresso</p>
+          <p class="comunidade__title">Entre no grupo do Congresso no WhatsApp</p>
+          <p class="comunidade__desc">É por lá que chegam os links das aulas ao vivo, os lembretes de cada noite e os avisos importantes.</p>
+        </div>
+        <span class="comunidade__cta">Entrar no grupo <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></span>
+      </a>
+    </section>
+
     <!-- Seção Passe Profissional (repetição após palestrantes) -->
     <section id="lotes-2" class="lotes" aria-labelledby="lotes-title-2">
       <h2 class="lotes__title" id="lotes-title-2">Garanta seu Passe Profissional</h2>
@@ -1843,6 +1990,49 @@
         io.disconnect();
       }, { threshold: 0.15 });
       if (certCard) io.observe(certCard);
+    })();
+  </script>
+  <!-- Balão flutuante: leva até o banner da comunidade e fica verde conforme a página rola -->
+  <button type="button" class="balao-grupo" id="balao-grupo" aria-controls="comunidade" aria-label="Entre no grupo do Congresso">
+    <span class="balao-grupo__base" aria-hidden="true">ENTRE NO GRUPO DO CONGRESSO <iconify-icon icon="lucide:arrow-down" aria-hidden="true"></iconify-icon></span>
+    <span class="balao-grupo__cheio" aria-hidden="true">ENTRE NO GRUPO DO CONGRESSO <iconify-icon icon="lucide:arrow-down" aria-hidden="true"></iconify-icon></span>
+  </button>
+
+  <script>
+    // Balão "ENTRE NO GRUPO DO CONGRESSO": começa branco e vai enchendo de verde, de baixo para
+    // cima, conforme o visitante se aproxima do banner da comunidade; some quando o banner aparece.
+    (function () {
+      var balao = document.getElementById('balao-grupo');
+      var alvo = document.getElementById('comunidade');
+      if (!balao || !alvo) return;
+      var agendado = false;
+
+      function atualizar() {
+        agendado = false;
+        var rect = alvo.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var topoAlvo = rect.top + window.scrollY;
+        var fim = Math.max(1, topoAlvo - vh); // verde total quando o banner começa a entrar na tela
+        var p = Math.min(1, Math.max(0, window.scrollY / fim));
+        balao.style.setProperty('--p', p.toFixed(3));
+        balao.classList.toggle('balao-grupo--enchendo', p > 0.02); // a ponta, embaixo, enche primeiro
+        var bannerVisivel = rect.top < vh * 0.6 && rect.bottom > 0; // some quando o banner já está bem à vista
+        var passou = rect.bottom <= 0;
+        balao.classList.toggle('balao-grupo--oculto', bannerVisivel || passou);
+      }
+      function agendar() { if (!agendado) { agendado = true; requestAnimationFrame(atualizar); } }
+      window.addEventListener('scroll', agendar, { passive: true });
+      window.addEventListener('resize', agendar);
+      atualizar();
+
+      balao.addEventListener('click', function () {
+        var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        alvo.scrollIntoView({ behavior: reduz ? 'auto' : 'smooth', block: 'center' });
+        (window.dataLayer = window.dataLayer || []).push({ event: 'balao_grupo_click' });
+      });
+      alvo.querySelector('a').addEventListener('click', function () {
+        (window.dataLayer = window.dataLayer || []).push({ event: 'comunidade_whatsapp_click' });
+      });
     })();
   </script>
 </body>
