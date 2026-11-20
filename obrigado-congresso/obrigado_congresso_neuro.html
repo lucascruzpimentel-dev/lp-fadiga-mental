@@ -1378,7 +1378,8 @@
       line-height: 1;
       letter-spacing: .04em;
       white-space: nowrap;
-      cursor: pointer;
+      pointer-events: none;
+      user-select: none;
       filter: drop-shadow(0 4px 12px rgba(15, 23, 42, 0.22)) drop-shadow(0 0 1px rgba(15, 23, 42, 0.35));
       transition: opacity .3s ease, visibility .3s ease;
     }
@@ -1992,11 +1993,11 @@
       if (certCard) io.observe(certCard);
     })();
   </script>
-  <!-- Balão flutuante: leva até o banner da comunidade e fica verde conforme a página rola -->
-  <button type="button" class="balao-grupo" id="balao-grupo" aria-controls="comunidade" aria-label="Entre no grupo do Congresso">
+  <!-- Balão flutuante (só visual, sem clique): fica verde conforme a página rola até o banner da comunidade -->
+  <div class="balao-grupo" id="balao-grupo" aria-hidden="true">
     <span class="balao-grupo__base" aria-hidden="true">ENTRE NO GRUPO DO CONGRESSO <iconify-icon icon="lucide:arrow-down" aria-hidden="true"></iconify-icon></span>
     <span class="balao-grupo__cheio" aria-hidden="true">ENTRE NO GRUPO DO CONGRESSO <iconify-icon icon="lucide:arrow-down" aria-hidden="true"></iconify-icon></span>
-  </button>
+  </div>
 
   <script>
     // Balão "ENTRE NO GRUPO DO CONGRESSO": começa branco e vai enchendo de verde, de baixo para
@@ -2025,11 +2026,6 @@
       window.addEventListener('resize', agendar);
       atualizar();
 
-      balao.addEventListener('click', function () {
-        var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        alvo.scrollIntoView({ behavior: reduz ? 'auto' : 'smooth', block: 'center' });
-        (window.dataLayer = window.dataLayer || []).push({ event: 'balao_grupo_click' });
-      });
       alvo.querySelector('a').addEventListener('click', function () {
         (window.dataLayer = window.dataLayer || []).push({ event: 'comunidade_whatsapp_click' });
       });
