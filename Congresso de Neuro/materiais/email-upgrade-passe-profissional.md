@@ -22,11 +22,11 @@
 
 Olá, [Nome]!
 
-Sua inscrição no **Congresso Internacional de Neurociência Aplicada ao Esporte** está confirmada. De **14 a 17 de dezembro, às 20h30**, você vai assistir ao vivo:
+Sua inscrição no **Congresso Internacional de Neurociência Aplicada ao Esporte** está confirmada. De **14 a 17 de dezembro, às 20h**, você vai assistir ao vivo:
 
 - **14/12 (seg)** · Leonardo Fortes: O Cérebro do Atleta na Era Digital
-- **15/12 (ter)** · Luiz Solon Júnior: Fadiga Mental
-- **16/12 (qua)** · Mayra Ramos: O Cérebro do Atleta na Competição
+- **15/12 (ter)** · Mayra Ramos: O Cérebro do Atleta na Competição
+- **16/12 (qua)** · Luiz Solon Júnior: Neuromodulação no esporte
 - **17/12 (qui)** · Lucas Cruz: Como se tornar um treinador mental reconhecido e bem pago
 
 O acesso gratuito é pelo YouTube, **só ao vivo**. Se o treino atrasar, se tiver jogo no mesmo horário ou se você quiser rever um protocolo com calma, a aula já passou.
@@ -45,7 +45,7 @@ No Lote 1 ele sai por **R$ 47** (pagamento único). Na segunda-feira, **14/12, �
 
 Se você trabalha com atletas, essas 4 aulas viram material de consulta para o ano inteiro. Com o passe, elas ficam com você.
 
-Te vejo no dia 14, às 20h30.
+Te vejo no dia 14, às 20h.
 
 Um abraço,
 **Mayra Ramos**
